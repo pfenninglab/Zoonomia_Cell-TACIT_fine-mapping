@@ -1,0 +1,15 @@
+Source species Rhesus.
+Target species Human.
+Output dir is ../../../data/raw_data/rheMac10/Stauffer_caudate/halper.
+NarrowPeak file is ../../../data/raw_data/rheMac10/Stauffer_caudate/peak/Stauffer_caudate.Interneuron.narrowPeak.
+Overwrite intermediate halLiftover files.
+Converting narrowpeak file to bed file. Make sure has unique peak name in 4th column.
+Extracting narrowPeak summits to halLiftover.
+Lifting Rhesus summits to Human genome.
+ls: cannot access ../../../data/raw_data/rheMac10/Stauffer_caudate/peak/Stauffer_caudate.Interneuron.narrowPeak.gz: No such file or directory
+Lifting Rhesus peaks to Human genome.
+ls: cannot access ../../../data/raw_data/rheMac10/Stauffer_caudate/peak/Stauffer_caudate.Interneuron.narrowPeak.gz: No such file or directory
+Apply HALPER to identify 1-1 orthologous in the Human genome.
+gzip: ../../../data/raw_data/rheMac10/Stauffer_caudate/halper/Stauffer_caudate.Interneuron_RhesusToHuman_halLiftover.tFile.bed.gz already exists;	not overwritten
+gzip: ../../../data/raw_data/rheMac10/Stauffer_caudate/halper/Stauffer_caudate.Interneuron_RhesusToHuman_halLiftover.sFile.bed.gz already exists;	not overwritten
+Done.

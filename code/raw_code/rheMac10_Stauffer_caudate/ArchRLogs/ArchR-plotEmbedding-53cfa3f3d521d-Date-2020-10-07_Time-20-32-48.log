@@ -1,0 +1,289 @@
+
+           ___      .______        ______  __    __  .______      
+          /   \     |   _  \      /      ||  |  |  | |   _  \     
+         /  ^  \    |  |_)  |    |  ,----'|  |__|  | |  |_)  |    
+        /  /_\  \   |      /     |  |     |   __   | |      /     
+       /  _____  \  |  |\  \\___ |  `----.|  |  |  | |  |\  \\___.
+      /__/     \__\ | _| `._____| \______||__|  |__| | _| `._____|
+    
+Logging With ArchR!
+
+Start Time : 2020-10-07 20:32:48
+
+------- ArchR Info
+
+ArchRThreads = 1
+ArchRGenome = Mm10
+
+------- System Info
+
+Computer OS = unix
+Total Cores = 64
+
+------- Session Info
+
+R version 3.6.3 (2020-02-29)
+Platform: x86_64-conda_cos6-linux-gnu (64-bit)
+Running under: CentOS Linux 7 (Core)
+
+Matrix products: default
+BLAS/LAPACK: /home/bnphan/miniconda3/lib/libmkl_rt.so
+
+locale:
+ [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+ [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+ [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
+ [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+ [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+[11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+
+attached base packages:
+[1] parallel  stats4    stats     graphics  grDevices utils     datasets 
+[8] methods   base     
+
+other attached packages:
+ [1] ArchR_0.9.5                 magrittr_1.5               
+ [3] rhdf5_2.30.1                Matrix_1.2-18              
+ [5] data.table_1.13.0           SummarizedExperiment_1.16.1
+ [7] DelayedArray_0.12.3         BiocParallel_1.20.1        
+ [9] matrixStats_0.57.0          Biobase_2.46.0             
+[11] GenomicRanges_1.38.0        GenomeInfoDb_1.22.1        
+[13] IRanges_2.20.2              S4Vectors_0.24.4           
+[15] BiocGenerics_0.32.0         ggplot2_3.3.2              
+[17] colorout_1.2-2             
+
+loaded via a namespace (and not attached):
+ [1] Rcpp_1.0.5                         lattice_0.20-41                   
+ [3] Rsamtools_2.2.3                    Biostrings_2.54.0                 
+ [5] gtools_3.8.2                       digest_0.6.25                     
+ [7] BSgenome.Mmusculus.UCSC.mm10_1.4.0 IRdisplay_0.7.0                   
+ [9] plyr_1.8.6                         R6_2.4.1                          
+[11] repr_1.1.0                         evaluate_0.14                     
+[13] pillar_1.4.6                       zlibbioc_1.32.0                   
+[15] rlang_0.4.7                        uuid_0.1-4                        
+[17] hexbin_1.28.1                      labeling_0.3                      
+[19] stringr_1.4.0                      RCurl_1.98-1.2                    
+[21] munsell_0.5.0                      compiler_3.6.3                    
+[23] rtracklayer_1.46.0                 pkgconfig_2.0.3                   
+[25] base64enc_0.1-3                    htmltools_0.5.0                   
+[27] tidyselect_1.1.0                   tibble_3.0.3                      
+[29] GenomeInfoDbData_1.2.2             XML_3.99-0.3                      
+[31] crayon_1.3.4                       dplyr_1.0.2                       
+[33] withr_2.3.0                        GenomicAlignments_1.22.1          
+[35] bitops_1.0-6                       grid_3.6.3                        
+[37] jsonlite_1.7.1                     gtable_0.3.0                      
+[39] lifecycle_0.2.0                    scales_1.1.1                      
+[41] stringi_1.5.3                      farver_2.0.3                      
+[43] XVector_0.26.0                     ellipsis_0.3.1                    
+[45] generics_0.0.2                     vctrs_0.3.4                       
+[47] cowplot_1.1.0                      IRkernel_1.1.1                    
+[49] Rhdf5lib_1.8.0                     tools_3.6.3                       
+[51] Cairo_1.5-12.2                     BSgenome_1.54.0                   
+[53] glue_1.4.2                         purrr_0.3.4                       
+[55] colorspace_1.4-1                   pbdZMQ_0.3-3                      
+
+
+------- Log Info
+
+
+2020-10-07 20:32:48 : Input-Parameters, Class = list
+
+Input-Parameters$ArchRProj: length = 1
+class: ArchRProject 
+outputDirectory: /home/bnphan/projects/snATAC_cross_species_caudate/data/raw_data/rheMac10/Stauffer_caudate/ArchR_Stauffer_caudate 
+samples(1): CAUD_WS1H_STA682A131
+sampleColData names(1): ArrowFiles
+cellColData names(17): Sample TSSEnrichment ... Clusters Clusters2
+numberOfCells(1): 1
+medianTSS(1): 7.836
+medianFrags(1): 99935
+
+
+Input-Parameters$embedding: length = 1
+[1] "UMAP"
+
+
+Input-Parameters$colorBy: length = 1
+[1] "cellColData"
+
+
+Input-Parameters$name: length = 1
+[1] "Clusters2"
+
+
+Input-Parameters$log2Norm: length = 0
+NULL
+
+
+Input-Parameters$imputeWeights: length = 0
+NULL
+
+
+Input-Parameters$pal: length = 0
+NULL
+
+
+Input-Parameters$size: length = 1
+[1] 0.1
+
+
+Input-Parameters$sampleCells: length = 0
+NULL
+
+
+Input-Parameters$highlightCells: length = 0
+NULL
+
+
+Input-Parameters$rastr: length = 1
+[1] TRUE
+
+
+Input-Parameters$quantCut: length = 2
+[1] 0.01 0.99
+
+
+Input-Parameters$discreteSet: length = 0
+NULL
+
+
+Input-Parameters$continuousSet: length = 0
+NULL
+
+
+Input-Parameters$randomize: length = 1
+[1] TRUE
+
+
+Input-Parameters$keepAxis: length = 1
+[1] FALSE
+
+
+Input-Parameters$baseSize: length = 1
+[1] 10
+
+
+Input-Parameters$plotAs: length = 0
+NULL
+
+
+Input-Parameters$threads: length = 1
+[1] 1
+
+
+Input-Parameters$logFile: length = 1
+[1] "ArchRLogs/ArchR-plotEmbedding-53cfa3f3d521d-Date-2020-10-07_Time-20-32-48.log"
+
+
+
+2020-10-07 20:32:48 : 
+
+2020-10-07 20:32:48 : Embedding data.frame, Class = data.frame
+Embedding data.frame: nRows = 5918, nCols = 2
+                                        IterativeLSI#UMAP_Dimension_1
+CAUD_WS1H_STA682A131#TTGAGTGAGAGCGGTT-1                     -6.903056
+CAUD_WS1H_STA682A131#TAAACCGGTAAGCCTT-1                     -8.144493
+CAUD_WS1H_STA682A131#AGCGATTGTAGCATGG-1                     -1.847863
+CAUD_WS1H_STA682A131#CACCACTCACGTTAGT-1                     -1.761109
+CAUD_WS1H_STA682A131#GTCACGGAGTAGGTCG-1                     -8.327439
+CAUD_WS1H_STA682A131#CGGTGCAGTTGGACGA-1                     -7.497838
+                                        IterativeLSI#UMAP_Dimension_2
+CAUD_WS1H_STA682A131#TTGAGTGAGAGCGGTT-1                      4.504955
+CAUD_WS1H_STA682A131#TAAACCGGTAAGCCTT-1                      3.861000
+CAUD_WS1H_STA682A131#AGCGATTGTAGCATGG-1                     11.580869
+CAUD_WS1H_STA682A131#CACCACTCACGTTAGT-1                     -3.817310
+CAUD_WS1H_STA682A131#GTCACGGAGTAGGTCG-1                      1.940696
+CAUD_WS1H_STA682A131#CGGTGCAGTTGGACGA-1                      4.170241
+
+
+
+2020-10-07 20:32:48 : 
+
+2020-10-07 20:32:48 : ColorParams 1, Class = list
+
+ColorParams 1$color: length = 5918
+[1] "MSN_D1" "MSN_D1" "Astro"  "MSN_D2" "MSN_D1" "MSN_D1"
+
+
+ColorParams 1$discrete: length = 1
+[1] TRUE
+
+
+ColorParams 1$continuousSet: length = 1
+[1] "solarExtra"
+
+
+ColorParams 1$discreteSet: length = 1
+[1] "stallion"
+
+
+ColorParams 1$title: length = 1
+[1] "UMAP of IterativeLSI  colored by\ncolData :  Clusters2"
+
+
+
+2020-10-07 20:32:48 : PlotParams-1, Class = list
+
+PlotParams-1$color: length = 5918
+[1] "MSN_D1" "MSN_D1" "Astro"  "MSN_D2" "MSN_D1" "MSN_D1"
+
+
+PlotParams-1$discrete: length = 1
+[1] TRUE
+
+
+PlotParams-1$continuousSet: length = 1
+[1] "solarExtra"
+
+
+PlotParams-1$discreteSet: length = 1
+[1] "stallion"
+
+
+PlotParams-1$title: length = 1
+[1] "UMAP of IterativeLSI  colored by\ncolData :  Clusters2"
+
+
+PlotParams-1$x: length = 5918
+[1] -6.903056 -8.144493 -1.847863 -1.761109 -8.327439 -7.497838
+
+
+PlotParams-1$y: length = 5918
+[1]  4.504955  3.861000 11.580869 -3.817310  1.940696  4.170241
+
+
+PlotParams-1$baseSize: length = 1
+[1] 10
+
+
+PlotParams-1$xlabel: length = 1
+[1] "UMAP Dimension 1"
+
+
+PlotParams-1$ylabel: length = 1
+[1] "UMAP Dimension 2"
+
+
+PlotParams-1$rastr: length = 1
+[1] TRUE
+
+
+PlotParams-1$size: length = 1
+[1] 0.1
+
+
+PlotParams-1$randomize: length = 1
+[1] TRUE
+
+
+
+------- Completed
+
+End Time : 2020-10-07 20:32:48
+Elapsed Time Minutes = 0.0089029868443807
+Elapsed Time Hours = 0.000148430665334066
+
+-------
+
+
+

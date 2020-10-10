@@ -1,0 +1,2562 @@
+
+           ___      .______        ______  __    __  .______      
+          /   \     |   _  \      /      ||  |  |  | |   _  \     
+         /  ^  \    |  |_)  |    |  ,----'|  |__|  | |  |_)  |    
+        /  /_\  \   |      /     |  |     |   __   | |      /     
+       /  _____  \  |  |\  \\___ |  `----.|  |  |  | |  |\  \\___.
+      /__/     \__\ | _| `._____| \______||__|  |__| | _| `._____|
+    
+Logging With ArchR!
+
+Start Time : 2020-10-07 19:53:38
+
+------- ArchR Info
+
+ArchRThreads = 15
+
+------- System Info
+
+Computer OS = unix
+Total Cores = 64
+
+------- Session Info
+
+R version 3.6.3 (2020-02-29)
+Platform: x86_64-conda_cos6-linux-gnu (64-bit)
+Running under: CentOS Linux 7 (Core)
+
+Matrix products: default
+BLAS/LAPACK: /home/bnphan/miniconda3/lib/libmkl_rt.so
+
+locale:
+ [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+ [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+ [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
+ [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+ [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+[11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+
+attached base packages:
+[1] parallel  stats4    stats     graphics  grDevices utils     datasets 
+[8] methods   base     
+
+other attached packages:
+ [1] BSgenome.Mmulatta.UCSC.rheMac10_1.4.3 BSgenome_1.54.0                      
+ [3] rtracklayer_1.46.0                    Biostrings_2.54.0                    
+ [5] XVector_0.26.0                        forcats_0.5.0                        
+ [7] stringr_1.4.0                         dplyr_1.0.2                          
+ [9] purrr_0.3.4                           readr_1.3.1                          
+[11] tidyr_1.1.2                           tibble_3.0.3                         
+[13] tidyverse_1.3.0                       ArchR_0.9.5                          
+[15] magrittr_1.5                          rhdf5_2.30.1                         
+[17] Matrix_1.2-18                         data.table_1.13.0                    
+[19] SummarizedExperiment_1.16.1           DelayedArray_0.12.3                  
+[21] BiocParallel_1.20.1                   matrixStats_0.57.0                   
+[23] Biobase_2.46.0                        GenomicRanges_1.38.0                 
+[25] GenomeInfoDb_1.22.1                   IRanges_2.20.2                       
+[27] S4Vectors_0.24.4                      BiocGenerics_0.32.0                  
+[29] ggplot2_3.3.2                        
+
+loaded via a namespace (and not attached):
+ [1] Rcpp_1.0.5               lubridate_1.7.9          lattice_0.20-41         
+ [4] Rsamtools_2.2.3          assertthat_0.2.1         R6_2.4.1                
+ [7] cellranger_1.1.0         backports_1.1.10         reprex_0.3.0            
+[10] httr_1.4.2               pillar_1.4.6             zlibbioc_1.32.0         
+[13] rlang_0.4.7              readxl_1.3.1             rstudioapi_0.11         
+[16] blob_1.2.1               RCurl_1.98-1.2           munsell_0.5.0           
+[19] broom_0.7.0              compiler_3.6.3           modelr_0.1.8            
+[22] pkgconfig_2.0.3          tidyselect_1.1.0         GenomeInfoDbData_1.2.2  
+[25] XML_3.99-0.3             fansi_0.4.1              crayon_1.3.4            
+[28] dbplyr_1.4.4             withr_2.3.0              GenomicAlignments_1.22.1
+[31] bitops_1.0-6             grid_3.6.3               jsonlite_1.7.1          
+[34] gtable_0.3.0             lifecycle_0.2.0          DBI_1.1.0               
+[37] scales_1.1.1             cli_2.0.2                stringi_1.5.3           
+[40] fs_1.5.0                 xml2_1.3.2               ellipsis_0.3.1          
+[43] generics_0.0.2           vctrs_0.3.4              Rhdf5lib_1.8.0          
+[46] tools_3.6.3              Cairo_1.5-12.2           glue_1.4.2              
+[49] hms_0.5.3                colorspace_1.4-1         rvest_0.3.6             
+[52] haven_2.3.1             
+
+
+------- Log Info
+
+
+2020-10-07 19:53:38 : IterativeLSI Input-Parameters, Class = list
+
+IterativeLSI Input-Parameters$ArchRProj: length = 1
+class: ArchRProject 
+outputDirectory: /home/bnphan/projects/snATAC_cross_species_caudate/data/raw_data/rheMac10/Stauffer_caudate/ArchR_Stauffer_caudate 
+samples(1): CAUD_WS1H_STA682A131
+sampleColData names(1): ArrowFiles
+cellColData names(15): Sample TSSEnrichment ... Subject Region
+numberOfCells(1): 1
+medianTSS(1): 7.836
+medianFrags(1): 99935
+
+
+IterativeLSI Input-Parameters$useMatrix: length = 1
+[1] "TileMatrix"
+
+
+IterativeLSI Input-Parameters$name: length = 1
+[1] "IterativeLSI"
+
+
+IterativeLSI Input-Parameters$iterations: length = 1
+[1] 4
+
+
+IterativeLSI Input-Parameters$varFeatures: length = 1
+[1] 150000
+
+
+IterativeLSI Input-Parameters$dimsToUse: length = 30
+[1] 1 2 3 4 5 6
+
+
+IterativeLSI Input-Parameters$LSIMethod: length = 1
+[1] 2
+
+
+IterativeLSI Input-Parameters$scaleDims: length = 1
+[1] TRUE
+
+
+IterativeLSI Input-Parameters$corCutOff: length = 1
+[1] 0.75
+
+
+IterativeLSI Input-Parameters$binarize: length = 1
+[1] TRUE
+
+
+IterativeLSI Input-Parameters$outlierQuantiles: length = 2
+[1] 0.02 0.98
+
+
+IterativeLSI Input-Parameters$filterBias: length = 1
+[1] TRUE
+
+
+IterativeLSI Input-Parameters$sampleCellsPre: length = 1
+[1] 10000
+
+
+IterativeLSI Input-Parameters$projectCellsPre: length = 1
+[1] FALSE
+
+
+IterativeLSI Input-Parameters$sampleCellsFinal: length = 0
+NULL
+
+
+IterativeLSI Input-Parameters$selectionMethod: length = 1
+[1] "var"
+
+
+IterativeLSI Input-Parameters$scaleTo: length = 1
+[1] 3000
+
+
+IterativeLSI Input-Parameters$totalFeatures: length = 1
+[1] 5e+05
+
+
+IterativeLSI Input-Parameters$filterQuantile: length = 1
+[1] 0.995
+
+
+IterativeLSI Input-Parameters$excludeChr: length = 0
+NULL
+
+
+IterativeLSI Input-Parameters$saveIterations: length = 1
+[1] TRUE
+
+
+IterativeLSI Input-Parameters$nPlot: length = 1
+[1] 10000
+
+
+IterativeLSI Input-Parameters$outDir: length = 1
+[1] "/home/bnphan/projects/snATAC_cross_species_caudate/data/raw_data/rheMac10/Stauffer_caudate/ArchR_Stauffer_caudate"
+
+
+IterativeLSI Input-Parameters$threads: length = 1
+[1] 15
+
+
+IterativeLSI Input-Parameters$seed: length = 1
+[1] 1
+
+
+IterativeLSI Input-Parameters$verbose: length = 1
+[1] TRUE
+
+
+IterativeLSI Input-Parameters$force: length = 1
+[1] TRUE
+
+
+IterativeLSI Input-Parameters$logFile: length = 1
+[1] "ArchRLogs/ArchR-addIterativeLSI-5150454d5ca5a-Date-2020-10-07_Time-19-53-38.log"
+
+
+2020-10-07 19:53:38 : Computing Total Accessibility Across All Features, 0 mins elapsed.
+2020-10-07 19:53:43 : Computing Top Features, 0.081 mins elapsed.
+###########
+2020-10-07 19:53:43 : Running LSI (1 of 4) on Top Features, 0.088 mins elapsed.
+###########
+2020-10-07 19:53:43 : Creating Partial Matrix, 0.088 mins elapsed.
+2020-10-07 19:54:36 : Computing LSI, 0.959 mins elapsed.
+
+2020-10-07 19:54:36 : LSI Parameters, Class = list
+
+LSI Parameters$: length = 1
+                       
+1 function (name)      
+2 .Internal(args(name))
+
+
+LSI Parameters$mat: nRows = 150000, nCols = 5918
+LSI Parameters$mat: NonZeroEntries = 78404491, EntryRange = [ 1 , 1 ]
+5 x 5 sparse Matrix of class "dgCMatrix"
+     CAUD_WS1H_STA682A131#TTGAGTGAGAGCGGTT-1
+[1,]                                       .
+[2,]                                       .
+[3,]                                       1
+[4,]                                       1
+[5,]                                       .
+     CAUD_WS1H_STA682A131#TAAACCGGTAAGCCTT-1
+[1,]                                       1
+[2,]                                       .
+[3,]                                       1
+[4,]                                       .
+[5,]                                       .
+     CAUD_WS1H_STA682A131#AGCGATTGTAGCATGG-1
+[1,]                                       .
+[2,]                                       .
+[3,]                                       .
+[4,]                                       1
+[5,]                                       .
+     CAUD_WS1H_STA682A131#CACCACTCACGTTAGT-1
+[1,]                                       .
+[2,]                                       1
+[3,]                                       1
+[4,]                                       .
+[5,]                                       .
+     CAUD_WS1H_STA682A131#GTCACGGAGTAGGTCG-1
+[1,]                                       .
+[2,]                                       .
+[3,]                                       .
+[4,]                                       .
+[5,]                                       .
+
+
+LSI Parameters$LSIMethod: length = 1
+[1] 2
+
+
+LSI Parameters$scaleTo: length = 1
+[1] 3000
+
+
+LSI Parameters$nDimensions: length = 1
+[1] 30
+
+
+LSI Parameters$binarize: length = 1
+[1] TRUE
+
+
+LSI Parameters$outlierQuantiles: length = 2
+[1] 0.02 0.98
+
+
+LSI Parameters$seed: length = 1
+[1] 1
+
+
+LSI Parameters$verbose: length = 1
+[1] FALSE
+
+
+LSI Parameters$tstart: length = 1
+[1] "2020-10-07 19:53:38 EDT"
+
+
+LSI Parameters$logFile: length = 1
+[1] "ArchRLogs/ArchR-addIterativeLSI-5150454d5ca5a-Date-2020-10-07_Time-19-53-38.log"
+
+
+2020-10-07 19:54:37 : Running LSI, Input Matrix = 0.941 GB, 0.974 mins elapsed.
+2020-10-07 19:54:37 : Binarizing Matrix, 0.974 mins elapsed.
+2020-10-07 19:54:38 : Computing Term Frequency, 1 mins elapsed.
+2020-10-07 19:54:38 : Filtering Outliers Based On Counts, 1.006 mins elapsed.
+2020-10-07 19:54:40 : Removing 0 Sum Rows, 1.024 mins elapsed.
+2020-10-07 19:54:43 : Computing Inverse Document Frequency, 1.087 mins elapsed.
+2020-10-07 19:54:49 : Computing SVD using irlba, 1.176 mins elapsed.
+2020-10-07 19:55:57 : Projecting Outliers with LSI-Projection (Granja* et al 2019), 2.322 mins elapsed.
+
+2020-10-07 19:55:57 : LSI-Projection Parameters, Class = list
+
+LSI-Projection Parameters$: length = 1
+                       
+1 function (name)      
+2 .Internal(args(name))
+
+
+LSI-Projection Parameters$mat: nRows = 150000, nCols = 10
+LSI-Projection Parameters$mat: NonZeroEntries = 297593, EntryRange = [ 1 , 1 ]
+5 x 5 sparse Matrix of class "dgCMatrix"
+     CAUD_WS1H_STA682A131#TAAACCGGTAAGCCTT-1
+[1,]                                       1
+[2,]                                       .
+[3,]                                       1
+[4,]                                       .
+[5,]                                       .
+     CAUD_WS1H_STA682A131#AGCGATTGTAGCATGG-1
+[1,]                                       .
+[2,]                                       .
+[3,]                                       .
+[4,]                                       1
+[5,]                                       .
+     CAUD_WS1H_STA682A131#CACCACTCACGTTAGT-1
+[1,]                                       .
+[2,]                                       1
+[3,]                                       1
+[4,]                                       .
+[5,]                                       .
+     CAUD_WS1H_STA682A131#CGGTGCAGTTGGACGA-1
+[1,]                                       .
+[2,]                                       .
+[3,]                                       .
+[4,]                                       1
+[5,]                                       1
+     CAUD_WS1H_STA682A131#GGTGCTGAGCGTATCT-1
+[1,]                                       .
+[2,]                                       .
+[3,]                                       1
+[4,]                                       1
+[5,]                                       .
+
+
+LSI-Projection Parameters$matSVD: nRows = 5679, nCols = 30
+                                             LSI1      LSI2       LSI3
+CAUD_WS1H_STA682A131#TAAACCGGTAAGCCTT-1 -60.10217  32.30293 -0.6246859
+CAUD_WS1H_STA682A131#AGCGATTGTAGCATGG-1 -55.94821 -35.67745 30.1307347
+CAUD_WS1H_STA682A131#CACCACTCACGTTAGT-1 -55.79897  28.57379 -0.5556022
+CAUD_WS1H_STA682A131#CGGTGCAGTTGGACGA-1 -59.67834  31.59483 -0.4099618
+CAUD_WS1H_STA682A131#GGTGCTGAGCGTATCT-1 -54.99359 -28.44198 18.2442427
+                                               LSI4       LSI5
+CAUD_WS1H_STA682A131#TAAACCGGTAAGCCTT-1 -1.57833060  0.5919544
+CAUD_WS1H_STA682A131#AGCGATTGTAGCATGG-1 -7.10814556  4.2344711
+CAUD_WS1H_STA682A131#CACCACTCACGTTAGT-1 -0.48173291  0.7831723
+CAUD_WS1H_STA682A131#CGGTGCAGTTGGACGA-1 -1.38318326  0.1755329
+CAUD_WS1H_STA682A131#GGTGCTGAGCGTATCT-1  0.07830493 -3.5428034
+
+
+LSI-Projection Parameters$returnModel: length = 1
+[1] FALSE
+
+
+LSI-Projection Parameters$verbose: length = 1
+[1] FALSE
+
+
+LSI-Projection Parameters$tstart: length = 0
+NULL
+
+
+LSI-Projection Parameters$logFile: length = 1
+[1] "ArchRLogs/ArchR-addIterativeLSI-5150454d5ca5a-Date-2020-10-07_Time-19-53-38.log"
+
+
+2020-10-07 19:55:57 : Projecting LSI, Input Matrix = 0.004 GB, 0 mins elapsed.
+2020-10-07 19:55:57 : Subsetting by Non-Zero features in inital Matrix, 0 mins elapsed.
+2020-10-07 19:55:57 : Binarizing Matrix, 0 mins elapsed.
+2020-10-07 19:55:57 : Computing Term Frequency, 0 mins elapsed.
+2020-10-07 19:55:57 : Computing Inverse Document Frequency, 0 mins elapsed.
+2020-10-07 19:55:57 : Computing TF-IDF Matrix, 0 mins elapsed.
+2020-10-07 19:55:58 : Calculating V Matrix, 0.011 mins elapsed.
+2020-10-07 19:55:58 : Computing Projected Coordinates, 0.012 mins elapsed.
+
+2020-10-07 19:55:58 : LSI-Projection Parameters, Class = list
+
+LSI-Projection Parameters$: length = 1
+                       
+1 function (name)      
+2 .Internal(args(name))
+
+
+LSI-Projection Parameters$mat: nRows = 150000, nCols = 239
+LSI-Projection Parameters$mat: NonZeroEntries = 4400407, EntryRange = [ 1 , 1 ]
+5 x 5 sparse Matrix of class "dgCMatrix"
+     CAUD_WS1H_STA682A131#TTGAGTGAGAGCGGTT-1
+[1,]                                       .
+[2,]                                       .
+[3,]                                       1
+[4,]                                       1
+[5,]                                       .
+     CAUD_WS1H_STA682A131#GTCACGGAGTAGGTCG-1
+[1,]                                       .
+[2,]                                       .
+[3,]                                       .
+[4,]                                       .
+[5,]                                       .
+     CAUD_WS1H_STA682A131#CCCTAACGTTCCAGTA-1
+[1,]                                       1
+[2,]                                       .
+[3,]                                       .
+[4,]                                       .
+[5,]                                       .
+     CAUD_WS1H_STA682A131#CGGTGCACATGGGAAC-1
+[1,]                                       .
+[2,]                                       .
+[3,]                                       1
+[4,]                                       1
+[5,]                                       .
+     CAUD_WS1H_STA682A131#ACTTCCGCAAGACACG-1
+[1,]                                       1
+[2,]                                       .
+[3,]                                       .
+[4,]                                       1
+[5,]                                       .
+
+
+LSI-Projection Parameters$matSVD: nRows = 5679, nCols = 30
+                                             LSI1      LSI2       LSI3
+CAUD_WS1H_STA682A131#TAAACCGGTAAGCCTT-1 -60.10217  32.30293 -0.6246859
+CAUD_WS1H_STA682A131#AGCGATTGTAGCATGG-1 -55.94821 -35.67745 30.1307347
+CAUD_WS1H_STA682A131#CACCACTCACGTTAGT-1 -55.79897  28.57379 -0.5556022
+CAUD_WS1H_STA682A131#CGGTGCAGTTGGACGA-1 -59.67834  31.59483 -0.4099618
+CAUD_WS1H_STA682A131#GGTGCTGAGCGTATCT-1 -54.99359 -28.44198 18.2442427
+                                               LSI4       LSI5
+CAUD_WS1H_STA682A131#TAAACCGGTAAGCCTT-1 -1.57833060  0.5919544
+CAUD_WS1H_STA682A131#AGCGATTGTAGCATGG-1 -7.10814556  4.2344711
+CAUD_WS1H_STA682A131#CACCACTCACGTTAGT-1 -0.48173291  0.7831723
+CAUD_WS1H_STA682A131#CGGTGCAGTTGGACGA-1 -1.38318326  0.1755329
+CAUD_WS1H_STA682A131#GGTGCTGAGCGTATCT-1  0.07830493 -3.5428034
+
+
+LSI-Projection Parameters$returnModel: length = 1
+[1] FALSE
+
+
+LSI-Projection Parameters$verbose: length = 1
+[1] FALSE
+
+
+LSI-Projection Parameters$tstart: length = 0
+NULL
+
+
+LSI-Projection Parameters$logFile: length = 1
+[1] "ArchRLogs/ArchR-addIterativeLSI-5150454d5ca5a-Date-2020-10-07_Time-19-53-38.log"
+
+
+2020-10-07 19:55:58 : Projecting LSI, Input Matrix = 0.053 GB, 0 mins elapsed.
+2020-10-07 19:55:58 : Subsetting by Non-Zero features in inital Matrix, 0 mins elapsed.
+2020-10-07 19:55:58 : Binarizing Matrix, 0.001 mins elapsed.
+2020-10-07 19:55:58 : Computing Term Frequency, 0.001 mins elapsed.
+2020-10-07 19:55:58 : Computing Inverse Document Frequency, 0.002 mins elapsed.
+2020-10-07 19:55:58 : Computing TF-IDF Matrix, 0.002 mins elapsed.
+2020-10-07 19:55:59 : Calculating V Matrix, 0.015 mins elapsed.
+2020-10-07 19:55:59 : Computing Projected Coordinates, 0.019 mins elapsed.
+2020-10-07 19:55:59 : Finished LSI (TF-IDF SVD) using irlba, 2.355 mins elapsed.
+
+2020-10-07 19:56:01 : outLSI-1, Class = SimpleList
+
+outLSI-1$matSVD: nRows = 5918, nCols = 30
+                                             LSI1      LSI2       LSI3
+CAUD_WS1H_STA682A131#TTGAGTGAGAGCGGTT-1 -61.37945  32.79841  0.1235207
+CAUD_WS1H_STA682A131#TAAACCGGTAAGCCTT-1 -60.10217  32.30293 -0.6246859
+CAUD_WS1H_STA682A131#AGCGATTGTAGCATGG-1 -55.94821 -35.67745 30.1307347
+CAUD_WS1H_STA682A131#CACCACTCACGTTAGT-1 -55.79897  28.57379 -0.5556022
+CAUD_WS1H_STA682A131#GTCACGGAGTAGGTCG-1 -61.08955  36.70654 -0.8061098
+                                              LSI4      LSI5
+CAUD_WS1H_STA682A131#TTGAGTGAGAGCGGTT-1 -1.6737423 0.6119435
+CAUD_WS1H_STA682A131#TAAACCGGTAAGCCTT-1 -1.5783306 0.5919544
+CAUD_WS1H_STA682A131#AGCGATTGTAGCATGG-1 -7.1081456 4.2344711
+CAUD_WS1H_STA682A131#CACCACTCACGTTAGT-1 -0.4817329 0.7831723
+CAUD_WS1H_STA682A131#GTCACGGAGTAGGTCG-1 -3.1314671 2.4573099
+
+
+outLSI-1$rowSm: length = 150000
+[1]  304  436 1407 1266  339  337
+
+
+outLSI-1$nCol: length = 1
+[1] 5679
+
+
+outLSI-1$exclude: length = 0
+NULL
+
+
+outLSI-1$idx: length = 150000
+[1] 1 2 3 4 5 6
+
+
+outLSI-1$u: nRows = 150000, nCols = 30
+             [,1]          [,2]          [,3]          [,4]         [,5]
+[1,] -0.002115196  0.0012151154 -1.158901e-03 -0.0011682586 0.0009058498
+[2,] -0.002481698  0.0006713186 -2.759773e-04  0.0007693039 0.0012593616
+[3,] -0.004056044 -0.0032522394 -2.741020e-03  0.0017848480 0.0020040250
+[4,] -0.003924784 -0.0032425491 -1.750842e-03  0.0018689769 0.0018262936
+[5,] -0.002246088  0.0005422167  5.492648e-05  0.0018122468 0.0008131171
+
+
+outLSI-1$v: nRows = 5679, nCols = 30
+            [,1]        [,2]          [,3]          [,4]          [,5]
+[1,] -0.01985541  0.01704158 -0.0005403396 -1.771395e-03  0.0011869010
+[2,] -0.01848310 -0.01882183  0.0260624268 -7.977627e-03  0.0084903470
+[3,] -0.01843380  0.01507426 -0.0004805838 -5.406594e-04  0.0015703034
+[4,] -0.01971539  0.01666802 -0.0003546080 -1.552377e-03  0.0003519531
+[5,] -0.01816773 -0.01500472  0.0157808711  8.788333e-05 -0.0071035153
+
+
+outLSI-1$binarize: length = 1
+[1] TRUE
+
+
+outLSI-1$scaleTo: length = 1
+[1] 3000
+
+
+outLSI-1$nDimensions: length = 1
+[1] 30
+
+
+outLSI-1$LSIMethod: length = 1
+[1] 2
+
+
+outLSI-1$outliers: length = 239
+[1] "CAUD_WS1H_STA682A131#TTGAGTGAGAGCGGTT-1"
+[2] "CAUD_WS1H_STA682A131#GTCACGGAGTAGGTCG-1"
+[3] "CAUD_WS1H_STA682A131#CCCTAACGTTCCAGTA-1"
+[4] "CAUD_WS1H_STA682A131#CGGTGCACATGGGAAC-1"
+[5] "CAUD_WS1H_STA682A131#ACTTCCGCAAGACACG-1"
+[6] "CAUD_WS1H_STA682A131#GCCAGACCATTACCTT-1"
+
+
+outLSI-1$date: length = 1
+[1] "2020-10-07"
+
+
+outLSI-1$seed: length = 1
+[1] 1
+
+
+outLSI-1$scaleDims: length = 1
+[1] TRUE
+
+
+outLSI-1$useMatrix: length = 1
+[1] "TileMatrix"
+
+
+outLSI-1$tileSize: length = 1
+[1] 500
+
+
+
+2020-10-07 19:56:01 : Cluster Params, Class = list
+
+Cluster Params$: length = 1
+                       
+1 function (name)      
+2 .Internal(args(name))
+
+
+Cluster Params$matSVD: nRows = 5918, nCols = 30
+                                             LSI1      LSI2       LSI3
+CAUD_WS1H_STA682A131#TTGAGTGAGAGCGGTT-1 -61.37945  32.79841  0.1235207
+CAUD_WS1H_STA682A131#TAAACCGGTAAGCCTT-1 -60.10217  32.30293 -0.6246859
+CAUD_WS1H_STA682A131#AGCGATTGTAGCATGG-1 -55.94821 -35.67745 30.1307347
+CAUD_WS1H_STA682A131#CACCACTCACGTTAGT-1 -55.79897  28.57379 -0.5556022
+CAUD_WS1H_STA682A131#GTCACGGAGTAGGTCG-1 -61.08955  36.70654 -0.8061098
+                                              LSI4      LSI5
+CAUD_WS1H_STA682A131#TTGAGTGAGAGCGGTT-1 -1.6737423 0.6119435
+CAUD_WS1H_STA682A131#TAAACCGGTAAGCCTT-1 -1.5783306 0.5919544
+CAUD_WS1H_STA682A131#AGCGATTGTAGCATGG-1 -7.1081456 4.2344711
+CAUD_WS1H_STA682A131#CACCACTCACGTTAGT-1 -0.4817329 0.7831723
+CAUD_WS1H_STA682A131#GTCACGGAGTAGGTCG-1 -3.1314671 2.4573099
+
+
+Cluster Params$corCutOff: length = 1
+[1] 0.75
+
+
+Cluster Params$dimsToUse: length = 30
+[1] 1 2 3 4 5 6
+
+
+Cluster Params$scaleDims: length = 1
+[1] TRUE
+
+
+Cluster Params$verbose: length = 1
+[1] TRUE
+
+
+Cluster Params$j: length = 1
+[1] 1
+
+
+Cluster Params$filterBias: length = 1
+[1] TRUE
+
+
+Cluster Params$cellNames: length = 5918
+[1] "CAUD_WS1H_STA682A131#TTGAGTGAGAGCGGTT-1"
+[2] "CAUD_WS1H_STA682A131#TAAACCGGTAAGCCTT-1"
+[3] "CAUD_WS1H_STA682A131#AGCGATTGTAGCATGG-1"
+[4] "CAUD_WS1H_STA682A131#CACCACTCACGTTAGT-1"
+[5] "CAUD_WS1H_STA682A131#GTCACGGAGTAGGTCG-1"
+[6] "CAUD_WS1H_STA682A131#CGGTGCAGTTGGACGA-1"
+
+
+Cluster Params$cellDepth: length = 5918
+CAUD_WS1H_STA682A131#TTGAGTGAGAGCGGTT-1 CAUD_WS1H_STA682A131#TAAACCGGTAAGCCTT-1 
+                               4.999722                                4.999244 
+CAUD_WS1H_STA682A131#AGCGATTGTAGCATGG-1 CAUD_WS1H_STA682A131#CACCACTCACGTTAGT-1 
+                               4.999057                                4.998965 
+CAUD_WS1H_STA682A131#GTCACGGAGTAGGTCG-1 CAUD_WS1H_STA682A131#CGGTGCAGTTGGACGA-1 
+                               4.998882                                4.998869 
+
+
+Cluster Params$tstart: length = 1
+[1] "2020-10-07 19:53:38 EDT"
+
+
+Cluster Params$logFile: length = 1
+[1] "ArchRLogs/ArchR-addIterativeLSI-5150454d5ca5a-Date-2020-10-07_Time-19-53-38.log"
+
+
+2020-10-07 19:56:01 : Identifying Clusters, 2.375 mins elapsed.
+
+2020-10-07 19:56:01 : addClusters Input-Parameters, Class = list
+
+addClusters Input-Parameters$: length = 1
+                       
+1 function (name)      
+2 .Internal(args(name))
+
+
+addClusters Input-Parameters$input: nRows = 5918, nCols = 30
+                                             LSI1      LSI2        LSI3
+CAUD_WS1H_STA682A131#TTGAGTGAGAGCGGTT-1 -4.641407  2.628594  0.10627646
+CAUD_WS1H_STA682A131#TAAACCGGTAAGCCTT-1 -4.649158  2.614162  0.02595166
+CAUD_WS1H_STA682A131#AGCGATTGTAGCATGG-1 -3.934834 -2.459091  2.33184990
+CAUD_WS1H_STA682A131#CACCACTCACGTTAGT-1 -4.659466  2.418405 -0.02520474
+CAUD_WS1H_STA682A131#GTCACGGAGTAGGTCG-1 -4.507793  2.764705 -0.02488123
+                                               LSI4      LSI5
+CAUD_WS1H_STA682A131#TTGAGTGAGAGCGGTT-1 -0.03246212 0.1439799
+CAUD_WS1H_STA682A131#TAAACCGGTAAGCCTT-1 -0.04900769 0.1215833
+CAUD_WS1H_STA682A131#AGCGATTGTAGCATGG-1 -0.37920000 0.4465606
+CAUD_WS1H_STA682A131#CACCACTCACGTTAGT-1 -0.01900799 0.0871025
+CAUD_WS1H_STA682A131#GTCACGGAGTAGGTCG-1 -0.19780385 0.2177994
+
+
+addClusters Input-Parameters$reducedDims: length = 1
+[1] "IterativeLSI"
+
+
+addClusters Input-Parameters$name: length = 1
+[1] "Clusters"
+
+
+addClusters Input-Parameters$sampleCells: length = 1
+[1] 10000
+
+
+addClusters Input-Parameters$seed: length = 1
+[1] 1
+
+
+addClusters Input-Parameters$method: length = 1
+[1] "Seurat"
+
+
+addClusters Input-Parameters$dimsToUse: length = 0
+NULL
+
+
+addClusters Input-Parameters$scaleDims: length = 0
+NULL
+
+
+addClusters Input-Parameters$corCutOff: length = 1
+[1] 0.75
+
+
+addClusters Input-Parameters$knnAssign: length = 1
+[1] 10
+
+
+addClusters Input-Parameters$nOutlier: length = 1
+[1] 5
+
+
+addClusters Input-Parameters$testBias: length = 1
+[1] TRUE
+
+
+addClusters Input-Parameters$filterBias: length = 1
+[1] TRUE
+
+
+addClusters Input-Parameters$biasClusters: length = 1
+[1] 0.01
+
+
+addClusters Input-Parameters$biasCol: length = 1
+[1] "nFrags"
+
+
+addClusters Input-Parameters$biasVals: length = 5918
+[1] 4.999722 4.999244 4.999057 4.998965 4.998882 4.998869
+
+
+addClusters Input-Parameters$biasQuantiles: length = 2
+[1] 0.05 0.95
+
+
+addClusters Input-Parameters$biasEnrich: length = 1
+[1] 10
+
+
+addClusters Input-Parameters$biasProportion: length = 1
+[1] 0.5
+
+
+addClusters Input-Parameters$biasPval: length = 1
+[1] 0.05
+
+
+addClusters Input-Parameters$nPerm: length = 1
+[1] 500
+
+
+addClusters Input-Parameters$prefix: length = 1
+[1] "C"
+
+
+addClusters Input-Parameters$ArchRProj: length = 0
+NULL
+
+
+addClusters Input-Parameters$verbose: length = 1
+[1] FALSE
+
+
+addClusters Input-Parameters$tstart: length = 0
+NULL
+
+
+addClusters Input-Parameters$force: length = 1
+[1] FALSE
+
+
+addClusters Input-Parameters$logFile: length = 1
+[1] "ArchRLogs/ArchR-addIterativeLSI-5150454d5ca5a-Date-2020-10-07_Time-19-53-38.log"
+
+
+addClusters Input-Parameters$...: length = 2
+[[1]]
+<promise: 0x564cc7ff00e0>
+
+[[2]]
+<promise: 0x564cc7fec390>
+
+
+
+2020-10-07 19:56:03 : Running Seurats FindClusters (Stuart et al. Cell 2019), 0.035 mins elapsed.
+2020-10-07 19:56:12 : Testing Biased Clusters, 0.181 mins elapsed.
+2020-10-07 19:56:12 : Testing Outlier Clusters, 0.183 mins elapsed.
+2020-10-07 19:56:12 : Assigning Cluster Names to 12 Clusters, 0.183 mins elapsed.
+2020-10-07 19:56:12 : Finished addClusters, 0.183 mins elapsed.
+2020-10-07 19:56:12 : Identified 12 Clusters, 2.559 mins elapsed.
+
+2020-10-07 19:56:12 : clusterDF-1, Class = DFrame
+DataFrame with 5918 rows and 2 columns
+                                   cellNames    clusters
+                                 <character> <character>
+1    CAUD_WS1H_STA682A131#TTGAGTGAGAGCGGTT-1          C3
+2    CAUD_WS1H_STA682A131#TAAACCGGTAAGCCTT-1          C3
+3    CAUD_WS1H_STA682A131#AGCGATTGTAGCATGG-1         C11
+4    CAUD_WS1H_STA682A131#CACCACTCACGTTAGT-1          C4
+5    CAUD_WS1H_STA682A131#GTCACGGAGTAGGTCG-1          C3
+...                                      ...         ...
+5914 CAUD_WS1H_STA682A131#CATTGGAAGCTTTCCC-1         C11
+5915 CAUD_WS1H_STA682A131#CACAACACACTCGGAC-1          C5
+5916 CAUD_WS1H_STA682A131#CCCTAACTCCTCATTA-1         C11
+5917 CAUD_WS1H_STA682A131#TTGCCCACACAGTAGG-1         C11
+5918 CAUD_WS1H_STA682A131#AACCGATTCGCAACTA-1          C6
+
+2020-10-07 19:56:12 : Saving LSI Iteration, 2.559 mins elapsed.
+
+2020-10-07 19:56:12 : Save iteration, Class = list
+
+Save iteration$: length = 1
+                       
+1 function (name)      
+2 .Internal(args(name))
+
+
+Save iteration$matSVD: nRows = 5918, nCols = 30
+                                             LSI1      LSI2       LSI3
+CAUD_WS1H_STA682A131#TTGAGTGAGAGCGGTT-1 -61.37945  32.79841  0.1235207
+CAUD_WS1H_STA682A131#TAAACCGGTAAGCCTT-1 -60.10217  32.30293 -0.6246859
+CAUD_WS1H_STA682A131#AGCGATTGTAGCATGG-1 -55.94821 -35.67745 30.1307347
+CAUD_WS1H_STA682A131#CACCACTCACGTTAGT-1 -55.79897  28.57379 -0.5556022
+CAUD_WS1H_STA682A131#GTCACGGAGTAGGTCG-1 -61.08955  36.70654 -0.8061098
+                                              LSI4      LSI5
+CAUD_WS1H_STA682A131#TTGAGTGAGAGCGGTT-1 -1.6737423 0.6119435
+CAUD_WS1H_STA682A131#TAAACCGGTAAGCCTT-1 -1.5783306 0.5919544
+CAUD_WS1H_STA682A131#AGCGATTGTAGCATGG-1 -7.1081456 4.2344711
+CAUD_WS1H_STA682A131#CACCACTCACGTTAGT-1 -0.4817329 0.7831723
+CAUD_WS1H_STA682A131#GTCACGGAGTAGGTCG-1 -3.1314671 2.4573099
+
+
+Save iteration$clusters: length = 5918
+[1] "C3"  "C3"  "C11" "C4"  "C3"  "C3" 
+
+
+Save iteration$nPlot: length = 1
+[1] 10000
+
+
+Save iteration$ArchRProj: length = 1
+class: ArchRProject 
+outputDirectory: /home/bnphan/projects/snATAC_cross_species_caudate/data/raw_data/rheMac10/Stauffer_caudate/ArchR_Stauffer_caudate 
+samples(1): CAUD_WS1H_STA682A131
+sampleColData names(1): ArrowFiles
+cellColData names(15): Sample TSSEnrichment ... Subject Region
+numberOfCells(1): 1
+medianTSS(1): 7.836
+medianFrags(1): 99935
+
+
+Save iteration$scaleDims: length = 1
+[1] TRUE
+
+
+Save iteration$corCutOff: length = 1
+[1] 0.75
+
+
+Save iteration$dimsToUse: length = 30
+[1] 1 2 3 4 5 6
+
+
+Save iteration$j: length = 1
+[1] 1
+
+
+Save iteration$threads: length = 1
+[1] 15
+
+
+Save iteration$outDir: length = 1
+[1] "/home/bnphan/projects/snATAC_cross_species_caudate/data/raw_data/rheMac10/Stauffer_caudate/ArchR_Stauffer_caudate/IterativeLSI"
+
+
+Save iteration$logFile: length = 1
+[1] "ArchRLogs/ArchR-addIterativeLSI-5150454d5ca5a-Date-2020-10-07_Time-19-53-38.log"
+
+
+2020-10-07 19:56:33 : Creating Cluster Matrix on the total Group Features, 2.916 mins elapsed.
+2020-10-07 19:57:54 : Computing Variable Features, 4.266 mins elapsed.
+###########
+2020-10-07 19:57:54 : Running LSI (2 of 4) on Variable Features, 4.272 mins elapsed.
+###########
+2020-10-07 19:57:54 : Creating Partial Matrix, 4.272 mins elapsed.
+2020-10-07 19:58:46 : Computing LSI, 5.138 mins elapsed.
+
+2020-10-07 19:58:46 : LSI Parameters, Class = list
+
+LSI Parameters$: length = 1
+                       
+1 function (name)      
+2 .Internal(args(name))
+
+
+LSI Parameters$mat: nRows = 150000, nCols = 5918
+LSI Parameters$mat: NonZeroEntries = 72331034, EntryRange = [ 1 , 1 ]
+5 x 5 sparse Matrix of class "dgCMatrix"
+     CAUD_WS1H_STA682A131#TTGAGTGAGAGCGGTT-1
+[1,]                                       1
+[2,]                                       1
+[3,]                                       1
+[4,]                                       1
+[5,]                                       .
+     CAUD_WS1H_STA682A131#TAAACCGGTAAGCCTT-1
+[1,]                                       1
+[2,]                                       .
+[3,]                                       1
+[4,]                                       .
+[5,]                                       .
+     CAUD_WS1H_STA682A131#AGCGATTGTAGCATGG-1
+[1,]                                       .
+[2,]                                       1
+[3,]                                       .
+[4,]                                       .
+[5,]                                       1
+     CAUD_WS1H_STA682A131#CACCACTCACGTTAGT-1
+[1,]                                       1
+[2,]                                       .
+[3,]                                       1
+[4,]                                       1
+[5,]                                       1
+     CAUD_WS1H_STA682A131#GTCACGGAGTAGGTCG-1
+[1,]                                       .
+[2,]                                       .
+[3,]                                       .
+[4,]                                       .
+[5,]                                       1
+
+
+LSI Parameters$LSIMethod: length = 1
+[1] 2
+
+
+LSI Parameters$scaleTo: length = 1
+[1] 3000
+
+
+LSI Parameters$nDimensions: length = 1
+[1] 30
+
+
+LSI Parameters$binarize: length = 1
+[1] TRUE
+
+
+LSI Parameters$outlierQuantiles: length = 2
+[1] 0.02 0.98
+
+
+LSI Parameters$seed: length = 1
+[1] 1
+
+
+LSI Parameters$verbose: length = 1
+[1] FALSE
+
+
+LSI Parameters$tstart: length = 1
+[1] "2020-10-07 19:53:38 EDT"
+
+
+LSI Parameters$logFile: length = 1
+[1] "ArchRLogs/ArchR-addIterativeLSI-5150454d5ca5a-Date-2020-10-07_Time-19-53-38.log"
+
+
+2020-10-07 19:58:47 : Running LSI, Input Matrix = 0.869 GB, 5.152 mins elapsed.
+2020-10-07 19:58:47 : Binarizing Matrix, 5.152 mins elapsed.
+2020-10-07 19:58:48 : Computing Term Frequency, 5.167 mins elapsed.
+2020-10-07 19:58:48 : Filtering Outliers Based On Counts, 5.173 mins elapsed.
+2020-10-07 19:58:49 : Removing 0 Sum Rows, 5.19 mins elapsed.
+2020-10-07 19:58:53 : Computing Inverse Document Frequency, 5.257 mins elapsed.
+2020-10-07 19:58:58 : Computing SVD using irlba, 5.324 mins elapsed.
+2020-10-07 20:00:38 : Projecting Outliers with LSI-Projection (Granja* et al 2019), 6.992 mins elapsed.
+
+2020-10-07 20:00:38 : LSI-Projection Parameters, Class = list
+
+LSI-Projection Parameters$: length = 1
+                       
+1 function (name)      
+2 .Internal(args(name))
+
+
+LSI-Projection Parameters$mat: nRows = 150000, nCols = 10
+LSI-Projection Parameters$mat: NonZeroEntries = 241879, EntryRange = [ 1 , 1 ]
+5 x 5 sparse Matrix of class "dgCMatrix"
+     CAUD_WS1H_STA682A131#TAAACCGGTAAGCCTT-1
+[1,]                                       1
+[2,]                                       .
+[3,]                                       1
+[4,]                                       .
+[5,]                                       .
+     CAUD_WS1H_STA682A131#CACCACTCACGTTAGT-1
+[1,]                                       1
+[2,]                                       .
+[3,]                                       1
+[4,]                                       1
+[5,]                                       1
+     CAUD_WS1H_STA682A131#GTCACGGAGTAGGTCG-1
+[1,]                                       .
+[2,]                                       .
+[3,]                                       .
+[4,]                                       .
+[5,]                                       1
+     CAUD_WS1H_STA682A131#CGGTGCAGTTGGACGA-1
+[1,]                                       .
+[2,]                                       1
+[3,]                                       .
+[4,]                                       .
+[5,]                                       1
+     CAUD_WS1H_STA682A131#GGGACCTTCGGAAAGC-1
+[1,]                                       1
+[2,]                                       .
+[3,]                                       .
+[4,]                                       1
+[5,]                                       1
+
+
+LSI-Projection Parameters$matSVD: nRows = 5678, nCols = 30
+                                             LSI1     LSI2        LSI3
+CAUD_WS1H_STA682A131#TAAACCGGTAAGCCTT-1 -55.37185 32.63111  1.08571279
+CAUD_WS1H_STA682A131#CACCACTCACGTTAGT-1 -51.50842 28.28639 -0.08501897
+CAUD_WS1H_STA682A131#GTCACGGAGTAGGTCG-1 -55.49868 36.03280  1.87619076
+CAUD_WS1H_STA682A131#CGGTGCAGTTGGACGA-1 -55.16510 32.75454  1.56242500
+CAUD_WS1H_STA682A131#GGGACCTTCGGAAAGC-1 -51.13159 24.97365  0.23204224
+                                              LSI4        LSI5
+CAUD_WS1H_STA682A131#TAAACCGGTAAGCCTT-1 -0.3254397 -0.49992651
+CAUD_WS1H_STA682A131#CACCACTCACGTTAGT-1 -0.6537278  0.19236634
+CAUD_WS1H_STA682A131#GTCACGGAGTAGGTCG-1 -0.2435907 -1.12175334
+CAUD_WS1H_STA682A131#CGGTGCAGTTGGACGA-1 -0.4051057  0.05577781
+CAUD_WS1H_STA682A131#GGGACCTTCGGAAAGC-1 -1.0034476  0.19219263
+
+
+LSI-Projection Parameters$returnModel: length = 1
+[1] FALSE
+
+
+LSI-Projection Parameters$verbose: length = 1
+[1] FALSE
+
+
+LSI-Projection Parameters$tstart: length = 0
+NULL
+
+
+LSI-Projection Parameters$logFile: length = 1
+[1] "ArchRLogs/ArchR-addIterativeLSI-5150454d5ca5a-Date-2020-10-07_Time-19-53-38.log"
+
+
+2020-10-07 20:00:38 : Projecting LSI, Input Matrix = 0.003 GB, 0 mins elapsed.
+2020-10-07 20:00:38 : Subsetting by Non-Zero features in inital Matrix, 0 mins elapsed.
+2020-10-07 20:00:38 : Binarizing Matrix, 0 mins elapsed.
+2020-10-07 20:00:38 : Computing Term Frequency, 0 mins elapsed.
+2020-10-07 20:00:38 : Computing Inverse Document Frequency, 0 mins elapsed.
+2020-10-07 20:00:38 : Computing TF-IDF Matrix, 0 mins elapsed.
+2020-10-07 20:00:38 : Calculating V Matrix, 0.011 mins elapsed.
+2020-10-07 20:00:38 : Computing Projected Coordinates, 0.012 mins elapsed.
+
+2020-10-07 20:00:38 : LSI-Projection Parameters, Class = list
+
+LSI-Projection Parameters$: length = 1
+                       
+1 function (name)      
+2 .Internal(args(name))
+
+
+LSI-Projection Parameters$mat: nRows = 150000, nCols = 240
+LSI-Projection Parameters$mat: NonZeroEntries = 3421571, EntryRange = [ 1 , 1 ]
+5 x 5 sparse Matrix of class "dgCMatrix"
+     CAUD_WS1H_STA682A131#TTGAGTGAGAGCGGTT-1
+[1,]                                       1
+[2,]                                       1
+[3,]                                       1
+[4,]                                       1
+[5,]                                       .
+     CAUD_WS1H_STA682A131#AGCGATTGTAGCATGG-1
+[1,]                                       .
+[2,]                                       1
+[3,]                                       .
+[4,]                                       .
+[5,]                                       1
+     CAUD_WS1H_STA682A131#GGTGCTGAGCGTATCT-1
+[1,]                                       1
+[2,]                                       1
+[3,]                                       .
+[4,]                                       .
+[5,]                                       1
+     CAUD_WS1H_STA682A131#CCCTAACGTTCCAGTA-1
+[1,]                                       .
+[2,]                                       .
+[3,]                                       .
+[4,]                                       .
+[5,]                                       1
+     CAUD_WS1H_STA682A131#CGGTGCACATGGGAAC-1
+[1,]                                       1
+[2,]                                       1
+[3,]                                       1
+[4,]                                       .
+[5,]                                       1
+
+
+LSI-Projection Parameters$matSVD: nRows = 5678, nCols = 30
+                                             LSI1     LSI2        LSI3
+CAUD_WS1H_STA682A131#TAAACCGGTAAGCCTT-1 -55.37185 32.63111  1.08571279
+CAUD_WS1H_STA682A131#CACCACTCACGTTAGT-1 -51.50842 28.28639 -0.08501897
+CAUD_WS1H_STA682A131#GTCACGGAGTAGGTCG-1 -55.49868 36.03280  1.87619076
+CAUD_WS1H_STA682A131#CGGTGCAGTTGGACGA-1 -55.16510 32.75454  1.56242500
+CAUD_WS1H_STA682A131#GGGACCTTCGGAAAGC-1 -51.13159 24.97365  0.23204224
+                                              LSI4        LSI5
+CAUD_WS1H_STA682A131#TAAACCGGTAAGCCTT-1 -0.3254397 -0.49992651
+CAUD_WS1H_STA682A131#CACCACTCACGTTAGT-1 -0.6537278  0.19236634
+CAUD_WS1H_STA682A131#GTCACGGAGTAGGTCG-1 -0.2435907 -1.12175334
+CAUD_WS1H_STA682A131#CGGTGCAGTTGGACGA-1 -0.4051057  0.05577781
+CAUD_WS1H_STA682A131#GGGACCTTCGGAAAGC-1 -1.0034476  0.19219263
+
+
+LSI-Projection Parameters$returnModel: length = 1
+[1] FALSE
+
+
+LSI-Projection Parameters$verbose: length = 1
+[1] FALSE
+
+
+LSI-Projection Parameters$tstart: length = 0
+NULL
+
+
+LSI-Projection Parameters$logFile: length = 1
+[1] "ArchRLogs/ArchR-addIterativeLSI-5150454d5ca5a-Date-2020-10-07_Time-19-53-38.log"
+
+
+2020-10-07 20:00:38 : Projecting LSI, Input Matrix = 0.041 GB, 0 mins elapsed.
+2020-10-07 20:00:38 : Subsetting by Non-Zero features in inital Matrix, 0 mins elapsed.
+2020-10-07 20:00:38 : Binarizing Matrix, 0.001 mins elapsed.
+2020-10-07 20:00:39 : Computing Term Frequency, 0.001 mins elapsed.
+2020-10-07 20:00:39 : Computing Inverse Document Frequency, 0.002 mins elapsed.
+2020-10-07 20:00:39 : Computing TF-IDF Matrix, 0.002 mins elapsed.
+2020-10-07 20:00:39 : Calculating V Matrix, 0.016 mins elapsed.
+2020-10-07 20:00:40 : Computing Projected Coordinates, 0.019 mins elapsed.
+2020-10-07 20:00:40 : Finished LSI (TF-IDF SVD) using irlba, 7.024 mins elapsed.
+
+2020-10-07 20:00:40 : outLSI-2, Class = SimpleList
+
+outLSI-2$matSVD: nRows = 5918, nCols = 30
+                                             LSI1      LSI2        LSI3
+CAUD_WS1H_STA682A131#TTGAGTGAGAGCGGTT-1 -56.48133  34.01125  1.85349819
+CAUD_WS1H_STA682A131#TAAACCGGTAAGCCTT-1 -55.37185  32.63111  1.08571279
+CAUD_WS1H_STA682A131#AGCGATTGTAGCATGG-1 -59.54610 -37.42641 14.06059296
+CAUD_WS1H_STA682A131#CACCACTCACGTTAGT-1 -51.50842  28.28639 -0.08501897
+CAUD_WS1H_STA682A131#GTCACGGAGTAGGTCG-1 -55.49868  36.03280  1.87619076
+                                               LSI4       LSI5
+CAUD_WS1H_STA682A131#TTGAGTGAGAGCGGTT-1  -0.8973443 -0.7575794
+CAUD_WS1H_STA682A131#TAAACCGGTAAGCCTT-1  -0.3254397 -0.4999265
+CAUD_WS1H_STA682A131#AGCGATTGTAGCATGG-1 -36.5014130 -3.3803508
+CAUD_WS1H_STA682A131#CACCACTCACGTTAGT-1  -0.6537278  0.1923663
+CAUD_WS1H_STA682A131#GTCACGGAGTAGGTCG-1  -0.2435907 -1.1217533
+
+
+outLSI-2$rowSm: length = 150000
+[1] 1404 1261  529 1193 1962 1047
+
+
+outLSI-2$nCol: length = 1
+[1] 5678
+
+
+outLSI-2$exclude: length = 0
+NULL
+
+
+outLSI-2$idx: length = 150000
+[1] 1 2 3 4 5 6
+
+
+outLSI-2$u: nRows = 150000, nCols = 30
+             [,1]          [,2]          [,3]          [,4]          [,5]
+[1,] -0.004182773 -0.0017865299 -0.0001845048  0.0023332543 -0.0015821169
+[2,] -0.004043202 -0.0018469396 -0.0002680705  0.0015897885 -0.0013474855
+[3,] -0.002893405  0.0008922953 -0.0003479370 -0.0002845501  0.0003582585
+[4,] -0.003930127 -0.0010024388  0.0001826015  0.0009069593  0.0003321751
+[5,] -0.004517258 -0.0016493866 -0.0002848422  0.0025980906 -0.0002513791
+
+
+outLSI-2$v: nRows = 5678, nCols = 30
+            [,1]       [,2]          [,3]          [,4]          [,5]
+[1,] -0.01840923 0.01782597  7.377776e-04 -0.0002508094 -7.254725e-04
+[2,] -0.01712477 0.01545251 -5.777319e-05 -0.0005038140  2.791540e-04
+[3,] -0.01845140 0.01968427  1.274933e-03 -0.0001877301 -1.627842e-03
+[4,] -0.01834050 0.01789340  1.061719e-03 -0.0003122063  8.094243e-05
+[5,] -0.01699949 0.01364279  1.576803e-04 -0.0007733355  2.789019e-04
+
+
+outLSI-2$binarize: length = 1
+[1] TRUE
+
+
+outLSI-2$scaleTo: length = 1
+[1] 3000
+
+
+outLSI-2$nDimensions: length = 1
+[1] 30
+
+
+outLSI-2$LSIMethod: length = 1
+[1] 2
+
+
+outLSI-2$outliers: length = 240
+[1] "CAUD_WS1H_STA682A131#TTGAGTGAGAGCGGTT-1"
+[2] "CAUD_WS1H_STA682A131#AGCGATTGTAGCATGG-1"
+[3] "CAUD_WS1H_STA682A131#GGTGCTGAGCGTATCT-1"
+[4] "CAUD_WS1H_STA682A131#CCCTAACGTTCCAGTA-1"
+[5] "CAUD_WS1H_STA682A131#CGGTGCACATGGGAAC-1"
+[6] "CAUD_WS1H_STA682A131#ACTTCCGCAAGACACG-1"
+
+
+outLSI-2$date: length = 1
+[1] "2020-10-07"
+
+
+outLSI-2$seed: length = 1
+[1] 1
+
+
+outLSI-2$scaleDims: length = 1
+[1] TRUE
+
+
+outLSI-2$useMatrix: length = 1
+[1] "TileMatrix"
+
+
+outLSI-2$tileSize: length = 1
+[1] 500
+
+
+
+2020-10-07 20:00:40 : Cluster Params, Class = list
+
+Cluster Params$: length = 1
+                       
+1 function (name)      
+2 .Internal(args(name))
+
+
+Cluster Params$matSVD: nRows = 5918, nCols = 30
+                                             LSI1      LSI2        LSI3
+CAUD_WS1H_STA682A131#TTGAGTGAGAGCGGTT-1 -56.48133  34.01125  1.85349819
+CAUD_WS1H_STA682A131#TAAACCGGTAAGCCTT-1 -55.37185  32.63111  1.08571279
+CAUD_WS1H_STA682A131#AGCGATTGTAGCATGG-1 -59.54610 -37.42641 14.06059296
+CAUD_WS1H_STA682A131#CACCACTCACGTTAGT-1 -51.50842  28.28639 -0.08501897
+CAUD_WS1H_STA682A131#GTCACGGAGTAGGTCG-1 -55.49868  36.03280  1.87619076
+                                               LSI4       LSI5
+CAUD_WS1H_STA682A131#TTGAGTGAGAGCGGTT-1  -0.8973443 -0.7575794
+CAUD_WS1H_STA682A131#TAAACCGGTAAGCCTT-1  -0.3254397 -0.4999265
+CAUD_WS1H_STA682A131#AGCGATTGTAGCATGG-1 -36.5014130 -3.3803508
+CAUD_WS1H_STA682A131#CACCACTCACGTTAGT-1  -0.6537278  0.1923663
+CAUD_WS1H_STA682A131#GTCACGGAGTAGGTCG-1  -0.2435907 -1.1217533
+
+
+Cluster Params$corCutOff: length = 1
+[1] 0.75
+
+
+Cluster Params$dimsToUse: length = 30
+[1] 1 2 3 4 5 6
+
+
+Cluster Params$scaleDims: length = 1
+[1] TRUE
+
+
+Cluster Params$verbose: length = 1
+[1] TRUE
+
+
+Cluster Params$j: length = 1
+[1] 2
+
+
+Cluster Params$filterBias: length = 1
+[1] TRUE
+
+
+Cluster Params$cellNames: length = 5918
+[1] "CAUD_WS1H_STA682A131#TTGAGTGAGAGCGGTT-1"
+[2] "CAUD_WS1H_STA682A131#TAAACCGGTAAGCCTT-1"
+[3] "CAUD_WS1H_STA682A131#AGCGATTGTAGCATGG-1"
+[4] "CAUD_WS1H_STA682A131#CACCACTCACGTTAGT-1"
+[5] "CAUD_WS1H_STA682A131#GTCACGGAGTAGGTCG-1"
+[6] "CAUD_WS1H_STA682A131#CGGTGCAGTTGGACGA-1"
+
+
+Cluster Params$cellDepth: length = 5918
+CAUD_WS1H_STA682A131#TTGAGTGAGAGCGGTT-1 CAUD_WS1H_STA682A131#TAAACCGGTAAGCCTT-1 
+                               4.999722                                4.999244 
+CAUD_WS1H_STA682A131#AGCGATTGTAGCATGG-1 CAUD_WS1H_STA682A131#CACCACTCACGTTAGT-1 
+                               4.999057                                4.998965 
+CAUD_WS1H_STA682A131#GTCACGGAGTAGGTCG-1 CAUD_WS1H_STA682A131#CGGTGCAGTTGGACGA-1 
+                               4.998882                                4.998869 
+
+
+Cluster Params$tstart: length = 1
+[1] "2020-10-07 19:53:38 EDT"
+
+
+Cluster Params$logFile: length = 1
+[1] "ArchRLogs/ArchR-addIterativeLSI-5150454d5ca5a-Date-2020-10-07_Time-19-53-38.log"
+
+
+2020-10-07 20:00:40 : Identifying Clusters, 7.037 mins elapsed.
+
+2020-10-07 20:00:40 : addClusters Input-Parameters, Class = list
+
+addClusters Input-Parameters$: length = 1
+                       
+1 function (name)      
+2 .Internal(args(name))
+
+
+addClusters Input-Parameters$input: nRows = 5918, nCols = 30
+                                             LSI1      LSI2       LSI3
+CAUD_WS1H_STA682A131#TTGAGTGAGAGCGGTT-1 -4.537713  2.827750 0.21033401
+CAUD_WS1H_STA682A131#TAAACCGGTAAGCCTT-1 -4.564957  2.784044 0.14973264
+CAUD_WS1H_STA682A131#AGCGATTGTAGCATGG-1 -3.812455 -2.301432 1.21570774
+CAUD_WS1H_STA682A131#CACCACTCACGTTAGT-1 -4.525002  2.624527 0.08247855
+CAUD_WS1H_STA682A131#GTCACGGAGTAGGTCG-1 -4.374544  2.942696 0.21213686
+                                               LSI4         LSI5
+CAUD_WS1H_STA682A131#TTGAGTGAGAGCGGTT-1 -0.01356534 -0.002189449
+CAUD_WS1H_STA682A131#TAAACCGGTAAGCCTT-1  0.03188933  0.017318184
+CAUD_WS1H_STA682A131#AGCGATTGTAGCATGG-1 -2.23824470  0.024295551
+CAUD_WS1H_STA682A131#CACCACTCACGTTAGT-1  0.03152286  0.107331978
+CAUD_WS1H_STA682A131#GTCACGGAGTAGGTCG-1  0.04267658 -0.027525797
+
+
+addClusters Input-Parameters$reducedDims: length = 1
+[1] "IterativeLSI"
+
+
+addClusters Input-Parameters$name: length = 1
+[1] "Clusters"
+
+
+addClusters Input-Parameters$sampleCells: length = 1
+[1] 10000
+
+
+addClusters Input-Parameters$seed: length = 1
+[1] 1
+
+
+addClusters Input-Parameters$method: length = 1
+[1] "Seurat"
+
+
+addClusters Input-Parameters$dimsToUse: length = 0
+NULL
+
+
+addClusters Input-Parameters$scaleDims: length = 0
+NULL
+
+
+addClusters Input-Parameters$corCutOff: length = 1
+[1] 0.75
+
+
+addClusters Input-Parameters$knnAssign: length = 1
+[1] 10
+
+
+addClusters Input-Parameters$nOutlier: length = 1
+[1] 5
+
+
+addClusters Input-Parameters$testBias: length = 1
+[1] TRUE
+
+
+addClusters Input-Parameters$filterBias: length = 1
+[1] TRUE
+
+
+addClusters Input-Parameters$biasClusters: length = 1
+[1] 0.01
+
+
+addClusters Input-Parameters$biasCol: length = 1
+[1] "nFrags"
+
+
+addClusters Input-Parameters$biasVals: length = 5918
+[1] 4.999722 4.999244 4.999057 4.998965 4.998882 4.998869
+
+
+addClusters Input-Parameters$biasQuantiles: length = 2
+[1] 0.05 0.95
+
+
+addClusters Input-Parameters$biasEnrich: length = 1
+[1] 10
+
+
+addClusters Input-Parameters$biasProportion: length = 1
+[1] 0.5
+
+
+addClusters Input-Parameters$biasPval: length = 1
+[1] 0.05
+
+
+addClusters Input-Parameters$nPerm: length = 1
+[1] 500
+
+
+addClusters Input-Parameters$prefix: length = 1
+[1] "C"
+
+
+addClusters Input-Parameters$ArchRProj: length = 0
+NULL
+
+
+addClusters Input-Parameters$verbose: length = 1
+[1] FALSE
+
+
+addClusters Input-Parameters$tstart: length = 0
+NULL
+
+
+addClusters Input-Parameters$force: length = 1
+[1] FALSE
+
+
+addClusters Input-Parameters$logFile: length = 1
+[1] "ArchRLogs/ArchR-addIterativeLSI-5150454d5ca5a-Date-2020-10-07_Time-19-53-38.log"
+
+
+addClusters Input-Parameters$...: length = 2
+[[1]]
+<promise: 0x564cdef1d110>
+
+[[2]]
+<promise: 0x564cdef1d1f0>
+
+
+
+2020-10-07 20:00:40 : Running Seurats FindClusters (Stuart et al. Cell 2019), 0 mins elapsed.
+2020-10-07 20:00:49 : Testing Biased Clusters, 0.14 mins elapsed.
+2020-10-07 20:00:49 : Testing Outlier Clusters, 0.141 mins elapsed.
+2020-10-07 20:00:49 : Assigning Cluster Names to 12 Clusters, 0.141 mins elapsed.
+2020-10-07 20:00:49 : Finished addClusters, 0.141 mins elapsed.
+2020-10-07 20:00:49 : Identified 12 Clusters, 7.178 mins elapsed.
+
+2020-10-07 20:00:49 : clusterDF-2, Class = DFrame
+DataFrame with 5918 rows and 2 columns
+                                   cellNames    clusters
+                                 <character> <character>
+1    CAUD_WS1H_STA682A131#TTGAGTGAGAGCGGTT-1          C4
+2    CAUD_WS1H_STA682A131#TAAACCGGTAAGCCTT-1          C4
+3    CAUD_WS1H_STA682A131#AGCGATTGTAGCATGG-1         C11
+4    CAUD_WS1H_STA682A131#CACCACTCACGTTAGT-1          C5
+5    CAUD_WS1H_STA682A131#GTCACGGAGTAGGTCG-1          C4
+...                                      ...         ...
+5914 CAUD_WS1H_STA682A131#CATTGGAAGCTTTCCC-1         C11
+5915 CAUD_WS1H_STA682A131#CACAACACACTCGGAC-1          C6
+5916 CAUD_WS1H_STA682A131#CCCTAACTCCTCATTA-1         C11
+5917 CAUD_WS1H_STA682A131#TTGCCCACACAGTAGG-1         C11
+5918 CAUD_WS1H_STA682A131#AACCGATTCGCAACTA-1          C1
+
+2020-10-07 20:00:49 : Saving LSI Iteration, 7.178 mins elapsed.
+
+2020-10-07 20:00:49 : Save iteration, Class = list
+
+Save iteration$: length = 1
+                       
+1 function (name)      
+2 .Internal(args(name))
+
+
+Save iteration$matSVD: nRows = 5918, nCols = 30
+                                             LSI1      LSI2        LSI3
+CAUD_WS1H_STA682A131#TTGAGTGAGAGCGGTT-1 -56.48133  34.01125  1.85349819
+CAUD_WS1H_STA682A131#TAAACCGGTAAGCCTT-1 -55.37185  32.63111  1.08571279
+CAUD_WS1H_STA682A131#AGCGATTGTAGCATGG-1 -59.54610 -37.42641 14.06059296
+CAUD_WS1H_STA682A131#CACCACTCACGTTAGT-1 -51.50842  28.28639 -0.08501897
+CAUD_WS1H_STA682A131#GTCACGGAGTAGGTCG-1 -55.49868  36.03280  1.87619076
+                                               LSI4       LSI5
+CAUD_WS1H_STA682A131#TTGAGTGAGAGCGGTT-1  -0.8973443 -0.7575794
+CAUD_WS1H_STA682A131#TAAACCGGTAAGCCTT-1  -0.3254397 -0.4999265
+CAUD_WS1H_STA682A131#AGCGATTGTAGCATGG-1 -36.5014130 -3.3803508
+CAUD_WS1H_STA682A131#CACCACTCACGTTAGT-1  -0.6537278  0.1923663
+CAUD_WS1H_STA682A131#GTCACGGAGTAGGTCG-1  -0.2435907 -1.1217533
+
+
+Save iteration$clusters: length = 5918
+[1] "C4"  "C4"  "C11" "C5"  "C4"  "C4" 
+
+
+Save iteration$nPlot: length = 1
+[1] 10000
+
+
+Save iteration$ArchRProj: length = 1
+class: ArchRProject 
+outputDirectory: /home/bnphan/projects/snATAC_cross_species_caudate/data/raw_data/rheMac10/Stauffer_caudate/ArchR_Stauffer_caudate 
+samples(1): CAUD_WS1H_STA682A131
+sampleColData names(1): ArrowFiles
+cellColData names(15): Sample TSSEnrichment ... Subject Region
+numberOfCells(1): 1
+medianTSS(1): 7.836
+medianFrags(1): 99935
+
+
+Save iteration$scaleDims: length = 1
+[1] TRUE
+
+
+Save iteration$corCutOff: length = 1
+[1] 0.75
+
+
+Save iteration$dimsToUse: length = 30
+[1] 1 2 3 4 5 6
+
+
+Save iteration$j: length = 1
+[1] 2
+
+
+Save iteration$threads: length = 1
+[1] 15
+
+
+Save iteration$outDir: length = 1
+[1] "/home/bnphan/projects/snATAC_cross_species_caudate/data/raw_data/rheMac10/Stauffer_caudate/ArchR_Stauffer_caudate/IterativeLSI"
+
+
+Save iteration$logFile: length = 1
+[1] "ArchRLogs/ArchR-addIterativeLSI-5150454d5ca5a-Date-2020-10-07_Time-19-53-38.log"
+
+
+2020-10-07 20:01:09 : Creating Cluster Matrix on the total Group Features, 7.521 mins elapsed.
+2020-10-07 20:02:32 : Computing Variable Features, 8.898 mins elapsed.
+###########
+2020-10-07 20:02:32 : Running LSI (3 of 4) on Variable Features, 8.903 mins elapsed.
+###########
+2020-10-07 20:02:32 : Creating Partial Matrix, 8.903 mins elapsed.
+2020-10-07 20:03:22 : Computing LSI, 9.733 mins elapsed.
+
+2020-10-07 20:03:22 : LSI Parameters, Class = list
+
+LSI Parameters$: length = 1
+                       
+1 function (name)      
+2 .Internal(args(name))
+
+
+LSI Parameters$mat: nRows = 150000, nCols = 5918
+LSI Parameters$mat: NonZeroEntries = 72396457, EntryRange = [ 1 , 1 ]
+5 x 5 sparse Matrix of class "dgCMatrix"
+     CAUD_WS1H_STA682A131#TTGAGTGAGAGCGGTT-1
+[1,]                                       1
+[2,]                                       1
+[3,]                                       1
+[4,]                                       1
+[5,]                                       .
+     CAUD_WS1H_STA682A131#TAAACCGGTAAGCCTT-1
+[1,]                                       1
+[2,]                                       .
+[3,]                                       1
+[4,]                                       .
+[5,]                                       .
+     CAUD_WS1H_STA682A131#AGCGATTGTAGCATGG-1
+[1,]                                       .
+[2,]                                       1
+[3,]                                       .
+[4,]                                       .
+[5,]                                       1
+     CAUD_WS1H_STA682A131#CACCACTCACGTTAGT-1
+[1,]                                       1
+[2,]                                       .
+[3,]                                       1
+[4,]                                       1
+[5,]                                       1
+     CAUD_WS1H_STA682A131#GTCACGGAGTAGGTCG-1
+[1,]                                       .
+[2,]                                       .
+[3,]                                       .
+[4,]                                       .
+[5,]                                       1
+
+
+LSI Parameters$LSIMethod: length = 1
+[1] 2
+
+
+LSI Parameters$scaleTo: length = 1
+[1] 3000
+
+
+LSI Parameters$nDimensions: length = 1
+[1] 30
+
+
+LSI Parameters$binarize: length = 1
+[1] TRUE
+
+
+LSI Parameters$outlierQuantiles: length = 2
+[1] 0.02 0.98
+
+
+LSI Parameters$seed: length = 1
+[1] 1
+
+
+LSI Parameters$verbose: length = 1
+[1] FALSE
+
+
+LSI Parameters$tstart: length = 1
+[1] "2020-10-07 19:53:38 EDT"
+
+
+LSI Parameters$logFile: length = 1
+[1] "ArchRLogs/ArchR-addIterativeLSI-5150454d5ca5a-Date-2020-10-07_Time-19-53-38.log"
+
+
+2020-10-07 20:03:23 : Running LSI, Input Matrix = 0.869 GB, 9.748 mins elapsed.
+2020-10-07 20:03:23 : Binarizing Matrix, 9.748 mins elapsed.
+2020-10-07 20:03:25 : Computing Term Frequency, 9.775 mins elapsed.
+2020-10-07 20:03:25 : Filtering Outliers Based On Counts, 9.782 mins elapsed.
+2020-10-07 20:03:26 : Removing 0 Sum Rows, 9.799 mins elapsed.
+2020-10-07 20:03:30 : Computing Inverse Document Frequency, 9.866 mins elapsed.
+2020-10-07 20:03:34 : Computing SVD using irlba, 9.933 mins elapsed.
+2020-10-07 20:05:13 : Projecting Outliers with LSI-Projection (Granja* et al 2019), 11.578 mins elapsed.
+
+2020-10-07 20:05:13 : LSI-Projection Parameters, Class = list
+
+LSI-Projection Parameters$: length = 1
+                       
+1 function (name)      
+2 .Internal(args(name))
+
+
+LSI-Projection Parameters$mat: nRows = 150000, nCols = 10
+LSI-Projection Parameters$mat: NonZeroEntries = 242089, EntryRange = [ 1 , 1 ]
+5 x 5 sparse Matrix of class "dgCMatrix"
+     CAUD_WS1H_STA682A131#TAAACCGGTAAGCCTT-1
+[1,]                                       1
+[2,]                                       .
+[3,]                                       1
+[4,]                                       .
+[5,]                                       .
+     CAUD_WS1H_STA682A131#CACCACTCACGTTAGT-1
+[1,]                                       1
+[2,]                                       .
+[3,]                                       1
+[4,]                                       1
+[5,]                                       1
+     CAUD_WS1H_STA682A131#GTCACGGAGTAGGTCG-1
+[1,]                                       .
+[2,]                                       .
+[3,]                                       .
+[4,]                                       .
+[5,]                                       1
+     CAUD_WS1H_STA682A131#CGGTGCAGTTGGACGA-1
+[1,]                                       .
+[2,]                                       1
+[3,]                                       .
+[4,]                                       .
+[5,]                                       1
+     CAUD_WS1H_STA682A131#GGGACCTTCGGAAAGC-1
+[1,]                                       1
+[2,]                                       .
+[3,]                                       .
+[4,]                                       1
+[5,]                                       1
+
+
+LSI-Projection Parameters$matSVD: nRows = 5680, nCols = 30
+                                             LSI1     LSI2        LSI3
+CAUD_WS1H_STA682A131#TAAACCGGTAAGCCTT-1 -55.30630 32.69454  1.15896270
+CAUD_WS1H_STA682A131#CACCACTCACGTTAGT-1 -51.46665 28.22409 -0.05344189
+CAUD_WS1H_STA682A131#GTCACGGAGTAGGTCG-1 -55.45639 36.22251  1.86292772
+CAUD_WS1H_STA682A131#CGGTGCAGTTGGACGA-1 -55.13099 32.80198  1.59557738
+CAUD_WS1H_STA682A131#GGGACCTTCGGAAAGC-1 -51.05912 24.94243  0.26693874
+                                              LSI4       LSI5
+CAUD_WS1H_STA682A131#TAAACCGGTAAGCCTT-1 -0.3647462 -0.5544813
+CAUD_WS1H_STA682A131#CACCACTCACGTTAGT-1 -0.7362646  0.2057934
+CAUD_WS1H_STA682A131#GTCACGGAGTAGGTCG-1 -0.2510754 -1.1894539
+CAUD_WS1H_STA682A131#CGGTGCAGTTGGACGA-1 -0.4478919  0.1027496
+CAUD_WS1H_STA682A131#GGGACCTTCGGAAAGC-1 -0.9808480  0.1539467
+
+
+LSI-Projection Parameters$returnModel: length = 1
+[1] FALSE
+
+
+LSI-Projection Parameters$verbose: length = 1
+[1] FALSE
+
+
+LSI-Projection Parameters$tstart: length = 0
+NULL
+
+
+LSI-Projection Parameters$logFile: length = 1
+[1] "ArchRLogs/ArchR-addIterativeLSI-5150454d5ca5a-Date-2020-10-07_Time-19-53-38.log"
+
+
+2020-10-07 20:05:13 : Projecting LSI, Input Matrix = 0.003 GB, 0 mins elapsed.
+2020-10-07 20:05:13 : Subsetting by Non-Zero features in inital Matrix, 0 mins elapsed.
+2020-10-07 20:05:13 : Binarizing Matrix, 0 mins elapsed.
+2020-10-07 20:05:13 : Computing Term Frequency, 0 mins elapsed.
+2020-10-07 20:05:13 : Computing Inverse Document Frequency, 0 mins elapsed.
+2020-10-07 20:05:13 : Computing TF-IDF Matrix, 0 mins elapsed.
+2020-10-07 20:05:14 : Calculating V Matrix, 0.012 mins elapsed.
+2020-10-07 20:05:14 : Computing Projected Coordinates, 0.013 mins elapsed.
+
+2020-10-07 20:05:14 : LSI-Projection Parameters, Class = list
+
+LSI-Projection Parameters$: length = 1
+                       
+1 function (name)      
+2 .Internal(args(name))
+
+
+LSI-Projection Parameters$mat: nRows = 150000, nCols = 238
+LSI-Projection Parameters$mat: NonZeroEntries = 3418242, EntryRange = [ 1 , 1 ]
+5 x 5 sparse Matrix of class "dgCMatrix"
+     CAUD_WS1H_STA682A131#TTGAGTGAGAGCGGTT-1
+[1,]                                       1
+[2,]                                       1
+[3,]                                       1
+[4,]                                       1
+[5,]                                       .
+     CAUD_WS1H_STA682A131#AGCGATTGTAGCATGG-1
+[1,]                                       .
+[2,]                                       1
+[3,]                                       .
+[4,]                                       .
+[5,]                                       1
+     CAUD_WS1H_STA682A131#GGTGCTGAGCGTATCT-1
+[1,]                                       1
+[2,]                                       1
+[3,]                                       .
+[4,]                                       .
+[5,]                                       1
+     CAUD_WS1H_STA682A131#CCCTAACGTTCCAGTA-1
+[1,]                                       .
+[2,]                                       .
+[3,]                                       .
+[4,]                                       .
+[5,]                                       1
+     CAUD_WS1H_STA682A131#CGGTGCACATGGGAAC-1
+[1,]                                       1
+[2,]                                       1
+[3,]                                       1
+[4,]                                       .
+[5,]                                       1
+
+
+LSI-Projection Parameters$matSVD: nRows = 5680, nCols = 30
+                                             LSI1     LSI2        LSI3
+CAUD_WS1H_STA682A131#TAAACCGGTAAGCCTT-1 -55.30630 32.69454  1.15896270
+CAUD_WS1H_STA682A131#CACCACTCACGTTAGT-1 -51.46665 28.22409 -0.05344189
+CAUD_WS1H_STA682A131#GTCACGGAGTAGGTCG-1 -55.45639 36.22251  1.86292772
+CAUD_WS1H_STA682A131#CGGTGCAGTTGGACGA-1 -55.13099 32.80198  1.59557738
+CAUD_WS1H_STA682A131#GGGACCTTCGGAAAGC-1 -51.05912 24.94243  0.26693874
+                                              LSI4       LSI5
+CAUD_WS1H_STA682A131#TAAACCGGTAAGCCTT-1 -0.3647462 -0.5544813
+CAUD_WS1H_STA682A131#CACCACTCACGTTAGT-1 -0.7362646  0.2057934
+CAUD_WS1H_STA682A131#GTCACGGAGTAGGTCG-1 -0.2510754 -1.1894539
+CAUD_WS1H_STA682A131#CGGTGCAGTTGGACGA-1 -0.4478919  0.1027496
+CAUD_WS1H_STA682A131#GGGACCTTCGGAAAGC-1 -0.9808480  0.1539467
+
+
+LSI-Projection Parameters$returnModel: length = 1
+[1] FALSE
+
+
+LSI-Projection Parameters$verbose: length = 1
+[1] FALSE
+
+
+LSI-Projection Parameters$tstart: length = 0
+NULL
+
+
+LSI-Projection Parameters$logFile: length = 1
+[1] "ArchRLogs/ArchR-addIterativeLSI-5150454d5ca5a-Date-2020-10-07_Time-19-53-38.log"
+
+
+2020-10-07 20:05:14 : Projecting LSI, Input Matrix = 0.041 GB, 0 mins elapsed.
+2020-10-07 20:05:14 : Subsetting by Non-Zero features in inital Matrix, 0 mins elapsed.
+2020-10-07 20:05:14 : Binarizing Matrix, 0.001 mins elapsed.
+2020-10-07 20:05:14 : Computing Term Frequency, 0.001 mins elapsed.
+2020-10-07 20:05:14 : Computing Inverse Document Frequency, 0.002 mins elapsed.
+2020-10-07 20:05:14 : Computing TF-IDF Matrix, 0.002 mins elapsed.
+2020-10-07 20:05:15 : Calculating V Matrix, 0.015 mins elapsed.
+2020-10-07 20:05:15 : Computing Projected Coordinates, 0.018 mins elapsed.
+2020-10-07 20:05:15 : Finished LSI (TF-IDF SVD) using irlba, 11.611 mins elapsed.
+
+2020-10-07 20:05:15 : outLSI-3, Class = SimpleList
+
+outLSI-3$matSVD: nRows = 5918, nCols = 30
+                                             LSI1      LSI2        LSI3
+CAUD_WS1H_STA682A131#TTGAGTGAGAGCGGTT-1 -56.37628  33.92812  1.87205126
+CAUD_WS1H_STA682A131#TAAACCGGTAAGCCTT-1 -55.30630  32.69454  1.15896270
+CAUD_WS1H_STA682A131#AGCGATTGTAGCATGG-1 -59.66534 -37.76851 14.08453961
+CAUD_WS1H_STA682A131#CACCACTCACGTTAGT-1 -51.46665  28.22409 -0.05344189
+CAUD_WS1H_STA682A131#GTCACGGAGTAGGTCG-1 -55.45639  36.22251  1.86292772
+                                               LSI4       LSI5
+CAUD_WS1H_STA682A131#TTGAGTGAGAGCGGTT-1  -0.9652627 -0.7479202
+CAUD_WS1H_STA682A131#TAAACCGGTAAGCCTT-1  -0.3647462 -0.5544813
+CAUD_WS1H_STA682A131#AGCGATTGTAGCATGG-1 -36.5989981 -3.4286068
+CAUD_WS1H_STA682A131#CACCACTCACGTTAGT-1  -0.7362646  0.2057934
+CAUD_WS1H_STA682A131#GTCACGGAGTAGGTCG-1  -0.2510754 -1.1894539
+
+
+outLSI-3$rowSm: length = 150000
+[1] 1403 1262  529 1195 1962 1047
+
+
+outLSI-3$nCol: length = 1
+[1] 5680
+
+
+outLSI-3$exclude: length = 0
+NULL
+
+
+outLSI-3$idx: length = 150000
+[1] 1 2 3 4 5 6
+
+
+outLSI-3$u: nRows = 150000, nCols = 30
+             [,1]          [,2]          [,3]          [,4]          [,5]
+[1,] -0.004180817 -0.0017730260 -0.0001888931  0.0023343385 -0.0015762710
+[2,] -0.004041827 -0.0018304461 -0.0002696533  0.0015908553 -0.0013360852
+[3,] -0.002892167  0.0008955666 -0.0003458501 -0.0002836252  0.0003645415
+[4,] -0.003929164 -0.0009799812  0.0001808281  0.0009100992  0.0003378282
+[5,] -0.004515143 -0.0016312624 -0.0002889426  0.0025963304 -0.0002472921
+
+
+outLSI-3$v: nRows = 5680, nCols = 30
+            [,1]       [,2]          [,3]          [,4]          [,5]
+[1,] -0.01838758 0.01783069  7.865584e-04 -0.0002804273 -0.0008030396
+[2,] -0.01711102 0.01539263 -3.626965e-05 -0.0005660612  0.0002980448
+[3,] -0.01843748 0.01975475  1.264322e-03 -0.0001930339 -0.0017226526
+[4,] -0.01832930 0.01788929  1.082878e-03 -0.0003443521  0.0001488094
+[5,] -0.01697553 0.01360291  1.811645e-04 -0.0007541040  0.0002229566
+
+
+outLSI-3$binarize: length = 1
+[1] TRUE
+
+
+outLSI-3$scaleTo: length = 1
+[1] 3000
+
+
+outLSI-3$nDimensions: length = 1
+[1] 30
+
+
+outLSI-3$LSIMethod: length = 1
+[1] 2
+
+
+outLSI-3$outliers: length = 238
+[1] "CAUD_WS1H_STA682A131#TTGAGTGAGAGCGGTT-1"
+[2] "CAUD_WS1H_STA682A131#AGCGATTGTAGCATGG-1"
+[3] "CAUD_WS1H_STA682A131#GGTGCTGAGCGTATCT-1"
+[4] "CAUD_WS1H_STA682A131#CCCTAACGTTCCAGTA-1"
+[5] "CAUD_WS1H_STA682A131#CGGTGCACATGGGAAC-1"
+[6] "CAUD_WS1H_STA682A131#ACTTCCGCAAGACACG-1"
+
+
+outLSI-3$date: length = 1
+[1] "2020-10-07"
+
+
+outLSI-3$seed: length = 1
+[1] 1
+
+
+outLSI-3$scaleDims: length = 1
+[1] TRUE
+
+
+outLSI-3$useMatrix: length = 1
+[1] "TileMatrix"
+
+
+outLSI-3$tileSize: length = 1
+[1] 500
+
+
+
+2020-10-07 20:05:15 : Cluster Params, Class = list
+
+Cluster Params$: length = 1
+                       
+1 function (name)      
+2 .Internal(args(name))
+
+
+Cluster Params$matSVD: nRows = 5918, nCols = 30
+                                             LSI1      LSI2        LSI3
+CAUD_WS1H_STA682A131#TTGAGTGAGAGCGGTT-1 -56.37628  33.92812  1.87205126
+CAUD_WS1H_STA682A131#TAAACCGGTAAGCCTT-1 -55.30630  32.69454  1.15896270
+CAUD_WS1H_STA682A131#AGCGATTGTAGCATGG-1 -59.66534 -37.76851 14.08453961
+CAUD_WS1H_STA682A131#CACCACTCACGTTAGT-1 -51.46665  28.22409 -0.05344189
+CAUD_WS1H_STA682A131#GTCACGGAGTAGGTCG-1 -55.45639  36.22251  1.86292772
+                                               LSI4       LSI5
+CAUD_WS1H_STA682A131#TTGAGTGAGAGCGGTT-1  -0.9652627 -0.7479202
+CAUD_WS1H_STA682A131#TAAACCGGTAAGCCTT-1  -0.3647462 -0.5544813
+CAUD_WS1H_STA682A131#AGCGATTGTAGCATGG-1 -36.5989981 -3.4286068
+CAUD_WS1H_STA682A131#CACCACTCACGTTAGT-1  -0.7362646  0.2057934
+CAUD_WS1H_STA682A131#GTCACGGAGTAGGTCG-1  -0.2510754 -1.1894539
+
+
+Cluster Params$corCutOff: length = 1
+[1] 0.75
+
+
+Cluster Params$dimsToUse: length = 30
+[1] 1 2 3 4 5 6
+
+
+Cluster Params$scaleDims: length = 1
+[1] TRUE
+
+
+Cluster Params$verbose: length = 1
+[1] TRUE
+
+
+Cluster Params$j: length = 1
+[1] 3
+
+
+Cluster Params$filterBias: length = 1
+[1] TRUE
+
+
+Cluster Params$cellNames: length = 5918
+[1] "CAUD_WS1H_STA682A131#TTGAGTGAGAGCGGTT-1"
+[2] "CAUD_WS1H_STA682A131#TAAACCGGTAAGCCTT-1"
+[3] "CAUD_WS1H_STA682A131#AGCGATTGTAGCATGG-1"
+[4] "CAUD_WS1H_STA682A131#CACCACTCACGTTAGT-1"
+[5] "CAUD_WS1H_STA682A131#GTCACGGAGTAGGTCG-1"
+[6] "CAUD_WS1H_STA682A131#CGGTGCAGTTGGACGA-1"
+
+
+Cluster Params$cellDepth: length = 5918
+CAUD_WS1H_STA682A131#TTGAGTGAGAGCGGTT-1 CAUD_WS1H_STA682A131#TAAACCGGTAAGCCTT-1 
+                               4.999722                                4.999244 
+CAUD_WS1H_STA682A131#AGCGATTGTAGCATGG-1 CAUD_WS1H_STA682A131#CACCACTCACGTTAGT-1 
+                               4.999057                                4.998965 
+CAUD_WS1H_STA682A131#GTCACGGAGTAGGTCG-1 CAUD_WS1H_STA682A131#CGGTGCAGTTGGACGA-1 
+                               4.998882                                4.998869 
+
+
+Cluster Params$tstart: length = 1
+[1] "2020-10-07 19:53:38 EDT"
+
+
+Cluster Params$logFile: length = 1
+[1] "ArchRLogs/ArchR-addIterativeLSI-5150454d5ca5a-Date-2020-10-07_Time-19-53-38.log"
+
+
+2020-10-07 20:05:15 : Identifying Clusters, 11.622 mins elapsed.
+
+2020-10-07 20:05:15 : addClusters Input-Parameters, Class = list
+
+addClusters Input-Parameters$: length = 1
+                       
+1 function (name)      
+2 .Internal(args(name))
+
+
+addClusters Input-Parameters$input: nRows = 5918, nCols = 30
+                                             LSI1      LSI2      LSI3
+CAUD_WS1H_STA682A131#TTGAGTGAGAGCGGTT-1 -4.535518  2.838048 0.2205947
+CAUD_WS1H_STA682A131#TAAACCGGTAAGCCTT-1 -4.559127  2.792284 0.1578660
+CAUD_WS1H_STA682A131#AGCGATTGTAGCATGG-1 -3.808423 -2.300218 1.2713059
+CAUD_WS1H_STA682A131#CACCACTCACGTTAGT-1 -4.515076  2.701732 0.1409136
+CAUD_WS1H_STA682A131#GTCACGGAGTAGGTCG-1 -4.408918  2.901689 0.1618063
+                                                LSI4         LSI5
+CAUD_WS1H_STA682A131#TTGAGTGAGAGCGGTT-1 -0.011078591  0.006667928
+CAUD_WS1H_STA682A131#TAAACCGGTAAGCCTT-1  0.030578462  0.014728377
+CAUD_WS1H_STA682A131#AGCGATTGTAGCATGG-1 -2.219664074  0.065039128
+CAUD_WS1H_STA682A131#CACCACTCACGTTAGT-1  0.079077045  0.164389995
+CAUD_WS1H_STA682A131#GTCACGGAGTAGGTCG-1 -0.006767369 -0.081595024
+
+
+addClusters Input-Parameters$reducedDims: length = 1
+[1] "IterativeLSI"
+
+
+addClusters Input-Parameters$name: length = 1
+[1] "Clusters"
+
+
+addClusters Input-Parameters$sampleCells: length = 1
+[1] 10000
+
+
+addClusters Input-Parameters$seed: length = 1
+[1] 1
+
+
+addClusters Input-Parameters$method: length = 1
+[1] "Seurat"
+
+
+addClusters Input-Parameters$dimsToUse: length = 0
+NULL
+
+
+addClusters Input-Parameters$scaleDims: length = 0
+NULL
+
+
+addClusters Input-Parameters$corCutOff: length = 1
+[1] 0.75
+
+
+addClusters Input-Parameters$knnAssign: length = 1
+[1] 10
+
+
+addClusters Input-Parameters$nOutlier: length = 1
+[1] 5
+
+
+addClusters Input-Parameters$testBias: length = 1
+[1] TRUE
+
+
+addClusters Input-Parameters$filterBias: length = 1
+[1] TRUE
+
+
+addClusters Input-Parameters$biasClusters: length = 1
+[1] 0.01
+
+
+addClusters Input-Parameters$biasCol: length = 1
+[1] "nFrags"
+
+
+addClusters Input-Parameters$biasVals: length = 5918
+[1] 4.999722 4.999244 4.999057 4.998965 4.998882 4.998869
+
+
+addClusters Input-Parameters$biasQuantiles: length = 2
+[1] 0.05 0.95
+
+
+addClusters Input-Parameters$biasEnrich: length = 1
+[1] 10
+
+
+addClusters Input-Parameters$biasProportion: length = 1
+[1] 0.5
+
+
+addClusters Input-Parameters$biasPval: length = 1
+[1] 0.05
+
+
+addClusters Input-Parameters$nPerm: length = 1
+[1] 500
+
+
+addClusters Input-Parameters$prefix: length = 1
+[1] "C"
+
+
+addClusters Input-Parameters$ArchRProj: length = 0
+NULL
+
+
+addClusters Input-Parameters$verbose: length = 1
+[1] FALSE
+
+
+addClusters Input-Parameters$tstart: length = 0
+NULL
+
+
+addClusters Input-Parameters$force: length = 1
+[1] FALSE
+
+
+addClusters Input-Parameters$logFile: length = 1
+[1] "ArchRLogs/ArchR-addIterativeLSI-5150454d5ca5a-Date-2020-10-07_Time-19-53-38.log"
+
+
+addClusters Input-Parameters$...: length = 2
+[[1]]
+<promise: 0x564cdf164c90>
+
+[[2]]
+<promise: 0x564cdf164d70>
+
+
+
+2020-10-07 20:05:15 : Running Seurats FindClusters (Stuart et al. Cell 2019), 0 mins elapsed.
+2020-10-07 20:05:24 : Testing Biased Clusters, 0.138 mins elapsed.
+2020-10-07 20:05:24 : Testing Outlier Clusters, 0.139 mins elapsed.
+2020-10-07 20:05:24 : Assigning Cluster Names to 12 Clusters, 0.139 mins elapsed.
+2020-10-07 20:05:24 : Finished addClusters, 0.139 mins elapsed.
+2020-10-07 20:05:24 : Identified 12 Clusters, 11.762 mins elapsed.
+
+2020-10-07 20:05:24 : clusterDF-3, Class = DFrame
+DataFrame with 5918 rows and 2 columns
+                                   cellNames    clusters
+                                 <character> <character>
+1    CAUD_WS1H_STA682A131#TTGAGTGAGAGCGGTT-1          C4
+2    CAUD_WS1H_STA682A131#TAAACCGGTAAGCCTT-1          C4
+3    CAUD_WS1H_STA682A131#AGCGATTGTAGCATGG-1          C8
+4    CAUD_WS1H_STA682A131#CACCACTCACGTTAGT-1          C5
+5    CAUD_WS1H_STA682A131#GTCACGGAGTAGGTCG-1          C4
+...                                      ...         ...
+5914 CAUD_WS1H_STA682A131#CATTGGAAGCTTTCCC-1          C8
+5915 CAUD_WS1H_STA682A131#CACAACACACTCGGAC-1          C6
+5916 CAUD_WS1H_STA682A131#CCCTAACTCCTCATTA-1          C8
+5917 CAUD_WS1H_STA682A131#TTGCCCACACAGTAGG-1          C8
+5918 CAUD_WS1H_STA682A131#AACCGATTCGCAACTA-1          C1
+
+2020-10-07 20:05:24 : Saving LSI Iteration, 11.762 mins elapsed.
+
+2020-10-07 20:05:24 : Save iteration, Class = list
+
+Save iteration$: length = 1
+                       
+1 function (name)      
+2 .Internal(args(name))
+
+
+Save iteration$matSVD: nRows = 5918, nCols = 30
+                                             LSI1      LSI2        LSI3
+CAUD_WS1H_STA682A131#TTGAGTGAGAGCGGTT-1 -56.37628  33.92812  1.87205126
+CAUD_WS1H_STA682A131#TAAACCGGTAAGCCTT-1 -55.30630  32.69454  1.15896270
+CAUD_WS1H_STA682A131#AGCGATTGTAGCATGG-1 -59.66534 -37.76851 14.08453961
+CAUD_WS1H_STA682A131#CACCACTCACGTTAGT-1 -51.46665  28.22409 -0.05344189
+CAUD_WS1H_STA682A131#GTCACGGAGTAGGTCG-1 -55.45639  36.22251  1.86292772
+                                               LSI4       LSI5
+CAUD_WS1H_STA682A131#TTGAGTGAGAGCGGTT-1  -0.9652627 -0.7479202
+CAUD_WS1H_STA682A131#TAAACCGGTAAGCCTT-1  -0.3647462 -0.5544813
+CAUD_WS1H_STA682A131#AGCGATTGTAGCATGG-1 -36.5989981 -3.4286068
+CAUD_WS1H_STA682A131#CACCACTCACGTTAGT-1  -0.7362646  0.2057934
+CAUD_WS1H_STA682A131#GTCACGGAGTAGGTCG-1  -0.2510754 -1.1894539
+
+
+Save iteration$clusters: length = 5918
+[1] "C4" "C4" "C8" "C5" "C4" "C4"
+
+
+Save iteration$nPlot: length = 1
+[1] 10000
+
+
+Save iteration$ArchRProj: length = 1
+class: ArchRProject 
+outputDirectory: /home/bnphan/projects/snATAC_cross_species_caudate/data/raw_data/rheMac10/Stauffer_caudate/ArchR_Stauffer_caudate 
+samples(1): CAUD_WS1H_STA682A131
+sampleColData names(1): ArrowFiles
+cellColData names(15): Sample TSSEnrichment ... Subject Region
+numberOfCells(1): 1
+medianTSS(1): 7.836
+medianFrags(1): 99935
+
+
+Save iteration$scaleDims: length = 1
+[1] TRUE
+
+
+Save iteration$corCutOff: length = 1
+[1] 0.75
+
+
+Save iteration$dimsToUse: length = 30
+[1] 1 2 3 4 5 6
+
+
+Save iteration$j: length = 1
+[1] 3
+
+
+Save iteration$threads: length = 1
+[1] 15
+
+
+Save iteration$outDir: length = 1
+[1] "/home/bnphan/projects/snATAC_cross_species_caudate/data/raw_data/rheMac10/Stauffer_caudate/ArchR_Stauffer_caudate/IterativeLSI"
+
+
+Save iteration$logFile: length = 1
+[1] "ArchRLogs/ArchR-addIterativeLSI-5150454d5ca5a-Date-2020-10-07_Time-19-53-38.log"
+
+
+2020-10-07 20:05:45 : Creating Cluster Matrix on the total Group Features, 12.123 mins elapsed.
+2020-10-07 20:07:07 : Computing Variable Features, 13.481 mins elapsed.
+###########
+2020-10-07 20:07:07 : Running LSI (4 of 4) on Variable Features, 13.487 mins elapsed.
+###########
+2020-10-07 20:07:07 : Creating Partial Matrix, 13.487 mins elapsed.
+2020-10-07 20:07:57 : Computing LSI, 14.318 mins elapsed.
+
+2020-10-07 20:07:57 : LSI Parameters, Class = list
+
+LSI Parameters$: length = 1
+                       
+1 function (name)      
+2 .Internal(args(name))
+
+
+LSI Parameters$mat: nRows = 150000, nCols = 5918
+LSI Parameters$mat: NonZeroEntries = 72291675, EntryRange = [ 1 , 1 ]
+5 x 5 sparse Matrix of class "dgCMatrix"
+     CAUD_WS1H_STA682A131#TTGAGTGAGAGCGGTT-1
+[1,]                                       1
+[2,]                                       1
+[3,]                                       1
+[4,]                                       1
+[5,]                                       .
+     CAUD_WS1H_STA682A131#TAAACCGGTAAGCCTT-1
+[1,]                                       1
+[2,]                                       .
+[3,]                                       1
+[4,]                                       .
+[5,]                                       .
+     CAUD_WS1H_STA682A131#AGCGATTGTAGCATGG-1
+[1,]                                       .
+[2,]                                       1
+[3,]                                       .
+[4,]                                       .
+[5,]                                       1
+     CAUD_WS1H_STA682A131#CACCACTCACGTTAGT-1
+[1,]                                       1
+[2,]                                       .
+[3,]                                       1
+[4,]                                       1
+[5,]                                       1
+     CAUD_WS1H_STA682A131#GTCACGGAGTAGGTCG-1
+[1,]                                       .
+[2,]                                       .
+[3,]                                       .
+[4,]                                       .
+[5,]                                       1
+
+
+LSI Parameters$LSIMethod: length = 1
+[1] 2
+
+
+LSI Parameters$scaleTo: length = 1
+[1] 3000
+
+
+LSI Parameters$nDimensions: length = 1
+[1] 30
+
+
+LSI Parameters$binarize: length = 1
+[1] TRUE
+
+
+LSI Parameters$outlierQuantiles: length = 2
+[1] 0.02 0.98
+
+
+LSI Parameters$seed: length = 1
+[1] 1
+
+
+LSI Parameters$verbose: length = 1
+[1] FALSE
+
+
+LSI Parameters$tstart: length = 1
+[1] "2020-10-07 19:53:38 EDT"
+
+
+LSI Parameters$logFile: length = 1
+[1] "ArchRLogs/ArchR-addIterativeLSI-5150454d5ca5a-Date-2020-10-07_Time-19-53-38.log"
+
+
+2020-10-07 20:07:58 : Running LSI, Input Matrix = 0.868 GB, 14.331 mins elapsed.
+2020-10-07 20:07:58 : Binarizing Matrix, 14.331 mins elapsed.
+2020-10-07 20:07:59 : Computing Term Frequency, 14.346 mins elapsed.
+2020-10-07 20:07:59 : Filtering Outliers Based On Counts, 14.352 mins elapsed.
+2020-10-07 20:08:00 : Removing 0 Sum Rows, 14.368 mins elapsed.
+2020-10-07 20:08:04 : Computing Inverse Document Frequency, 14.436 mins elapsed.
+2020-10-07 20:08:09 : Computing SVD using irlba, 14.514 mins elapsed.
+2020-10-07 20:09:48 : Projecting Outliers with LSI-Projection (Granja* et al 2019), 16.159 mins elapsed.
+
+2020-10-07 20:09:48 : LSI-Projection Parameters, Class = list
+
+LSI-Projection Parameters$: length = 1
+                       
+1 function (name)      
+2 .Internal(args(name))
+
+
+LSI-Projection Parameters$mat: nRows = 150000, nCols = 10
+LSI-Projection Parameters$mat: NonZeroEntries = 241223, EntryRange = [ 1 , 1 ]
+5 x 5 sparse Matrix of class "dgCMatrix"
+     CAUD_WS1H_STA682A131#TAAACCGGTAAGCCTT-1
+[1,]                                       1
+[2,]                                       .
+[3,]                                       1
+[4,]                                       .
+[5,]                                       .
+     CAUD_WS1H_STA682A131#CACCACTCACGTTAGT-1
+[1,]                                       1
+[2,]                                       .
+[3,]                                       1
+[4,]                                       1
+[5,]                                       1
+     CAUD_WS1H_STA682A131#GTCACGGAGTAGGTCG-1
+[1,]                                       .
+[2,]                                       .
+[3,]                                       .
+[4,]                                       .
+[5,]                                       1
+     CAUD_WS1H_STA682A131#CGGTGCAGTTGGACGA-1
+[1,]                                       .
+[2,]                                       1
+[3,]                                       .
+[4,]                                       .
+[5,]                                       1
+     CAUD_WS1H_STA682A131#GGGACCTTCGGAAAGC-1
+[1,]                                       1
+[2,]                                       .
+[3,]                                       .
+[4,]                                       1
+[5,]                                       1
+
+
+LSI-Projection Parameters$matSVD: nRows = 5680, nCols = 30
+                                             LSI1     LSI2        LSI3
+CAUD_WS1H_STA682A131#TAAACCGGTAAGCCTT-1 -55.25016 32.66612 1.217348390
+CAUD_WS1H_STA682A131#CACCACTCACGTTAGT-1 -51.45809 28.20356 0.001832544
+CAUD_WS1H_STA682A131#GTCACGGAGTAGGTCG-1 -55.39677 36.21332 1.906697754
+CAUD_WS1H_STA682A131#CGGTGCAGTTGGACGA-1 -55.08872 32.76296 1.622028262
+CAUD_WS1H_STA682A131#GGGACCTTCGGAAAGC-1 -51.01040 24.89411 0.289195148
+                                              LSI4       LSI5
+CAUD_WS1H_STA682A131#TAAACCGGTAAGCCTT-1 -0.4137735 -0.5477849
+CAUD_WS1H_STA682A131#CACCACTCACGTTAGT-1 -0.7900130  0.2600625
+CAUD_WS1H_STA682A131#GTCACGGAGTAGGTCG-1 -0.2300899 -1.2392626
+CAUD_WS1H_STA682A131#CGGTGCAGTTGGACGA-1 -0.4814516  0.1313756
+CAUD_WS1H_STA682A131#GGGACCTTCGGAAAGC-1 -1.0159171  0.2561027
+
+
+LSI-Projection Parameters$returnModel: length = 1
+[1] FALSE
+
+
+LSI-Projection Parameters$verbose: length = 1
+[1] FALSE
+
+
+LSI-Projection Parameters$tstart: length = 0
+NULL
+
+
+LSI-Projection Parameters$logFile: length = 1
+[1] "ArchRLogs/ArchR-addIterativeLSI-5150454d5ca5a-Date-2020-10-07_Time-19-53-38.log"
+
+
+2020-10-07 20:09:48 : Projecting LSI, Input Matrix = 0.003 GB, 0 mins elapsed.
+2020-10-07 20:09:48 : Subsetting by Non-Zero features in inital Matrix, 0 mins elapsed.
+2020-10-07 20:09:48 : Binarizing Matrix, 0 mins elapsed.
+2020-10-07 20:09:48 : Computing Term Frequency, 0 mins elapsed.
+2020-10-07 20:09:48 : Computing Inverse Document Frequency, 0 mins elapsed.
+2020-10-07 20:09:48 : Computing TF-IDF Matrix, 0 mins elapsed.
+2020-10-07 20:09:48 : Calculating V Matrix, 0.013 mins elapsed.
+2020-10-07 20:09:48 : Computing Projected Coordinates, 0.013 mins elapsed.
+
+2020-10-07 20:09:48 : LSI-Projection Parameters, Class = list
+
+LSI-Projection Parameters$: length = 1
+                       
+1 function (name)      
+2 .Internal(args(name))
+
+
+LSI-Projection Parameters$mat: nRows = 150000, nCols = 238
+LSI-Projection Parameters$mat: NonZeroEntries = 3404141, EntryRange = [ 1 , 1 ]
+5 x 5 sparse Matrix of class "dgCMatrix"
+     CAUD_WS1H_STA682A131#TTGAGTGAGAGCGGTT-1
+[1,]                                       1
+[2,]                                       1
+[3,]                                       1
+[4,]                                       1
+[5,]                                       .
+     CAUD_WS1H_STA682A131#AGCGATTGTAGCATGG-1
+[1,]                                       .
+[2,]                                       1
+[3,]                                       .
+[4,]                                       .
+[5,]                                       1
+     CAUD_WS1H_STA682A131#GGTGCTGAGCGTATCT-1
+[1,]                                       1
+[2,]                                       1
+[3,]                                       .
+[4,]                                       .
+[5,]                                       1
+     CAUD_WS1H_STA682A131#CCCTAACGTTCCAGTA-1
+[1,]                                       .
+[2,]                                       .
+[3,]                                       .
+[4,]                                       .
+[5,]                                       1
+     CAUD_WS1H_STA682A131#CGGTGCACATGGGAAC-1
+[1,]                                       1
+[2,]                                       1
+[3,]                                       1
+[4,]                                       .
+[5,]                                       1
+
+
+LSI-Projection Parameters$matSVD: nRows = 5680, nCols = 30
+                                             LSI1     LSI2        LSI3
+CAUD_WS1H_STA682A131#TAAACCGGTAAGCCTT-1 -55.25016 32.66612 1.217348390
+CAUD_WS1H_STA682A131#CACCACTCACGTTAGT-1 -51.45809 28.20356 0.001832544
+CAUD_WS1H_STA682A131#GTCACGGAGTAGGTCG-1 -55.39677 36.21332 1.906697754
+CAUD_WS1H_STA682A131#CGGTGCAGTTGGACGA-1 -55.08872 32.76296 1.622028262
+CAUD_WS1H_STA682A131#GGGACCTTCGGAAAGC-1 -51.01040 24.89411 0.289195148
+                                              LSI4       LSI5
+CAUD_WS1H_STA682A131#TAAACCGGTAAGCCTT-1 -0.4137735 -0.5477849
+CAUD_WS1H_STA682A131#CACCACTCACGTTAGT-1 -0.7900130  0.2600625
+CAUD_WS1H_STA682A131#GTCACGGAGTAGGTCG-1 -0.2300899 -1.2392626
+CAUD_WS1H_STA682A131#CGGTGCAGTTGGACGA-1 -0.4814516  0.1313756
+CAUD_WS1H_STA682A131#GGGACCTTCGGAAAGC-1 -1.0159171  0.2561027
+
+
+LSI-Projection Parameters$returnModel: length = 1
+[1] FALSE
+
+
+LSI-Projection Parameters$verbose: length = 1
+[1] FALSE
+
+
+LSI-Projection Parameters$tstart: length = 0
+NULL
+
+
+LSI-Projection Parameters$logFile: length = 1
+[1] "ArchRLogs/ArchR-addIterativeLSI-5150454d5ca5a-Date-2020-10-07_Time-19-53-38.log"
+
+
+2020-10-07 20:09:48 : Projecting LSI, Input Matrix = 0.041 GB, 0 mins elapsed.
+2020-10-07 20:09:49 : Subsetting by Non-Zero features in inital Matrix, 0 mins elapsed.
+2020-10-07 20:09:49 : Binarizing Matrix, 0.001 mins elapsed.
+2020-10-07 20:09:49 : Computing Term Frequency, 0.002 mins elapsed.
+2020-10-07 20:09:49 : Computing Inverse Document Frequency, 0.002 mins elapsed.
+2020-10-07 20:09:49 : Computing TF-IDF Matrix, 0.002 mins elapsed.
+2020-10-07 20:09:49 : Calculating V Matrix, 0.016 mins elapsed.
+2020-10-07 20:09:50 : Computing Projected Coordinates, 0.02 mins elapsed.
+2020-10-07 20:09:50 : Finished LSI (TF-IDF SVD) using irlba, 16.193 mins elapsed.
+
+2020-10-07 20:09:50 : outLSI-4, Class = SimpleList
+
+outLSI-4$matSVD: nRows = 5918, nCols = 30
+                                             LSI1      LSI2         LSI3
+CAUD_WS1H_STA682A131#TTGAGTGAGAGCGGTT-1 -56.26255  33.79196  1.884805819
+CAUD_WS1H_STA682A131#TAAACCGGTAAGCCTT-1 -55.25016  32.66612  1.217348390
+CAUD_WS1H_STA682A131#AGCGATTGTAGCATGG-1 -59.75197 -37.75826 14.095984028
+CAUD_WS1H_STA682A131#CACCACTCACGTTAGT-1 -51.45809  28.20356  0.001832544
+CAUD_WS1H_STA682A131#GTCACGGAGTAGGTCG-1 -55.39677  36.21332  1.906697754
+                                               LSI4       LSI5
+CAUD_WS1H_STA682A131#TTGAGTGAGAGCGGTT-1  -0.9565246 -0.7375000
+CAUD_WS1H_STA682A131#TAAACCGGTAAGCCTT-1  -0.4137735 -0.5477849
+CAUD_WS1H_STA682A131#AGCGATTGTAGCATGG-1 -36.6097418 -3.3140663
+CAUD_WS1H_STA682A131#CACCACTCACGTTAGT-1  -0.7900130  0.2600625
+CAUD_WS1H_STA682A131#GTCACGGAGTAGGTCG-1  -0.2300899 -1.2392626
+
+
+outLSI-4$rowSm: length = 150000
+[1] 1404 1262  528 1194 1962 1046
+
+
+outLSI-4$nCol: length = 1
+[1] 5680
+
+
+outLSI-4$exclude: length = 0
+NULL
+
+
+outLSI-4$idx: length = 150000
+[1] 1 2 3 4 5 6
+
+
+outLSI-4$u: nRows = 150000, nCols = 30
+             [,1]          [,2]          [,3]          [,4]          [,5]
+[1,] -0.004183862 -0.0017468552 -0.0001927184  0.0023343111 -0.0015870411
+[2,] -0.004044470 -0.0018104494 -0.0002732757  0.0015919955 -0.0013425730
+[3,] -0.002892943  0.0009117235 -0.0003440634 -0.0002838108  0.0003582608
+[4,] -0.003931810 -0.0009618996  0.0001786140  0.0009128824  0.0003221641
+[5,] -0.004518255 -0.0016046416 -0.0002922646  0.0025967536 -0.0002597386
+
+
+outLSI-4$v: nRows = 5680, nCols = 30
+            [,1]       [,2]         [,3]          [,4]          [,5]
+[1,] -0.01836741 0.01787853 8.263098e-04 -0.0003181462 -0.0007927577
+[2,] -0.01710677 0.01543612 1.243891e-06 -0.0006074330  0.0003763641
+[3,] -0.01841615 0.01981996 1.294225e-03 -0.0001769138 -0.0017934685
+[4,] -0.01831374 0.01793153 1.100998e-03 -0.0003701833  0.0001901276
+[5,] -0.01695794 0.01362483 1.962994e-04 -0.0007811283  0.0003706334
+
+
+outLSI-4$binarize: length = 1
+[1] TRUE
+
+
+outLSI-4$scaleTo: length = 1
+[1] 3000
+
+
+outLSI-4$nDimensions: length = 1
+[1] 30
+
+
+outLSI-4$LSIMethod: length = 1
+[1] 2
+
+
+outLSI-4$outliers: length = 238
+[1] "CAUD_WS1H_STA682A131#TTGAGTGAGAGCGGTT-1"
+[2] "CAUD_WS1H_STA682A131#AGCGATTGTAGCATGG-1"
+[3] "CAUD_WS1H_STA682A131#GGTGCTGAGCGTATCT-1"
+[4] "CAUD_WS1H_STA682A131#CCCTAACGTTCCAGTA-1"
+[5] "CAUD_WS1H_STA682A131#CGGTGCACATGGGAAC-1"
+[6] "CAUD_WS1H_STA682A131#ACTTCCGCAAGACACG-1"
+
+
+outLSI-4$date: length = 1
+[1] "2020-10-07"
+
+
+outLSI-4$seed: length = 1
+[1] 1
+
+
+outLSI-4$scaleDims: length = 1
+[1] TRUE
+
+
+outLSI-4$useMatrix: length = 1
+[1] "TileMatrix"
+
+
+outLSI-4$tileSize: length = 1
+[1] 500
+
+
+2020-10-07 20:09:51 : Finished Running IterativeLSI, 16.215 mins elapsed.

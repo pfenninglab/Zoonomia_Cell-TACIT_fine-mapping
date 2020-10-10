@@ -1,0 +1,11 @@
+Source species Human.
+Target species Mouse.
+Output dir is ../../../data/raw_data/hg38/Corces_2020/halper.
+NarrowPeak file is ../../../data/raw_data/hg38/Corces_2020/peak/Corces2020_caudate.OPC.narrowPeak.
+Overwrite intermediate halLiftover files.
+Converting narrowpeak file to bed file. Make sure has unique peak name in 4th column.
+Extracting narrowPeak summits to halLiftover.
+Lifting Human summits to Mouse genome.
+Lifting Human peaks to Mouse genome.
+Apply HALPER to identify 1-1 orthologous in the Mouse genome.
+Done.

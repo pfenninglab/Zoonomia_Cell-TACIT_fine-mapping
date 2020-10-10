@@ -1,0 +1,114 @@
+Target species Mouse.
+Target species Rhesus.
+Output dir is ../../../data/raw_data/mm10/BICCN_mouse_caudoputamen/halper.
+NarrowPeak file is ../../../data/raw_data/mm10/BICCN_mouse_caudoputamen/peak/BICCN_CP.Microglia.narrowPeak.gz.
+Converting narrowpeak file to bed file. Make sure has unique peak name in 4th column.
+Extracting narrowPeak summits to halLiftover.
+Lifting  summits to Rhesus genome.
+Too few (required positional) arguments
+
+halLiftover v2.1: Map BED or PSL genome interval coordinates between two genomes.
+
+USAGE:
+halLiftover [Options] <halFile> <srcGenome> <srcBed> <tgtGenome> <tgtBed>
+
+ARGUMENTS:
+halFile:     input hal file
+srcGenome:   source genome name
+srcBed:      path of input bed file.  set as stdin to stream from standard input
+tgtGenome:   target genome name
+tgtBed:      path of output bed file.  set as stdout to stream to standard output.
+
+OPTIONS:
+--append:                     append results to tgtBed [default = 0]
+--bedType <value>:            number of standard columns (3 to 12), columns beyond 
+                              this are passed through.  This only needs to be 
+                              specified for BEDs with less than 12 columns and having
+                               non-standard extra columns. [default = 0]
+--cacheBytes <value>:         obsolete name for --hdf5CacheBytes [default = 15728640]
+--cacheMDC <value>:           obsolete name for --hdf5CacheMDC  [default = 113]
+--cacheRDC <value>:           obsolete name for --hdf5CacheRDC [default = 599999]
+--cacheW0 <value>:            obsolete name for --hdf5CacheW0 [default = 0.75]
+--coalescenceLimit <value>:   coalescence limit genome: the genome at or above the 
+                              MRCA of source and target at which we stop looking for 
+                              homologies (default: MRCA) [default = ]
+--format <value>:             choose the back-end storage format. [default = hdf5]
+--hdf5CacheBytes <value>:     maximum size in bytes of regular hdf5 cache [default = 
+                              15728640]
+--hdf5CacheMDC <value>:       number of metadata slots in hdf5 cache [default = 113]
+--hdf5CacheRDC <value>:       number of regular slots in hdf5 cache.  should be a 
+                              prime number ~= 10 * DefaultCacheRDCBytes / chunk 
+                              [default = 599999]
+--hdf5CacheW0 <value>:        w0 parameter for hdf5 cache [default = 0.75]
+--hdf5InMemory:               load all data in memory (and disable hdf5 cache) 
+                              [default = 0]
+--help:                       display this help page [default = 0]
+--inMemory:                   obsolete name for --hdf5InMemory [default = 0]
+--noDupes:                    do not map between duplications in graph. [default = 0]
+--outPSL:                     write output in PSL instead of bed format [default = 0]
+--outPSLWithName:             write output as input BED name followed by PSL line 
+                              instead of bed format [default = 0]
+
+
+Lifting  peaks to Rhesus genome.
+Too few (required positional) arguments
+
+halLiftover v2.1: Map BED or PSL genome interval coordinates between two genomes.
+
+USAGE:
+halLiftover [Options] <halFile> <srcGenome> <srcBed> <tgtGenome> <tgtBed>
+
+ARGUMENTS:
+halFile:     input hal file
+srcGenome:   source genome name
+srcBed:      path of input bed file.  set as stdin to stream from standard input
+tgtGenome:   target genome name
+tgtBed:      path of output bed file.  set as stdout to stream to standard output.
+
+OPTIONS:
+--append:                     append results to tgtBed [default = 0]
+--bedType <value>:            number of standard columns (3 to 12), columns beyond 
+                              this are passed through.  This only needs to be 
+                              specified for BEDs with less than 12 columns and having
+                               non-standard extra columns. [default = 0]
+--cacheBytes <value>:         obsolete name for --hdf5CacheBytes [default = 15728640]
+--cacheMDC <value>:           obsolete name for --hdf5CacheMDC  [default = 113]
+--cacheRDC <value>:           obsolete name for --hdf5CacheRDC [default = 599999]
+--cacheW0 <value>:            obsolete name for --hdf5CacheW0 [default = 0.75]
+--coalescenceLimit <value>:   coalescence limit genome: the genome at or above the 
+                              MRCA of source and target at which we stop looking for 
+                              homologies (default: MRCA) [default = ]
+--format <value>:             choose the back-end storage format. [default = hdf5]
+--hdf5CacheBytes <value>:     maximum size in bytes of regular hdf5 cache [default = 
+                              15728640]
+--hdf5CacheMDC <value>:       number of metadata slots in hdf5 cache [default = 113]
+--hdf5CacheRDC <value>:       number of regular slots in hdf5 cache.  should be a 
+                              prime number ~= 10 * DefaultCacheRDCBytes / chunk 
+                              [default = 599999]
+--hdf5CacheW0 <value>:        w0 parameter for hdf5 cache [default = 0.75]
+--hdf5InMemory:               load all data in memory (and disable hdf5 cache) 
+                              [default = 0]
+--help:                       display this help page [default = 0]
+--inMemory:                   obsolete name for --hdf5InMemory [default = 0]
+--noDupes:                    do not map between duplications in graph. [default = 0]
+--outPSL:                     write output in PSL instead of bed format [default = 0]
+--outPSLWithName:             write output as input BED name followed by PSL line 
+                              instead of bed format [default = 0]
+
+
+Apply HALPER to identify 1-1 orthologous in the Rhesus genome.
+Traceback (most recent call last):
+  File "/home/bnphan/src/halLiftover-postprocessing/orthologFind.py", line 452, in <module>
+    main(sys.argv[1:])
+  File "/home/bnphan/src/halLiftover-postprocessing/orthologFind.py", line 437, in main
+    if(not check_valid_files(args.tFile)):
+  File "/home/bnphan/src/halLiftover-postprocessing/scripts/orthologFindHelper.py", line 5, in check_valid_files
+    if (os.path.getsize(file) <=0):
+  File "/home/bnphan/miniconda3/envs/hal/lib/python3.7/genericpath.py", line 50, in getsize
+    return os.stat(filename).st_size
+FileNotFoundError: [Errno 2] No such file or directory: '../../../data/raw_data/mm10/BICCN_mouse_caudoputamen/halper/BICCN_CP.Microglia_ToRhesus_halLiftover.tFile.bed'
+sort: cannot read: /scratch/bnphan/halLiftover/BICCN_CP.Microglia_ToRhesus_orthologs.tmp.narrowPeak: No such file or directory
+gzip: ../../../data/raw_data/mm10/BICCN_mouse_caudoputamen/halper/BICCN_CP.Microglia_ToRhesus_halLiftover.tFile.bed: No such file or directory
+gzip: ../../../data/raw_data/mm10/BICCN_mouse_caudoputamen/halper/BICCN_CP.Microglia_ToRhesus_halLiftover.sFile.bed: No such file or directory
+rm: cannot remove ‘/scratch/bnphan/halLiftover/BICCN_CP.Microglia_ToRhesus_orthologs.tmp.narrowPeak’: No such file or directory
+Done.

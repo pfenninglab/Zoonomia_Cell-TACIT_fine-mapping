@@ -1,0 +1,696 @@
+
+           ___      .______        ______  __    __  .______      
+          /   \     |   _  \      /      ||  |  |  | |   _  \     
+         /  ^  \    |  |_)  |    |  ,----'|  |__|  | |  |_)  |    
+        /  /_\  \   |      /     |  |     |   __   | |      /     
+       /  _____  \  |  |\  \\___ |  `----.|  |  |  | |  |\  \\___.
+      /__/     \__\ | _| `._____| \______||__|  |__| | _| `._____|
+    
+Logging With ArchR!
+
+Start Time : 2020-10-07 12:34:56
+
+------- ArchR Info
+
+ArchRThreads = 10
+ArchRGenome = Mm10
+
+------- System Info
+
+Computer OS = unix
+Total Cores = 64
+
+------- Session Info
+
+R version 3.6.3 (2020-02-29)
+Platform: x86_64-conda_cos6-linux-gnu (64-bit)
+Running under: CentOS Linux 7 (Core)
+
+Matrix products: default
+BLAS/LAPACK: /home/bnphan/miniconda3/lib/libmkl_rt.so
+
+locale:
+ [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+ [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+ [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
+ [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+ [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+[11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+
+attached base packages:
+[1] parallel  stats4    stats     graphics  grDevices utils     datasets 
+[8] methods   base     
+
+other attached packages:
+ [1] ArchR_0.9.5                 magrittr_1.5               
+ [3] rhdf5_2.30.1                Matrix_1.2-18              
+ [5] data.table_1.13.0           SummarizedExperiment_1.16.1
+ [7] DelayedArray_0.12.3         BiocParallel_1.20.1        
+ [9] matrixStats_0.57.0          Biobase_2.46.0             
+[11] GenomicRanges_1.38.0        GenomeInfoDb_1.22.1        
+[13] IRanges_2.20.2              S4Vectors_0.24.4           
+[15] BiocGenerics_0.32.0         ggplot2_3.3.2              
+[17] colorout_1.2-2             
+
+loaded via a namespace (and not attached):
+ [1] Rcpp_1.0.5                         lattice_0.20-41                   
+ [3] Rsamtools_2.2.3                    Biostrings_2.54.0                 
+ [5] gtools_3.8.2                       digest_0.6.25                     
+ [7] BSgenome.Mmusculus.UCSC.mm10_1.4.0 IRdisplay_0.7.0                   
+ [9] R6_2.4.1                           repr_1.1.0                        
+[11] evaluate_0.14                      pillar_1.4.6                      
+[13] zlibbioc_1.32.0                    rlang_0.4.7                       
+[15] uuid_0.1-4                         hexbin_1.28.1                     
+[17] labeling_0.3                       stringr_1.4.0                     
+[19] RCurl_1.98-1.2                     munsell_0.5.0                     
+[21] compiler_3.6.3                     rtracklayer_1.46.0                
+[23] pkgconfig_2.0.3                    base64enc_0.1-3                   
+[25] htmltools_0.5.0                    tidyselect_1.1.0                  
+[27] tibble_3.0.3                       GenomeInfoDbData_1.2.2            
+[29] XML_3.99-0.3                       crayon_1.3.4                      
+[31] dplyr_1.0.2                        withr_2.3.0                       
+[33] GenomicAlignments_1.22.1           bitops_1.0-6                      
+[35] grid_3.6.3                         jsonlite_1.7.1                    
+[37] gtable_0.3.0                       lifecycle_0.2.0                   
+[39] scales_1.1.1                       stringi_1.5.3                     
+[41] farver_2.0.3                       XVector_0.26.0                    
+[43] ellipsis_0.3.1                     generics_0.0.2                    
+[45] vctrs_0.3.4                        cowplot_1.1.0                     
+[47] IRkernel_1.1.1                     Rhdf5lib_1.8.0                    
+[49] tools_3.6.3                        Cairo_1.5-12.2                    
+[51] BSgenome_1.54.0                    glue_1.4.2                        
+[53] purrr_0.3.4                        colorspace_1.4-1                  
+[55] pbdZMQ_0.3-3                      
+
+
+------- Log Info
+
+
+2020-10-07 12:34:56 : Input-Parameters, Class = list
+
+Input-Parameters$ArchRProj: length = 1
+class: ArchRProject 
+outputDirectory: /home/bnphan/projects/snATAC_cross_species_caudate/data/raw_data/rheMac10/Stauffer_caudate/ArchR_Stauffer_caudate 
+samples(1): CAUD_WS1H_STA682A131
+sampleColData names(1): ArrowFiles
+cellColData names(16): Sample TSSEnrichment ... Region Clusters
+numberOfCells(1): 1
+medianTSS(1): 10.409
+medianFrags(1): 99782
+
+
+Input-Parameters$embedding: length = 1
+[1] "UMAP"
+
+
+Input-Parameters$colorBy: length = 1
+[1] "GeneScoreMatrix"
+
+
+Input-Parameters$name: length = 5
+[1] "Ppp1r1b" "Bcl11b"  "Pde1b"   "Foxp1"   "Six3"   
+
+
+Input-Parameters$log2Norm: length = 0
+NULL
+
+
+Input-Parameters$pal: length = 0
+NULL
+
+
+Input-Parameters$size: length = 1
+[1] 0.1
+
+
+Input-Parameters$sampleCells: length = 0
+NULL
+
+
+Input-Parameters$highlightCells: length = 0
+NULL
+
+
+Input-Parameters$rastr: length = 1
+[1] TRUE
+
+
+Input-Parameters$quantCut: length = 2
+[1] 0.01 0.99
+
+
+Input-Parameters$discreteSet: length = 0
+NULL
+
+
+Input-Parameters$continuousSet: length = 0
+NULL
+
+
+Input-Parameters$randomize: length = 1
+[1] TRUE
+
+
+Input-Parameters$keepAxis: length = 1
+[1] FALSE
+
+
+Input-Parameters$baseSize: length = 1
+[1] 10
+
+
+Input-Parameters$plotAs: length = 0
+NULL
+
+
+Input-Parameters$threads: length = 1
+[1] 10
+
+
+Input-Parameters$logFile: length = 1
+[1] "ArchRLogs/ArchR-plotEmbedding-4d8e439562ac7-Date-2020-10-07_Time-12-34-56.log"
+
+
+
+2020-10-07 12:34:56 : 
+
+2020-10-07 12:34:56 : Embedding data.frame, Class = data.frame
+Embedding data.frame: nRows = 3810, nCols = 2
+                                        IterativeLSI#UMAP_Dimension_1
+CAUD_WS1H_STA682A131#AGCGATTGTAGCATGG-1                    0.18681847
+CAUD_WS1H_STA682A131#GGTGCTGAGCGTATCT-1                  -11.51133288
+CAUD_WS1H_STA682A131#TCCCACATCACGTCAA-1                   -1.20468176
+CAUD_WS1H_STA682A131#GGATAGGGTCTGGTTA-1                  -10.85113753
+CAUD_WS1H_STA682A131#CATGTTTGTCTGATTG-1                    0.04242789
+CAUD_WS1H_STA682A131#CCCACATAGGCAGTAC-1                  -10.01180781
+                                        IterativeLSI#UMAP_Dimension_2
+CAUD_WS1H_STA682A131#AGCGATTGTAGCATGG-1                     0.9498094
+CAUD_WS1H_STA682A131#GGTGCTGAGCGTATCT-1                    -3.0343819
+CAUD_WS1H_STA682A131#TCCCACATCACGTCAA-1                     2.2914055
+CAUD_WS1H_STA682A131#GGATAGGGTCTGGTTA-1                     3.6759698
+CAUD_WS1H_STA682A131#CATGTTTGTCTGATTG-1                    10.7117557
+CAUD_WS1H_STA682A131#CCCACATAGGCAGTAC-1                     4.6917643
+
+
+
+2020-10-07 12:34:56 : 
+
+2020-10-07 12:34:56 : 
+
+2020-10-07 12:34:56 : FeatureDF, Class = DFrame
+DataFrame with 34276 rows and 6 columns
+      seqnames     start       end  strand         name     idx
+         <Rle>   <array>   <array> <array>      <array> <array>
+1         chr1   1004699   1003761       2        OR2L8       1
+2         chr1   1077962   1066577       2       OR2AJ1       2
+3         chr1   1082597   1079674       2        OR2T8       3
+4         chr1   1097887   1096880       2       OR2AK2       4
+5         chr1   1147161   1146217       2        OR2W3       5
+...        ...       ...       ...     ...          ...     ...
+34272     chrX 151432051 151431449       2        H2AB3    1238
+34273     chrX 151436862 151461517       1 LOC101927830    1239
+34274     chrX 151560568 151456825       2        TMLHE    1240
+34275     chrX 151560181 151726587       1        SPRY3    1241
+34276     chrX 151842317 151901358       1        VAMP7    1242
+
+
+2020-10-07 12:34:56 : idx, Class = integer
+
+idx: length = 5
+[1] 13423 29982  5784 18590  8674
+
+
+
+2020-10-07 12:34:56 : FeatureDF-Subset, Class = DFrame
+DataFrame with 5 rows and 6 columns
+  seqnames     start       end  strand    name     idx
+     <Rle>   <array>   <array> <array> <array> <array>
+1    chr16  50753281  50763952       1 PPP1R1B    1004
+2     chr7 161471556 161367735       2  BCL11B    2109
+3    chr11  54168722  54198357       1   PDE1B     756
+4     chr2 127666273 127034292       2   FOXP1    1366
+5    chr13  63840914  63836564       2    SIX3     724
+
+
+2020-10-07 12:34:58 : Feature-Matrix, Class = dgCMatrix
+Feature-Matrix: nRows = 5, nCols = 3810
+Feature-Matrix: NonZeroEntries = 10423, EntryRange = [ 0.018 , 15.078 ]
+5 x 5 sparse Matrix of class "dgCMatrix"
+     CAUD_WS1H_STA682A131#AGCGATTGTAGCATGG-1
+[1,]                                   0.705
+[2,]                                   0.112
+[3,]                                   0.298
+[4,]                                   0.998
+[5,]                                   1.480
+     CAUD_WS1H_STA682A131#GGTGCTGAGCGTATCT-1
+[1,]                                   0.298
+[2,]                                   0.410
+[3,]                                   0.351
+[4,]                                   2.063
+[5,]                                   1.087
+     CAUD_WS1H_STA682A131#TCCCACATCACGTCAA-1
+[1,]                                   0.825
+[2,]                                   0.169
+[3,]                                   .    
+[4,]                                   1.613
+[5,]                                   0.150
+     CAUD_WS1H_STA682A131#GGATAGGGTCTGGTTA-1
+[1,]                                   1.175
+[2,]                                   1.278
+[3,]                                   1.567
+[4,]                                   2.862
+[5,]                                   1.558
+     CAUD_WS1H_STA682A131#CATGTTTGTCTGATTG-1
+[1,]                                   0.461
+[2,]                                   1.975
+[3,]                                   0.235
+[4,]                                   1.030
+[5,]                                   0.161
+
+
+
+2020-10-07 12:34:58 : colorMat-Before-Impute, Class = matrix
+        CAUD_WS1H_STA682A131#AGCGATTGTAGCATGG-1
+Ppp1r1b                                   0.705
+Bcl11b                                    0.112
+Pde1b                                     0.298
+Foxp1                                     0.998
+Six3                                      1.480
+        CAUD_WS1H_STA682A131#GGTGCTGAGCGTATCT-1
+Ppp1r1b                                   0.298
+Bcl11b                                    0.410
+Pde1b                                     0.351
+Foxp1                                     2.063
+Six3                                      1.087
+        CAUD_WS1H_STA682A131#TCCCACATCACGTCAA-1
+Ppp1r1b                                   0.825
+Bcl11b                                    0.169
+Pde1b                                     0.000
+Foxp1                                     1.613
+Six3                                      0.150
+        CAUD_WS1H_STA682A131#GGATAGGGTCTGGTTA-1
+Ppp1r1b                                   1.175
+Bcl11b                                    1.278
+Pde1b                                     1.567
+Foxp1                                     2.862
+Six3                                      1.558
+        CAUD_WS1H_STA682A131#CATGTTTGTCTGATTG-1
+Ppp1r1b                                   0.461
+Bcl11b                                    1.975
+Pde1b                                     0.235
+Foxp1                                     1.030
+Six3                                      0.161
+
+colorMat-Before-Impute: nRows = 5, nCols = 3810
+
+
+2020-10-07 12:34:58 : imputeMatrix Input-Parameters, Class = list
+
+imputeMatrix Input-Parameters$mat: nRows = 5, nCols = 3810
+        CAUD_WS1H_STA682A131#AGCGATTGTAGCATGG-1
+Ppp1r1b                                   0.705
+Bcl11b                                    0.112
+Pde1b                                     0.298
+Foxp1                                     0.998
+Six3                                      1.480
+        CAUD_WS1H_STA682A131#GGTGCTGAGCGTATCT-1
+Ppp1r1b                                   0.298
+Bcl11b                                    0.410
+Pde1b                                     0.351
+Foxp1                                     2.063
+Six3                                      1.087
+        CAUD_WS1H_STA682A131#TCCCACATCACGTCAA-1
+Ppp1r1b                                   0.825
+Bcl11b                                    0.169
+Pde1b                                     0.000
+Foxp1                                     1.613
+Six3                                      0.150
+        CAUD_WS1H_STA682A131#GGATAGGGTCTGGTTA-1
+Ppp1r1b                                   1.175
+Bcl11b                                    1.278
+Pde1b                                     1.567
+Foxp1                                     2.862
+Six3                                      1.558
+        CAUD_WS1H_STA682A131#CATGTTTGTCTGATTG-1
+Ppp1r1b                                   0.461
+Bcl11b                                    1.975
+Pde1b                                     0.235
+Foxp1                                     1.030
+Six3                                      0.161
+
+
+imputeMatrix Input-Parameters$threads: length = 1
+[1] 10
+
+
+imputeMatrix Input-Parameters$verbose: length = 1
+[1] FALSE
+
+
+imputeMatrix Input-Parameters$logFile: length = 1
+[1] "ArchRLogs/ArchR-plotEmbedding-4d8e439562ac7-Date-2020-10-07_Time-12-34-56.log"
+
+
+
+2020-10-07 12:34:58 : mat, Class = matrix
+        CAUD_WS1H_STA682A131#AGCGATTGTAGCATGG-1
+Ppp1r1b                                   0.705
+Bcl11b                                    0.112
+Pde1b                                     0.298
+Foxp1                                     0.998
+Six3                                      1.480
+        CAUD_WS1H_STA682A131#GGTGCTGAGCGTATCT-1
+Ppp1r1b                                   0.298
+Bcl11b                                    0.410
+Pde1b                                     0.351
+Foxp1                                     2.063
+Six3                                      1.087
+        CAUD_WS1H_STA682A131#TCCCACATCACGTCAA-1
+Ppp1r1b                                   0.825
+Bcl11b                                    0.169
+Pde1b                                     0.000
+Foxp1                                     1.613
+Six3                                      0.150
+        CAUD_WS1H_STA682A131#GGATAGGGTCTGGTTA-1
+Ppp1r1b                                   1.175
+Bcl11b                                    1.278
+Pde1b                                     1.567
+Foxp1                                     2.862
+Six3                                      1.558
+        CAUD_WS1H_STA682A131#CATGTTTGTCTGATTG-1
+Ppp1r1b                                   0.461
+Bcl11b                                    1.975
+Pde1b                                     0.235
+Foxp1                                     1.030
+Six3                                      0.161
+
+mat: nRows = 5, nCols = 3810
+
+
+2020-10-07 12:34:58 : weightList, Class = SimpleList
+
+weightList$w1: length = 1
+[1] "/home/bnphan/projects/snATAC_cross_species_caudate/data/raw_data/rheMac10/Stauffer_caudate/ArchR_Stauffer_caudate/ImputeWeights/Impute-Weights-Rep-1"
+
+
+2020-10-07 12:34:58 : Imputing Matrix (1 of 1), 0 mins elapsed.
+
+2020-10-07 12:34:58 : 
+
+2020-10-07 12:34:58 : 
+2020-10-07 12:34:58 : Finished Imputing Matrix, 0.003 mins elapsed.
+
+2020-10-07 12:34:58 : colorMat-After-Impute, Class = matrix
+        CAUD_WS1H_STA682A131#AGCGATTGTAGCATGG-1
+Ppp1r1b                               1.3823099
+Bcl11b                                0.2678006
+Pde1b                                 0.1912099
+Foxp1                                 1.3154908
+Six3                                  1.1697394
+        CAUD_WS1H_STA682A131#GGTGCTGAGCGTATCT-1
+Ppp1r1b                               0.8515425
+Bcl11b                                0.3908508
+Pde1b                                 0.1503540
+Foxp1                                 1.8437026
+Six3                                  0.8992022
+        CAUD_WS1H_STA682A131#TCCCACATCACGTCAA-1
+Ppp1r1b                               1.1841241
+Bcl11b                                0.3048609
+Pde1b                                 0.2043953
+Foxp1                                 1.3630458
+Six3                                  1.0563848
+        CAUD_WS1H_STA682A131#GGATAGGGTCTGGTTA-1
+Ppp1r1b                               1.0641363
+Bcl11b                                1.7007865
+Pde1b                                 1.2377017
+Foxp1                                 3.8675542
+Six3                                  0.6833318
+        CAUD_WS1H_STA682A131#CATGTTTGTCTGATTG-1
+Ppp1r1b                               0.4579763
+Bcl11b                                1.4792662
+Pde1b                                 0.3559336
+Foxp1                                 1.1303110
+Six3                                  0.4073268
+
+colorMat-After-Impute: nRows = 5, nCols = 3810
+
+
+2020-10-07 12:34:58 : ColorParams 1, Class = list
+
+ColorParams 1$color: length = 3810
+CAUD_WS1H_STA682A131#AGCGATTGTAGCATGG-1 CAUD_WS1H_STA682A131#GGTGCTGAGCGTATCT-1 
+                              1.3823099                               0.8515425 
+CAUD_WS1H_STA682A131#TCCCACATCACGTCAA-1 CAUD_WS1H_STA682A131#GGATAGGGTCTGGTTA-1 
+                              1.1841241                               1.0641363 
+CAUD_WS1H_STA682A131#CATGTTTGTCTGATTG-1 CAUD_WS1H_STA682A131#CCCACATAGGCAGTAC-1 
+                              0.4579763                               0.9156674 
+
+
+ColorParams 1$discrete: length = 1
+[1] FALSE
+
+
+ColorParams 1$title: length = 1
+[1] "UMAP of IterativeLSI colored by\nGeneScoreMatrix : Ppp1r1b"
+
+
+ColorParams 1$continuousSet: length = 1
+[1] "horizonExtra"
+
+
+
+2020-10-07 12:34:58 : PlotParams-1, Class = list
+
+PlotParams-1$color: length = 3810
+CAUD_WS1H_STA682A131#AGCGATTGTAGCATGG-1 CAUD_WS1H_STA682A131#GGTGCTGAGCGTATCT-1 
+                              1.2523611                               0.8887277 
+CAUD_WS1H_STA682A131#TCCCACATCACGTCAA-1 CAUD_WS1H_STA682A131#GGATAGGGTCTGGTTA-1 
+                              1.1270548                               1.0455383 
+CAUD_WS1H_STA682A131#CATGTTTGTCTGATTG-1 CAUD_WS1H_STA682A131#CCCACATAGGCAGTAC-1 
+                              0.5439672                               0.9378471 
+
+
+PlotParams-1$title: length = 1
+[1] "UMAP of IterativeLSI colored by\nGeneScoreMatrix : Ppp1r1b"
+
+
+PlotParams-1$x: length = 3810
+[1]   0.18681847 -11.51133288  -1.20468176 -10.85113753   0.04242789
+[6] -10.01180781
+
+
+PlotParams-1$y: length = 3810
+[1]  0.9498094 -3.0343819  2.2914055  3.6759698 10.7117557  4.6917643
+
+
+PlotParams-1$baseSize: length = 1
+[1] 10
+
+
+PlotParams-1$xlabel: length = 1
+[1] "UMAP Dimension 1"
+
+
+PlotParams-1$ylabel: length = 1
+[1] "UMAP Dimension 2"
+
+
+PlotParams-1$pal: length = 256
+[1] "#000436" "#000439" "#00053D" "#000640" "#000744" "#000848"
+
+
+PlotParams-1$colorTitle: length = 1
+[1] "Log2(NormCounts + 1)"
+
+
+
+2020-10-07 12:34:58 : PlotParams-2, Class = list
+
+PlotParams-2$color: length = 3810
+CAUD_WS1H_STA682A131#AGCGATTGTAGCATGG-1 CAUD_WS1H_STA682A131#GGTGCTGAGCGTATCT-1 
+                              0.3423279                               0.4759676 
+CAUD_WS1H_STA682A131#TCCCACATCACGTCAA-1 CAUD_WS1H_STA682A131#GGATAGGGTCTGGTTA-1 
+                              0.3838961                               1.4333796 
+CAUD_WS1H_STA682A131#CATGTTTGTCTGATTG-1 CAUD_WS1H_STA682A131#CCCACATAGGCAGTAC-1 
+                              1.3099132                               1.4505504 
+
+
+PlotParams-2$title: length = 1
+[1] "UMAP of IterativeLSI colored by\nGeneScoreMatrix : Bcl11b"
+
+
+PlotParams-2$x: length = 3810
+[1]   0.18681847 -11.51133288  -1.20468176 -10.85113753   0.04242789
+[6] -10.01180781
+
+
+PlotParams-2$y: length = 3810
+[1]  0.9498094 -3.0343819  2.2914055  3.6759698 10.7117557  4.6917643
+
+
+PlotParams-2$baseSize: length = 1
+[1] 10
+
+
+PlotParams-2$xlabel: length = 1
+[1] "UMAP Dimension 1"
+
+
+PlotParams-2$ylabel: length = 1
+[1] "UMAP Dimension 2"
+
+
+PlotParams-2$pal: length = 256
+[1] "#000436" "#000439" "#00053D" "#000640" "#000744" "#000848"
+
+
+PlotParams-2$colorTitle: length = 1
+[1] "Log2(NormCounts + 1)"
+
+
+
+2020-10-07 12:34:59 : PlotParams-3, Class = list
+
+PlotParams-3$color: length = 3810
+CAUD_WS1H_STA682A131#AGCGATTGTAGCATGG-1 CAUD_WS1H_STA682A131#GGTGCTGAGCGTATCT-1 
+                              0.2524276                               0.2020779 
+CAUD_WS1H_STA682A131#TCCCACATCACGTCAA-1 CAUD_WS1H_STA682A131#GGATAGGGTCTGGTTA-1 
+                              0.2683089                               1.1620177 
+CAUD_WS1H_STA682A131#CATGTTTGTCTGATTG-1 CAUD_WS1H_STA682A131#CCCACATAGGCAGTAC-1 
+                              0.4392865                               0.9805107 
+
+
+PlotParams-3$title: length = 1
+[1] "UMAP of IterativeLSI colored by\nGeneScoreMatrix : Pde1b"
+
+
+PlotParams-3$x: length = 3810
+[1]   0.18681847 -11.51133288  -1.20468176 -10.85113753   0.04242789
+[6] -10.01180781
+
+
+PlotParams-3$y: length = 3810
+[1]  0.9498094 -3.0343819  2.2914055  3.6759698 10.7117557  4.6917643
+
+
+PlotParams-3$baseSize: length = 1
+[1] 10
+
+
+PlotParams-3$xlabel: length = 1
+[1] "UMAP Dimension 1"
+
+
+PlotParams-3$ylabel: length = 1
+[1] "UMAP Dimension 2"
+
+
+PlotParams-3$pal: length = 256
+[1] "#000436" "#000439" "#00053D" "#000640" "#000744" "#000848"
+
+
+PlotParams-3$colorTitle: length = 1
+[1] "Log2(NormCounts + 1)"
+
+
+
+2020-10-07 12:34:59 : PlotParams-4, Class = list
+
+PlotParams-4$color: length = 3810
+CAUD_WS1H_STA682A131#AGCGATTGTAGCATGG-1 CAUD_WS1H_STA682A131#GGTGCTGAGCGTATCT-1 
+                               1.211318                                1.507771 
+CAUD_WS1H_STA682A131#TCCCACATCACGTCAA-1 CAUD_WS1H_STA682A131#GGATAGGGTCTGGTTA-1 
+                               1.240648                                2.283197 
+CAUD_WS1H_STA682A131#CATGTTTGTCTGATTG-1 CAUD_WS1H_STA682A131#CCCACATAGGCAGTAC-1 
+                               1.091064                                2.088441 
+
+
+PlotParams-4$title: length = 1
+[1] "UMAP of IterativeLSI colored by\nGeneScoreMatrix : Foxp1"
+
+
+PlotParams-4$x: length = 3810
+[1]   0.18681847 -11.51133288  -1.20468176 -10.85113753   0.04242789
+[6] -10.01180781
+
+
+PlotParams-4$y: length = 3810
+[1]  0.9498094 -3.0343819  2.2914055  3.6759698 10.7117557  4.6917643
+
+
+PlotParams-4$baseSize: length = 1
+[1] 10
+
+
+PlotParams-4$xlabel: length = 1
+[1] "UMAP Dimension 1"
+
+
+PlotParams-4$ylabel: length = 1
+[1] "UMAP Dimension 2"
+
+
+PlotParams-4$pal: length = 256
+[1] "#000436" "#000439" "#00053D" "#000640" "#000744" "#000848"
+
+
+PlotParams-4$colorTitle: length = 1
+[1] "Log2(NormCounts + 1)"
+
+
+
+2020-10-07 12:34:59 : PlotParams-5, Class = list
+
+PlotParams-5$color: length = 3810
+CAUD_WS1H_STA682A131#AGCGATTGTAGCATGG-1 CAUD_WS1H_STA682A131#GGTGCTGAGCGTATCT-1 
+                              1.1175218                               0.9253935 
+CAUD_WS1H_STA682A131#TCCCACATCACGTCAA-1 CAUD_WS1H_STA682A131#GGATAGGGTCTGGTTA-1 
+                              1.0401102                               0.7513196 
+CAUD_WS1H_STA682A131#CATGTTTGTCTGATTG-1 CAUD_WS1H_STA682A131#CCCACATAGGCAGTAC-1 
+                              0.4929574                               0.7381427 
+
+
+PlotParams-5$title: length = 1
+[1] "UMAP of IterativeLSI colored by\nGeneScoreMatrix : Six3"
+
+
+PlotParams-5$x: length = 3810
+[1]   0.18681847 -11.51133288  -1.20468176 -10.85113753   0.04242789
+[6] -10.01180781
+
+
+PlotParams-5$y: length = 3810
+[1]  0.9498094 -3.0343819  2.2914055  3.6759698 10.7117557  4.6917643
+
+
+PlotParams-5$baseSize: length = 1
+[1] 10
+
+
+PlotParams-5$xlabel: length = 1
+[1] "UMAP Dimension 1"
+
+
+PlotParams-5$ylabel: length = 1
+[1] "UMAP Dimension 2"
+
+
+PlotParams-5$pal: length = 256
+[1] "#000436" "#000439" "#00053D" "#000640" "#000744" "#000848"
+
+
+PlotParams-5$colorTitle: length = 1
+[1] "Log2(NormCounts + 1)"
+
+
+
+------- Completed
+
+End Time : 2020-10-07 12:34:59
+Elapsed Time Minutes = 0.0571425120035807
+Elapsed Time Hours = 0.000952425797780355
+
+-------
+
+
+

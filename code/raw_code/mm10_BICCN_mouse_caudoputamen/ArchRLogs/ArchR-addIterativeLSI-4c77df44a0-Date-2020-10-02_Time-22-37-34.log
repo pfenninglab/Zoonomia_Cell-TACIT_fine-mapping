@@ -1,0 +1,4037 @@
+
+           ___      .______        ______  __    __  .______      
+          /   \     |   _  \      /      ||  |  |  | |   _  \     
+         /  ^  \    |  |_)  |    |  ,----'|  |__|  | |  |_)  |    
+        /  /_\  \   |      /     |  |     |   __   | |      /     
+       /  _____  \  |  |\  \\___ |  `----.|  |  |  | |  |\  \\___.
+      /__/     \__\ | _| `._____| \______||__|  |__| | _| `._____|
+    
+Logging With ArchR!
+
+Start Time : 2020-10-02 22:37:34
+
+------- ArchR Info
+
+ArchRThreads = 6
+ArchRGenome = Hg38
+
+------- System Info
+
+Computer OS = unix
+Total Cores = 8
+
+------- Session Info
+
+R version 3.6.3 (2020-02-29)
+Platform: x86_64-conda_cos6-linux-gnu (64-bit)
+Running under: CentOS Linux 7 (Core)
+
+Matrix products: default
+BLAS/LAPACK: /home/bnphan/miniconda3/lib/libmkl_rt.so
+
+locale:
+ [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+ [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+ [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
+ [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+ [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+[11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+
+attached base packages:
+ [1] grid      parallel  stats4    stats     graphics  grDevices utils    
+ [8] datasets  methods   base     
+
+other attached packages:
+ [1] harmony_1.0                       Rcpp_1.0.5                       
+ [3] gridExtra_2.3                     uwot_0.1.8                       
+ [5] nabor_0.5.0                       Seurat_3.2.2                     
+ [7] BSgenome.Hsapiens.UCSC.hg38_1.4.1 BSgenome_1.54.0                  
+ [9] rtracklayer_1.46.0                Biostrings_2.54.0                
+[11] XVector_0.26.0                    ArchR_0.9.5                      
+[13] magrittr_1.5                      rhdf5_2.30.1                     
+[15] Matrix_1.2-18                     data.table_1.13.0                
+[17] SummarizedExperiment_1.16.1       DelayedArray_0.12.3              
+[19] BiocParallel_1.20.1               matrixStats_0.57.0               
+[21] Biobase_2.46.0                    GenomicRanges_1.38.0             
+[23] GenomeInfoDb_1.22.1               IRanges_2.20.2                   
+[25] S4Vectors_0.24.4                  BiocGenerics_0.32.0              
+[27] ggplot2_3.3.2                    
+
+loaded via a namespace (and not attached):
+ [1] Rtsne_0.15               colorspace_1.4-1         deldir_0.1-29           
+ [4] ellipsis_0.3.1           ggridges_0.5.2           spatstat.data_1.4-3     
+ [7] farver_2.0.3             leiden_0.3.3             listenv_0.8.0           
+[10] ggrepel_0.8.2            codetools_0.2-16         splines_3.6.3           
+[13] polyclip_1.10-0          jsonlite_1.7.1           Rsamtools_2.2.3         
+[16] Cairo_1.5-12.2           ica_1.0-2                cluster_2.1.0           
+[19] png_0.1-7                shiny_1.5.0              sctransform_0.3         
+[22] compiler_3.6.3           httr_1.4.2               fastmap_1.0.1           
+[25] lazyeval_0.2.2           later_1.1.0.1            htmltools_0.5.0         
+[28] tools_3.6.3              rsvd_1.0.3               igraph_1.2.5            
+[31] gtable_0.3.0             glue_1.4.2               GenomeInfoDbData_1.2.2  
+[34] RANN_2.6.1               reshape2_1.4.4           dplyr_1.0.2             
+[37] rappdirs_0.3.1           spatstat_1.64-1          vctrs_0.3.4             
+[40] nlme_3.1-149             lmtest_0.9-38            stringr_1.4.0           
+[43] globals_0.13.0           mime_0.9                 miniUI_0.1.1.1          
+[46] lifecycle_0.2.0          irlba_2.3.3              gtools_3.8.2            
+[49] XML_3.99-0.3             goftest_1.2-2            future_1.19.1           
+[52] zlibbioc_1.32.0          MASS_7.3-53              zoo_1.8-8               
+[55] scales_1.1.1             promises_1.1.1           spatstat.utils_1.17-0   
+[58] RColorBrewer_1.1-2       reticulate_1.16          pbapply_1.4-3           
+[61] rpart_4.1-15             stringi_1.5.3            rlang_0.4.7             
+[64] pkgconfig_2.0.3          bitops_1.0-6             lattice_0.20-41         
+[67] tensor_1.5               ROCR_1.0-11              purrr_0.3.4             
+[70] Rhdf5lib_1.8.0           labeling_0.3             GenomicAlignments_1.22.1
+[73] patchwork_1.0.1          htmlwidgets_1.5.1        cowplot_1.1.0           
+[76] tidyselect_1.1.0         RcppAnnoy_0.0.16         plyr_1.8.6              
+[79] R6_2.4.1                 generics_0.0.2           mgcv_1.8-33             
+[82] pillar_1.4.6             withr_2.3.0              fitdistrplus_1.1-1      
+[85] abind_1.4-5              survival_3.2-7           RCurl_1.98-1.2          
+[88] tibble_3.0.3             future.apply_1.6.0       crayon_1.3.4            
+[91] KernSmooth_2.23-17       plotly_4.9.2.1           digest_0.6.25           
+[94] xtable_1.8-4             tidyr_1.1.2              httpuv_1.5.4            
+[97] munsell_0.5.0            viridisLite_0.3.0       
+
+
+------- Log Info
+
+
+2020-10-02 22:37:34 : IterativeLSI Input-Parameters, Class = list
+
+IterativeLSI Input-Parameters$ArchRProj: length = 1
+class: ArchRProject 
+outputDirectory: /home/bnphan/projects/snATAC_cross_species_caudate/data/raw_data/mm10/BICCN_mouse_caudoputamen/ArchR_BICCN_caudoputamen 
+samples(4): CEMBA171214_4D CEMBA171219_4D CEMBA180813_5E CEMBA180820_5E
+sampleColData names(1): ArrowFiles
+cellColData names(18): Sample TSSEnrichment ... Region Clusters
+numberOfCells(1): 1
+medianTSS(1): 14.205
+medianFrags(1): 42336
+
+
+IterativeLSI Input-Parameters$useMatrix: length = 1
+[1] "TileMatrix"
+
+
+IterativeLSI Input-Parameters$name: length = 1
+[1] "IterativeLSI"
+
+
+IterativeLSI Input-Parameters$iterations: length = 1
+[1] 6
+
+
+IterativeLSI Input-Parameters$varFeatures: length = 1
+[1] 450000
+
+
+IterativeLSI Input-Parameters$dimsToUse: length = 30
+[1] 1 2 3 4 5 6
+
+
+IterativeLSI Input-Parameters$LSIMethod: length = 1
+[1] 2
+
+
+IterativeLSI Input-Parameters$scaleDims: length = 1
+[1] TRUE
+
+
+IterativeLSI Input-Parameters$corCutOff: length = 1
+[1] 0.75
+
+
+IterativeLSI Input-Parameters$binarize: length = 1
+[1] TRUE
+
+
+IterativeLSI Input-Parameters$outlierQuantiles: length = 2
+[1] 0.02 0.98
+
+
+IterativeLSI Input-Parameters$filterBias: length = 1
+[1] TRUE
+
+
+IterativeLSI Input-Parameters$sampleCellsPre: length = 1
+[1] 10000
+
+
+IterativeLSI Input-Parameters$projectCellsPre: length = 1
+[1] FALSE
+
+
+IterativeLSI Input-Parameters$sampleCellsFinal: length = 0
+NULL
+
+
+IterativeLSI Input-Parameters$selectionMethod: length = 1
+[1] "var"
+
+
+IterativeLSI Input-Parameters$scaleTo: length = 1
+[1] 3000
+
+
+IterativeLSI Input-Parameters$totalFeatures: length = 1
+[1] 5e+05
+
+
+IterativeLSI Input-Parameters$filterQuantile: length = 1
+[1] 0.995
+
+
+IterativeLSI Input-Parameters$excludeChr: length = 0
+NULL
+
+
+IterativeLSI Input-Parameters$saveIterations: length = 1
+[1] TRUE
+
+
+IterativeLSI Input-Parameters$nPlot: length = 1
+[1] 10000
+
+
+IterativeLSI Input-Parameters$outDir: length = 1
+[1] "/home/bnphan/projects/snATAC_cross_species_caudate/data/raw_data/mm10/BICCN_mouse_caudoputamen/ArchR_BICCN_caudoputamen"
+
+
+IterativeLSI Input-Parameters$threads: length = 1
+[1] 6
+
+
+IterativeLSI Input-Parameters$seed: length = 1
+[1] 1
+
+
+IterativeLSI Input-Parameters$verbose: length = 1
+[1] TRUE
+
+
+IterativeLSI Input-Parameters$force: length = 1
+[1] TRUE
+
+
+IterativeLSI Input-Parameters$logFile: length = 1
+[1] "ArchRLogs/ArchR-addIterativeLSI-4c77df44a0-Date-2020-10-02_Time-22-37-34.log"
+
+
+2020-10-02 22:37:36 : Computing Total Accessibility Across All Features, 0.023 mins elapsed.
+2020-10-02 22:37:44 : Computing Top Features, 0.154 mins elapsed.
+###########
+2020-10-02 22:37:44 : Running LSI (1 of 6) on Top Features, 0.166 mins elapsed.
+###########
+2020-10-02 22:37:45 : Sampling Cells (N = 10001) for Estimated LSI, 0.169 mins elapsed.
+2020-10-02 22:37:45 : Creating Sampled Partial Matrix, 0.169 mins elapsed.
+2020-10-02 22:38:15 : Computing Estimated LSI (projectAll = FALSE), 0.674 mins elapsed.
+
+2020-10-02 22:38:15 : LSI Parameters, Class = list
+
+LSI Parameters$: length = 1
+                       
+1 function (name)      
+2 .Internal(args(name))
+
+
+LSI Parameters$mat: nRows = 450000, nCols = 10001
+LSI Parameters$mat: NonZeroEntries = 26430548, EntryRange = [ 1 , 1 ]
+5 x 5 sparse Matrix of class "dgCMatrix"
+     CEMBA171214_4D#AGCGATAGAACCAGGTAATGACGTCAGGACGT
+[1,]                                               .
+[2,]                                               .
+[3,]                                               .
+[4,]                                               .
+[5,]                                               .
+     CEMBA171214_4D#AGCGATAGAACCAGGTAGGATAACATAGAGGC
+[1,]                                               .
+[2,]                                               .
+[3,]                                               .
+[4,]                                               .
+[5,]                                               .
+     CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTAATCTTA
+[1,]                                               .
+[2,]                                               .
+[3,]                                               .
+[4,]                                               .
+[5,]                                               .
+     CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTATAGCCT
+[1,]                                               .
+[2,]                                               .
+[3,]                                               .
+[4,]                                               .
+[5,]                                               .
+     CEMBA171214_4D#AGCGATAGAACCAGGTGGATACTATATAGCCT
+[1,]                                               .
+[2,]                                               .
+[3,]                                               .
+[4,]                                               .
+[5,]                                               .
+
+
+LSI Parameters$LSIMethod: length = 1
+[1] 2
+
+
+LSI Parameters$scaleTo: length = 1
+[1] 3000
+
+
+LSI Parameters$nDimensions: length = 1
+[1] 30
+
+
+LSI Parameters$binarize: length = 1
+[1] TRUE
+
+
+LSI Parameters$outlierQuantiles: length = 2
+[1] 0.02 0.98
+
+
+LSI Parameters$seed: length = 1
+[1] 1
+
+
+LSI Parameters$verbose: length = 1
+[1] FALSE
+
+
+LSI Parameters$tstart: length = 1
+[1] "2020-10-02 22:37:34 EDT"
+
+
+LSI Parameters$logFile: length = 1
+[1] "ArchRLogs/ArchR-addIterativeLSI-4c77df44a0-Date-2020-10-02_Time-22-37-34.log"
+
+
+2020-10-02 22:38:17 : Running LSI, Input Matrix = 0.318 GB, 0.706 mins elapsed.
+2020-10-02 22:38:17 : Binarizing Matrix, 0.706 mins elapsed.
+2020-10-02 22:38:17 : Computing Term Frequency, 0.713 mins elapsed.
+2020-10-02 22:38:18 : Filtering Outliers Based On Counts, 0.718 mins elapsed.
+2020-10-02 22:38:18 : Removing 0 Sum Rows, 0.726 mins elapsed.
+2020-10-02 22:38:22 : Computing Inverse Document Frequency, 0.789 mins elapsed.
+2020-10-02 22:38:25 : Computing SVD using irlba, 0.834 mins elapsed.
+2020-10-02 22:40:20 : Projecting Outliers with LSI-Projection (Granja* et al 2019), 2.754 mins elapsed.
+
+2020-10-02 22:40:20 : LSI-Projection Parameters, Class = list
+
+LSI-Projection Parameters$: length = 1
+                       
+1 function (name)      
+2 .Internal(args(name))
+
+
+LSI-Projection Parameters$mat: nRows = 450000, nCols = 10
+LSI-Projection Parameters$mat: NonZeroEntries = 40963, EntryRange = [ 1 , 1 ]
+5 x 5 sparse Matrix of class "dgCMatrix"
+     CEMBA171214_4D#AGCGATAGAACCAGGTAGGATAACATAGAGGC
+[1,]                                               .
+[2,]                                               .
+[3,]                                               .
+[4,]                                               .
+[5,]                                               .
+     CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTAATCTTA
+[1,]                                               .
+[2,]                                               .
+[3,]                                               .
+[4,]                                               .
+[5,]                                               .
+     CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTATAGCCT
+[1,]                                               .
+[2,]                                               .
+[3,]                                               .
+[4,]                                               .
+[5,]                                               .
+     CEMBA171214_4D#AGCGATAGAACCAGGTGGATACTATATAGCCT
+[1,]                                               .
+[2,]                                               .
+[3,]                                               .
+[4,]                                               .
+[5,]                                               .
+     CEMBA171214_4D#AGCGATAGAACCAGGTTGCCTTACAGGCGAAG
+[1,]                                               .
+[2,]                                               .
+[3,]                                               .
+[4,]                                               .
+[5,]                                               .
+
+
+LSI-Projection Parameters$matSVD: nRows = 9599, nCols = 30
+                                                     LSI1       LSI2       LSI3
+CEMBA171214_4D#AGCGATAGAACCAGGTAGGATAACATAGAGGC -48.15832   6.384542  0.3688729
+CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTAATCTTA -30.35757   3.848970 -0.5380697
+CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTATAGCCT -19.60221 -24.468102 18.9599067
+CEMBA171214_4D#AGCGATAGAACCAGGTGGATACTATATAGCCT -62.49919  10.332291 -1.2286725
+CEMBA171214_4D#AGCGATAGAACCAGGTTGCCTTACAGGCGAAG -20.64274  -6.870243 -2.2746189
+                                                      LSI4        LSI5
+CEMBA171214_4D#AGCGATAGAACCAGGTAGGATAACATAGAGGC -12.937059 -17.8961312
+CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTAATCTTA  -8.054910 -14.7814407
+CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTATAGCCT   1.998253  -0.6892705
+CEMBA171214_4D#AGCGATAGAACCAGGTGGATACTATATAGCCT -13.021949  -8.3267721
+CEMBA171214_4D#AGCGATAGAACCAGGTTGCCTTACAGGCGAAG -11.975914   3.9656750
+
+
+LSI-Projection Parameters$returnModel: length = 1
+[1] FALSE
+
+
+LSI-Projection Parameters$verbose: length = 1
+[1] FALSE
+
+
+LSI-Projection Parameters$tstart: length = 0
+NULL
+
+
+LSI-Projection Parameters$logFile: length = 1
+[1] "ArchRLogs/ArchR-addIterativeLSI-4c77df44a0-Date-2020-10-02_Time-22-37-34.log"
+
+
+2020-10-02 22:40:20 : Projecting LSI, Input Matrix = 0 GB, 0 mins elapsed.
+2020-10-02 22:40:20 : Subsetting by Non-Zero features in inital Matrix, 0 mins elapsed.
+2020-10-02 22:40:20 : Binarizing Matrix, 0 mins elapsed.
+2020-10-02 22:40:20 : Computing Term Frequency, 0 mins elapsed.
+2020-10-02 22:40:20 : Computing Inverse Document Frequency, 0 mins elapsed.
+2020-10-02 22:40:20 : Computing TF-IDF Matrix, 0.001 mins elapsed.
+2020-10-02 22:40:21 : Calculating V Matrix, 0.017 mins elapsed.
+2020-10-02 22:40:21 : Computing Projected Coordinates, 0.018 mins elapsed.
+
+2020-10-02 22:40:21 : LSI-Projection Parameters, Class = list
+
+LSI-Projection Parameters$: length = 1
+                       
+1 function (name)      
+2 .Internal(args(name))
+
+
+LSI-Projection Parameters$mat: nRows = 450000, nCols = 402
+LSI-Projection Parameters$mat: NonZeroEntries = 2326983, EntryRange = [ 1 , 1 ]
+5 x 5 sparse Matrix of class "dgCMatrix"
+     CEMBA171214_4D#AGCGATAGAACCAGGTAATGACGTCAGGACGT
+[1,]                                               .
+[2,]                                               .
+[3,]                                               .
+[4,]                                               .
+[5,]                                               .
+     CEMBA171214_4D#AGCGATAGAAGAGGCACTCTCTATATAGAGGC
+[1,]                                               .
+[2,]                                               .
+[3,]                                               .
+[4,]                                               .
+[5,]                                               .
+     CEMBA171214_4D#AGCGATAGAAGCAACGGAAGTATGCCTATCCT
+[1,]                                               .
+[2,]                                               .
+[3,]                                               .
+[4,]                                               .
+[5,]                                               .
+     CEMBA171214_4D#AGCGATAGAAGCAACGTGCCTTACATAGAGGC
+[1,]                                               .
+[2,]                                               .
+[3,]                                               .
+[4,]                                               .
+[5,]                                               .
+     CEMBA171214_4D#AGCGATAGACGAATCTGGTTAGACGTACTGAC
+[1,]                                               .
+[2,]                                               .
+[3,]                                               .
+[4,]                                               .
+[5,]                                               .
+
+
+LSI-Projection Parameters$matSVD: nRows = 9599, nCols = 30
+                                                     LSI1       LSI2       LSI3
+CEMBA171214_4D#AGCGATAGAACCAGGTAGGATAACATAGAGGC -48.15832   6.384542  0.3688729
+CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTAATCTTA -30.35757   3.848970 -0.5380697
+CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTATAGCCT -19.60221 -24.468102 18.9599067
+CEMBA171214_4D#AGCGATAGAACCAGGTGGATACTATATAGCCT -62.49919  10.332291 -1.2286725
+CEMBA171214_4D#AGCGATAGAACCAGGTTGCCTTACAGGCGAAG -20.64274  -6.870243 -2.2746189
+                                                      LSI4        LSI5
+CEMBA171214_4D#AGCGATAGAACCAGGTAGGATAACATAGAGGC -12.937059 -17.8961312
+CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTAATCTTA  -8.054910 -14.7814407
+CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTATAGCCT   1.998253  -0.6892705
+CEMBA171214_4D#AGCGATAGAACCAGGTGGATACTATATAGCCT -13.021949  -8.3267721
+CEMBA171214_4D#AGCGATAGAACCAGGTTGCCTTACAGGCGAAG -11.975914   3.9656750
+
+
+LSI-Projection Parameters$returnModel: length = 1
+[1] FALSE
+
+
+LSI-Projection Parameters$verbose: length = 1
+[1] FALSE
+
+
+LSI-Projection Parameters$tstart: length = 0
+NULL
+
+
+LSI-Projection Parameters$logFile: length = 1
+[1] "ArchRLogs/ArchR-addIterativeLSI-4c77df44a0-Date-2020-10-02_Time-22-37-34.log"
+
+
+2020-10-02 22:40:21 : Projecting LSI, Input Matrix = 0.028 GB, 0 mins elapsed.
+2020-10-02 22:40:21 : Subsetting by Non-Zero features in inital Matrix, 0 mins elapsed.
+2020-10-02 22:40:21 : Binarizing Matrix, 0.001 mins elapsed.
+2020-10-02 22:40:21 : Computing Term Frequency, 0.002 mins elapsed.
+2020-10-02 22:40:21 : Computing Inverse Document Frequency, 0.002 mins elapsed.
+2020-10-02 22:40:21 : Computing TF-IDF Matrix, 0.003 mins elapsed.
+2020-10-02 22:40:22 : Calculating V Matrix, 0.02 mins elapsed.
+2020-10-02 22:40:23 : Computing Projected Coordinates, 0.027 mins elapsed.
+2020-10-02 22:40:23 : Finished LSI (TF-IDF SVD) using irlba, 2.806 mins elapsed.
+
+2020-10-02 22:40:25 : outLSI-1, Class = SimpleList
+
+outLSI-1$matSVD: nRows = 10001, nCols = 30
+                                                     LSI1       LSI2       LSI3
+CEMBA171214_4D#AGCGATAGAACCAGGTAATGACGTCAGGACGT -90.03686  12.797734 -2.1108871
+CEMBA171214_4D#AGCGATAGAACCAGGTAGGATAACATAGAGGC -48.15832   6.384542  0.3688729
+CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTAATCTTA -30.35757   3.848970 -0.5380697
+CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTATAGCCT -19.60221 -24.468102 18.9599067
+CEMBA171214_4D#AGCGATAGAACCAGGTGGATACTATATAGCCT -62.49919  10.332291 -1.2286725
+                                                      LSI4        LSI5
+CEMBA171214_4D#AGCGATAGAACCAGGTAATGACGTCAGGACGT -18.796173  -0.5956451
+CEMBA171214_4D#AGCGATAGAACCAGGTAGGATAACATAGAGGC -12.937059 -17.8961312
+CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTAATCTTA  -8.054910 -14.7814407
+CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTATAGCCT   1.998253  -0.6892705
+CEMBA171214_4D#AGCGATAGAACCAGGTGGATACTATATAGCCT -13.021949  -8.3267721
+
+
+outLSI-1$rowSm: length = 450000
+[1] 18 35 39 43 32 23
+
+
+outLSI-1$nCol: length = 1
+[1] 9599
+
+
+outLSI-1$exclude: length = 0
+NULL
+
+
+outLSI-1$idx: length = 450000
+[1] 1 2 3 4 5 6
+
+
+outLSI-1$u: nRows = 450000, nCols = 30
+              [,1]          [,2]          [,3]          [,4]          [,5]
+[1,] -0.0005221078  3.142813e-05  6.282998e-04 -7.167656e-05 -0.0002047978
+[2,] -0.0007308239 -3.813430e-04 -5.279762e-04 -2.369933e-03  0.0024770933
+[3,] -0.0008251444 -2.497869e-04 -4.951569e-04 -2.544275e-03  0.0027281313
+[4,] -0.0010958211  8.372652e-04 -1.434251e-05 -1.689267e-03 -0.0039628031
+[5,] -0.0008566623  5.521910e-04  2.854466e-04 -8.368998e-04 -0.0024789324
+
+
+outLSI-1$v: nRows = 9599, nCols = 30
+             [,1]         [,2]          [,3]         [,4]         [,5]
+[1,] -0.018152229  0.004729022  0.0004274254 -0.017953193 -0.031058098
+[2,] -0.011442624  0.002850927 -0.0006234794 -0.011178070 -0.025652663
+[3,] -0.007388627 -0.018123490  0.0219694811  0.002773044 -0.001196204
+[4,] -0.023557705  0.007653114 -0.0014237041 -0.018070998 -0.014450816
+[5,] -0.007780830 -0.005088780 -0.0026356774 -0.016619380  0.006882288
+
+
+outLSI-1$binarize: length = 1
+[1] TRUE
+
+
+outLSI-1$scaleTo: length = 1
+[1] 3000
+
+
+outLSI-1$nDimensions: length = 1
+[1] 30
+
+
+outLSI-1$LSIMethod: length = 1
+[1] 2
+
+
+outLSI-1$outliers: length = 402
+[1] "CEMBA171214_4D#AGCGATAGAACCAGGTAATGACGTCAGGACGT"
+[2] "CEMBA171214_4D#AGCGATAGAAGAGGCACTCTCTATATAGAGGC"
+[3] "CEMBA171214_4D#AGCGATAGAAGCAACGGAAGTATGCCTATCCT"
+[4] "CEMBA171214_4D#AGCGATAGAAGCAACGTGCCTTACATAGAGGC"
+[5] "CEMBA171214_4D#AGCGATAGACGAATCTGGTTAGACGTACTGAC"
+[6] "CEMBA171214_4D#AGCGATAGACGTTCGAAACGAACGCCTATCCT"
+
+
+outLSI-1$date: length = 1
+[1] "2020-10-02"
+
+
+outLSI-1$seed: length = 1
+[1] 1
+
+
+outLSI-1$scaleDims: length = 1
+[1] TRUE
+
+
+outLSI-1$useMatrix: length = 1
+[1] "TileMatrix"
+
+
+outLSI-1$tileSize: length = 1
+[1] 500
+
+
+
+2020-10-02 22:40:25 : Cluster Params, Class = list
+
+Cluster Params$: length = 1
+                       
+1 function (name)      
+2 .Internal(args(name))
+
+
+Cluster Params$matSVD: nRows = 10001, nCols = 30
+                                                     LSI1       LSI2       LSI3
+CEMBA171214_4D#AGCGATAGAACCAGGTAATGACGTCAGGACGT -90.03686  12.797734 -2.1108871
+CEMBA171214_4D#AGCGATAGAACCAGGTAGGATAACATAGAGGC -48.15832   6.384542  0.3688729
+CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTAATCTTA -30.35757   3.848970 -0.5380697
+CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTATAGCCT -19.60221 -24.468102 18.9599067
+CEMBA171214_4D#AGCGATAGAACCAGGTGGATACTATATAGCCT -62.49919  10.332291 -1.2286725
+                                                      LSI4        LSI5
+CEMBA171214_4D#AGCGATAGAACCAGGTAATGACGTCAGGACGT -18.796173  -0.5956451
+CEMBA171214_4D#AGCGATAGAACCAGGTAGGATAACATAGAGGC -12.937059 -17.8961312
+CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTAATCTTA  -8.054910 -14.7814407
+CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTATAGCCT   1.998253  -0.6892705
+CEMBA171214_4D#AGCGATAGAACCAGGTGGATACTATATAGCCT -13.021949  -8.3267721
+
+
+Cluster Params$corCutOff: length = 1
+[1] 0.75
+
+
+Cluster Params$dimsToUse: length = 30
+[1] 1 2 3 4 5 6
+
+
+Cluster Params$scaleDims: length = 1
+[1] TRUE
+
+
+Cluster Params$verbose: length = 1
+[1] TRUE
+
+
+Cluster Params$j: length = 1
+[1] 1
+
+
+Cluster Params$filterBias: length = 1
+[1] TRUE
+
+
+Cluster Params$cellNames: length = 24241
+[1] "CEMBA171214_4D#ATTCAGAATCTATCCGTGCCTTACCAGGACGT"
+[2] "CEMBA171214_4D#ATTCAGAACAGAACTGTTACGACCGTACTGAC"
+[3] "CEMBA171214_4D#ATTCAGAATTAGCCTCTAAGATCCGTACTGAC"
+[4] "CEMBA171214_4D#CTGAAGCTGCAACCTAAATGACGTCCTATCCT"
+[5] "CEMBA171214_4D#GAGATTCCATAAGTCGTCCGGTAAGTACTGAC"
+[6] "CEMBA171214_4D#CTGAAGCTCGCTTGATATAGCCTTGTACTGAC"
+
+
+Cluster Params$cellDepth: length = 24241
+CEMBA171214_4D#ATTCAGAATCTATCCGTGCCTTACCAGGACGT 
+                                       4.626720 
+CEMBA171214_4D#ATTCAGAACAGAACTGTTACGACCGTACTGAC 
+                                       4.623022 
+CEMBA171214_4D#ATTCAGAATTAGCCTCTAAGATCCGTACTGAC 
+                                       4.602939 
+CEMBA171214_4D#CTGAAGCTGCAACCTAAATGACGTCCTATCCT 
+                                       4.593341 
+CEMBA171214_4D#GAGATTCCATAAGTCGTCCGGTAAGTACTGAC 
+                                       4.586013 
+CEMBA171214_4D#CTGAAGCTCGCTTGATATAGCCTTGTACTGAC 
+                                       4.582938 
+
+
+Cluster Params$tstart: length = 1
+[1] "2020-10-02 22:37:34 EDT"
+
+
+Cluster Params$logFile: length = 1
+[1] "ArchRLogs/ArchR-addIterativeLSI-4c77df44a0-Date-2020-10-02_Time-22-37-34.log"
+
+
+2020-10-02 22:40:25 : Identifying Clusters, 2.838 mins elapsed.
+
+2020-10-02 22:40:25 : addClusters Input-Parameters, Class = list
+
+addClusters Input-Parameters$: length = 1
+                       
+1 function (name)      
+2 .Internal(args(name))
+
+
+addClusters Input-Parameters$input: nRows = 10001, nCols = 30
+                                                     LSI1       LSI2       LSI3
+CEMBA171214_4D#AGCGATAGAACCAGGTAATGACGTCAGGACGT -4.954888  0.9139155 0.06307563
+CEMBA171214_4D#AGCGATAGAACCAGGTAGGATAACATAGAGGC -3.807252  0.8119049 0.30244650
+CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTAATCTTA -4.279209  0.8018560 0.15020186
+CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTATAGCCT -2.746197 -3.4597805 2.90894466
+CEMBA171214_4D#AGCGATAGAACCAGGTGGATACTATATAGCCT -3.467178  0.8587781 0.17209399
+                                                      LSI4        LSI5
+CEMBA171214_4D#AGCGATAGAACCAGGTAATGACGTCAGGACGT -0.8891591  0.14955099
+CEMBA171214_4D#AGCGATAGAACCAGGTAGGATAACATAGAGGC -0.8244137 -1.24439043
+CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTAATCTTA -0.9663553 -1.96551926
+CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTATAGCCT  0.4215152  0.02738937
+CEMBA171214_4D#AGCGATAGAACCAGGTGGATACTATATAGCCT -0.5283888 -0.24951035
+
+
+addClusters Input-Parameters$reducedDims: length = 1
+[1] "IterativeLSI"
+
+
+addClusters Input-Parameters$name: length = 1
+[1] "Clusters"
+
+
+addClusters Input-Parameters$sampleCells: length = 1
+[1] 10000
+
+
+addClusters Input-Parameters$seed: length = 1
+[1] 1
+
+
+addClusters Input-Parameters$method: length = 1
+[1] "Seurat"
+
+
+addClusters Input-Parameters$dimsToUse: length = 0
+NULL
+
+
+addClusters Input-Parameters$scaleDims: length = 0
+NULL
+
+
+addClusters Input-Parameters$corCutOff: length = 1
+[1] 0.75
+
+
+addClusters Input-Parameters$knnAssign: length = 1
+[1] 10
+
+
+addClusters Input-Parameters$nOutlier: length = 1
+[1] 5
+
+
+addClusters Input-Parameters$testBias: length = 1
+[1] TRUE
+
+
+addClusters Input-Parameters$filterBias: length = 1
+[1] TRUE
+
+
+addClusters Input-Parameters$biasClusters: length = 1
+[1] 0.01
+
+
+addClusters Input-Parameters$biasCol: length = 1
+[1] "nFrags"
+
+
+addClusters Input-Parameters$biasVals: length = 10001
+[1] 4.292743 3.966095 3.664830 3.590842 4.069335 3.639686
+
+
+addClusters Input-Parameters$biasQuantiles: length = 2
+[1] 0.05 0.95
+
+
+addClusters Input-Parameters$biasEnrich: length = 1
+[1] 10
+
+
+addClusters Input-Parameters$biasProportion: length = 1
+[1] 0.5
+
+
+addClusters Input-Parameters$biasPval: length = 1
+[1] 0.05
+
+
+addClusters Input-Parameters$nPerm: length = 1
+[1] 500
+
+
+addClusters Input-Parameters$prefix: length = 1
+[1] "C"
+
+
+addClusters Input-Parameters$ArchRProj: length = 0
+NULL
+
+
+addClusters Input-Parameters$verbose: length = 1
+[1] FALSE
+
+
+addClusters Input-Parameters$tstart: length = 0
+NULL
+
+
+addClusters Input-Parameters$force: length = 1
+[1] FALSE
+
+
+addClusters Input-Parameters$logFile: length = 1
+[1] "ArchRLogs/ArchR-addIterativeLSI-4c77df44a0-Date-2020-10-02_Time-22-37-34.log"
+
+
+addClusters Input-Parameters$...: length = 2
+[[1]]
+<promise: 0x561cd8294f78>
+
+[[2]]
+<promise: 0x561cd8295058>
+
+
+
+2020-10-02 22:40:25 : Estimating Clusters by Sampling, 0 mins elapsed.
+2020-10-02 22:40:25 : Running Seurats FindClusters (Stuart et al. Cell 2019), 0 mins elapsed.
+2020-10-02 22:40:56 : Finding Nearest Clusters, 0.513 mins elapsed.
+2020-10-02 22:40:56 : Assigning Nearest Clusters, 0.513 mins elapsed.
+2020-10-02 22:40:57 : Testing Biased Clusters, 0.531 mins elapsed.
+2020-10-02 22:40:57 : Testing Outlier Clusters, 0.532 mins elapsed.
+2020-10-02 22:40:57 : Assigning Cluster Names to 9 Clusters, 0.532 mins elapsed.
+2020-10-02 22:40:57 : Finished addClusters, 0.532 mins elapsed.
+2020-10-02 22:40:57 : Identified 9 Clusters, 3.372 mins elapsed.
+
+2020-10-02 22:40:57 : clusterDF-1, Class = DFrame
+DataFrame with 10001 rows and 2 columns
+                                            cellNames    clusters
+                                          <character> <character>
+1     CEMBA171214_4D#AGCGATAGAACCAGGTAATGACGTCAGGACGT          C2
+2     CEMBA171214_4D#AGCGATAGAACCAGGTAGGATAACATAGAGGC          C2
+3     CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTAATCTTA          C2
+4     CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTATAGCCT          C8
+5     CEMBA171214_4D#AGCGATAGAACCAGGTGGATACTATATAGCCT          C2
+...                                               ...         ...
+9997  CEMBA180820_5E#TCCGGAGATTCCATCCATAGAGGCCGAATTCC          C4
+9998  CEMBA180820_5E#TCCGGAGATTCCATCCATAGAGGCTTGGAAGT          C5
+9999  CEMBA180820_5E#TCCGGAGATTCCATCCGGTTGCGTATTCGTTG          C2
+10000 CEMBA180820_5E#TCCGGAGATTCCATCCTATAGCCTAATGACGT          C2
+10001 CEMBA180820_5E#TCCGGAGATTCCATCCTATAGCCTATAGCCTT          C2
+
+2020-10-02 22:40:57 : Saving LSI Iteration, 3.372 mins elapsed.
+
+2020-10-02 22:40:57 : Save iteration, Class = list
+
+Save iteration$: length = 1
+                       
+1 function (name)      
+2 .Internal(args(name))
+
+
+Save iteration$matSVD: nRows = 10001, nCols = 30
+                                                     LSI1       LSI2       LSI3
+CEMBA171214_4D#AGCGATAGAACCAGGTAATGACGTCAGGACGT -90.03686  12.797734 -2.1108871
+CEMBA171214_4D#AGCGATAGAACCAGGTAGGATAACATAGAGGC -48.15832   6.384542  0.3688729
+CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTAATCTTA -30.35757   3.848970 -0.5380697
+CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTATAGCCT -19.60221 -24.468102 18.9599067
+CEMBA171214_4D#AGCGATAGAACCAGGTGGATACTATATAGCCT -62.49919  10.332291 -1.2286725
+                                                      LSI4        LSI5
+CEMBA171214_4D#AGCGATAGAACCAGGTAATGACGTCAGGACGT -18.796173  -0.5956451
+CEMBA171214_4D#AGCGATAGAACCAGGTAGGATAACATAGAGGC -12.937059 -17.8961312
+CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTAATCTTA  -8.054910 -14.7814407
+CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTATAGCCT   1.998253  -0.6892705
+CEMBA171214_4D#AGCGATAGAACCAGGTGGATACTATATAGCCT -13.021949  -8.3267721
+
+
+Save iteration$clusters: length = 10001
+[1] "C2" "C2" "C2" "C8" "C2" "C3"
+
+
+Save iteration$nPlot: length = 1
+[1] 10000
+
+
+Save iteration$ArchRProj: length = 1
+class: ArchRProject 
+outputDirectory: /home/bnphan/projects/snATAC_cross_species_caudate/data/raw_data/mm10/BICCN_mouse_caudoputamen/ArchR_BICCN_caudoputamen 
+samples(4): CEMBA171214_4D CEMBA171219_4D CEMBA180813_5E CEMBA180820_5E
+sampleColData names(1): ArrowFiles
+cellColData names(18): Sample TSSEnrichment ... Region Clusters
+numberOfCells(1): 1
+medianTSS(1): 14.205
+medianFrags(1): 42336
+
+
+Save iteration$scaleDims: length = 1
+[1] TRUE
+
+
+Save iteration$corCutOff: length = 1
+[1] 0.75
+
+
+Save iteration$dimsToUse: length = 30
+[1] 1 2 3 4 5 6
+
+
+Save iteration$j: length = 1
+[1] 1
+
+
+Save iteration$threads: length = 1
+[1] 6
+
+
+Save iteration$outDir: length = 1
+[1] "/home/bnphan/projects/snATAC_cross_species_caudate/data/raw_data/mm10/BICCN_mouse_caudoputamen/ArchR_BICCN_caudoputamen/IterativeLSI"
+
+
+Save iteration$logFile: length = 1
+[1] "ArchRLogs/ArchR-addIterativeLSI-4c77df44a0-Date-2020-10-02_Time-22-37-34.log"
+
+
+2020-10-02 22:41:46 : Creating Cluster Matrix on the total Group Features, 4.174 mins elapsed.
+2020-10-02 22:42:50 : Computing Variable Features, 5.265 mins elapsed.
+###########
+2020-10-02 22:42:51 : Running LSI (2 of 6) on Variable Features, 5.273 mins elapsed.
+###########
+2020-10-02 22:42:51 : Sampling Cells (N = 10001) for Estimated LSI, 5.275 mins elapsed.
+2020-10-02 22:42:51 : Creating Sampled Partial Matrix, 5.282 mins elapsed.
+2020-10-02 22:43:20 : Computing Estimated LSI (projectAll = FALSE), 5.759 mins elapsed.
+
+2020-10-02 22:43:20 : LSI Parameters, Class = list
+
+LSI Parameters$: length = 1
+                       
+1 function (name)      
+2 .Internal(args(name))
+
+
+LSI Parameters$mat: nRows = 450000, nCols = 10001
+LSI Parameters$mat: NonZeroEntries = 29031891, EntryRange = [ 1 , 1 ]
+5 x 5 sparse Matrix of class "dgCMatrix"
+     CEMBA171214_4D#AGCGATAGAACCAGGTAACGAACGATAGAGGC
+[1,]                                               .
+[2,]                                               .
+[3,]                                               .
+[4,]                                               .
+[5,]                                               .
+     CEMBA171214_4D#AGCGATAGAACCAGGTTGCCTTACAGGCGAAG
+[1,]                                               .
+[2,]                                               .
+[3,]                                               .
+[4,]                                               .
+[5,]                                               .
+     CEMBA171214_4D#AGCGATAGAACCAGGTTTACGACCGTACTGAC
+[1,]                                               .
+[2,]                                               .
+[3,]                                               .
+[4,]                                               .
+[5,]                                               .
+     CEMBA171214_4D#AGCGATAGAAGAGGCAATCTGAGTGGCTCTGA
+[1,]                                               .
+[2,]                                               .
+[3,]                                               .
+[4,]                                               .
+[5,]                                               .
+     CEMBA171214_4D#AGCGATAGAAGAGGCACCTAGAGTCAGGACGT
+[1,]                                               .
+[2,]                                               .
+[3,]                                               .
+[4,]                                               .
+[5,]                                               .
+
+
+LSI Parameters$LSIMethod: length = 1
+[1] 2
+
+
+LSI Parameters$scaleTo: length = 1
+[1] 3000
+
+
+LSI Parameters$nDimensions: length = 1
+[1] 30
+
+
+LSI Parameters$binarize: length = 1
+[1] TRUE
+
+
+LSI Parameters$outlierQuantiles: length = 2
+[1] 0.02 0.98
+
+
+LSI Parameters$seed: length = 1
+[1] 1
+
+
+LSI Parameters$verbose: length = 1
+[1] FALSE
+
+
+LSI Parameters$tstart: length = 1
+[1] "2020-10-02 22:37:34 EDT"
+
+
+LSI Parameters$logFile: length = 1
+[1] "ArchRLogs/ArchR-addIterativeLSI-4c77df44a0-Date-2020-10-02_Time-22-37-34.log"
+
+
+2020-10-02 22:43:21 : Running LSI, Input Matrix = 0.349 GB, 5.767 mins elapsed.
+2020-10-02 22:43:21 : Binarizing Matrix, 5.767 mins elapsed.
+2020-10-02 22:43:22 : Computing Term Frequency, 5.79 mins elapsed.
+2020-10-02 22:43:22 : Filtering Outliers Based On Counts, 5.793 mins elapsed.
+2020-10-02 22:43:23 : Removing 0 Sum Rows, 5.802 mins elapsed.
+2020-10-02 22:43:26 : Computing Inverse Document Frequency, 5.858 mins elapsed.
+2020-10-02 22:43:30 : Computing SVD using irlba, 5.918 mins elapsed.
+2020-10-02 22:45:39 : Projecting Outliers with LSI-Projection (Granja* et al 2019), 8.072 mins elapsed.
+
+2020-10-02 22:45:39 : LSI-Projection Parameters, Class = list
+
+LSI-Projection Parameters$: length = 1
+                       
+1 function (name)      
+2 .Internal(args(name))
+
+
+LSI-Projection Parameters$mat: nRows = 450000, nCols = 10
+LSI-Projection Parameters$mat: NonZeroEntries = 43535, EntryRange = [ 1 , 1 ]
+5 x 5 sparse Matrix of class "dgCMatrix"
+     CEMBA171214_4D#AGCGATAGAACCAGGTTGCCTTACAGGCGAAG
+[1,]                                               .
+[2,]                                               .
+[3,]                                               .
+[4,]                                               .
+[5,]                                               .
+     CEMBA171214_4D#AGCGATAGAACCAGGTTTACGACCGTACTGAC
+[1,]                                               .
+[2,]                                               .
+[3,]                                               .
+[4,]                                               .
+[5,]                                               .
+     CEMBA171214_4D#AGCGATAGAAGAGGCAATCTGAGTGGCTCTGA
+[1,]                                               .
+[2,]                                               .
+[3,]                                               .
+[4,]                                               .
+[5,]                                               .
+     CEMBA171214_4D#AGCGATAGAAGAGGCACCTAGAGTCAGGACGT
+[1,]                                               .
+[2,]                                               .
+[3,]                                               .
+[4,]                                               .
+[5,]                                               .
+     CEMBA171214_4D#AGCGATAGAAGAGGCATATCCTCTTATAGCCT
+[1,]                                               .
+[2,]                                               .
+[3,]                                               .
+[4,]                                               .
+[5,]                                               .
+
+
+LSI-Projection Parameters$matSVD: nRows = 9598, nCols = 30
+                                                     LSI1      LSI2       LSI3
+CEMBA171214_4D#AGCGATAGAACCAGGTTGCCTTACAGGCGAAG -23.09780 -6.642005 -2.9105742
+CEMBA171214_4D#AGCGATAGAACCAGGTTTACGACCGTACTGAC -60.63205 16.840832  0.7752413
+CEMBA171214_4D#AGCGATAGAAGAGGCAATCTGAGTGGCTCTGA -14.25237  2.881633  0.3084902
+CEMBA171214_4D#AGCGATAGAAGAGGCACCTAGAGTCAGGACGT -43.25744 11.183425 -0.7851972
+CEMBA171214_4D#AGCGATAGAAGAGGCATATCCTCTTATAGCCT -12.30039 -7.310106 -1.3399047
+                                                     LSI4       LSI5
+CEMBA171214_4D#AGCGATAGAACCAGGTTGCCTTACAGGCGAAG 11.601453 -4.3350779
+CEMBA171214_4D#AGCGATAGAACCAGGTTTACGACCGTACTGAC -3.991894  2.3018269
+CEMBA171214_4D#AGCGATAGAAGAGGCAATCTGAGTGGCTCTGA  1.278393  3.4519156
+CEMBA171214_4D#AGCGATAGAAGAGGCACCTAGAGTCAGGACGT  8.467416  0.7625933
+CEMBA171214_4D#AGCGATAGAAGAGGCATATCCTCTTATAGCCT  2.059553 -3.2127000
+
+
+LSI-Projection Parameters$returnModel: length = 1
+[1] FALSE
+
+
+LSI-Projection Parameters$verbose: length = 1
+[1] FALSE
+
+
+LSI-Projection Parameters$tstart: length = 0
+NULL
+
+
+LSI-Projection Parameters$logFile: length = 1
+[1] "ArchRLogs/ArchR-addIterativeLSI-4c77df44a0-Date-2020-10-02_Time-22-37-34.log"
+
+
+2020-10-02 22:45:39 : Projecting LSI, Input Matrix = 0.001 GB, 0 mins elapsed.
+2020-10-02 22:45:39 : Subsetting by Non-Zero features in inital Matrix, 0 mins elapsed.
+2020-10-02 22:45:39 : Binarizing Matrix, 0 mins elapsed.
+2020-10-02 22:45:39 : Computing Term Frequency, 0 mins elapsed.
+2020-10-02 22:45:39 : Computing Inverse Document Frequency, 0 mins elapsed.
+2020-10-02 22:45:39 : Computing TF-IDF Matrix, 0.001 mins elapsed.
+2020-10-02 22:45:40 : Calculating V Matrix, 0.017 mins elapsed.
+2020-10-02 22:45:40 : Computing Projected Coordinates, 0.017 mins elapsed.
+
+2020-10-02 22:45:40 : LSI-Projection Parameters, Class = list
+
+LSI-Projection Parameters$: length = 1
+                       
+1 function (name)      
+2 .Internal(args(name))
+
+
+LSI-Projection Parameters$mat: nRows = 450000, nCols = 403
+LSI-Projection Parameters$mat: NonZeroEntries = 2551516, EntryRange = [ 1 , 1 ]
+5 x 5 sparse Matrix of class "dgCMatrix"
+     CEMBA171214_4D#AGCGATAGAACCAGGTAACGAACGATAGAGGC
+[1,]                                               .
+[2,]                                               .
+[3,]                                               .
+[4,]                                               .
+[5,]                                               .
+     CEMBA171214_4D#AGCGATAGAAGCAACGGAAGTATGCCTATCCT
+[1,]                                               .
+[2,]                                               .
+[3,]                                               .
+[4,]                                               .
+[5,]                                               .
+     CEMBA171214_4D#AGCGATAGACGAATCTGGTTAGACGTACTGAC
+[1,]                                               .
+[2,]                                               .
+[3,]                                               .
+[4,]                                               .
+[5,]                                               .
+     CEMBA171214_4D#AGCGATAGACGTTCGATTACGACCTAATCTTA
+[1,]                                               .
+[2,]                                               .
+[3,]                                               .
+[4,]                                               .
+[5,]                                               .
+     CEMBA171214_4D#AGCGATAGACTCGCTAGCGTAAGAGTACTGAC
+[1,]                                               .
+[2,]                                               .
+[3,]                                               .
+[4,]                                               .
+[5,]                                               .
+
+
+LSI-Projection Parameters$matSVD: nRows = 9598, nCols = 30
+                                                     LSI1      LSI2       LSI3
+CEMBA171214_4D#AGCGATAGAACCAGGTTGCCTTACAGGCGAAG -23.09780 -6.642005 -2.9105742
+CEMBA171214_4D#AGCGATAGAACCAGGTTTACGACCGTACTGAC -60.63205 16.840832  0.7752413
+CEMBA171214_4D#AGCGATAGAAGAGGCAATCTGAGTGGCTCTGA -14.25237  2.881633  0.3084902
+CEMBA171214_4D#AGCGATAGAAGAGGCACCTAGAGTCAGGACGT -43.25744 11.183425 -0.7851972
+CEMBA171214_4D#AGCGATAGAAGAGGCATATCCTCTTATAGCCT -12.30039 -7.310106 -1.3399047
+                                                     LSI4       LSI5
+CEMBA171214_4D#AGCGATAGAACCAGGTTGCCTTACAGGCGAAG 11.601453 -4.3350779
+CEMBA171214_4D#AGCGATAGAACCAGGTTTACGACCGTACTGAC -3.991894  2.3018269
+CEMBA171214_4D#AGCGATAGAAGAGGCAATCTGAGTGGCTCTGA  1.278393  3.4519156
+CEMBA171214_4D#AGCGATAGAAGAGGCACCTAGAGTCAGGACGT  8.467416  0.7625933
+CEMBA171214_4D#AGCGATAGAAGAGGCATATCCTCTTATAGCCT  2.059553 -3.2127000
+
+
+LSI-Projection Parameters$returnModel: length = 1
+[1] FALSE
+
+
+LSI-Projection Parameters$verbose: length = 1
+[1] FALSE
+
+
+LSI-Projection Parameters$tstart: length = 0
+NULL
+
+
+LSI-Projection Parameters$logFile: length = 1
+[1] "ArchRLogs/ArchR-addIterativeLSI-4c77df44a0-Date-2020-10-02_Time-22-37-34.log"
+
+
+2020-10-02 22:45:40 : Projecting LSI, Input Matrix = 0.031 GB, 0 mins elapsed.
+2020-10-02 22:45:40 : Subsetting by Non-Zero features in inital Matrix, 0 mins elapsed.
+2020-10-02 22:45:40 : Binarizing Matrix, 0.001 mins elapsed.
+2020-10-02 22:45:40 : Computing Term Frequency, 0.002 mins elapsed.
+2020-10-02 22:45:40 : Computing Inverse Document Frequency, 0.007 mins elapsed.
+2020-10-02 22:45:40 : Computing TF-IDF Matrix, 0.007 mins elapsed.
+2020-10-02 22:45:41 : Calculating V Matrix, 0.024 mins elapsed.
+2020-10-02 22:45:42 : Computing Projected Coordinates, 0.031 mins elapsed.
+2020-10-02 22:45:42 : Finished LSI (TF-IDF SVD) using irlba, 8.122 mins elapsed.
+
+2020-10-02 22:45:43 : outLSI-2, Class = SimpleList
+
+outLSI-2$matSVD: nRows = 10001, nCols = 30
+                                                     LSI1      LSI2       LSI3
+CEMBA171214_4D#AGCGATAGAACCAGGTAACGAACGATAGAGGC -74.07854 19.387289 -0.6327944
+CEMBA171214_4D#AGCGATAGAACCAGGTTGCCTTACAGGCGAAG -23.09780 -6.642005 -2.9105742
+CEMBA171214_4D#AGCGATAGAACCAGGTTTACGACCGTACTGAC -60.63205 16.840832  0.7752413
+CEMBA171214_4D#AGCGATAGAAGAGGCAATCTGAGTGGCTCTGA -14.25237  2.881633  0.3084902
+CEMBA171214_4D#AGCGATAGAAGAGGCACCTAGAGTCAGGACGT -43.25744 11.183425 -0.7851972
+                                                     LSI4       LSI5
+CEMBA171214_4D#AGCGATAGAACCAGGTAACGAACGATAGAGGC 20.841502 31.0603543
+CEMBA171214_4D#AGCGATAGAACCAGGTTGCCTTACAGGCGAAG 11.601453 -4.3350779
+CEMBA171214_4D#AGCGATAGAACCAGGTTTACGACCGTACTGAC -3.991894  2.3018269
+CEMBA171214_4D#AGCGATAGAAGAGGCAATCTGAGTGGCTCTGA  1.278393  3.4519156
+CEMBA171214_4D#AGCGATAGAAGAGGCACCTAGAGTCAGGACGT  8.467416  0.7625933
+
+
+outLSI-2$rowSm: length = 450000
+[1] 21 34 41 41 31 29
+
+
+outLSI-2$nCol: length = 1
+[1] 9598
+
+
+outLSI-2$exclude: length = 0
+NULL
+
+
+outLSI-2$idx: length = 450000
+[1] 1 2 3 4 5 6
+
+
+outLSI-2$u: nRows = 450000, nCols = 30
+              [,1]          [,2]          [,3]          [,4]          [,5]
+[1,] -0.0005330337  0.0004680323 -4.492360e-05 -0.0003960966  6.766758e-06
+[2,] -0.0007527896 -0.0004649350 -9.490630e-04  0.0030986825 -1.797686e-03
+[3,] -0.0008485550 -0.0004305156 -9.118480e-04  0.0037041791 -2.530643e-03
+[4,] -0.0009646437  0.0006324493  9.940805e-07  0.0016961026  3.833347e-03
+[5,] -0.0007689816  0.0005686382  2.266113e-04  0.0010103077  2.532148e-03
+
+
+outLSI-2$v: nRows = 9598, nCols = 30
+             [,1]         [,2]          [,3]         [,4]         [,5]
+[1,] -0.008086478 -0.004834326 -0.0033977242  0.016277299 -0.007557301
+[2,] -0.021227121  0.012257455  0.0009049954 -0.005600786  0.004012753
+[3,] -0.004989718  0.002097372  0.0003601230  0.001793636  0.006017692
+[4,] -0.015144318  0.008139760 -0.0009166176  0.011880121  0.001329422
+[5,] -0.004306335 -0.005320598 -0.0015641679  0.002889635 -0.005600670
+
+
+outLSI-2$binarize: length = 1
+[1] TRUE
+
+
+outLSI-2$scaleTo: length = 1
+[1] 3000
+
+
+outLSI-2$nDimensions: length = 1
+[1] 30
+
+
+outLSI-2$LSIMethod: length = 1
+[1] 2
+
+
+outLSI-2$outliers: length = 403
+[1] "CEMBA171214_4D#AGCGATAGAACCAGGTAACGAACGATAGAGGC"
+[2] "CEMBA171214_4D#AGCGATAGAAGCAACGGAAGTATGCCTATCCT"
+[3] "CEMBA171214_4D#AGCGATAGACGAATCTGGTTAGACGTACTGAC"
+[4] "CEMBA171214_4D#AGCGATAGACGTTCGATTACGACCTAATCTTA"
+[5] "CEMBA171214_4D#AGCGATAGACTCGCTAGCGTAAGAGTACTGAC"
+[6] "CEMBA171214_4D#AGCGATAGAGGCAGAAAAGGAGTATATAGCCT"
+
+
+outLSI-2$date: length = 1
+[1] "2020-10-02"
+
+
+outLSI-2$seed: length = 1
+[1] 1
+
+
+outLSI-2$scaleDims: length = 1
+[1] TRUE
+
+
+outLSI-2$useMatrix: length = 1
+[1] "TileMatrix"
+
+
+outLSI-2$tileSize: length = 1
+[1] 500
+
+
+
+2020-10-02 22:45:43 : Cluster Params, Class = list
+
+Cluster Params$: length = 1
+                       
+1 function (name)      
+2 .Internal(args(name))
+
+
+Cluster Params$matSVD: nRows = 10001, nCols = 30
+                                                     LSI1      LSI2       LSI3
+CEMBA171214_4D#AGCGATAGAACCAGGTAACGAACGATAGAGGC -74.07854 19.387289 -0.6327944
+CEMBA171214_4D#AGCGATAGAACCAGGTTGCCTTACAGGCGAAG -23.09780 -6.642005 -2.9105742
+CEMBA171214_4D#AGCGATAGAACCAGGTTTACGACCGTACTGAC -60.63205 16.840832  0.7752413
+CEMBA171214_4D#AGCGATAGAAGAGGCAATCTGAGTGGCTCTGA -14.25237  2.881633  0.3084902
+CEMBA171214_4D#AGCGATAGAAGAGGCACCTAGAGTCAGGACGT -43.25744 11.183425 -0.7851972
+                                                     LSI4       LSI5
+CEMBA171214_4D#AGCGATAGAACCAGGTAACGAACGATAGAGGC 20.841502 31.0603543
+CEMBA171214_4D#AGCGATAGAACCAGGTTGCCTTACAGGCGAAG 11.601453 -4.3350779
+CEMBA171214_4D#AGCGATAGAACCAGGTTTACGACCGTACTGAC -3.991894  2.3018269
+CEMBA171214_4D#AGCGATAGAAGAGGCAATCTGAGTGGCTCTGA  1.278393  3.4519156
+CEMBA171214_4D#AGCGATAGAAGAGGCACCTAGAGTCAGGACGT  8.467416  0.7625933
+
+
+Cluster Params$corCutOff: length = 1
+[1] 0.75
+
+
+Cluster Params$dimsToUse: length = 30
+[1] 1 2 3 4 5 6
+
+
+Cluster Params$scaleDims: length = 1
+[1] TRUE
+
+
+Cluster Params$verbose: length = 1
+[1] TRUE
+
+
+Cluster Params$j: length = 1
+[1] 2
+
+
+Cluster Params$filterBias: length = 1
+[1] TRUE
+
+
+Cluster Params$cellNames: length = 24241
+[1] "CEMBA171214_4D#ATTCAGAATCTATCCGTGCCTTACCAGGACGT"
+[2] "CEMBA171214_4D#ATTCAGAACAGAACTGTTACGACCGTACTGAC"
+[3] "CEMBA171214_4D#ATTCAGAATTAGCCTCTAAGATCCGTACTGAC"
+[4] "CEMBA171214_4D#CTGAAGCTGCAACCTAAATGACGTCCTATCCT"
+[5] "CEMBA171214_4D#GAGATTCCATAAGTCGTCCGGTAAGTACTGAC"
+[6] "CEMBA171214_4D#CTGAAGCTCGCTTGATATAGCCTTGTACTGAC"
+
+
+Cluster Params$cellDepth: length = 24241
+CEMBA171214_4D#ATTCAGAATCTATCCGTGCCTTACCAGGACGT 
+                                       4.626720 
+CEMBA171214_4D#ATTCAGAACAGAACTGTTACGACCGTACTGAC 
+                                       4.623022 
+CEMBA171214_4D#ATTCAGAATTAGCCTCTAAGATCCGTACTGAC 
+                                       4.602939 
+CEMBA171214_4D#CTGAAGCTGCAACCTAAATGACGTCCTATCCT 
+                                       4.593341 
+CEMBA171214_4D#GAGATTCCATAAGTCGTCCGGTAAGTACTGAC 
+                                       4.586013 
+CEMBA171214_4D#CTGAAGCTCGCTTGATATAGCCTTGTACTGAC 
+                                       4.582938 
+
+
+Cluster Params$tstart: length = 1
+[1] "2020-10-02 22:37:34 EDT"
+
+
+Cluster Params$logFile: length = 1
+[1] "ArchRLogs/ArchR-addIterativeLSI-4c77df44a0-Date-2020-10-02_Time-22-37-34.log"
+
+
+2020-10-02 22:45:43 : Identifying Clusters, 8.14 mins elapsed.
+
+2020-10-02 22:45:43 : addClusters Input-Parameters, Class = list
+
+addClusters Input-Parameters$: length = 1
+                       
+1 function (name)      
+2 .Internal(args(name))
+
+
+addClusters Input-Parameters$input: nRows = 10001, nCols = 30
+                                                     LSI1       LSI2
+CEMBA171214_4D#AGCGATAGAACCAGGTAACGAACGATAGAGGC -4.556371  1.1714638
+CEMBA171214_4D#AGCGATAGAACCAGGTTGCCTTACAGGCGAAG -4.174919 -1.1204562
+CEMBA171214_4D#AGCGATAGAACCAGGTTTACGACCGTACTGAC -4.706377  1.2933659
+CEMBA171214_4D#AGCGATAGAAGAGGCAATCTGAGTGGCTCTGA -4.792285  0.9069352
+CEMBA171214_4D#AGCGATAGAAGAGGCACCTAGAGTCAGGACGT -4.002044  0.9675211
+                                                       LSI3       LSI4
+CEMBA171214_4D#AGCGATAGAACCAGGTAACGAACGATAGAGGC -0.05542028  1.2605818
+CEMBA171214_4D#AGCGATAGAACCAGGTTGCCTTACAGGCGAAG -0.42784209  2.2658257
+CEMBA171214_4D#AGCGATAGAACCAGGTTTACGACCGTACTGAC  0.04919621 -0.3199857
+CEMBA171214_4D#AGCGATAGAAGAGGCAATCTGAGTGGCTCTGA  0.05104039  0.3736554
+CEMBA171214_4D#AGCGATAGAAGAGGCACCTAGAGTCAGGACGT -0.12501928  0.7195937
+                                                      LSI5
+CEMBA171214_4D#AGCGATAGAACCAGGTAACGAACGATAGAGGC  1.8868203
+CEMBA171214_4D#AGCGATAGAACCAGGTTGCCTTACAGGCGAAG -0.6922531
+CEMBA171214_4D#AGCGATAGAACCAGGTTTACGACCGTACTGAC  0.1674198
+CEMBA171214_4D#AGCGATAGAAGAGGCAATCTGAGTGGCTCTGA  1.0966263
+CEMBA171214_4D#AGCGATAGAAGAGGCACCTAGAGTCAGGACGT  0.0162688
+
+
+addClusters Input-Parameters$reducedDims: length = 1
+[1] "IterativeLSI"
+
+
+addClusters Input-Parameters$name: length = 1
+[1] "Clusters"
+
+
+addClusters Input-Parameters$sampleCells: length = 1
+[1] 10000
+
+
+addClusters Input-Parameters$seed: length = 1
+[1] 1
+
+
+addClusters Input-Parameters$method: length = 1
+[1] "Seurat"
+
+
+addClusters Input-Parameters$dimsToUse: length = 0
+NULL
+
+
+addClusters Input-Parameters$scaleDims: length = 0
+NULL
+
+
+addClusters Input-Parameters$corCutOff: length = 1
+[1] 0.75
+
+
+addClusters Input-Parameters$knnAssign: length = 1
+[1] 10
+
+
+addClusters Input-Parameters$nOutlier: length = 1
+[1] 5
+
+
+addClusters Input-Parameters$testBias: length = 1
+[1] TRUE
+
+
+addClusters Input-Parameters$filterBias: length = 1
+[1] TRUE
+
+
+addClusters Input-Parameters$biasClusters: length = 1
+[1] 0.01
+
+
+addClusters Input-Parameters$biasCol: length = 1
+[1] "nFrags"
+
+
+addClusters Input-Parameters$biasVals: length = 10001
+[1] 4.312537 3.639686 3.970951 3.052309 3.807535 3.416807
+
+
+addClusters Input-Parameters$biasQuantiles: length = 2
+[1] 0.05 0.95
+
+
+addClusters Input-Parameters$biasEnrich: length = 1
+[1] 10
+
+
+addClusters Input-Parameters$biasProportion: length = 1
+[1] 0.5
+
+
+addClusters Input-Parameters$biasPval: length = 1
+[1] 0.05
+
+
+addClusters Input-Parameters$nPerm: length = 1
+[1] 500
+
+
+addClusters Input-Parameters$prefix: length = 1
+[1] "C"
+
+
+addClusters Input-Parameters$ArchRProj: length = 0
+NULL
+
+
+addClusters Input-Parameters$verbose: length = 1
+[1] FALSE
+
+
+addClusters Input-Parameters$tstart: length = 0
+NULL
+
+
+addClusters Input-Parameters$force: length = 1
+[1] FALSE
+
+
+addClusters Input-Parameters$logFile: length = 1
+[1] "ArchRLogs/ArchR-addIterativeLSI-4c77df44a0-Date-2020-10-02_Time-22-37-34.log"
+
+
+addClusters Input-Parameters$...: length = 2
+[[1]]
+<promise: 0x561ce6c167b0>
+
+[[2]]
+<promise: 0x561ce6c16890>
+
+
+
+2020-10-02 22:45:43 : Estimating Clusters by Sampling, 0 mins elapsed.
+2020-10-02 22:45:43 : Running Seurats FindClusters (Stuart et al. Cell 2019), 0 mins elapsed.
+2020-10-02 22:46:13 : Finding Nearest Clusters, 0.5 mins elapsed.
+2020-10-02 22:46:13 : Assigning Nearest Clusters, 0.5 mins elapsed.
+2020-10-02 22:46:14 : Testing Biased Clusters, 0.519 mins elapsed.
+2020-10-02 22:46:14 : Testing Outlier Clusters, 0.519 mins elapsed.
+2020-10-02 22:46:14 : Assigning Cluster Names to 12 Clusters, 0.519 mins elapsed.
+2020-10-02 22:46:14 : Finished addClusters, 0.52 mins elapsed.
+2020-10-02 22:46:14 : Identified 12 Clusters, 8.663 mins elapsed.
+
+2020-10-02 22:46:14 : clusterDF-2, Class = DFrame
+DataFrame with 10001 rows and 2 columns
+                                            cellNames    clusters
+                                          <character> <character>
+1     CEMBA171214_4D#AGCGATAGAACCAGGTAACGAACGATAGAGGC          C2
+2     CEMBA171214_4D#AGCGATAGAACCAGGTTGCCTTACAGGCGAAG          C7
+3     CEMBA171214_4D#AGCGATAGAACCAGGTTTACGACCGTACTGAC          C2
+4     CEMBA171214_4D#AGCGATAGAAGAGGCAATCTGAGTGGCTCTGA          C2
+5     CEMBA171214_4D#AGCGATAGAAGAGGCACCTAGAGTCAGGACGT          C1
+...                                               ...         ...
+9997  CEMBA180820_5E#TCCGGAGATGCCAATTGGTTGCGTAATGACGT          C3
+9998  CEMBA180820_5E#TCCGGAGATTAGCCTCATAGAGGCGGATACTA          C3
+9999  CEMBA180820_5E#TCCGGAGATTAGCCTCATAGAGGCGGTTAGAC          C8
+10000 CEMBA180820_5E#TCCGGAGATTAGCCTCGGCTCTGACGAATTCC          C3
+10001 CEMBA180820_5E#TCCGGAGATTCCATCCATAGAGGCCGAATTCC          C1
+
+2020-10-02 22:46:14 : Saving LSI Iteration, 8.663 mins elapsed.
+
+2020-10-02 22:46:14 : Save iteration, Class = list
+
+Save iteration$: length = 1
+                       
+1 function (name)      
+2 .Internal(args(name))
+
+
+Save iteration$matSVD: nRows = 10001, nCols = 30
+                                                     LSI1      LSI2       LSI3
+CEMBA171214_4D#AGCGATAGAACCAGGTAACGAACGATAGAGGC -74.07854 19.387289 -0.6327944
+CEMBA171214_4D#AGCGATAGAACCAGGTTGCCTTACAGGCGAAG -23.09780 -6.642005 -2.9105742
+CEMBA171214_4D#AGCGATAGAACCAGGTTTACGACCGTACTGAC -60.63205 16.840832  0.7752413
+CEMBA171214_4D#AGCGATAGAAGAGGCAATCTGAGTGGCTCTGA -14.25237  2.881633  0.3084902
+CEMBA171214_4D#AGCGATAGAAGAGGCACCTAGAGTCAGGACGT -43.25744 11.183425 -0.7851972
+                                                     LSI4       LSI5
+CEMBA171214_4D#AGCGATAGAACCAGGTAACGAACGATAGAGGC 20.841502 31.0603543
+CEMBA171214_4D#AGCGATAGAACCAGGTTGCCTTACAGGCGAAG 11.601453 -4.3350779
+CEMBA171214_4D#AGCGATAGAACCAGGTTTACGACCGTACTGAC -3.991894  2.3018269
+CEMBA171214_4D#AGCGATAGAAGAGGCAATCTGAGTGGCTCTGA  1.278393  3.4519156
+CEMBA171214_4D#AGCGATAGAAGAGGCACCTAGAGTCAGGACGT  8.467416  0.7625933
+
+
+Save iteration$clusters: length = 10001
+[1] "C2" "C7" "C2" "C2" "C1" "C8"
+
+
+Save iteration$nPlot: length = 1
+[1] 10000
+
+
+Save iteration$ArchRProj: length = 1
+class: ArchRProject 
+outputDirectory: /home/bnphan/projects/snATAC_cross_species_caudate/data/raw_data/mm10/BICCN_mouse_caudoputamen/ArchR_BICCN_caudoputamen 
+samples(4): CEMBA171214_4D CEMBA171219_4D CEMBA180813_5E CEMBA180820_5E
+sampleColData names(1): ArrowFiles
+cellColData names(18): Sample TSSEnrichment ... Region Clusters
+numberOfCells(1): 1
+medianTSS(1): 14.205
+medianFrags(1): 42336
+
+
+Save iteration$scaleDims: length = 1
+[1] TRUE
+
+
+Save iteration$corCutOff: length = 1
+[1] 0.75
+
+
+Save iteration$dimsToUse: length = 30
+[1] 1 2 3 4 5 6
+
+
+Save iteration$j: length = 1
+[1] 2
+
+
+Save iteration$threads: length = 1
+[1] 6
+
+
+Save iteration$outDir: length = 1
+[1] "/home/bnphan/projects/snATAC_cross_species_caudate/data/raw_data/mm10/BICCN_mouse_caudoputamen/ArchR_BICCN_caudoputamen/IterativeLSI"
+
+
+Save iteration$logFile: length = 1
+[1] "ArchRLogs/ArchR-addIterativeLSI-4c77df44a0-Date-2020-10-02_Time-22-37-34.log"
+
+
+2020-10-02 22:47:04 : Creating Cluster Matrix on the total Group Features, 9.489 mins elapsed.
+2020-10-02 22:48:09 : Computing Variable Features, 10.582 mins elapsed.
+###########
+2020-10-02 22:48:10 : Running LSI (3 of 6) on Variable Features, 10.591 mins elapsed.
+###########
+2020-10-02 22:48:10 : Sampling Cells (N = 10001) for Estimated LSI, 10.593 mins elapsed.
+2020-10-02 22:48:10 : Creating Sampled Partial Matrix, 10.594 mins elapsed.
+2020-10-02 22:48:39 : Computing Estimated LSI (projectAll = FALSE), 11.073 mins elapsed.
+
+2020-10-02 22:48:39 : LSI Parameters, Class = list
+
+LSI Parameters$: length = 1
+                       
+1 function (name)      
+2 .Internal(args(name))
+
+
+LSI Parameters$mat: nRows = 450000, nCols = 10001
+LSI Parameters$mat: NonZeroEntries = 28776902, EntryRange = [ 1 , 1 ]
+5 x 5 sparse Matrix of class "dgCMatrix"
+     CEMBA171214_4D#AGCGATAGAACCAGGTAACGAACGATAGAGGC
+[1,]                                               .
+[2,]                                               .
+[3,]                                               .
+[4,]                                               .
+[5,]                                               .
+     CEMBA171214_4D#AGCGATAGAACCAGGTAATGACGTCAGGACGT
+[1,]                                               .
+[2,]                                               .
+[3,]                                               .
+[4,]                                               .
+[5,]                                               .
+     CEMBA171214_4D#AGCGATAGAACCAGGTCGAATTCCTAATCTTA
+[1,]                                               .
+[2,]                                               .
+[3,]                                               .
+[4,]                                               .
+[5,]                                               .
+     CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTAATCTTA
+[1,]                                               .
+[2,]                                               .
+[3,]                                               .
+[4,]                                               .
+[5,]                                               .
+     CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTATAGCCT
+[1,]                                               .
+[2,]                                               .
+[3,]                                               .
+[4,]                                               .
+[5,]                                               .
+
+
+LSI Parameters$LSIMethod: length = 1
+[1] 2
+
+
+LSI Parameters$scaleTo: length = 1
+[1] 3000
+
+
+LSI Parameters$nDimensions: length = 1
+[1] 30
+
+
+LSI Parameters$binarize: length = 1
+[1] TRUE
+
+
+LSI Parameters$outlierQuantiles: length = 2
+[1] 0.02 0.98
+
+
+LSI Parameters$seed: length = 1
+[1] 1
+
+
+LSI Parameters$verbose: length = 1
+[1] FALSE
+
+
+LSI Parameters$tstart: length = 1
+[1] "2020-10-02 22:37:34 EDT"
+
+
+LSI Parameters$logFile: length = 1
+[1] "ArchRLogs/ArchR-addIterativeLSI-4c77df44a0-Date-2020-10-02_Time-22-37-34.log"
+
+
+2020-10-02 22:48:39 : Running LSI, Input Matrix = 0.346 GB, 11.081 mins elapsed.
+2020-10-02 22:48:39 : Binarizing Matrix, 11.081 mins elapsed.
+2020-10-02 22:48:41 : Computing Term Frequency, 11.103 mins elapsed.
+2020-10-02 22:48:41 : Filtering Outliers Based On Counts, 11.106 mins elapsed.
+2020-10-02 22:48:41 : Removing 0 Sum Rows, 11.115 mins elapsed.
+2020-10-02 22:48:45 : Computing Inverse Document Frequency, 11.17 mins elapsed.
+2020-10-02 22:48:48 : Computing SVD using irlba, 11.219 mins elapsed.
+2020-10-02 22:50:32 : Projecting Outliers with LSI-Projection (Granja* et al 2019), 12.963 mins elapsed.
+
+2020-10-02 22:50:32 : LSI-Projection Parameters, Class = list
+
+LSI-Projection Parameters$: length = 1
+                       
+1 function (name)      
+2 .Internal(args(name))
+
+
+LSI-Projection Parameters$mat: nRows = 450000, nCols = 10
+LSI-Projection Parameters$mat: NonZeroEntries = 40148, EntryRange = [ 1 , 1 ]
+5 x 5 sparse Matrix of class "dgCMatrix"
+     CEMBA171214_4D#AGCGATAGAACCAGGTCGAATTCCTAATCTTA
+[1,]                                               .
+[2,]                                               .
+[3,]                                               .
+[4,]                                               .
+[5,]                                               .
+     CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTAATCTTA
+[1,]                                               .
+[2,]                                               .
+[3,]                                               .
+[4,]                                               .
+[5,]                                               .
+     CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTATAGCCT
+[1,]                                               .
+[2,]                                               .
+[3,]                                               .
+[4,]                                               .
+[5,]                                               .
+     CEMBA171214_4D#AGCGATAGAAGAGGCAATCTGAGTGGCTCTGA
+[1,]                                               .
+[2,]                                               .
+[3,]                                               .
+[4,]                                               .
+[5,]                                               .
+     CEMBA171214_4D#AGCGATAGAAGAGGCACCTAGAGTCAGGACGT
+[1,]                                               .
+[2,]                                               .
+[3,]                                               .
+[4,]                                               .
+[5,]                                               .
+
+
+LSI-Projection Parameters$matSVD: nRows = 9599, nCols = 30
+                                                     LSI1       LSI2
+CEMBA171214_4D#AGCGATAGAACCAGGTCGAATTCCTAATCTTA -27.87573  -1.129694
+CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTAATCTTA -32.75181   4.626676
+CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTATAGCCT -23.89547 -24.651722
+CEMBA171214_4D#AGCGATAGAAGAGGCAATCTGAGTGGCTCTGA -14.31146   2.928226
+CEMBA171214_4D#AGCGATAGAAGAGGCACCTAGAGTCAGGACGT -43.34793  11.369441
+                                                       LSI3       LSI4
+CEMBA171214_4D#AGCGATAGAACCAGGTCGAATTCCTAATCTTA   1.9040190 -11.692724
+CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTAATCTTA   0.5465079  -7.313052
+CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTATAGCCT -18.6757905   1.785527
+CEMBA171214_4D#AGCGATAGAAGAGGCAATCTGAGTGGCTCTGA  -0.2942812  -1.293158
+CEMBA171214_4D#AGCGATAGAAGAGGCACCTAGAGTCAGGACGT   0.9971921  -8.179968
+                                                      LSI5
+CEMBA171214_4D#AGCGATAGAACCAGGTCGAATTCCTAATCTTA   4.420224
+CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTAATCTTA -14.611668
+CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTATAGCCT  -0.558635
+CEMBA171214_4D#AGCGATAGAAGAGGCAATCTGAGTGGCTCTGA  -3.674474
+CEMBA171214_4D#AGCGATAGAAGAGGCACCTAGAGTCAGGACGT  -1.671394
+
+
+LSI-Projection Parameters$returnModel: length = 1
+[1] FALSE
+
+
+LSI-Projection Parameters$verbose: length = 1
+[1] FALSE
+
+
+LSI-Projection Parameters$tstart: length = 0
+NULL
+
+
+LSI-Projection Parameters$logFile: length = 1
+[1] "ArchRLogs/ArchR-addIterativeLSI-4c77df44a0-Date-2020-10-02_Time-22-37-34.log"
+
+
+2020-10-02 22:50:32 : Projecting LSI, Input Matrix = 0 GB, 0 mins elapsed.
+2020-10-02 22:50:32 : Subsetting by Non-Zero features in inital Matrix, 0 mins elapsed.
+2020-10-02 22:50:32 : Binarizing Matrix, 0 mins elapsed.
+2020-10-02 22:50:32 : Computing Term Frequency, 0 mins elapsed.
+2020-10-02 22:50:32 : Computing Inverse Document Frequency, 0 mins elapsed.
+2020-10-02 22:50:32 : Computing TF-IDF Matrix, 0.001 mins elapsed.
+2020-10-02 22:50:33 : Calculating V Matrix, 0.017 mins elapsed.
+2020-10-02 22:50:33 : Computing Projected Coordinates, 0.019 mins elapsed.
+
+2020-10-02 22:50:33 : LSI-Projection Parameters, Class = list
+
+LSI-Projection Parameters$: length = 1
+                       
+1 function (name)      
+2 .Internal(args(name))
+
+
+LSI-Projection Parameters$mat: nRows = 450000, nCols = 402
+LSI-Projection Parameters$mat: NonZeroEntries = 2511853, EntryRange = [ 1 , 1 ]
+5 x 5 sparse Matrix of class "dgCMatrix"
+     CEMBA171214_4D#AGCGATAGAACCAGGTAACGAACGATAGAGGC
+[1,]                                               .
+[2,]                                               .
+[3,]                                               .
+[4,]                                               .
+[5,]                                               .
+     CEMBA171214_4D#AGCGATAGAACCAGGTAATGACGTCAGGACGT
+[1,]                                               .
+[2,]                                               .
+[3,]                                               .
+[4,]                                               .
+[5,]                                               .
+     CEMBA171214_4D#AGCGATAGAAGCAACGGAAGTATGCCTATCCT
+[1,]                                               .
+[2,]                                               .
+[3,]                                               .
+[4,]                                               .
+[5,]                                               .
+     CEMBA171214_4D#AGCGATAGACGTTCGATTACGACCTAATCTTA
+[1,]                                               .
+[2,]                                               .
+[3,]                                               .
+[4,]                                               .
+[5,]                                               .
+     CEMBA171214_4D#AGCGATAGACTCGCTAGCGTAAGAGTACTGAC
+[1,]                                               .
+[2,]                                               .
+[3,]                                               .
+[4,]                                               .
+[5,]                                               .
+
+
+LSI-Projection Parameters$matSVD: nRows = 9599, nCols = 30
+                                                     LSI1       LSI2
+CEMBA171214_4D#AGCGATAGAACCAGGTCGAATTCCTAATCTTA -27.87573  -1.129694
+CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTAATCTTA -32.75181   4.626676
+CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTATAGCCT -23.89547 -24.651722
+CEMBA171214_4D#AGCGATAGAAGAGGCAATCTGAGTGGCTCTGA -14.31146   2.928226
+CEMBA171214_4D#AGCGATAGAAGAGGCACCTAGAGTCAGGACGT -43.34793  11.369441
+                                                       LSI3       LSI4
+CEMBA171214_4D#AGCGATAGAACCAGGTCGAATTCCTAATCTTA   1.9040190 -11.692724
+CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTAATCTTA   0.5465079  -7.313052
+CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTATAGCCT -18.6757905   1.785527
+CEMBA171214_4D#AGCGATAGAAGAGGCAATCTGAGTGGCTCTGA  -0.2942812  -1.293158
+CEMBA171214_4D#AGCGATAGAAGAGGCACCTAGAGTCAGGACGT   0.9971921  -8.179968
+                                                      LSI5
+CEMBA171214_4D#AGCGATAGAACCAGGTCGAATTCCTAATCTTA   4.420224
+CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTAATCTTA -14.611668
+CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTATAGCCT  -0.558635
+CEMBA171214_4D#AGCGATAGAAGAGGCAATCTGAGTGGCTCTGA  -3.674474
+CEMBA171214_4D#AGCGATAGAAGAGGCACCTAGAGTCAGGACGT  -1.671394
+
+
+LSI-Projection Parameters$returnModel: length = 1
+[1] FALSE
+
+
+LSI-Projection Parameters$verbose: length = 1
+[1] FALSE
+
+
+LSI-Projection Parameters$tstart: length = 0
+NULL
+
+
+LSI-Projection Parameters$logFile: length = 1
+[1] "ArchRLogs/ArchR-addIterativeLSI-4c77df44a0-Date-2020-10-02_Time-22-37-34.log"
+
+
+2020-10-02 22:50:34 : Projecting LSI, Input Matrix = 0.03 GB, 0 mins elapsed.
+2020-10-02 22:50:34 : Subsetting by Non-Zero features in inital Matrix, 0 mins elapsed.
+2020-10-02 22:50:34 : Binarizing Matrix, 0.001 mins elapsed.
+2020-10-02 22:50:34 : Computing Term Frequency, 0.002 mins elapsed.
+2020-10-02 22:50:34 : Computing Inverse Document Frequency, 0.003 mins elapsed.
+2020-10-02 22:50:34 : Computing TF-IDF Matrix, 0.003 mins elapsed.
+2020-10-02 22:50:35 : Calculating V Matrix, 0.021 mins elapsed.
+2020-10-02 22:50:35 : Computing Projected Coordinates, 0.028 mins elapsed.
+2020-10-02 22:50:35 : Finished LSI (TF-IDF SVD) using irlba, 13.012 mins elapsed.
+
+2020-10-02 22:50:36 : outLSI-3, Class = SimpleList
+
+outLSI-3$matSVD: nRows = 10001, nCols = 30
+                                                     LSI1       LSI2
+CEMBA171214_4D#AGCGATAGAACCAGGTAACGAACGATAGAGGC -74.33390  19.605698
+CEMBA171214_4D#AGCGATAGAACCAGGTAATGACGTCAGGACGT -88.21495  18.092234
+CEMBA171214_4D#AGCGATAGAACCAGGTCGAATTCCTAATCTTA -27.87573  -1.129694
+CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTAATCTTA -32.75181   4.626676
+CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTATAGCCT -23.89547 -24.651722
+                                                       LSI3       LSI4
+CEMBA171214_4D#AGCGATAGAACCAGGTAACGAACGATAGAGGC   0.8443310 -20.008388
+CEMBA171214_4D#AGCGATAGAACCAGGTAATGACGTCAGGACGT   2.9990926 -18.781386
+CEMBA171214_4D#AGCGATAGAACCAGGTCGAATTCCTAATCTTA   1.9040190 -11.692724
+CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTAATCTTA   0.5465079  -7.313052
+CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTATAGCCT -18.6757905   1.785527
+                                                       LSI5
+CEMBA171214_4D#AGCGATAGAACCAGGTAACGAACGATAGAGGC -31.6182997
+CEMBA171214_4D#AGCGATAGAACCAGGTAATGACGTCAGGACGT  -0.7936451
+CEMBA171214_4D#AGCGATAGAACCAGGTCGAATTCCTAATCTTA   4.4202240
+CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTAATCTTA -14.6116679
+CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTATAGCCT  -0.5586350
+
+
+outLSI-3$rowSm: length = 450000
+[1] 29 26 41 27 36 14
+
+
+outLSI-3$nCol: length = 1
+[1] 9599
+
+
+outLSI-3$exclude: length = 0
+NULL
+
+
+outLSI-3$idx: length = 450000
+[1] 1 2 3 4 5 6
+
+
+outLSI-3$u: nRows = 450000, nCols = 30
+              [,1]          [,2]         [,3]         [,4]         [,5]
+[1,] -0.0006103644 -0.0004078481 8.134212e-04 -0.002288757  0.001846818
+[2,] -0.0005665782 -0.0003316001 6.963431e-04 -0.001877966  0.001712715
+[3,] -0.0009781082  0.0009034112 7.613176e-05 -0.001577137 -0.003710820
+[4,] -0.0006832476  0.0006294241 5.258805e-05 -0.001123082 -0.001955527
+[5,] -0.0007597769 -0.0007341490 4.345440e-04 -0.004472366  0.003618213
+
+
+outLSI-3$v: nRows = 9599, nCols = 30
+             [,1]         [,2]          [,3]         [,4]          [,5]
+[1,] -0.009799229 -0.000830291  0.0022366299 -0.016243871  0.0077313454
+[2,] -0.011513330  0.003400466  0.0006419768 -0.010159503 -0.0255570421
+[3,] -0.008400039 -0.018118269 -0.0219382434  0.002480506 -0.0009770999
+[4,] -0.005030945  0.002152157 -0.0003456888 -0.001796492 -0.0064269648
+[5,] -0.015238214  0.008356194  0.0011713904 -0.011363849 -0.0029234092
+
+
+outLSI-3$binarize: length = 1
+[1] TRUE
+
+
+outLSI-3$scaleTo: length = 1
+[1] 3000
+
+
+outLSI-3$nDimensions: length = 1
+[1] 30
+
+
+outLSI-3$LSIMethod: length = 1
+[1] 2
+
+
+outLSI-3$outliers: length = 402
+[1] "CEMBA171214_4D#AGCGATAGAACCAGGTAACGAACGATAGAGGC"
+[2] "CEMBA171214_4D#AGCGATAGAACCAGGTAATGACGTCAGGACGT"
+[3] "CEMBA171214_4D#AGCGATAGAAGCAACGGAAGTATGCCTATCCT"
+[4] "CEMBA171214_4D#AGCGATAGACGTTCGATTACGACCTAATCTTA"
+[5] "CEMBA171214_4D#AGCGATAGACTCGCTAGCGTAAGAGTACTGAC"
+[6] "CEMBA171214_4D#AGCGATAGATCTCAGGTTCTAGCTGTACTGAC"
+
+
+outLSI-3$date: length = 1
+[1] "2020-10-02"
+
+
+outLSI-3$seed: length = 1
+[1] 1
+
+
+outLSI-3$scaleDims: length = 1
+[1] TRUE
+
+
+outLSI-3$useMatrix: length = 1
+[1] "TileMatrix"
+
+
+outLSI-3$tileSize: length = 1
+[1] 500
+
+
+
+2020-10-02 22:50:36 : Cluster Params, Class = list
+
+Cluster Params$: length = 1
+                       
+1 function (name)      
+2 .Internal(args(name))
+
+
+Cluster Params$matSVD: nRows = 10001, nCols = 30
+                                                     LSI1       LSI2
+CEMBA171214_4D#AGCGATAGAACCAGGTAACGAACGATAGAGGC -74.33390  19.605698
+CEMBA171214_4D#AGCGATAGAACCAGGTAATGACGTCAGGACGT -88.21495  18.092234
+CEMBA171214_4D#AGCGATAGAACCAGGTCGAATTCCTAATCTTA -27.87573  -1.129694
+CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTAATCTTA -32.75181   4.626676
+CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTATAGCCT -23.89547 -24.651722
+                                                       LSI3       LSI4
+CEMBA171214_4D#AGCGATAGAACCAGGTAACGAACGATAGAGGC   0.8443310 -20.008388
+CEMBA171214_4D#AGCGATAGAACCAGGTAATGACGTCAGGACGT   2.9990926 -18.781386
+CEMBA171214_4D#AGCGATAGAACCAGGTCGAATTCCTAATCTTA   1.9040190 -11.692724
+CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTAATCTTA   0.5465079  -7.313052
+CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTATAGCCT -18.6757905   1.785527
+                                                       LSI5
+CEMBA171214_4D#AGCGATAGAACCAGGTAACGAACGATAGAGGC -31.6182997
+CEMBA171214_4D#AGCGATAGAACCAGGTAATGACGTCAGGACGT  -0.7936451
+CEMBA171214_4D#AGCGATAGAACCAGGTCGAATTCCTAATCTTA   4.4202240
+CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTAATCTTA -14.6116679
+CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTATAGCCT  -0.5586350
+
+
+Cluster Params$corCutOff: length = 1
+[1] 0.75
+
+
+Cluster Params$dimsToUse: length = 30
+[1] 1 2 3 4 5 6
+
+
+Cluster Params$scaleDims: length = 1
+[1] TRUE
+
+
+Cluster Params$verbose: length = 1
+[1] TRUE
+
+
+Cluster Params$j: length = 1
+[1] 3
+
+
+Cluster Params$filterBias: length = 1
+[1] TRUE
+
+
+Cluster Params$cellNames: length = 24241
+[1] "CEMBA171214_4D#ATTCAGAATCTATCCGTGCCTTACCAGGACGT"
+[2] "CEMBA171214_4D#ATTCAGAACAGAACTGTTACGACCGTACTGAC"
+[3] "CEMBA171214_4D#ATTCAGAATTAGCCTCTAAGATCCGTACTGAC"
+[4] "CEMBA171214_4D#CTGAAGCTGCAACCTAAATGACGTCCTATCCT"
+[5] "CEMBA171214_4D#GAGATTCCATAAGTCGTCCGGTAAGTACTGAC"
+[6] "CEMBA171214_4D#CTGAAGCTCGCTTGATATAGCCTTGTACTGAC"
+
+
+Cluster Params$cellDepth: length = 24241
+CEMBA171214_4D#ATTCAGAATCTATCCGTGCCTTACCAGGACGT 
+                                       4.626720 
+CEMBA171214_4D#ATTCAGAACAGAACTGTTACGACCGTACTGAC 
+                                       4.623022 
+CEMBA171214_4D#ATTCAGAATTAGCCTCTAAGATCCGTACTGAC 
+                                       4.602939 
+CEMBA171214_4D#CTGAAGCTGCAACCTAAATGACGTCCTATCCT 
+                                       4.593341 
+CEMBA171214_4D#GAGATTCCATAAGTCGTCCGGTAAGTACTGAC 
+                                       4.586013 
+CEMBA171214_4D#CTGAAGCTCGCTTGATATAGCCTTGTACTGAC 
+                                       4.582938 
+
+
+Cluster Params$tstart: length = 1
+[1] "2020-10-02 22:37:34 EDT"
+
+
+Cluster Params$logFile: length = 1
+[1] "ArchRLogs/ArchR-addIterativeLSI-4c77df44a0-Date-2020-10-02_Time-22-37-34.log"
+
+
+2020-10-02 22:50:36 : Identifying Clusters, 13.029 mins elapsed.
+
+2020-10-02 22:50:36 : addClusters Input-Parameters, Class = list
+
+addClusters Input-Parameters$: length = 1
+                       
+1 function (name)      
+2 .Internal(args(name))
+
+
+addClusters Input-Parameters$input: nRows = 10001, nCols = 30
+                                                     LSI1       LSI2       LSI3
+CEMBA171214_4D#AGCGATAGAACCAGGTAACGAACGATAGAGGC -4.446210  1.5072333  0.3182275
+CEMBA171214_4D#AGCGATAGAACCAGGTAATGACGTCAGGACGT -4.859253  1.2729269  0.4023003
+CEMBA171214_4D#AGCGATAGAACCAGGTCGAATTCCTAATCTTA -4.394270  0.1756089  0.6939550
+CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTAATCTTA -4.412732  0.8150694  0.2444120
+CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTATAGCCT -3.106669 -3.2153929 -2.3562530
+                                                      LSI4       LSI5
+CEMBA171214_4D#AGCGATAGAACCAGGTAACGAACGATAGAGGC -1.0033182 -1.7390989
+CEMBA171214_4D#AGCGATAGAACCAGGTAATGACGTCAGGACGT -0.8540759  0.1835216
+CEMBA171214_4D#AGCGATAGAACCAGGTCGAATTCCTAATCTTA -1.6292109  1.1238787
+CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTAATCTTA -0.8548360 -1.8756297
+CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTATAGCCT  0.5854029  0.2483905
+
+
+addClusters Input-Parameters$reducedDims: length = 1
+[1] "IterativeLSI"
+
+
+addClusters Input-Parameters$name: length = 1
+[1] "Clusters"
+
+
+addClusters Input-Parameters$sampleCells: length = 1
+[1] 10000
+
+
+addClusters Input-Parameters$seed: length = 1
+[1] 1
+
+
+addClusters Input-Parameters$method: length = 1
+[1] "Seurat"
+
+
+addClusters Input-Parameters$dimsToUse: length = 0
+NULL
+
+
+addClusters Input-Parameters$scaleDims: length = 0
+NULL
+
+
+addClusters Input-Parameters$corCutOff: length = 1
+[1] 0.75
+
+
+addClusters Input-Parameters$knnAssign: length = 1
+[1] 10
+
+
+addClusters Input-Parameters$nOutlier: length = 1
+[1] 5
+
+
+addClusters Input-Parameters$testBias: length = 1
+[1] TRUE
+
+
+addClusters Input-Parameters$filterBias: length = 1
+[1] TRUE
+
+
+addClusters Input-Parameters$biasClusters: length = 1
+[1] 0.01
+
+
+addClusters Input-Parameters$biasCol: length = 1
+[1] "nFrags"
+
+
+addClusters Input-Parameters$biasVals: length = 10001
+[1] 4.312537 4.292743 3.627058 3.664830 3.590842 3.052309
+
+
+addClusters Input-Parameters$biasQuantiles: length = 2
+[1] 0.05 0.95
+
+
+addClusters Input-Parameters$biasEnrich: length = 1
+[1] 10
+
+
+addClusters Input-Parameters$biasProportion: length = 1
+[1] 0.5
+
+
+addClusters Input-Parameters$biasPval: length = 1
+[1] 0.05
+
+
+addClusters Input-Parameters$nPerm: length = 1
+[1] 500
+
+
+addClusters Input-Parameters$prefix: length = 1
+[1] "C"
+
+
+addClusters Input-Parameters$ArchRProj: length = 0
+NULL
+
+
+addClusters Input-Parameters$verbose: length = 1
+[1] FALSE
+
+
+addClusters Input-Parameters$tstart: length = 0
+NULL
+
+
+addClusters Input-Parameters$force: length = 1
+[1] FALSE
+
+
+addClusters Input-Parameters$logFile: length = 1
+[1] "ArchRLogs/ArchR-addIterativeLSI-4c77df44a0-Date-2020-10-02_Time-22-37-34.log"
+
+
+addClusters Input-Parameters$...: length = 2
+[[1]]
+<promise: 0x561ce6c17c78>
+
+[[2]]
+<promise: 0x561ce6c17d58>
+
+
+
+2020-10-02 22:50:36 : Estimating Clusters by Sampling, 0 mins elapsed.
+2020-10-02 22:50:36 : Running Seurats FindClusters (Stuart et al. Cell 2019), 0 mins elapsed.
+2020-10-02 22:51:08 : Finding Nearest Clusters, 0.522 mins elapsed.
+2020-10-02 22:51:08 : Assigning Nearest Clusters, 0.522 mins elapsed.
+2020-10-02 22:51:09 : Testing Biased Clusters, 0.542 mins elapsed.
+2020-10-02 22:51:09 : Testing Outlier Clusters, 0.543 mins elapsed.
+2020-10-02 22:51:09 : Assigning Cluster Names to 13 Clusters, 0.543 mins elapsed.
+2020-10-02 22:51:09 : Finished addClusters, 0.543 mins elapsed.
+2020-10-02 22:51:09 : Identified 13 Clusters, 13.574 mins elapsed.
+
+2020-10-02 22:51:09 : clusterDF-3, Class = DFrame
+DataFrame with 10001 rows and 2 columns
+                                            cellNames    clusters
+                                          <character> <character>
+1     CEMBA171214_4D#AGCGATAGAACCAGGTAACGAACGATAGAGGC          C3
+2     CEMBA171214_4D#AGCGATAGAACCAGGTAATGACGTCAGGACGT          C3
+3     CEMBA171214_4D#AGCGATAGAACCAGGTCGAATTCCTAATCTTA          C8
+4     CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTAATCTTA          C3
+5     CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTATAGCCT         C11
+...                                               ...         ...
+9997  CEMBA180820_5E#TCCGGAGATTAGCCTCGGCTCTGACGAATTCC          C4
+9998  CEMBA180820_5E#TCCGGAGATTAGCCTCGGTTGCGTAGGATAAC          C8
+9999  CEMBA180820_5E#TCCGGAGATTCCATCCATAGAGGCCGAATTCC          C2
+10000 CEMBA180820_5E#TCCGGAGATTCCATCCATAGAGGCTTGGAAGT         C10
+10001 CEMBA180820_5E#TCCGGAGATTCCATCCCAGGACGTGGTTAGAC          C4
+
+2020-10-02 22:51:09 : Saving LSI Iteration, 13.574 mins elapsed.
+
+2020-10-02 22:51:09 : Save iteration, Class = list
+
+Save iteration$: length = 1
+                       
+1 function (name)      
+2 .Internal(args(name))
+
+
+Save iteration$matSVD: nRows = 10001, nCols = 30
+                                                     LSI1       LSI2
+CEMBA171214_4D#AGCGATAGAACCAGGTAACGAACGATAGAGGC -74.33390  19.605698
+CEMBA171214_4D#AGCGATAGAACCAGGTAATGACGTCAGGACGT -88.21495  18.092234
+CEMBA171214_4D#AGCGATAGAACCAGGTCGAATTCCTAATCTTA -27.87573  -1.129694
+CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTAATCTTA -32.75181   4.626676
+CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTATAGCCT -23.89547 -24.651722
+                                                       LSI3       LSI4
+CEMBA171214_4D#AGCGATAGAACCAGGTAACGAACGATAGAGGC   0.8443310 -20.008388
+CEMBA171214_4D#AGCGATAGAACCAGGTAATGACGTCAGGACGT   2.9990926 -18.781386
+CEMBA171214_4D#AGCGATAGAACCAGGTCGAATTCCTAATCTTA   1.9040190 -11.692724
+CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTAATCTTA   0.5465079  -7.313052
+CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTATAGCCT -18.6757905   1.785527
+                                                       LSI5
+CEMBA171214_4D#AGCGATAGAACCAGGTAACGAACGATAGAGGC -31.6182997
+CEMBA171214_4D#AGCGATAGAACCAGGTAATGACGTCAGGACGT  -0.7936451
+CEMBA171214_4D#AGCGATAGAACCAGGTCGAATTCCTAATCTTA   4.4202240
+CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTAATCTTA -14.6116679
+CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTATAGCCT  -0.5586350
+
+
+Save iteration$clusters: length = 10001
+[1] "C3"  "C3"  "C8"  "C3"  "C11" "C3" 
+
+
+Save iteration$nPlot: length = 1
+[1] 10000
+
+
+Save iteration$ArchRProj: length = 1
+class: ArchRProject 
+outputDirectory: /home/bnphan/projects/snATAC_cross_species_caudate/data/raw_data/mm10/BICCN_mouse_caudoputamen/ArchR_BICCN_caudoputamen 
+samples(4): CEMBA171214_4D CEMBA171219_4D CEMBA180813_5E CEMBA180820_5E
+sampleColData names(1): ArrowFiles
+cellColData names(18): Sample TSSEnrichment ... Region Clusters
+numberOfCells(1): 1
+medianTSS(1): 14.205
+medianFrags(1): 42336
+
+
+Save iteration$scaleDims: length = 1
+[1] TRUE
+
+
+Save iteration$corCutOff: length = 1
+[1] 0.75
+
+
+Save iteration$dimsToUse: length = 30
+[1] 1 2 3 4 5 6
+
+
+Save iteration$j: length = 1
+[1] 3
+
+
+Save iteration$threads: length = 1
+[1] 6
+
+
+Save iteration$outDir: length = 1
+[1] "/home/bnphan/projects/snATAC_cross_species_caudate/data/raw_data/mm10/BICCN_mouse_caudoputamen/ArchR_BICCN_caudoputamen/IterativeLSI"
+
+
+Save iteration$logFile: length = 1
+[1] "ArchRLogs/ArchR-addIterativeLSI-4c77df44a0-Date-2020-10-02_Time-22-37-34.log"
+
+
+2020-10-02 22:51:59 : Creating Cluster Matrix on the total Group Features, 14.408 mins elapsed.
+2020-10-02 22:53:03 : Computing Variable Features, 15.481 mins elapsed.
+###########
+2020-10-02 22:53:04 : Running LSI (4 of 6) on Variable Features, 15.491 mins elapsed.
+###########
+2020-10-02 22:53:04 : Sampling Cells (N = 10001) for Estimated LSI, 15.493 mins elapsed.
+2020-10-02 22:53:04 : Creating Sampled Partial Matrix, 15.493 mins elapsed.
+2020-10-02 22:53:35 : Computing Estimated LSI (projectAll = FALSE), 16.001 mins elapsed.
+
+2020-10-02 22:53:35 : LSI Parameters, Class = list
+
+LSI Parameters$: length = 1
+                       
+1 function (name)      
+2 .Internal(args(name))
+
+
+LSI Parameters$mat: nRows = 450000, nCols = 10001
+LSI Parameters$mat: NonZeroEntries = 28766339, EntryRange = [ 1 , 1 ]
+5 x 5 sparse Matrix of class "dgCMatrix"
+     CEMBA171214_4D#AGCGATAGAACCAGGTAATGACGTCAGGACGT
+[1,]                                               .
+[2,]                                               .
+[3,]                                               .
+[4,]                                               .
+[5,]                                               .
+     CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTATAGCCT
+[1,]                                               .
+[2,]                                               .
+[3,]                                               .
+[4,]                                               .
+[5,]                                               .
+     CEMBA171214_4D#AGCGATAGAACCAGGTGGATACTATATAGCCT
+[1,]                                               .
+[2,]                                               .
+[3,]                                               .
+[4,]                                               .
+[5,]                                               .
+     CEMBA171214_4D#AGCGATAGAACCAGGTTCCGGTAAATAGAGGC
+[1,]                                               .
+[2,]                                               .
+[3,]                                               .
+[4,]                                               .
+[5,]                                               .
+     CEMBA171214_4D#AGCGATAGAACCAGGTTTACGACCGTACTGAC
+[1,]                                               .
+[2,]                                               .
+[3,]                                               .
+[4,]                                               .
+[5,]                                               .
+
+
+LSI Parameters$LSIMethod: length = 1
+[1] 2
+
+
+LSI Parameters$scaleTo: length = 1
+[1] 3000
+
+
+LSI Parameters$nDimensions: length = 1
+[1] 30
+
+
+LSI Parameters$binarize: length = 1
+[1] TRUE
+
+
+LSI Parameters$outlierQuantiles: length = 2
+[1] 0.02 0.98
+
+
+LSI Parameters$seed: length = 1
+[1] 1
+
+
+LSI Parameters$verbose: length = 1
+[1] FALSE
+
+
+LSI Parameters$tstart: length = 1
+[1] "2020-10-02 22:37:34 EDT"
+
+
+LSI Parameters$logFile: length = 1
+[1] "ArchRLogs/ArchR-addIterativeLSI-4c77df44a0-Date-2020-10-02_Time-22-37-34.log"
+
+
+2020-10-02 22:53:35 : Running LSI, Input Matrix = 0.346 GB, 16.01 mins elapsed.
+2020-10-02 22:53:35 : Binarizing Matrix, 16.01 mins elapsed.
+2020-10-02 22:53:36 : Computing Term Frequency, 16.018 mins elapsed.
+2020-10-02 22:53:36 : Filtering Outliers Based On Counts, 16.022 mins elapsed.
+2020-10-02 22:53:36 : Removing 0 Sum Rows, 16.031 mins elapsed.
+2020-10-02 22:53:41 : Computing Inverse Document Frequency, 16.101 mins elapsed.
+2020-10-02 22:53:44 : Computing SVD using irlba, 16.153 mins elapsed.
+2020-10-02 22:55:42 : Projecting Outliers with LSI-Projection (Granja* et al 2019), 18.126 mins elapsed.
+
+2020-10-02 22:55:42 : LSI-Projection Parameters, Class = list
+
+LSI-Projection Parameters$: length = 1
+                       
+1 function (name)      
+2 .Internal(args(name))
+
+
+LSI-Projection Parameters$mat: nRows = 450000, nCols = 10
+LSI-Projection Parameters$mat: NonZeroEntries = 43390, EntryRange = [ 1 , 1 ]
+5 x 5 sparse Matrix of class "dgCMatrix"
+     CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTATAGCCT
+[1,]                                               .
+[2,]                                               .
+[3,]                                               .
+[4,]                                               .
+[5,]                                               .
+     CEMBA171214_4D#AGCGATAGAACCAGGTGGATACTATATAGCCT
+[1,]                                               .
+[2,]                                               .
+[3,]                                               .
+[4,]                                               .
+[5,]                                               .
+     CEMBA171214_4D#AGCGATAGAACCAGGTTCCGGTAAATAGAGGC
+[1,]                                               .
+[2,]                                               .
+[3,]                                               .
+[4,]                                               .
+[5,]                                               .
+     CEMBA171214_4D#AGCGATAGAACCAGGTTTACGACCGTACTGAC
+[1,]                                               .
+[2,]                                               .
+[3,]                                               .
+[4,]                                               .
+[5,]                                               .
+     CEMBA171214_4D#AGCGATAGAACCAGGTTTGGAAGTAGGCGAAG
+[1,]                                               .
+[2,]                                               .
+[3,]                                               .
+[4,]                                               .
+[5,]                                               .
+
+
+LSI-Projection Parameters$matSVD: nRows = 9597, nCols = 30
+                                                     LSI1       LSI2
+CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTATAGCCT -23.84115 -24.842605
+CEMBA171214_4D#AGCGATAGAACCAGGTGGATACTATATAGCCT -63.42570  12.792078
+CEMBA171214_4D#AGCGATAGAACCAGGTTCCGGTAAATAGAGGC -40.17414   7.831588
+CEMBA171214_4D#AGCGATAGAACCAGGTTTACGACCGTACTGAC -60.76586  16.750066
+CEMBA171214_4D#AGCGATAGAACCAGGTTTGGAAGTAGGCGAAG -32.12124 -33.357609
+                                                       LSI3       LSI4
+CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTATAGCCT -17.6235075 -1.4893554
+CEMBA171214_4D#AGCGATAGAACCAGGTGGATACTATATAGCCT   1.8438846 13.3676257
+CEMBA171214_4D#AGCGATAGAACCAGGTTCCGGTAAATAGAGGC   1.2789830  8.5828557
+CEMBA171214_4D#AGCGATAGAACCAGGTTTACGACCGTACTGAC  -0.6290018 -4.1547547
+CEMBA171214_4D#AGCGATAGAACCAGGTTTGGAAGTAGGCGAAG   3.6661340 -0.8833551
+                                                      LSI5
+CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTATAGCCT  0.3498323
+CEMBA171214_4D#AGCGATAGAACCAGGTGGATACTATATAGCCT  8.9030268
+CEMBA171214_4D#AGCGATAGAACCAGGTTCCGGTAAATAGAGGC  1.0940114
+CEMBA171214_4D#AGCGATAGAACCAGGTTTACGACCGTACTGAC  2.3636698
+CEMBA171214_4D#AGCGATAGAACCAGGTTTGGAAGTAGGCGAAG -3.5285022
+
+
+LSI-Projection Parameters$returnModel: length = 1
+[1] FALSE
+
+
+LSI-Projection Parameters$verbose: length = 1
+[1] FALSE
+
+
+LSI-Projection Parameters$tstart: length = 0
+NULL
+
+
+LSI-Projection Parameters$logFile: length = 1
+[1] "ArchRLogs/ArchR-addIterativeLSI-4c77df44a0-Date-2020-10-02_Time-22-37-34.log"
+
+
+2020-10-02 22:55:42 : Projecting LSI, Input Matrix = 0.001 GB, 0 mins elapsed.
+2020-10-02 22:55:42 : Subsetting by Non-Zero features in inital Matrix, 0 mins elapsed.
+2020-10-02 22:55:42 : Binarizing Matrix, 0 mins elapsed.
+2020-10-02 22:55:42 : Computing Term Frequency, 0 mins elapsed.
+2020-10-02 22:55:42 : Computing Inverse Document Frequency, 0 mins elapsed.
+2020-10-02 22:55:42 : Computing TF-IDF Matrix, 0.001 mins elapsed.
+2020-10-02 22:55:43 : Calculating V Matrix, 0.019 mins elapsed.
+2020-10-02 22:55:43 : Computing Projected Coordinates, 0.02 mins elapsed.
+
+2020-10-02 22:55:43 : LSI-Projection Parameters, Class = list
+
+LSI-Projection Parameters$: length = 1
+                       
+1 function (name)      
+2 .Internal(args(name))
+
+
+LSI-Projection Parameters$mat: nRows = 450000, nCols = 404
+LSI-Projection Parameters$mat: NonZeroEntries = 2527247, EntryRange = [ 1 , 1 ]
+5 x 5 sparse Matrix of class "dgCMatrix"
+     CEMBA171214_4D#AGCGATAGAACCAGGTAATGACGTCAGGACGT
+[1,]                                               .
+[2,]                                               .
+[3,]                                               .
+[4,]                                               .
+[5,]                                               .
+     CEMBA171214_4D#AGCGATAGAAGAGGCACTCTCTATATAGAGGC
+[1,]                                               .
+[2,]                                               .
+[3,]                                               .
+[4,]                                               .
+[5,]                                               .
+     CEMBA171214_4D#AGCGATAGAAGCAACGTGCCTTACATAGAGGC
+[1,]                                               .
+[2,]                                               .
+[3,]                                               .
+[4,]                                               .
+[5,]                                               .
+     CEMBA171214_4D#AGCGATAGACGTTCGATTACGACCTAATCTTA
+[1,]                                               .
+[2,]                                               .
+[3,]                                               .
+[4,]                                               .
+[5,]                                               .
+     CEMBA171214_4D#AGCGATAGATAAGTCGTTACGACCGTACTGAC
+[1,]                                               .
+[2,]                                               .
+[3,]                                               .
+[4,]                                               .
+[5,]                                               .
+
+
+LSI-Projection Parameters$matSVD: nRows = 9597, nCols = 30
+                                                     LSI1       LSI2
+CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTATAGCCT -23.84115 -24.842605
+CEMBA171214_4D#AGCGATAGAACCAGGTGGATACTATATAGCCT -63.42570  12.792078
+CEMBA171214_4D#AGCGATAGAACCAGGTTCCGGTAAATAGAGGC -40.17414   7.831588
+CEMBA171214_4D#AGCGATAGAACCAGGTTTACGACCGTACTGAC -60.76586  16.750066
+CEMBA171214_4D#AGCGATAGAACCAGGTTTGGAAGTAGGCGAAG -32.12124 -33.357609
+                                                       LSI3       LSI4
+CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTATAGCCT -17.6235075 -1.4893554
+CEMBA171214_4D#AGCGATAGAACCAGGTGGATACTATATAGCCT   1.8438846 13.3676257
+CEMBA171214_4D#AGCGATAGAACCAGGTTCCGGTAAATAGAGGC   1.2789830  8.5828557
+CEMBA171214_4D#AGCGATAGAACCAGGTTTACGACCGTACTGAC  -0.6290018 -4.1547547
+CEMBA171214_4D#AGCGATAGAACCAGGTTTGGAAGTAGGCGAAG   3.6661340 -0.8833551
+                                                      LSI5
+CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTATAGCCT  0.3498323
+CEMBA171214_4D#AGCGATAGAACCAGGTGGATACTATATAGCCT  8.9030268
+CEMBA171214_4D#AGCGATAGAACCAGGTTCCGGTAAATAGAGGC  1.0940114
+CEMBA171214_4D#AGCGATAGAACCAGGTTTACGACCGTACTGAC  2.3636698
+CEMBA171214_4D#AGCGATAGAACCAGGTTTGGAAGTAGGCGAAG -3.5285022
+
+
+LSI-Projection Parameters$returnModel: length = 1
+[1] FALSE
+
+
+LSI-Projection Parameters$verbose: length = 1
+[1] FALSE
+
+
+LSI-Projection Parameters$tstart: length = 0
+NULL
+
+
+LSI-Projection Parameters$logFile: length = 1
+[1] "ArchRLogs/ArchR-addIterativeLSI-4c77df44a0-Date-2020-10-02_Time-22-37-34.log"
+
+
+2020-10-02 22:55:43 : Projecting LSI, Input Matrix = 0.03 GB, 0 mins elapsed.
+2020-10-02 22:55:43 : Subsetting by Non-Zero features in inital Matrix, 0 mins elapsed.
+2020-10-02 22:55:43 : Binarizing Matrix, 0.001 mins elapsed.
+2020-10-02 22:55:43 : Computing Term Frequency, 0.002 mins elapsed.
+2020-10-02 22:55:44 : Computing Inverse Document Frequency, 0.003 mins elapsed.
+2020-10-02 22:55:44 : Computing TF-IDF Matrix, 0.004 mins elapsed.
+2020-10-02 22:55:45 : Calculating V Matrix, 0.02 mins elapsed.
+2020-10-02 22:55:45 : Computing Projected Coordinates, 0.027 mins elapsed.
+2020-10-02 22:55:45 : Finished LSI (TF-IDF SVD) using irlba, 18.175 mins elapsed.
+
+2020-10-02 22:55:46 : outLSI-4, Class = SimpleList
+
+outLSI-4$matSVD: nRows = 10001, nCols = 30
+                                                     LSI1       LSI2
+CEMBA171214_4D#AGCGATAGAACCAGGTAATGACGTCAGGACGT -88.19661  17.942044
+CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTATAGCCT -23.84115 -24.842605
+CEMBA171214_4D#AGCGATAGAACCAGGTGGATACTATATAGCCT -63.42570  12.792078
+CEMBA171214_4D#AGCGATAGAACCAGGTTCCGGTAAATAGAGGC -40.17414   7.831588
+CEMBA171214_4D#AGCGATAGAACCAGGTTTACGACCGTACTGAC -60.76586  16.750066
+                                                       LSI3      LSI4      LSI5
+CEMBA171214_4D#AGCGATAGAACCAGGTAATGACGTCAGGACGT   3.1825053 19.363769 1.5197749
+CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTATAGCCT -17.6235075 -1.489355 0.3498323
+CEMBA171214_4D#AGCGATAGAACCAGGTGGATACTATATAGCCT   1.8438846 13.367626 8.9030268
+CEMBA171214_4D#AGCGATAGAACCAGGTTCCGGTAAATAGAGGC   1.2789830  8.582856 1.0940114
+CEMBA171214_4D#AGCGATAGAACCAGGTTTACGACCGTACTGAC  -0.6290018 -4.154755 2.3636698
+
+
+outLSI-4$rowSm: length = 450000
+[1] 21 34 38 40 30 22
+
+
+outLSI-4$nCol: length = 1
+[1] 9597
+
+
+outLSI-4$exclude: length = 0
+NULL
+
+
+outLSI-4$idx: length = 450000
+[1] 1 2 3 4 5 6
+
+
+outLSI-4$u: nRows = 450000, nCols = 30
+              [,1]          [,2]          [,3]          [,4]          [,5]
+[1,] -0.0005317760  0.0004595384  3.439831e-05 -0.0002956778  0.0004245497
+[2,] -0.0007053440 -0.0004646440  7.032081e-04  0.0030440275 -0.0021472588
+[3,] -0.0007320772 -0.0004134834  7.439045e-04  0.0034912015 -0.0029288817
+[4,] -0.0008975151  0.0005816794 -1.013671e-04  0.0020839556  0.0036134996
+[5,] -0.0007053276  0.0004202634 -1.419122e-04  0.0016547354  0.0026114423
+
+
+outLSI-4$v: nRows = 9597, nCols = 30
+             [,1]         [,2]          [,3]         [,4]          [,5]
+[1,] -0.008383476 -0.018237497 -0.0207568389 -0.002098679  0.0006204336
+[2,] -0.022302942  0.009390943  0.0021717139  0.018836571  0.0157896694
+[3,] -0.014126791  0.005749339  0.0015063769  0.012094262  0.0019402478
+[4,] -0.021367640  0.012296588 -0.0007408338 -0.005854543  0.0041920086
+[5,] -0.011295077 -0.024488547  0.0043179459 -0.001244752 -0.0062578586
+
+
+outLSI-4$binarize: length = 1
+[1] TRUE
+
+
+outLSI-4$scaleTo: length = 1
+[1] 3000
+
+
+outLSI-4$nDimensions: length = 1
+[1] 30
+
+
+outLSI-4$LSIMethod: length = 1
+[1] 2
+
+
+outLSI-4$outliers: length = 404
+[1] "CEMBA171214_4D#AGCGATAGAACCAGGTAATGACGTCAGGACGT"
+[2] "CEMBA171214_4D#AGCGATAGAAGAGGCACTCTCTATATAGAGGC"
+[3] "CEMBA171214_4D#AGCGATAGAAGCAACGTGCCTTACATAGAGGC"
+[4] "CEMBA171214_4D#AGCGATAGACGTTCGATTACGACCTAATCTTA"
+[5] "CEMBA171214_4D#AGCGATAGATAAGTCGTTACGACCGTACTGAC"
+[6] "CEMBA171214_4D#AGCGATAGATCTCAGGACTGCATACAGGACGT"
+
+
+outLSI-4$date: length = 1
+[1] "2020-10-02"
+
+
+outLSI-4$seed: length = 1
+[1] 1
+
+
+outLSI-4$scaleDims: length = 1
+[1] TRUE
+
+
+outLSI-4$useMatrix: length = 1
+[1] "TileMatrix"
+
+
+outLSI-4$tileSize: length = 1
+[1] 500
+
+
+
+2020-10-02 22:55:46 : Cluster Params, Class = list
+
+Cluster Params$: length = 1
+                       
+1 function (name)      
+2 .Internal(args(name))
+
+
+Cluster Params$matSVD: nRows = 10001, nCols = 30
+                                                     LSI1       LSI2
+CEMBA171214_4D#AGCGATAGAACCAGGTAATGACGTCAGGACGT -88.19661  17.942044
+CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTATAGCCT -23.84115 -24.842605
+CEMBA171214_4D#AGCGATAGAACCAGGTGGATACTATATAGCCT -63.42570  12.792078
+CEMBA171214_4D#AGCGATAGAACCAGGTTCCGGTAAATAGAGGC -40.17414   7.831588
+CEMBA171214_4D#AGCGATAGAACCAGGTTTACGACCGTACTGAC -60.76586  16.750066
+                                                       LSI3      LSI4      LSI5
+CEMBA171214_4D#AGCGATAGAACCAGGTAATGACGTCAGGACGT   3.1825053 19.363769 1.5197749
+CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTATAGCCT -17.6235075 -1.489355 0.3498323
+CEMBA171214_4D#AGCGATAGAACCAGGTGGATACTATATAGCCT   1.8438846 13.367626 8.9030268
+CEMBA171214_4D#AGCGATAGAACCAGGTTCCGGTAAATAGAGGC   1.2789830  8.582856 1.0940114
+CEMBA171214_4D#AGCGATAGAACCAGGTTTACGACCGTACTGAC  -0.6290018 -4.154755 2.3636698
+
+
+Cluster Params$corCutOff: length = 1
+[1] 0.75
+
+
+Cluster Params$dimsToUse: length = 30
+[1] 1 2 3 4 5 6
+
+
+Cluster Params$scaleDims: length = 1
+[1] TRUE
+
+
+Cluster Params$verbose: length = 1
+[1] TRUE
+
+
+Cluster Params$j: length = 1
+[1] 4
+
+
+Cluster Params$filterBias: length = 1
+[1] TRUE
+
+
+Cluster Params$cellNames: length = 24241
+[1] "CEMBA171214_4D#ATTCAGAATCTATCCGTGCCTTACCAGGACGT"
+[2] "CEMBA171214_4D#ATTCAGAACAGAACTGTTACGACCGTACTGAC"
+[3] "CEMBA171214_4D#ATTCAGAATTAGCCTCTAAGATCCGTACTGAC"
+[4] "CEMBA171214_4D#CTGAAGCTGCAACCTAAATGACGTCCTATCCT"
+[5] "CEMBA171214_4D#GAGATTCCATAAGTCGTCCGGTAAGTACTGAC"
+[6] "CEMBA171214_4D#CTGAAGCTCGCTTGATATAGCCTTGTACTGAC"
+
+
+Cluster Params$cellDepth: length = 24241
+CEMBA171214_4D#ATTCAGAATCTATCCGTGCCTTACCAGGACGT 
+                                       4.626720 
+CEMBA171214_4D#ATTCAGAACAGAACTGTTACGACCGTACTGAC 
+                                       4.623022 
+CEMBA171214_4D#ATTCAGAATTAGCCTCTAAGATCCGTACTGAC 
+                                       4.602939 
+CEMBA171214_4D#CTGAAGCTGCAACCTAAATGACGTCCTATCCT 
+                                       4.593341 
+CEMBA171214_4D#GAGATTCCATAAGTCGTCCGGTAAGTACTGAC 
+                                       4.586013 
+CEMBA171214_4D#CTGAAGCTCGCTTGATATAGCCTTGTACTGAC 
+                                       4.582938 
+
+
+Cluster Params$tstart: length = 1
+[1] "2020-10-02 22:37:34 EDT"
+
+
+Cluster Params$logFile: length = 1
+[1] "ArchRLogs/ArchR-addIterativeLSI-4c77df44a0-Date-2020-10-02_Time-22-37-34.log"
+
+
+2020-10-02 22:55:46 : Identifying Clusters, 18.192 mins elapsed.
+
+2020-10-02 22:55:46 : addClusters Input-Parameters, Class = list
+
+addClusters Input-Parameters$: length = 1
+                       
+1 function (name)      
+2 .Internal(args(name))
+
+
+addClusters Input-Parameters$input: nRows = 10001, nCols = 30
+                                                     LSI1       LSI2
+CEMBA171214_4D#AGCGATAGAACCAGGTAATGACGTCAGGACGT -4.903310  1.0675553
+CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTATAGCCT -3.140528 -3.2880416
+CEMBA171214_4D#AGCGATAGAACCAGGTGGATACTATATAGCCT -3.532692  0.8402517
+CEMBA171214_4D#AGCGATAGAACCAGGTTCCGGTAAATAGAGGC -3.977070  1.0370714
+CEMBA171214_4D#AGCGATAGAACCAGGTTTACGACCGTACTGAC -4.694843  1.4815816
+                                                       LSI3       LSI4
+CEMBA171214_4D#AGCGATAGAACCAGGTAATGACGTCAGGACGT  0.23725254  1.1475349
+CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTATAGCCT -2.22466971  0.1518883
+CEMBA171214_4D#AGCGATAGAACCAGGTGGATACTATATAGCCT  0.21210638  0.8732733
+CEMBA171214_4D#AGCGATAGAACCAGGTTCCGGTAAATAGAGGC  0.35265973  1.1155405
+CEMBA171214_4D#AGCGATAGAACCAGGTTTACGACCGTACTGAC  0.09682732 -0.1841027
+                                                     LSI5
+CEMBA171214_4D#AGCGATAGAACCAGGTAATGACGTCAGGACGT 0.1437151
+CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTATAGCCT 0.4228004
+CEMBA171214_4D#AGCGATAGAACCAGGTGGATACTATATAGCCT 0.6171200
+CEMBA171214_4D#AGCGATAGAACCAGGTTCCGGTAAATAGAGGC 0.3333397
+CEMBA171214_4D#AGCGATAGAACCAGGTTTACGACCGTACTGAC 0.3352817
+
+
+addClusters Input-Parameters$reducedDims: length = 1
+[1] "IterativeLSI"
+
+
+addClusters Input-Parameters$name: length = 1
+[1] "Clusters"
+
+
+addClusters Input-Parameters$sampleCells: length = 1
+[1] 10000
+
+
+addClusters Input-Parameters$seed: length = 1
+[1] 1
+
+
+addClusters Input-Parameters$method: length = 1
+[1] "Seurat"
+
+
+addClusters Input-Parameters$dimsToUse: length = 0
+NULL
+
+
+addClusters Input-Parameters$scaleDims: length = 0
+NULL
+
+
+addClusters Input-Parameters$corCutOff: length = 1
+[1] 0.75
+
+
+addClusters Input-Parameters$knnAssign: length = 1
+[1] 10
+
+
+addClusters Input-Parameters$nOutlier: length = 1
+[1] 5
+
+
+addClusters Input-Parameters$testBias: length = 1
+[1] TRUE
+
+
+addClusters Input-Parameters$filterBias: length = 1
+[1] TRUE
+
+
+addClusters Input-Parameters$biasClusters: length = 1
+[1] 0.01
+
+
+addClusters Input-Parameters$biasCol: length = 1
+[1] "nFrags"
+
+
+addClusters Input-Parameters$biasVals: length = 10001
+[1] 4.292743 3.590842 4.069335 3.885757 3.970951 3.606919
+
+
+addClusters Input-Parameters$biasQuantiles: length = 2
+[1] 0.05 0.95
+
+
+addClusters Input-Parameters$biasEnrich: length = 1
+[1] 10
+
+
+addClusters Input-Parameters$biasProportion: length = 1
+[1] 0.5
+
+
+addClusters Input-Parameters$biasPval: length = 1
+[1] 0.05
+
+
+addClusters Input-Parameters$nPerm: length = 1
+[1] 500
+
+
+addClusters Input-Parameters$prefix: length = 1
+[1] "C"
+
+
+addClusters Input-Parameters$ArchRProj: length = 0
+NULL
+
+
+addClusters Input-Parameters$verbose: length = 1
+[1] FALSE
+
+
+addClusters Input-Parameters$tstart: length = 0
+NULL
+
+
+addClusters Input-Parameters$force: length = 1
+[1] FALSE
+
+
+addClusters Input-Parameters$logFile: length = 1
+[1] "ArchRLogs/ArchR-addIterativeLSI-4c77df44a0-Date-2020-10-02_Time-22-37-34.log"
+
+
+addClusters Input-Parameters$...: length = 2
+[[1]]
+<promise: 0x561ce6c1c938>
+
+[[2]]
+<promise: 0x561ce6c1ca18>
+
+
+
+2020-10-02 22:55:46 : Estimating Clusters by Sampling, 0 mins elapsed.
+2020-10-02 22:55:46 : Running Seurats FindClusters (Stuart et al. Cell 2019), 0 mins elapsed.
+2020-10-02 22:56:17 : Finding Nearest Clusters, 0.511 mins elapsed.
+2020-10-02 22:56:17 : Assigning Nearest Clusters, 0.511 mins elapsed.
+2020-10-02 22:56:18 : Testing Biased Clusters, 0.529 mins elapsed.
+2020-10-02 22:56:18 : Testing Outlier Clusters, 0.529 mins elapsed.
+2020-10-02 22:56:18 : Assigning Cluster Names to 12 Clusters, 0.529 mins elapsed.
+2020-10-02 22:56:18 : Finished addClusters, 0.529 mins elapsed.
+2020-10-02 22:56:18 : Identified 12 Clusters, 18.724 mins elapsed.
+
+2020-10-02 22:56:18 : clusterDF-4, Class = DFrame
+DataFrame with 10001 rows and 2 columns
+                                            cellNames    clusters
+                                          <character> <character>
+1     CEMBA171214_4D#AGCGATAGAACCAGGTAATGACGTCAGGACGT          C2
+2     CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTATAGCCT         C10
+3     CEMBA171214_4D#AGCGATAGAACCAGGTGGATACTATATAGCCT          C2
+4     CEMBA171214_4D#AGCGATAGAACCAGGTTCCGGTAAATAGAGGC          C2
+5     CEMBA171214_4D#AGCGATAGAACCAGGTTTACGACCGTACTGAC          C2
+...                                               ...         ...
+9997  CEMBA180820_5E#TCCGGAGATTCCATCCATAGAGGCCGAATTCC          C1
+9998  CEMBA180820_5E#TCCGGAGATTCCATCCCAGGACGTGGTTAGAC          C3
+9999  CEMBA180820_5E#TCCGGAGATTCCATCCGGTTGCGTATTCGTTG          C3
+10000 CEMBA180820_5E#TCCGGAGATTCCATCCTATAGCCTAACGAACG          C3
+10001 CEMBA180820_5E#TCCGGAGATTCCATCCTATAGCCTATAGCCTT          C3
+
+2020-10-02 22:56:18 : Saving LSI Iteration, 18.724 mins elapsed.
+
+2020-10-02 22:56:18 : Save iteration, Class = list
+
+Save iteration$: length = 1
+                       
+1 function (name)      
+2 .Internal(args(name))
+
+
+Save iteration$matSVD: nRows = 10001, nCols = 30
+                                                     LSI1       LSI2
+CEMBA171214_4D#AGCGATAGAACCAGGTAATGACGTCAGGACGT -88.19661  17.942044
+CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTATAGCCT -23.84115 -24.842605
+CEMBA171214_4D#AGCGATAGAACCAGGTGGATACTATATAGCCT -63.42570  12.792078
+CEMBA171214_4D#AGCGATAGAACCAGGTTCCGGTAAATAGAGGC -40.17414   7.831588
+CEMBA171214_4D#AGCGATAGAACCAGGTTTACGACCGTACTGAC -60.76586  16.750066
+                                                       LSI3      LSI4      LSI5
+CEMBA171214_4D#AGCGATAGAACCAGGTAATGACGTCAGGACGT   3.1825053 19.363769 1.5197749
+CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTATAGCCT -17.6235075 -1.489355 0.3498323
+CEMBA171214_4D#AGCGATAGAACCAGGTGGATACTATATAGCCT   1.8438846 13.367626 8.9030268
+CEMBA171214_4D#AGCGATAGAACCAGGTTCCGGTAAATAGAGGC   1.2789830  8.582856 1.0940114
+CEMBA171214_4D#AGCGATAGAACCAGGTTTACGACCGTACTGAC  -0.6290018 -4.154755 2.3636698
+
+
+Save iteration$clusters: length = 10001
+[1] "C2"  "C10" "C2"  "C2"  "C2"  "C11"
+
+
+Save iteration$nPlot: length = 1
+[1] 10000
+
+
+Save iteration$ArchRProj: length = 1
+class: ArchRProject 
+outputDirectory: /home/bnphan/projects/snATAC_cross_species_caudate/data/raw_data/mm10/BICCN_mouse_caudoputamen/ArchR_BICCN_caudoputamen 
+samples(4): CEMBA171214_4D CEMBA171219_4D CEMBA180813_5E CEMBA180820_5E
+sampleColData names(1): ArrowFiles
+cellColData names(18): Sample TSSEnrichment ... Region Clusters
+numberOfCells(1): 1
+medianTSS(1): 14.205
+medianFrags(1): 42336
+
+
+Save iteration$scaleDims: length = 1
+[1] TRUE
+
+
+Save iteration$corCutOff: length = 1
+[1] 0.75
+
+
+Save iteration$dimsToUse: length = 30
+[1] 1 2 3 4 5 6
+
+
+Save iteration$j: length = 1
+[1] 4
+
+
+Save iteration$threads: length = 1
+[1] 6
+
+
+Save iteration$outDir: length = 1
+[1] "/home/bnphan/projects/snATAC_cross_species_caudate/data/raw_data/mm10/BICCN_mouse_caudoputamen/ArchR_BICCN_caudoputamen/IterativeLSI"
+
+
+Save iteration$logFile: length = 1
+[1] "ArchRLogs/ArchR-addIterativeLSI-4c77df44a0-Date-2020-10-02_Time-22-37-34.log"
+
+
+2020-10-02 22:57:08 : Creating Cluster Matrix on the total Group Features, 19.552 mins elapsed.
+2020-10-02 22:58:14 : Computing Variable Features, 20.652 mins elapsed.
+###########
+2020-10-02 22:58:14 : Running LSI (5 of 6) on Variable Features, 20.662 mins elapsed.
+###########
+2020-10-02 22:58:14 : Sampling Cells (N = 10001) for Estimated LSI, 20.664 mins elapsed.
+2020-10-02 22:58:14 : Creating Sampled Partial Matrix, 20.664 mins elapsed.
+2020-10-02 22:58:44 : Computing Estimated LSI (projectAll = FALSE), 21.152 mins elapsed.
+
+2020-10-02 22:58:44 : LSI Parameters, Class = list
+
+LSI Parameters$: length = 1
+                       
+1 function (name)      
+2 .Internal(args(name))
+
+
+LSI Parameters$mat: nRows = 450000, nCols = 10001
+LSI Parameters$mat: NonZeroEntries = 29033309, EntryRange = [ 1 , 1 ]
+5 x 5 sparse Matrix of class "dgCMatrix"
+     CEMBA171214_4D#AGCGATAGAACCAGGTATTCGTTGCAGGACGT
+[1,]                                               .
+[2,]                                               .
+[3,]                                               .
+[4,]                                               .
+[5,]                                               .
+     CEMBA171214_4D#AGCGATAGAACCAGGTCGAATTCCTAATCTTA
+[1,]                                               .
+[2,]                                               .
+[3,]                                               .
+[4,]                                               .
+[5,]                                               .
+     CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTAATCTTA
+[1,]                                               .
+[2,]                                               .
+[3,]                                               .
+[4,]                                               .
+[5,]                                               .
+     CEMBA171214_4D#AGCGATAGAACCAGGTGGATACTATATAGCCT
+[1,]                                               .
+[2,]                                               .
+[3,]                                               .
+[4,]                                               .
+[5,]                                               .
+     CEMBA171214_4D#AGCGATAGAACCAGGTTCCGGTAAATAGAGGC
+[1,]                                               .
+[2,]                                               .
+[3,]                                               .
+[4,]                                               .
+[5,]                                               .
+
+
+LSI Parameters$LSIMethod: length = 1
+[1] 2
+
+
+LSI Parameters$scaleTo: length = 1
+[1] 3000
+
+
+LSI Parameters$nDimensions: length = 1
+[1] 30
+
+
+LSI Parameters$binarize: length = 1
+[1] TRUE
+
+
+LSI Parameters$outlierQuantiles: length = 2
+[1] 0.02 0.98
+
+
+LSI Parameters$seed: length = 1
+[1] 1
+
+
+LSI Parameters$verbose: length = 1
+[1] FALSE
+
+
+LSI Parameters$tstart: length = 1
+[1] "2020-10-02 22:37:34 EDT"
+
+
+LSI Parameters$logFile: length = 1
+[1] "ArchRLogs/ArchR-addIterativeLSI-4c77df44a0-Date-2020-10-02_Time-22-37-34.log"
+
+
+2020-10-02 22:58:44 : Running LSI, Input Matrix = 0.349 GB, 21.161 mins elapsed.
+2020-10-02 22:58:44 : Binarizing Matrix, 21.161 mins elapsed.
+2020-10-02 22:58:45 : Computing Term Frequency, 21.169 mins elapsed.
+2020-10-02 22:58:45 : Filtering Outliers Based On Counts, 21.172 mins elapsed.
+2020-10-02 22:58:45 : Removing 0 Sum Rows, 21.18 mins elapsed.
+2020-10-02 22:58:49 : Computing Inverse Document Frequency, 21.243 mins elapsed.
+2020-10-02 22:58:53 : Computing SVD using irlba, 21.304 mins elapsed.
+2020-10-02 23:00:43 : Projecting Outliers with LSI-Projection (Granja* et al 2019), 23.145 mins elapsed.
+
+2020-10-02 23:00:43 : LSI-Projection Parameters, Class = list
+
+LSI-Projection Parameters$: length = 1
+                       
+1 function (name)      
+2 .Internal(args(name))
+
+
+LSI-Projection Parameters$mat: nRows = 450000, nCols = 10
+LSI-Projection Parameters$mat: NonZeroEntries = 37667, EntryRange = [ 1 , 1 ]
+5 x 5 sparse Matrix of class "dgCMatrix"
+     CEMBA171214_4D#AGCGATAGAACCAGGTCGAATTCCTAATCTTA
+[1,]                                               .
+[2,]                                               .
+[3,]                                               .
+[4,]                                               .
+[5,]                                               .
+     CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTAATCTTA
+[1,]                                               .
+[2,]                                               .
+[3,]                                               .
+[4,]                                               .
+[5,]                                               .
+     CEMBA171214_4D#AGCGATAGAACCAGGTGGATACTATATAGCCT
+[1,]                                               .
+[2,]                                               .
+[3,]                                               .
+[4,]                                               .
+[5,]                                               .
+     CEMBA171214_4D#AGCGATAGAACCAGGTTCCGGTAAATAGAGGC
+[1,]                                               .
+[2,]                                               .
+[3,]                                               .
+[4,]                                               .
+[5,]                                               .
+     CEMBA171214_4D#AGCGATAGAACCAGGTTTACGACCGTACTGAC
+[1,]                                               .
+[2,]                                               .
+[3,]                                               .
+[4,]                                               .
+[5,]                                               .
+
+
+LSI-Projection Parameters$matSVD: nRows = 9596, nCols = 30
+                                                     LSI1      LSI2       LSI3
+CEMBA171214_4D#AGCGATAGAACCAGGTCGAATTCCTAATCTTA -27.73192 -1.247803 -1.6810487
+CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTAATCTTA -32.66091  4.557351 -0.4580118
+CEMBA171214_4D#AGCGATAGAACCAGGTGGATACTATATAGCCT -63.25055 13.074126 -1.4537163
+CEMBA171214_4D#AGCGATAGAACCAGGTTCCGGTAAATAGAGGC -40.08255  7.939409 -1.0316158
+CEMBA171214_4D#AGCGATAGAACCAGGTTTACGACCGTACTGAC -60.58216 16.969052  0.1952442
+                                                     LSI4        LSI5
+CEMBA171214_4D#AGCGATAGAACCAGGTCGAATTCCTAATCTTA 12.124336   3.4412570
+CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTAATCTTA  7.086754 -14.0266419
+CEMBA171214_4D#AGCGATAGAACCAGGTGGATACTATATAGCCT 13.120768  -8.0643077
+CEMBA171214_4D#AGCGATAGAACCAGGTTCCGGTAAATAGAGGC  8.213804  -0.5052733
+CEMBA171214_4D#AGCGATAGAACCAGGTTTACGACCGTACTGAC -4.196390  -2.7709301
+
+
+LSI-Projection Parameters$returnModel: length = 1
+[1] FALSE
+
+
+LSI-Projection Parameters$verbose: length = 1
+[1] FALSE
+
+
+LSI-Projection Parameters$tstart: length = 0
+NULL
+
+
+LSI-Projection Parameters$logFile: length = 1
+[1] "ArchRLogs/ArchR-addIterativeLSI-4c77df44a0-Date-2020-10-02_Time-22-37-34.log"
+
+
+2020-10-02 23:00:43 : Projecting LSI, Input Matrix = 0 GB, 0 mins elapsed.
+2020-10-02 23:00:43 : Subsetting by Non-Zero features in inital Matrix, 0 mins elapsed.
+2020-10-02 23:00:43 : Binarizing Matrix, 0 mins elapsed.
+2020-10-02 23:00:43 : Computing Term Frequency, 0 mins elapsed.
+2020-10-02 23:00:43 : Computing Inverse Document Frequency, 0 mins elapsed.
+2020-10-02 23:00:43 : Computing TF-IDF Matrix, 0.001 mins elapsed.
+2020-10-02 23:00:44 : Calculating V Matrix, 0.017 mins elapsed.
+2020-10-02 23:00:44 : Computing Projected Coordinates, 0.018 mins elapsed.
+
+2020-10-02 23:00:44 : LSI-Projection Parameters, Class = list
+
+LSI-Projection Parameters$: length = 1
+                       
+1 function (name)      
+2 .Internal(args(name))
+
+
+LSI-Projection Parameters$mat: nRows = 450000, nCols = 405
+LSI-Projection Parameters$mat: NonZeroEntries = 2537295, EntryRange = [ 1 , 1 ]
+5 x 5 sparse Matrix of class "dgCMatrix"
+     CEMBA171214_4D#AGCGATAGAACCAGGTATTCGTTGCAGGACGT
+[1,]                                               .
+[2,]                                               .
+[3,]                                               .
+[4,]                                               .
+[5,]                                               .
+     CEMBA171214_4D#AGCGATAGAAGCAACGTGCCTTACATAGAGGC
+[1,]                                               .
+[2,]                                               .
+[3,]                                               .
+[4,]                                               .
+[5,]                                               .
+     CEMBA171214_4D#AGCGATAGACGTTCGAAACGAACGCCTATCCT
+[1,]                                               .
+[2,]                                               .
+[3,]                                               .
+[4,]                                               .
+[5,]                                               .
+     CEMBA171214_4D#AGCGATAGATAAGTCGATTCGTTGCAGGACGT
+[1,]                                               .
+[2,]                                               .
+[3,]                                               .
+[4,]                                               .
+[5,]                                               .
+     CEMBA171214_4D#AGCGATAGATAAGTCGTTACGACCGTACTGAC
+[1,]                                               .
+[2,]                                               .
+[3,]                                               .
+[4,]                                               .
+[5,]                                               .
+
+
+LSI-Projection Parameters$matSVD: nRows = 9596, nCols = 30
+                                                     LSI1      LSI2       LSI3
+CEMBA171214_4D#AGCGATAGAACCAGGTCGAATTCCTAATCTTA -27.73192 -1.247803 -1.6810487
+CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTAATCTTA -32.66091  4.557351 -0.4580118
+CEMBA171214_4D#AGCGATAGAACCAGGTGGATACTATATAGCCT -63.25055 13.074126 -1.4537163
+CEMBA171214_4D#AGCGATAGAACCAGGTTCCGGTAAATAGAGGC -40.08255  7.939409 -1.0316158
+CEMBA171214_4D#AGCGATAGAACCAGGTTTACGACCGTACTGAC -60.58216 16.969052  0.1952442
+                                                     LSI4        LSI5
+CEMBA171214_4D#AGCGATAGAACCAGGTCGAATTCCTAATCTTA 12.124336   3.4412570
+CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTAATCTTA  7.086754 -14.0266419
+CEMBA171214_4D#AGCGATAGAACCAGGTGGATACTATATAGCCT 13.120768  -8.0643077
+CEMBA171214_4D#AGCGATAGAACCAGGTTCCGGTAAATAGAGGC  8.213804  -0.5052733
+CEMBA171214_4D#AGCGATAGAACCAGGTTTACGACCGTACTGAC -4.196390  -2.7709301
+
+
+LSI-Projection Parameters$returnModel: length = 1
+[1] FALSE
+
+
+LSI-Projection Parameters$verbose: length = 1
+[1] FALSE
+
+
+LSI-Projection Parameters$tstart: length = 0
+NULL
+
+
+LSI-Projection Parameters$logFile: length = 1
+[1] "ArchRLogs/ArchR-addIterativeLSI-4c77df44a0-Date-2020-10-02_Time-22-37-34.log"
+
+
+2020-10-02 23:00:44 : Projecting LSI, Input Matrix = 0.03 GB, 0 mins elapsed.
+2020-10-02 23:00:44 : Subsetting by Non-Zero features in inital Matrix, 0 mins elapsed.
+2020-10-02 23:00:44 : Binarizing Matrix, 0.001 mins elapsed.
+2020-10-02 23:00:44 : Computing Term Frequency, 0.002 mins elapsed.
+2020-10-02 23:00:45 : Computing Inverse Document Frequency, 0.003 mins elapsed.
+2020-10-02 23:00:45 : Computing TF-IDF Matrix, 0.003 mins elapsed.
+2020-10-02 23:00:46 : Calculating V Matrix, 0.02 mins elapsed.
+2020-10-02 23:00:47 : Computing Projected Coordinates, 0.045 mins elapsed.
+2020-10-02 23:00:47 : Finished LSI (TF-IDF SVD) using irlba, 23.209 mins elapsed.
+
+2020-10-02 23:00:48 : outLSI-5, Class = SimpleList
+
+outLSI-5$matSVD: nRows = 10001, nCols = 30
+                                                     LSI1       LSI2
+CEMBA171214_4D#AGCGATAGAACCAGGTATTCGTTGCAGGACGT -70.62135 -28.641184
+CEMBA171214_4D#AGCGATAGAACCAGGTCGAATTCCTAATCTTA -27.73192  -1.247803
+CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTAATCTTA -32.66091   4.557351
+CEMBA171214_4D#AGCGATAGAACCAGGTGGATACTATATAGCCT -63.25055  13.074126
+CEMBA171214_4D#AGCGATAGAACCAGGTTCCGGTAAATAGAGGC -40.08255   7.939409
+                                                       LSI3      LSI4
+CEMBA171214_4D#AGCGATAGAACCAGGTATTCGTTGCAGGACGT -10.8902179 31.614840
+CEMBA171214_4D#AGCGATAGAACCAGGTCGAATTCCTAATCTTA  -1.6810487 12.124336
+CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTAATCTTA  -0.4580118  7.086754
+CEMBA171214_4D#AGCGATAGAACCAGGTGGATACTATATAGCCT  -1.4537163 13.120768
+CEMBA171214_4D#AGCGATAGAACCAGGTTCCGGTAAATAGAGGC  -1.0316158  8.213804
+                                                       LSI5
+CEMBA171214_4D#AGCGATAGAACCAGGTATTCGTTGCAGGACGT  23.6195344
+CEMBA171214_4D#AGCGATAGAACCAGGTCGAATTCCTAATCTTA   3.4412570
+CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTAATCTTA -14.0266419
+CEMBA171214_4D#AGCGATAGAACCAGGTGGATACTATATAGCCT  -8.0643077
+CEMBA171214_4D#AGCGATAGAACCAGGTTCCGGTAAATAGAGGC  -0.5052733
+
+
+outLSI-5$rowSm: length = 450000
+[1] 21 32 33 40 30 25
+
+
+outLSI-5$nCol: length = 1
+[1] 9596
+
+
+outLSI-5$exclude: length = 0
+NULL
+
+
+outLSI-5$idx: length = 450000
+[1] 1 2 3 4 5 6
+
+
+outLSI-5$u: nRows = 450000, nCols = 30
+              [,1]          [,2]          [,3]          [,4]          [,5]
+[1,] -0.0005117303  0.0002502438  3.305037e-04 -0.0005985797 -2.794513e-05
+[2,] -0.0006840344 -0.0003728915 -5.838852e-04  0.0029545173  2.646400e-03
+[3,] -0.0006520756 -0.0002850470 -5.442504e-04  0.0029012112  2.278604e-03
+[4,] -0.0009053895  0.0008005480 -9.508511e-05  0.0018226064 -3.285049e-03
+[5,] -0.0007096910  0.0005678225 -8.984998e-05  0.0018514574 -2.140002e-03
+
+
+outLSI-5$v: nRows = 9596, nCols = 30
+             [,1]          [,2]          [,3]         [,4]          [,5]
+[1,] -0.009710637 -0.0009082419 -0.0019680946  0.016864030  0.0060427951
+[2,] -0.011436578  0.0033171712 -0.0005362192  0.009857136 -0.0246305705
+[3,] -0.022147879  0.0095162996 -0.0017019442  0.018249991 -0.0141608021
+[4,] -0.014035348  0.0057788794 -0.0012077684  0.011424777 -0.0008872522
+[5,] -0.021213511  0.0123513100  0.0002285829 -0.005836859 -0.0048657112
+
+
+outLSI-5$binarize: length = 1
+[1] TRUE
+
+
+outLSI-5$scaleTo: length = 1
+[1] 3000
+
+
+outLSI-5$nDimensions: length = 1
+[1] 30
+
+
+outLSI-5$LSIMethod: length = 1
+[1] 2
+
+
+outLSI-5$outliers: length = 405
+[1] "CEMBA171214_4D#AGCGATAGAACCAGGTATTCGTTGCAGGACGT"
+[2] "CEMBA171214_4D#AGCGATAGAAGCAACGTGCCTTACATAGAGGC"
+[3] "CEMBA171214_4D#AGCGATAGACGTTCGAAACGAACGCCTATCCT"
+[4] "CEMBA171214_4D#AGCGATAGATAAGTCGATTCGTTGCAGGACGT"
+[5] "CEMBA171214_4D#AGCGATAGATAAGTCGTTACGACCGTACTGAC"
+[6] "CEMBA171214_4D#AGCGATAGATCTCAGGACTGCATACAGGACGT"
+
+
+outLSI-5$date: length = 1
+[1] "2020-10-02"
+
+
+outLSI-5$seed: length = 1
+[1] 1
+
+
+outLSI-5$scaleDims: length = 1
+[1] TRUE
+
+
+outLSI-5$useMatrix: length = 1
+[1] "TileMatrix"
+
+
+outLSI-5$tileSize: length = 1
+[1] 500
+
+
+
+2020-10-02 23:00:48 : Cluster Params, Class = list
+
+Cluster Params$: length = 1
+                       
+1 function (name)      
+2 .Internal(args(name))
+
+
+Cluster Params$matSVD: nRows = 10001, nCols = 30
+                                                     LSI1       LSI2
+CEMBA171214_4D#AGCGATAGAACCAGGTATTCGTTGCAGGACGT -70.62135 -28.641184
+CEMBA171214_4D#AGCGATAGAACCAGGTCGAATTCCTAATCTTA -27.73192  -1.247803
+CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTAATCTTA -32.66091   4.557351
+CEMBA171214_4D#AGCGATAGAACCAGGTGGATACTATATAGCCT -63.25055  13.074126
+CEMBA171214_4D#AGCGATAGAACCAGGTTCCGGTAAATAGAGGC -40.08255   7.939409
+                                                       LSI3      LSI4
+CEMBA171214_4D#AGCGATAGAACCAGGTATTCGTTGCAGGACGT -10.8902179 31.614840
+CEMBA171214_4D#AGCGATAGAACCAGGTCGAATTCCTAATCTTA  -1.6810487 12.124336
+CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTAATCTTA  -0.4580118  7.086754
+CEMBA171214_4D#AGCGATAGAACCAGGTGGATACTATATAGCCT  -1.4537163 13.120768
+CEMBA171214_4D#AGCGATAGAACCAGGTTCCGGTAAATAGAGGC  -1.0316158  8.213804
+                                                       LSI5
+CEMBA171214_4D#AGCGATAGAACCAGGTATTCGTTGCAGGACGT  23.6195344
+CEMBA171214_4D#AGCGATAGAACCAGGTCGAATTCCTAATCTTA   3.4412570
+CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTAATCTTA -14.0266419
+CEMBA171214_4D#AGCGATAGAACCAGGTGGATACTATATAGCCT  -8.0643077
+CEMBA171214_4D#AGCGATAGAACCAGGTTCCGGTAAATAGAGGC  -0.5052733
+
+
+Cluster Params$corCutOff: length = 1
+[1] 0.75
+
+
+Cluster Params$dimsToUse: length = 30
+[1] 1 2 3 4 5 6
+
+
+Cluster Params$scaleDims: length = 1
+[1] TRUE
+
+
+Cluster Params$verbose: length = 1
+[1] TRUE
+
+
+Cluster Params$j: length = 1
+[1] 5
+
+
+Cluster Params$filterBias: length = 1
+[1] TRUE
+
+
+Cluster Params$cellNames: length = 24241
+[1] "CEMBA171214_4D#ATTCAGAATCTATCCGTGCCTTACCAGGACGT"
+[2] "CEMBA171214_4D#ATTCAGAACAGAACTGTTACGACCGTACTGAC"
+[3] "CEMBA171214_4D#ATTCAGAATTAGCCTCTAAGATCCGTACTGAC"
+[4] "CEMBA171214_4D#CTGAAGCTGCAACCTAAATGACGTCCTATCCT"
+[5] "CEMBA171214_4D#GAGATTCCATAAGTCGTCCGGTAAGTACTGAC"
+[6] "CEMBA171214_4D#CTGAAGCTCGCTTGATATAGCCTTGTACTGAC"
+
+
+Cluster Params$cellDepth: length = 24241
+CEMBA171214_4D#ATTCAGAATCTATCCGTGCCTTACCAGGACGT 
+                                       4.626720 
+CEMBA171214_4D#ATTCAGAACAGAACTGTTACGACCGTACTGAC 
+                                       4.623022 
+CEMBA171214_4D#ATTCAGAATTAGCCTCTAAGATCCGTACTGAC 
+                                       4.602939 
+CEMBA171214_4D#CTGAAGCTGCAACCTAAATGACGTCCTATCCT 
+                                       4.593341 
+CEMBA171214_4D#GAGATTCCATAAGTCGTCCGGTAAGTACTGAC 
+                                       4.586013 
+CEMBA171214_4D#CTGAAGCTCGCTTGATATAGCCTTGTACTGAC 
+                                       4.582938 
+
+
+Cluster Params$tstart: length = 1
+[1] "2020-10-02 22:37:34 EDT"
+
+
+Cluster Params$logFile: length = 1
+[1] "ArchRLogs/ArchR-addIterativeLSI-4c77df44a0-Date-2020-10-02_Time-22-37-34.log"
+
+
+2020-10-02 23:00:48 : Identifying Clusters, 23.227 mins elapsed.
+
+2020-10-02 23:00:48 : addClusters Input-Parameters, Class = list
+
+addClusters Input-Parameters$: length = 1
+                       
+1 function (name)      
+2 .Internal(args(name))
+
+
+addClusters Input-Parameters$input: nRows = 10001, nCols = 30
+                                                     LSI1       LSI2
+CEMBA171214_4D#AGCGATAGAACCAGGTATTCGTTGCAGGACGT -4.078456 -1.6006231
+CEMBA171214_4D#AGCGATAGAACCAGGTCGAATTCCTAATCTTA -4.391552 -0.1277609
+CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTAATCTTA -4.409977  0.8070902
+CEMBA171214_4D#AGCGATAGAACCAGGTGGATACTATATAGCCT -3.661753  0.8668941
+CEMBA171214_4D#AGCGATAGAACCAGGTTCCGGTAAATAGAGGC -4.001176  0.9076591
+                                                        LSI3      LSI4
+CEMBA171214_4D#AGCGATAGAACCAGGTATTCGTTGCAGGACGT -0.552891813 1.9559225
+CEMBA171214_4D#AGCGATAGAACCAGGTCGAATTCCTAATCTTA -0.197510940 2.0250773
+CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTAATCTTA  0.104062103 1.1616491
+CEMBA171214_4D#AGCGATAGAACCAGGTGGATACTATATAGCCT  0.004899340 0.8696615
+CEMBA171214_4D#AGCGATAGAACCAGGTTCCGGTAAATAGAGGC -0.009364736 0.9357079
+                                                       LSI5
+CEMBA171214_4D#AGCGATAGAACCAGGTATTCGTTGCAGGACGT  1.48400838
+CEMBA171214_4D#AGCGATAGAACCAGGTCGAATTCCTAATCTTA  0.62715109
+CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTAATCTTA -1.79791968
+CEMBA171214_4D#AGCGATAGAACCAGGTGGATACTATATAGCCT -0.38733338
+CEMBA171214_4D#AGCGATAGAACCAGGTTCCGGTAAATAGAGGC  0.04443833
+
+
+addClusters Input-Parameters$reducedDims: length = 1
+[1] "IterativeLSI"
+
+
+addClusters Input-Parameters$name: length = 1
+[1] "Clusters"
+
+
+addClusters Input-Parameters$sampleCells: length = 1
+[1] 10000
+
+
+addClusters Input-Parameters$seed: length = 1
+[1] 1
+
+
+addClusters Input-Parameters$method: length = 1
+[1] "Seurat"
+
+
+addClusters Input-Parameters$dimsToUse: length = 0
+NULL
+
+
+addClusters Input-Parameters$scaleDims: length = 0
+NULL
+
+
+addClusters Input-Parameters$corCutOff: length = 1
+[1] 0.75
+
+
+addClusters Input-Parameters$knnAssign: length = 1
+[1] 10
+
+
+addClusters Input-Parameters$nOutlier: length = 1
+[1] 5
+
+
+addClusters Input-Parameters$testBias: length = 1
+[1] TRUE
+
+
+addClusters Input-Parameters$filterBias: length = 1
+[1] TRUE
+
+
+addClusters Input-Parameters$biasClusters: length = 1
+[1] 0.01
+
+
+addClusters Input-Parameters$biasCol: length = 1
+[1] "nFrags"
+
+
+addClusters Input-Parameters$biasVals: length = 10001
+[1] 4.286007 3.627058 3.664830 4.069335 3.885757 3.970951
+
+
+addClusters Input-Parameters$biasQuantiles: length = 2
+[1] 0.05 0.95
+
+
+addClusters Input-Parameters$biasEnrich: length = 1
+[1] 10
+
+
+addClusters Input-Parameters$biasProportion: length = 1
+[1] 0.5
+
+
+addClusters Input-Parameters$biasPval: length = 1
+[1] 0.05
+
+
+addClusters Input-Parameters$nPerm: length = 1
+[1] 500
+
+
+addClusters Input-Parameters$prefix: length = 1
+[1] "C"
+
+
+addClusters Input-Parameters$ArchRProj: length = 0
+NULL
+
+
+addClusters Input-Parameters$verbose: length = 1
+[1] FALSE
+
+
+addClusters Input-Parameters$tstart: length = 0
+NULL
+
+
+addClusters Input-Parameters$force: length = 1
+[1] FALSE
+
+
+addClusters Input-Parameters$logFile: length = 1
+[1] "ArchRLogs/ArchR-addIterativeLSI-4c77df44a0-Date-2020-10-02_Time-22-37-34.log"
+
+
+addClusters Input-Parameters$...: length = 2
+[[1]]
+<promise: 0x561ce6c254d0>
+
+[[2]]
+<promise: 0x561ce6c255b0>
+
+
+
+2020-10-02 23:00:48 : Estimating Clusters by Sampling, 0 mins elapsed.
+2020-10-02 23:00:48 : Running Seurats FindClusters (Stuart et al. Cell 2019), 0 mins elapsed.
+2020-10-02 23:01:18 : Finding Nearest Clusters, 0.495 mins elapsed.
+2020-10-02 23:01:18 : Assigning Nearest Clusters, 0.495 mins elapsed.
+2020-10-02 23:01:19 : Testing Biased Clusters, 0.512 mins elapsed.
+2020-10-02 23:01:19 : Testing Outlier Clusters, 0.514 mins elapsed.
+2020-10-02 23:01:19 : Assigning Cluster Names to 13 Clusters, 0.514 mins elapsed.
+2020-10-02 23:01:19 : Finished addClusters, 0.514 mins elapsed.
+2020-10-02 23:01:19 : Identified 13 Clusters, 23.743 mins elapsed.
+
+2020-10-02 23:01:19 : clusterDF-5, Class = DFrame
+DataFrame with 10001 rows and 2 columns
+                                            cellNames    clusters
+                                          <character> <character>
+1     CEMBA171214_4D#AGCGATAGAACCAGGTATTCGTTGCAGGACGT          C8
+2     CEMBA171214_4D#AGCGATAGAACCAGGTCGAATTCCTAATCTTA          C8
+3     CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTAATCTTA          C3
+4     CEMBA171214_4D#AGCGATAGAACCAGGTGGATACTATATAGCCT          C3
+5     CEMBA171214_4D#AGCGATAGAACCAGGTTCCGGTAAATAGAGGC          C3
+...                                               ...         ...
+9997  CEMBA180820_5E#TCCGGAGATTCCATCCATAGAGGCCGAATTCC          C2
+9998  CEMBA180820_5E#TCCGGAGATTCCATCCATAGAGGCTTGGAAGT         C10
+9999  CEMBA180820_5E#TCCGGAGATTCCATCCCAGGACGTGGTTAGAC          C4
+10000 CEMBA180820_5E#TCCGGAGATTCCATCCTATAGCCTAACGAACG          C4
+10001 CEMBA180820_5E#TCCGGAGATTCCATCCTATAGCCTAATGACGT          C4
+
+2020-10-02 23:01:19 : Saving LSI Iteration, 23.743 mins elapsed.
+
+2020-10-02 23:01:19 : Save iteration, Class = list
+
+Save iteration$: length = 1
+                       
+1 function (name)      
+2 .Internal(args(name))
+
+
+Save iteration$matSVD: nRows = 10001, nCols = 30
+                                                     LSI1       LSI2
+CEMBA171214_4D#AGCGATAGAACCAGGTATTCGTTGCAGGACGT -70.62135 -28.641184
+CEMBA171214_4D#AGCGATAGAACCAGGTCGAATTCCTAATCTTA -27.73192  -1.247803
+CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTAATCTTA -32.66091   4.557351
+CEMBA171214_4D#AGCGATAGAACCAGGTGGATACTATATAGCCT -63.25055  13.074126
+CEMBA171214_4D#AGCGATAGAACCAGGTTCCGGTAAATAGAGGC -40.08255   7.939409
+                                                       LSI3      LSI4
+CEMBA171214_4D#AGCGATAGAACCAGGTATTCGTTGCAGGACGT -10.8902179 31.614840
+CEMBA171214_4D#AGCGATAGAACCAGGTCGAATTCCTAATCTTA  -1.6810487 12.124336
+CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTAATCTTA  -0.4580118  7.086754
+CEMBA171214_4D#AGCGATAGAACCAGGTGGATACTATATAGCCT  -1.4537163 13.120768
+CEMBA171214_4D#AGCGATAGAACCAGGTTCCGGTAAATAGAGGC  -1.0316158  8.213804
+                                                       LSI5
+CEMBA171214_4D#AGCGATAGAACCAGGTATTCGTTGCAGGACGT  23.6195344
+CEMBA171214_4D#AGCGATAGAACCAGGTCGAATTCCTAATCTTA   3.4412570
+CEMBA171214_4D#AGCGATAGAACCAGGTGAAGTATGTAATCTTA -14.0266419
+CEMBA171214_4D#AGCGATAGAACCAGGTGGATACTATATAGCCT  -8.0643077
+CEMBA171214_4D#AGCGATAGAACCAGGTTCCGGTAAATAGAGGC  -0.5052733
+
+
+Save iteration$clusters: length = 10001
+[1] "C8" "C8" "C3" "C3" "C3" "C3"
+
+
+Save iteration$nPlot: length = 1
+[1] 10000
+
+
+Save iteration$ArchRProj: length = 1
+class: ArchRProject 
+outputDirectory: /home/bnphan/projects/snATAC_cross_species_caudate/data/raw_data/mm10/BICCN_mouse_caudoputamen/ArchR_BICCN_caudoputamen 
+samples(4): CEMBA171214_4D CEMBA171219_4D CEMBA180813_5E CEMBA180820_5E
+sampleColData names(1): ArrowFiles
+cellColData names(18): Sample TSSEnrichment ... Region Clusters
+numberOfCells(1): 1
+medianTSS(1): 14.205
+medianFrags(1): 42336
+
+
+Save iteration$scaleDims: length = 1
+[1] TRUE
+
+
+Save iteration$corCutOff: length = 1
+[1] 0.75
+
+
+Save iteration$dimsToUse: length = 30
+[1] 1 2 3 4 5 6
+
+
+Save iteration$j: length = 1
+[1] 5
+
+
+Save iteration$threads: length = 1
+[1] 6
+
+
+Save iteration$outDir: length = 1
+[1] "/home/bnphan/projects/snATAC_cross_species_caudate/data/raw_data/mm10/BICCN_mouse_caudoputamen/ArchR_BICCN_caudoputamen/IterativeLSI"
+
+
+Save iteration$logFile: length = 1
+[1] "ArchRLogs/ArchR-addIterativeLSI-4c77df44a0-Date-2020-10-02_Time-22-37-34.log"
+
+
+2020-10-02 23:02:07 : Creating Cluster Matrix on the total Group Features, 24.545 mins elapsed.
+2020-10-02 23:03:13 : Computing Variable Features, 25.64 mins elapsed.
+###########
+2020-10-02 23:03:13 : Running LSI (6 of 6) on Variable Features, 25.65 mins elapsed.
+###########
+2020-10-02 23:03:14 : Creating Partial Matrix, 25.65 mins elapsed.
+2020-10-02 23:04:23 : Computing LSI, 26.812 mins elapsed.
+
+2020-10-02 23:04:23 : LSI Parameters, Class = list
+
+LSI Parameters$: length = 1
+                       
+1 function (name)      
+2 .Internal(args(name))
+
+
+LSI Parameters$mat: nRows = 450000, nCols = 24241
+LSI Parameters$mat: NonZeroEntries = 71665950, EntryRange = [ 1 , 1 ]
+5 x 5 sparse Matrix of class "dgCMatrix"
+     CEMBA171214_4D#ATTCAGAATCTATCCGTGCCTTACCAGGACGT
+[1,]                                               .
+[2,]                                               .
+[3,]                                               .
+[4,]                                               .
+[5,]                                               .
+     CEMBA171214_4D#ATTCAGAACAGAACTGTTACGACCGTACTGAC
+[1,]                                               .
+[2,]                                               .
+[3,]                                               .
+[4,]                                               .
+[5,]                                               .
+     CEMBA171214_4D#ATTCAGAATTAGCCTCTAAGATCCGTACTGAC
+[1,]                                               .
+[2,]                                               .
+[3,]                                               .
+[4,]                                               .
+[5,]                                               .
+     CEMBA171214_4D#CTGAAGCTGCAACCTAAATGACGTCCTATCCT
+[1,]                                               .
+[2,]                                               .
+[3,]                                               .
+[4,]                                               .
+[5,]                                               .
+     CEMBA171214_4D#GAGATTCCATAAGTCGTCCGGTAAGTACTGAC
+[1,]                                               .
+[2,]                                               .
+[3,]                                               .
+[4,]                                               .
+[5,]                                               .
+
+
+LSI Parameters$LSIMethod: length = 1
+[1] 2
+
+
+LSI Parameters$scaleTo: length = 1
+[1] 3000
+
+
+LSI Parameters$nDimensions: length = 1
+[1] 30
+
+
+LSI Parameters$binarize: length = 1
+[1] TRUE
+
+
+LSI Parameters$outlierQuantiles: length = 2
+[1] 0.02 0.98
+
+
+LSI Parameters$seed: length = 1
+[1] 1
+
+
+LSI Parameters$verbose: length = 1
+[1] FALSE
+
+
+LSI Parameters$tstart: length = 1
+[1] "2020-10-02 22:37:34 EDT"
+
+
+LSI Parameters$logFile: length = 1
+[1] "ArchRLogs/ArchR-addIterativeLSI-4c77df44a0-Date-2020-10-02_Time-22-37-34.log"
+
+
+2020-10-02 23:04:24 : Running LSI, Input Matrix = 0.863 GB, 26.831 mins elapsed.
+2020-10-02 23:04:24 : Binarizing Matrix, 26.831 mins elapsed.
+2020-10-02 23:04:26 : Computing Term Frequency, 26.865 mins elapsed.
+2020-10-02 23:04:27 : Filtering Outliers Based On Counts, 26.872 mins elapsed.
+2020-10-02 23:04:28 : Removing 0 Sum Rows, 26.892 mins elapsed.
+2020-10-02 23:04:36 : Computing Inverse Document Frequency, 27.017 mins elapsed.
+2020-10-02 23:04:41 : Computing SVD using irlba, 27.113 mins elapsed.
+2020-10-02 23:06:48 : Projecting Outliers with LSI-Projection (Granja* et al 2019), 29.221 mins elapsed.
+
+2020-10-02 23:06:48 : LSI-Projection Parameters, Class = list
+
+LSI-Projection Parameters$: length = 1
+                       
+1 function (name)      
+2 .Internal(args(name))
+
+
+LSI-Projection Parameters$mat: nRows = 450000, nCols = 10
+LSI-Projection Parameters$mat: NonZeroEntries = 93954, EntryRange = [ 1 , 1 ]
+5 x 5 sparse Matrix of class "dgCMatrix"
+     CEMBA171214_4D#ATTCAGAACGTATAGATGCCTTACTAATCTTA
+[1,]                                               .
+[2,]                                               .
+[3,]                                               .
+[4,]                                               .
+[5,]                                               .
+     CEMBA171214_4D#CTGAAGCTTATGCCATAGGATAACCAGGACGT
+[1,]                                               .
+[2,]                                               .
+[3,]                                               .
+[4,]                                               .
+[5,]                                               .
+     CEMBA171214_4D#TCCGGAGACTAATGCTTAAGATCCGTACTGAC
+[1,]                                               .
+[2,]                                               .
+[3,]                                               .
+[4,]                                               .
+[5,]                                               .
+     CEMBA171214_4D#TAATGCGCAAGCAACGTAAGATCCGTACTGAC
+[1,]                                               .
+[2,]                                               .
+[3,]                                               .
+[4,]                                               .
+[5,]                                               .
+     CEMBA171214_4D#CTGAAGCTTTCCATCCAATGACGTTAATCTTA
+[1,]                                               .
+[2,]                                               .
+[3,]                                               .
+[4,]                                               .
+[5,]                                               .
+
+
+LSI-Projection Parameters$matSVD: nRows = 23268, nCols = 30
+                                                     LSI1       LSI2     LSI3
+CEMBA171214_4D#ATTCAGAACGTATAGATGCCTTACTAATCTTA -63.94029   9.003734 3.205859
+CEMBA171214_4D#CTGAAGCTTATGCCATAGGATAACCAGGACGT -58.32734  -6.411831 4.385959
+CEMBA171214_4D#TCCGGAGACTAATGCTTAAGATCCGTACTGAC -54.66235  -7.375462 5.220757
+CEMBA171214_4D#TAATGCGCAAGCAACGTAAGATCCGTACTGAC -56.17104 -16.737863 6.522316
+CEMBA171214_4D#CTGAAGCTTTCCATCCAATGACGTTAATCTTA -56.53733  -2.751548 4.881369
+                                                     LSI4        LSI5
+CEMBA171214_4D#ATTCAGAACGTATAGATGCCTTACTAATCTTA -10.93263  -0.6588155
+CEMBA171214_4D#CTGAAGCTTATGCCATAGGATAACCAGGACGT -29.99328  -4.8339300
+CEMBA171214_4D#TCCGGAGACTAATGCTTAAGATCCGTACTGAC -22.87097  -9.9410703
+CEMBA171214_4D#TAATGCGCAAGCAACGTAAGATCCGTACTGAC -25.94412 -19.0189975
+CEMBA171214_4D#CTGAAGCTTTCCATCCAATGACGTTAATCTTA -28.25926  -3.6877524
+
+
+LSI-Projection Parameters$returnModel: length = 1
+[1] FALSE
+
+
+LSI-Projection Parameters$verbose: length = 1
+[1] FALSE
+
+
+LSI-Projection Parameters$tstart: length = 0
+NULL
+
+
+LSI-Projection Parameters$logFile: length = 1
+[1] "ArchRLogs/ArchR-addIterativeLSI-4c77df44a0-Date-2020-10-02_Time-22-37-34.log"
+
+
+2020-10-02 23:06:48 : Projecting LSI, Input Matrix = 0.001 GB, 0 mins elapsed.
+2020-10-02 23:06:48 : Subsetting by Non-Zero features in inital Matrix, 0 mins elapsed.
+2020-10-02 23:06:48 : Binarizing Matrix, 0 mins elapsed.
+2020-10-02 23:06:48 : Computing Term Frequency, 0 mins elapsed.
+2020-10-02 23:06:48 : Computing Inverse Document Frequency, 0 mins elapsed.
+2020-10-02 23:06:48 : Computing TF-IDF Matrix, 0.001 mins elapsed.
+2020-10-02 23:06:49 : Calculating V Matrix, 0.016 mins elapsed.
+2020-10-02 23:06:50 : Computing Projected Coordinates, 0.028 mins elapsed.
+
+2020-10-02 23:06:50 : LSI-Projection Parameters, Class = list
+
+LSI-Projection Parameters$: length = 1
+                       
+1 function (name)      
+2 .Internal(args(name))
+
+
+LSI-Projection Parameters$mat: nRows = 450000, nCols = 973
+LSI-Projection Parameters$mat: NonZeroEntries = 7095258, EntryRange = [ 1 , 1 ]
+5 x 5 sparse Matrix of class "dgCMatrix"
+     CEMBA171214_4D#ATTCAGAATCTATCCGTGCCTTACCAGGACGT
+[1,]                                               .
+[2,]                                               .
+[3,]                                               .
+[4,]                                               .
+[5,]                                               .
+     CEMBA171214_4D#ATTCAGAACAGAACTGTTACGACCGTACTGAC
+[1,]                                               .
+[2,]                                               .
+[3,]                                               .
+[4,]                                               .
+[5,]                                               .
+     CEMBA171214_4D#ATTCAGAATTAGCCTCTAAGATCCGTACTGAC
+[1,]                                               .
+[2,]                                               .
+[3,]                                               .
+[4,]                                               .
+[5,]                                               .
+     CEMBA171214_4D#CTGAAGCTGCAACCTAAATGACGTCCTATCCT
+[1,]                                               .
+[2,]                                               .
+[3,]                                               .
+[4,]                                               .
+[5,]                                               .
+     CEMBA171214_4D#GAGATTCCATAAGTCGTCCGGTAAGTACTGAC
+[1,]                                               .
+[2,]                                               .
+[3,]                                               .
+[4,]                                               .
+[5,]                                               .
+
+
+LSI-Projection Parameters$matSVD: nRows = 23268, nCols = 30
+                                                     LSI1       LSI2     LSI3
+CEMBA171214_4D#ATTCAGAACGTATAGATGCCTTACTAATCTTA -63.94029   9.003734 3.205859
+CEMBA171214_4D#CTGAAGCTTATGCCATAGGATAACCAGGACGT -58.32734  -6.411831 4.385959
+CEMBA171214_4D#TCCGGAGACTAATGCTTAAGATCCGTACTGAC -54.66235  -7.375462 5.220757
+CEMBA171214_4D#TAATGCGCAAGCAACGTAAGATCCGTACTGAC -56.17104 -16.737863 6.522316
+CEMBA171214_4D#CTGAAGCTTTCCATCCAATGACGTTAATCTTA -56.53733  -2.751548 4.881369
+                                                     LSI4        LSI5
+CEMBA171214_4D#ATTCAGAACGTATAGATGCCTTACTAATCTTA -10.93263  -0.6588155
+CEMBA171214_4D#CTGAAGCTTATGCCATAGGATAACCAGGACGT -29.99328  -4.8339300
+CEMBA171214_4D#TCCGGAGACTAATGCTTAAGATCCGTACTGAC -22.87097  -9.9410703
+CEMBA171214_4D#TAATGCGCAAGCAACGTAAGATCCGTACTGAC -25.94412 -19.0189975
+CEMBA171214_4D#CTGAAGCTTTCCATCCAATGACGTTAATCTTA -28.25926  -3.6877524
+
+
+LSI-Projection Parameters$returnModel: length = 1
+[1] FALSE
+
+
+LSI-Projection Parameters$verbose: length = 1
+[1] FALSE
+
+
+LSI-Projection Parameters$tstart: length = 0
+NULL
+
+
+LSI-Projection Parameters$logFile: length = 1
+[1] "ArchRLogs/ArchR-addIterativeLSI-4c77df44a0-Date-2020-10-02_Time-22-37-34.log"
+
+
+2020-10-02 23:06:50 : Projecting LSI, Input Matrix = 0.085 GB, 0 mins elapsed.
+2020-10-02 23:06:50 : Subsetting by Non-Zero features in inital Matrix, 0 mins elapsed.
+2020-10-02 23:06:50 : Binarizing Matrix, 0.003 mins elapsed.
+2020-10-02 23:06:50 : Computing Term Frequency, 0.004 mins elapsed.
+2020-10-02 23:06:50 : Computing Inverse Document Frequency, 0.006 mins elapsed.
+2020-10-02 23:06:50 : Computing TF-IDF Matrix, 0.007 mins elapsed.
+2020-10-02 23:06:51 : Calculating V Matrix, 0.03 mins elapsed.
+2020-10-02 23:06:52 : Computing Projected Coordinates, 0.046 mins elapsed.
+2020-10-02 23:06:52 : Finished LSI (TF-IDF SVD) using irlba, 29.299 mins elapsed.
+
+2020-10-02 23:06:53 : outLSI-6, Class = SimpleList
+
+outLSI-6$matSVD: nRows = 24241, nCols = 30
+                                                      LSI1        LSI2
+CEMBA171214_4D#ATTCAGAATCTATCCGTGCCTTACCAGGACGT -101.45663  -7.2550378
+CEMBA171214_4D#ATTCAGAACAGAACTGTTACGACCGTACTGAC -112.63915  14.0503770
+CEMBA171214_4D#ATTCAGAATTAGCCTCTAAGATCCGTACTGAC -104.38623 -10.6916758
+CEMBA171214_4D#CTGAAGCTGCAACCTAAATGACGTCCTATCCT  -92.69606   0.4081215
+CEMBA171214_4D#GAGATTCCATAAGTCGTCCGGTAAGTACTGAC -113.17139   1.6690224
+                                                     LSI3      LSI4      LSI5
+CEMBA171214_4D#ATTCAGAATCTATCCGTGCCTTACCAGGACGT  8.327284 -34.73629 -19.91948
+CEMBA171214_4D#ATTCAGAACAGAACTGTTACGACCGTACTGAC  6.338301 -42.62841  17.26759
+CEMBA171214_4D#ATTCAGAATTAGCCTCTAAGATCCGTACTGAC 10.153738 -31.35476 -21.26727
+CEMBA171214_4D#CTGAAGCTGCAACCTAAATGACGTCCTATCCT  8.303620 -46.44527 -15.20531
+CEMBA171214_4D#GAGATTCCATAAGTCGTCCGGTAAGTACTGAC  7.378631 -36.68531 -17.92712
+
+
+outLSI-6$rowSm: length = 450000
+[1] 51 89 95 92 70 60
+
+
+outLSI-6$nCol: length = 1
+[1] 23268
+
+
+outLSI-6$exclude: length = 0
+NULL
+
+
+outLSI-6$idx: length = 450000
+[1] 1 2 3 4 5 6
+
+
+outLSI-6$u: nRows = 450000, nCols = 30
+              [,1]          [,2]          [,3]          [,4]          [,5]
+[1,] -0.0005376683  0.0002583263 -2.568093e-04 -0.0001266849  0.0002423266
+[2,] -0.0007607735 -0.0004292853  7.187283e-04 -0.0031561559 -0.0029314235
+[3,] -0.0007694330 -0.0003276939  5.686859e-04 -0.0031637449 -0.0033269291
+[4,] -0.0009029415  0.0006985550  5.620399e-05 -0.0016418455  0.0035205197
+[5,] -0.0007054597  0.0004791569 -1.464509e-04 -0.0013152102  0.0024743366
+
+
+outLSI-6$v: nRows = 23268, nCols = 30
+            [,1]         [,2]        [,3]        [,4]          [,5]
+[1,] -0.01433802  0.004256040 0.002465022 -0.01018890 -0.0007974971
+[2,] -0.01307937 -0.003030854 0.003372414 -0.02795288 -0.0058514798
+[3,] -0.01225753 -0.003486360 0.004014300 -0.02131510 -0.0120336810
+[4,] -0.01259584 -0.007911940 0.005015084 -0.02417918 -0.0230225258
+[5,] -0.01267798 -0.001300649 0.003753341 -0.02633683 -0.0044640299
+
+
+outLSI-6$binarize: length = 1
+[1] TRUE
+
+
+outLSI-6$scaleTo: length = 1
+[1] 3000
+
+
+outLSI-6$nDimensions: length = 1
+[1] 30
+
+
+outLSI-6$LSIMethod: length = 1
+[1] 2
+
+
+outLSI-6$outliers: length = 973
+[1] "CEMBA171214_4D#ATTCAGAATCTATCCGTGCCTTACCAGGACGT"
+[2] "CEMBA171214_4D#ATTCAGAACAGAACTGTTACGACCGTACTGAC"
+[3] "CEMBA171214_4D#ATTCAGAATTAGCCTCTAAGATCCGTACTGAC"
+[4] "CEMBA171214_4D#CTGAAGCTGCAACCTAAATGACGTCCTATCCT"
+[5] "CEMBA171214_4D#GAGATTCCATAAGTCGTCCGGTAAGTACTGAC"
+[6] "CEMBA171214_4D#CTGAAGCTCGCTTGATATAGCCTTGTACTGAC"
+
+
+outLSI-6$date: length = 1
+[1] "2020-10-02"
+
+
+outLSI-6$seed: length = 1
+[1] 1
+
+
+outLSI-6$scaleDims: length = 1
+[1] TRUE
+
+
+outLSI-6$useMatrix: length = 1
+[1] "TileMatrix"
+
+
+outLSI-6$tileSize: length = 1
+[1] 500
+
+
+2020-10-02 23:06:54 : Finished Running IterativeLSI, 29.33 mins elapsed.

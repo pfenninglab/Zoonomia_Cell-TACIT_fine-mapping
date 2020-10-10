@@ -1,0 +1,255 @@
+
+           ___      .______        ______  __    __  .______      
+          /   \     |   _  \      /      ||  |  |  | |   _  \     
+         /  ^  \    |  |_)  |    |  ,----'|  |__|  | |  |_)  |    
+        /  /_\  \   |      /     |  |     |   __   | |      /     
+       /  _____  \  |  |\  \\___ |  `----.|  |  |  | |  |\  \\___.
+      /__/     \__\ | _| `._____| \______||__|  |__| | _| `._____|
+    
+Logging With ArchR!
+
+Start Time : 2020-10-02 21:08:07
+
+------- ArchR Info
+
+ArchRThreads = 10
+ArchRGenome = Hg38
+
+------- System Info
+
+Computer OS = unix
+Total Cores = 64
+
+------- Session Info
+
+R version 3.6.3 (2020-02-29)
+Platform: x86_64-conda_cos6-linux-gnu (64-bit)
+Running under: CentOS Linux 7 (Core)
+
+Matrix products: default
+BLAS/LAPACK: /home/bnphan/miniconda3/lib/libmkl_rt.so
+
+locale:
+ [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+ [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+ [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
+ [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+ [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+[11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+
+attached base packages:
+[1] parallel  stats4    stats     graphics  grDevices utils     datasets 
+[8] methods   base     
+
+other attached packages:
+ [1] BSgenome.Hsapiens.UCSC.hg38_1.4.1 BSgenome_1.54.0                  
+ [3] rtracklayer_1.46.0                Biostrings_2.54.0                
+ [5] XVector_0.26.0                    gtable_0.3.0                     
+ [7] ArchR_0.9.5                       magrittr_1.5                     
+ [9] rhdf5_2.30.1                      Matrix_1.2-18                    
+[11] data.table_1.13.0                 SummarizedExperiment_1.16.1      
+[13] DelayedArray_0.12.3               BiocParallel_1.20.1              
+[15] matrixStats_0.57.0                Biobase_2.46.0                   
+[17] GenomicRanges_1.38.0              GenomeInfoDb_1.22.1              
+[19] IRanges_2.20.2                    S4Vectors_0.24.4                 
+[21] BiocGenerics_0.32.0               ggplot2_3.3.2                    
+[23] colorout_1.2-2                   
+
+loaded via a namespace (and not attached):
+ [1] Rcpp_1.0.5               lattice_0.20-41          Rsamtools_2.2.3         
+ [4] gtools_3.8.2             digest_0.6.25            IRdisplay_0.7.0         
+ [7] plyr_1.8.6               R6_2.4.1                 repr_1.1.0              
+[10] evaluate_0.14            pillar_1.4.6             zlibbioc_1.32.0         
+[13] rlang_0.4.7              uuid_0.1-4               hexbin_1.28.1           
+[16] labeling_0.3             stringr_1.4.0            pheatmap_1.0.12         
+[19] RCurl_1.98-1.2           munsell_0.5.0            compiler_3.6.3          
+[22] pkgconfig_2.0.3          base64enc_0.1-3          htmltools_0.5.0         
+[25] tidyselect_1.1.0         tibble_3.0.3             GenomeInfoDbData_1.2.2  
+[28] XML_3.99-0.3             crayon_1.3.4             dplyr_1.0.2             
+[31] withr_2.3.0              GenomicAlignments_1.22.1 bitops_1.0-6            
+[34] grid_3.6.3               jsonlite_1.7.1           lifecycle_0.2.0         
+[37] scales_1.1.1             stringi_1.5.3            farver_2.0.3            
+[40] ellipsis_0.3.1           generics_0.0.2           vctrs_0.3.4             
+[43] cowplot_1.1.0            IRkernel_1.1.1           Rhdf5lib_1.8.0          
+[46] RColorBrewer_1.1-2       tools_3.6.3              Cairo_1.5-12.2          
+[49] glue_1.4.2               purrr_0.3.4              colorspace_1.4-1        
+[52] pbdZMQ_0.3-3            
+
+
+------- Log Info
+
+
+2020-10-02 21:08:08 : peakSet, Class = GRanges
+GRanges object with 450995 ranges and 12 metadata columns:
+              seqnames              ranges strand |     score
+                 <Rle>           <IRanges>  <Rle> | <numeric>
+    Microglia     chr1       797280-797780      * |   3.91692
+  Interneuron     chr1       804042-804542      * |   4.49854
+  Interneuron     chr1       804691-805191      * |   3.96151
+       MSN_D2     chr1       806087-806587      * |   37.6469
+    Microglia     chr1       807063-807563      * |   5.56145
+          ...      ...                 ...    ... .       ...
+  Interneuron     chrX 155774131-155774631      * |   7.14473
+    Microglia     chrX 155820061-155820561      * |   5.46169
+       MSN_D1     chrX 155880500-155881000      * |   20.8343
+       MSN_D1     chrX 155881035-155881535      * |     71.28
+       MSN_D2     chrX 155965883-155966383      * |   14.9458
+              replicateScoreQuantile groupScoreQuantile Reproducibility
+                           <numeric>          <numeric>       <numeric>
+    Microglia                  0.528              0.259               3
+  Interneuron                  0.355              0.083               2
+  Interneuron                  0.585               0.33               2
+       MSN_D2                  0.792              0.709               3
+    Microglia                  0.603              0.319               3
+          ...                    ...                ...             ...
+  Interneuron                  0.764              0.565               3
+    Microglia                  0.385              0.165               2
+       MSN_D1                  0.673              0.561               3
+       MSN_D1                  0.942              0.911               3
+       MSN_D2                  0.643               0.51               2
+                          GroupReplicate distToGeneStart nearestGene
+                             <character>       <integer> <character>
+    Microglia   Microglia._.14_1018.CAUD           19840      FAM87B
+  Interneuron Interneuron._.09_1589.CAUD           13078      FAM87B
+  Interneuron Interneuron._.14_1018.CAUD           12429      FAM87B
+       MSN_D2      MSN_D2._.09_1589.CAUD           11033      FAM87B
+    Microglia   Microglia._.06_0615.CAUD           10057      FAM87B
+          ...                        ...             ...         ...
+  Interneuron Interneuron._.06_0615.CAUD          104436       TMLHE
+    Microglia   Microglia._.09_1589.CAUD          150366       TMLHE
+       MSN_D1      MSN_D1._.09_1589.CAUD          210805       TMLHE
+       MSN_D1      MSN_D1._.06_0615.CAUD          211340       TMLHE
+       MSN_D2      MSN_D2._.06_0615.CAUD          296188       TMLHE
+                 peakType distToTSS  nearestTSS        GC       idx
+              <character> <integer> <character> <numeric> <integer>
+    Microglia      Distal      7268  uc057aum.1    0.4511         1
+  Interneuron      Distal       506  uc057aum.1    0.4251         2
+  Interneuron      Distal         8  uc057aum.1    0.4032         3
+       MSN_D2      Distal      1404  uc057aum.1    0.4531         4
+    Microglia      Distal      2380  uc057aum.1    0.4611         5
+          ...         ...       ...         ...       ...       ...
+  Interneuron      Distal      6568  uc061qgd.1    0.5749      9311
+    Microglia      Distal     52498  uc061qgd.1    0.4691      9312
+       MSN_D1      Distal       542  uc061qgd.1    0.4092      9313
+       MSN_D1      Distal         7  uc061qgd.1    0.6208      9314
+       MSN_D2      Distal     31447  uc061qgd.1    0.3593      9315
+  -------
+  seqinfo: 23 sequences from an unspecified genome; no seqlengths
+
+2020-10-02 21:08:08 : Batch Execution w/ safelapply!, 0 mins elapsed.
+
+2020-10-02 21:08:09 : featureDF, Class = data.frame
+featureDF: nRows = 450995, nCols = 4
+  seqnames idx  start    end
+1     chr1   1 797280 797780
+2     chr1   2 804042 804542
+3     chr1   3 804691 805191
+4     chr1   4 806087 806587
+5     chr1   5 807063 807563
+6     chr1   6 807661 808161
+
+
+
+2020-10-02 21:08:10 : featureDF, Class = data.frame
+featureDF: nRows = 450995, nCols = 4
+  seqnames idx  start    end
+1     chr1   1 797280 797780
+2     chr1   2 804042 804542
+3     chr1   3 804691 805191
+4     chr1   4 806087 806587
+5     chr1   5 807063 807563
+6     chr1   6 807661 808161
+
+
+
+2020-10-02 21:08:11 : featureDF, Class = data.frame
+featureDF: nRows = 450995, nCols = 4
+  seqnames idx  start    end
+1     chr1   1 797280 797780
+2     chr1   2 804042 804542
+3     chr1   3 804691 805191
+4     chr1   4 806087 806587
+5     chr1   5 807063 807563
+6     chr1   6 807661 808161
+
+
+2020-10-02 21:08:12 : Adding 09_1589.CAUD to PeakMatrix for Chr (1 of 23)!, 0.046 mins elapsed.
+2020-10-02 21:08:15 : Adding 06_0615.CAUD to PeakMatrix for Chr (1 of 23)!, 0.079 mins elapsed.
+2020-10-02 21:08:15 : Adding 14_1018.CAUD to PeakMatrix for Chr (1 of 23)!, 0.082 mins elapsed.
+2020-10-02 21:08:46 : Adding 14_1018.CAUD to PeakMatrix for Chr (2 of 23)!, 0.592 mins elapsed.
+2020-10-02 21:08:47 : Adding 06_0615.CAUD to PeakMatrix for Chr (2 of 23)!, 0.616 mins elapsed.
+2020-10-02 21:08:52 : Adding 09_1589.CAUD to PeakMatrix for Chr (2 of 23)!, 0.705 mins elapsed.
+2020-10-02 21:09:09 : Adding 14_1018.CAUD to PeakMatrix for Chr (3 of 23)!, 0.968 mins elapsed.
+2020-10-02 21:09:09 : Adding 06_0615.CAUD to PeakMatrix for Chr (3 of 23)!, 0.986 mins elapsed.
+2020-10-02 21:09:17 : Adding 09_1589.CAUD to PeakMatrix for Chr (3 of 23)!, 1.127 mins elapsed.
+2020-10-02 21:09:26 : Adding 14_1018.CAUD to PeakMatrix for Chr (4 of 23)!, 1.255 mins elapsed.
+2020-10-02 21:09:28 : Adding 06_0615.CAUD to PeakMatrix for Chr (4 of 23)!, 1.294 mins elapsed.
+2020-10-02 21:09:36 : Adding 09_1589.CAUD to PeakMatrix for Chr (4 of 23)!, 1.444 mins elapsed.
+2020-10-02 21:09:41 : Adding 14_1018.CAUD to PeakMatrix for Chr (5 of 23)!, 1.504 mins elapsed.
+2020-10-02 21:09:42 : Adding 06_0615.CAUD to PeakMatrix for Chr (5 of 23)!, 1.528 mins elapsed.
+2020-10-02 21:09:51 : Adding 09_1589.CAUD to PeakMatrix for Chr (5 of 23)!, 1.699 mins elapsed.
+2020-10-02 21:09:57 : Adding 14_1018.CAUD to PeakMatrix for Chr (6 of 23)!, 1.768 mins elapsed.
+2020-10-02 21:09:57 : Adding 06_0615.CAUD to PeakMatrix for Chr (6 of 23)!, 1.779 mins elapsed.
+2020-10-02 21:10:08 : Adding 09_1589.CAUD to PeakMatrix for Chr (6 of 23)!, 1.98 mins elapsed.
+2020-10-02 21:10:13 : Adding 06_0615.CAUD to PeakMatrix for Chr (7 of 23)!, 2.046 mins elapsed.
+2020-10-02 21:10:14 : Adding 14_1018.CAUD to PeakMatrix for Chr (7 of 23)!, 2.05 mins elapsed.
+2020-10-02 21:10:24 : Adding 09_1589.CAUD to PeakMatrix for Chr (7 of 23)!, 2.238 mins elapsed.
+2020-10-02 21:10:29 : Adding 14_1018.CAUD to PeakMatrix for Chr (8 of 23)!, 2.302 mins elapsed.
+2020-10-02 21:10:30 : Adding 06_0615.CAUD to PeakMatrix for Chr (8 of 23)!, 2.329 mins elapsed.
+2020-10-02 21:10:40 : Adding 09_1589.CAUD to PeakMatrix for Chr (8 of 23)!, 2.513 mins elapsed.
+2020-10-02 21:10:43 : Adding 14_1018.CAUD to PeakMatrix for Chr (9 of 23)!, 2.533 mins elapsed.
+2020-10-02 21:10:43 : Adding 06_0615.CAUD to PeakMatrix for Chr (9 of 23)!, 2.548 mins elapsed.
+2020-10-02 21:10:55 : Adding 09_1589.CAUD to PeakMatrix for Chr (9 of 23)!, 2.756 mins elapsed.
+2020-10-02 21:10:56 : Adding 14_1018.CAUD to PeakMatrix for Chr (10 of 23)!, 2.754 mins elapsed.
+2020-10-02 21:10:56 : Adding 06_0615.CAUD to PeakMatrix for Chr (10 of 23)!, 2.763 mins elapsed.
+2020-10-02 21:11:11 : Adding 09_1589.CAUD to PeakMatrix for Chr (10 of 23)!, 3 mins elapsed.
+2020-10-02 21:11:11 : Adding 06_0615.CAUD to PeakMatrix for Chr (11 of 23)!, 2.992 mins elapsed.
+2020-10-02 21:11:11 : Adding 14_1018.CAUD to PeakMatrix for Chr (11 of 23)!, 2.988 mins elapsed.
+2020-10-02 21:11:26 : Adding 09_1589.CAUD to PeakMatrix for Chr (11 of 23)!, 3.282 mins elapsed.
+2020-10-02 21:11:26 : Adding 06_0615.CAUD to PeakMatrix for Chr (12 of 23)!, 3.267 mins elapsed.
+2020-10-02 21:11:27 : Adding 14_1018.CAUD to PeakMatrix for Chr (12 of 23)!, 3.267 mins elapsed.
+2020-10-02 21:11:40 : Adding 06_0615.CAUD to PeakMatrix for Chr (13 of 23)!, 3.501 mins elapsed.
+2020-10-02 21:11:41 : Adding 14_1018.CAUD to PeakMatrix for Chr (13 of 23)!, 3.505 mins elapsed.
+2020-10-02 21:11:45 : Adding 09_1589.CAUD to PeakMatrix for Chr (12 of 23)!, 3.596 mins elapsed.
+2020-10-02 21:11:50 : Adding 06_0615.CAUD to PeakMatrix for Chr (14 of 23)!, 3.658 mins elapsed.
+2020-10-02 21:11:51 : Adding 14_1018.CAUD to PeakMatrix for Chr (14 of 23)!, 3.669 mins elapsed.
+2020-10-02 21:12:00 : Adding 06_0615.CAUD to PeakMatrix for Chr (15 of 23)!, 3.836 mins elapsed.
+2020-10-02 21:12:01 : Adding 09_1589.CAUD to PeakMatrix for Chr (13 of 23)!, 3.855 mins elapsed.
+2020-10-02 21:12:01 : Adding 14_1018.CAUD to PeakMatrix for Chr (15 of 23)!, 3.846 mins elapsed.
+2020-10-02 21:12:11 : Adding 06_0615.CAUD to PeakMatrix for Chr (16 of 23)!, 4.011 mins elapsed.
+2020-10-02 21:12:11 : Adding 09_1589.CAUD to PeakMatrix for Chr (14 of 23)!, 4.03 mins elapsed.
+2020-10-02 21:12:12 : Adding 14_1018.CAUD to PeakMatrix for Chr (16 of 23)!, 4.02 mins elapsed.
+2020-10-02 21:12:23 : Adding 06_0615.CAUD to PeakMatrix for Chr (17 of 23)!, 4.204 mins elapsed.
+2020-10-02 21:12:23 : Adding 14_1018.CAUD to PeakMatrix for Chr (17 of 23)!, 4.203 mins elapsed.
+2020-10-02 21:12:23 : Adding 09_1589.CAUD to PeakMatrix for Chr (15 of 23)!, 4.234 mins elapsed.
+2020-10-02 21:12:34 : Adding 09_1589.CAUD to PeakMatrix for Chr (16 of 23)!, 4.418 mins elapsed.
+2020-10-02 21:12:35 : Adding 06_0615.CAUD to PeakMatrix for Chr (18 of 23)!, 4.417 mins elapsed.
+2020-10-02 21:12:35 : Adding 14_1018.CAUD to PeakMatrix for Chr (18 of 23)!, 4.412 mins elapsed.
+2020-10-02 21:12:44 : Adding 06_0615.CAUD to PeakMatrix for Chr (19 of 23)!, 4.564 mins elapsed.
+2020-10-02 21:12:45 : Adding 14_1018.CAUD to PeakMatrix for Chr (19 of 23)!, 4.567 mins elapsed.
+2020-10-02 21:12:47 : Adding 09_1589.CAUD to PeakMatrix for Chr (17 of 23)!, 4.627 mins elapsed.
+2020-10-02 21:12:55 : Adding 14_1018.CAUD to PeakMatrix for Chr (20 of 23)!, 4.743 mins elapsed.
+2020-10-02 21:12:56 : Adding 06_0615.CAUD to PeakMatrix for Chr (20 of 23)!, 4.758 mins elapsed.
+2020-10-02 21:13:02 : Adding 09_1589.CAUD to PeakMatrix for Chr (18 of 23)!, 4.877 mins elapsed.
+2020-10-02 21:13:04 : Adding 14_1018.CAUD to PeakMatrix for Chr (21 of 23)!, 4.898 mins elapsed.
+2020-10-02 21:13:05 : Adding 06_0615.CAUD to PeakMatrix for Chr (21 of 23)!, 4.91 mins elapsed.
+2020-10-02 21:13:11 : Adding 09_1589.CAUD to PeakMatrix for Chr (19 of 23)!, 5.033 mins elapsed.
+2020-10-02 21:13:11 : Adding 14_1018.CAUD to PeakMatrix for Chr (22 of 23)!, 5.016 mins elapsed.
+2020-10-02 21:13:12 : Adding 06_0615.CAUD to PeakMatrix for Chr (22 of 23)!, 5.025 mins elapsed.
+2020-10-02 21:13:20 : Adding 14_1018.CAUD to PeakMatrix for Chr (23 of 23)!, 5.152 mins elapsed.
+2020-10-02 21:13:20 : Adding 06_0615.CAUD to PeakMatrix for Chr (23 of 23)!, 5.164 mins elapsed.
+2020-10-02 21:13:25 : Adding 09_1589.CAUD to PeakMatrix for Chr (20 of 23)!, 5.258 mins elapsed.
+2020-10-02 21:13:31 : Adding 09_1589.CAUD to PeakMatrix for Chr (21 of 23)!, 5.364 mins elapsed.
+2020-10-02 21:13:34 : Adding 09_1589.CAUD to PeakMatrix for Chr (22 of 23)!, 5.406 mins elapsed.
+2020-10-02 21:13:37 : Adding 09_1589.CAUD to PeakMatrix for Chr (23 of 23)!, 5.457 mins elapsed.
+
+------- Completed
+
+End Time : 2020-10-02 21:13:40
+Elapsed Time Minutes = 5.56074951092402
+Elapsed Time Hours = 0.092679218782319
+
+-------
+
+
+

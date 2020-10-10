@@ -1,0 +1,1037 @@
+
+           ___      .______        ______  __    __  .______      
+          /   \     |   _  \      /      ||  |  |  | |   _  \     
+         /  ^  \    |  |_)  |    |  ,----'|  |__|  | |  |_)  |    
+        /  /_\  \   |      /     |  |     |   __   | |      /     
+       /  _____  \  |  |\  \\___ |  `----.|  |  |  | |  |\  \\___.
+      /__/     \__\ | _| `._____| \______||__|  |__| | _| `._____|
+    
+Logging With ArchR!
+
+Start Time : 2020-10-03 00:45:56
+
+------- ArchR Info
+
+ArchRThreads = 10
+ArchRGenome = Hg38
+
+------- System Info
+
+Computer OS = unix
+Total Cores = 64
+
+------- Session Info
+
+R version 3.6.3 (2020-02-29)
+Platform: x86_64-conda_cos6-linux-gnu (64-bit)
+Running under: CentOS Linux 7 (Core)
+
+Matrix products: default
+BLAS/LAPACK: /home/bnphan/miniconda3/lib/libmkl_rt.so
+
+locale:
+ [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+ [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+ [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
+ [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+ [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+[11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+
+attached base packages:
+[1] parallel  stats4    stats     graphics  grDevices utils     datasets 
+[8] methods   base     
+
+other attached packages:
+ [1] chromVAR_1.8.0                    chromVARmotifs_0.2.0             
+ [3] motifmatchr_1.8.0                 BSgenome.Hsapiens.UCSC.hg38_1.4.1
+ [5] BSgenome_1.54.0                   rtracklayer_1.46.0               
+ [7] Biostrings_2.54.0                 XVector_0.26.0                   
+ [9] gtable_0.3.0                      ArchR_0.9.5                      
+[11] magrittr_1.5                      rhdf5_2.30.1                     
+[13] Matrix_1.2-18                     data.table_1.13.0                
+[15] SummarizedExperiment_1.16.1       DelayedArray_0.12.3              
+[17] BiocParallel_1.20.1               matrixStats_0.57.0               
+[19] Biobase_2.46.0                    GenomicRanges_1.38.0             
+[21] GenomeInfoDb_1.22.1               IRanges_2.20.2                   
+[23] S4Vectors_0.24.4                  BiocGenerics_0.32.0              
+[25] ggplot2_3.3.2                     colorout_1.2-2                   
+
+loaded via a namespace (and not attached):
+ [1] colorspace_1.4-1            ellipsis_0.3.1             
+ [3] IRdisplay_0.7.0             base64enc_0.1-3            
+ [5] farver_2.0.3                hexbin_1.28.1              
+ [7] DT_0.15                     bit64_4.0.5                
+ [9] AnnotationDbi_1.48.0        codetools_0.2-16           
+[11] R.methodsS3_1.8.1           IRkernel_1.1.1             
+[13] jsonlite_1.7.1              Rsamtools_2.2.3            
+[15] Cairo_1.5-12.2              seqLogo_1.52.0             
+[17] annotate_1.64.0             GO.db_3.10.0               
+[19] png_0.1-7                   R.oo_1.24.0                
+[21] pheatmap_1.0.12             shiny_1.5.0                
+[23] readr_1.3.1                 compiler_3.6.3             
+[25] httr_1.4.2                  fastmap_1.0.1              
+[27] lazyeval_0.2.2              later_1.1.0.1              
+[29] htmltools_0.5.0             tools_3.6.3                
+[31] glue_1.4.2                  TFMPvalue_0.0.8            
+[33] GenomeInfoDbData_1.2.2      reshape2_1.4.4             
+[35] dplyr_1.0.2                 Rcpp_1.0.5                 
+[37] vctrs_0.3.4                 CNEr_1.22.0                
+[39] stringr_1.4.0               mime_0.9                   
+[41] miniUI_0.1.1.1              lifecycle_0.2.0            
+[43] poweRlaw_0.70.6             gtools_3.8.2               
+[45] XML_3.99-0.3                zlibbioc_1.32.0            
+[47] scales_1.1.1                hms_0.5.3                  
+[49] promises_1.1.1              RColorBrewer_1.1-2         
+[51] memoise_1.1.0               stringi_1.5.3              
+[53] RSQLite_2.2.1               caTools_1.18.0             
+[55] repr_1.1.0                  rlang_0.4.7                
+[57] pkgconfig_2.0.3             bitops_1.0-6               
+[59] pracma_2.2.9                evaluate_0.14              
+[61] lattice_0.20-41             purrr_0.3.4                
+[63] Rhdf5lib_1.8.0              GenomicAlignments_1.22.1   
+[65] htmlwidgets_1.5.1           labeling_0.3               
+[67] cowplot_1.1.0               bit_4.0.4                  
+[69] tidyselect_1.1.0            plyr_1.8.6                 
+[71] R6_2.4.1                    generics_0.0.2             
+[73] pbdZMQ_0.3-3                DBI_1.1.0                  
+[75] pillar_1.4.6                withr_2.3.0                
+[77] KEGGREST_1.26.1             RCurl_1.98-1.2             
+[79] tibble_3.0.3                crayon_1.3.4               
+[81] uuid_0.1-4                  plotly_4.9.2.1             
+[83] nabor_0.5.0                 TFBSTools_1.24.0           
+[85] grid_3.6.3                  blob_1.2.1                 
+[87] digest_0.6.25               xtable_1.8-4               
+[89] tidyr_1.1.2                 httpuv_1.5.4               
+[91] R.utils_2.10.1              munsell_0.5.0              
+[93] DirichletMultinomial_1.28.0 viridisLite_0.3.0          
+
+
+------- Log Info
+
+
+2020-10-03 00:45:56 : addCoAccessibility Input-Parameters, Class = list
+
+addCoAccessibility Input-Parameters$ArchRProj: length = 1
+class: ArchRProject 
+outputDirectory: /home/bnphan/projects/snATAC_cross_species_caudate/data/raw_data/hg38/Corces_2020/ArchR_Corces2020_caudate_labeled 
+samples(3): 09_1589.CAUD 06_0615.CAUD 14_1018.CAUD
+sampleColData names(1): ArrowFiles
+cellColData names(21): Sample TSSEnrichment ... ReadsInPeaks FRIP
+numberOfCells(1): 1
+medianTSS(1): 9.196
+medianFrags(1): 80840
+
+
+addCoAccessibility Input-Parameters$reducedDims: length = 1
+[1] "Harmony"
+
+
+addCoAccessibility Input-Parameters$dimsToUse: length = 30
+[1] 1 2 3 4 5 6
+
+
+addCoAccessibility Input-Parameters$scaleDims: length = 1
+[1] TRUE
+
+
+addCoAccessibility Input-Parameters$corCutOff: length = 1
+[1] 0.75
+
+
+addCoAccessibility Input-Parameters$cellsToUse: length = 0
+NULL
+
+
+addCoAccessibility Input-Parameters$k: length = 1
+[1] 100
+
+
+addCoAccessibility Input-Parameters$knnIteration: length = 1
+[1] 500
+
+
+addCoAccessibility Input-Parameters$overlapCutoff: length = 1
+[1] 0.8
+
+
+addCoAccessibility Input-Parameters$maxDist: length = 1
+[1] 1e+05
+
+
+addCoAccessibility Input-Parameters$scaleTo: length = 1
+[1] 10000
+
+
+addCoAccessibility Input-Parameters$log2Norm: length = 1
+[1] TRUE
+
+
+addCoAccessibility Input-Parameters$seed: length = 1
+[1] 1
+
+
+addCoAccessibility Input-Parameters$threads: length = 1
+[1] 10
+
+
+addCoAccessibility Input-Parameters$verbose: length = 1
+[1] TRUE
+
+
+addCoAccessibility Input-Parameters$logFile: length = 1
+[1] "ArchRLogs/ArchR-addCoAccessibility-30e4b76182515-Date-2020-10-03_Time-00-45-56.log"
+
+
+2020-10-03 00:45:56 : Computing KNN, 0.004 mins elapsed.
+2020-10-03 00:45:56 : Identifying Non-Overlapping KNN pairs, 0.008 mins elapsed.
+2020-10-03 00:45:58 : Identified 496 Groupings!, 0.046 mins elapsed.
+2020-10-03 00:46:09 : Computing Co-Accessibility chr1 (1 of 23), 0.214 mins elapsed.
+
+2020-10-03 00:46:33 : SubsetCorVals-1, Class = numeric
+
+SubsetCorVals-1: length = 6
+[1] -0.045729700  0.125434434  0.009970161  0.182679940  0.394480638
+[6]  0.299194100
+
+
+
+2020-10-03 00:46:33 : SubsetGroupMat-1, Class = matrix
+   [,1] [,2]       [,3]        [,4] [,5]
+f1    0    0 0.02614981 0.005521422    0
+f2    0    0 0.02614981 0.000000000    0
+f3    0    0 0.00000000 0.048948176    0
+f4    0    0 0.00000000 0.096289977    0
+f5    0    0 0.02614981 0.048948176    0
+
+SubsetGroupMat-1: nRows = 42156, nCols = 496
+
+
+2020-10-03 00:46:33 : SubsetCoA-1, Class = DFrame
+DataFrame with 1369706 rows and 6 columns
+        queryHits subjectHits seqnames      idx1      idx2         correlation
+        <integer>   <integer>    <Rle> <integer> <integer>           <numeric>
+1               1           2     chr1         1         2 -0.0457297000750145
+2               1           3     chr1         1         3   0.125434433944018
+3               1           4     chr1         1         4 0.00997016108640923
+4               1           5     chr1         1         5   0.182679939897906
+5               1           6     chr1         1         6   0.394480637712181
+...           ...         ...      ...       ...       ...                 ...
+1369702     42156       42151     chr1     42156     42151   0.360857716488603
+1369703     42156       42152     chr1     42156     42152   0.325620695905492
+1369704     42156       42153     chr1     42156     42153 -0.0534822936051294
+1369705     42156       42154     chr1     42156     42154  -0.101652064406273
+1369706     42156       42155     chr1     42156     42155 0.00696210127233932
+
+2020-10-03 00:46:33 : Computing Co-Accessibility chr2 (2 of 23), 0.622 mins elapsed.
+
+2020-10-03 00:46:53 : SubsetCorVals-2, Class = numeric
+
+SubsetCorVals-2: length = 6
+[1] -0.002054806  0.207880645  0.331944311  0.145071584 -0.012659697
+[6]  0.035946701
+
+
+
+2020-10-03 00:46:53 : SubsetGroupMat-2, Class = matrix
+         [,1]       [,2]       [,3]        [,4]       [,5]
+f1 0.03396759 0.03871753 0.00000000 0.027398192 0.00000000
+f2 0.05065612 0.00000000 0.00000000 0.027398192 0.03156987
+f3 0.01708376 0.00000000 0.02614981 0.000000000 0.00000000
+f4 0.01708376 0.00000000 0.00000000 0.005521422 0.00000000
+f5 0.03396759 0.00000000 0.00000000 0.075440727 0.00000000
+
+SubsetGroupMat-2: nRows = 35481, nCols = 496
+
+
+2020-10-03 00:46:53 : SubsetCoA-2, Class = DFrame
+DataFrame with 973787 rows and 6 columns
+       queryHits subjectHits seqnames      idx1      idx2         correlation
+       <integer>   <integer>    <Rle> <integer> <integer>           <numeric>
+1          42157       42158     chr2         1         2 -0.0020548062399083
+2          42157       42159     chr2         1         3   0.207880645200923
+3          42157       42160     chr2         1         4   0.331944310904748
+4          42157       42161     chr2         1         5   0.145071584008518
+5          42157       42162     chr2         1         6  -0.012659696585312
+...          ...         ...      ...       ...       ...                 ...
+973783     77637       77632     chr2     35481     35476   0.411425447034562
+973784     77637       77633     chr2     35481     35477  -0.056316994339725
+973785     77637       77634     chr2     35481     35478  0.0704780388846589
+973786     77637       77635     chr2     35481     35479  0.0378573123790148
+973787     77637       77636     chr2     35481     35480   0.444470872519764
+
+2020-10-03 00:46:53 : Computing Co-Accessibility chr3 (3 of 23), 0.96 mins elapsed.
+
+2020-10-03 00:47:09 : SubsetCorVals-3, Class = numeric
+
+SubsetCorVals-3: length = 6
+[1] -4.811691e-03  2.066716e-05  1.129967e-01  9.359428e-03  1.772361e-02
+[6]  9.190386e-02
+
+
+
+2020-10-03 00:47:09 : SubsetGroupMat-3, Class = matrix
+         [,1] [,2]       [,3]       [,4]       [,5]
+f1 0.03396759    0 0.05183406 0.01102179 0.06246368
+f2 0.00000000    0 0.00000000 0.02739819 0.00000000
+f3 0.00000000    0 0.00000000 0.00000000 0.00000000
+f4 0.00000000    0 0.01313415 0.00000000 0.00000000
+f5 0.00000000    0 0.00000000 0.00000000 0.00000000
+
+SubsetGroupMat-3: nRows = 28995, nCols = 496
+
+
+2020-10-03 00:47:09 : SubsetCoA-3, Class = DFrame
+DataFrame with 785931 rows and 6 columns
+       queryHits subjectHits seqnames      idx1      idx2          correlation
+       <integer>   <integer>    <Rle> <integer> <integer>            <numeric>
+1          77638       77639     chr3         1         2 -0.00481169114697235
+2          77638       77640     chr3         1         3 2.06671646609173e-05
+3          77638       77641     chr3         1         4    0.112996728074687
+4          77638       77642     chr3         1         5  0.00935942830647632
+5          77638       77643     chr3         1         6   0.0177236121006883
+...          ...         ...      ...       ...       ...                  ...
+785927    106632      106627     chr3     28995     28990    0.555358657489221
+785928    106632      106628     chr3     28995     28991    0.129311246854732
+785929    106632      106629     chr3     28995     28992    0.231634712476678
+785930    106632      106630     chr3     28995     28993    0.697886358913241
+785931    106632      106631     chr3     28995     28994    0.293771999347965
+
+2020-10-03 00:47:10 : Computing Co-Accessibility chr4 (4 of 23), 1.23 mins elapsed.
+
+2020-10-03 00:47:21 : SubsetCorVals-4, Class = numeric
+
+SubsetCorVals-4: length = 6
+[1]  0.602077826  0.371526344 -0.031428054 -0.105400532 -0.291525400
+[6]  0.007365434
+
+
+
+2020-10-03 00:47:21 : SubsetGroupMat-4, Class = matrix
+   [,1] [,2] [,3]       [,4] [,5]
+f1    0    0    0 0.05960365    0
+f2    0    0    0 0.01650127    0
+f3    0    0    0 0.00000000    0
+f4    0    0    0 0.00000000    0
+f5    0    0    0 0.00000000    0
+
+SubsetGroupMat-4: nRows = 21798, nCols = 496
+
+
+2020-10-03 00:47:21 : SubsetCoA-4, Class = DFrame
+DataFrame with 542049 rows and 6 columns
+       queryHits subjectHits seqnames      idx1      idx2         correlation
+       <integer>   <integer>    <Rle> <integer> <integer>           <numeric>
+1         106633      106634     chr4         1         2   0.602077826090823
+2         106633      106635     chr4         1         3   0.371526344332853
+3         106633      106636     chr4         1         4 -0.0314280537182211
+4         106633      106637     chr4         1         5  -0.105400532159177
+5         106633      106638     chr4         1         6  -0.291525399583275
+...          ...         ...      ...       ...       ...                 ...
+542045    128426      128425     chr4     21794     21793   0.435073950434693
+542046    128427      128428     chr4     21795     21796 -0.0508126198158729
+542047    128428      128427     chr4     21796     21795 -0.0508126198158729
+542048    128429      128430     chr4     21797     21798 -0.0785938484982178
+542049    128430      128429     chr4     21798     21797 -0.0785938484982178
+
+2020-10-03 00:47:21 : Computing Co-Accessibility chr5 (5 of 23), 1.427 mins elapsed.
+
+2020-10-03 00:47:34 : SubsetCorVals-5, Class = numeric
+
+SubsetCorVals-5: length = 6
+[1] 0.24101464 0.21303909 0.17470183 0.09087985 0.24101464 0.36842608
+
+
+
+2020-10-03 00:47:34 : SubsetGroupMat-5, Class = matrix
+   [,1] [,2] [,3]       [,4] [,5]
+f1    0    0    0 0.04359078    0
+f2    0    0    0 0.02196002    0
+f3    0    0    0 0.00000000    0
+f4    0    0    0 0.00000000    0
+f5    0    0    0 0.01102179    0
+
+SubsetGroupMat-5: nRows = 24748, nCols = 496
+
+
+2020-10-03 00:47:34 : SubsetCoA-5, Class = DFrame
+DataFrame with 644124 rows and 6 columns
+       queryHits subjectHits seqnames      idx1      idx2        correlation
+       <integer>   <integer>    <Rle> <integer> <integer>          <numeric>
+1         128431      128432     chr5         1         2  0.241014639001537
+2         128431      128433     chr5         1         3  0.213039086887551
+3         128431      128434     chr5         1         4  0.174701831690545
+4         128431      128435     chr5         1         5 0.0908798516688363
+5         128432      128431     chr5         2         1  0.241014639001537
+...          ...         ...      ...       ...       ...                ...
+644120    153178      153173     chr5     24748     24743  0.123906168398555
+644121    153178      153174     chr5     24748     24744  0.246827136036162
+644122    153178      153175     chr5     24748     24745 0.0585761956655377
+644123    153178      153176     chr5     24748     24746  0.177442121335643
+644124    153178      153177     chr5     24748     24747 0.0414269558836882
+
+2020-10-03 00:47:34 : Computing Co-Accessibility chr6 (6 of 23), 1.646 mins elapsed.
+
+2020-10-03 00:47:49 : SubsetCorVals-6, Class = numeric
+
+SubsetCorVals-6: length = 6
+[1] 0.09778219 0.17150693 0.30038696 0.09778219 0.11735399 0.08024863
+
+
+
+2020-10-03 00:47:49 : SubsetGroupMat-6, Class = matrix
+         [,1]       [,2] [,3]       [,4]       [,5]
+f1 0.00000000 0.00000000    0 0.01102179 0.00000000
+f2 0.03396759 0.03871753    0 0.02196002 0.00000000
+f3 0.06715380 0.00000000    0 0.05428575 0.06246368
+f4 0.00000000 0.00000000    0 0.02196002 0.00000000
+f5 0.00000000 0.00000000    0 0.01102179 0.00000000
+
+SubsetGroupMat-6: nRows = 25702, nCols = 496
+
+
+2020-10-03 00:47:49 : SubsetCoA-6, Class = DFrame
+DataFrame with 713984 rows and 6 columns
+       queryHits subjectHits seqnames      idx1      idx2        correlation
+       <integer>   <integer>    <Rle> <integer> <integer>          <numeric>
+1         153179      153180     chr6         1         2 0.0977821949273455
+2         153179      153181     chr6         1         3  0.171506926277811
+3         153179      153182     chr6         1         4  0.300386958613804
+4         153180      153179     chr6         2         1 0.0977821949273455
+5         153180      153181     chr6         2         3  0.117353991113238
+...          ...         ...      ...       ...       ...                ...
+713980    178879      178878     chr6     25701     25700   0.19719010681805
+713981    178879      178880     chr6     25701     25702  0.151943624396264
+713982    178880      178877     chr6     25702     25699   0.50879514269732
+713983    178880      178878     chr6     25702     25700  0.777500564010351
+713984    178880      178879     chr6     25702     25701  0.151943624396264
+
+2020-10-03 00:47:49 : Computing Co-Accessibility chr7 (7 of 23), 1.892 mins elapsed.
+
+2020-10-03 00:48:02 : SubsetCorVals-7, Class = numeric
+
+SubsetCorVals-7: length = 6
+[1] -0.031719313  0.111567992 -0.275578498  0.042299058 -0.117643246
+[6] -0.009439001
+
+
+
+2020-10-03 00:48:03 : SubsetGroupMat-7, Class = matrix
+         [,1]       [,2]       [,3]       [,4]       [,5]
+f1 0.00000000 0.00000000 0.00000000 0.03281594 0.00000000
+f2 0.00000000 0.00000000 0.00000000 0.00000000 0.00000000
+f3 0.00000000 0.00000000 0.00000000 0.02196002 0.00000000
+f4 0.03396759 0.03871753 0.02614981 0.01102179 0.00000000
+f5 0.03396759 0.00000000 0.02614981 0.04894818 0.06246368
+
+SubsetGroupMat-7: nRows = 24386, nCols = 496
+
+
+2020-10-03 00:48:03 : SubsetCoA-7, Class = DFrame
+DataFrame with 681593 rows and 6 columns
+       queryHits subjectHits seqnames      idx1      idx2         correlation
+       <integer>   <integer>    <Rle> <integer> <integer>           <numeric>
+1         178881      178882     chr7         1         2 -0.0317193132263968
+2         178881      178883     chr7         1         3    0.11156799193177
+3         178881      178884     chr7         1         4  -0.275578497507034
+4         178881      178885     chr7         1         5  0.0422990577597815
+5         178881      178886     chr7         1         6  -0.117643245886701
+...          ...         ...      ...       ...       ...                 ...
+681589    203264      203265     chr7     24384     24385   0.030081347258318
+681590    203265      203261     chr7     24385     24381 -0.0358555124705359
+681591    203265      203262     chr7     24385     24382   0.548826924097225
+681592    203265      203263     chr7     24385     24383   0.589532298711567
+681593    203265      203264     chr7     24385     24384   0.030081347258318
+
+2020-10-03 00:48:03 : Computing Co-Accessibility chr8 (8 of 23), 2.117 mins elapsed.
+
+2020-10-03 00:48:14 : SubsetCorVals-8, Class = numeric
+
+SubsetCorVals-8: length = 6
+[1] 9.701362e-05 4.346350e-02 3.626535e-02 2.408939e-01 9.701362e-05
+[6] 2.346962e-01
+
+
+
+2020-10-03 00:48:14 : SubsetGroupMat-8, Class = matrix
+   [,1]      [,2]       [,3]       [,4] [,5]
+f1    0 0.1490007 0.02614981 0.02196002    0
+f2    0 0.0000000 0.00000000 0.08590302    0
+f3    0 0.0000000 0.00000000 0.05960365    0
+f4    0 0.0000000 0.00000000 0.00000000    0
+f5    0 0.1311957 0.00000000 0.02739819    0
+
+SubsetGroupMat-8: nRows = 20537, nCols = 496
+
+
+2020-10-03 00:48:14 : SubsetCoA-8, Class = DFrame
+DataFrame with 540632 rows and 6 columns
+       queryHits subjectHits seqnames      idx1      idx2          correlation
+       <integer>   <integer>    <Rle> <integer> <integer>            <numeric>
+1         203267      203268     chr8         1         2 9.70136242217149e-05
+2         203267      203269     chr8         1         3   0.0434635028295138
+3         203267      203270     chr8         1         4   0.0362653477519165
+4         203267      203271     chr8         1         5    0.240893928802082
+5         203268      203267     chr8         2         1 9.70136242217149e-05
+...          ...         ...      ...       ...       ...                  ...
+540628    223803      223798     chr8     20537     20532   0.0234142333502889
+540629    223803      223799     chr8     20537     20533  -0.0283842246756581
+540630    223803      223800     chr8     20537     20534   0.0174036357541686
+540631    223803      223801     chr8     20537     20535 -0.00810745561745298
+540632    223803      223802     chr8     20537     20536   0.0146632051757713
+
+2020-10-03 00:48:14 : Computing Co-Accessibility chr9 (9 of 23), 2.307 mins elapsed.
+
+2020-10-03 00:48:25 : SubsetCorVals-9, Class = numeric
+
+SubsetCorVals-9: length = 6
+[1]  0.10203247 -0.03495007  0.06913280  0.03989197  0.07943459  0.04057047
+
+
+
+2020-10-03 00:48:25 : SubsetGroupMat-9, Class = matrix
+         [,1]       [,2]       [,3]        [,4]       [,5]
+f1 0.03396759 0.07642310 0.10187020 0.043590783 0.00000000
+f2 0.00000000 0.03871753 0.02614981 0.005521422 0.06246368
+f3 0.06715380 0.16658865 0.07706904 0.032815942 0.17981992
+f4 0.00000000 0.00000000 0.00000000 0.005521422 0.00000000
+f5 0.00000000 0.00000000 0.00000000 0.000000000 0.00000000
+
+SubsetGroupMat-9: nRows = 19455, nCols = 496
+
+
+2020-10-03 00:48:25 : SubsetCoA-9, Class = DFrame
+DataFrame with 615303 rows and 6 columns
+       queryHits subjectHits seqnames      idx1      idx2         correlation
+       <integer>   <integer>    <Rle> <integer> <integer>           <numeric>
+1         223804      223805     chr9         1         2   0.102032469926848
+2         223804      223806     chr9         1         3 -0.0349500659235387
+3         223804      223807     chr9         1         4  0.0691327990955807
+4         223804      223808     chr9         1         5  0.0398919662872318
+5         223804      223809     chr9         1         6  0.0794345867381913
+...          ...         ...      ...       ...       ...                 ...
+615299    243258      243253     chr9     19455     19450   0.539802383921575
+615300    243258      243254     chr9     19455     19451   0.511312524419375
+615301    243258      243255     chr9     19455     19452   0.499335201906143
+615302    243258      243256     chr9     19455     19453   0.451927730681451
+615303    243258      243257     chr9     19455     19454   0.387984622441675
+
+2020-10-03 00:48:25 : Computing Co-Accessibility chr10 (10 of 23), 2.495 mins elapsed.
+
+2020-10-03 00:48:38 : SubsetCorVals-10, Class = numeric
+
+SubsetCorVals-10: length = 6
+[1] 0.28986155 0.61065995 0.05426608 0.28986155 0.31464818 0.02248487
+
+
+
+2020-10-03 00:48:38 : SubsetGroupMat-10, Class = matrix
+         [,1]       [,2]       [,3]       [,4]       [,5]
+f1 0.03396759 0.00000000 0.01313415 0.01102179 0.00000000
+f2 0.00000000 0.01948864 0.00000000 0.00000000 0.00000000
+f3 0.00000000 0.03871753 0.00000000 0.03281594 0.03156987
+f4 0.00000000 0.00000000 0.00000000 0.00000000 0.00000000
+f5 0.00000000 0.00000000 0.00000000 0.00000000 0.00000000
+
+SubsetGroupMat-10: nRows = 22997, nCols = 496
+
+
+2020-10-03 00:48:38 : SubsetCoA-10, Class = DFrame
+DataFrame with 740416 rows and 6 columns
+       queryHits subjectHits seqnames      idx1      idx2         correlation
+       <integer>   <integer>    <Rle> <integer> <integer>           <numeric>
+1         243259      243260    chr10         1         2   0.289861553659322
+2         243259      243261    chr10         1         3   0.610659948672384
+3         243259      243262    chr10         1         4   0.054266084152154
+4         243260      243259    chr10         2         1   0.289861553659322
+5         243260      243261    chr10         2         3     0.3146481838335
+...          ...         ...      ...       ...       ...                 ...
+740412    266255      266250    chr10     22997     22992    0.01491886648234
+740413    266255      266251    chr10     22997     22993    0.22054125785097
+740414    266255      266252    chr10     22997     22994  0.0816775651063874
+740415    266255      266253    chr10     22997     22995 -0.0709737451901891
+740416    266255      266254    chr10     22997     22996  0.0835624371794571
+
+2020-10-03 00:48:38 : Computing Co-Accessibility chr11 (11 of 23), 2.703 mins elapsed.
+
+2020-10-03 00:48:53 : SubsetCorVals-11, Class = numeric
+
+SubsetCorVals-11: length = 6
+[1]  0.051499256  0.020622745 -0.013685437  0.004750297 -0.013710470
+[6] -0.003165473
+
+
+
+2020-10-03 00:48:53 : SubsetGroupMat-11, Class = matrix
+         [,1]       [,2]       [,3]        [,4]       [,5]
+f1 0.03396759 0.05769349 0.08952291 0.027398192 0.00000000
+f2 0.00000000 0.00000000 0.01313415 0.005521422 0.00000000
+f3 0.00000000 0.00000000 0.01313415 0.016501274 0.00000000
+f4 0.00000000 0.03871753 0.01313415 0.048948176 0.06246368
+f5 0.46590391 0.53486339 0.36009391 0.280637462 0.50624769
+
+SubsetGroupMat-11: nRows = 24800, nCols = 496
+
+
+2020-10-03 00:48:53 : SubsetCoA-11, Class = DFrame
+DataFrame with 863727 rows and 6 columns
+       queryHits subjectHits seqnames      idx1      idx2         correlation
+       <integer>   <integer>    <Rle> <integer> <integer>           <numeric>
+1         266256      266257    chr11         1         2  0.0514992556884536
+2         266256      266258    chr11         1         3  0.0206227448721798
+3         266256      266259    chr11         1         4 -0.0136854366637909
+4         266256      266260    chr11         1         5 0.00475029746406071
+5         266256      266261    chr11         1         6 -0.0137104704220137
+...          ...         ...      ...       ...       ...                 ...
+863723    291055      291050    chr11     24800     24795   0.432347365524525
+863724    291055      291051    chr11     24800     24796   0.524308970559231
+863725    291055      291052    chr11     24800     24797   0.326030268376655
+863726    291055      291053    chr11     24800     24798  0.0437737612313216
+863727    291055      291054    chr11     24800     24799  0.0697213992416559
+
+2020-10-03 00:48:53 : Computing Co-Accessibility chr12 (12 of 23), 2.955 mins elapsed.
+
+2020-10-03 00:49:05 : SubsetCorVals-12, Class = numeric
+
+SubsetCorVals-12: length = 6
+[1] 0.29067297 0.42856283 0.31584686 0.05891010 0.01705725 0.34099254
+
+
+
+2020-10-03 00:49:05 : SubsetGroupMat-12, Class = matrix
+   [,1] [,2] [,3]        [,4] [,5]
+f1    0    0    0 0.016501274    0
+f2    0    0    0 0.000000000    0
+f3    0    0    0 0.016501274    0
+f4    0    0    0 0.032815942    0
+f5    0    0    0 0.005521422    0
+
+SubsetGroupMat-12: nRows = 21744, nCols = 496
+
+
+2020-10-03 00:49:05 : SubsetCoA-12, Class = DFrame
+DataFrame with 632084 rows and 6 columns
+       queryHits subjectHits seqnames      idx1      idx2        correlation
+       <integer>   <integer>    <Rle> <integer> <integer>          <numeric>
+1         291056      291057    chr12         1         2  0.290672968880853
+2         291056      291058    chr12         1         3  0.428562830445778
+3         291056      291059    chr12         1         4  0.315846859092604
+4         291056      291060    chr12         1         5 0.0589101029982389
+5         291056      291061    chr12         1         6 0.0170572461976597
+...          ...         ...      ...       ...       ...                ...
+632080    312796      312795    chr12     21741     21740  0.708671698891955
+632081    312796      312797    chr12     21741     21742  0.582787983830075
+632082    312797      312796    chr12     21742     21741  0.582787983830075
+632083    312797      312798    chr12     21742     21743 0.0982760712036605
+632084    312798      312797    chr12     21743     21742 0.0982760712036604
+
+2020-10-03 00:49:05 : Computing Co-Accessibility chr13 (13 of 23), 3.16 mins elapsed.
+
+2020-10-03 00:49:12 : SubsetCorVals-13, Class = numeric
+
+SubsetCorVals-13: length = 6
+[1]  0.17747445  0.17747445  0.10788076  0.10788076 -0.06089531  0.05125521
+
+
+
+2020-10-03 00:49:13 : SubsetGroupMat-13, Class = matrix
+        [,1]       [,2] [,3]        [,4]       [,5]
+f1 0.0000000 0.00000000    0 0.000000000 0.00000000
+f2 0.0671538 0.05769349    0 0.000000000 0.09270978
+f3 0.0000000 0.00000000    0 0.005521422 0.06246368
+f4 0.0000000 0.00000000    0 0.000000000 0.00000000
+f5 0.0000000 0.00000000    0 0.000000000 0.00000000
+
+SubsetGroupMat-13: nRows = 12101, nCols = 496
+
+
+2020-10-03 00:49:13 : SubsetCoA-13, Class = DFrame
+DataFrame with 289608 rows and 6 columns
+       queryHits subjectHits seqnames      idx1      idx2          correlation
+       <integer>   <integer>    <Rle> <integer> <integer>            <numeric>
+1         312801      312802    chr13         2         3    0.177474451559392
+2         312802      312801    chr13         3         2    0.177474451559392
+3         312802      312803    chr13         3         4    0.107880763939645
+4         312803      312802    chr13         4         3    0.107880763939645
+5         312803      312804    chr13         4         5  -0.0608953122257924
+...          ...         ...      ...       ...       ...                  ...
+289604    324900      324895    chr13     12101     12096   0.0454308800085394
+289605    324900      324896    chr13     12101     12097    0.058362094375216
+289606    324900      324897    chr13     12101     12098   0.0626358684157167
+289607    324900      324898    chr13     12101     12099 -0.00161962320290605
+289608    324900      324899    chr13     12101     12100   0.0612960228476666
+
+2020-10-03 00:49:13 : Computing Co-Accessibility chr14 (14 of 23), 3.284 mins elapsed.
+
+2020-10-03 00:49:22 : SubsetCorVals-14, Class = numeric
+
+SubsetCorVals-14: length = 6
+[1] -0.139388889 -0.135301515 -0.001711996  0.673304374  0.670194390
+[6] -0.139388889
+
+
+
+2020-10-03 00:49:22 : SubsetGroupMat-14, Class = matrix
+        [,1]      [,2]       [,3]       [,4]       [,5]
+f1 0.0000000 0.0000000 0.10187020 0.00000000 0.03156987
+f2 0.0000000 0.0000000 0.01313415 0.00000000 0.00000000
+f3 0.0000000 0.0000000 0.00000000 0.01102179 0.00000000
+f4 0.0000000 0.0000000 0.02614981 0.00000000 0.00000000
+f5 0.0671538 0.2840431 0.15022898 0.01102179 0.23510203
+
+SubsetGroupMat-14: nRows = 14869, nCols = 496
+
+
+2020-10-03 00:49:22 : SubsetCoA-14, Class = DFrame
+DataFrame with 471010 rows and 6 columns
+       queryHits subjectHits seqnames      idx1      idx2          correlation
+       <integer>   <integer>    <Rle> <integer> <integer>            <numeric>
+1         324901      324902    chr14         1         2   -0.139388889206013
+2         324901      324903    chr14         1         3   -0.135301514502622
+3         324901      324904    chr14         1         4 -0.00171199633269854
+4         324901      324905    chr14         1         5    0.673304373862143
+5         324901      324906    chr14         1         6     0.67019439041789
+...          ...         ...      ...       ...       ...                  ...
+471006    339769      339764    chr14     14869     14864    0.324098867126615
+471007    339769      339765    chr14     14869     14865    0.365868192188444
+471008    339769      339766    chr14     14869     14866    0.626052051182932
+471009    339769      339767    chr14     14869     14867    0.570046460543631
+471010    339769      339768    chr14     14869     14868    0.616644032945088
+
+2020-10-03 00:49:22 : Computing Co-Accessibility chr15 (15 of 23), 3.442 mins elapsed.
+
+2020-10-03 00:49:31 : SubsetCorVals-15, Class = numeric
+
+SubsetCorVals-15: length = 6
+[1] -0.09995472 -0.02841116 -0.09995472  0.09561616 -0.02841116  0.09561616
+
+
+
+2020-10-03 00:49:31 : SubsetGroupMat-15, Class = matrix
+         [,1]       [,2]       [,3]       [,4]       [,5]
+f1 0.00000000 0.03871753 0.01313415 0.05428575 0.00000000
+f2 0.03396759 0.01948864 0.00000000 0.01102179 0.00000000
+f3 0.00000000 0.00000000 0.00000000 0.00000000 0.00000000
+f4 0.00000000 0.00000000 0.00000000 0.01650127 0.00000000
+f5 0.16236412 0.16658865 0.17381378 0.17679852 0.03156987
+
+SubsetGroupMat-15: nRows = 14346, nCols = 496
+
+
+2020-10-03 00:49:31 : SubsetCoA-15, Class = DFrame
+DataFrame with 424742 rows and 6 columns
+       queryHits subjectHits seqnames      idx1      idx2         correlation
+       <integer>   <integer>    <Rle> <integer> <integer>           <numeric>
+1         339770      339771    chr15         1         2 -0.0999547199695019
+2         339770      339772    chr15         1         3 -0.0284111648621731
+3         339771      339770    chr15         2         1 -0.0999547199695019
+4         339771      339772    chr15         2         3  0.0956161632004266
+5         339772      339770    chr15         3         1 -0.0284111648621731
+...          ...         ...      ...       ...       ...                 ...
+424738    354113      354112    chr15     14344     14343    0.42375577833892
+424739    354113      354114    chr15     14344     14345    0.38338333044226
+424740    354114      354111    chr15     14345     14342  -0.110789378193518
+424741    354114      354112    chr15     14345     14343   0.654858167858761
+424742    354114      354113    chr15     14345     14344    0.38338333044226
+
+2020-10-03 00:49:31 : Computing Co-Accessibility chr16 (16 of 23), 3.587 mins elapsed.
+
+2020-10-03 00:49:41 : SubsetCorVals-16, Class = numeric
+
+SubsetCorVals-16: length = 6
+[1]  0.106097013 -0.024206767 -0.039137987  0.008491067 -0.018674034
+[6] -0.050570100
+
+
+
+2020-10-03 00:49:41 : SubsetGroupMat-16, Class = matrix
+         [,1]       [,2]       [,3]        [,4]      [,5]
+f1 0.09959376 0.09491266 0.12625220 0.064902014 0.1223348
+f2 0.20771219 0.25144898 0.30775738 0.121934844 0.3142455
+f3 0.00000000 0.00000000 0.00000000 0.000000000 0.0000000
+f4 0.01708376 0.00000000 0.01313415 0.005521422 0.0000000
+f5 0.00000000 0.00000000 0.00000000 0.011021793 0.0000000
+
+SubsetGroupMat-16: nRows = 16138, nCols = 496
+
+
+2020-10-03 00:49:41 : SubsetCoA-16, Class = DFrame
+DataFrame with 556413 rows and 6 columns
+       queryHits subjectHits seqnames      idx1      idx2         correlation
+       <integer>   <integer>    <Rle> <integer> <integer>           <numeric>
+1         354116      354117    chr16         1         2   0.106097013272246
+2         354116      354118    chr16         1         3 -0.0242067673903484
+3         354116      354119    chr16         1         4 -0.0391379872996481
+4         354116      354120    chr16         1         5 0.00849106743082985
+5         354116      354121    chr16         1         6 -0.0186740337325468
+...          ...         ...      ...       ...       ...                 ...
+556409    370253      370248    chr16     16138     16133 -0.0703893290570218
+556410    370253      370249    chr16     16138     16134   0.711954338692179
+556411    370253      370250    chr16     16138     16135   0.542462076211073
+556412    370253      370251    chr16     16138     16136   0.663913355900855
+556413    370253      370252    chr16     16138     16137   0.681576899680794
+
+2020-10-03 00:49:41 : Computing Co-Accessibility chr17 (17 of 23), 3.758 mins elapsed.
+
+2020-10-03 00:49:54 : SubsetCorVals-17, Class = numeric
+
+SubsetCorVals-17: length = 6
+[1] 0.13713291 0.08675268 0.04179734 0.09531528 0.05838424 0.13006681
+
+
+
+2020-10-03 00:49:55 : SubsetGroupMat-17, Class = matrix
+        [,1]       [,2]       [,3]        [,4]      [,5]
+f1 0.0000000 0.00000000 0.01313415 0.000000000 0.0000000
+f2 0.0000000 0.00000000 0.00000000 0.005521422 0.0000000
+f3 0.0000000 0.01948864 0.02614981 0.016501274 0.0000000
+f4 0.0671538 0.07642310 0.06450672 0.096289977 0.1513636
+f5 0.0000000 0.00000000 0.00000000 0.021960021 0.0000000
+
+SubsetGroupMat-17: nRows = 19179, nCols = 496
+
+
+2020-10-03 00:49:55 : SubsetCoA-17, Class = DFrame
+DataFrame with 754255 rows and 6 columns
+       queryHits subjectHits seqnames      idx1      idx2         correlation
+       <integer>   <integer>    <Rle> <integer> <integer>           <numeric>
+1         370254      370255    chr17         1         2   0.137132908294277
+2         370254      370256    chr17         1         3  0.0867526756360463
+3         370254      370257    chr17         1         4   0.041797338118033
+4         370254      370258    chr17         1         5  0.0953152805857682
+5         370254      370259    chr17         1         6   0.058384240678762
+...          ...         ...      ...       ...       ...                 ...
+754251    389432      389427    chr17     19179     19174   0.271709634229489
+754252    389432      389428    chr17     19179     19175 -0.0486230968936516
+754253    389432      389429    chr17     19179     19176  0.0254434891983322
+754254    389432      389430    chr17     19179     19177   0.125769178574967
+754255    389432      389431    chr17     19179     19178 -0.0634269319167503
+
+2020-10-03 00:49:55 : Computing Co-Accessibility chr18 (18 of 23), 3.982 mins elapsed.
+
+2020-10-03 00:50:02 : SubsetCorVals-18, Class = numeric
+
+SubsetCorVals-18: length = 6
+[1]  0.34370817 -0.04961798  0.01656569  0.34370817 -0.07748459 -0.03389623
+
+
+
+2020-10-03 00:50:03 : SubsetGroupMat-18, Class = matrix
+        [,1]      [,2]       [,3]       [,4]      [,5]
+f1 0.0000000 0.0000000 0.00000000 0.01102179 0.0000000
+f2 0.0000000 0.0000000 0.02614981 0.01102179 0.0000000
+f3 0.0000000 0.0000000 0.00000000 0.05960365 0.0000000
+f4 0.0000000 0.0000000 0.00000000 0.05960365 0.0000000
+f5 0.1776391 0.5749302 0.47845937 0.19140621 0.4372064
+
+SubsetGroupMat-18: nRows = 11006, nCols = 496
+
+
+2020-10-03 00:50:03 : SubsetCoA-18, Class = DFrame
+DataFrame with 336526 rows and 6 columns
+       queryHits subjectHits seqnames      idx1      idx2         correlation
+       <integer>   <integer>    <Rle> <integer> <integer>           <numeric>
+1         389433      389434    chr18         1         2   0.343708171321406
+2         389433      389435    chr18         1         3 -0.0496179781305013
+3         389433      389436    chr18         1         4  0.0165656928554998
+4         389434      389433    chr18         2         1   0.343708171321406
+5         389434      389435    chr18         2         3 -0.0774845905621585
+...          ...         ...      ...       ...       ...                 ...
+336522    400438      400433    chr18     11006     11001   0.121150676112667
+336523    400438      400434    chr18     11006     11002   0.232513058668814
+336524    400438      400435    chr18     11006     11003  -0.072552612157013
+336525    400438      400436    chr18     11006     11004   0.124159195194058
+336526    400438      400437    chr18     11006     11005   0.175553520989332
+
+2020-10-03 00:50:03 : Computing Co-Accessibility chr19 (19 of 23), 4.114 mins elapsed.
+
+2020-10-03 00:50:13 : SubsetCorVals-19, Class = numeric
+
+SubsetCorVals-19: length = 6
+[1] 0.3003523 0.2788744 0.3001911 0.2142797 0.2147719 0.3017320
+
+
+
+2020-10-03 00:50:13 : SubsetGroupMat-19, Class = matrix
+         [,1]       [,2]       [,3]       [,4]       [,5]
+f1 0.00000000 0.00000000 0.01313415 0.00000000 0.00000000
+f2 0.01708376 0.05769349 0.05183406 0.00000000 0.03156987
+f3 0.23717121 0.34710208 0.27541919 0.00000000 0.36469424
+f4 0.20771219 0.31591710 0.05183406 0.01102179 0.12233476
+f5 0.34933684 0.13119574 0.10187020 0.00000000 0.06246368
+
+SubsetGroupMat-19: nRows = 13881, nCols = 496
+
+
+2020-10-03 00:50:13 : SubsetCoA-19, Class = DFrame
+DataFrame with 544395 rows and 6 columns
+       queryHits subjectHits seqnames      idx1      idx2         correlation
+       <integer>   <integer>    <Rle> <integer> <integer>           <numeric>
+1         400439      400440    chr19         1         2   0.300352330209395
+2         400439      400441    chr19         1         3   0.278874393423648
+3         400439      400442    chr19         1         4   0.300191101173359
+4         400439      400443    chr19         1         5   0.214279716179543
+5         400439      400444    chr19         1         6   0.214771902158346
+...          ...         ...      ...       ...       ...                 ...
+544391    414319      414314    chr19     13881     13876  0.0785760344486193
+544392    414319      414315    chr19     13881     13877  -0.145070093821653
+544393    414319      414316    chr19     13881     13878  0.0609625792031755
+544394    414319      414317    chr19     13881     13879  -0.101855259610822
+544395    414319      414318    chr19     13881     13880 -0.0484694078194814
+
+2020-10-03 00:50:13 : Computing Co-Accessibility chr20 (20 of 23), 4.293 mins elapsed.
+
+2020-10-03 00:50:21 : SubsetCorVals-20, Class = numeric
+
+SubsetCorVals-20: length = 6
+[1] -0.18528965  0.29380172  0.06134552 -0.07155683  0.22985084 -0.18528965
+
+
+
+2020-10-03 00:50:21 : SubsetGroupMat-20, Class = matrix
+        [,1] [,2] [,3]       [,4] [,5]
+f1 0.0000000    0    0 0.05960365    0
+f2 0.0000000    0    0 0.00000000    0
+f3 0.0000000    0    0 0.01102179    0
+f4 0.0000000    0    0 0.00000000    0
+f5 0.0671538    0    0 0.00000000    0
+
+SubsetGroupMat-20: nRows = 12426, nCols = 496
+
+
+2020-10-03 00:50:21 : SubsetCoA-20, Class = DFrame
+DataFrame with 414733 rows and 6 columns
+       queryHits subjectHits seqnames      idx1      idx2         correlation
+       <integer>   <integer>    <Rle> <integer> <integer>           <numeric>
+1         414320      414321    chr20         1         2  -0.185289654767025
+2         414320      414322    chr20         1         3   0.293801721407673
+3         414320      414323    chr20         1         4  0.0613455200832673
+4         414320      414324    chr20         1         5 -0.0715568343775772
+5         414320      414325    chr20         1         6   0.229850838184925
+...          ...         ...      ...       ...       ...                 ...
+414729    426745      426740    chr20     12426     12421   0.276633571385087
+414730    426745      426741    chr20     12426     12422  0.0988681090375367
+414731    426745      426742    chr20     12426     12423   0.573817964835519
+414732    426745      426743    chr20     12426     12424  0.0598804215055416
+414733    426745      426744    chr20     12426     12425   0.787464398994567
+
+2020-10-03 00:50:21 : Computing Co-Accessibility chr21 (21 of 23), 4.425 mins elapsed.
+
+2020-10-03 00:50:26 : SubsetCorVals-21, Class = numeric
+
+SubsetCorVals-21: length = 6
+[1]  0.002180216  0.002180216  0.056111786  0.209665330  0.131764923
+[6] -0.047708971
+
+
+
+2020-10-03 00:50:26 : SubsetGroupMat-21, Class = matrix
+         [,1]       [,2]       [,3]       [,4]       [,5]
+f1 0.00000000 0.00000000 0.05183406 0.02739819 0.00000000
+f2 0.03396759 0.00000000 0.00000000 0.00000000 0.00000000
+f3 0.00000000 0.00000000 0.01313415 0.02196002 0.00000000
+f4 0.01708376 0.00000000 0.00000000 0.00000000 0.06246368
+f5 0.00000000 0.01948864 0.03904909 0.01102179 0.00000000
+
+SubsetGroupMat-21: nRows = 5546, nCols = 496
+
+
+2020-10-03 00:50:26 : SubsetCoA-21, Class = DFrame
+DataFrame with 157176 rows and 6 columns
+       queryHits subjectHits seqnames      idx1      idx2         correlation
+       <integer>   <integer>    <Rle> <integer> <integer>           <numeric>
+1         426746      426747    chr21         1         2 0.00218021637781616
+2         426747      426746    chr21         2         1 0.00218021637781616
+3         426748      426749    chr21         3         4  0.0561117864130194
+4         426748      426750    chr21         3         5   0.209665330125676
+5         426748      426751    chr21         3         6   0.131764923314208
+...          ...         ...      ...       ...       ...                 ...
+157172    432291      432286    chr21      5546      5541   0.491492463528746
+157173    432291      432287    chr21      5546      5542   0.624394669016426
+157174    432291      432288    chr21      5546      5543   0.571805552651198
+157175    432291      432289    chr21      5546      5544   0.589968858743546
+157176    432291      432290    chr21      5546      5545   0.638131875292878
+
+2020-10-03 00:50:26 : Computing Co-Accessibility chr22 (22 of 23), 4.506 mins elapsed.
+
+2020-10-03 00:50:33 : SubsetCorVals-22, Class = numeric
+
+SubsetCorVals-22: length = 6
+[1]  0.259705749  0.083392374 -0.019264732 -0.004057007  0.259705749
+[6]  0.186654177
+
+
+
+2020-10-03 00:50:33 : SubsetGroupMat-22, Class = matrix
+         [,1] [,2]       [,3]        [,4] [,5]
+f1 0.00000000    0 0.00000000 0.021960021    0
+f2 0.00000000    0 0.03904909 0.005521422    0
+f3 0.00000000    0 0.00000000 0.000000000    0
+f4 0.01708376    0 0.02614981 0.000000000    0
+f5 0.00000000    0 0.00000000 0.021960021    0
+
+SubsetGroupMat-22: nRows = 9389, nCols = 496
+
+
+2020-10-03 00:50:33 : SubsetCoA-22, Class = DFrame
+DataFrame with 378746 rows and 6 columns
+       queryHits subjectHits seqnames      idx1      idx2         correlation
+       <integer>   <integer>    <Rle> <integer> <integer>           <numeric>
+1         432293      432294    chr22         2         3   0.259705749375587
+2         432293      432295    chr22         2         4  0.0833923739025773
+3         432293      432296    chr22         2         5 -0.0192647320105084
+4         432293      432297    chr22         2         6 -0.0040570071461867
+5         432294      432293    chr22         3         2   0.259705749375587
+...          ...         ...      ...       ...       ...                 ...
+378742    441680      441675    chr22      9389      9384 -0.0337599067023166
+378743    441680      441676    chr22      9389      9385  -0.133801493668724
+378744    441680      441677    chr22      9389      9386 -0.0567467605258661
+378745    441680      441678    chr22      9389      9387  0.0420854457399433
+378746    441680      441679    chr22      9389      9388   0.378452046897205
+
+2020-10-03 00:50:33 : Computing Co-Accessibility chrX (23 of 23), 4.622 mins elapsed.
+
+2020-10-03 00:50:39 : SubsetCorVals-23, Class = numeric
+
+SubsetCorVals-23: length = 6
+[1] 0.1685286 0.1246408 0.2619122 0.1431113 0.3085595 0.1716187
+
+
+
+2020-10-03 00:50:39 : SubsetGroupMat-23, Class = matrix
+         [,1]       [,2]       [,3]        [,4] [,5]
+f1 0.03396759 0.03871753 0.01313415 0.027398192    0
+f2 0.00000000 0.00000000 0.00000000 0.005521422    0
+f3 0.00000000 0.00000000 0.00000000 0.000000000    0
+f4 0.17763907 0.28404311 0.23114219 0.000000000    0
+f5 0.00000000 0.11316826 0.07706904 0.000000000    0
+
+SubsetGroupMat-23: nRows = 9315, nCols = 496
+
+
+2020-10-03 00:50:39 : SubsetCoA-23, Class = DFrame
+DataFrame with 140092 rows and 6 columns
+       queryHits subjectHits seqnames      idx1      idx2         correlation
+       <integer>   <integer>    <Rle> <integer> <integer>           <numeric>
+1         441681      441682     chrX         1         2    0.16852864153633
+2         441681      441683     chrX         1         3    0.12464076491276
+3         441681      441684     chrX         1         4   0.261912209828447
+4         441681      441685     chrX         1         5   0.143111282571422
+5         441681      441686     chrX         1         6    0.30855948548652
+...          ...         ...      ...       ...       ...                 ...
+140088    450991      450992     chrX      9311      9312 -0.0756219699836174
+140089    450992      450990     chrX      9312      9310 -0.0606661847577097
+140090    450992      450991     chrX      9312      9311 -0.0756219699836174
+140091    450993      450994     chrX      9313      9314 -0.0217152256408888
+140092    450994      450993     chrX      9314      9313 -0.0217152256408888
+
+
+------- Completed
+
+End Time : 2020-10-03 00:50:40
+Elapsed Time Minutes = 4.73567277987798
+Elapsed Time Hours = 0.0789279492033853
+
+-------
+
+
+

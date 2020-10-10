@@ -1,0 +1,290 @@
+
+           ___      .______        ______  __    __  .______      
+          /   \     |   _  \      /      ||  |  |  | |   _  \     
+         /  ^  \    |  |_)  |    |  ,----'|  |__|  | |  |_)  |    
+        /  /_\  \   |      /     |  |     |   __   | |      /     
+       /  _____  \  |  |\  \\___ |  `----.|  |  |  | |  |\  \\___.
+      /__/     \__\ | _| `._____| \______||__|  |__| | _| `._____|
+    
+Logging With ArchR!
+
+Start Time : 2020-10-02 18:21:16
+
+------- ArchR Info
+
+ArchRThreads = 10
+ArchRGenome = Hg38
+
+------- System Info
+
+Computer OS = unix
+Total Cores = 64
+
+------- Session Info
+
+R version 3.6.3 (2020-02-29)
+Platform: x86_64-conda_cos6-linux-gnu (64-bit)
+Running under: CentOS Linux 7 (Core)
+
+Matrix products: default
+BLAS/LAPACK: /home/bnphan/miniconda3/lib/libmkl_rt.so
+
+locale:
+ [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+ [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+ [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
+ [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+ [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+[11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+
+attached base packages:
+[1] parallel  stats4    stats     graphics  grDevices utils     datasets 
+[8] methods   base     
+
+other attached packages:
+ [1] ArchR_0.9.5                 magrittr_1.5               
+ [3] rhdf5_2.30.1                Matrix_1.2-18              
+ [5] data.table_1.13.0           SummarizedExperiment_1.16.1
+ [7] DelayedArray_0.12.3         BiocParallel_1.20.1        
+ [9] matrixStats_0.57.0          Biobase_2.46.0             
+[11] GenomicRanges_1.38.0        GenomeInfoDb_1.22.1        
+[13] IRanges_2.20.2              S4Vectors_0.24.4           
+[15] BiocGenerics_0.32.0         ggplot2_3.3.2              
+[17] colorout_1.2-2             
+
+loaded via a namespace (and not attached):
+ [1] BSgenome.Hsapiens.UCSC.hg38_1.4.1 Rcpp_1.0.5                       
+ [3] lattice_0.20-41                   Rsamtools_2.2.3                  
+ [5] Biostrings_2.54.0                 gtools_3.8.2                     
+ [7] digest_0.6.25                     IRdisplay_0.7.0                  
+ [9] R6_2.4.1                          repr_1.1.0                       
+[11] evaluate_0.14                     pillar_1.4.6                     
+[13] zlibbioc_1.32.0                   rlang_0.4.7                      
+[15] uuid_0.1-4                        stringr_1.4.0                    
+[17] pheatmap_1.0.12                   RCurl_1.98-1.2                   
+[19] munsell_0.5.0                     compiler_3.6.3                   
+[21] rtracklayer_1.46.0                pkgconfig_2.0.3                  
+[23] base64enc_0.1-3                   htmltools_0.5.0                  
+[25] tidyselect_1.1.0                  tibble_3.0.3                     
+[27] GenomeInfoDbData_1.2.2            XML_3.99-0.3                     
+[29] crayon_1.3.4                      dplyr_1.0.2                      
+[31] withr_2.3.0                       GenomicAlignments_1.22.1         
+[33] bitops_1.0-6                      grid_3.6.3                       
+[35] jsonlite_1.7.1                    gtable_0.3.0                     
+[37] lifecycle_0.2.0                   scales_1.1.1                     
+[39] stringi_1.5.3                     XVector_0.26.0                   
+[41] ellipsis_0.3.1                    generics_0.0.2                   
+[43] vctrs_0.3.4                       IRkernel_1.1.1                   
+[45] Rhdf5lib_1.8.0                    RColorBrewer_1.1-2               
+[47] tools_3.6.3                       Cairo_1.5-12.2                   
+[49] BSgenome_1.54.0                   glue_1.4.2                       
+[51] purrr_0.3.4                       colorspace_1.4-1                 
+[53] pbdZMQ_0.3-3                     
+
+
+------- Log Info
+
+
+2020-10-02 18:21:16 : Input-Parameters, Class = list
+
+Input-Parameters$ArchRProj: length = 1
+class: ArchRProject 
+outputDirectory: /home/bnphan/projects/snATAC_cross_species_caudate/data/raw_data/hg38/Corces_2020/ArchR_Corces2020_caudate 
+samples(3): 06_0615.CAUD 09_1589.CAUD 14_1018.CAUD
+sampleColData names(1): ArrowFiles
+cellColData names(18): Sample TSSEnrichment ... Region Clusters
+numberOfCells(1): 1
+medianTSS(1): 9.196
+medianFrags(1): 80840
+
+
+Input-Parameters$embedding: length = 1
+[1] "UMAP"
+
+
+Input-Parameters$colorBy: length = 1
+[1] "cellColData"
+
+
+Input-Parameters$name: length = 1
+[1] "Sample"
+
+
+Input-Parameters$log2Norm: length = 0
+NULL
+
+
+Input-Parameters$imputeWeights: length = 0
+NULL
+
+
+Input-Parameters$pal: length = 0
+NULL
+
+
+Input-Parameters$size: length = 1
+[1] 0.1
+
+
+Input-Parameters$sampleCells: length = 0
+NULL
+
+
+Input-Parameters$highlightCells: length = 0
+NULL
+
+
+Input-Parameters$rastr: length = 1
+[1] TRUE
+
+
+Input-Parameters$quantCut: length = 2
+[1] 0.01 0.99
+
+
+Input-Parameters$discreteSet: length = 0
+NULL
+
+
+Input-Parameters$continuousSet: length = 0
+NULL
+
+
+Input-Parameters$randomize: length = 1
+[1] TRUE
+
+
+Input-Parameters$keepAxis: length = 1
+[1] FALSE
+
+
+Input-Parameters$baseSize: length = 1
+[1] 10
+
+
+Input-Parameters$plotAs: length = 0
+NULL
+
+
+Input-Parameters$threads: length = 1
+[1] 10
+
+
+Input-Parameters$logFile: length = 1
+[1] "ArchRLogs/ArchR-plotEmbedding-30ca13249dfa1-Date-2020-10-02_Time-18-21-16.log"
+
+
+
+2020-10-02 18:21:16 : 
+
+2020-10-02 18:21:16 : Embedding data.frame, Class = data.frame
+Embedding data.frame: nRows = 26694, nCols = 2
+                                Harmony#UMAP_Dimension_1
+06_0615.CAUD#ATTACTCGTGCGTAGA-1                -6.348971
+06_0615.CAUD#CTTGCCATCAGGAATA-1                -6.777964
+06_0615.CAUD#CGCTGGATCCGTGCGA-1                -6.236875
+06_0615.CAUD#GTGATCATCGCTATAG-1                -7.173694
+06_0615.CAUD#AGATTCGTCGCAGATT-1                -6.422204
+06_0615.CAUD#CATGTTTCAGGTAACG-1                -7.211178
+                                Harmony#UMAP_Dimension_2
+06_0615.CAUD#ATTACTCGTGCGTAGA-1                -14.09494
+06_0615.CAUD#CTTGCCATCAGGAATA-1                -12.38251
+06_0615.CAUD#CGCTGGATCCGTGCGA-1                -14.04558
+06_0615.CAUD#GTGATCATCGCTATAG-1                -10.96296
+06_0615.CAUD#AGATTCGTCGCAGATT-1                -13.88045
+06_0615.CAUD#CATGTTTCAGGTAACG-1                -10.00581
+
+
+
+2020-10-02 18:21:16 : 
+
+2020-10-02 18:21:16 : ColorParams 1, Class = list
+
+ColorParams 1$color: length = 26694
+[1] "06_0615.CAUD" "06_0615.CAUD" "06_0615.CAUD" "06_0615.CAUD" "06_0615.CAUD"
+[6] "06_0615.CAUD"
+
+
+ColorParams 1$discrete: length = 1
+[1] TRUE
+
+
+ColorParams 1$continuousSet: length = 1
+[1] "solarExtra"
+
+
+ColorParams 1$discreteSet: length = 1
+[1] "stallion"
+
+
+ColorParams 1$title: length = 1
+[1] "UMAP of Harmony  colored by\ncolData :  Sample"
+
+
+
+2020-10-02 18:21:16 : PlotParams-1, Class = list
+
+PlotParams-1$color: length = 26694
+[1] "06_0615.CAUD" "06_0615.CAUD" "06_0615.CAUD" "06_0615.CAUD" "06_0615.CAUD"
+[6] "06_0615.CAUD"
+
+
+PlotParams-1$discrete: length = 1
+[1] TRUE
+
+
+PlotParams-1$continuousSet: length = 1
+[1] "solarExtra"
+
+
+PlotParams-1$discreteSet: length = 1
+[1] "stallion"
+
+
+PlotParams-1$title: length = 1
+[1] "UMAP of Harmony  colored by\ncolData :  Sample"
+
+
+PlotParams-1$x: length = 26694
+[1] -6.348971 -6.777964 -6.236875 -7.173694 -6.422204 -7.211178
+
+
+PlotParams-1$y: length = 26694
+[1] -14.09494 -12.38251 -14.04558 -10.96296 -13.88045 -10.00581
+
+
+PlotParams-1$baseSize: length = 1
+[1] 10
+
+
+PlotParams-1$xlabel: length = 1
+[1] "UMAP Dimension 1"
+
+
+PlotParams-1$ylabel: length = 1
+[1] "UMAP Dimension 2"
+
+
+PlotParams-1$rastr: length = 1
+[1] TRUE
+
+
+PlotParams-1$size: length = 1
+[1] 0.1
+
+
+PlotParams-1$randomize: length = 1
+[1] TRUE
+
+
+
+------- Completed
+
+End Time : 2020-10-02 18:21:16
+Elapsed Time Minutes = 0.0134687860806783
+Elapsed Time Hours = 0.000224531226687961
+
+-------
+
+
+

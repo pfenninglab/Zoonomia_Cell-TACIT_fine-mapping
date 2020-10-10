@@ -1,0 +1,3029 @@
+
+           ___      .______        ______  __    __  .______      
+          /   \     |   _  \      /      ||  |  |  | |   _  \     
+         /  ^  \    |  |_)  |    |  ,----'|  |__|  | |  |_)  |    
+        /  /_\  \   |      /     |  |     |   __   | |      /     
+       /  _____  \  |  |\  \\___ |  `----.|  |  |  | |  |\  \\___.
+      /__/     \__\ | _| `._____| \______||__|  |__| | _| `._____|
+    
+Logging With ArchR!
+
+Start Time : 2020-10-07 22:09:37
+
+------- ArchR Info
+
+ArchRThreads = 10
+ArchRGenome = Mm10
+
+------- System Info
+
+Computer OS = unix
+Total Cores = 64
+
+------- Session Info
+
+R version 3.6.3 (2020-02-29)
+Platform: x86_64-conda_cos6-linux-gnu (64-bit)
+Running under: CentOS Linux 7 (Core)
+
+Matrix products: default
+BLAS/LAPACK: /home/bnphan/miniconda3/lib/libmkl_rt.so
+
+locale:
+ [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+ [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+ [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
+ [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+ [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+[11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+
+attached base packages:
+[1] parallel  stats4    stats     graphics  grDevices utils     datasets 
+[8] methods   base     
+
+other attached packages:
+ [1] JASPAR2018_1.1.1                      chromVARmotifs_0.2.0                 
+ [3] motifmatchr_1.8.0                     BSgenome.Mmulatta.UCSC.rheMac10_1.4.3
+ [5] BSgenome_1.54.0                       rtracklayer_1.46.0                   
+ [7] Biostrings_2.54.0                     XVector_0.26.0                       
+ [9] ArchR_0.9.5                           magrittr_1.5                         
+[11] rhdf5_2.30.1                          Matrix_1.2-18                        
+[13] data.table_1.13.0                     SummarizedExperiment_1.16.1          
+[15] DelayedArray_0.12.3                   BiocParallel_1.20.1                  
+[17] matrixStats_0.57.0                    Biobase_2.46.0                       
+[19] GenomicRanges_1.38.0                  GenomeInfoDb_1.22.1                  
+[21] IRanges_2.20.2                        S4Vectors_0.24.4                     
+[23] BiocGenerics_0.32.0                   ggplot2_3.3.2                        
+[25] colorout_1.2-2                       
+
+loaded via a namespace (and not attached):
+ [1] bitops_1.0-6                       DirichletMultinomial_1.28.0       
+ [3] TFBSTools_1.24.0                   bit64_4.0.5                       
+ [5] httr_1.4.2                         repr_1.1.0                        
+ [7] tools_3.6.3                        R6_2.4.1                          
+ [9] seqLogo_1.52.0                     DBI_1.1.0                         
+[11] colorspace_1.4-1                   withr_2.3.0                       
+[13] tidyselect_1.1.0                   bit_4.0.4                         
+[15] compiler_3.6.3                     BSgenome.Mmusculus.UCSC.mm10_1.4.0
+[17] Cairo_1.5-12.2                     labeling_0.3                      
+[19] caTools_1.18.0                     scales_1.1.1                      
+[21] hexbin_1.28.1                      readr_1.4.0                       
+[23] pbdZMQ_0.3-3                       stringr_1.4.0                     
+[25] digest_0.6.25                      Rsamtools_2.2.3                   
+[27] R.utils_2.10.1                     base64enc_0.1-3                   
+[29] pkgconfig_2.0.3                    htmltools_0.5.0                   
+[31] rlang_0.4.7                        RSQLite_2.2.1                     
+[33] farver_2.0.3                       generics_0.0.2                    
+[35] jsonlite_1.7.1                     gtools_3.8.2                      
+[37] R.oo_1.24.0                        dplyr_1.0.2                       
+[39] RCurl_1.98-1.2                     GO.db_3.10.0                      
+[41] GenomeInfoDbData_1.2.2             Rcpp_1.0.5                        
+[43] IRkernel_1.1.1                     munsell_0.5.0                     
+[45] Rhdf5lib_1.8.0                     lifecycle_0.2.0                   
+[47] R.methodsS3_1.8.1                  stringi_1.5.3                     
+[49] zlibbioc_1.32.0                    plyr_1.8.6                        
+[51] grid_3.6.3                         blob_1.2.1                        
+[53] crayon_1.3.4                       CNEr_1.22.0                       
+[55] lattice_0.20-41                    IRdisplay_0.7.0                   
+[57] cowplot_1.1.0                      annotate_1.64.0                   
+[59] KEGGREST_1.26.1                    hms_0.5.3                         
+[61] pillar_1.4.6                       uuid_0.1-4                        
+[63] reshape2_1.4.4                     TFMPvalue_0.0.8                   
+[65] XML_3.99-0.3                       glue_1.4.2                        
+[67] evaluate_0.14                      png_0.1-7                         
+[69] vctrs_0.3.4                        gtable_0.3.0                      
+[71] poweRlaw_0.70.6                    purrr_0.3.4                       
+[73] xtable_1.8-4                       pracma_2.2.9                      
+[75] tibble_3.0.3                       GenomicAlignments_1.22.1          
+[77] AnnotationDbi_1.48.0               memoise_1.1.0                     
+[79] ellipsis_0.3.1                    
+
+
+------- Log Info
+
+
+2020-10-07 22:09:37 : addMotifAnnotations Input-Parameters, Class = list
+
+addMotifAnnotations Input-Parameters$ArchRProj: length = 1
+class: ArchRProject 
+outputDirectory: /home/bnphan/projects/snATAC_cross_species_caudate/data/raw_data/rheMac10/Stauffer_caudate/ArchR_Stauffer_caudate_labeled 
+samples(1): CAUD_WS1H_STA682A131
+sampleColData names(1): ArrowFiles
+cellColData names(19): Sample TSSEnrichment ... ReadsInPeaks FRIP
+numberOfCells(1): 1
+medianTSS(1): 7.836
+medianFrags(1): 99935
+
+
+addMotifAnnotations Input-Parameters$motifSet: length = 1
+[1] "JASPAR2018"
+
+
+addMotifAnnotations Input-Parameters$name: length = 1
+[1] "Motif"
+
+
+addMotifAnnotations Input-Parameters$species: length = 0
+NULL
+
+
+addMotifAnnotations Input-Parameters$collection: length = 1
+[1] "CORE"
+
+
+addMotifAnnotations Input-Parameters$motifPWMs: length = 0
+NULL
+
+
+addMotifAnnotations Input-Parameters$cutOff: length = 1
+[1] 5e-05
+
+
+addMotifAnnotations Input-Parameters$width: length = 1
+[1] 7
+
+
+addMotifAnnotations Input-Parameters$version: length = 1
+[1] 2
+
+
+addMotifAnnotations Input-Parameters$force: length = 1
+[1] FALSE
+
+
+addMotifAnnotations Input-Parameters$logFile: length = 1
+[1] "ArchRLogs/ArchR-addMotifAnnotations-53e407f643215-Date-2020-10-07_Time-22-09-37.log"
+
+
+2020-10-07 22:09:37 : Gettting Motif Set, Species : , 0.003 mins elapsed.
+
+2020-10-07 22:10:00 : motifs, Class = PFMatrixList
+
+motifs$Arnt_1: length = 6
+
+motifs$Ahr..Arnt_2: length = 6
+
+motifs$br_3: length = 14
+
+motifs$br.var.2_4: length = 8
+
+motifs$br.var.3_5: length = 11
+
+motifs$br.var.4_6: length = 11
+
+motifs$Cf2_7: length = 10
+
+motifs$usp_8: length = 10
+
+motifs$Ddit3..Cebpa_9: length = 12
+
+motifs$Dof2_10: length = 6
+
+motifs$Dof3_11: length = 6
+
+motifs$dl_12: length = 12
+
+motifs$dl.var.2_13: length = 10
+
+motifs$NFIL3_14: length = 11
+
+motifs$Eip74EF_15: length = 7
+
+motifs$Mecom_16: length = 14
+
+motifs$FOXF2_17: length = 14
+
+motifs$FOXD1_18: length = 8
+
+motifs$Gam1_19: length = 10
+
+motifs$Gfi1_20: length = 10
+
+motifs$Foxq1_21: length = 11
+
+motifs$Foxd3_22: length = 12
+
+motifs$HMG.1_23: length = 9
+
+motifs$HMG.I.Y_24: length = 16
+
+motifs$hb_25: length = 10
+
+motifs$IRF2_26: length = 18
+
+motifs$MNB1A_27: length = 5
+
+motifs$myb.Ph3_28: length = 9
+
+motifs$MZF1_29: length = 6
+
+motifs$MZF1.var.2_30: length = 10
+
+motifs$MAX..MYC_31: length = 11
+
+motifs$Nkx2.5_32: length = 7
+
+motifs$PBF_33: length = 5
+
+motifs$PPARG_34: length = 20
+
+motifs$Pax2_35: length = 8
+
+motifs$Pax6_36: length = 14
+
+motifs$PBX1_37: length = 12
+
+motifs$RORA_38: length = 10
+
+motifs$RORA.var.2_39: length = 14
+
+motifs$RREB1_40: length = 20
+
+motifs$RXRA..VDR_41: length = 15
+
+motifs$SOX9_42: length = 9
+
+motifs$Sox17_43: length = 9
+
+motifs$SPIB_44: length = 7
+
+motifs$squamosa_45: length = 14
+
+motifs$SRY_46: length = 9
+
+motifs$Su.H_47: length = 16
+
+motifs$Sox5_48: length = 7
+
+motifs$MAFG..NFE2L1_49: length = 6
+
+motifs$TAL1..TCF3_50: length = 12
+
+motifs$Hand1..Tcf3_51: length = 10
+
+motifs$bZIP910_52: length = 7
+
+motifs$bZIP911_53: length = 12
+
+motifs$REL_54: length = 10
+
+motifs$RELA_55: length = 10
+
+motifs$TBP_56: length = 15
+
+motifs$HLTF_57: length = 10
+
+motifs$Spz1_58: length = 11
+
+motifs$NR1H2..RXRA_59: length = 17
+
+motifs$Znf423_60: length = 15
+
+motifs$Macho.1_61: length = 9
+
+motifs$NFIC..TLX1_62: length = 14
+
+motifs$id1_63: length = 12
+
+motifs$ARR10_64: length = 8
+
+motifs$abi4_65: length = 10
+
+motifs$Nobox_66: length = 8
+
+motifs$ovo_67: length = 9
+
+motifs$PEND_68: length = 10
+
+motifs$EmBP.1_69: length = 8
+
+motifs$TGA1A_70: length = 7
+
+motifs$ZNF354C_71: length = 6
+
+motifs$Lhx3_72: length = 13
+
+motifs$CTCF_73: length = 19
+
+motifs$Pou5f1..Sox2_74: length = 15
+
+motifs$EWSR1.FLI1_75: length = 18
+
+motifs$Gabpa_76: length = 11
+
+motifs$REST_77: length = 21
+
+motifs$RUNX1_78: length = 11
+
+motifs$Foxa2_79: length = 12
+
+motifs$Pparg..Rxra_80: length = 15
+
+motifs$Arid3a_81: length = 6
+
+motifs$NFATC2_82: length = 7
+
+motifs$INSM1_83: length = 12
+
+motifs$HOXA5_84: length = 8
+
+motifs$RARA..RXRA_85: length = 17
+
+motifs$NR4A2_86: length = 8
+
+motifs$PLAG1_87: length = 14
+
+motifs$Nr2e3_88: length = 7
+
+motifs$Abd.B_89: length = 7
+
+motifs$Antp_90: length = 7
+
+motifs$Awh_91: length = 7
+
+motifs$B.H1_92: length = 7
+
+motifs$B.H2_93: length = 7
+
+motifs$C15_94: length = 7
+
+motifs$CG11085_95: length = 7
+
+motifs$CG11294_96: length = 7
+
+motifs$CG11617_97: length = 7
+
+motifs$Dbx_98: length = 7
+
+motifs$lms_99: length = 7
+
+motifs$CG15696.RA_100: length = 7
+
+motifs$CG18599_101: length = 7
+
+motifs$CG32105_102: length = 7
+
+motifs$CG32532_103: length = 7
+
+motifs$Vsx2_104: length = 9
+
+motifs$Vsx1_105: length = 7
+
+motifs$CG4328.RA_106: length = 7
+
+motifs$HHEX_107: length = 8
+
+motifs$CG9876_108: length = 7
+
+motifs$Deaf1_109: length = 6
+
+motifs$Dfd_110: length = 7
+
+motifs$Dll_111: length = 7
+
+motifs$Dr_112: length = 7
+
+motifs$E5_113: length = 7
+
+motifs$Gsc_114: length = 6
+
+motifs$HGTX_115: length = 7
+
+motifs$Hmx_116: length = 7
+
+motifs$schlank_117: length = 7
+
+motifs$Lim1_118: length = 7
+
+motifs$Lim3_119: length = 7
+
+motifs$NK7.1_120: length = 7
+
+motifs$OdsH_121: length = 7
+
+motifs$Optix_122: length = 5
+
+motifs$Pph13_123: length = 7
+
+motifs$Ptx1_124: length = 7
+
+motifs$Rx_125: length = 7
+
+motifs$Scr_126: length = 7
+
+motifs$Six4_127: length = 6
+
+motifs$Trl_128: length = 10
+
+motifs$abd.A_129: length = 7
+
+motifs$achi_130: length = 6
+
+motifs$al_131: length = 7
+
+motifs$ap_132: length = 7
+
+motifs$ara_133: length = 5
+
+motifs$bap_134: length = 7
+
+motifs$bcd_135: length = 6
+
+motifs$brk_136: length = 8
+
+motifs$bsh_137: length = 7
+
+motifs$btn_138: length = 7
+
+motifs$caup_139: length = 5
+
+motifs$ct_140: length = 6
+
+motifs$ems_141: length = 7
+
+motifs$en_142: length = 7
+
+motifs$eve_143: length = 7
+
+motifs$exd_144: length = 8
+
+motifs$exex_145: length = 7
+
+motifs$ftz_146: length = 7
+
+motifs$hbn_147: length = 7
+
+motifs$hth_148: length = 6
+
+motifs$ind_149: length = 7
+
+motifs$inv_150: length = 8
+
+motifs$lab_151: length = 7
+
+motifs$lbe_152: length = 6
+
+motifs$lbl_153: length = 6
+
+motifs$mirr_154: length = 5
+
+motifs$oc_155: length = 6
+
+motifs$onecut_156: length = 7
+
+motifs$otp_157: length = 7
+
+motifs$pb_158: length = 7
+
+motifs$prd_159: length = 9
+
+motifs$repo_160: length = 7
+
+motifs$ro_161: length = 7
+
+motifs$Bgb..run_162: length = 9
+
+motifs$sd_163: length = 12
+
+motifs$slbo_164: length = 8
+
+motifs$slou_165: length = 7
+
+motifs$so_166: length = 6
+
+motifs$tup_167: length = 7
+
+motifs$twi_168: length = 12
+
+motifs$unc.4_169: length = 7
+
+motifs$unpg_170: length = 7
+
+motifs$vis_171: length = 6
+
+motifs$vnd_172: length = 9
+
+motifs$vvl_173: length = 6
+
+motifs$z_174: length = 10
+
+motifs$zen_175: length = 7
+
+motifs$zen2_176: length = 7
+
+motifs$Ubx_177: length = 8
+
+motifs$ARNT..HIF1A_178: length = 8
+
+motifs$che.1_179: length = 6
+
+motifs$lin.14_180: length = 6
+
+motifs$mab.3_181: length = 13
+
+motifs$ceh.10..ttx.3_182: length = 14
+
+motifs$ceh.22_183: length = 11
+
+motifs$ABF1_184: length = 16
+
+motifs$ABF2_185: length = 7
+
+motifs$ACE2_186: length = 7
+
+motifs$ADR1_187: length = 7
+
+motifs$AFT1_188: length = 21
+
+motifs$AFT2_189: length = 8
+
+motifs$ARG80_190: length = 6
+
+motifs$ARG81_191: length = 8
+
+motifs$ARO80_192: length = 21
+
+motifs$ARR1_193: length = 8
+
+motifs$ASG1_194: length = 6
+
+motifs$ASH1_195: length = 10
+
+motifs$AZF1_196: length = 9
+
+motifs$BAS1_197: length = 21
+
+motifs$CAD1_198: length = 10
+
+motifs$CAT8_199: length = 6
+
+motifs$CBF1_200: length = 8
+
+motifs$CEP3_201: length = 8
+
+motifs$CHA4_202: length = 8
+
+motifs$CIN5_203: length = 10
+
+motifs$CRZ1_204: length = 9
+
+motifs$CST6_205: length = 9
+
+motifs$CUP2_206: length = 11
+
+motifs$CUP9_207: length = 9
+
+motifs$DAL80_208: length = 7
+
+motifs$DAL81_209: length = 19
+
+motifs$DAL82_210: length = 9
+
+motifs$ECM22_211: length = 7
+
+motifs$ECM23_212: length = 11
+
+motifs$EDS1_213: length = 9
+
+motifs$FHL1_214: length = 8
+
+motifs$FKH1_215: length = 20
+
+motifs$FKH2_216: length = 7
+
+motifs$FZF1_217: length = 6
+
+motifs$GAL4_218: length = 15
+
+motifs$GAT1_219: length = 8
+
+motifs$GAT3_220: length = 9
+
+motifs$GAT4_221: length = 11
+
+motifs$GCN4_222: length = 21
+
+motifs$GCR1_223: length = 8
+
+motifs$GCR2_224: length = 7
+
+motifs$GIS1_225: length = 9
+
+motifs$GLN3_226: length = 5
+
+motifs$GSM1_227: length = 21
+
+motifs$GZF3_228: length = 8
+
+motifs$HAC1_229: length = 8
+
+motifs$HAL9_230: length = 5
+
+motifs$HAP1_231: length = 8
+
+motifs$HAP2_232: length = 5
+
+motifs$HAP3_233: length = 15
+
+motifs$HAP5_234: length = 15
+
+motifs$HCM1_235: length = 8
+
+motifs$HMRA2_236: length = 8
+
+motifs$HSF1_237: length = 8
+
+motifs$IME1_238: length = 8
+
+motifs$INO2_239: length = 9
+
+motifs$INO4_240: length = 9
+
+motifs$IXR1_241: length = 15
+
+motifs$LEU3_242: length = 10
+
+motifs$LYS14_243: length = 8
+
+motifs$MAC1_244: length = 8
+
+motifs$HMRA1_245: length = 7
+
+motifs$MBP1_246: length = 7
+
+motifs$MBP1..SWI6_247: length = 7
+
+motifs$MCM1_248: length = 12
+
+motifs$MET28_249: length = 6
+
+motifs$MET31_250: length = 9
+
+motifs$MET32_251: length = 7
+
+motifs$MET4_252: length = 8
+
+motifs$MGA1_253: length = 21
+
+motifs$MIG1_254: length = 7
+
+motifs$MIG2_255: length = 7
+
+motifs$MIG3_256: length = 7
+
+motifs$MOT3_257: length = 6
+
+motifs$MSN2_258: length = 5
+
+motifs$MSN4_259: length = 5
+
+motifs$NDT80_260: length = 21
+
+motifs$NHP10_261: length = 8
+
+motifs$NHP6A_262: length = 21
+
+motifs$NHP6B_263: length = 20
+
+motifs$NRG1_264: length = 20
+
+motifs$OAF1_265: length = 9
+
+motifs$OPI1_266: length = 7
+
+motifs$TOD6_267: length = 21
+
+motifs$DOT6_268: length = 21
+
+motifs$PDR1_269: length = 8
+
+motifs$PDR3_270: length = 8
+
+motifs$PDR8_271: length = 8
+
+motifs$PHD1_272: length = 10
+
+motifs$PHO2_273: length = 6
+
+motifs$PHO4_274: length = 8
+
+motifs$PUT3_275: length = 8
+
+motifs$RAP1_276: length = 10
+
+motifs$RDR1_277: length = 8
+
+motifs$RDS1_278: length = 7
+
+motifs$RDS2_279: length = 7
+
+motifs$REB1_280: length = 9
+
+motifs$REI1_281: length = 7
+
+motifs$RFX1_282: length = 8
+
+motifs$RGM1_283: length = 5
+
+motifs$RGT1_284: length = 11
+
+motifs$RIM101_285: length = 7
+
+motifs$RLM1_286: length = 18
+
+motifs$RME1_287: length = 10
+
+motifs$ROX1_288: length = 12
+
+motifs$RPH1_289: length = 8
+
+motifs$RPN4_290: length = 7
+
+motifs$RSC3_291: length = 7
+
+motifs$RSC30_292: length = 8
+
+motifs$RTG3_293: length = 20
+
+motifs$SFL1_294: length = 21
+
+motifs$SFP1_295: length = 21
+
+motifs$MOT2_296: length = 5
+
+motifs$SIP4_297: length = 7
+
+motifs$SKN7_298: length = 6
+
+motifs$SKO1_299: length = 8
+
+motifs$SMP1_300: length = 21
+
+motifs$SNT2_301: length = 11
+
+motifs$SOK2_302: length = 11
+
+motifs$SPT15_303: length = 21
+
+motifs$SPT2_304: length = 10
+
+motifs$SPT23_305: length = 8
+
+motifs$SRD1_306: length = 8
+
+motifs$STB3_307: length = 21
+
+motifs$STB4_308: length = 7
+
+motifs$STB5_309: length = 8
+
+motifs$STE12_310: length = 7
+
+motifs$STP1_311: length = 8
+
+motifs$STP2_312: length = 20
+
+motifs$STP3_313: length = 9
+
+motifs$STP4_314: length = 9
+
+motifs$SUM1_315: length = 9
+
+motifs$SUT1_316: length = 7
+
+motifs$SUT2_317: length = 20
+
+motifs$SWI4_318: length = 8
+
+motifs$SWI5_319: length = 8
+
+motifs$TBF1_320: length = 8
+
+motifs$TBS1_321: length = 8
+
+motifs$TEA1_322: length = 8
+
+motifs$TEC1_323: length = 8
+
+motifs$THI2_324: length = 15
+
+motifs$TOS8_325: length = 8
+
+motifs$TYE7_326: length = 7
+
+motifs$UGA3_327: length = 8
+
+motifs$UPC2_328: length = 7
+
+motifs$UME6_329: length = 13
+
+motifs$USV1_330: length = 20
+
+motifs$XBP1_331: length = 7
+
+motifs$YAP1_332: length = 20
+
+motifs$YAP3_333: length = 8
+
+motifs$YAP5_334: length = 6
+
+motifs$YAP6_335: length = 20
+
+motifs$YAP7_336: length = 11
+
+motifs$ERT1_337: length = 8
+
+motifs$NSI1_338: length = 10
+
+motifs$URC2_339: length = 10
+
+motifs$YER130C_340: length = 9
+
+motifs$YER184C_341: length = 8
+
+motifs$YGR067C_342: length = 14
+
+motifs$YHP1_343: length = 6
+
+motifs$YKL222C_344: length = 9
+
+motifs$YLL054C_345: length = 7
+
+motifs$YLR278C_346: length = 8
+
+motifs$TDA9_347: length = 9
+
+motifs$YNR063W_348: length = 8
+
+motifs$YOX1_349: length = 8
+
+motifs$YPR013C_350: length = 9
+
+motifs$YPR015C_351: length = 20
+
+motifs$YPR022C_352: length = 7
+
+motifs$YPR196W_353: length = 9
+
+motifs$YRM1_354: length = 8
+
+motifs$YRR1_355: length = 11
+
+motifs$ZAP1_356: length = 15
+
+motifs$ZMS1_357: length = 9
+
+motifs$btd_358: length = 10
+
+motifs$CG34031_359: length = 7
+
+motifs$D_360: length = 11
+
+motifs$fkh_361: length = 11
+
+motifs$gt_362: length = 10
+
+motifs$H2.0_363: length = 7
+
+motifs$h_364: length = 10
+
+motifs$hkb_365: length = 9
+
+motifs$kni_366: length = 12
+
+motifs$nub_367: length = 12
+
+motifs$odd_368: length = 11
+
+motifs$opa_369: length = 12
+
+motifs$PHDP_370: length = 7
+
+motifs$slp1_371: length = 11
+
+motifs$tll_372: length = 10
+
+motifs$ttk_373: length = 9
+
+motifs$Zfx_374: length = 14
+
+motifs$Stat5a..Stat5b_375: length = 11
+
+motifs$Stat4_376: length = 14
+
+motifs$STAT1..STAT2_377: length = 15
+
+motifs$SP2_378: length = 15
+
+motifs$Sox6_379: length = 10
+
+motifs$Sox3_380: length = 10
+
+motifs$SMAD2..SMAD3..SMAD4_381: length = 13
+
+motifs$Rfx1_382: length = 14
+
+motifs$POU2F2_383: length = 13
+
+motifs$NRF1_384: length = 11
+
+motifs$Nr5a2_385: length = 15
+
+motifs$NR2C2_386: length = 15
+
+motifs$Nkx2.5.var.2_387: length = 11
+
+motifs$NFYB_388: length = 15
+
+motifs$MAF..NFE2_389: length = 15
+
+motifs$Myog_390: length = 11
+
+motifs$Myod1_391: length = 13
+
+motifs$MEF2C_392: length = 15
+
+motifs$Nr1h3..Rxra_393: length = 19
+
+motifs$Klf1_394: length = 11
+
+motifs$JUND.var.2_395: length = 15
+
+motifs$JUND_396: length = 11
+
+motifs$JUNB_397: length = 11
+
+motifs$JUN.var.2_398: length = 14
+
+motifs$JUN_399: length = 13
+
+motifs$Hoxc9_400: length = 13
+
+motifs$HNF4G_401: length = 15
+
+motifs$Gfi1b_402: length = 11
+
+motifs$Gata4_403: length = 11
+
+motifs$Foxo1_404: length = 11
+
+motifs$FOXH1_405: length = 11
+
+motifs$FOSL2_406: length = 11
+
+motifs$FOSL1_407: length = 11
+
+motifs$FOS_408: length = 11
+
+motifs$E2F6_409: length = 11
+
+motifs$E2F4_410: length = 11
+
+motifs$DUX4_411: length = 11
+
+motifs$Crx_412: length = 11
+
+motifs$CDX2_413: length = 11
+
+motifs$Bcl6_414: length = 14
+
+motifs$BATF..JUN_415: length = 11
+
+motifs$Stat6_416: length = 15
+
+motifs$Tcf12_417: length = 11
+
+motifs$TCF7L2_418: length = 14
+
+motifs$ZBTB33_419: length = 15
+
+motifs$ZNF263_420: length = 21
+
+motifs$CEBPA_421: length = 11
+
+motifs$ELK4_422: length = 11
+
+motifs$ESR2_423: length = 15
+
+motifs$FOXA1_424: length = 15
+
+motifs$Gata1_425: length = 11
+
+motifs$IRF1_426: length = 21
+
+motifs$Nfe2l2_427: length = 15
+
+motifs$Sox2_428: length = 8
+
+motifs$SP1_429: length = 11
+
+motifs$STAT1_430: length = 11
+
+motifs$STAT3_431: length = 11
+
+motifs$GATA1..TAL1_432: length = 18
+
+motifs$USF1_433: length = 11
+
+motifs$YY1_434: length = 12
+
+motifs$BEAF.32_435: length = 15
+
+motifs$cad_436: length = 11
+
+motifs$cnc..maf.S_437: length = 15
+
+motifs$CTCF_438: length = 15
+
+motifs$Kr_439: length = 14
+
+motifs$Stat92E_440: length = 15
+
+motifs$su.Hw_441: length = 21
+
+motifs$EcR..usp_442: length = 15
+
+motifs$pan_443: length = 14
+
+motifs$Mad_444: length = 15
+
+motifs$pnr_445: length = 11
+
+motifs$tin_446: length = 10
+
+motifs$blmp.1_447: length = 11
+
+motifs$daf.12_448: length = 15
+
+motifs$dpy.27_449: length = 16
+
+motifs$efl.1_450: length = 15
+
+motifs$elt.3_451: length = 8
+
+motifs$eor.1_452: length = 15
+
+motifs$snpc.4_453: length = 12
+
+motifs$hlh.1_454: length = 11
+
+motifs$pha.4_455: length = 10
+
+motifs$skn.1_456: length = 15
+
+motifs$BZR2_457: length = 11
+
+motifs$HY5_458: length = 16
+
+motifs$PIF1_459: length = 14
+
+motifs$SMZ_460: length = 8
+
+motifs$SOC1_461: length = 15
+
+motifs$SVP_462: length = 20
+
+motifs$AP3_463: length = 15
+
+motifs$FHY3_464: length = 12
+
+motifs$FLC_465: length = 21
+
+motifs$PI_466: length = 14
+
+motifs$PIF3_467: length = 10
+
+motifs$PIF4_468: length = 8
+
+motifs$PIF5_469: length = 8
+
+motifs$SEP3_470: length = 11
+
+motifs$ABI3_471: length = 9
+
+motifs$FUS3_472: length = 9
+
+motifs$MYC2_473: length = 8
+
+motifs$ERF1B_474: length = 8
+
+motifs$MYC3_475: length = 8
+
+motifs$MYC4_476: length = 8
+
+motifs$ABF1_477: length = 19
+
+motifs$AG_478: length = 18
+
+motifs$ANT_479: length = 21
+
+motifs$HAT5_480: length = 12
+
+motifs$ATHB.5_481: length = 13
+
+motifs$ATHB.9_482: length = 19
+
+motifs$MYB15_483: length = 13
+
+motifs$F3A4.140_484: length = 13
+
+motifs$RAX3_485: length = 13
+
+motifs$SPL3_486: length = 16
+
+motifs$SPL8_487: length = 16
+
+motifs$CDC5_488: length = 11
+
+motifs$DYT1_489: length = 14
+
+motifs$LEC2_490: length = 11
+
+motifs$RAV1_491: length = 12
+
+motifs$RAV1.var.2_492: length = 12
+
+motifs$SEP1_493: length = 18
+
+motifs$AGL3_494: length = 18
+
+motifs$AGL1_495: length = 18
+
+motifs$TCP16_496: length = 10
+
+motifs$TGA1_497: length = 11
+
+motifs$ZAP1_498: length = 11
+
+motifs$LFY_499: length = 19
+
+motifs$Bach1..Mafk_500: length = 15
+
+motifs$FOXP2_501: length = 11
+
+motifs$Hoxa9_502: length = 11
+
+motifs$SREBF1_503: length = 10
+
+motifs$SREBF2_504: length = 10
+
+motifs$THAP1_505: length = 9
+
+motifs$KLF5_506: length = 10
+
+motifs$Arid3b_507: length = 11
+
+motifs$Arid5a_508: length = 14
+
+motifs$Arntl_509: length = 10
+
+motifs$Atf1_510: length = 8
+
+motifs$Atf3_511: length = 8
+
+motifs$NFAT5_512: length = 10
+
+motifs$Bhlha15_513: length = 8
+
+motifs$Creb3l2_514: length = 9
+
+motifs$Crem_515: length = 10
+
+motifs$DMRT3_516: length = 11
+
+motifs$Dux_517: length = 8
+
+motifs$EMX1_518: length = 10
+
+motifs$FOXG1_519: length = 8
+
+motifs$Foxj2_520: length = 8
+
+motifs$Gmeb1_521: length = 17
+
+motifs$Hes1_522: length = 10
+
+motifs$Hes2_523: length = 13
+
+motifs$Id2_524: length = 8
+
+motifs$LBX1_525: length = 8
+
+motifs$LIN54_526: length = 9
+
+motifs$mix.a_527: length = 11
+
+motifs$Mlxip_528: length = 8
+
+motifs$Neurog1_529: length = 10
+
+motifs$NFATC1_530: length = 10
+
+motifs$NFATC3_531: length = 10
+
+motifs$Npas2_532: length = 10
+
+motifs$Pou2f3_533: length = 16
+
+motifs$POU6F1_534: length = 10
+
+motifs$Rhox11_535: length = 17
+
+motifs$SHOX_536: length = 8
+
+motifs$Six3_537: length = 17
+
+motifs$Tcfl5_538: length = 10
+
+motifs$Twist2_539: length = 10
+
+motifs$ALX3_540: length = 10
+
+motifs$Ar_541: length = 17
+
+motifs$BARHL2_542: length = 10
+
+motifs$BHLHE41_543: length = 10
+
+motifs$CENPB_544: length = 15
+
+motifs$CREB3_545: length = 14
+
+motifs$DBP_546: length = 12
+
+motifs$EBF1_547: length = 14
+
+motifs$EHF_548: length = 12
+
+motifs$ELF3_549: length = 13
+
+motifs$ELF4_550: length = 12
+
+motifs$ELF5_551: length = 11
+
+motifs$EN1_552: length = 8
+
+motifs$EN2_553: length = 10
+
+motifs$Esrrg_554: length = 10
+
+motifs$ESX1_555: length = 10
+
+motifs$ETV6_556: length = 10
+
+motifs$FLI1_557: length = 10
+
+motifs$FOXI1_558: length = 7
+
+motifs$FOXL1_559: length = 7
+
+motifs$FOXO3_560: length = 8
+
+motifs$GCM1_561: length = 11
+
+motifs$GRHL1_562: length = 12
+
+motifs$GSC_563: length = 10
+
+motifs$HEY2_564: length = 10
+
+motifs$HINFP_565: length = 12
+
+motifs$HLF_566: length = 12
+
+motifs$HNF1A_567: length = 15
+
+motifs$HNF1B_568: length = 13
+
+motifs$HOXA13_569: length = 10
+
+motifs$HOXC11_570: length = 11
+
+motifs$HSF1_571: length = 13
+
+motifs$IRF8_572: length = 14
+
+motifs$IRF9_573: length = 15
+
+motifs$ISX_574: length = 8
+
+motifs$JDP2_575: length = 9
+
+motifs$JDP2.var.2_576: length = 12
+
+motifs$KLF13_577: length = 18
+
+motifs$LHX6_578: length = 10
+
+motifs$MAFG_579: length = 21
+
+motifs$MEF2B_580: length = 12
+
+motifs$MEOX1_581: length = 10
+
+motifs$MIXL1_582: length = 10
+
+motifs$MLX_583: length = 10
+
+motifs$MLXIPL_584: length = 10
+
+motifs$MSC_585: length = 10
+
+motifs$MSX1_586: length = 8
+
+motifs$MYF6_587: length = 10
+
+motifs$NEUROD2_588: length = 10
+
+motifs$NEUROG2_589: length = 10
+
+motifs$NFIA_590: length = 10
+
+motifs$NFIX_591: length = 9
+
+motifs$NHLH1_592: length = 10
+
+motifs$NKX2.3_593: length = 10
+
+motifs$NKX2.8_594: length = 9
+
+motifs$NKX6.1_595: length = 8
+
+motifs$NKX6.2_596: length = 8
+
+motifs$Nr2e1_597: length = 9
+
+motifs$Nr2f6_598: length = 14
+
+motifs$OLIG2_599: length = 10
+
+motifs$ONECUT1_600: length = 14
+
+motifs$PAX4_601: length = 8
+
+motifs$PAX7_602: length = 10
+
+motifs$Phox2b_603: length = 11
+
+motifs$Pitx1_604: length = 8
+
+motifs$POU4F2_605: length = 16
+
+motifs$Prrx2_606: length = 8
+
+motifs$RUNX3_607: length = 10
+
+motifs$Rxra_608: length = 14
+
+motifs$SP4_609: length = 17
+
+motifs$SPDEF_610: length = 11
+
+motifs$SPI1_611: length = 14
+
+motifs$SPIC_612: length = 14
+
+motifs$SRF_613: length = 16
+
+motifs$T_614: length = 16
+
+motifs$TBX2_615: length = 11
+
+motifs$TBX20_616: length = 11
+
+motifs$TBX21_617: length = 10
+
+motifs$TEAD1_618: length = 10
+
+motifs$TFAP4_619: length = 10
+
+motifs$TFCP2_620: length = 10
+
+motifs$TFEB_621: length = 10
+
+motifs$ZBTB7B_622: length = 12
+
+motifs$ZBTB7C_623: length = 12
+
+motifs$ZIC1_624: length = 14
+
+motifs$ZIC3_625: length = 15
+
+motifs$ZBTB18_626: length = 13
+
+motifs$LBX2_627: length = 10
+
+motifs$LHX2_628: length = 10
+
+motifs$LHX9_629: length = 8
+
+motifs$LMX1A_630: length = 8
+
+motifs$LMX1B_631: length = 8
+
+motifs$Lhx4_632: length = 8
+
+motifs$Lhx8_633: length = 8
+
+motifs$MEOX2_634: length = 10
+
+motifs$MNX1_635: length = 10
+
+motifs$MSX2_636: length = 8
+
+motifs$Msx3_637: length = 8
+
+motifs$NKX3.2_638: length = 9
+
+motifs$NOTO_639: length = 10
+
+motifs$Nkx3.1_640: length = 9
+
+motifs$OTX1_641: length = 8
+
+motifs$OTX2_642: length = 8
+
+motifs$PDX1_643: length = 8
+
+motifs$PHOX2A_644: length = 11
+
+motifs$PITX3_645: length = 9
+
+motifs$PROP1_646: length = 11
+
+motifs$PRRX1_647: length = 8
+
+motifs$RAX2_648: length = 8
+
+motifs$RAX_649: length = 10
+
+motifs$RHOXF1_650: length = 8
+
+motifs$Shox2_651: length = 8
+
+motifs$UNCX_652: length = 8
+
+motifs$VAX1_653: length = 8
+
+motifs$VAX2_654: length = 8
+
+motifs$VENTX_655: length = 9
+
+motifs$VSX1_656: length = 8
+
+motifs$VSX2_657: length = 8
+
+motifs$ESR1_658: length = 17
+
+motifs$ESRRB_659: length = 11
+
+motifs$Esrra_660: length = 11
+
+motifs$Hnf4a_661: length = 16
+
+motifs$NR2F1_662: length = 13
+
+motifs$NR3C1_663: length = 17
+
+motifs$NR3C2_664: length = 17
+
+motifs$Nr2f6.var.2_665: length = 15
+
+motifs$RARA_666: length = 18
+
+motifs$RARA.var.2_667: length = 17
+
+motifs$BCL6B_668: length = 17
+
+motifs$EGR2_669: length = 11
+
+motifs$EGR3_670: length = 15
+
+motifs$EGR4_671: length = 16
+
+motifs$GLI2_672: length = 12
+
+motifs$GLIS1_673: length = 16
+
+motifs$GLIS2_674: length = 14
+
+motifs$GLIS3_675: length = 14
+
+motifs$HIC2_676: length = 9
+
+motifs$Hic1_677: length = 9
+
+motifs$KLF14_678: length = 14
+
+motifs$KLF16_679: length = 11
+
+motifs$Klf12_680: length = 15
+
+motifs$SCRT1_681: length = 15
+
+motifs$SCRT2_682: length = 13
+
+motifs$SNAI2_683: length = 9
+
+motifs$SP3_684: length = 11
+
+motifs$SP8_685: length = 12
+
+motifs$YY2_686: length = 11
+
+motifs$ZBED1_687: length = 13
+
+motifs$ZIC4_688: length = 15
+
+motifs$ZNF143_689: length = 16
+
+motifs$ZNF410_690: length = 17
+
+motifs$ZNF740_691: length = 10
+
+motifs$CUX1_692: length = 10
+
+motifs$CUX2_693: length = 10
+
+motifs$ONECUT2_694: length = 14
+
+motifs$ONECUT3_695: length = 14
+
+motifs$E2F3_696: length = 18
+
+motifs$E2F7_697: length = 14
+
+motifs$ELF1_698: length = 12
+
+motifs$ELK3_699: length = 10
+
+motifs$ERF_700: length = 10
+
+motifs$ERG_701: length = 10
+
+motifs$ETS1_702: length = 10
+
+motifs$ETV1_703: length = 10
+
+motifs$ETV2_704: length = 11
+
+motifs$ETV3_705: length = 10
+
+motifs$ETV4_706: length = 10
+
+motifs$ETV5_707: length = 10
+
+motifs$FEV_708: length = 10
+
+motifs$GATA5_709: length = 8
+
+motifs$GCM2_710: length = 10
+
+motifs$LEF1_711: length = 15
+
+motifs$Tcf7_712: length = 12
+
+motifs$HSF2_713: length = 13
+
+motifs$HSF4_714: length = 13
+
+motifs$IRF7_715: length = 14
+
+motifs$MEF2A_716: length = 12
+
+motifs$MEF2D_717: length = 12
+
+motifs$MEIS1_718: length = 7
+
+motifs$MEIS2_719: length = 8
+
+motifs$MEIS3_720: length = 8
+
+motifs$MYBL1_721: length = 12
+
+motifs$MYBL2_722: length = 15
+
+motifs$NFKB1_723: length = 13
+
+motifs$NFKB2_724: length = 13
+
+motifs$PAX1_725: length = 17
+
+motifs$PAX3_726: length = 10
+
+motifs$PAX9_727: length = 17
+
+motifs$PKNOX1_728: length = 12
+
+motifs$PKNOX2_729: length = 12
+
+motifs$POU1F1_730: length = 14
+
+motifs$POU2F1_731: length = 12
+
+motifs$POU3F1_732: length = 12
+
+motifs$POU3F2_733: length = 12
+
+motifs$POU3F3_734: length = 13
+
+motifs$POU3F4_735: length = 9
+
+motifs$POU4F1_736: length = 14
+
+motifs$POU4F3_737: length = 16
+
+motifs$POU5F1B_738: length = 9
+
+motifs$POU6F2_739: length = 10
+
+motifs$PROX1_740: length = 12
+
+motifs$RFX2_741: length = 16
+
+motifs$SMAD3_742: length = 10
+
+motifs$TGIF1_743: length = 12
+
+motifs$TGIF2_744: length = 12
+
+motifs$RFX3_745: length = 16
+
+motifs$RFX4_746: length = 16
+
+motifs$RFX5_747: length = 16
+
+motifs$RUNX2_748: length = 9
+
+motifs$EOMES_749: length = 13
+
+motifs$MGA_750: length = 8
+
+motifs$TBR1_751: length = 10
+
+motifs$TBX15_752: length = 8
+
+motifs$TBX19_753: length = 20
+
+motifs$TBX1_754: length = 8
+
+motifs$TBX4_755: length = 8
+
+motifs$TBX5_756: length = 8
+
+motifs$TEAD3_757: length = 8
+
+motifs$TEAD4_758: length = 10
+
+motifs$TFAP2A.var.2_759: length = 12
+
+motifs$TFAP2A_760: length = 11
+
+motifs$TFAP2B_761: length = 12
+
+motifs$TFAP2B.var.2_762: length = 11
+
+motifs$TFAP2B.var.3_763: length = 13
+
+motifs$TFAP2C_764: length = 12
+
+motifs$TFAP2C.var.2_765: length = 11
+
+motifs$TFAP2C.var.3_766: length = 13
+
+motifs$Ascl2_767: length = 10
+
+motifs$Atoh1_768: length = 10
+
+motifs$BHLHE40_769: length = 10
+
+motifs$BHLHE23_770: length = 12
+
+motifs$BHLHE22_771: length = 10
+
+motifs$CLOCK_772: length = 10
+
+motifs$FIGLA_773: length = 10
+
+motifs$HES5_774: length = 12
+
+motifs$HES7_775: length = 12
+
+motifs$HEY1_776: length = 10
+
+motifs$ID4_777: length = 10
+
+motifs$MAX_778: length = 10
+
+motifs$MNT_779: length = 10
+
+motifs$OLIG1_780: length = 10
+
+motifs$OLIG3_781: length = 10
+
+motifs$SREBF2.var.2_782: length = 10
+
+motifs$Srebf1.var.2_783: length = 10
+
+motifs$TCF3_784: length = 10
+
+motifs$TCF4_785: length = 10
+
+motifs$Tcf21_786: length = 14
+
+motifs$ATF4_787: length = 13
+
+motifs$ATF7_788: length = 14
+
+motifs$BATF3_789: length = 14
+
+motifs$CEBPB_790: length = 10
+
+motifs$CEBPD_791: length = 10
+
+motifs$CEBPE_792: length = 10
+
+motifs$CEBPG_793: length = 10
+
+motifs$CREB3L1_794: length = 14
+
+motifs$Creb5_795: length = 12
+
+motifs$Mafb_796: length = 12
+
+motifs$NFE2_797: length = 11
+
+motifs$NRL_798: length = 11
+
+motifs$TEF_799: length = 12
+
+motifs$XBP1_800: length = 14
+
+motifs$FOXB1_801: length = 11
+
+motifs$FOXC1_802: length = 11
+
+motifs$FOXC2_803: length = 12
+
+motifs$FOXD2_804: length = 7
+
+motifs$FOXO4_805: length = 7
+
+motifs$FOXO6_806: length = 7
+
+motifs$FOXP3_807: length = 7
+
+motifs$Foxj3_808: length = 17
+
+motifs$Alx4_809: length = 17
+
+motifs$Alx1_810: length = 17
+
+motifs$RXRB_811: length = 14
+
+motifs$RXRG_812: length = 14
+
+motifs$Rarb_813: length = 16
+
+motifs$Rarb.var.2_814: length = 17
+
+motifs$Rarg_815: length = 16
+
+motifs$Rarg.var.2_816: length = 17
+
+motifs$TP63_817: length = 18
+
+motifs$TP53_818: length = 18
+
+motifs$TP73_819: length = 18
+
+motifs$GMEB2_820: length = 8
+
+motifs$MTF1_821: length = 14
+
+motifs$E2F1_822: length = 12
+
+motifs$E2F2_823: length = 16
+
+motifs$E2F8_824: length = 12
+
+motifs$SOX21_825: length = 15
+
+motifs$SOX4_826: length = 16
+
+motifs$SOX8_827: length = 16
+
+motifs$Sox11_828: length = 15
+
+motifs$Sox1_829: length = 15
+
+motifs$TFEC_830: length = 10
+
+motifs$TFAP2A.var.3_831: length = 13
+
+motifs$ELK1_832: length = 10
+
+motifs$HOXD12_833: length = 11
+
+motifs$Arx_834: length = 17
+
+motifs$BARX1_835: length = 8
+
+motifs$BSX_836: length = 8
+
+motifs$Barhl1_837: length = 10
+
+motifs$CDX1_838: length = 9
+
+motifs$Dlx1_839: length = 10
+
+motifs$Dlx3_840: length = 8
+
+motifs$Dlx4_841: length = 8
+
+motifs$DLX6_842: length = 8
+
+motifs$Dmbx1_843: length = 17
+
+motifs$DUXA_844: length = 13
+
+motifs$Dlx2_845: length = 8
+
+motifs$EMX2_846: length = 10
+
+motifs$EVX1_847: length = 10
+
+motifs$EVX2_848: length = 10
+
+motifs$GBX1_849: length = 10
+
+motifs$GBX2_850: length = 10
+
+motifs$GSC2_851: length = 10
+
+motifs$GSX1_852: length = 10
+
+motifs$GSX2_853: length = 10
+
+motifs$HESX1_854: length = 10
+
+motifs$HMBOX1_855: length = 10
+
+motifs$Hmx1_856: length = 17
+
+motifs$Hmx2_857: length = 17
+
+motifs$Hmx3_858: length = 17
+
+motifs$HOXA10_859: length = 11
+
+motifs$HOXA2_860: length = 10
+
+motifs$HOXB13_861: length = 10
+
+motifs$HOXB2_862: length = 10
+
+motifs$HOXB3_863: length = 10
+
+motifs$Hoxb5_864: length = 16
+
+motifs$HOXC10_865: length = 10
+
+motifs$HOXC12_866: length = 11
+
+motifs$HOXC13_867: length = 11
+
+motifs$HOXD11_868: length = 10
+
+motifs$HOXD13_869: length = 10
+
+motifs$Hoxd8_870: length = 17
+
+motifs$Hoxa11_871: length = 12
+
+motifs$Hoxd3_872: length = 16
+
+motifs$Hoxd9_873: length = 10
+
+motifs$ISL2_874: length = 8
+
+motifs$dve_875: length = 8
+
+motifs$Ets21C_876: length = 8
+
+motifs$gcm2_877: length = 8
+
+motifs$unc.62_878: length = 12
+
+motifs$dsc.1_879: length = 10
+
+motifs$fkh.2_880: length = 8
+
+motifs$ceh.48_881: length = 9
+
+motifs$ces.2_882: length = 9
+
+motifs$lim.4_883: length = 9
+
+motifs$pal.1_884: length = 8
+
+motifs$sma.4_885: length = 11
+
+motifs$unc.86_886: length = 8
+
+motifs$vab.7_887: length = 8
+
+motifs$zfh.2_888: length = 11
+
+motifs$MATALPHA2_889: length = 8
+
+motifs$NCU00019_890: length = 12
+
+motifs$ABF3_891: length = 8
+
+motifs$ABI5_892: length = 10
+
+motifs$AHL12_893: length = 8
+
+motifs$AHL20_894: length = 8
+
+motifs$AHL25_895: length = 8
+
+motifs$NAC025_896: length = 8
+
+motifs$T11I18.17_897: length = 8
+
+motifs$NAC055_898: length = 8
+
+motifs$NAC058_899: length = 8
+
+motifs$NAC080_900: length = 8
+
+motifs$AP1_901: length = 13
+
+motifs$ABF2_902: length = 13
+
+motifs$ARF1_903: length = 8
+
+motifs$ARF5_904: length = 8
+
+motifs$ARF8_905: length = 9
+
+motifs$ARR1_906: length = 10
+
+motifs$ARR11_907: length = 8
+
+motifs$ARR14_908: length = 8
+
+motifs$ARR18_909: length = 13
+
+motifs$ARR2_910: length = 10
+
+motifs$ATHB.12_911: length = 8
+
+motifs$ATHB.16_912: length = 8
+
+motifs$ATHB.51_913: length = 8
+
+motifs$ATHB.6_914: length = 9
+
+motifs$POPTR_0002s00440g_915: length = 7
+
+motifs$BEE2_916: length = 10
+
+motifs$BHLH3_917: length = 8
+
+motifs$BHLH13_918: length = 8
+
+motifs$AIB_919: length = 8
+
+motifs$BHLH104_920: length = 10
+
+motifs$BHLH112_921: length = 9
+
+motifs$BHLH34_922: length = 8
+
+motifs$BHLH78_923: length = 8
+
+motifs$BIM1_924: length = 10
+
+motifs$BIM2_925: length = 10
+
+motifs$BIM3_926: length = 10
+
+motifs$BZIP60_927: length = 8
+
+motifs$bZIP68_928: length = 9
+
+motifs$CMTA2_929: length = 9
+
+motifs$CMTA3_930: length = 9
+
+motifs$DREB1A_931: length = 10
+
+motifs$CCA1_932: length = 8
+
+motifs$CDF2_933: length = 10
+
+motifs$CDF3_934: length = 9
+
+motifs$CRF2_935: length = 8
+
+motifs$CRF4_936: length = 8
+
+motifs$DOF2.5_937: length = 8
+
+motifs$DREB1E_938: length = 8
+
+motifs$ERF008_939: length = 8
+
+motifs$RAP2.10_940: length = 8
+
+motifs$DOF1.8_941: length = 10
+
+motifs$DOF2.4_942: length = 7
+
+motifs$DOF5.6_943: length = 8
+
+motifs$DOF5.7_944: length = 8
+
+motifs$DRE1C_945: length = 8
+
+motifs$DREB2C_946: length = 8
+
+motifs$PHYPADRAFT_140773_947: length = 10
+
+motifs$PHYPADRAFT_143875_948: length = 10
+
+motifs$PHYPADRAFT_153324_949: length = 9
+
+motifs$EDT1_950: length = 10
+
+motifs$ERF4_951: length = 8
+
+motifs$ERF7_952: length = 10
+
+motifs$ERF8_953: length = 10
+
+motifs$ERF039_954: length = 10
+
+motifs$ERF043_955: length = 8
+
+motifs$ERF069_956: length = 9
+
+motifs$ERF096_957: length = 10
+
+motifs$ERF098_958: length = 8
+
+motifs$ERF11_959: length = 10
+
+motifs$ERF112_960: length = 10
+
+motifs$ERF13_961: length = 8
+
+motifs$ERF3_962: length = 8
+
+motifs$ERF6_963: length = 10
+
+motifs$PHYPADRAFT_173530_964: length = 8
+
+motifs$PHYPADRAFT_182268_965: length = 10
+
+motifs$ARF3_966: length = 8
+
+motifs$PHYPADRAFT_64121_967: length = 13
+
+motifs$PHYPADRAFT_72483_968: length = 10
+
+motifs$AGL27_969: length = 14
+
+motifs$GATA10_970: length = 8
+
+motifs$GATA11_971: length = 8
+
+motifs$GATA12_972: length = 8
+
+motifs$GATA15_973: length = 9
+
+motifs$GATA8_974: length = 9
+
+motifs$GATA9_975: length = 11
+
+motifs$Glyma19g26560.1_976: length = 9
+
+motifs$GT.1_977: length = 8
+
+motifs$PHYPADRAFT_48267_978: length = 8
+
+motifs$PHYPADRAFT_38837_979: length = 10
+
+motifs$PHYPADRAFT_28324_980: length = 8
+
+motifs$HAT1_981: length = 10
+
+motifs$HBI1_982: length = 12
+
+motifs$KAN1_983: length = 8
+
+motifs$KAN4_984: length = 8
+
+motifs$P0510F09.23_985: length = 10
+
+motifs$OJ1581_H09.2_986: length = 10
+
+motifs$DREB1G_987: length = 10
+
+motifs$OJ1058_F05.8_988: length = 8
+
+motifs$Os05g0497200_989: length = 8
+
+motifs$TCP4_990: length = 8
+
+motifs$MYB111_991: length = 8
+
+motifs$MYB24_992: length = 9
+
+motifs$MYB3_993: length = 11
+
+motifs$MYB4_994: length = 8
+
+motifs$MYB46_995: length = 8
+
+motifs$MYB55_996: length = 8
+
+motifs$MYB59_997: length = 8
+
+motifs$NAC083_998: length = 10
+
+motifs$NAC92_999: length = 12
+
+motifs$NAC043_1000: length = 10
+
+motifs$NTL9_1001: length = 9
+
+motifs$TGA5_1002: length = 8
+
+motifs$ERF018_1003: length = 8
+
+motifs$ERF094_1004: length = 8
+
+motifs$OsI_08196_1005: length = 8
+
+motifs$RAP2.3_1006: length = 8
+
+motifs$RAP2.6_1007: length = 8
+
+motifs$ERF109_1008: length = 8
+
+motifs$ARALYDRAFT_897773_1009: length = 10
+
+motifs$SPL1_1010: length = 8
+
+motifs$SPL11_1011: length = 12
+
+motifs$SPL12_1012: length = 8
+
+motifs$SPL4_1013: length = 9
+
+motifs$SPL7_1014: length = 8
+
+motifs$SPT_1015: length = 9
+
+motifs$TCP15_1016: length = 8
+
+motifs$TCP19_1017: length = 10
+
+motifs$TCP2_1018: length = 10
+
+motifs$TCP20_1019: length = 10
+
+motifs$TCP23_1020: length = 8
+
+motifs$TCP5_1021: length = 8
+
+motifs$TGA2_1022: length = 8
+
+motifs$TGA6_1023: length = 10
+
+motifs$TGA7_1024: length = 10
+
+motifs$DOF5.3_1025: length = 7
+
+motifs$TRB2_1026: length = 8
+
+motifs$UNE10_1027: length = 8
+
+motifs$WRKY12_1028: length = 8
+
+motifs$WRKY15_1029: length = 10
+
+motifs$WRKY18_1030: length = 10
+
+motifs$WRKY2_1031: length = 8
+
+motifs$WRKY21_1032: length = 10
+
+motifs$WRKY23_1033: length = 8
+
+motifs$WRKY25_1034: length = 8
+
+motifs$WRKY30_1035: length = 10
+
+motifs$WRKY38_1036: length = 8
+
+motifs$WRKY43_1037: length = 10
+
+motifs$WRKY45_1038: length = 8
+
+motifs$WRKY48_1039: length = 10
+
+motifs$WRKY57_1040: length = 10
+
+motifs$WRKY60_1041: length = 11
+
+motifs$WRKY62_1042: length = 8
+
+motifs$WRKY63_1043: length = 8
+
+motifs$WRKY75_1044: length = 8
+
+motifs$WRKY8_1045: length = 9
+
+motifs$ARALYDRAFT_495258_1046: length = 8
+
+motifs$ARALYDRAFT_496250_1047: length = 8
+
+motifs$ARALYDRAFT_493022_1048: length = 8
+
+motifs$ARALYDRAFT_484486_1049: length = 8
+
+motifs$ASCL1_1050: length = 13
+
+motifs$BACH2_1051: length = 14
+
+motifs$CREB1_1052: length = 12
+
+motifs$CTCFL_1053: length = 14
+
+motifs$FOXK1_1054: length = 14
+
+motifs$FOXK2_1055: length = 11
+
+motifs$FOXP1_1056: length = 12
+
+motifs$GATA2_1057: length = 11
+
+motifs$GATA6_1058: length = 13
+
+motifs$GRHL2_1059: length = 15
+
+motifs$HIF1A_1060: length = 10
+
+motifs$KLF4_1061: length = 11
+
+motifs$KLF9_1062: length = 13
+
+motifs$MAFF_1063: length = 21
+
+motifs$MAFK_1064: length = 19
+
+motifs$MITF_1065: length = 18
+
+motifs$MXI1_1066: length = 13
+
+motifs$MYC_1067: length = 12
+
+motifs$MYB_1068: length = 10
+
+motifs$MYCN_1069: length = 12
+
+motifs$NEUROD1_1070: length = 13
+
+motifs$NFIC_1071: length = 11
+
+motifs$NFYA_1072: length = 11
+
+motifs$NR1H4_1073: length = 11
+
+motifs$NR2F2_1074: length = 11
+
+motifs$NR4A1_1075: length = 10
+
+motifs$PAX5_1076: length = 12
+
+motifs$PBX2_1077: length = 12
+
+motifs$PBX3_1078: length = 17
+
+motifs$POU5F1_1079: length = 11
+
+motifs$PRDM1_1080: length = 10
+
+motifs$RBPJ_1081: length = 10
+
+motifs$RELB_1082: length = 11
+
+motifs$SIX1_1083: length = 11
+
+motifs$SIX2_1084: length = 16
+
+motifs$SOX10_1085: length = 11
+
+motifs$SOX13_1086: length = 11
+
+motifs$TEAD2_1087: length = 13
+
+motifs$TFDP1_1088: length = 11
+
+motifs$TWIST1_1089: length = 13
+
+motifs$USF2_1090: length = 16
+
+motifs$ZBTB7A_1091: length = 13
+
+motifs$ZEB1_1092: length = 11
+
+motifs$ZNF24_1093: length = 13
+
+motifs$ZNF384_1094: length = 12
+
+motifs$ZNF282_1095: length = 17
+
+motifs$ZSCAN4_1096: length = 15
+
+motifs$sna_1097: length = 13
+
+motifs$GATA3_1098: length = 8
+
+motifs$FOS..JUN_1099: length = 10
+
+motifs$FOS..JUN.var.2_1100: length = 16
+
+motifs$FOSB..JUN_1101: length = 11
+
+motifs$FOSL1..JUN_1102: length = 13
+
+motifs$FOSL1..JUN.var.2_1103: length = 10
+
+motifs$FOSL2..JUN_1104: length = 12
+
+motifs$FOSL2..JUN.var.2_1105: length = 11
+
+motifs$JUN..JUNB_1106: length = 10
+
+motifs$JUN..JUNB.var.2_1107: length = 12
+
+motifs$FOS..JUNB_1108: length = 12
+
+motifs$FOSB..JUNB_1109: length = 10
+
+motifs$FOSB..JUNB.var.2_1110: length = 10
+
+motifs$FOSL1..JUNB_1111: length = 13
+
+motifs$FOSL2..JUNB_1112: length = 10
+
+motifs$FOSL2..JUNB.var.2_1113: length = 12
+
+motifs$JUNB.var.2_1114: length = 10
+
+motifs$FOS..JUND_1115: length = 13
+
+motifs$FOSL1..JUND_1116: length = 10
+
+motifs$FOSL1..JUND.var.2_1117: length = 10
+
+motifs$FOSL2..JUND_1118: length = 10
+
+motifs$FOSL2..JUND.var.2_1119: length = 15
+
+motifs$NR1A4..RXRA_1120: length = 15
+
+motifs$NR4A2..RXRA_1121: length = 15
+
+motifs$PPARA..RXRA_1122: length = 18
+
+motifs$RARA..RXRG_1123: length = 18
+
+motifs$RORB_1124: length = 11
+
+motifs$RORC_1125: length = 12
+
+motifs$SOX15_1126: length = 10
+
+motifs$TFE3_1127: length = 8
+
+motifs$VDR_1128: length = 8
+
+motifs$Smad4_1129: length = 8
+
+motifs$JKD_1130: length = 20
+
+motifs$NUC_1131: length = 20
+
+motifs$MGP_1132: length = 20
+
+motifs$SGR5_1133: length = 15
+
+motifs$AT1G14580_1134: length = 20
+
+motifs$TSO1_1135: length = 15
+
+motifs$TCX2_1136: length = 15
+
+motifs$AT5G45580_1137: length = 14
+
+motifs$AT4G37180_1138: length = 11
+
+motifs$AT1G49560_1139: length = 11
+
+motifs$AT3G12730_1140: length = 14
+
+motifs$AT2G03500_1141: length = 11
+
+motifs$AT3G04030_1142: length = 14
+
+motifs$MYB105_1143: length = 13
+
+motifs$MYB118_1144: length = 17
+
+motifs$MYB52_1145: length = 11
+
+motifs$MYB3R5_1146: length = 15
+
+motifs$MYB101_1147: length = 15
+
+motifs$MYB56_1148: length = 15
+
+motifs$MYB81_1149: length = 11
+
+motifs$MYB119_1150: length = 11
+
+motifs$MYB65_1151: length = 13
+
+motifs$MYB3R1_1152: length = 15
+
+motifs$MYB1_1153: length = 19
+
+motifs$MYB3R4_1154: length = 15
+
+motifs$MYB113_1155: length = 11
+
+motifs$At3g09600_1156: length = 12
+
+motifs$At5g52660_1157: length = 11
+
+motifs$RVE1_1158: length = 14
+
+motifs$LHY1_1159: length = 10
+
+motifs$At1g49010_1160: length = 15
+
+motifs$LCL1_1161: length = 10
+
+motifs$At3g11280_1162: length = 14
+
+motifs$AT5G61620_1163: length = 15
+
+motifs$At4g01280_1164: length = 11
+
+motifs$AT3G10113_1165: length = 15
+
+motifs$At5g58900_1166: length = 15
+
+motifs$At2g38090_1167: length = 21
+
+motifs$AT3G10580_1168: length = 15
+
+motifs$AT5G56840_1169: length = 15
+
+motifs$At5g05790_1170: length = 15
+
+motifs$CAMTA1_1171: length = 12
+
+motifs$HAT2_1172: length = 11
+
+motifs$AGL16_1173: length = 15
+
+motifs$AGL25_1174: length = 18
+
+motifs$AGL42_1175: length = 7
+
+motifs$AGL55_1176: length = 6
+
+motifs$AGL63_1177: length = 15
+
+motifs$AGL13_1178: length = 18
+
+motifs$AGL6_1179: length = 19
+
+motifs$ARF2_1180: length = 10
+
+motifs$GT3a_1181: length = 17
+
+motifs$GT2_1182: length = 14
+
+motifs$ATHB20_1183: length = 11
+
+motifs$HAT22_1184: length = 10
+
+motifs$ATHB18_1185: length = 11
+
+motifs$ATHB13_1186: length = 11
+
+motifs$ATHB21_1187: length = 14
+
+motifs$ATHB40_1188: length = 21
+
+motifs$ATHB53_1189: length = 11
+
+motifs$RAP21_1190: length = 13
+
+motifs$CBF2_1191: length = 15
+
+motifs$CBF4_1192: length = 13
+
+motifs$CEJ1_1193: length = 15
+
+motifs$TINY_1194: length = 15
+
+motifs$RAP26_1195: length = 15
+
+motifs$AT1G44830_1196: length = 15
+
+motifs$AT3G60490_1197: length = 14
+
+motifs$CBF1_1198: length = 12
+
+motifs$ERF5_1199: length = 15
+
+motifs$AT5G18450_1200: length = 15
+
+motifs$AT1G12630_1201: length = 21
+
+motifs$AT4G18450_1202: length = 17
+
+motifs$AT2G44940_1203: length = 15
+
+motifs$AT1G77200_1204: length = 14
+
+motifs$ERF15_1205: length = 15
+
+motifs$AT4G28140_1206: length = 20
+
+motifs$AT1G71450_1207: length = 20
+
+motifs$AT1G19210_1208: length = 14
+
+motifs$AIL7_1209: length = 11
+
+motifs$ESE3_1210: length = 19
+
+motifs$AT4G16750_1211: length = 15
+
+motifs$ERF38_1212: length = 15
+
+motifs$ERF104_1213: length = 19
+
+motifs$ERF10_1214: length = 21
+
+motifs$AT4G32800_1215: length = 16
+
+motifs$AT3G57600_1216: length = 11
+
+motifs$DREB19_1217: length = 17
+
+motifs$ABR1_1218: length = 19
+
+motifs$AT2G33710_1219: length = 15
+
+motifs$LEP_1220: length = 21
+
+motifs$AT1G28160_1221: length = 15
+
+motifs$DREB26_1222: length = 20
+
+motifs$RAP210_1223: length = 15
+
+motifs$AT1G75490_1224: length = 15
+
+motifs$DEAR5_1225: length = 19
+
+motifs$PUCHI_1226: length = 15
+
+motifs$AT3G16280_1227: length = 14
+
+motifs$ERF13_1228: length = 15
+
+motifs$AT1G22810_1229: length = 15
+
+motifs$RAP212_1230: length = 21
+
+motifs$ERF9_1231: length = 21
+
+motifs$DREB2_1232: length = 21
+
+motifs$AT1G01250_1233: length = 15
+
+motifs$AT1G77640_1234: length = 21
+
+motifs$AT5G67000_1235: length = 15
+
+motifs$ERF2_1236: length = 21
+
+motifs$AT1G36060_1237: length = 14
+
+motifs$ESE1_1238: length = 15
+
+motifs$AT4G31060_1239: length = 20
+
+motifs$RAP211_1240: length = 15
+
+motifs$AT5G66940_1241: length = 29
+
+motifs$AT1G69570_1242: length = 27
+
+motifs$dof4.5_1243: length = 14
+
+motifs$AT3G45610_1244: length = 19
+
+motifs$DAG2_1245: length = 11
+
+motifs$AT2G28810_1246: length = 21
+
+motifs$dof4.2_1247: length = 19
+
+motifs$OBP3_1248: length = 21
+
+motifs$AT1G47655_1249: length = 11
+
+motifs$AT3G52440_1250: length = 11
+
+motifs$Adof1_1251: length = 21
+
+motifs$OBP1_1252: length = 21
+
+motifs$COG1_1253: length = 21
+
+motifs$OBP4_1254: length = 14
+
+motifs$AT5G02460_1255: length = 21
+
+motifs$PTF1_1256: length = 13
+
+motifs$TCP14_1257: length = 20
+
+motifs$TCP1_1258: length = 30
+
+motifs$At2g45680_1259: length = 21
+
+motifs$TCP24_1260: length = 12
+
+motifs$At5g08330_1261: length = 14
+
+motifs$At1g72010_1262: length = 13
+
+motifs$TCP3_1263: length = 13
+
+motifs$TCP17_1264: length = 11
+
+motifs$TCP7_1265: length = 11
+
+motifs$MYB27_1266: length = 15
+
+motifs$MYB57_1267: length = 14
+
+motifs$MYB62_1268: length = 15
+
+motifs$WRKY20_1269: length = 13
+
+motifs$WRKY46_1270: length = 11
+
+motifs$WRKY26_1271: length = 13
+
+motifs$WRKY29_1272: length = 11
+
+motifs$WRKY17_1273: length = 14
+
+motifs$WRKY6_1274: length = 19
+
+motifs$WRKY33_1275: length = 11
+
+motifs$WRKY65_1276: length = 11
+
+motifs$WRKY22_1277: length = 13
+
+motifs$WRKY59_1278: length = 12
+
+motifs$WRKY55_1279: length = 12
+
+motifs$WRKY11_1280: length = 14
+
+motifs$WRKY31_1281: length = 19
+
+motifs$WRKY70_1282: length = 13
+
+motifs$WRKY3_1283: length = 11
+
+motifs$WRKY42_1284: length = 21
+
+motifs$WRKY28_1285: length = 13
+
+motifs$WRKY47_1286: length = 14
+
+motifs$WRKY7_1287: length = 14
+
+motifs$WRKY14_1288: length = 13
+
+motifs$WRKY24_1289: length = 14
+
+motifs$WRKY71_1290: length = 11
+
+motifs$WRKY50_1291: length = 13
+
+motifs$WRKY27_1292: length = 13
+
+motifs$SPL3_1293: length = 8
+
+motifs$SPL15_1294: length = 14
+
+motifs$SPL13_1295: length = 11
+
+motifs$SPL9_1296: length = 11
+
+motifs$GATA19_1297: length = 11
+
+motifs$GATA20_1298: length = 8
+
+motifs$GATA14_1299: length = 15
+
+motifs$ATHB33_1300: length = 11
+
+motifs$ATHB23_1301: length = 22
+
+motifs$ATHB34_1302: length = 15
+
+motifs$ATHB25_1303: length = 15
+
+motifs$ATHB24_1304: length = 15
+
+motifs$AT1G78700_1305: length = 11
+
+motifs$AT4G36780_1306: length = 11
+
+motifs$AT4G18890_1307: length = 11
+
+motifs$GBF6_1308: length = 15
+
+motifs$TGA4_1309: length = 11
+
+motifs$TGA3_1310: length = 14
+
+motifs$bZIP44_1311: length = 15
+
+motifs$AREB3_1312: length = 15
+
+motifs$bZIP43_1313: length = 12
+
+motifs$bZIP3_1314: length = 15
+
+motifs$bZIP53_1315: length = 15
+
+motifs$bZIP50_1316: length = 17
+
+motifs$bZIP52_1317: length = 14
+
+motifs$bZIP28_1318: length = 15
+
+motifs$bZIP48_1319: length = 14
+
+motifs$TGA10_1320: length = 15
+
+motifs$bZIP68_1321: length = 15
+
+motifs$TGA9_1322: length = 11
+
+motifs$bZIP16_1323: length = 15
+
+motifs$bZIP42_1324: length = 12
+
+motifs$GBF3_1325: length = 15
+
+motifs$TRP1_1326: length = 21
+
+motifs$AT1G72740_1327: length = 15
+
+motifs$AT4G12670_1328: length = 29
+
+motifs$TBP3_1329: length = 15
+
+motifs$TRP2_1330: length = 21
+
+motifs$bHLH80_1331: length = 11
+
+motifs$bHLH130_1332: length = 11
+
+motifs$bHLH31_1333: length = 21
+
+motifs$bHLH74_1334: length = 21
+
+motifs$bHLH18_1335: length = 17
+
+motifs$bHLH77_1336: length = 15
+
+motifs$bHLH69_1337: length = 15
+
+motifs$PIF7_1338: length = 15
+
+motifs$AT5G47660_1339: length = 15
+
+motifs$AT1G76880_1340: length = 16
+
+motifs$AT1G76870_1341: length = 14
+
+motifs$AT3G25990_1342: length = 21
+
+motifs$HDG1_1343: length = 11
+
+motifs$IDD5_1344: length = 16
+
+motifs$IDD4_1345: length = 17
+
+motifs$STZ_1346: length = 11
+
+motifs$IDD2_1347: length = 15
+
+motifs$IDD7_1348: length = 18
+
+motifs$ANL2_1349: length = 11
+
+motifs$DEAR3_1350: length = 17
+
+motifs$PLT1_1351: length = 19
+
+motifs$PLT3_1352: length = 15
+
+motifs$SOL1_1353: length = 15
+
+motifs$AT2G20110_1354: length = 15
+
+motifs$AT3G46070_1355: length = 15
+
+motifs$FAR1_1356: length = 15
+
+motifs$KAN2_1357: length = 15
+
+motifs$AT2G01060_1358: length = 13
+
+motifs$AT2G40260_1359: length = 15
+
+motifs$AT1G25550_1360: length = 11
+
+motifs$AT1G13300_1361: length = 15
+
+motifs$AT3G24120_1362: length = 8
+
+motifs$AT5G29000_1363: length = 15
+
+motifs$AT1G68670_1364: length = 13
+
+motifs$MYB33_1365: length = 11
+
+motifs$MYB98_1366: length = 15
+
+motifs$MYB70_1367: length = 14
+
+motifs$MYB73_1368: length = 11
+
+motifs$MYB77_1369: length = 15
+
+motifs$GATA6_1370: length = 13
+
+motifs$At1g74840_1371: length = 11
+
+motifs$At5g47390_1372: length = 15
+
+motifs$At5g08520_1373: length = 13
+
+motifs$At1g19000_1374: length = 14
+
+motifs$EPR1_1375: length = 12
+
+motifs$BPC6_1376: length = 21
+
+motifs$BPC5_1377: length = 30
+
+motifs$BPC1_1378: length = 24
+
+motifs$ATHB7_1379: length = 13
+
+motifs$ERF105_1380: length = 15
+
+motifs$SPL14_1381: length = 11
+
+motifs$ATHB15_1382: length = 15
+
+motifs$AGL15_1383: length = 19
+
+motifs$BZR1_1384: length = 20
+
+motifs$SPL5_1385: length = 12
+
+motifs$SIZF2_1386: length = 10
+
+motifs$ATHB4_1387: length = 10
+
+motifs$bZIP14_1388: length = 10
+
+motifs$FaEOBII_1389: length = 10
+
+motifs$OsRR22_1390: length = 10
+
+motifs$StBRC1_1391: length = 10
+
+motifs$TSAR1_1392: length = 10
+
+motifs$TSAR2_1393: length = 10
+
+motifs$UIF1_1394: length = 10
+
+motifs$E2FA_1395: length = 10
+
+motifs$REF6_1396: length = 11
+
+motifs$WRKY40_1397: length = 10
+
+motifs$RAMOSA1_1398: length = 14
+
+motifs$O2_1399: length = 13
+
+motifs$EGR1_1400: length = 14
+
+motifs$IRF3_1401: length = 21
+
+motifs$IRF4_1402: length = 15
+
+motifs$IRF5_1403: length = 14
+
+motifs$TCF7L1_1404: length = 12
+
+
+2020-10-07 22:10:03 : obj, Class = list
+
+
+2020-10-07 22:10:03 : motifSummary, Class = DFrame
+DataFrame with 1404 rows and 6 columns
+                   name          ID      strand      symbol
+            <character> <character> <character> <character>
+Arnt_1             Arnt    MA0004.1           +        ARNT
+Ahr..Arnt_2   Ahr::Arnt    MA0006.1           +           -
+br_3                 br    MA0010.1           +          NA
+br.var.2_4    br(var.2)    MA0011.1           +          NA
+br.var.3_5    br(var.3)    MA0012.1           +          NA
+...                 ...         ...         ...         ...
+EGR1_1400          EGR1    MA0162.3           +          NA
+IRF3_1401          IRF3    MA1418.1           +          NA
+IRF4_1402          IRF4    MA1419.1           +          NA
+IRF5_1403          IRF5    MA1420.1           +          NA
+TCF7L1_1404      TCF7L1    MA1421.1           +          NA
+                                                          family
+                                                     <character>
+Arnt_1                                        PAS domain factors
+Ahr..Arnt_2                                   PAS domain factors
+br_3        Other factors with up to three adjacent zinc fingers
+br.var.2_4  Other factors with up to three adjacent zinc fingers
+br.var.3_5  Other factors with up to three adjacent zinc fingers
+...                                                          ...
+EGR1_1400             Three-zinc finger Kruppel-related factors 
+IRF3_1401                        Interferon-regulatory factors  
+IRF4_1402                        Interferon-regulatory factors  
+IRF5_1403                        Interferon-regulatory factors  
+TCF7L1_1404                                TCF-7-related factors
+                       alias
+                 <character>
+Arnt_1      HIF-1beta,bHLHe2
+Ahr..Arnt_2                -
+br_3                      NA
+br.var.2_4                NA
+br.var.3_5                NA
+...                      ...
+EGR1_1400                 NA
+IRF3_1401                 NA
+IRF4_1402                 NA
+IRF5_1403                 NA
+TCF7L1_1404               NA
+
+2020-10-07 22:10:03 : Finding Motif Positions with motifmatchr!, 0.432 mins elapsed.
+2020-10-07 22:19:51 : Creating Motif Overlap Matrix, 10.24 mins elapsed.
+2020-10-07 22:20:00 : Finished Getting Motif Info!, 10.391 mins elapsed.
+
+------- Completed
+
+End Time : 2020-10-07 22:20:06
+Elapsed Time Minutes = 10.4835469285647
+Elapsed Time Hours = 0.174725853337182
+
+-------
+
+
+

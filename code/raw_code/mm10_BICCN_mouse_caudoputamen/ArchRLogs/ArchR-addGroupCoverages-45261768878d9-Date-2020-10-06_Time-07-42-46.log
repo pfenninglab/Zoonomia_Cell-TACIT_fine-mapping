@@ -1,0 +1,3583 @@
+
+           ___      .______        ______  __    __  .______      
+          /   \     |   _  \      /      ||  |  |  | |   _  \     
+         /  ^  \    |  |_)  |    |  ,----'|  |__|  | |  |_)  |    
+        /  /_\  \   |      /     |  |     |   __   | |      /     
+       /  _____  \  |  |\  \\___ |  `----.|  |  |  | |  |\  \\___.
+      /__/     \__\ | _| `._____| \______||__|  |__| | _| `._____|
+    
+Logging With ArchR!
+
+Start Time : 2020-10-06 07:42:46
+
+------- ArchR Info
+
+ArchRThreads = 10
+ArchRGenome = Mm10
+
+------- System Info
+
+Computer OS = unix
+Total Cores = 64
+
+------- Session Info
+
+R version 3.6.3 (2020-02-29)
+Platform: x86_64-conda_cos6-linux-gnu (64-bit)
+Running under: CentOS Linux 7 (Core)
+
+Matrix products: default
+BLAS/LAPACK: /home/bnphan/miniconda3/lib/libmkl_rt.so
+
+locale:
+ [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+ [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+ [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
+ [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+ [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+[11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+
+attached base packages:
+[1] parallel  stats4    stats     graphics  grDevices utils     datasets 
+[8] methods   base     
+
+other attached packages:
+ [1] gtable_0.3.0                ArchR_0.9.5                
+ [3] magrittr_1.5                rhdf5_2.30.1               
+ [5] Matrix_1.2-18               data.table_1.13.0          
+ [7] SummarizedExperiment_1.16.1 DelayedArray_0.12.3        
+ [9] BiocParallel_1.20.1         matrixStats_0.57.0         
+[11] Biobase_2.46.0              GenomicRanges_1.38.0       
+[13] GenomeInfoDb_1.22.1         IRanges_2.20.2             
+[15] S4Vectors_0.24.4            BiocGenerics_0.32.0        
+[17] ggplot2_3.3.2               colorout_1.2-2             
+
+loaded via a namespace (and not attached):
+ [1] Rcpp_1.0.5                         lattice_0.20-41                   
+ [3] Rsamtools_2.2.3                    Biostrings_2.54.0                 
+ [5] gtools_3.8.2                       digest_0.6.25                     
+ [7] BSgenome.Mmusculus.UCSC.mm10_1.4.0 IRdisplay_0.7.0                   
+ [9] plyr_1.8.6                         R6_2.4.1                          
+[11] repr_1.1.0                         evaluate_0.14                     
+[13] pillar_1.4.6                       zlibbioc_1.32.0                   
+[15] rlang_0.4.7                        uuid_0.1-4                        
+[17] hexbin_1.28.1                      labeling_0.3                      
+[19] stringr_1.4.0                      pheatmap_1.0.12                   
+[21] RCurl_1.98-1.2                     munsell_0.5.0                     
+[23] compiler_3.6.3                     rtracklayer_1.46.0                
+[25] pkgconfig_2.0.3                    base64enc_0.1-3                   
+[27] htmltools_0.5.0                    tidyselect_1.1.0                  
+[29] tibble_3.0.3                       GenomeInfoDbData_1.2.2            
+[31] XML_3.99-0.3                       crayon_1.3.4                      
+[33] dplyr_1.0.2                        withr_2.3.0                       
+[35] GenomicAlignments_1.22.1           bitops_1.0-6                      
+[37] grid_3.6.3                         jsonlite_1.7.1                    
+[39] lifecycle_0.2.0                    scales_1.1.1                      
+[41] stringi_1.5.3                      farver_2.0.3                      
+[43] XVector_0.26.0                     ellipsis_0.3.1                    
+[45] generics_0.0.2                     vctrs_0.3.4                       
+[47] cowplot_1.1.0                      IRkernel_1.1.1                    
+[49] Rhdf5lib_1.8.0                     RColorBrewer_1.1-2                
+[51] tools_3.6.3                        Cairo_1.5-12.2                    
+[53] BSgenome_1.54.0                    glue_1.4.2                        
+[55] purrr_0.3.4                        colorspace_1.4-1                  
+[57] pbdZMQ_0.3-3                      
+
+
+------- Log Info
+
+
+2020-10-06 07:42:47 : addGroupCoverages Input-Parameters, Class = list
+
+addGroupCoverages Input-Parameters$ArchRProj: length = 1
+class: ArchRProject 
+outputDirectory: /home/bnphan/projects/snATAC_cross_species_caudate/data/raw_data/mm10/BICCN_mouse_caudoputamen/ArchR_BICCN_CP_labeled 
+samples(4): CEMBA180813_5E CEMBA171219_4D CEMBA171214_4D CEMBA180820_5E
+sampleColData names(1): ArrowFiles
+cellColData names(28): Sample TSSEnrichment ... Slice Clusters2
+numberOfCells(1): 1
+medianTSS(1): 14.755
+medianFrags(1): 40080
+
+
+addGroupCoverages Input-Parameters$groupBy: length = 1
+[1] "Clusters2"
+
+
+addGroupCoverages Input-Parameters$useLabels: length = 1
+[1] TRUE
+
+
+addGroupCoverages Input-Parameters$minCells: length = 1
+[1] 40
+
+
+addGroupCoverages Input-Parameters$maxCells: length = 1
+[1] 500
+
+
+addGroupCoverages Input-Parameters$maxFragments: length = 1
+[1] 2.5e+07
+
+
+addGroupCoverages Input-Parameters$minReplicates: length = 1
+[1] 2
+
+
+addGroupCoverages Input-Parameters$maxReplicates: length = 1
+[1] 5
+
+
+addGroupCoverages Input-Parameters$sampleRatio: length = 1
+[1] 0.8
+
+
+addGroupCoverages Input-Parameters$kmerLength: length = 1
+[1] 6
+
+
+addGroupCoverages Input-Parameters$threads: length = 1
+[1] 10
+
+
+addGroupCoverages Input-Parameters$returnGroups: length = 1
+[1] FALSE
+
+
+addGroupCoverages Input-Parameters$parallelParam: length = 0
+NULL
+
+
+addGroupCoverages Input-Parameters$force: length = 1
+[1] TRUE
+
+
+addGroupCoverages Input-Parameters$verbose: length = 1
+[1] TRUE
+
+
+addGroupCoverages Input-Parameters$logFile: length = 1
+[1] "ArchRLogs/ArchR-addGroupCoverages-45261768878d9-Date-2020-10-06_Time-07-42-46.log"
+
+
+
+2020-10-06 07:42:47 : 
+
+2020-10-06 07:42:47 : 
+
+2020-10-06 07:42:47 : 
+
+2020-10-06 07:42:47 : 
+
+2020-10-06 07:42:47 : 
+
+2020-10-06 07:42:47 : 
+
+2020-10-06 07:42:47 : 
+
+2020-10-06 07:42:47 : 
+
+2020-10-06 07:42:47 : 
+
+2020-10-06 07:42:47 : 
+2020-10-06 07:42:48 : Batch Execution w/ safelapply!, 0.027 mins elapsed.
+2020-10-06 07:42:48 : Group Astro._.CEMBA180813_5E (1 of 36) : Creating Group Coverage File : Astro._.CEMBA180813_5E.insertions.coverage.h5, 0.028 mins elapsed.
+2020-10-06 07:42:48 : Group Astro._.CEMBA180820_5E (2 of 36) : Creating Group Coverage File : Astro._.CEMBA180820_5E.insertions.coverage.h5, 0.028 mins elapsed.
+
+2020-10-06 07:42:48 : Group Astro._.CEMBA180813_5E (1 of 36) : cellGroupi, Class = character
+
+Group Astro._.CEMBA180813_5E (1 of 36) : cellGroupi: length = 500
+[1] "CEMBA180813_5E#CATGTCAGTATGGTCGAGGCTGGTGGATACTA"
+[2] "CEMBA180813_5E#CAGTTGCAGTCATGAAAGGCTGGTTGCCTTAC"
+[3] "CEMBA180813_5E#CTCATACATATGGTCGGGAAGACTTTACGACC"
+[4] "CEMBA180813_5E#GCTCTAAGCAGAACTGAGGCTGGTTGCCTTAC"
+[5] "CEMBA180813_5E#TCGAGGCAAAGAGGCAGAACGCATATCTGAGT"
+[6] "CEMBA180813_5E#ACATTGGCTGCAGCTAGGAAGACTTCGACTAG"
+
+
+
+2020-10-06 07:42:48 : 
+2020-10-06 07:42:48 : Group Astro._.CEMBA171214_4D (3 of 36) : Creating Group Coverage File : Astro._.CEMBA171214_4D.insertions.coverage.h5, 0.029 mins elapsed.
+
+2020-10-06 07:42:48 : Group Astro._.CEMBA180820_5E (2 of 36) : cellGroupi, Class = character
+
+Group Astro._.CEMBA180820_5E (2 of 36) : cellGroupi: length = 500
+[1] "CEMBA180820_5E#AGACACCTCTCTCTACATAGAGGCATCTGAGT"
+[2] "CEMBA180820_5E#CTATTAGGATAAGTCGGTACTGACAAGAGATG"
+[3] "CEMBA180820_5E#ATTACTCGTAGCGCTCATAGAGGCAAGGCTAT"
+[4] "CEMBA180820_5E#CGCTCATTTCCTGAGCCCTATCCTCCTAGAGT"
+[5] "CEMBA180820_5E#ATTACTCGTAAGGCGAGGTTGCGTGAGCCTTA"
+[6] "CEMBA180820_5E#AGCGATAGCCTAAGACGTACTGACGAGCCTTA"
+
+2020-10-06 07:42:48 : Group Astro._.CEMBA171214_4D (3 of 36) : cellGroupi, Class = character
+
+
+
+2020-10-06 07:42:48 : 
+
+Group Astro._.CEMBA171214_4D (3 of 36) : cellGroupi: length = 412
+
+2020-10-06 07:42:48 : 
+[1] "CEMBA171214_4D#GAGATTCCCTTCAATGTTCATCCACAGGACGT"
+[2] "CEMBA171214_4D#ATTCAGAAAACCAGGTAATGACGTATAGAGGC"
+[3] "CEMBA171214_4D#ATTCAGAATGCCAATTAATGACGTGTACTGAC"
+[4] "CEMBA171214_4D#AGCGATAGATAAGTCGTTACGACCGTACTGAC"
+[5] "CEMBA171214_4D#GAGATTCCAAGCAACGGGATACTATATAGCCT"
+[6] "CEMBA171214_4D#ATTCAGAAGAATTACGGGATACTAGTACTGAC"
+
+
+2020-10-06 07:42:48 : Group Astro._.CEMBA171219_4D (4 of 36) : Creating Group Coverage File : Astro._.CEMBA171219_4D.insertions.coverage.h5, 0.03 mins elapsed.
+
+2020-10-06 07:42:48 : 
+
+2020-10-06 07:42:48 : 
+
+2020-10-06 07:42:48 : 
+
+2020-10-06 07:42:48 : Group Astro._.CEMBA171219_4D (4 of 36) : cellGroupi, Class = character
+
+
+2020-10-06 07:42:48 : 
+2020-10-06 07:42:48 : Group Interneuron._.CEMBA171219_4D (5 of 36) : Creating Group Coverage File : Interneuron._.CEMBA171219_4D.insertions.coverage.h5, 0.031 mins elapsed.
+
+2020-10-06 07:42:48 : 
+Group Astro._.CEMBA171219_4D (4 of 36) : cellGroupi: length = 369
+[1] "CEMBA171219_4D#AGCGATAGGCCTCAATGGATACTACAGGACGT"
+[2] "CEMBA171219_4D#ATTCAGAACTCTCTACGTAAGGAGGTACTGAC"
+[3] "CEMBA171219_4D#CTGAAGCTGCTCATGACGTCTAATGTACTGAC"
+[4] "CEMBA171219_4D#AGCGATAGACGTTCGAAAGAGATGCAGGACGT"
+[5] "CEMBA171219_4D#AGCGATAGTGCCAATTATTCGTTGGTACTGAC"
+[6] "CEMBA171219_4D#ATTCAGAAGCAACCTATTCATCCAGTACTGAC"
+
+
+
+2020-10-06 07:42:48 : 
+
+2020-10-06 07:42:48 : 
+
+2020-10-06 07:42:48 : Group Interneuron._.CEMBA171219_4D (5 of 36) : cellGroupi, Class = character
+
+
+2020-10-06 07:42:48 : 
+
+2020-10-06 07:42:48 : 
+Group Interneuron._.CEMBA171219_4D (5 of 36) : cellGroupi: length = 451
+[1] "CEMBA171219_4D#GAGATTCCCAAGTTCATGCCTTACCAGGACGT"
+[2] "CEMBA171219_4D#AGCGATAGGTCATGAATTCATCCACAGGACGT"
+[3] "CEMBA171219_4D#GAGATTCCGCCTCAATTTACGACCGTACTGAC"
+[4] "CEMBA171219_4D#AGCGATAGCCTAAGACTCTCTCCGCAGGACGT"
+[5] "CEMBA171219_4D#GAGATTCCTCGACGTCAAGGAGTATAATCTTA"
+[6] "CEMBA171219_4D#AGCGATAGTATGCCATATAGCCTTGTACTGAC"
+
+
+
+2020-10-06 07:42:48 : 
+
+2020-10-06 07:42:49 : 
+
+2020-10-06 07:42:49 : 
+
+2020-10-06 07:42:49 : 
+2020-10-06 07:42:48 : Group Interneuron._.CEMBA171214_4D (6 of 36) : Creating Group Coverage File : Interneuron._.CEMBA171214_4D.insertions.coverage.h5, 0.033 mins elapsed.
+
+2020-10-06 07:42:49 : Group Interneuron._.CEMBA171214_4D (6 of 36) : cellGroupi, Class = character
+
+2020-10-06 07:42:49 : 
+
+
+2020-10-06 07:42:49 : 
+
+2020-10-06 07:42:49 : 
+2020-10-06 07:42:49 : Group Interneuron._.CEMBA180820_5E (7 of 36) : Creating Group Coverage File : Interneuron._.CEMBA180820_5E.insertions.coverage.h5, 0.035 mins elapsed.
+
+2020-10-06 07:42:49 : 
+Group Interneuron._.CEMBA171214_4D (6 of 36) : cellGroupi: length = 406
+[1] "CEMBA171214_4D#ATTCAGAATTAGCCTCTAAGATCCGTACTGAC"
+[2] "CEMBA171214_4D#CTGAAGCTGCAACCTAAATGACGTCCTATCCT"
+[3] "CEMBA171214_4D#ATTCAGAATACTGCCTAGGATAACTATAGCCT"
+[4] "CEMBA171214_4D#GAGATTCCTATGGTCGATAGCCTTGTACTGAC"
+[5] "CEMBA171214_4D#GAGATTCCTATGCCATGGATACTAGTACTGAC"
+[6] "CEMBA171214_4D#ATTCAGAAGTCTACCAATTCGTTGCAGGACGT"
+
+
+
+2020-10-06 07:42:49 : 
+
+2020-10-06 07:42:49 : 
+
+2020-10-06 07:42:49 : 
+
+2020-10-06 07:42:49 : 
+
+2020-10-06 07:42:49 : 
+
+2020-10-06 07:42:49 : Group Interneuron._.CEMBA180820_5E (7 of 36) : cellGroupi, Class = character
+2020-10-06 07:42:49 : Group Astro._.CEMBA180813_5E (1 of 36) : Processed Fragments Chr (1 of 21), 0.037 mins elapsed.
+
+2020-10-06 07:42:49 : 
+
+Group Interneuron._.CEMBA180820_5E (7 of 36) : cellGroupi: length = 172
+[1] "CEMBA180820_5E#AGCGATAGACTGAGCGGTACTGACCCTAGAGT"
+[2] "CEMBA180820_5E#ATTACTCGGCCTCAATCCTATCCTCGAATTCC"
+[3] "CEMBA180820_5E#CTGAAGCTACTCGCTACAGGACGTTTATGCGA"
+[4] "CEMBA180820_5E#AGACACCTTCGACGTCGGCTCTGAAAGGAGTA"
+[5] "CEMBA180820_5E#AGACACCTGCGTAGTACAGGACGTGTAAGGAG"
+[6] "CEMBA180820_5E#AGACACCTGCGTAGTATATAGCCTCTCTCTAT"
+
+
+
+2020-10-06 07:42:49 : 
+
+2020-10-06 07:42:49 : 
+
+2020-10-06 07:42:49 : 
+
+2020-10-06 07:42:49 : 
+2020-10-06 07:42:49 : Group Interneuron._.CEMBA180813_5E (8 of 36) : Creating Group Coverage File : Interneuron._.CEMBA180813_5E.insertions.coverage.h5, 0.038 mins elapsed.
+
+2020-10-06 07:42:49 : 
+2020-10-06 07:42:49 : Group Astro._.CEMBA180820_5E (2 of 36) : Processed Fragments Chr (1 of 21), 0.039 mins elapsed.
+
+2020-10-06 07:42:49 : 
+
+2020-10-06 07:42:49 : Group Interneuron._.CEMBA180813_5E (8 of 36) : cellGroupi, Class = character
+
+2020-10-06 07:42:49 : 
+2020-10-06 07:42:49 : Group Astro._.CEMBA171214_4D (3 of 36) : Processed Fragments Chr (1 of 21), 0.04 mins elapsed.
+
+Group Interneuron._.CEMBA180813_5E (8 of 36) : cellGroupi: length = 141
+[1] "CEMBA180813_5E#CATGTCAGTTCCATCCCATTCAGTAATGACGT"
+[2] "CEMBA180813_5E#AGACGGAGTATGCCATGGAAGACTGAAGTATG"
+[3] "CEMBA180813_5E#GCTCTAAGACTGAGCGCATTCAGTTTCTAGCT"
+[4] "CEMBA180813_5E#GCTCTAAGACGAATCTCATTCAGTTAAGATCC"
+[5] "CEMBA180813_5E#CAGTTGCAACTGAGCGACAAGGATTCGACTAG"
+[6] "CEMBA180813_5E#TATCGGTTCAAGTTCAACAAGGATATTCGTTG"
+
+
+2020-10-06 07:42:49 : 
+
+2020-10-06 07:42:49 : 
+
+2020-10-06 07:42:49 : 
+
+
+2020-10-06 07:42:49 : 
+2020-10-06 07:42:49 : Group Microglia._.CEMBA180813_5E (9 of 36) : Creating Group Coverage File : Microglia._.CEMBA180813_5E.insertions.coverage.h5, 0.04 mins elapsed.
+
+2020-10-06 07:42:49 : 
+
+2020-10-06 07:42:49 : 
+
+2020-10-06 07:42:49 : 
+
+2020-10-06 07:42:49 : Group Microglia._.CEMBA180813_5E (9 of 36) : cellGroupi, Class = character
+
+2020-10-06 07:42:49 : 
+
+2020-10-06 07:42:49 : 
+
+Group Microglia._.CEMBA180813_5E (9 of 36) : cellGroupi: length = 242
+2020-10-06 07:42:49 : Group Astro._.CEMBA171219_4D (4 of 36) : Processed Fragments Chr (1 of 21), 0.043 mins elapsed.
+[1] "CEMBA180813_5E#CAGTTGCAAGGCAGAACATTCAGTGCGTAAGA"
+[2] "CEMBA180813_5E#AGACGGAGCTCTCTACACAAGGATGAGCCTTA"
+[3] "CEMBA180813_5E#GCTCTAAGCAAGTTCAACAAGGATATAGCCTT"
+[4] "CEMBA180813_5E#GCTCTAAGCGCTTGATCATTCAGTAACGAACG"
+[5] "CEMBA180813_5E#GCTCTAAGGCCTCAATCATTCAGTAAGAGATG"
+[6] "CEMBA180813_5E#TGTTACCACTAATGCTCATTCAGTATAGCCTT"
+
+
+
+2020-10-06 07:42:49 : 
+
+2020-10-06 07:42:49 : 
+
+2020-10-06 07:42:49 : 
+2020-10-06 07:42:49 : Group Microglia._.CEMBA180820_5E (10 of 36) : Creating Group Coverage File : Microglia._.CEMBA180820_5E.insertions.coverage.h5, 0.043 mins elapsed.
+
+2020-10-06 07:42:49 : 
+2020-10-06 07:42:49 : Group Interneuron._.CEMBA171219_4D (5 of 36) : Processed Fragments Chr (1 of 21), 0.046 mins elapsed.
+
+2020-10-06 07:42:49 : Group Microglia._.CEMBA180820_5E (10 of 36) : cellGroupi, Class = character
+
+2020-10-06 07:42:49 : 
+
+
+2020-10-06 07:42:49 : 
+
+2020-10-06 07:42:49 : 
+Group Microglia._.CEMBA180820_5E (10 of 36) : cellGroupi: length = 164
+
+2020-10-06 07:42:49 : 
+[1] "CEMBA180820_5E#AGACACCTTGCCAATTTATAGCCTTCCGGTAA"
+[2] "CEMBA180820_5E#CTGAAGCTGTCATGAATATAGCCTGAAGTATG"
+[3] "CEMBA180820_5E#GAGATTCCCAGAACTGTATAGCCTAATGACGT"
+[4] "CEMBA180820_5E#CTGAAGCTAAGAGGCATATAGCCTGCGTAAGA"
+[5] "CEMBA180820_5E#AGCGATAGCGATCAGTTATAGCCTTTCTAGCT"
+[6] "CEMBA180820_5E#AGACACCTTCGACGTCTATAGCCTTTCTAGCT"
+
+
+
+2020-10-06 07:42:49 : 
+
+2020-10-06 07:42:49 : 
+
+2020-10-06 07:42:49 : 
+
+2020-10-06 07:42:49 : 
+
+2020-10-06 07:42:49 : 
+
+2020-10-06 07:42:49 : 
+2020-10-06 07:42:49 : Group Interneuron._.CEMBA171214_4D (6 of 36) : Processed Fragments Chr (1 of 21), 0.049 mins elapsed.
+
+2020-10-06 07:42:49 : 
+
+2020-10-06 07:42:49 : 
+
+2020-10-06 07:42:49 : 
+
+2020-10-06 07:42:49 : 
+2020-10-06 07:42:49 : Group Interneuron._.CEMBA180820_5E (7 of 36) : Processed Fragments Chr (1 of 21), 0.051 mins elapsed.
+
+2020-10-06 07:42:50 : 
+
+2020-10-06 07:42:50 : 
+
+2020-10-06 07:42:50 : 
+
+2020-10-06 07:42:50 : 
+
+2020-10-06 07:42:50 : 
+2020-10-06 07:42:50 : Group Interneuron._.CEMBA180813_5E (8 of 36) : Processed Fragments Chr (1 of 21), 0.054 mins elapsed.
+
+2020-10-06 07:42:50 : 
+
+2020-10-06 07:42:50 : 
+
+2020-10-06 07:42:50 : 
+2020-10-06 07:42:50 : Group Microglia._.CEMBA180813_5E (9 of 36) : Processed Fragments Chr (1 of 21), 0.056 mins elapsed.
+
+2020-10-06 07:42:50 : 
+
+2020-10-06 07:42:50 : 
+2020-10-06 07:42:50 : Group Microglia._.CEMBA180820_5E (10 of 36) : Processed Fragments Chr (1 of 21), 0.059 mins elapsed.
+2020-10-06 07:43:01 : Group Astro._.CEMBA180813_5E (1 of 36) : Processed Fragments Chr (2 of 21), 0.236 mins elapsed.
+2020-10-06 07:43:01 : Group Astro._.CEMBA180820_5E (2 of 36) : Processed Fragments Chr (2 of 21), 0.236 mins elapsed.
+2020-10-06 07:43:01 : Group Astro._.CEMBA171214_4D (3 of 36) : Processed Fragments Chr (2 of 21), 0.239 mins elapsed.
+2020-10-06 07:43:01 : Group Interneuron._.CEMBA180820_5E (7 of 36) : Processed Fragments Chr (2 of 21), 0.24 mins elapsed.
+2020-10-06 07:43:01 : Group Astro._.CEMBA171219_4D (4 of 36) : Processed Fragments Chr (2 of 21), 0.241 mins elapsed.
+2020-10-06 07:43:01 : Group Interneuron._.CEMBA180813_5E (8 of 36) : Processed Fragments Chr (2 of 21), 0.244 mins elapsed.
+2020-10-06 07:43:01 : Group Microglia._.CEMBA180813_5E (9 of 36) : Processed Fragments Chr (2 of 21), 0.244 mins elapsed.
+2020-10-06 07:43:01 : Group Microglia._.CEMBA180820_5E (10 of 36) : Processed Fragments Chr (2 of 21), 0.244 mins elapsed.
+2020-10-06 07:43:02 : Group Interneuron._.CEMBA171214_4D (6 of 36) : Processed Fragments Chr (2 of 21), 0.26 mins elapsed.
+2020-10-06 07:43:02 : Group Interneuron._.CEMBA171219_4D (5 of 36) : Processed Fragments Chr (2 of 21), 0.262 mins elapsed.
+2020-10-06 07:43:09 : Group Astro._.CEMBA180820_5E (2 of 36) : Processed Fragments Chr (3 of 21), 0.372 mins elapsed.
+2020-10-06 07:43:09 : Group Interneuron._.CEMBA180820_5E (7 of 36) : Processed Fragments Chr (3 of 21), 0.372 mins elapsed.
+2020-10-06 07:43:09 : Group Microglia._.CEMBA180820_5E (10 of 36) : Processed Fragments Chr (3 of 21), 0.373 mins elapsed.
+2020-10-06 07:43:09 : Group Astro._.CEMBA180813_5E (1 of 36) : Processed Fragments Chr (3 of 21), 0.373 mins elapsed.
+2020-10-06 07:43:09 : Group Astro._.CEMBA171214_4D (3 of 36) : Processed Fragments Chr (3 of 21), 0.376 mins elapsed.
+2020-10-06 07:43:09 : Group Microglia._.CEMBA180813_5E (9 of 36) : Processed Fragments Chr (3 of 21), 0.376 mins elapsed.
+2020-10-06 07:43:09 : Group Interneuron._.CEMBA180813_5E (8 of 36) : Processed Fragments Chr (3 of 21), 0.376 mins elapsed.
+2020-10-06 07:43:09 : Group Astro._.CEMBA171219_4D (4 of 36) : Processed Fragments Chr (3 of 21), 0.377 mins elapsed.
+2020-10-06 07:43:11 : Group Interneuron._.CEMBA171214_4D (6 of 36) : Processed Fragments Chr (3 of 21), 0.405 mins elapsed.
+2020-10-06 07:43:11 : Group Interneuron._.CEMBA171219_4D (5 of 36) : Processed Fragments Chr (3 of 21), 0.411 mins elapsed.
+2020-10-06 07:43:16 : Group Microglia._.CEMBA180820_5E (10 of 36) : Processed Fragments Chr (4 of 21), 0.491 mins elapsed.
+2020-10-06 07:43:16 : Group Interneuron._.CEMBA180820_5E (7 of 36) : Processed Fragments Chr (4 of 21), 0.493 mins elapsed.
+2020-10-06 07:43:16 : Group Microglia._.CEMBA180813_5E (9 of 36) : Processed Fragments Chr (4 of 21), 0.496 mins elapsed.
+2020-10-06 07:43:16 : Group Astro._.CEMBA180820_5E (2 of 36) : Processed Fragments Chr (4 of 21), 0.497 mins elapsed.
+2020-10-06 07:43:16 : Group Interneuron._.CEMBA180813_5E (8 of 36) : Processed Fragments Chr (4 of 21), 0.498 mins elapsed.
+2020-10-06 07:43:16 : Group Astro._.CEMBA180813_5E (1 of 36) : Processed Fragments Chr (4 of 21), 0.501 mins elapsed.
+2020-10-06 07:43:17 : Group Astro._.CEMBA171219_4D (4 of 36) : Processed Fragments Chr (4 of 21), 0.504 mins elapsed.
+2020-10-06 07:43:17 : Group Astro._.CEMBA171214_4D (3 of 36) : Processed Fragments Chr (4 of 21), 0.506 mins elapsed.
+2020-10-06 07:43:19 : Group Interneuron._.CEMBA171214_4D (6 of 36) : Processed Fragments Chr (4 of 21), 0.539 mins elapsed.
+2020-10-06 07:43:19 : Group Interneuron._.CEMBA171219_4D (5 of 36) : Processed Fragments Chr (4 of 21), 0.544 mins elapsed.
+2020-10-06 07:43:23 : Group Microglia._.CEMBA180820_5E (10 of 36) : Processed Fragments Chr (5 of 21), 0.605 mins elapsed.
+2020-10-06 07:43:23 : Group Microglia._.CEMBA180813_5E (9 of 36) : Processed Fragments Chr (5 of 21), 0.611 mins elapsed.
+2020-10-06 07:43:23 : Group Interneuron._.CEMBA180820_5E (7 of 36) : Processed Fragments Chr (5 of 21), 0.611 mins elapsed.
+2020-10-06 07:43:23 : Group Interneuron._.CEMBA180813_5E (8 of 36) : Processed Fragments Chr (5 of 21), 0.614 mins elapsed.
+2020-10-06 07:43:23 : Group Astro._.CEMBA180820_5E (2 of 36) : Processed Fragments Chr (5 of 21), 0.617 mins elapsed.
+2020-10-06 07:43:24 : Group Astro._.CEMBA180813_5E (1 of 36) : Processed Fragments Chr (5 of 21), 0.625 mins elapsed.
+2020-10-06 07:43:24 : Group Astro._.CEMBA171219_4D (4 of 36) : Processed Fragments Chr (5 of 21), 0.626 mins elapsed.
+2020-10-06 07:43:24 : Group Astro._.CEMBA171214_4D (3 of 36) : Processed Fragments Chr (5 of 21), 0.631 mins elapsed.
+2020-10-06 07:43:27 : Group Interneuron._.CEMBA171214_4D (6 of 36) : Processed Fragments Chr (5 of 21), 0.67 mins elapsed.
+2020-10-06 07:43:27 : Group Interneuron._.CEMBA171219_4D (5 of 36) : Processed Fragments Chr (5 of 21), 0.677 mins elapsed.
+2020-10-06 07:43:30 : Group Microglia._.CEMBA180820_5E (10 of 36) : Processed Fragments Chr (6 of 21), 0.724 mins elapsed.
+2020-10-06 07:43:31 : Group Microglia._.CEMBA180813_5E (9 of 36) : Processed Fragments Chr (6 of 21), 0.737 mins elapsed.
+2020-10-06 07:43:31 : Group Interneuron._.CEMBA180820_5E (7 of 36) : Processed Fragments Chr (6 of 21), 0.738 mins elapsed.
+2020-10-06 07:43:31 : Group Interneuron._.CEMBA180813_5E (8 of 36) : Processed Fragments Chr (6 of 21), 0.742 mins elapsed.
+2020-10-06 07:43:31 : Group Astro._.CEMBA180820_5E (2 of 36) : Processed Fragments Chr (6 of 21), 0.746 mins elapsed.
+2020-10-06 07:43:32 : Group Astro._.CEMBA180813_5E (1 of 36) : Processed Fragments Chr (6 of 21), 0.751 mins elapsed.
+2020-10-06 07:43:32 : Group Astro._.CEMBA171219_4D (4 of 36) : Processed Fragments Chr (6 of 21), 0.754 mins elapsed.
+2020-10-06 07:43:32 : Group Astro._.CEMBA171214_4D (3 of 36) : Processed Fragments Chr (6 of 21), 0.757 mins elapsed.
+2020-10-06 07:43:35 : Group Interneuron._.CEMBA171214_4D (6 of 36) : Processed Fragments Chr (6 of 21), 0.802 mins elapsed.
+2020-10-06 07:43:35 : Group Interneuron._.CEMBA171219_4D (5 of 36) : Processed Fragments Chr (6 of 21), 0.81 mins elapsed.
+2020-10-06 07:43:37 : Group Microglia._.CEMBA180820_5E (10 of 36) : Processed Fragments Chr (7 of 21), 0.846 mins elapsed.
+2020-10-06 07:43:38 : Group Microglia._.CEMBA180813_5E (9 of 36) : Processed Fragments Chr (7 of 21), 0.855 mins elapsed.
+2020-10-06 07:43:38 : Group Interneuron._.CEMBA180820_5E (7 of 36) : Processed Fragments Chr (7 of 21), 0.856 mins elapsed.
+2020-10-06 07:43:38 : Group Interneuron._.CEMBA180813_5E (8 of 36) : Processed Fragments Chr (7 of 21), 0.86 mins elapsed.
+2020-10-06 07:43:38 : Group Astro._.CEMBA180820_5E (2 of 36) : Processed Fragments Chr (7 of 21), 0.867 mins elapsed.
+2020-10-06 07:43:39 : Group Astro._.CEMBA180813_5E (1 of 36) : Processed Fragments Chr (7 of 21), 0.873 mins elapsed.
+2020-10-06 07:43:39 : Group Astro._.CEMBA171219_4D (4 of 36) : Processed Fragments Chr (7 of 21), 0.876 mins elapsed.
+2020-10-06 07:43:39 : Group Astro._.CEMBA171214_4D (3 of 36) : Processed Fragments Chr (7 of 21), 0.879 mins elapsed.
+2020-10-06 07:43:42 : Group Interneuron._.CEMBA171214_4D (6 of 36) : Processed Fragments Chr (7 of 21), 0.931 mins elapsed.
+2020-10-06 07:43:43 : Group Interneuron._.CEMBA171219_4D (5 of 36) : Processed Fragments Chr (7 of 21), 0.94 mins elapsed.
+2020-10-06 07:43:44 : Group Microglia._.CEMBA180820_5E (10 of 36) : Processed Fragments Chr (8 of 21), 0.96 mins elapsed.
+2020-10-06 07:43:45 : Group Microglia._.CEMBA180813_5E (9 of 36) : Processed Fragments Chr (8 of 21), 0.97 mins elapsed.
+2020-10-06 07:43:45 : Group Interneuron._.CEMBA180820_5E (7 of 36) : Processed Fragments Chr (8 of 21), 0.971 mins elapsed.
+2020-10-06 07:43:45 : Group Interneuron._.CEMBA180813_5E (8 of 36) : Processed Fragments Chr (8 of 21), 0.976 mins elapsed.
+2020-10-06 07:43:46 : Group Astro._.CEMBA180820_5E (2 of 36) : Processed Fragments Chr (8 of 21), 0.986 mins elapsed.
+2020-10-06 07:43:46 : Group Astro._.CEMBA180813_5E (1 of 36) : Processed Fragments Chr (8 of 21), 0.994 mins elapsed.
+2020-10-06 07:43:46 : Group Astro._.CEMBA171219_4D (4 of 36) : Processed Fragments Chr (8 of 21), 0.995 mins elapsed.
+2020-10-06 07:43:46 : Group Astro._.CEMBA171214_4D (3 of 36) : Processed Fragments Chr (8 of 21), 1 mins elapsed.
+2020-10-06 07:43:50 : Group Interneuron._.CEMBA171214_4D (6 of 36) : Processed Fragments Chr (8 of 21), 1.057 mins elapsed.
+2020-10-06 07:43:50 : Group Interneuron._.CEMBA171219_4D (5 of 36) : Processed Fragments Chr (8 of 21), 1.067 mins elapsed.
+2020-10-06 07:43:51 : Group Microglia._.CEMBA180820_5E (10 of 36) : Processed Fragments Chr (9 of 21), 1.074 mins elapsed.
+2020-10-06 07:43:52 : Group Microglia._.CEMBA180813_5E (9 of 36) : Processed Fragments Chr (9 of 21), 1.086 mins elapsed.
+2020-10-06 07:43:52 : Group Interneuron._.CEMBA180820_5E (7 of 36) : Processed Fragments Chr (9 of 21), 1.088 mins elapsed.
+2020-10-06 07:43:52 : Group Interneuron._.CEMBA180813_5E (8 of 36) : Processed Fragments Chr (9 of 21), 1.093 mins elapsed.
+2020-10-06 07:43:53 : Group Astro._.CEMBA180820_5E (2 of 36) : Processed Fragments Chr (9 of 21), 1.102 mins elapsed.
+2020-10-06 07:43:53 : Group Astro._.CEMBA171219_4D (4 of 36) : Processed Fragments Chr (9 of 21), 1.112 mins elapsed.
+2020-10-06 07:43:53 : Group Astro._.CEMBA180813_5E (1 of 36) : Processed Fragments Chr (9 of 21), 1.113 mins elapsed.
+2020-10-06 07:43:53 : Group Astro._.CEMBA171214_4D (3 of 36) : Processed Fragments Chr (9 of 21), 1.118 mins elapsed.
+2020-10-06 07:43:57 : Group Interneuron._.CEMBA171214_4D (6 of 36) : Processed Fragments Chr (9 of 21), 1.184 mins elapsed.
+2020-10-06 07:43:58 : Group Microglia._.CEMBA180820_5E (10 of 36) : Processed Fragments Chr (10 of 21), 1.192 mins elapsed.
+2020-10-06 07:43:58 : Group Interneuron._.CEMBA171219_4D (5 of 36) : Processed Fragments Chr (9 of 21), 1.196 mins elapsed.
+2020-10-06 07:43:59 : Group Microglia._.CEMBA180813_5E (9 of 36) : Processed Fragments Chr (10 of 21), 1.205 mins elapsed.
+2020-10-06 07:43:59 : Group Interneuron._.CEMBA180820_5E (7 of 36) : Processed Fragments Chr (10 of 21), 1.208 mins elapsed.
+2020-10-06 07:43:59 : Group Interneuron._.CEMBA180813_5E (8 of 36) : Processed Fragments Chr (10 of 21), 1.216 mins elapsed.
+2020-10-06 07:44:00 : Group Astro._.CEMBA180820_5E (2 of 36) : Processed Fragments Chr (10 of 21), 1.232 mins elapsed.
+2020-10-06 07:44:01 : Group Astro._.CEMBA180813_5E (1 of 36) : Processed Fragments Chr (10 of 21), 1.243 mins elapsed.
+2020-10-06 07:44:01 : Group Astro._.CEMBA171219_4D (4 of 36) : Processed Fragments Chr (10 of 21), 1.243 mins elapsed.
+2020-10-06 07:44:01 : Group Astro._.CEMBA171214_4D (3 of 36) : Processed Fragments Chr (10 of 21), 1.25 mins elapsed.
+2020-10-06 07:44:05 : Group Microglia._.CEMBA180820_5E (10 of 36) : Processed Fragments Chr (11 of 21), 1.311 mins elapsed.
+2020-10-06 07:44:05 : Group Interneuron._.CEMBA171214_4D (6 of 36) : Processed Fragments Chr (10 of 21), 1.314 mins elapsed.
+2020-10-06 07:44:06 : Group Microglia._.CEMBA180813_5E (9 of 36) : Processed Fragments Chr (11 of 21), 1.325 mins elapsed.
+2020-10-06 07:44:06 : Group Interneuron._.CEMBA171219_4D (5 of 36) : Processed Fragments Chr (10 of 21), 1.326 mins elapsed.
+2020-10-06 07:44:06 : Group Interneuron._.CEMBA180820_5E (7 of 36) : Processed Fragments Chr (11 of 21), 1.327 mins elapsed.
+2020-10-06 07:44:06 : Group Interneuron._.CEMBA180813_5E (8 of 36) : Processed Fragments Chr (11 of 21), 1.334 mins elapsed.
+2020-10-06 07:44:08 : Group Astro._.CEMBA180820_5E (2 of 36) : Processed Fragments Chr (11 of 21), 1.353 mins elapsed.
+2020-10-06 07:44:08 : Group Astro._.CEMBA171219_4D (4 of 36) : Processed Fragments Chr (11 of 21), 1.365 mins elapsed.
+2020-10-06 07:44:08 : Group Astro._.CEMBA180813_5E (1 of 36) : Processed Fragments Chr (11 of 21), 1.366 mins elapsed.
+2020-10-06 07:44:09 : Group Astro._.CEMBA171214_4D (3 of 36) : Processed Fragments Chr (11 of 21), 1.372 mins elapsed.
+2020-10-06 07:44:12 : Group Microglia._.CEMBA180820_5E (10 of 36) : Processed Fragments Chr (12 of 21), 1.428 mins elapsed.
+2020-10-06 07:44:13 : Group Interneuron._.CEMBA171214_4D (6 of 36) : Processed Fragments Chr (11 of 21), 1.442 mins elapsed.
+2020-10-06 07:44:13 : Group Microglia._.CEMBA180813_5E (9 of 36) : Processed Fragments Chr (12 of 21), 1.444 mins elapsed.
+2020-10-06 07:44:13 : Group Interneuron._.CEMBA180820_5E (7 of 36) : Processed Fragments Chr (12 of 21), 1.446 mins elapsed.
+2020-10-06 07:44:14 : Group Interneuron._.CEMBA180813_5E (8 of 36) : Processed Fragments Chr (12 of 21), 1.453 mins elapsed.
+2020-10-06 07:44:14 : Group Interneuron._.CEMBA171219_4D (5 of 36) : Processed Fragments Chr (11 of 21), 1.456 mins elapsed.
+2020-10-06 07:44:15 : Group Astro._.CEMBA180820_5E (2 of 36) : Processed Fragments Chr (12 of 21), 1.469 mins elapsed.
+2020-10-06 07:44:15 : Group Astro._.CEMBA171219_4D (4 of 36) : Processed Fragments Chr (12 of 21), 1.481 mins elapsed.
+2020-10-06 07:44:15 : Group Astro._.CEMBA180813_5E (1 of 36) : Processed Fragments Chr (12 of 21), 1.482 mins elapsed.
+2020-10-06 07:44:16 : Group Astro._.CEMBA171214_4D (3 of 36) : Processed Fragments Chr (12 of 21), 1.488 mins elapsed.
+2020-10-06 07:44:19 : Group Microglia._.CEMBA180820_5E (10 of 36) : Processed Fragments Chr (13 of 21), 1.548 mins elapsed.
+2020-10-06 07:44:20 : Group Interneuron._.CEMBA171214_4D (6 of 36) : Processed Fragments Chr (12 of 21), 1.565 mins elapsed.
+2020-10-06 07:44:20 : Group Microglia._.CEMBA180813_5E (9 of 36) : Processed Fragments Chr (13 of 21), 1.565 mins elapsed.
+2020-10-06 07:44:21 : Group Interneuron._.CEMBA180820_5E (7 of 36) : Processed Fragments Chr (13 of 21), 1.57 mins elapsed.
+2020-10-06 07:44:21 : Group Interneuron._.CEMBA180813_5E (8 of 36) : Processed Fragments Chr (13 of 21), 1.576 mins elapsed.
+2020-10-06 07:44:21 : Group Interneuron._.CEMBA171219_4D (5 of 36) : Processed Fragments Chr (12 of 21), 1.578 mins elapsed.
+2020-10-06 07:44:22 : Group Astro._.CEMBA180820_5E (2 of 36) : Processed Fragments Chr (13 of 21), 1.597 mins elapsed.
+2020-10-06 07:44:23 : Group Astro._.CEMBA171219_4D (4 of 36) : Processed Fragments Chr (13 of 21), 1.61 mins elapsed.
+2020-10-06 07:44:23 : Group Astro._.CEMBA180813_5E (1 of 36) : Processed Fragments Chr (13 of 21), 1.613 mins elapsed.
+2020-10-06 07:44:24 : Group Astro._.CEMBA171214_4D (3 of 36) : Processed Fragments Chr (13 of 21), 1.619 mins elapsed.
+2020-10-06 07:44:26 : Group Microglia._.CEMBA180820_5E (10 of 36) : Processed Fragments Chr (14 of 21), 1.663 mins elapsed.
+2020-10-06 07:44:27 : Group Microglia._.CEMBA180813_5E (9 of 36) : Processed Fragments Chr (14 of 21), 1.683 mins elapsed.
+2020-10-06 07:44:28 : Group Interneuron._.CEMBA180820_5E (7 of 36) : Processed Fragments Chr (14 of 21), 1.688 mins elapsed.
+2020-10-06 07:44:28 : Group Interneuron._.CEMBA180813_5E (8 of 36) : Processed Fragments Chr (14 of 21), 1.696 mins elapsed.
+2020-10-06 07:44:29 : Group Interneuron._.CEMBA171214_4D (6 of 36) : Processed Fragments Chr (13 of 21), 1.702 mins elapsed.
+2020-10-06 07:44:30 : Group Astro._.CEMBA180820_5E (2 of 36) : Processed Fragments Chr (14 of 21), 1.718 mins elapsed.
+2020-10-06 07:44:30 : Group Interneuron._.CEMBA171219_4D (5 of 36) : Processed Fragments Chr (13 of 21), 1.719 mins elapsed.
+2020-10-06 07:44:30 : Group Astro._.CEMBA171219_4D (4 of 36) : Processed Fragments Chr (14 of 21), 1.732 mins elapsed.
+2020-10-06 07:44:31 : Group Astro._.CEMBA180813_5E (1 of 36) : Processed Fragments Chr (14 of 21), 1.736 mins elapsed.
+2020-10-06 07:44:31 : Group Astro._.CEMBA171214_4D (3 of 36) : Processed Fragments Chr (14 of 21), 1.742 mins elapsed.
+2020-10-06 07:44:33 : Group Microglia._.CEMBA180820_5E (10 of 36) : Processed Fragments Chr (15 of 21), 1.777 mins elapsed.
+2020-10-06 07:44:34 : Group Microglia._.CEMBA180813_5E (9 of 36) : Processed Fragments Chr (15 of 21), 1.8 mins elapsed.
+2020-10-06 07:44:35 : Group Interneuron._.CEMBA180820_5E (7 of 36) : Processed Fragments Chr (15 of 21), 1.806 mins elapsed.
+2020-10-06 07:44:35 : Group Interneuron._.CEMBA180813_5E (8 of 36) : Processed Fragments Chr (15 of 21), 1.813 mins elapsed.
+2020-10-06 07:44:36 : Group Interneuron._.CEMBA171214_4D (6 of 36) : Processed Fragments Chr (14 of 21), 1.834 mins elapsed.
+2020-10-06 07:44:37 : Group Astro._.CEMBA180820_5E (2 of 36) : Processed Fragments Chr (15 of 21), 1.84 mins elapsed.
+2020-10-06 07:44:38 : Group Interneuron._.CEMBA171219_4D (5 of 36) : Processed Fragments Chr (14 of 21), 1.852 mins elapsed.
+2020-10-06 07:44:38 : Group Astro._.CEMBA171219_4D (4 of 36) : Processed Fragments Chr (15 of 21), 1.855 mins elapsed.
+2020-10-06 07:44:38 : Group Astro._.CEMBA180813_5E (1 of 36) : Processed Fragments Chr (15 of 21), 1.861 mins elapsed.
+2020-10-06 07:44:38 : Group Astro._.CEMBA171214_4D (3 of 36) : Processed Fragments Chr (15 of 21), 1.867 mins elapsed.
+2020-10-06 07:44:40 : Group Microglia._.CEMBA180820_5E (10 of 36) : Processed Fragments Chr (16 of 21), 1.892 mins elapsed.
+2020-10-06 07:44:41 : Group Microglia._.CEMBA180813_5E (9 of 36) : Processed Fragments Chr (16 of 21), 1.917 mins elapsed.
+2020-10-06 07:44:42 : Group Interneuron._.CEMBA180820_5E (7 of 36) : Processed Fragments Chr (16 of 21), 1.922 mins elapsed.
+2020-10-06 07:44:42 : Group Interneuron._.CEMBA180813_5E (8 of 36) : Processed Fragments Chr (16 of 21), 1.931 mins elapsed.
+2020-10-06 07:44:44 : Group Astro._.CEMBA180820_5E (2 of 36) : Processed Fragments Chr (16 of 21), 1.961 mins elapsed.
+2020-10-06 07:44:44 : Group Interneuron._.CEMBA171214_4D (6 of 36) : Processed Fragments Chr (15 of 21), 1.964 mins elapsed.
+2020-10-06 07:44:45 : Group Astro._.CEMBA171219_4D (4 of 36) : Processed Fragments Chr (16 of 21), 1.976 mins elapsed.
+2020-10-06 07:44:45 : Group Astro._.CEMBA180813_5E (1 of 36) : Processed Fragments Chr (16 of 21), 1.982 mins elapsed.
+2020-10-06 07:44:45 : Group Interneuron._.CEMBA171219_4D (5 of 36) : Processed Fragments Chr (15 of 21), 1.983 mins elapsed.
+2020-10-06 07:44:46 : Group Astro._.CEMBA171214_4D (3 of 36) : Processed Fragments Chr (16 of 21), 1.989 mins elapsed.
+2020-10-06 07:44:47 : Group Microglia._.CEMBA180820_5E (10 of 36) : Processed Fragments Chr (17 of 21), 2.006 mins elapsed.
+2020-10-06 07:44:48 : Group Microglia._.CEMBA180813_5E (9 of 36) : Processed Fragments Chr (17 of 21), 2.033 mins elapsed.
+2020-10-06 07:44:49 : Group Interneuron._.CEMBA180820_5E (7 of 36) : Processed Fragments Chr (17 of 21), 2.04 mins elapsed.
+2020-10-06 07:44:49 : Group Interneuron._.CEMBA180813_5E (8 of 36) : Processed Fragments Chr (17 of 21), 2.048 mins elapsed.
+2020-10-06 07:44:51 : Group Astro._.CEMBA180820_5E (2 of 36) : Processed Fragments Chr (17 of 21), 2.08 mins elapsed.
+2020-10-06 07:44:52 : Group Interneuron._.CEMBA171214_4D (6 of 36) : Processed Fragments Chr (16 of 21), 2.094 mins elapsed.
+2020-10-06 07:44:52 : Group Astro._.CEMBA171219_4D (4 of 36) : Processed Fragments Chr (17 of 21), 2.097 mins elapsed.
+2020-10-06 07:44:53 : Group Astro._.CEMBA180813_5E (1 of 36) : Processed Fragments Chr (17 of 21), 2.104 mins elapsed.
+2020-10-06 07:44:53 : Group Astro._.CEMBA171214_4D (3 of 36) : Processed Fragments Chr (17 of 21), 2.111 mins elapsed.
+2020-10-06 07:44:53 : Group Interneuron._.CEMBA171219_4D (5 of 36) : Processed Fragments Chr (16 of 21), 2.114 mins elapsed.
+2020-10-06 07:44:54 : Group Microglia._.CEMBA180820_5E (10 of 36) : Processed Fragments Chr (18 of 21), 2.119 mins elapsed.
+2020-10-06 07:44:55 : Group Microglia._.CEMBA180813_5E (9 of 36) : Processed Fragments Chr (18 of 21), 2.147 mins elapsed.
+2020-10-06 07:44:56 : Group Interneuron._.CEMBA180820_5E (7 of 36) : Processed Fragments Chr (18 of 21), 2.154 mins elapsed.
+2020-10-06 07:44:56 : Group Interneuron._.CEMBA180813_5E (8 of 36) : Processed Fragments Chr (18 of 21), 2.163 mins elapsed.
+2020-10-06 07:44:59 : Group Astro._.CEMBA180820_5E (2 of 36) : Processed Fragments Chr (18 of 21), 2.207 mins elapsed.
+2020-10-06 07:45:00 : Group Astro._.CEMBA171219_4D (4 of 36) : Processed Fragments Chr (18 of 21), 2.226 mins elapsed.
+2020-10-06 07:45:00 : Group Interneuron._.CEMBA171214_4D (6 of 36) : Processed Fragments Chr (17 of 21), 2.234 mins elapsed.
+2020-10-06 07:45:01 : Group Astro._.CEMBA180813_5E (1 of 36) : Processed Fragments Chr (18 of 21), 2.236 mins elapsed.
+2020-10-06 07:45:01 : Group Microglia._.CEMBA180820_5E (10 of 36) : Processed Fragments Chr (19 of 21), 2.242 mins elapsed.
+2020-10-06 07:45:01 : Group Astro._.CEMBA171214_4D (3 of 36) : Processed Fragments Chr (18 of 21), 2.243 mins elapsed.
+2020-10-06 07:45:02 : Group Interneuron._.CEMBA171219_4D (5 of 36) : Processed Fragments Chr (17 of 21), 2.256 mins elapsed.
+2020-10-06 07:45:03 : Group Microglia._.CEMBA180813_5E (9 of 36) : Processed Fragments Chr (19 of 21), 2.272 mins elapsed.
+2020-10-06 07:45:03 : Group Interneuron._.CEMBA180820_5E (7 of 36) : Processed Fragments Chr (19 of 21), 2.279 mins elapsed.
+2020-10-06 07:45:04 : Group Interneuron._.CEMBA180813_5E (8 of 36) : Processed Fragments Chr (19 of 21), 2.289 mins elapsed.
+2020-10-06 07:45:06 : Group Astro._.CEMBA180820_5E (2 of 36) : Processed Fragments Chr (19 of 21), 2.33 mins elapsed.
+2020-10-06 07:45:07 : Group Astro._.CEMBA171219_4D (4 of 36) : Processed Fragments Chr (19 of 21), 2.348 mins elapsed.
+2020-10-06 07:45:08 : Group Microglia._.CEMBA180820_5E (10 of 36) : Processed Fragments Chr (20 of 21), 2.356 mins elapsed.
+2020-10-06 07:45:08 : Group Astro._.CEMBA180813_5E (1 of 36) : Processed Fragments Chr (19 of 21), 2.359 mins elapsed.
+2020-10-06 07:45:08 : Group Interneuron._.CEMBA171214_4D (6 of 36) : Processed Fragments Chr (18 of 21), 2.363 mins elapsed.
+2020-10-06 07:45:08 : Group Astro._.CEMBA171214_4D (3 of 36) : Processed Fragments Chr (19 of 21), 2.365 mins elapsed.
+2020-10-06 07:45:09 : Group Interneuron._.CEMBA171219_4D (5 of 36) : Processed Fragments Chr (18 of 21), 2.384 mins elapsed.
+2020-10-06 07:45:10 : Group Microglia._.CEMBA180813_5E (9 of 36) : Processed Fragments Chr (20 of 21), 2.387 mins elapsed.
+2020-10-06 07:45:10 : Group Interneuron._.CEMBA180820_5E (7 of 36) : Processed Fragments Chr (20 of 21), 2.394 mins elapsed.
+2020-10-06 07:45:11 : Group Interneuron._.CEMBA180813_5E (8 of 36) : Processed Fragments Chr (20 of 21), 2.405 mins elapsed.
+2020-10-06 07:45:14 : Group Astro._.CEMBA180820_5E (2 of 36) : Processed Fragments Chr (20 of 21), 2.454 mins elapsed.
+2020-10-06 07:45:15 : Group Microglia._.CEMBA180820_5E (10 of 36) : Processed Fragments Chr (21 of 21), 2.473 mins elapsed.
+2020-10-06 07:45:15 : Group Astro._.CEMBA171219_4D (4 of 36) : Processed Fragments Chr (20 of 21), 2.474 mins elapsed.
+2020-10-06 07:45:16 : Group Astro._.CEMBA180813_5E (1 of 36) : Processed Fragments Chr (20 of 21), 2.485 mins elapsed.
+2020-10-06 07:45:16 : Group Astro._.CEMBA171214_4D (3 of 36) : Processed Fragments Chr (20 of 21), 2.493 mins elapsed.
+2020-10-06 07:45:16 : Group Interneuron._.CEMBA171214_4D (6 of 36) : Processed Fragments Chr (19 of 21), 2.497 mins elapsed.
+2020-10-06 07:45:17 : Group Microglia._.CEMBA180813_5E (9 of 36) : Processed Fragments Chr (21 of 21), 2.505 mins elapsed.
+2020-10-06 07:45:17 : Group Interneuron._.CEMBA180820_5E (7 of 36) : Processed Fragments Chr (21 of 21), 2.513 mins elapsed.
+2020-10-06 07:45:18 : Group Interneuron._.CEMBA171219_4D (5 of 36) : Processed Fragments Chr (19 of 21), 2.52 mins elapsed.
+2020-10-06 07:45:18 : Group Interneuron._.CEMBA180813_5E (8 of 36) : Processed Fragments Chr (21 of 21), 2.524 mins elapsed.
+2020-10-06 07:45:21 : Group Astro._.CEMBA180820_5E (2 of 36) : Processed Fragments Chr (21 of 21), 2.569 mins elapsed.
+2020-10-06 07:45:22 : Group Microglia._.CEMBA171214_4D (11 of 36) : Creating Group Coverage File : Microglia._.CEMBA171214_4D.insertions.coverage.h5, 2.586 mins elapsed.
+
+2020-10-06 07:45:22 : Group Microglia._.CEMBA171214_4D (11 of 36) : cellGroupi, Class = character
+
+Group Microglia._.CEMBA171214_4D (11 of 36) : cellGroupi: length = 104
+2020-10-06 07:45:22 : Group Astro._.CEMBA171219_4D (4 of 36) : Processed Fragments Chr (21 of 21), 2.589 mins elapsed.
+[1] "CEMBA171214_4D#AGCGATAGACGTTCGAGGTTAGACTATAGCCT"
+[2] "CEMBA171214_4D#ATTCAGAATACTGCCTTTACGACCCAGGACGT"
+[3] "CEMBA171214_4D#ATTCAGAATTAGCCTCTCCGGTAAGTACTGAC"
+[4] "CEMBA171214_4D#TAATGCGCGCCTCAATAAGAGATGGTACTGAC"
+[5] "CEMBA171214_4D#ATTCAGAAGCAACCTAGGTTAGACGTACTGAC"
+[6] "CEMBA171214_4D#GAGATTCCCGCTTGATAATGACGTTATAGCCT"
+
+
+
+2020-10-06 07:45:22 : 
+
+2020-10-06 07:45:22 : 
+
+2020-10-06 07:45:22 : 
+
+2020-10-06 07:45:22 : 
+
+2020-10-06 07:45:22 : 
+
+2020-10-06 07:45:22 : 
+
+2020-10-06 07:45:23 : 
+2020-10-06 07:45:23 : Group Microglia._.CEMBA171214_4D (11 of 36) : Processed Fragments Chr (1 of 21), 2.602 mins elapsed.
+2020-10-06 07:45:23 : Group Astro._.CEMBA180813_5E (1 of 36) : Processed Fragments Chr (21 of 21), 2.602 mins elapsed.
+2020-10-06 07:45:23 : Group Astro._.CEMBA171214_4D (3 of 36) : Processed Fragments Chr (21 of 21), 2.608 mins elapsed.
+2020-10-06 07:45:24 : Group Microglia._.CEMBA171219_4D (12 of 36) : Creating Group Coverage File : Microglia._.CEMBA171219_4D.insertions.coverage.h5, 2.62 mins elapsed.
+
+2020-10-06 07:45:24 : Group Microglia._.CEMBA171219_4D (12 of 36) : cellGroupi, Class = character
+
+Group Microglia._.CEMBA171219_4D (12 of 36) : cellGroupi: length = 85
+[1] "CEMBA171219_4D#GAGATTCCGGACTCCTAAGGAGTACAGGACGT"
+[2] "CEMBA171219_4D#AGCGATAGCGAGGCTGCTAAGCCTGTACTGAC"
+[3] "CEMBA171219_4D#AGCGATAGCCTAAGACCCTAGAGTTATAGCCT"
+[4] "CEMBA171219_4D#AGCGATAGAACCAGGTTGCCTTACGTACTGAC"
+[5] "CEMBA171219_4D#CTGAAGCTATGCGCAGGCGTAAGACAGGACGT"
+[6] "CEMBA171219_4D#GAGATTCCGGACTCCTCTAAGCCTATAGAGGC"
+
+
+
+2020-10-06 07:45:24 : 
+
+2020-10-06 07:45:24 : 
+2020-10-06 07:45:24 : Group Interneuron._.CEMBA171214_4D (6 of 36) : Processed Fragments Chr (20 of 21), 2.628 mins elapsed.
+
+2020-10-06 07:45:24 : 
+
+2020-10-06 07:45:24 : 
+2020-10-06 07:45:24 : Group MSN_D1._.CEMBA171219_4D (13 of 36) : Creating Group Coverage File : MSN_D1._.CEMBA171219_4D.insertions.coverage.h5, 2.629 mins elapsed.
+
+2020-10-06 07:45:24 : Group MSN_D1._.CEMBA171219_4D (13 of 36) : cellGroupi, Class = character
+
+Group MSN_D1._.CEMBA171219_4D (13 of 36) : cellGroupi: length = 500
+[1] "CEMBA171219_4D#TAATGCGCGGACTCCTCTAAGCCTATAGAGGC"
+[2] "CEMBA171219_4D#CTGAAGCTCTTCAATGAAGAGATGATAGAGGC"
+[3] "CEMBA171219_4D#ATTCAGAAGCAACCTACGAATTCCTAATCTTA"
+[4] "CEMBA171219_4D#ATTACTCGGCCTCAATATAGCCTTGTACTGAC"
+[5] "CEMBA171219_4D#CTGAAGCTTAGGCATGCGTCTAATGGCTCTGA"
+[6] "CEMBA171219_4D#CTGAAGCTAGGCAGAAATCTGAGTGGCTCTGA"
+
+
+
+2020-10-06 07:45:24 : 
+
+2020-10-06 07:45:24 : 
+
+2020-10-06 07:45:25 : 
+
+2020-10-06 07:45:25 : 
+
+2020-10-06 07:45:25 : 
+2020-10-06 07:45:25 : Group Microglia._.CEMBA171219_4D (12 of 36) : Processed Fragments Chr (1 of 21), 2.636 mins elapsed.
+
+2020-10-06 07:45:25 : 
+
+2020-10-06 07:45:25 : 
+
+2020-10-06 07:45:25 : 
+2020-10-06 07:45:25 : Group MSN_D1._.CEMBA180813_5E (14 of 36) : Creating Group Coverage File : MSN_D1._.CEMBA180813_5E.insertions.coverage.h5, 2.641 mins elapsed.
+
+2020-10-06 07:45:25 : 
+
+2020-10-06 07:45:25 : Group MSN_D1._.CEMBA180813_5E (14 of 36) : cellGroupi, Class = character
+
+Group MSN_D1._.CEMBA180813_5E (14 of 36) : cellGroupi: length = 500
+[1] "CEMBA180813_5E#TGTGCAACACTCGCTATTCGGAAGTTATGCGA"
+[2] "CEMBA180813_5E#CTCATACACGATCAGTCATTCAGTTTCTAGCT"
+[3] "CEMBA180813_5E#TGTTACCATAGCGCTCTTCGGAAGATCTGAGT"
+[4] "CEMBA180813_5E#TGTGCAACGCAACCTACATTCAGTCGAATTCC"
+[5] "CEMBA180813_5E#ACATTGGCGGACTCCTCATTCAGTATCTGAGT"
+[6] "CEMBA180813_5E#ACATTGGCGAATTACGTTCGGAAGATAGCCTT"
+
+
+
+2020-10-06 07:45:25 : 
+
+2020-10-06 07:45:25 : 
+2020-10-06 07:45:25 : Group MSN_D1._.CEMBA171219_4D (13 of 36) : Processed Fragments Chr (1 of 21), 2.645 mins elapsed.
+
+2020-10-06 07:45:25 : 
+
+2020-10-06 07:45:25 : 
+
+2020-10-06 07:45:25 : 
+
+2020-10-06 07:45:26 : 
+
+2020-10-06 07:45:26 : 
+2020-10-06 07:45:26 : Group Interneuron._.CEMBA171219_4D (5 of 36) : Processed Fragments Chr (20 of 21), 2.655 mins elapsed.
+
+2020-10-06 07:45:26 : 
+2020-10-06 07:45:26 : Group MSN_D1._.CEMBA180813_5E (14 of 36) : Processed Fragments Chr (1 of 21), 2.657 mins elapsed.
+2020-10-06 07:45:28 : Group MSN_D1._.CEMBA180820_5E (15 of 36) : Creating Group Coverage File : MSN_D1._.CEMBA180820_5E.insertions.coverage.h5, 2.691 mins elapsed.
+
+2020-10-06 07:45:28 : Group MSN_D1._.CEMBA180820_5E (15 of 36) : cellGroupi, Class = character
+
+Group MSN_D1._.CEMBA180820_5E (15 of 36) : cellGroupi: length = 500
+[1] "CEMBA180820_5E#AGACACCTCGTATAGACAGGACGTTTCATCCA"
+[2] "CEMBA180820_5E#CTATTAGGTCTATCCGTATAGCCTTTCATCCA"
+[3] "CEMBA180820_5E#TCCGGAGACGAGGCTGGGTTGCGTTCGACTAG"
+[4] "CEMBA180820_5E#CTGAAGCTAAGAGGCACCTATCCTTTATGCGA"
+[5] "CEMBA180820_5E#AGCGATAGATGCGCAGTATAGCCTTATCCTCT"
+[6] "CEMBA180820_5E#CGCTCATTCGTACTAGTATAGCCTTCTCTCCG"
+
+
+
+2020-10-06 07:45:28 : 
+
+2020-10-06 07:45:28 : 
+
+2020-10-06 07:45:28 : 
+
+2020-10-06 07:45:28 : 
+
+2020-10-06 07:45:29 : 
+
+2020-10-06 07:45:29 : 
+
+2020-10-06 07:45:29 : 
+2020-10-06 07:45:29 : Group MSN_D1._.CEMBA180820_5E (15 of 36) : Processed Fragments Chr (1 of 21), 2.707 mins elapsed.
+2020-10-06 07:45:29 : Group MSN_D1._.CEMBA171214_4D (16 of 36) : Creating Group Coverage File : MSN_D1._.CEMBA171214_4D.insertions.coverage.h5, 2.712 mins elapsed.
+
+2020-10-06 07:45:29 : Group MSN_D1._.CEMBA171214_4D (16 of 36) : cellGroupi, Class = character
+
+Group MSN_D1._.CEMBA171214_4D (16 of 36) : cellGroupi: length = 500
+[1] "CEMBA171214_4D#GAATTCGTTACTGCCTTAAGATCCGTACTGAC"
+[2] "CEMBA171214_4D#GAGATTCCCGCTTGATTCCGGTAATAATCTTA"
+[3] "CEMBA171214_4D#ATTCAGAACGTATAGAAGGATAACTAATCTTA"
+[4] "CEMBA171214_4D#TCCGGAGAGCTCATGAACTGCATAAGGCGAAG"
+[5] "CEMBA171214_4D#ATTCAGAATTCCATCCAAGAGATGCAGGACGT"
+[6] "CEMBA171214_4D#ATTACTCGCTCTCTACAAGGAGTACCTATCCT"
+
+
+
+2020-10-06 07:45:29 : 
+
+2020-10-06 07:45:30 : 
+
+2020-10-06 07:45:30 : 
+
+2020-10-06 07:45:30 : 
+
+2020-10-06 07:45:30 : 
+
+2020-10-06 07:45:30 : 
+2020-10-06 07:45:30 : Group MSN_D2._.CEMBA180820_5E (17 of 36) : Creating Group Coverage File : MSN_D2._.CEMBA180820_5E.insertions.coverage.h5, 2.726 mins elapsed.
+
+2020-10-06 07:45:30 : 
+2020-10-06 07:45:30 : Group MSN_D1._.CEMBA171214_4D (16 of 36) : Processed Fragments Chr (1 of 21), 2.728 mins elapsed.
+
+2020-10-06 07:45:30 : Group MSN_D2._.CEMBA180820_5E (17 of 36) : cellGroupi, Class = character
+
+Group MSN_D2._.CEMBA180820_5E (17 of 36) : cellGroupi: length = 500
+[1] "CEMBA180820_5E#ATTACTCGGTCTACCAGGCTCTGAGGATACTA"
+[2] "CEMBA180820_5E#CTATTAGGGCCTCAATATAGAGGCAATGACGT"
+[3] "CEMBA180820_5E#CTGAAGCTCGATCAGTGGCTCTGACCTAGAGT"
+[4] "CEMBA180820_5E#TCCGGAGAGCAACCTAGGTTGCGTTTACGACC"
+[5] "CEMBA180820_5E#CGCTCATTCGTATAGATATAGCCTAAGAGATG"
+[6] "CEMBA180820_5E#CGGCTATGTACTGCCTATAGAGGCAAGAGATG"
+
+
+
+2020-10-06 07:45:30 : 
+
+2020-10-06 07:45:30 : 
+2020-10-06 07:45:31 : Group MSN_D2._.CEMBA180813_5E (18 of 36) : Creating Group Coverage File : MSN_D2._.CEMBA180813_5E.insertions.coverage.h5, 2.733 mins elapsed.
+
+2020-10-06 07:45:31 : 
+
+2020-10-06 07:45:31 : Group MSN_D2._.CEMBA180813_5E (18 of 36) : cellGroupi, Class = character
+
+2020-10-06 07:45:31 : 
+
+Group MSN_D2._.CEMBA180813_5E (18 of 36) : cellGroupi: length = 500
+[1] "CEMBA180813_5E#AGAGCAGTCGATCAGTAGGCTGGTTCGACTAG"
+[2] "CEMBA180813_5E#TGTGCAACGCGTAGTATTCGGAAGTTCTAGCT"
+[3] "CEMBA180813_5E#TCGAGGCATTCCATCCGGAAGACTGGTTAGAC"
+[4] "CEMBA180813_5E#GCTCTAAGTGCCAATTGGAAGACTGGATACTA"
+[5] "CEMBA180813_5E#ACATTGGCACGTTCGACATTCAGTAAGAGATG"
+[6] "CEMBA180813_5E#CTCATACATGCAGCTAGGAAGACTTCGACTAG"
+
+
+
+2020-10-06 07:45:31 : 
+
+2020-10-06 07:45:31 : 
+
+2020-10-06 07:45:31 : 
+
+2020-10-06 07:45:31 : 
+
+2020-10-06 07:45:31 : 
+
+2020-10-06 07:45:31 : 
+
+2020-10-06 07:45:31 : 
+2020-10-06 07:45:31 : Group MSN_D2._.CEMBA180820_5E (17 of 36) : Processed Fragments Chr (1 of 21), 2.744 mins elapsed.
+
+2020-10-06 07:45:31 : 
+
+2020-10-06 07:45:31 : 
+
+2020-10-06 07:45:31 : 
+2020-10-06 07:45:31 : Group MSN_D2._.CEMBA180813_5E (18 of 36) : Processed Fragments Chr (1 of 21), 2.75 mins elapsed.
+2020-10-06 07:45:32 : Group Interneuron._.CEMBA171214_4D (6 of 36) : Processed Fragments Chr (21 of 21), 2.758 mins elapsed.
+2020-10-06 07:45:33 : Group Interneuron._.CEMBA171219_4D (5 of 36) : Processed Fragments Chr (21 of 21), 2.783 mins elapsed.
+2020-10-06 07:45:34 : Group Microglia._.CEMBA171214_4D (11 of 36) : Processed Fragments Chr (2 of 21), 2.791 mins elapsed.
+2020-10-06 07:45:36 : Group Microglia._.CEMBA171219_4D (12 of 36) : Processed Fragments Chr (2 of 21), 2.823 mins elapsed.
+2020-10-06 07:45:38 : Group MSN_D1._.CEMBA171219_4D (13 of 36) : Processed Fragments Chr (2 of 21), 2.858 mins elapsed.
+2020-10-06 07:45:39 : Group MSN_D1._.CEMBA180813_5E (14 of 36) : Processed Fragments Chr (2 of 21), 2.868 mins elapsed.
+2020-10-06 07:45:39 : Group MSN_D2._.CEMBA171214_4D (19 of 36) : Creating Group Coverage File : MSN_D2._.CEMBA171214_4D.insertions.coverage.h5, 2.872 mins elapsed.
+
+2020-10-06 07:45:39 : Group MSN_D2._.CEMBA171214_4D (19 of 36) : cellGroupi, Class = character
+
+Group MSN_D2._.CEMBA171214_4D (19 of 36) : cellGroupi: length = 194
+[1] "CEMBA171214_4D#CTGAAGCTGCAACCTATTACGACCGTACTGAC"
+[2] "CEMBA171214_4D#ATTCAGAATATGGTCGTTACGACCATAGAGGC"
+[3] "CEMBA171214_4D#CGCTCATTAAGCAACGGGATACTACAGGACGT"
+[4] "CEMBA171214_4D#ATTCAGAAGCAACCTAAATGACGTCAGGACGT"
+[5] "CEMBA171214_4D#GAGATTCCAAGCAACGTTGGAAGTGGCTCTGA"
+[6] "CEMBA171214_4D#GAGATTCCTTCCATCCCGAATTCCCCTATCCT"
+
+
+
+2020-10-06 07:45:39 : 
+
+2020-10-06 07:45:39 : 
+
+2020-10-06 07:45:39 : 
+
+2020-10-06 07:45:39 : 
+
+2020-10-06 07:45:40 : 
+
+2020-10-06 07:45:40 : 
+
+2020-10-06 07:45:40 : 
+2020-10-06 07:45:40 : Group MSN_D2._.CEMBA171214_4D (19 of 36) : Processed Fragments Chr (1 of 21), 2.887 mins elapsed.
+2020-10-06 07:45:40 : Group MSN_D2._.CEMBA171219_4D (20 of 36) : Creating Group Coverage File : MSN_D2._.CEMBA171219_4D.insertions.coverage.h5, 2.898 mins elapsed.
+
+2020-10-06 07:45:40 : Group MSN_D2._.CEMBA171219_4D (20 of 36) : cellGroupi, Class = character
+
+Group MSN_D2._.CEMBA171219_4D (20 of 36) : cellGroupi: length = 153
+[1] "CEMBA171219_4D#GAGATTCCCTTCAATGCGAATTCCTATAGCCT"
+[2] "CEMBA171219_4D#CTGAAGCTGCGTAGTAGTAAGGAGTATAGCCT"
+[3] "CEMBA171219_4D#CTGAAGCTACTCGCTACTAAGCCTGGCTCTGA"
+[4] "CEMBA171219_4D#GAGATTCCAAGCAACGGGATACTAATAGAGGC"
+[5] "CEMBA171219_4D#CTGAAGCTGAATTACGAAGAGATGGTACTGAC"
+[6] "CEMBA171219_4D#ATTCAGAATACTGCCTTGCCTTACTATAGCCT"
+
+
+
+2020-10-06 07:45:41 : 
+
+2020-10-06 07:45:41 : 
+
+2020-10-06 07:45:41 : 
+
+2020-10-06 07:45:41 : 
+
+2020-10-06 07:45:41 : 
+2020-10-06 07:45:41 : Group MSN_D1._.CEMBA180820_5E (15 of 36) : Processed Fragments Chr (2 of 21), 2.91 mins elapsed.
+
+2020-10-06 07:45:41 : 
+
+2020-10-06 07:45:41 : 
+2020-10-06 07:45:41 : Group MSN_D2._.CEMBA171219_4D (20 of 36) : Processed Fragments Chr (1 of 21), 2.913 mins elapsed.
+2020-10-06 07:45:42 : Group Microglia._.CEMBA171214_4D (11 of 36) : Processed Fragments Chr (3 of 21), 2.925 mins elapsed.
+2020-10-06 07:45:43 : Group MSN_D1._.CEMBA171214_4D (16 of 36) : Processed Fragments Chr (2 of 21), 2.94 mins elapsed.
+2020-10-06 07:45:43 : Group MSN_D2._.CEMBA180820_5E (17 of 36) : Processed Fragments Chr (2 of 21), 2.944 mins elapsed.
+2020-10-06 07:45:44 : Group Microglia._.CEMBA171219_4D (12 of 36) : Processed Fragments Chr (3 of 21), 2.958 mins elapsed.
+2020-10-06 07:45:44 : Group MSN_D2._.CEMBA180813_5E (18 of 36) : Processed Fragments Chr (2 of 21), 2.959 mins elapsed.
+2020-10-06 07:45:47 : Group MSN_D1._.CEMBA171219_4D (13 of 36) : Processed Fragments Chr (3 of 21), 3.011 mins elapsed.
+2020-10-06 07:45:48 : Group MSN_D1._.CEMBA180813_5E (14 of 36) : Processed Fragments Chr (3 of 21), 3.02 mins elapsed.
+2020-10-06 07:45:49 : Group Microglia._.CEMBA171214_4D (11 of 36) : Processed Fragments Chr (4 of 21), 3.044 mins elapsed.
+2020-10-06 07:45:50 : Group MSN_D1._.CEMBA180820_5E (15 of 36) : Processed Fragments Chr (3 of 21), 3.053 mins elapsed.
+2020-10-06 07:45:51 : Group MSN_D2._.CEMBA171214_4D (19 of 36) : Processed Fragments Chr (2 of 21), 3.075 mins elapsed.
+2020-10-06 07:45:51 : Group Microglia._.CEMBA171219_4D (12 of 36) : Processed Fragments Chr (4 of 21), 3.077 mins elapsed.
+2020-10-06 07:45:52 : Group MSN_D2._.CEMBA180820_5E (17 of 36) : Processed Fragments Chr (3 of 21), 3.088 mins elapsed.
+2020-10-06 07:45:52 : Group MSN_D1._.CEMBA171214_4D (16 of 36) : Processed Fragments Chr (3 of 21), 3.09 mins elapsed.
+2020-10-06 07:45:52 : Group MSN_D2._.CEMBA171219_4D (20 of 36) : Processed Fragments Chr (2 of 21), 3.098 mins elapsed.
+2020-10-06 07:45:53 : Group MSN_D2._.CEMBA180813_5E (18 of 36) : Processed Fragments Chr (3 of 21), 3.109 mins elapsed.
+2020-10-06 07:45:55 : Group MSN_D1._.CEMBA171219_4D (13 of 36) : Processed Fragments Chr (4 of 21), 3.143 mins elapsed.
+2020-10-06 07:45:56 : Group MSN_D1._.CEMBA180813_5E (14 of 36) : Processed Fragments Chr (4 of 21), 3.152 mins elapsed.
+2020-10-06 07:45:56 : Group Microglia._.CEMBA171214_4D (11 of 36) : Processed Fragments Chr (5 of 21), 3.159 mins elapsed.
+2020-10-06 07:45:57 : Group MSN_D1._.CEMBA180820_5E (15 of 36) : Processed Fragments Chr (4 of 21), 3.184 mins elapsed.
+2020-10-06 07:45:58 : Group Microglia._.CEMBA171219_4D (12 of 36) : Processed Fragments Chr (5 of 21), 3.191 mins elapsed.
+2020-10-06 07:45:59 : Group MSN_D2._.CEMBA171214_4D (19 of 36) : Processed Fragments Chr (3 of 21), 3.21 mins elapsed.
+2020-10-06 07:46:00 : Group MSN_D2._.CEMBA180820_5E (17 of 36) : Processed Fragments Chr (4 of 21), 3.219 mins elapsed.
+2020-10-06 07:46:00 : Group MSN_D1._.CEMBA171214_4D (16 of 36) : Processed Fragments Chr (4 of 21), 3.223 mins elapsed.
+2020-10-06 07:46:00 : Group MSN_D2._.CEMBA171219_4D (20 of 36) : Processed Fragments Chr (3 of 21), 3.233 mins elapsed.
+2020-10-06 07:46:01 : Group MSN_D2._.CEMBA180813_5E (18 of 36) : Processed Fragments Chr (4 of 21), 3.239 mins elapsed.
+2020-10-06 07:46:03 : Group MSN_D1._.CEMBA171219_4D (13 of 36) : Processed Fragments Chr (5 of 21), 3.278 mins elapsed.
+2020-10-06 07:46:03 : Group Microglia._.CEMBA171214_4D (11 of 36) : Processed Fragments Chr (6 of 21), 3.28 mins elapsed.
+2020-10-06 07:46:04 : Group MSN_D1._.CEMBA180813_5E (14 of 36) : Processed Fragments Chr (5 of 21), 3.285 mins elapsed.
+2020-10-06 07:46:05 : Group Microglia._.CEMBA171219_4D (12 of 36) : Processed Fragments Chr (6 of 21), 3.314 mins elapsed.
+2020-10-06 07:46:05 : Group MSN_D1._.CEMBA180820_5E (15 of 36) : Processed Fragments Chr (5 of 21), 3.316 mins elapsed.
+2020-10-06 07:46:07 : Group MSN_D2._.CEMBA171214_4D (19 of 36) : Processed Fragments Chr (4 of 21), 3.337 mins elapsed.
+2020-10-06 07:46:08 : Group MSN_D2._.CEMBA180820_5E (17 of 36) : Processed Fragments Chr (5 of 21), 3.352 mins elapsed.
+2020-10-06 07:46:08 : Group MSN_D2._.CEMBA171219_4D (20 of 36) : Processed Fragments Chr (4 of 21), 3.358 mins elapsed.
+2020-10-06 07:46:08 : Group MSN_D1._.CEMBA171214_4D (16 of 36) : Processed Fragments Chr (5 of 21), 3.359 mins elapsed.
+2020-10-06 07:46:09 : Group MSN_D2._.CEMBA180813_5E (18 of 36) : Processed Fragments Chr (5 of 21), 3.375 mins elapsed.
+2020-10-06 07:46:11 : Group Microglia._.CEMBA171214_4D (11 of 36) : Processed Fragments Chr (7 of 21), 3.406 mins elapsed.
+2020-10-06 07:46:11 : Group MSN_D1._.CEMBA171219_4D (13 of 36) : Processed Fragments Chr (6 of 21), 3.415 mins elapsed.
+2020-10-06 07:46:12 : Group MSN_D1._.CEMBA180813_5E (14 of 36) : Processed Fragments Chr (6 of 21), 3.422 mins elapsed.
+2020-10-06 07:46:13 : Group Microglia._.CEMBA171219_4D (12 of 36) : Processed Fragments Chr (7 of 21), 3.437 mins elapsed.
+2020-10-06 07:46:13 : Group MSN_D1._.CEMBA180820_5E (15 of 36) : Processed Fragments Chr (6 of 21), 3.446 mins elapsed.
+2020-10-06 07:46:14 : Group MSN_D2._.CEMBA171214_4D (19 of 36) : Processed Fragments Chr (5 of 21), 3.455 mins elapsed.
+2020-10-06 07:46:15 : Group MSN_D2._.CEMBA171219_4D (20 of 36) : Processed Fragments Chr (5 of 21), 3.476 mins elapsed.
+2020-10-06 07:46:15 : Group MSN_D2._.CEMBA180820_5E (17 of 36) : Processed Fragments Chr (6 of 21), 3.481 mins elapsed.
+2020-10-06 07:46:16 : Group MSN_D1._.CEMBA171214_4D (16 of 36) : Processed Fragments Chr (6 of 21), 3.491 mins elapsed.
+2020-10-06 07:46:17 : Group MSN_D2._.CEMBA180813_5E (18 of 36) : Processed Fragments Chr (6 of 21), 3.507 mins elapsed.
+2020-10-06 07:46:18 : Group Microglia._.CEMBA171214_4D (11 of 36) : Processed Fragments Chr (8 of 21), 3.519 mins elapsed.
+2020-10-06 07:46:19 : Group MSN_D1._.CEMBA171219_4D (13 of 36) : Processed Fragments Chr (7 of 21), 3.543 mins elapsed.
+2020-10-06 07:46:19 : Group Microglia._.CEMBA171219_4D (12 of 36) : Processed Fragments Chr (8 of 21), 3.55 mins elapsed.
+2020-10-06 07:46:19 : Group MSN_D1._.CEMBA180813_5E (14 of 36) : Processed Fragments Chr (7 of 21), 3.551 mins elapsed.
+2020-10-06 07:46:21 : Group MSN_D1._.CEMBA180820_5E (15 of 36) : Processed Fragments Chr (7 of 21), 3.571 mins elapsed.
+2020-10-06 07:46:22 : Group MSN_D2._.CEMBA171214_4D (19 of 36) : Processed Fragments Chr (6 of 21), 3.585 mins elapsed.
+2020-10-06 07:46:23 : Group MSN_D2._.CEMBA171219_4D (20 of 36) : Processed Fragments Chr (6 of 21), 3.605 mins elapsed.
+2020-10-06 07:46:23 : Group MSN_D2._.CEMBA180820_5E (17 of 36) : Processed Fragments Chr (7 of 21), 3.608 mins elapsed.
+2020-10-06 07:46:24 : Group MSN_D1._.CEMBA171214_4D (16 of 36) : Processed Fragments Chr (7 of 21), 3.62 mins elapsed.
+2020-10-06 07:46:24 : Group Microglia._.CEMBA171214_4D (11 of 36) : Processed Fragments Chr (9 of 21), 3.631 mins elapsed.
+2020-10-06 07:46:25 : Group MSN_D2._.CEMBA180813_5E (18 of 36) : Processed Fragments Chr (7 of 21), 3.636 mins elapsed.
+2020-10-06 07:46:26 : Group Microglia._.CEMBA171219_4D (12 of 36) : Processed Fragments Chr (9 of 21), 3.663 mins elapsed.
+2020-10-06 07:46:27 : Group MSN_D1._.CEMBA171219_4D (13 of 36) : Processed Fragments Chr (8 of 21), 3.668 mins elapsed.
+2020-10-06 07:46:27 : Group MSN_D1._.CEMBA180813_5E (14 of 36) : Processed Fragments Chr (8 of 21), 3.674 mins elapsed.
+2020-10-06 07:46:28 : Group MSN_D1._.CEMBA180820_5E (15 of 36) : Processed Fragments Chr (8 of 21), 3.693 mins elapsed.
+2020-10-06 07:46:29 : Group MSN_D2._.CEMBA171214_4D (19 of 36) : Processed Fragments Chr (7 of 21), 3.706 mins elapsed.
+2020-10-06 07:46:30 : Group MSN_D2._.CEMBA171219_4D (20 of 36) : Processed Fragments Chr (7 of 21), 3.725 mins elapsed.
+2020-10-06 07:46:30 : Group MSN_D2._.CEMBA180820_5E (17 of 36) : Processed Fragments Chr (8 of 21), 3.73 mins elapsed.
+2020-10-06 07:46:31 : Group Microglia._.CEMBA171214_4D (11 of 36) : Processed Fragments Chr (10 of 21), 3.745 mins elapsed.
+2020-10-06 07:46:31 : Group MSN_D1._.CEMBA171214_4D (16 of 36) : Processed Fragments Chr (8 of 21), 3.746 mins elapsed.
+2020-10-06 07:46:32 : Group MSN_D2._.CEMBA180813_5E (18 of 36) : Processed Fragments Chr (8 of 21), 3.761 mins elapsed.
+2020-10-06 07:46:33 : Group Microglia._.CEMBA171219_4D (12 of 36) : Processed Fragments Chr (10 of 21), 3.777 mins elapsed.
+2020-10-06 07:46:34 : Group MSN_D1._.CEMBA171219_4D (13 of 36) : Processed Fragments Chr (9 of 21), 3.791 mins elapsed.
+2020-10-06 07:46:34 : Group MSN_D1._.CEMBA180813_5E (14 of 36) : Processed Fragments Chr (9 of 21), 3.797 mins elapsed.
+2020-10-06 07:46:35 : Group MSN_D1._.CEMBA180820_5E (15 of 36) : Processed Fragments Chr (9 of 21), 3.813 mins elapsed.
+2020-10-06 07:46:36 : Group MSN_D2._.CEMBA171214_4D (19 of 36) : Processed Fragments Chr (8 of 21), 3.824 mins elapsed.
+2020-10-06 07:46:37 : Group MSN_D2._.CEMBA171219_4D (20 of 36) : Processed Fragments Chr (8 of 21), 3.842 mins elapsed.
+2020-10-06 07:46:38 : Group MSN_D2._.CEMBA180820_5E (17 of 36) : Processed Fragments Chr (9 of 21), 3.852 mins elapsed.
+2020-10-06 07:46:38 : Group Microglia._.CEMBA171214_4D (11 of 36) : Processed Fragments Chr (11 of 21), 3.864 mins elapsed.
+2020-10-06 07:46:39 : Group MSN_D1._.CEMBA171214_4D (16 of 36) : Processed Fragments Chr (9 of 21), 3.87 mins elapsed.
+2020-10-06 07:46:39 : Group MSN_D2._.CEMBA180813_5E (18 of 36) : Processed Fragments Chr (9 of 21), 3.884 mins elapsed.
+2020-10-06 07:46:40 : Group Microglia._.CEMBA171219_4D (12 of 36) : Processed Fragments Chr (11 of 21), 3.896 mins elapsed.
+2020-10-06 07:46:42 : Group MSN_D1._.CEMBA171219_4D (13 of 36) : Processed Fragments Chr (10 of 21), 3.92 mins elapsed.
+2020-10-06 07:46:42 : Group MSN_D1._.CEMBA180813_5E (14 of 36) : Processed Fragments Chr (10 of 21), 3.923 mins elapsed.
+2020-10-06 07:46:43 : Group MSN_D1._.CEMBA180820_5E (15 of 36) : Processed Fragments Chr (10 of 21), 3.939 mins elapsed.
+2020-10-06 07:46:43 : Group MSN_D2._.CEMBA171214_4D (19 of 36) : Processed Fragments Chr (9 of 21), 3.94 mins elapsed.
+2020-10-06 07:46:44 : Group MSN_D2._.CEMBA171219_4D (20 of 36) : Processed Fragments Chr (9 of 21), 3.958 mins elapsed.
+2020-10-06 07:46:45 : Group MSN_D2._.CEMBA180820_5E (17 of 36) : Processed Fragments Chr (10 of 21), 3.977 mins elapsed.
+2020-10-06 07:46:45 : Group Microglia._.CEMBA171214_4D (11 of 36) : Processed Fragments Chr (12 of 21), 3.982 mins elapsed.
+2020-10-06 07:46:46 : Group MSN_D1._.CEMBA171214_4D (16 of 36) : Processed Fragments Chr (10 of 21), 3.999 mins elapsed.
+2020-10-06 07:46:47 : Group MSN_D2._.CEMBA180813_5E (18 of 36) : Processed Fragments Chr (10 of 21), 4.011 mins elapsed.
+2020-10-06 07:46:47 : Group Microglia._.CEMBA171219_4D (12 of 36) : Processed Fragments Chr (12 of 21), 4.013 mins elapsed.
+2020-10-06 07:46:49 : Group MSN_D1._.CEMBA171219_4D (13 of 36) : Processed Fragments Chr (11 of 21), 4.05 mins elapsed.
+2020-10-06 07:46:50 : Group MSN_D1._.CEMBA180813_5E (14 of 36) : Processed Fragments Chr (11 of 21), 4.053 mins elapsed.
+2020-10-06 07:46:50 : Group MSN_D2._.CEMBA171214_4D (19 of 36) : Processed Fragments Chr (10 of 21), 4.061 mins elapsed.
+2020-10-06 07:46:50 : Group MSN_D1._.CEMBA180820_5E (15 of 36) : Processed Fragments Chr (11 of 21), 4.065 mins elapsed.
+2020-10-06 07:46:51 : Group MSN_D2._.CEMBA171219_4D (20 of 36) : Processed Fragments Chr (10 of 21), 4.078 mins elapsed.
+2020-10-06 07:46:52 : Group Microglia._.CEMBA171214_4D (11 of 36) : Processed Fragments Chr (13 of 21), 4.101 mins elapsed.
+2020-10-06 07:46:53 : Group MSN_D2._.CEMBA180820_5E (17 of 36) : Processed Fragments Chr (11 of 21), 4.104 mins elapsed.
+2020-10-06 07:46:54 : Group MSN_D1._.CEMBA171214_4D (16 of 36) : Processed Fragments Chr (11 of 21), 4.128 mins elapsed.
+2020-10-06 07:46:54 : Group Microglia._.CEMBA171219_4D (12 of 36) : Processed Fragments Chr (13 of 21), 4.133 mins elapsed.
+2020-10-06 07:46:55 : Group MSN_D2._.CEMBA180813_5E (18 of 36) : Processed Fragments Chr (11 of 21), 4.14 mins elapsed.
+2020-10-06 07:46:57 : Group MSN_D1._.CEMBA171219_4D (13 of 36) : Processed Fragments Chr (12 of 21), 4.17 mins elapsed.
+2020-10-06 07:46:57 : Group MSN_D1._.CEMBA180813_5E (14 of 36) : Processed Fragments Chr (12 of 21), 4.172 mins elapsed.
+2020-10-06 07:46:57 : Group MSN_D2._.CEMBA171214_4D (19 of 36) : Processed Fragments Chr (11 of 21), 4.178 mins elapsed.
+2020-10-06 07:46:57 : Group MSN_D1._.CEMBA180820_5E (15 of 36) : Processed Fragments Chr (12 of 21), 4.183 mins elapsed.
+2020-10-06 07:46:58 : Group MSN_D2._.CEMBA171219_4D (20 of 36) : Processed Fragments Chr (11 of 21), 4.195 mins elapsed.
+2020-10-06 07:46:59 : Group Microglia._.CEMBA171214_4D (11 of 36) : Processed Fragments Chr (14 of 21), 4.216 mins elapsed.
+2020-10-06 07:47:00 : Group MSN_D2._.CEMBA180820_5E (17 of 36) : Processed Fragments Chr (12 of 21), 4.224 mins elapsed.
+2020-10-06 07:47:01 : Group Microglia._.CEMBA171219_4D (12 of 36) : Processed Fragments Chr (14 of 21), 4.247 mins elapsed.
+2020-10-06 07:47:01 : Group MSN_D1._.CEMBA171214_4D (16 of 36) : Processed Fragments Chr (12 of 21), 4.249 mins elapsed.
+2020-10-06 07:47:02 : Group MSN_D2._.CEMBA180813_5E (18 of 36) : Processed Fragments Chr (12 of 21), 4.26 mins elapsed.
+2020-10-06 07:47:04 : Group MSN_D2._.CEMBA171214_4D (19 of 36) : Processed Fragments Chr (12 of 21), 4.298 mins elapsed.
+2020-10-06 07:47:05 : Group MSN_D1._.CEMBA171219_4D (13 of 36) : Processed Fragments Chr (13 of 21), 4.305 mins elapsed.
+2020-10-06 07:47:05 : Group MSN_D1._.CEMBA180813_5E (14 of 36) : Processed Fragments Chr (13 of 21), 4.307 mins elapsed.
+2020-10-06 07:47:05 : Group MSN_D1._.CEMBA180820_5E (15 of 36) : Processed Fragments Chr (13 of 21), 4.314 mins elapsed.
+2020-10-06 07:47:05 : Group MSN_D2._.CEMBA171219_4D (20 of 36) : Processed Fragments Chr (12 of 21), 4.315 mins elapsed.
+2020-10-06 07:47:06 : Group Microglia._.CEMBA171214_4D (11 of 36) : Processed Fragments Chr (15 of 21), 4.33 mins elapsed.
+2020-10-06 07:47:08 : Group MSN_D2._.CEMBA180820_5E (17 of 36) : Processed Fragments Chr (13 of 21), 4.355 mins elapsed.
+2020-10-06 07:47:08 : Group Microglia._.CEMBA171219_4D (12 of 36) : Processed Fragments Chr (15 of 21), 4.363 mins elapsed.
+2020-10-06 07:47:10 : Group MSN_D1._.CEMBA171214_4D (16 of 36) : Processed Fragments Chr (13 of 21), 4.39 mins elapsed.
+2020-10-06 07:47:10 : Group MSN_D2._.CEMBA180813_5E (18 of 36) : Processed Fragments Chr (13 of 21), 4.397 mins elapsed.
+2020-10-06 07:47:12 : Group MSN_D2._.CEMBA171214_4D (19 of 36) : Processed Fragments Chr (13 of 21), 4.428 mins elapsed.
+2020-10-06 07:47:13 : Group MSN_D2._.CEMBA171219_4D (20 of 36) : Processed Fragments Chr (13 of 21), 4.443 mins elapsed.
+2020-10-06 07:47:13 : Group MSN_D1._.CEMBA171219_4D (13 of 36) : Processed Fragments Chr (14 of 21), 4.445 mins elapsed.
+2020-10-06 07:47:13 : Group MSN_D1._.CEMBA180813_5E (14 of 36) : Processed Fragments Chr (14 of 21), 4.446 mins elapsed.
+2020-10-06 07:47:13 : Group MSN_D1._.CEMBA180820_5E (15 of 36) : Processed Fragments Chr (14 of 21), 4.447 mins elapsed.
+2020-10-06 07:47:13 : Group Microglia._.CEMBA171214_4D (11 of 36) : Processed Fragments Chr (16 of 21), 4.45 mins elapsed.
+2020-10-06 07:47:15 : Group Microglia._.CEMBA171219_4D (12 of 36) : Processed Fragments Chr (16 of 21), 4.482 mins elapsed.
+2020-10-06 07:47:16 : Group MSN_D2._.CEMBA180820_5E (17 of 36) : Processed Fragments Chr (14 of 21), 4.492 mins elapsed.
+2020-10-06 07:47:18 : Group MSN_D1._.CEMBA171214_4D (16 of 36) : Processed Fragments Chr (14 of 21), 4.529 mins elapsed.
+2020-10-06 07:47:19 : Group MSN_D2._.CEMBA180813_5E (18 of 36) : Processed Fragments Chr (14 of 21), 4.536 mins elapsed.
+2020-10-06 07:47:20 : Group MSN_D2._.CEMBA171214_4D (19 of 36) : Processed Fragments Chr (14 of 21), 4.552 mins elapsed.
+2020-10-06 07:47:20 : Group MSN_D2._.CEMBA171219_4D (20 of 36) : Processed Fragments Chr (14 of 21), 4.564 mins elapsed.
+2020-10-06 07:47:20 : Group Microglia._.CEMBA171214_4D (11 of 36) : Processed Fragments Chr (17 of 21), 4.564 mins elapsed.
+2020-10-06 07:47:21 : Group MSN_D1._.CEMBA180820_5E (15 of 36) : Processed Fragments Chr (15 of 21), 4.574 mins elapsed.
+2020-10-06 07:47:21 : Group MSN_D1._.CEMBA171219_4D (13 of 36) : Processed Fragments Chr (15 of 21), 4.575 mins elapsed.
+2020-10-06 07:47:21 : Group MSN_D1._.CEMBA180813_5E (14 of 36) : Processed Fragments Chr (15 of 21), 4.575 mins elapsed.
+2020-10-06 07:47:22 : Group Microglia._.CEMBA171219_4D (12 of 36) : Processed Fragments Chr (17 of 21), 4.596 mins elapsed.
+2020-10-06 07:47:24 : Group MSN_D2._.CEMBA180820_5E (17 of 36) : Processed Fragments Chr (15 of 21), 4.618 mins elapsed.
+2020-10-06 07:47:26 : Group MSN_D1._.CEMBA171214_4D (16 of 36) : Processed Fragments Chr (15 of 21), 4.659 mins elapsed.
+2020-10-06 07:47:26 : Group MSN_D2._.CEMBA180813_5E (18 of 36) : Processed Fragments Chr (15 of 21), 4.665 mins elapsed.
+2020-10-06 07:47:27 : Group MSN_D2._.CEMBA171214_4D (19 of 36) : Processed Fragments Chr (15 of 21), 4.672 mins elapsed.
+2020-10-06 07:47:27 : Group Microglia._.CEMBA171214_4D (11 of 36) : Processed Fragments Chr (18 of 21), 4.677 mins elapsed.
+2020-10-06 07:47:27 : Group MSN_D2._.CEMBA171219_4D (20 of 36) : Processed Fragments Chr (15 of 21), 4.683 mins elapsed.
+2020-10-06 07:47:28 : Group MSN_D1._.CEMBA180820_5E (15 of 36) : Processed Fragments Chr (16 of 21), 4.699 mins elapsed.
+2020-10-06 07:47:29 : Group MSN_D1._.CEMBA180813_5E (14 of 36) : Processed Fragments Chr (16 of 21), 4.705 mins elapsed.
+2020-10-06 07:47:29 : Group MSN_D1._.CEMBA171219_4D (13 of 36) : Processed Fragments Chr (16 of 21), 4.705 mins elapsed.
+2020-10-06 07:47:29 : Group Microglia._.CEMBA171219_4D (12 of 36) : Processed Fragments Chr (18 of 21), 4.709 mins elapsed.
+2020-10-06 07:47:31 : Group MSN_D2._.CEMBA180820_5E (17 of 36) : Processed Fragments Chr (16 of 21), 4.746 mins elapsed.
+2020-10-06 07:47:34 : Group MSN_D1._.CEMBA171214_4D (16 of 36) : Processed Fragments Chr (16 of 21), 4.792 mins elapsed.
+2020-10-06 07:47:34 : Group MSN_D2._.CEMBA171214_4D (19 of 36) : Processed Fragments Chr (16 of 21), 4.792 mins elapsed.
+2020-10-06 07:47:34 : Group MSN_D2._.CEMBA180813_5E (18 of 36) : Processed Fragments Chr (16 of 21), 4.796 mins elapsed.
+2020-10-06 07:47:34 : Group Microglia._.CEMBA171214_4D (11 of 36) : Processed Fragments Chr (19 of 21), 4.798 mins elapsed.
+2020-10-06 07:47:35 : Group MSN_D2._.CEMBA171219_4D (20 of 36) : Processed Fragments Chr (16 of 21), 4.803 mins elapsed.
+2020-10-06 07:47:36 : Group MSN_D1._.CEMBA180820_5E (15 of 36) : Processed Fragments Chr (17 of 21), 4.827 mins elapsed.
+2020-10-06 07:47:36 : Group Microglia._.CEMBA171219_4D (12 of 36) : Processed Fragments Chr (19 of 21), 4.83 mins elapsed.
+2020-10-06 07:47:37 : Group MSN_D1._.CEMBA180813_5E (14 of 36) : Processed Fragments Chr (17 of 21), 4.843 mins elapsed.
+2020-10-06 07:47:37 : Group MSN_D1._.CEMBA171219_4D (13 of 36) : Processed Fragments Chr (17 of 21), 4.844 mins elapsed.
+2020-10-06 07:47:39 : Group MSN_D2._.CEMBA180820_5E (17 of 36) : Processed Fragments Chr (17 of 21), 4.882 mins elapsed.
+2020-10-06 07:47:41 : Group Microglia._.CEMBA171214_4D (11 of 36) : Processed Fragments Chr (20 of 21), 4.912 mins elapsed.
+2020-10-06 07:47:41 : Group MSN_D2._.CEMBA171214_4D (19 of 36) : Processed Fragments Chr (17 of 21), 4.912 mins elapsed.
+2020-10-06 07:47:42 : Group MSN_D2._.CEMBA171219_4D (20 of 36) : Processed Fragments Chr (17 of 21), 4.922 mins elapsed.
+2020-10-06 07:47:42 : Group MSN_D1._.CEMBA171214_4D (16 of 36) : Processed Fragments Chr (17 of 21), 4.93 mins elapsed.
+2020-10-06 07:47:42 : Group MSN_D2._.CEMBA180813_5E (18 of 36) : Processed Fragments Chr (17 of 21), 4.933 mins elapsed.
+2020-10-06 07:47:43 : Group Microglia._.CEMBA171219_4D (12 of 36) : Processed Fragments Chr (20 of 21), 4.943 mins elapsed.
+2020-10-06 07:47:44 : Group MSN_D1._.CEMBA180820_5E (15 of 36) : Processed Fragments Chr (18 of 21), 4.952 mins elapsed.
+2020-10-06 07:47:44 : Group MSN_D1._.CEMBA180813_5E (14 of 36) : Processed Fragments Chr (18 of 21), 4.963 mins elapsed.
+2020-10-06 07:47:44 : Group MSN_D1._.CEMBA171219_4D (13 of 36) : Processed Fragments Chr (18 of 21), 4.966 mins elapsed.
+2020-10-06 07:47:47 : Group MSN_D2._.CEMBA180820_5E (17 of 36) : Processed Fragments Chr (18 of 21), 5.001 mins elapsed.
+2020-10-06 07:47:48 : Group Microglia._.CEMBA171214_4D (11 of 36) : Processed Fragments Chr (21 of 21), 5.03 mins elapsed.
+2020-10-06 07:47:49 : Group MSN_D2._.CEMBA171214_4D (19 of 36) : Processed Fragments Chr (18 of 21), 5.036 mins elapsed.
+2020-10-06 07:47:49 : Group MSN_D2._.CEMBA171219_4D (20 of 36) : Processed Fragments Chr (18 of 21), 5.043 mins elapsed.
+2020-10-06 07:47:50 : Group MSN_D2._.CEMBA180813_5E (18 of 36) : Processed Fragments Chr (18 of 21), 5.055 mins elapsed.
+2020-10-06 07:47:50 : Group MSN_D1._.CEMBA171214_4D (16 of 36) : Processed Fragments Chr (18 of 21), 5.055 mins elapsed.
+2020-10-06 07:47:50 : Group Microglia._.CEMBA171219_4D (12 of 36) : Processed Fragments Chr (21 of 21), 5.062 mins elapsed.
+2020-10-06 07:47:51 : Group MSN_D1._.CEMBA180820_5E (15 of 36) : Processed Fragments Chr (19 of 21), 5.076 mins elapsed.
+2020-10-06 07:47:52 : Group MSN_D1._.CEMBA180813_5E (14 of 36) : Processed Fragments Chr (19 of 21), 5.096 mins elapsed.
+2020-10-06 07:47:52 : Group MSN_D1._.CEMBA171219_4D (13 of 36) : Processed Fragments Chr (19 of 21), 5.101 mins elapsed.
+2020-10-06 07:47:54 : Group MSN_D2._.CEMBA180820_5E (17 of 36) : Processed Fragments Chr (19 of 21), 5.133 mins elapsed.
+2020-10-06 07:47:55 : Group MSN_UNK2._.CEMBA171214_4D (21 of 36) : Creating Group Coverage File : MSN_UNK2._.CEMBA171214_4D.insertions.coverage.h5, 5.143 mins elapsed.
+
+2020-10-06 07:47:55 : Group MSN_UNK2._.CEMBA171214_4D (21 of 36) : cellGroupi, Class = character
+
+Group MSN_UNK2._.CEMBA171214_4D (21 of 36) : cellGroupi: length = 500
+[1] "CEMBA171214_4D#TCTCGCGCGCAACCTAGGTTAGACTAATCTTA"
+[2] "CEMBA171214_4D#TCCGCGAAGCAACCTAATTCGTTGATAGAGGC"
+[3] "CEMBA171214_4D#CTGAAGCTAACCAGGTAGGATAACGGCTCTGA"
+[4] "CEMBA171214_4D#CGCTCATTCGTATAGAAATGACGTTAATCTTA"
+[5] "CEMBA171214_4D#CTGAAGCTTAAGGCGAATCTGAGTTATAGCCT"
+[6] "CEMBA171214_4D#GAATTCGTACGTTCGATCCGGTAATAATCTTA"
+
+
+
+2020-10-06 07:47:55 : 
+
+2020-10-06 07:47:55 : 
+
+2020-10-06 07:47:56 : 
+
+2020-10-06 07:47:56 : 
+
+2020-10-06 07:47:56 : 
+2020-10-06 07:47:56 : Group MSN_D2._.CEMBA171214_4D (19 of 36) : Processed Fragments Chr (19 of 21), 5.155 mins elapsed.
+
+2020-10-06 07:47:56 : 
+
+2020-10-06 07:47:56 : 
+2020-10-06 07:47:56 : Group MSN_UNK2._.CEMBA171214_4D (21 of 36) : Processed Fragments Chr (1 of 21), 5.159 mins elapsed.
+2020-10-06 07:47:56 : Group MSN_D2._.CEMBA171219_4D (20 of 36) : Processed Fragments Chr (19 of 21), 5.163 mins elapsed.
+2020-10-06 07:47:57 : Group MSN_UNK2._.CEMBA171219_4D (22 of 36) : Creating Group Coverage File : MSN_UNK2._.CEMBA171219_4D.insertions.coverage.h5, 5.176 mins elapsed.
+
+2020-10-06 07:47:57 : Group MSN_UNK2._.CEMBA171219_4D (22 of 36) : cellGroupi, Class = character
+
+Group MSN_UNK2._.CEMBA171219_4D (22 of 36) : cellGroupi: length = 500
+[1] "CEMBA171219_4D#CGCTCATTTCGACGTCCTAAGCCTGGCTCTGA"
+[2] "CEMBA171219_4D#CGCTCATTAACCAGGTTTCATCCAGGCTCTGA"
+[3] "CEMBA171219_4D#ATTCAGAAAGGCAGAATCTCTCCGGTACTGAC"
+[4] "CEMBA171219_4D#GAGATTCCTAGGCATGTTATGCGAGGCTCTGA"
+[5] "CEMBA171219_4D#CTGAAGCTGGAGCTACATCTGAGTCCTATCCT"
+[6] "CEMBA171219_4D#ATTCAGAAATCTCAGGCGTCTAATCCTATCCT"
+
+
+
+2020-10-06 07:47:57 : 
+
+2020-10-06 07:47:57 : 
+
+2020-10-06 07:47:58 : 
+
+2020-10-06 07:47:58 : 
+
+2020-10-06 07:47:58 : 
+
+2020-10-06 07:47:58 : 
+
+2020-10-06 07:47:58 : 
+2020-10-06 07:47:58 : Group MSN_UNK2._.CEMBA171219_4D (22 of 36) : Processed Fragments Chr (1 of 21), 5.192 mins elapsed.
+2020-10-06 07:47:58 : Group MSN_D2._.CEMBA180813_5E (18 of 36) : Processed Fragments Chr (19 of 21), 5.192 mins elapsed.
+2020-10-06 07:47:58 : Group MSN_D1._.CEMBA171214_4D (16 of 36) : Processed Fragments Chr (19 of 21), 5.192 mins elapsed.
+2020-10-06 07:47:59 : Group MSN_D1._.CEMBA180820_5E (15 of 36) : Processed Fragments Chr (20 of 21), 5.209 mins elapsed.
+2020-10-06 07:48:00 : Group MSN_D1._.CEMBA180813_5E (14 of 36) : Processed Fragments Chr (20 of 21), 5.224 mins elapsed.
+2020-10-06 07:48:00 : Group MSN_D1._.CEMBA171219_4D (13 of 36) : Processed Fragments Chr (20 of 21), 5.23 mins elapsed.
+2020-10-06 07:48:02 : Group MSN_D2._.CEMBA180820_5E (17 of 36) : Processed Fragments Chr (20 of 21), 5.26 mins elapsed.
+2020-10-06 07:48:03 : Group MSN_D2._.CEMBA171214_4D (19 of 36) : Processed Fragments Chr (20 of 21), 5.282 mins elapsed.
+2020-10-06 07:48:04 : Group MSN_D2._.CEMBA171219_4D (20 of 36) : Processed Fragments Chr (20 of 21), 5.285 mins elapsed.
+2020-10-06 07:48:05 : Group MSN_D2._.CEMBA180813_5E (18 of 36) : Processed Fragments Chr (20 of 21), 5.317 mins elapsed.
+2020-10-06 07:48:06 : Group MSN_D1._.CEMBA171214_4D (16 of 36) : Processed Fragments Chr (20 of 21), 5.32 mins elapsed.
+2020-10-06 07:48:06 : Group MSN_D1._.CEMBA180820_5E (15 of 36) : Processed Fragments Chr (21 of 21), 5.326 mins elapsed.
+2020-10-06 07:48:07 : Group MSN_D1._.CEMBA180813_5E (14 of 36) : Processed Fragments Chr (21 of 21), 5.347 mins elapsed.
+2020-10-06 07:48:08 : Group MSN_D1._.CEMBA171219_4D (13 of 36) : Processed Fragments Chr (21 of 21), 5.354 mins elapsed.
+2020-10-06 07:48:08 : Group MSN_UNK2._.CEMBA171214_4D (21 of 36) : Processed Fragments Chr (2 of 21), 5.362 mins elapsed.
+2020-10-06 07:48:09 : Group MSN_D2._.CEMBA180820_5E (17 of 36) : Processed Fragments Chr (21 of 21), 5.382 mins elapsed.
+2020-10-06 07:48:10 : Group MSN_D2._.CEMBA171214_4D (19 of 36) : Processed Fragments Chr (21 of 21), 5.397 mins elapsed.
+2020-10-06 07:48:10 : Group MSN_UNK2._.CEMBA171219_4D (22 of 36) : Processed Fragments Chr (2 of 21), 5.398 mins elapsed.
+2020-10-06 07:48:11 : Group MSN_D2._.CEMBA171219_4D (20 of 36) : Processed Fragments Chr (21 of 21), 5.403 mins elapsed.
+2020-10-06 07:48:13 : Group MSN_D2._.CEMBA180813_5E (18 of 36) : Processed Fragments Chr (21 of 21), 5.442 mins elapsed.
+2020-10-06 07:48:13 : Group MSN_D1._.CEMBA171214_4D (16 of 36) : Processed Fragments Chr (21 of 21), 5.446 mins elapsed.
+2020-10-06 07:48:13 : Group MSN_UNK2._.CEMBA180813_5E (23 of 36) : Creating Group Coverage File : MSN_UNK2._.CEMBA180813_5E.insertions.coverage.h5, 5.446 mins elapsed.
+
+2020-10-06 07:48:13 : Group MSN_UNK2._.CEMBA180813_5E (23 of 36) : cellGroupi, Class = character
+
+Group MSN_UNK2._.CEMBA180813_5E (23 of 36) : cellGroupi: length = 111
+[1] "CEMBA180813_5E#TCGAGGCACGAGGCTGACAAGGATAAGGAGTA"
+[2] "CEMBA180813_5E#CAGTTGCATGCAGCTAGAACGCATCGTCTAAT"
+[3] "CEMBA180813_5E#GCTCTAAGCTCTGGTACATTCAGTTATCCTCT"
+[4] "CEMBA180813_5E#CATGTCAGTATGCCATACAAGGATGAAGTATG"
+[5] "CEMBA180813_5E#AGACGGAGCTCTCTACGAACGCATCTCTCTAT"
+[6] "CEMBA180813_5E#CAGTTGCATCCTGAGCGGAAGACTCTAAGCCT"
+
+
+
+2020-10-06 07:48:13 : 
+
+2020-10-06 07:48:14 : 
+
+2020-10-06 07:48:14 : 
+
+2020-10-06 07:48:14 : 
+
+2020-10-06 07:48:14 : 
+
+2020-10-06 07:48:14 : 
+
+2020-10-06 07:48:14 : 
+2020-10-06 07:48:14 : Group MSN_UNK2._.CEMBA180813_5E (23 of 36) : Processed Fragments Chr (1 of 21), 5.461 mins elapsed.
+2020-10-06 07:48:14 : Group MSN_UNK2._.CEMBA180820_5E (24 of 36) : Creating Group Coverage File : MSN_UNK2._.CEMBA180820_5E.insertions.coverage.h5, 5.465 mins elapsed.
+
+2020-10-06 07:48:14 : Group MSN_UNK2._.CEMBA180820_5E (24 of 36) : cellGroupi, Class = character
+
+Group MSN_UNK2._.CEMBA180820_5E (24 of 36) : cellGroupi: length = 108
+[1] "CEMBA180820_5E#CGGCTATGAACCAGGTTATAGCCTAATGACGT"
+[2] "CEMBA180820_5E#CTGAAGCTCGTACTAGTATAGCCTCCTAGAGT"
+[3] "CEMBA180820_5E#CTATTAGGTGCCAATTGGTTGCGTAAGAGATG"
+[4] "CEMBA180820_5E#CTATTAGGGCCTCAATCAGGACGTTTCATCCA"
+[5] "CEMBA180820_5E#AGACACCTCCTAAGACCCTATCCTCTCTCTAT"
+[6] "CEMBA180820_5E#CTGAAGCTATCTCAGGGGTTGCGTAAGGAGTA"
+
+
+
+2020-10-06 07:48:15 : 
+
+2020-10-06 07:48:15 : 
+2020-10-06 07:48:15 : Group Mural._.Rep1 (25 of 36) : Creating Group Coverage File : Mural._.Rep1.insertions.coverage.h5, 5.471 mins elapsed.
+
+2020-10-06 07:48:15 : Group Mural._.Rep1 (25 of 36) : cellGroupi, Class = character
+
+2020-10-06 07:48:15 : 
+
+Group Mural._.Rep1 (25 of 36) : cellGroupi: length = 40
+[1] "CEMBA171214_4D#CTGAAGCTCTAATGCTTTCATCCAATAGAGGC"
+[2] "CEMBA171214_4D#CGGCTATGGTCATGAATTCATCCACAGGACGT"
+[3] "CEMBA171214_4D#AGCGATAGACTGAGCGCTCTCTATGTACTGAC"
+[4] "CEMBA171214_4D#CTGAAGCTTAAGGCGACTAAGCCTGTACTGAC"
+[5] "CEMBA171214_4D#GAGATTCCTAGCGCTCAAGGCTATTATAGCCT"
+[6] "CEMBA171214_4D#CTGAAGCTAGGCAGAACGTCTAATTAATCTTA"
+
+
+
+2020-10-06 07:48:15 : 
+
+2020-10-06 07:48:15 : 
+
+2020-10-06 07:48:15 : 
+
+2020-10-06 07:48:15 : 
+
+2020-10-06 07:48:15 : 
+
+2020-10-06 07:48:15 : 
+
+2020-10-06 07:48:15 : 
+
+2020-10-06 07:48:15 : 
+2020-10-06 07:48:15 : Group MSN_UNK2._.CEMBA180820_5E (24 of 36) : Processed Fragments Chr (1 of 21), 5.482 mins elapsed.
+
+2020-10-06 07:48:15 : 
+
+2020-10-06 07:48:16 : 
+
+2020-10-06 07:48:16 : 
+2020-10-06 07:48:16 : Group Mural._.Rep1 (25 of 36) : Processed Fragments Chr (1 of 21), 5.487 mins elapsed.
+2020-10-06 07:48:17 : Group Mural._.Rep2 (26 of 36) : Creating Group Coverage File : Mural._.Rep2.insertions.coverage.h5, 5.502 mins elapsed.
+
+2020-10-06 07:48:17 : Group Mural._.Rep2 (26 of 36) : cellGroupi, Class = character
+
+Group Mural._.Rep2 (26 of 36) : cellGroupi: length = 40
+[1] "CEMBA171214_4D#AGCGATAGACTGAGCGCTCTCTATGTACTGAC"
+[2] "CEMBA171214_4D#CTGAAGCTCTCTGGTAGAGCCTTAGTACTGAC"
+[3] "CEMBA171214_4D#GAGATTCCACTGAGCGCCTAGAGTCAGGACGT"
+[4] "CEMBA171214_4D#GAGATTCCTAGCGCTCAAGGCTATTATAGCCT"
+[5] "CEMBA171214_4D#ATTCAGAATAGGCATGGCGTAAGACAGGACGT"
+[6] "CEMBA171214_4D#CTGAAGCTAGGCAGAACGTCTAATTAATCTTA"
+
+
+
+2020-10-06 07:48:17 : 
+
+2020-10-06 07:48:17 : 
+
+2020-10-06 07:48:17 : 
+
+2020-10-06 07:48:17 : 
+
+2020-10-06 07:48:17 : 
+
+2020-10-06 07:48:17 : 
+
+2020-10-06 07:48:17 : 
+2020-10-06 07:48:18 : Group Mural._.Rep2 (26 of 36) : Processed Fragments Chr (1 of 21), 5.518 mins elapsed.
+2020-10-06 07:48:18 : Group MSN_UNK2._.CEMBA171214_4D (21 of 36) : Processed Fragments Chr (3 of 21), 5.519 mins elapsed.
+2020-10-06 07:48:18 : Group Oligo._.CEMBA180813_5E (27 of 36) : Creating Group Coverage File : Oligo._.CEMBA180813_5E.insertions.coverage.h5, 5.52 mins elapsed.
+
+2020-10-06 07:48:18 : Group Oligo._.CEMBA180813_5E (27 of 36) : cellGroupi, Class = character
+
+Group Oligo._.CEMBA180813_5E (27 of 36) : cellGroupi: length = 500
+[1] "CEMBA180813_5E#CATGTCAGTCCTGAGCACAAGGATTATCCTCT"
+[2] "CEMBA180813_5E#AGACGGAGTAGGCATGCATTCAGTACTGCATA"
+[3] "CEMBA180813_5E#CATGTCAGACGTTCGACATTCAGTAGGATAAC"
+[4] "CEMBA180813_5E#CATGTCAGACTGAGCGCATTCAGTTATCCTCT"
+[5] "CEMBA180813_5E#AGACGGAGTAGCGCTCCATTCAGTTATCCTCT"
+[6] "CEMBA180813_5E#ACATTGGCTCCTGAGCCATTCAGTACTGCATA"
+
+
+
+2020-10-06 07:48:18 : 
+2020-10-06 07:48:18 : Group Oligo._.CEMBA180820_5E (28 of 36) : Creating Group Coverage File : Oligo._.CEMBA180820_5E.insertions.coverage.h5, 5.525 mins elapsed.
+
+2020-10-06 07:48:18 : 
+
+2020-10-06 07:48:18 : Group Oligo._.CEMBA180820_5E (28 of 36) : cellGroupi, Class = character
+
+Group Oligo._.CEMBA180820_5E (28 of 36) : cellGroupi: length = 500
+[1] "CEMBA180820_5E#GAATTCGTACTGAGCGTATAGCCTCGTCTAAT"
+[2] "CEMBA180820_5E#TAATGCGCTACGCTGCTATAGCCTATCTGAGT"
+[3] "CEMBA180820_5E#TAATGCGCTAAGGCGAGGTTGCGTGCGTAAGA"
+[4] "CEMBA180820_5E#AGACACCTTCGACGTCGGCTCTGAACTGCATA"
+[5] "CEMBA180820_5E#CGCTCATTCGATCAGTGGCTCTGATCGACTAG"
+[6] "CEMBA180820_5E#TCCGGAGACAGAACTGTATAGCCTTTCATCCA"
+
+2020-10-06 07:48:18 : 
+
+
+
+2020-10-06 07:48:18 : 
+
+2020-10-06 07:48:18 : 
+
+2020-10-06 07:48:18 : 
+
+2020-10-06 07:48:18 : 
+
+2020-10-06 07:48:18 : 
+
+2020-10-06 07:48:19 : 
+
+2020-10-06 07:48:19 : 
+
+2020-10-06 07:48:19 : 
+2020-10-06 07:48:19 : Group Oligo._.CEMBA180813_5E (27 of 36) : Processed Fragments Chr (1 of 21), 5.537 mins elapsed.
+
+2020-10-06 07:48:19 : 
+
+2020-10-06 07:48:19 : 
+
+2020-10-06 07:48:19 : 
+2020-10-06 07:48:19 : Group Oligo._.CEMBA180820_5E (28 of 36) : Processed Fragments Chr (1 of 21), 5.541 mins elapsed.
+2020-10-06 07:48:20 : Group MSN_UNK2._.CEMBA171219_4D (22 of 36) : Processed Fragments Chr (3 of 21), 5.562 mins elapsed.
+2020-10-06 07:48:21 : Group Oligo._.CEMBA171219_4D (29 of 36) : Creating Group Coverage File : Oligo._.CEMBA171219_4D.insertions.coverage.h5, 5.567 mins elapsed.
+
+2020-10-06 07:48:21 : Group Oligo._.CEMBA171219_4D (29 of 36) : cellGroupi, Class = character
+
+Group Oligo._.CEMBA171219_4D (29 of 36) : cellGroupi: length = 410
+[1] "CEMBA171219_4D#AGCGATAGTAAGGCGATTCTAGCTGTACTGAC"
+[2] "CEMBA171219_4D#AGCGATAGCGTATAGATTGGAAGTGTACTGAC"
+[3] "CEMBA171219_4D#GAGATTCCCAGAACTGAAGAGATGTATAGCCT"
+[4] "CEMBA171219_4D#CGGCTATGTCTATCCGGAAGTATGGTACTGAC"
+[5] "CEMBA171219_4D#CTGAAGCTCTTCAATGTTCATCCACAGGACGT"
+[6] "CEMBA171219_4D#GAGATTCCGTCATGAAATAGCCTTCAGGACGT"
+
+
+
+2020-10-06 07:48:21 : 
+2020-10-06 07:48:21 : Group Oligo._.CEMBA171214_4D (30 of 36) : Creating Group Coverage File : Oligo._.CEMBA171214_4D.insertions.coverage.h5, 5.571 mins elapsed.
+
+2020-10-06 07:48:21 : Group Oligo._.CEMBA171214_4D (30 of 36) : cellGroupi, Class = character
+
+Group Oligo._.CEMBA171214_4D (30 of 36) : cellGroupi: length = 380
+
+2020-10-06 07:48:21 : 
+[1] "CEMBA171214_4D#CTGAAGCTTTCCATCCTAAGATCCGTACTGAC"
+[2] "CEMBA171214_4D#TAATGCGCTCTATCCGTGCCTTACGTACTGAC"
+[3] "CEMBA171214_4D#ATTCAGAACGCTTGATTTCATCCAGTACTGAC"
+[4] "CEMBA171214_4D#ATTCAGAACTAATGCTGAAGTATGGTACTGAC"
+[5] "CEMBA171214_4D#GAGATTCCTATGCCATAGGATAACCAGGACGT"
+[6] "CEMBA171214_4D#CTGAAGCTTGCCAATTAACGAACGCCTATCCT"
+
+
+
+2020-10-06 07:48:21 : 
+
+2020-10-06 07:48:21 : 
+
+2020-10-06 07:48:21 : 
+
+2020-10-06 07:48:21 : 
+
+2020-10-06 07:48:21 : 
+
+2020-10-06 07:48:21 : 
+
+2020-10-06 07:48:21 : 
+
+2020-10-06 07:48:21 : 
+
+2020-10-06 07:48:21 : 
+
+2020-10-06 07:48:21 : 
+2020-10-06 07:48:21 : Group Oligo._.CEMBA171219_4D (29 of 36) : Processed Fragments Chr (1 of 21), 5.584 mins elapsed.
+
+2020-10-06 07:48:21 : 
+
+2020-10-06 07:48:22 : 
+2020-10-06 07:48:22 : Group Oligo._.CEMBA171214_4D (30 of 36) : Processed Fragments Chr (1 of 21), 5.586 mins elapsed.
+2020-10-06 07:48:26 : Group MSN_UNK2._.CEMBA180813_5E (23 of 36) : Processed Fragments Chr (2 of 21), 5.655 mins elapsed.
+2020-10-06 07:48:26 : Group MSN_UNK2._.CEMBA171214_4D (21 of 36) : Processed Fragments Chr (4 of 21), 5.658 mins elapsed.
+2020-10-06 07:48:27 : Group MSN_UNK2._.CEMBA180820_5E (24 of 36) : Processed Fragments Chr (2 of 21), 5.67 mins elapsed.
+2020-10-06 07:48:28 : Group MSN_UNK2._.CEMBA171219_4D (22 of 36) : Processed Fragments Chr (4 of 21), 5.697 mins elapsed.
+2020-10-06 07:48:30 : Group Oligo._.CEMBA180813_5E (27 of 36) : Processed Fragments Chr (2 of 21), 5.727 mins elapsed.
+2020-10-06 07:48:30 : Group Mural._.Rep1 (25 of 36) : Processed Fragments Chr (2 of 21), 5.728 mins elapsed.
+2020-10-06 07:48:30 : Group Oligo._.CEMBA180820_5E (28 of 36) : Processed Fragments Chr (2 of 21), 5.727 mins elapsed.
+2020-10-06 07:48:32 : Group Mural._.Rep2 (26 of 36) : Processed Fragments Chr (2 of 21), 5.757 mins elapsed.
+2020-10-06 07:48:33 : Group Oligo._.CEMBA171219_4D (29 of 36) : Processed Fragments Chr (2 of 21), 5.771 mins elapsed.
+2020-10-06 07:48:33 : Group Oligo._.CEMBA171214_4D (30 of 36) : Processed Fragments Chr (2 of 21), 5.772 mins elapsed.
+2020-10-06 07:48:34 : Group MSN_UNK2._.CEMBA180813_5E (23 of 36) : Processed Fragments Chr (3 of 21), 5.788 mins elapsed.
+2020-10-06 07:48:34 : Group MSN_UNK2._.CEMBA171214_4D (21 of 36) : Processed Fragments Chr (5 of 21), 5.791 mins elapsed.
+2020-10-06 07:48:35 : Group MSN_UNK2._.CEMBA180820_5E (24 of 36) : Processed Fragments Chr (3 of 21), 5.802 mins elapsed.
+2020-10-06 07:48:36 : Group MSN_UNK2._.CEMBA171219_4D (22 of 36) : Processed Fragments Chr (5 of 21), 5.831 mins elapsed.
+2020-10-06 07:48:38 : Group Oligo._.CEMBA180820_5E (28 of 36) : Processed Fragments Chr (3 of 21), 5.863 mins elapsed.
+2020-10-06 07:48:38 : Group Oligo._.CEMBA180813_5E (27 of 36) : Processed Fragments Chr (3 of 21), 5.864 mins elapsed.
+2020-10-06 07:48:40 : Group Mural._.Rep1 (25 of 36) : Processed Fragments Chr (3 of 21), 5.897 mins elapsed.
+2020-10-06 07:48:41 : Group Oligo._.CEMBA171219_4D (29 of 36) : Processed Fragments Chr (3 of 21), 5.907 mins elapsed.
+2020-10-06 07:48:41 : Group MSN_UNK2._.CEMBA180813_5E (23 of 36) : Processed Fragments Chr (4 of 21), 5.907 mins elapsed.
+2020-10-06 07:48:41 : Group Oligo._.CEMBA171214_4D (30 of 36) : Processed Fragments Chr (3 of 21), 5.908 mins elapsed.
+2020-10-06 07:48:42 : Group MSN_UNK2._.CEMBA180820_5E (24 of 36) : Processed Fragments Chr (4 of 21), 5.921 mins elapsed.
+2020-10-06 07:48:42 : Group MSN_UNK2._.CEMBA171214_4D (21 of 36) : Processed Fragments Chr (6 of 21), 5.923 mins elapsed.
+2020-10-06 07:48:42 : Group Mural._.Rep2 (26 of 36) : Processed Fragments Chr (3 of 21), 5.926 mins elapsed.
+2020-10-06 07:48:44 : Group MSN_UNK2._.CEMBA171219_4D (22 of 36) : Processed Fragments Chr (6 of 21), 5.966 mins elapsed.
+2020-10-06 07:48:46 : Group Oligo._.CEMBA180820_5E (28 of 36) : Processed Fragments Chr (4 of 21), 5.988 mins elapsed.
+2020-10-06 07:48:46 : Group Oligo._.CEMBA180813_5E (27 of 36) : Processed Fragments Chr (4 of 21), 5.99 mins elapsed.
+2020-10-06 07:48:48 : Group MSN_UNK2._.CEMBA180813_5E (23 of 36) : Processed Fragments Chr (5 of 21), 6.024 mins elapsed.
+2020-10-06 07:48:49 : Group Oligo._.CEMBA171219_4D (29 of 36) : Processed Fragments Chr (4 of 21), 6.035 mins elapsed.
+2020-10-06 07:48:49 : Group Oligo._.CEMBA171214_4D (30 of 36) : Processed Fragments Chr (4 of 21), 6.036 mins elapsed.
+2020-10-06 07:48:49 : Group MSN_UNK2._.CEMBA180820_5E (24 of 36) : Processed Fragments Chr (5 of 21), 6.038 mins elapsed.
+2020-10-06 07:48:49 : Group Mural._.Rep1 (25 of 36) : Processed Fragments Chr (4 of 21), 6.049 mins elapsed.
+2020-10-06 07:48:50 : Group MSN_UNK2._.CEMBA171214_4D (21 of 36) : Processed Fragments Chr (7 of 21), 6.054 mins elapsed.
+2020-10-06 07:48:51 : Group Mural._.Rep2 (26 of 36) : Processed Fragments Chr (4 of 21), 6.08 mins elapsed.
+2020-10-06 07:48:52 : Group MSN_UNK2._.CEMBA171219_4D (22 of 36) : Processed Fragments Chr (7 of 21), 6.096 mins elapsed.
+2020-10-06 07:48:53 : Group Oligo._.CEMBA180820_5E (28 of 36) : Processed Fragments Chr (5 of 21), 6.108 mins elapsed.
+2020-10-06 07:48:53 : Group Oligo._.CEMBA180813_5E (27 of 36) : Processed Fragments Chr (5 of 21), 6.111 mins elapsed.
+2020-10-06 07:48:55 : Group MSN_UNK2._.CEMBA180813_5E (23 of 36) : Processed Fragments Chr (6 of 21), 6.149 mins elapsed.
+2020-10-06 07:48:56 : Group Oligo._.CEMBA171219_4D (29 of 36) : Processed Fragments Chr (5 of 21), 6.155 mins elapsed.
+2020-10-06 07:48:56 : Group Oligo._.CEMBA171214_4D (30 of 36) : Processed Fragments Chr (5 of 21), 6.155 mins elapsed.
+2020-10-06 07:48:56 : Group MSN_UNK2._.CEMBA180820_5E (24 of 36) : Processed Fragments Chr (6 of 21), 6.161 mins elapsed.
+2020-10-06 07:48:57 : Group MSN_UNK2._.CEMBA171214_4D (21 of 36) : Processed Fragments Chr (8 of 21), 6.179 mins elapsed.
+2020-10-06 07:48:59 : Group Mural._.Rep1 (25 of 36) : Processed Fragments Chr (5 of 21), 6.209 mins elapsed.
+2020-10-06 07:49:00 : Group MSN_UNK2._.CEMBA171219_4D (22 of 36) : Processed Fragments Chr (8 of 21), 6.221 mins elapsed.
+2020-10-06 07:49:01 : Group Oligo._.CEMBA180820_5E (28 of 36) : Processed Fragments Chr (6 of 21), 6.237 mins elapsed.
+2020-10-06 07:49:01 : Group Mural._.Rep2 (26 of 36) : Processed Fragments Chr (5 of 21), 6.24 mins elapsed.
+2020-10-06 07:49:01 : Group Oligo._.CEMBA180813_5E (27 of 36) : Processed Fragments Chr (6 of 21), 6.242 mins elapsed.
+2020-10-06 07:49:03 : Group MSN_UNK2._.CEMBA180813_5E (23 of 36) : Processed Fragments Chr (7 of 21), 6.271 mins elapsed.
+2020-10-06 07:49:03 : Group MSN_UNK2._.CEMBA180820_5E (24 of 36) : Processed Fragments Chr (7 of 21), 6.284 mins elapsed.
+2020-10-06 07:49:04 : Group Oligo._.CEMBA171214_4D (30 of 36) : Processed Fragments Chr (6 of 21), 6.286 mins elapsed.
+2020-10-06 07:49:04 : Group Oligo._.CEMBA171219_4D (29 of 36) : Processed Fragments Chr (6 of 21), 6.286 mins elapsed.
+2020-10-06 07:49:04 : Group MSN_UNK2._.CEMBA171214_4D (21 of 36) : Processed Fragments Chr (9 of 21), 6.3 mins elapsed.
+2020-10-06 07:49:07 : Group MSN_UNK2._.CEMBA171219_4D (22 of 36) : Processed Fragments Chr (9 of 21), 6.343 mins elapsed.
+2020-10-06 07:49:08 : Group Oligo._.CEMBA180820_5E (28 of 36) : Processed Fragments Chr (7 of 21), 6.357 mins elapsed.
+2020-10-06 07:49:08 : Group Mural._.Rep1 (25 of 36) : Processed Fragments Chr (6 of 21), 6.36 mins elapsed.
+2020-10-06 07:49:08 : Group Oligo._.CEMBA180813_5E (27 of 36) : Processed Fragments Chr (7 of 21), 6.363 mins elapsed.
+2020-10-06 07:49:10 : Group MSN_UNK2._.CEMBA180813_5E (23 of 36) : Processed Fragments Chr (8 of 21), 6.385 mins elapsed.
+2020-10-06 07:49:10 : Group Mural._.Rep2 (26 of 36) : Processed Fragments Chr (6 of 21), 6.391 mins elapsed.
+2020-10-06 07:49:10 : Group MSN_UNK2._.CEMBA180820_5E (24 of 36) : Processed Fragments Chr (8 of 21), 6.397 mins elapsed.
+2020-10-06 07:49:11 : Group Oligo._.CEMBA171214_4D (30 of 36) : Processed Fragments Chr (7 of 21), 6.406 mins elapsed.
+2020-10-06 07:49:11 : Group Oligo._.CEMBA171219_4D (29 of 36) : Processed Fragments Chr (7 of 21), 6.407 mins elapsed.
+2020-10-06 07:49:12 : Group MSN_UNK2._.CEMBA171214_4D (21 of 36) : Processed Fragments Chr (10 of 21), 6.43 mins elapsed.
+2020-10-06 07:49:15 : Group MSN_UNK2._.CEMBA171219_4D (22 of 36) : Processed Fragments Chr (10 of 21), 6.472 mins elapsed.
+2020-10-06 07:49:15 : Group Oligo._.CEMBA180820_5E (28 of 36) : Processed Fragments Chr (8 of 21), 6.474 mins elapsed.
+2020-10-06 07:49:15 : Group Oligo._.CEMBA180813_5E (27 of 36) : Processed Fragments Chr (8 of 21), 6.482 mins elapsed.
+2020-10-06 07:49:16 : Group MSN_UNK2._.CEMBA180813_5E (23 of 36) : Processed Fragments Chr (9 of 21), 6.5 mins elapsed.
+2020-10-06 07:49:17 : Group Mural._.Rep1 (25 of 36) : Processed Fragments Chr (7 of 21), 6.508 mins elapsed.
+2020-10-06 07:49:17 : Group MSN_UNK2._.CEMBA180820_5E (24 of 36) : Processed Fragments Chr (9 of 21), 6.511 mins elapsed.
+2020-10-06 07:49:18 : Group Oligo._.CEMBA171214_4D (30 of 36) : Processed Fragments Chr (8 of 21), 6.527 mins elapsed.
+2020-10-06 07:49:18 : Group Oligo._.CEMBA171219_4D (29 of 36) : Processed Fragments Chr (8 of 21), 6.528 mins elapsed.
+2020-10-06 07:49:19 : Group Mural._.Rep2 (26 of 36) : Processed Fragments Chr (7 of 21), 6.541 mins elapsed.
+2020-10-06 07:49:20 : Group MSN_UNK2._.CEMBA171214_4D (21 of 36) : Processed Fragments Chr (11 of 21), 6.562 mins elapsed.
+2020-10-06 07:49:22 : Group Oligo._.CEMBA180820_5E (28 of 36) : Processed Fragments Chr (9 of 21), 6.595 mins elapsed.
+2020-10-06 07:49:23 : Group Oligo._.CEMBA180813_5E (27 of 36) : Processed Fragments Chr (9 of 21), 6.604 mins elapsed.
+2020-10-06 07:49:23 : Group MSN_UNK2._.CEMBA171219_4D (22 of 36) : Processed Fragments Chr (11 of 21), 6.606 mins elapsed.
+2020-10-06 07:49:23 : Group MSN_UNK2._.CEMBA180813_5E (23 of 36) : Processed Fragments Chr (10 of 21), 6.617 mins elapsed.
+2020-10-06 07:49:24 : Group MSN_UNK2._.CEMBA180820_5E (24 of 36) : Processed Fragments Chr (10 of 21), 6.627 mins elapsed.
+2020-10-06 07:49:25 : Group Oligo._.CEMBA171214_4D (30 of 36) : Processed Fragments Chr (9 of 21), 6.646 mins elapsed.
+2020-10-06 07:49:25 : Group Oligo._.CEMBA171219_4D (29 of 36) : Processed Fragments Chr (9 of 21), 6.648 mins elapsed.
+2020-10-06 07:49:26 : Group Mural._.Rep1 (25 of 36) : Processed Fragments Chr (8 of 21), 6.666 mins elapsed.
+2020-10-06 07:49:28 : Group MSN_UNK2._.CEMBA171214_4D (21 of 36) : Processed Fragments Chr (12 of 21), 6.685 mins elapsed.
+2020-10-06 07:49:28 : Group Mural._.Rep2 (26 of 36) : Processed Fragments Chr (8 of 21), 6.698 mins elapsed.
+2020-10-06 07:49:29 : Group Oligo._.CEMBA180820_5E (28 of 36) : Processed Fragments Chr (10 of 21), 6.717 mins elapsed.
+2020-10-06 07:49:30 : Group MSN_UNK2._.CEMBA171219_4D (22 of 36) : Processed Fragments Chr (12 of 21), 6.727 mins elapsed.
+2020-10-06 07:49:30 : Group Oligo._.CEMBA180813_5E (27 of 36) : Processed Fragments Chr (10 of 21), 6.728 mins elapsed.
+2020-10-06 07:49:31 : Group MSN_UNK2._.CEMBA180813_5E (23 of 36) : Processed Fragments Chr (11 of 21), 6.737 mins elapsed.
+2020-10-06 07:49:31 : Group MSN_UNK2._.CEMBA180820_5E (24 of 36) : Processed Fragments Chr (11 of 21), 6.747 mins elapsed.
+2020-10-06 07:49:33 : Group Oligo._.CEMBA171214_4D (30 of 36) : Processed Fragments Chr (10 of 21), 6.771 mins elapsed.
+2020-10-06 07:49:33 : Group Oligo._.CEMBA171219_4D (29 of 36) : Processed Fragments Chr (10 of 21), 6.772 mins elapsed.
+2020-10-06 07:49:35 : Group Mural._.Rep1 (25 of 36) : Processed Fragments Chr (9 of 21), 6.816 mins elapsed.
+2020-10-06 07:49:36 : Group MSN_UNK2._.CEMBA171214_4D (21 of 36) : Processed Fragments Chr (13 of 21), 6.82 mins elapsed.
+2020-10-06 07:49:36 : Group Oligo._.CEMBA180820_5E (28 of 36) : Processed Fragments Chr (11 of 21), 6.833 mins elapsed.
+2020-10-06 07:49:37 : Group Mural._.Rep2 (26 of 36) : Processed Fragments Chr (9 of 21), 6.849 mins elapsed.
+2020-10-06 07:49:37 : Group Oligo._.CEMBA180813_5E (27 of 36) : Processed Fragments Chr (11 of 21), 6.849 mins elapsed.
+2020-10-06 07:49:38 : Group MSN_UNK2._.CEMBA180813_5E (23 of 36) : Processed Fragments Chr (12 of 21), 6.856 mins elapsed.
+2020-10-06 07:49:38 : Group MSN_UNK2._.CEMBA171219_4D (22 of 36) : Processed Fragments Chr (13 of 21), 6.864 mins elapsed.
+2020-10-06 07:49:38 : Group MSN_UNK2._.CEMBA180820_5E (24 of 36) : Processed Fragments Chr (12 of 21), 6.866 mins elapsed.
+2020-10-06 07:49:40 : Group Oligo._.CEMBA171214_4D (30 of 36) : Processed Fragments Chr (11 of 21), 6.889 mins elapsed.
+2020-10-06 07:49:40 : Group Oligo._.CEMBA171219_4D (29 of 36) : Processed Fragments Chr (11 of 21), 6.892 mins elapsed.
+2020-10-06 07:49:44 : Group MSN_UNK2._.CEMBA171214_4D (21 of 36) : Processed Fragments Chr (14 of 21), 6.952 mins elapsed.
+2020-10-06 07:49:44 : Group Oligo._.CEMBA180820_5E (28 of 36) : Processed Fragments Chr (12 of 21), 6.954 mins elapsed.
+2020-10-06 07:49:44 : Group Mural._.Rep1 (25 of 36) : Processed Fragments Chr (10 of 21), 6.964 mins elapsed.
+2020-10-06 07:49:44 : Group Oligo._.CEMBA180813_5E (27 of 36) : Processed Fragments Chr (12 of 21), 6.966 mins elapsed.
+2020-10-06 07:49:45 : Group MSN_UNK2._.CEMBA180813_5E (23 of 36) : Processed Fragments Chr (13 of 21), 6.977 mins elapsed.
+2020-10-06 07:49:46 : Group MSN_UNK2._.CEMBA180820_5E (24 of 36) : Processed Fragments Chr (13 of 21), 6.987 mins elapsed.
+2020-10-06 07:49:46 : Group MSN_UNK2._.CEMBA171219_4D (22 of 36) : Processed Fragments Chr (14 of 21), 6.999 mins elapsed.
+2020-10-06 07:49:46 : Group Mural._.Rep2 (26 of 36) : Processed Fragments Chr (10 of 21), 7 mins elapsed.
+2020-10-06 07:49:47 : Group Oligo._.CEMBA171214_4D (30 of 36) : Processed Fragments Chr (12 of 21), 7.01 mins elapsed.
+2020-10-06 07:49:47 : Group Oligo._.CEMBA171219_4D (29 of 36) : Processed Fragments Chr (12 of 21), 7.011 mins elapsed.
+2020-10-06 07:49:51 : Group Oligo._.CEMBA180820_5E (28 of 36) : Processed Fragments Chr (13 of 21), 7.081 mins elapsed.
+2020-10-06 07:49:51 : Group MSN_UNK2._.CEMBA171214_4D (21 of 36) : Processed Fragments Chr (15 of 21), 7.081 mins elapsed.
+2020-10-06 07:49:52 : Group Oligo._.CEMBA180813_5E (27 of 36) : Processed Fragments Chr (13 of 21), 7.095 mins elapsed.
+2020-10-06 07:49:52 : Group MSN_UNK2._.CEMBA180813_5E (23 of 36) : Processed Fragments Chr (14 of 21), 7.095 mins elapsed.
+2020-10-06 07:49:53 : Group MSN_UNK2._.CEMBA180820_5E (24 of 36) : Processed Fragments Chr (14 of 21), 7.103 mins elapsed.
+2020-10-06 07:49:53 : Group Mural._.Rep1 (25 of 36) : Processed Fragments Chr (11 of 21), 7.111 mins elapsed.
+2020-10-06 07:49:54 : Group MSN_UNK2._.CEMBA171219_4D (22 of 36) : Processed Fragments Chr (15 of 21), 7.129 mins elapsed.
+2020-10-06 07:49:55 : Group Oligo._.CEMBA171214_4D (30 of 36) : Processed Fragments Chr (13 of 21), 7.137 mins elapsed.
+2020-10-06 07:49:55 : Group Oligo._.CEMBA171219_4D (29 of 36) : Processed Fragments Chr (13 of 21), 7.14 mins elapsed.
+2020-10-06 07:49:55 : Group Mural._.Rep2 (26 of 36) : Processed Fragments Chr (11 of 21), 7.145 mins elapsed.
+2020-10-06 07:49:58 : Group Oligo._.CEMBA180820_5E (28 of 36) : Processed Fragments Chr (14 of 21), 7.201 mins elapsed.
+2020-10-06 07:49:59 : Group MSN_UNK2._.CEMBA180813_5E (23 of 36) : Processed Fragments Chr (15 of 21), 7.211 mins elapsed.
+2020-10-06 07:49:59 : Group MSN_UNK2._.CEMBA171214_4D (21 of 36) : Processed Fragments Chr (16 of 21), 7.211 mins elapsed.
+2020-10-06 07:49:59 : Group Oligo._.CEMBA180813_5E (27 of 36) : Processed Fragments Chr (14 of 21), 7.217 mins elapsed.
+2020-10-06 07:50:00 : Group MSN_UNK2._.CEMBA180820_5E (24 of 36) : Processed Fragments Chr (15 of 21), 7.218 mins elapsed.
+2020-10-06 07:50:02 : Group Mural._.Rep1 (25 of 36) : Processed Fragments Chr (12 of 21), 7.253 mins elapsed.
+2020-10-06 07:50:02 : Group Oligo._.CEMBA171214_4D (30 of 36) : Processed Fragments Chr (14 of 21), 7.258 mins elapsed.
+2020-10-06 07:50:02 : Group MSN_UNK2._.CEMBA171219_4D (22 of 36) : Processed Fragments Chr (16 of 21), 7.259 mins elapsed.
+2020-10-06 07:50:02 : Group Oligo._.CEMBA171219_4D (29 of 36) : Processed Fragments Chr (14 of 21), 7.261 mins elapsed.
+2020-10-06 07:50:04 : Group Mural._.Rep2 (26 of 36) : Processed Fragments Chr (12 of 21), 7.287 mins elapsed.
+2020-10-06 07:50:06 : Group Oligo._.CEMBA180820_5E (28 of 36) : Processed Fragments Chr (15 of 21), 7.321 mins elapsed.
+2020-10-06 07:50:06 : Group MSN_UNK2._.CEMBA180813_5E (23 of 36) : Processed Fragments Chr (16 of 21), 7.327 mins elapsed.
+2020-10-06 07:50:06 : Group MSN_UNK2._.CEMBA180820_5E (24 of 36) : Processed Fragments Chr (16 of 21), 7.333 mins elapsed.
+2020-10-06 07:50:07 : Group Oligo._.CEMBA180813_5E (27 of 36) : Processed Fragments Chr (15 of 21), 7.339 mins elapsed.
+2020-10-06 07:50:07 : Group MSN_UNK2._.CEMBA171214_4D (21 of 36) : Processed Fragments Chr (17 of 21), 7.347 mins elapsed.
+2020-10-06 07:50:09 : Group Oligo._.CEMBA171214_4D (30 of 36) : Processed Fragments Chr (15 of 21), 7.379 mins elapsed.
+2020-10-06 07:50:09 : Group Oligo._.CEMBA171219_4D (29 of 36) : Processed Fragments Chr (15 of 21), 7.383 mins elapsed.
+2020-10-06 07:50:10 : Group MSN_UNK2._.CEMBA171219_4D (22 of 36) : Processed Fragments Chr (17 of 21), 7.397 mins elapsed.
+2020-10-06 07:50:11 : Group Mural._.Rep1 (25 of 36) : Processed Fragments Chr (13 of 21), 7.406 mins elapsed.
+2020-10-06 07:50:13 : Group Oligo._.CEMBA180820_5E (28 of 36) : Processed Fragments Chr (16 of 21), 7.441 mins elapsed.
+2020-10-06 07:50:13 : Group Mural._.Rep2 (26 of 36) : Processed Fragments Chr (13 of 21), 7.441 mins elapsed.
+2020-10-06 07:50:13 : Group MSN_UNK2._.CEMBA180813_5E (23 of 36) : Processed Fragments Chr (17 of 21), 7.443 mins elapsed.
+2020-10-06 07:50:13 : Group MSN_UNK2._.CEMBA180820_5E (24 of 36) : Processed Fragments Chr (17 of 21), 7.449 mins elapsed.
+2020-10-06 07:50:14 : Group Oligo._.CEMBA180813_5E (27 of 36) : Processed Fragments Chr (16 of 21), 7.461 mins elapsed.
+2020-10-06 07:50:15 : Group MSN_UNK2._.CEMBA171214_4D (21 of 36) : Processed Fragments Chr (18 of 21), 7.473 mins elapsed.
+2020-10-06 07:50:16 : Group Oligo._.CEMBA171214_4D (30 of 36) : Processed Fragments Chr (16 of 21), 7.5 mins elapsed.
+2020-10-06 07:50:17 : Group Oligo._.CEMBA171219_4D (29 of 36) : Processed Fragments Chr (16 of 21), 7.505 mins elapsed.
+2020-10-06 07:50:18 : Group MSN_UNK2._.CEMBA171219_4D (22 of 36) : Processed Fragments Chr (18 of 21), 7.522 mins elapsed.
+2020-10-06 07:50:20 : Group MSN_UNK2._.CEMBA180813_5E (23 of 36) : Processed Fragments Chr (18 of 21), 7.557 mins elapsed.
+2020-10-06 07:50:20 : Group Mural._.Rep1 (25 of 36) : Processed Fragments Chr (14 of 21), 7.558 mins elapsed.
+2020-10-06 07:50:20 : Group Oligo._.CEMBA180820_5E (28 of 36) : Processed Fragments Chr (17 of 21), 7.56 mins elapsed.
+2020-10-06 07:50:20 : Group MSN_UNK2._.CEMBA180820_5E (24 of 36) : Processed Fragments Chr (18 of 21), 7.562 mins elapsed.
+2020-10-06 07:50:21 : Group Oligo._.CEMBA180813_5E (27 of 36) : Processed Fragments Chr (17 of 21), 7.583 mins elapsed.
+2020-10-06 07:50:22 : Group Mural._.Rep2 (26 of 36) : Processed Fragments Chr (14 of 21), 7.594 mins elapsed.
+2020-10-06 07:50:23 : Group MSN_UNK2._.CEMBA171214_4D (21 of 36) : Processed Fragments Chr (19 of 21), 7.609 mins elapsed.
+2020-10-06 07:50:24 : Group Oligo._.CEMBA171214_4D (30 of 36) : Processed Fragments Chr (17 of 21), 7.623 mins elapsed.
+2020-10-06 07:50:24 : Group Oligo._.CEMBA171219_4D (29 of 36) : Processed Fragments Chr (17 of 21), 7.629 mins elapsed.
+2020-10-06 07:50:26 : Group MSN_UNK2._.CEMBA171219_4D (22 of 36) : Processed Fragments Chr (19 of 21), 7.662 mins elapsed.
+2020-10-06 07:50:27 : Group MSN_UNK2._.CEMBA180813_5E (23 of 36) : Processed Fragments Chr (19 of 21), 7.682 mins elapsed.
+2020-10-06 07:50:28 : Group MSN_UNK2._.CEMBA180820_5E (24 of 36) : Processed Fragments Chr (19 of 21), 7.688 mins elapsed.
+2020-10-06 07:50:28 : Group Oligo._.CEMBA180820_5E (28 of 36) : Processed Fragments Chr (18 of 21), 7.69 mins elapsed.
+2020-10-06 07:50:29 : Group Oligo._.CEMBA180813_5E (27 of 36) : Processed Fragments Chr (18 of 21), 7.713 mins elapsed.
+2020-10-06 07:50:30 : Group Mural._.Rep1 (25 of 36) : Processed Fragments Chr (15 of 21), 7.721 mins elapsed.
+2020-10-06 07:50:31 : Group MSN_UNK2._.CEMBA171214_4D (21 of 36) : Processed Fragments Chr (20 of 21), 7.739 mins elapsed.
+2020-10-06 07:50:32 : Group Oligo._.CEMBA171214_4D (30 of 36) : Processed Fragments Chr (18 of 21), 7.752 mins elapsed.
+2020-10-06 07:50:32 : Group Mural._.Rep2 (26 of 36) : Processed Fragments Chr (15 of 21), 7.757 mins elapsed.
+2020-10-06 07:50:32 : Group Oligo._.CEMBA171219_4D (29 of 36) : Processed Fragments Chr (18 of 21), 7.759 mins elapsed.
+2020-10-06 07:50:34 : Group MSN_UNK2._.CEMBA171219_4D (22 of 36) : Processed Fragments Chr (20 of 21), 7.789 mins elapsed.
+2020-10-06 07:50:34 : Group MSN_UNK2._.CEMBA180813_5E (23 of 36) : Processed Fragments Chr (20 of 21), 7.797 mins elapsed.
+2020-10-06 07:50:35 : Group MSN_UNK2._.CEMBA180820_5E (24 of 36) : Processed Fragments Chr (20 of 21), 7.802 mins elapsed.
+2020-10-06 07:50:35 : Group Oligo._.CEMBA180820_5E (28 of 36) : Processed Fragments Chr (19 of 21), 7.809 mins elapsed.
+2020-10-06 07:50:36 : Group Oligo._.CEMBA180813_5E (27 of 36) : Processed Fragments Chr (19 of 21), 7.833 mins elapsed.
+2020-10-06 07:50:38 : Group MSN_UNK2._.CEMBA171214_4D (21 of 36) : Processed Fragments Chr (21 of 21), 7.86 mins elapsed.
+2020-10-06 07:50:39 : Group Oligo._.CEMBA171214_4D (30 of 36) : Processed Fragments Chr (19 of 21), 7.872 mins elapsed.
+2020-10-06 07:50:39 : Group Mural._.Rep1 (25 of 36) : Processed Fragments Chr (16 of 21), 7.876 mins elapsed.
+2020-10-06 07:50:39 : Group Oligo._.CEMBA171219_4D (29 of 36) : Processed Fragments Chr (19 of 21), 7.878 mins elapsed.
+2020-10-06 07:50:41 : Group MSN_UNK2._.CEMBA171219_4D (22 of 36) : Processed Fragments Chr (21 of 21), 7.911 mins elapsed.
+2020-10-06 07:50:41 : Group Mural._.Rep2 (26 of 36) : Processed Fragments Chr (16 of 21), 7.912 mins elapsed.
+2020-10-06 07:50:41 : Group MSN_UNK2._.CEMBA180813_5E (23 of 36) : Processed Fragments Chr (21 of 21), 7.916 mins elapsed.
+2020-10-06 07:50:42 : Group MSN_UNK2._.CEMBA180820_5E (24 of 36) : Processed Fragments Chr (21 of 21), 7.92 mins elapsed.
+2020-10-06 07:50:42 : Group Oligo._.CEMBA180820_5E (28 of 36) : Processed Fragments Chr (20 of 21), 7.933 mins elapsed.
+2020-10-06 07:50:44 : Group Oligo._.CEMBA180813_5E (27 of 36) : Processed Fragments Chr (20 of 21), 7.958 mins elapsed.
+2020-10-06 07:50:45 : Group OPC._.CEMBA180813_5E (31 of 36) : Creating Group Coverage File : OPC._.CEMBA180813_5E.insertions.coverage.h5, 7.974 mins elapsed.
+
+2020-10-06 07:50:45 : Group OPC._.CEMBA180813_5E (31 of 36) : cellGroupi, Class = character
+
+Group OPC._.CEMBA180813_5E (31 of 36) : cellGroupi: length = 142
+[1] "CEMBA180813_5E#CTCATACACAGAACTGCATTCAGTTTCATCCA"
+[2] "CEMBA180813_5E#CTCATACAATAAGTCGACAAGGATGGATACTA"
+[3] "CEMBA180813_5E#CAGTTGCACAGAACTGACAAGGATAGGATAAC"
+[4] "CEMBA180813_5E#GCTCTAAGGTCTACCATTCGGAAGAATGACGT"
+[5] "CEMBA180813_5E#CTCATACATCCTGAGCGGAAGACTCTAAGCCT"
+[6] "CEMBA180813_5E#CAGTTGCATACGCTGCACAAGGATACTGCATA"
+
+
+
+2020-10-06 07:50:45 : 
+
+2020-10-06 07:50:45 : 
+
+2020-10-06 07:50:45 : 
+
+2020-10-06 07:50:45 : 
+
+2020-10-06 07:50:46 : 
+
+2020-10-06 07:50:46 : 
+
+2020-10-06 07:50:46 : 
+2020-10-06 07:50:46 : Group OPC._.CEMBA180813_5E (31 of 36) : Processed Fragments Chr (1 of 21), 7.989 mins elapsed.
+2020-10-06 07:50:46 : Group Oligo._.CEMBA171214_4D (30 of 36) : Processed Fragments Chr (20 of 21), 7.999 mins elapsed.
+2020-10-06 07:50:47 : Group Oligo._.CEMBA171219_4D (29 of 36) : Processed Fragments Chr (20 of 21), 8.006 mins elapsed.
+2020-10-06 07:50:48 : Group OPC._.CEMBA171214_4D (32 of 36) : Creating Group Coverage File : OPC._.CEMBA171214_4D.insertions.coverage.h5, 8.027 mins elapsed.
+
+2020-10-06 07:50:48 : Group OPC._.CEMBA171214_4D (32 of 36) : cellGroupi, Class = character
+2020-10-06 07:50:48 : Group Mural._.Rep1 (25 of 36) : Processed Fragments Chr (17 of 21), 8.03 mins elapsed.
+
+Group OPC._.CEMBA171214_4D (32 of 36) : cellGroupi: length = 140
+[1] "CEMBA171214_4D#AGCGATAGTTAGCCTCATAGCCTTCAGGACGT"
+[2] "CEMBA171214_4D#ATTCAGAACAGAACTGTTGGAAGTTATAGCCT"
+[3] "CEMBA171214_4D#ATTCAGAAGAATTACGAACGAACGCAGGACGT"
+[4] "CEMBA171214_4D#GAGATTCCCAAGTTCAGAAGTATGGTACTGAC"
+[5] "CEMBA171214_4D#ATTACTCGGCAACCTATGCCTTACCAGGACGT"
+[6] "CEMBA171214_4D#CGGCTATGGTCATGAAATTCGTTGCCTATCCT"
+
+
+
+2020-10-06 07:50:48 : 
+2020-10-06 07:50:48 : Group OPC._.CEMBA171219_4D (33 of 36) : Creating Group Coverage File : OPC._.CEMBA171219_4D.insertions.coverage.h5, 8.032 mins elapsed.
+
+2020-10-06 07:50:49 : Group OPC._.CEMBA171219_4D (33 of 36) : cellGroupi, Class = character
+
+2020-10-06 07:50:49 : 
+
+Group OPC._.CEMBA171219_4D (33 of 36) : cellGroupi: length = 135
+[1] "CEMBA171219_4D#GAGATTCCCGTATAGATCCGGTAAGTACTGAC"
+[2] "CEMBA171219_4D#AGCGATAGACTGAGCGTATCCTCTGTACTGAC"
+[3] "CEMBA171219_4D#AGCGATAGGGAGCTACTCGACTAGGTACTGAC"
+[4] "CEMBA171219_4D#GAGATTCCTAGGCATGCTAAGCCTTAATCTTA"
+[5] "CEMBA171219_4D#AGCGATAGCGCTTGATGGTTAGACTAATCTTA"
+[6] "CEMBA171219_4D#ATTACTCGATCTCAGGCTAAGCCTATAGAGGC"
+
+
+
+2020-10-06 07:50:49 : 
+
+2020-10-06 07:50:49 : 
+
+2020-10-06 07:50:49 : 
+2020-10-06 07:50:49 : Group OPC._.CEMBA180820_5E (34 of 36) : Creating Group Coverage File : OPC._.CEMBA180820_5E.insertions.coverage.h5, 8.037 mins elapsed.
+
+2020-10-06 07:50:49 : Group OPC._.CEMBA180820_5E (34 of 36) : cellGroupi, Class = character
+
+2020-10-06 07:50:49 : 
+
+Group OPC._.CEMBA180820_5E (34 of 36) : cellGroupi: length = 108
+[1] "CEMBA180820_5E#GAGATTCCCTCTCTACTATAGCCTCGTCTAAT"
+[2] "CEMBA180820_5E#AGACACCTCTTCAATGGGTTGCGTTTCATCCA"
+[3] "CEMBA180820_5E#GAGATTCCACGAATCTTATAGCCTTCCGGTAA"
+[4] "CEMBA180820_5E#AGCGATAGCGATCAGTCAGGACGTATCTGAGT"
+[5] "CEMBA180820_5E#CTATTAGGGCCTCAATTATAGCCTGAAGTATG"
+[6] "CEMBA180820_5E#CTATTAGGAAGCAACGGTACTGACAAGAGATG"
+
+
+
+2020-10-06 07:50:49 : 
+
+2020-10-06 07:50:49 : 
+
+2020-10-06 07:50:49 : 
+
+2020-10-06 07:50:49 : 
+
+2020-10-06 07:50:49 : 
+
+2020-10-06 07:50:49 : 
+
+2020-10-06 07:50:49 : 
+2020-10-06 07:50:49 : Group OPC._.CEMBA171214_4D (32 of 36) : Processed Fragments Chr (1 of 21), 8.044 mins elapsed.
+
+2020-10-06 07:50:49 : 
+
+2020-10-06 07:50:49 : 
+
+2020-10-06 07:50:49 : 
+
+2020-10-06 07:50:49 : 
+
+2020-10-06 07:50:49 : 
+2020-10-06 07:50:49 : Group OPC._.CEMBA171219_4D (33 of 36) : Processed Fragments Chr (1 of 21), 8.049 mins elapsed.
+
+2020-10-06 07:50:49 : 
+
+2020-10-06 07:50:49 : 
+
+2020-10-06 07:50:50 : 
+2020-10-06 07:50:50 : Group OPC._.CEMBA180820_5E (34 of 36) : Processed Fragments Chr (1 of 21), 8.052 mins elapsed.
+2020-10-06 07:50:50 : Group Oligo._.CEMBA180820_5E (28 of 36) : Processed Fragments Chr (21 of 21), 8.053 mins elapsed.
+2020-10-06 07:50:51 : Group Mural._.Rep2 (26 of 36) : Processed Fragments Chr (17 of 21), 8.071 mins elapsed.
+2020-10-06 07:50:51 : Group Oligo._.CEMBA180813_5E (27 of 36) : Processed Fragments Chr (21 of 21), 8.079 mins elapsed.
+2020-10-06 07:50:54 : Group Oligo._.CEMBA171214_4D (30 of 36) : Processed Fragments Chr (21 of 21), 8.119 mins elapsed.
+2020-10-06 07:50:54 : Group Oligo._.CEMBA171219_4D (29 of 36) : Processed Fragments Chr (21 of 21), 8.125 mins elapsed.
+2020-10-06 07:50:57 : Group VLMC._.Rep1 (35 of 36) : Creating Group Coverage File : VLMC._.Rep1.insertions.coverage.h5, 8.169 mins elapsed.
+
+2020-10-06 07:50:57 : Group VLMC._.Rep1 (35 of 36) : cellGroupi, Class = character
+
+Group VLMC._.Rep1 (35 of 36) : cellGroupi: length = 17
+[1] "CEMBA171214_4D#ATTCAGAACTTCAATGTCCGGTAATATAGCCT"
+[2] "CEMBA171214_4D#TCCGGAGAGCCTCAATAACGAACGCCTATCCT"
+[3] "CEMBA171214_4D#AGCGATAGCGATCAGTCTAAGCCTCCTATCCT"
+[4] "CEMBA171219_4D#GAGATTCCAAGAGGCAGCGTAAGACCTATCCT"
+[5] "CEMBA180813_5E#CAGTTGCATAAGGCGACATTCAGTCCTAGAGT"
+[6] "CEMBA180813_5E#GCTCTAAGCTCTGGTACATTCAGTGTAAGGAG"
+
+
+
+2020-10-06 07:50:57 : 
+
+2020-10-06 07:50:57 : 
+
+2020-10-06 07:50:57 : 
+
+2020-10-06 07:50:57 : 
+2020-10-06 07:50:57 : Group OPC._.CEMBA180813_5E (31 of 36) : Processed Fragments Chr (2 of 21), 8.178 mins elapsed.
+
+2020-10-06 07:50:57 : 
+
+2020-10-06 07:50:57 : 
+
+2020-10-06 07:50:57 : 
+2020-10-06 07:50:57 : Group VLMC._.Rep1 (35 of 36) : Processed Fragments Chr (1 of 21), 8.184 mins elapsed.
+2020-10-06 07:50:58 : Group Mural._.Rep1 (25 of 36) : Processed Fragments Chr (18 of 21), 8.185 mins elapsed.
+2020-10-06 07:50:58 : Group VLMC._.Rep2 (36 of 36) : Creating Group Coverage File : VLMC._.Rep2.insertions.coverage.h5, 8.199 mins elapsed.
+
+2020-10-06 07:50:59 : Group VLMC._.Rep2 (36 of 36) : cellGroupi, Class = character
+
+Group VLMC._.Rep2 (36 of 36) : cellGroupi: length = 13
+[1] "CEMBA171214_4D#ATTCAGAACTTCAATGTCCGGTAATATAGCCT"
+[2] "CEMBA171214_4D#TCCGGAGAGCCTCAATAACGAACGCCTATCCT"
+[3] "CEMBA171214_4D#AGCGATAGCGATCAGTCTAAGCCTCCTATCCT"
+[4] "CEMBA171214_4D#AGCGATAGTCGACGTCTCGACTAGATAGAGGC"
+[5] "CEMBA171219_4D#GAGATTCCAAGAGGCAGCGTAAGACCTATCCT"
+[6] "CEMBA180813_5E#CAGTTGCATAAGGCGACATTCAGTCCTAGAGT"
+
+
+
+2020-10-06 07:50:59 : 
+
+2020-10-06 07:50:59 : 
+
+2020-10-06 07:50:59 : 
+
+2020-10-06 07:50:59 : 
+
+2020-10-06 07:50:59 : 
+
+2020-10-06 07:50:59 : 
+
+2020-10-06 07:50:59 : 
+2020-10-06 07:50:59 : Group VLMC._.Rep2 (36 of 36) : Processed Fragments Chr (1 of 21), 8.214 mins elapsed.
+2020-10-06 07:51:00 : Group Mural._.Rep2 (26 of 36) : Processed Fragments Chr (18 of 21), 8.225 mins elapsed.
+2020-10-06 07:51:00 : Group OPC._.CEMBA171214_4D (32 of 36) : Processed Fragments Chr (2 of 21), 8.228 mins elapsed.
+2020-10-06 07:51:00 : Group OPC._.CEMBA180820_5E (34 of 36) : Processed Fragments Chr (2 of 21), 8.233 mins elapsed.
+2020-10-06 07:51:00 : Group OPC._.CEMBA171219_4D (33 of 36) : Processed Fragments Chr (2 of 21), 8.233 mins elapsed.
+2020-10-06 07:51:04 : Group OPC._.CEMBA180813_5E (31 of 36) : Processed Fragments Chr (3 of 21), 8.3 mins elapsed.
+2020-10-06 07:51:06 : Group Mural._.Rep1 (25 of 36) : Processed Fragments Chr (19 of 21), 8.319 mins elapsed.
+2020-10-06 07:51:07 : Group OPC._.CEMBA171214_4D (32 of 36) : Processed Fragments Chr (3 of 21), 8.338 mins elapsed.
+2020-10-06 07:51:07 : Group OPC._.CEMBA180820_5E (34 of 36) : Processed Fragments Chr (3 of 21), 8.34 mins elapsed.
+2020-10-06 07:51:07 : Group OPC._.CEMBA171219_4D (33 of 36) : Processed Fragments Chr (3 of 21), 8.341 mins elapsed.
+2020-10-06 07:51:07 : Group Mural._.Rep2 (26 of 36) : Processed Fragments Chr (19 of 21), 8.349 mins elapsed.
+2020-10-06 07:51:09 : Group VLMC._.Rep1 (35 of 36) : Processed Fragments Chr (2 of 21), 8.383 mins elapsed.
+2020-10-06 07:51:10 : Group OPC._.CEMBA180813_5E (31 of 36) : Processed Fragments Chr (4 of 21), 8.395 mins elapsed.
+2020-10-06 07:51:11 : Group VLMC._.Rep2 (36 of 36) : Processed Fragments Chr (2 of 21), 8.405 mins elapsed.
+2020-10-06 07:51:13 : Group OPC._.CEMBA171214_4D (32 of 36) : Processed Fragments Chr (4 of 21), 8.435 mins elapsed.
+2020-10-06 07:51:13 : Group OPC._.CEMBA180820_5E (34 of 36) : Processed Fragments Chr (4 of 21), 8.435 mins elapsed.
+2020-10-06 07:51:13 : Group OPC._.CEMBA171219_4D (33 of 36) : Processed Fragments Chr (4 of 21), 8.437 mins elapsed.
+2020-10-06 07:51:13 : Group Mural._.Rep1 (25 of 36) : Processed Fragments Chr (20 of 21), 8.438 mins elapsed.
+2020-10-06 07:51:15 : Group Mural._.Rep2 (26 of 36) : Processed Fragments Chr (20 of 21), 8.468 mins elapsed.
+2020-10-06 07:51:16 : Group OPC._.CEMBA180813_5E (31 of 36) : Processed Fragments Chr (5 of 21), 8.487 mins elapsed.
+2020-10-06 07:51:18 : Group VLMC._.Rep1 (35 of 36) : Processed Fragments Chr (3 of 21), 8.518 mins elapsed.
+2020-10-06 07:51:18 : Group OPC._.CEMBA180820_5E (34 of 36) : Processed Fragments Chr (5 of 21), 8.526 mins elapsed.
+2020-10-06 07:51:18 : Group OPC._.CEMBA171214_4D (32 of 36) : Processed Fragments Chr (5 of 21), 8.527 mins elapsed.
+2020-10-06 07:51:18 : Group OPC._.CEMBA171219_4D (33 of 36) : Processed Fragments Chr (5 of 21), 8.529 mins elapsed.
+2020-10-06 07:51:19 : Group VLMC._.Rep2 (36 of 36) : Processed Fragments Chr (3 of 21), 8.539 mins elapsed.
+2020-10-06 07:51:19 : Group Mural._.Rep1 (25 of 36) : Processed Fragments Chr (21 of 21), 8.551 mins elapsed.
+2020-10-06 07:51:21 : Group Mural._.Rep2 (26 of 36) : Processed Fragments Chr (21 of 21), 8.571 mins elapsed.
+2020-10-06 07:51:21 : Group OPC._.CEMBA180813_5E (31 of 36) : Processed Fragments Chr (6 of 21), 8.572 mins elapsed.
+2020-10-06 07:51:22 : Group OPC._.CEMBA180820_5E (34 of 36) : Processed Fragments Chr (6 of 21), 8.6 mins elapsed.
+2020-10-06 07:51:23 : Group OPC._.CEMBA171219_4D (33 of 36) : Processed Fragments Chr (6 of 21), 8.608 mins elapsed.
+2020-10-06 07:51:23 : Group OPC._.CEMBA171214_4D (32 of 36) : Processed Fragments Chr (6 of 21), 8.611 mins elapsed.
+2020-10-06 07:51:26 : Group VLMC._.Rep1 (35 of 36) : Processed Fragments Chr (4 of 21), 8.659 mins elapsed.
+2020-10-06 07:51:27 : Group OPC._.CEMBA180813_5E (31 of 36) : Processed Fragments Chr (7 of 21), 8.677 mins elapsed.
+2020-10-06 07:51:27 : Group VLMC._.Rep2 (36 of 36) : Processed Fragments Chr (4 of 21), 8.68 mins elapsed.
+2020-10-06 07:51:28 : Group OPC._.CEMBA180820_5E (34 of 36) : Processed Fragments Chr (7 of 21), 8.698 mins elapsed.
+2020-10-06 07:51:29 : Group OPC._.CEMBA171214_4D (32 of 36) : Processed Fragments Chr (7 of 21), 8.708 mins elapsed.
+2020-10-06 07:51:29 : Group OPC._.CEMBA171219_4D (33 of 36) : Processed Fragments Chr (7 of 21), 8.709 mins elapsed.
+2020-10-06 07:51:31 : Group OPC._.CEMBA180813_5E (31 of 36) : Processed Fragments Chr (8 of 21), 8.75 mins elapsed.
+2020-10-06 07:51:32 : Group OPC._.CEMBA180820_5E (34 of 36) : Processed Fragments Chr (8 of 21), 8.766 mins elapsed.
+2020-10-06 07:51:32 : Group VLMC._.Rep1 (35 of 36) : Processed Fragments Chr (5 of 21), 8.767 mins elapsed.
+2020-10-06 07:51:33 : Group OPC._.CEMBA171214_4D (32 of 36) : Processed Fragments Chr (8 of 21), 8.777 mins elapsed.
+2020-10-06 07:51:33 : Group OPC._.CEMBA171219_4D (33 of 36) : Processed Fragments Chr (8 of 21), 8.778 mins elapsed.
+2020-10-06 07:51:33 : Group VLMC._.Rep2 (36 of 36) : Processed Fragments Chr (5 of 21), 8.782 mins elapsed.
+2020-10-06 07:51:36 : Group OPC._.CEMBA180813_5E (31 of 36) : Processed Fragments Chr (9 of 21), 8.819 mins elapsed.
+2020-10-06 07:51:36 : Group OPC._.CEMBA180820_5E (34 of 36) : Processed Fragments Chr (9 of 21), 8.833 mins elapsed.
+2020-10-06 07:51:37 : Group OPC._.CEMBA171214_4D (32 of 36) : Processed Fragments Chr (9 of 21), 8.846 mins elapsed.
+2020-10-06 07:51:37 : Group OPC._.CEMBA171219_4D (33 of 36) : Processed Fragments Chr (9 of 21), 8.846 mins elapsed.
+2020-10-06 07:51:38 : Group VLMC._.Rep1 (35 of 36) : Processed Fragments Chr (6 of 21), 8.856 mins elapsed.
+2020-10-06 07:51:39 : Group VLMC._.Rep2 (36 of 36) : Processed Fragments Chr (6 of 21), 8.871 mins elapsed.
+2020-10-06 07:51:40 : Group OPC._.CEMBA180813_5E (31 of 36) : Processed Fragments Chr (10 of 21), 8.886 mins elapsed.
+2020-10-06 07:51:40 : Group OPC._.CEMBA180820_5E (34 of 36) : Processed Fragments Chr (10 of 21), 8.9 mins elapsed.
+2020-10-06 07:51:41 : Group OPC._.CEMBA171214_4D (32 of 36) : Processed Fragments Chr (10 of 21), 8.913 mins elapsed.
+2020-10-06 07:51:41 : Group OPC._.CEMBA171219_4D (33 of 36) : Processed Fragments Chr (10 of 21), 8.914 mins elapsed.
+2020-10-06 07:51:43 : Group VLMC._.Rep1 (35 of 36) : Processed Fragments Chr (7 of 21), 8.944 mins elapsed.
+2020-10-06 07:51:44 : Group OPC._.CEMBA180813_5E (31 of 36) : Processed Fragments Chr (11 of 21), 8.958 mins elapsed.
+2020-10-06 07:51:44 : Group VLMC._.Rep2 (36 of 36) : Processed Fragments Chr (7 of 21), 8.958 mins elapsed.
+2020-10-06 07:51:45 : Group OPC._.CEMBA180820_5E (34 of 36) : Processed Fragments Chr (11 of 21), 8.971 mins elapsed.
+2020-10-06 07:51:45 : Group OPC._.CEMBA171214_4D (32 of 36) : Processed Fragments Chr (11 of 21), 8.984 mins elapsed.
+2020-10-06 07:51:46 : Group OPC._.CEMBA171219_4D (33 of 36) : Processed Fragments Chr (11 of 21), 8.985 mins elapsed.
+2020-10-06 07:51:48 : Group OPC._.CEMBA180813_5E (31 of 36) : Processed Fragments Chr (12 of 21), 9.029 mins elapsed.
+2020-10-06 07:51:48 : Group VLMC._.Rep1 (35 of 36) : Processed Fragments Chr (8 of 21), 9.031 mins elapsed.
+2020-10-06 07:51:49 : Group OPC._.CEMBA180820_5E (34 of 36) : Processed Fragments Chr (12 of 21), 9.042 mins elapsed.
+2020-10-06 07:51:49 : Group VLMC._.Rep2 (36 of 36) : Processed Fragments Chr (8 of 21), 9.045 mins elapsed.
+2020-10-06 07:51:50 : Group OPC._.CEMBA171214_4D (32 of 36) : Processed Fragments Chr (12 of 21), 9.056 mins elapsed.
+2020-10-06 07:51:50 : Group OPC._.CEMBA171219_4D (33 of 36) : Processed Fragments Chr (12 of 21), 9.057 mins elapsed.
+2020-10-06 07:51:52 : Group OPC._.CEMBA180813_5E (31 of 36) : Processed Fragments Chr (13 of 21), 9.101 mins elapsed.
+2020-10-06 07:51:53 : Group OPC._.CEMBA180820_5E (34 of 36) : Processed Fragments Chr (13 of 21), 9.113 mins elapsed.
+2020-10-06 07:51:54 : Group VLMC._.Rep1 (35 of 36) : Processed Fragments Chr (9 of 21), 9.122 mins elapsed.
+2020-10-06 07:51:54 : Group OPC._.CEMBA171214_4D (32 of 36) : Processed Fragments Chr (13 of 21), 9.128 mins elapsed.
+2020-10-06 07:51:54 : Group OPC._.CEMBA171219_4D (33 of 36) : Processed Fragments Chr (13 of 21), 9.129 mins elapsed.
+2020-10-06 07:51:55 : Group VLMC._.Rep2 (36 of 36) : Processed Fragments Chr (9 of 21), 9.135 mins elapsed.
+2020-10-06 07:51:57 : Group OPC._.CEMBA180813_5E (31 of 36) : Processed Fragments Chr (14 of 21), 9.17 mins elapsed.
+2020-10-06 07:51:57 : Group OPC._.CEMBA180820_5E (34 of 36) : Processed Fragments Chr (14 of 21), 9.181 mins elapsed.
+2020-10-06 07:51:58 : Group OPC._.CEMBA171214_4D (32 of 36) : Processed Fragments Chr (14 of 21), 9.197 mins elapsed.
+2020-10-06 07:51:58 : Group OPC._.CEMBA171219_4D (33 of 36) : Processed Fragments Chr (14 of 21), 9.198 mins elapsed.
+2020-10-06 07:51:59 : Group VLMC._.Rep1 (35 of 36) : Processed Fragments Chr (10 of 21), 9.211 mins elapsed.
+2020-10-06 07:52:00 : Group VLMC._.Rep2 (36 of 36) : Processed Fragments Chr (10 of 21), 9.224 mins elapsed.
+2020-10-06 07:52:01 : Group OPC._.CEMBA180813_5E (31 of 36) : Processed Fragments Chr (15 of 21), 9.239 mins elapsed.
+2020-10-06 07:52:01 : Group OPC._.CEMBA180820_5E (34 of 36) : Processed Fragments Chr (15 of 21), 9.249 mins elapsed.
+2020-10-06 07:52:02 : Group OPC._.CEMBA171214_4D (32 of 36) : Processed Fragments Chr (15 of 21), 9.266 mins elapsed.
+2020-10-06 07:52:02 : Group OPC._.CEMBA171219_4D (33 of 36) : Processed Fragments Chr (15 of 21), 9.267 mins elapsed.
+2020-10-06 07:52:04 : Group VLMC._.Rep1 (35 of 36) : Processed Fragments Chr (11 of 21), 9.298 mins elapsed.
+2020-10-06 07:52:05 : Group OPC._.CEMBA180813_5E (31 of 36) : Processed Fragments Chr (16 of 21), 9.308 mins elapsed.
+2020-10-06 07:52:05 : Group VLMC._.Rep2 (36 of 36) : Processed Fragments Chr (11 of 21), 9.312 mins elapsed.
+2020-10-06 07:52:05 : Group OPC._.CEMBA180820_5E (34 of 36) : Processed Fragments Chr (16 of 21), 9.318 mins elapsed.
+2020-10-06 07:52:07 : Group OPC._.CEMBA171214_4D (32 of 36) : Processed Fragments Chr (16 of 21), 9.335 mins elapsed.
+2020-10-06 07:52:07 : Group OPC._.CEMBA171219_4D (33 of 36) : Processed Fragments Chr (16 of 21), 9.336 mins elapsed.
+2020-10-06 07:52:09 : Group OPC._.CEMBA180813_5E (31 of 36) : Processed Fragments Chr (17 of 21), 9.377 mins elapsed.
+2020-10-06 07:52:09 : Group VLMC._.Rep1 (35 of 36) : Processed Fragments Chr (12 of 21), 9.383 mins elapsed.
+2020-10-06 07:52:10 : Group OPC._.CEMBA180820_5E (34 of 36) : Processed Fragments Chr (17 of 21), 9.385 mins elapsed.
+2020-10-06 07:52:10 : Group VLMC._.Rep2 (36 of 36) : Processed Fragments Chr (12 of 21), 9.396 mins elapsed.
+2020-10-06 07:52:11 : Group OPC._.CEMBA171214_4D (32 of 36) : Processed Fragments Chr (17 of 21), 9.404 mins elapsed.
+2020-10-06 07:52:11 : Group OPC._.CEMBA171219_4D (33 of 36) : Processed Fragments Chr (17 of 21), 9.405 mins elapsed.
+2020-10-06 07:52:13 : Group OPC._.CEMBA180813_5E (31 of 36) : Processed Fragments Chr (18 of 21), 9.445 mins elapsed.
+2020-10-06 07:52:14 : Group OPC._.CEMBA180820_5E (34 of 36) : Processed Fragments Chr (18 of 21), 9.453 mins elapsed.
+2020-10-06 07:52:15 : Group OPC._.CEMBA171214_4D (32 of 36) : Processed Fragments Chr (18 of 21), 9.472 mins elapsed.
+2020-10-06 07:52:15 : Group OPC._.CEMBA171219_4D (33 of 36) : Processed Fragments Chr (18 of 21), 9.474 mins elapsed.
+2020-10-06 07:52:15 : Group VLMC._.Rep1 (35 of 36) : Processed Fragments Chr (13 of 21), 9.475 mins elapsed.
+2020-10-06 07:52:16 : Group VLMC._.Rep2 (36 of 36) : Processed Fragments Chr (13 of 21), 9.488 mins elapsed.
+2020-10-06 07:52:18 : Group OPC._.CEMBA180813_5E (31 of 36) : Processed Fragments Chr (19 of 21), 9.518 mins elapsed.
+2020-10-06 07:52:18 : Group OPC._.CEMBA180820_5E (34 of 36) : Processed Fragments Chr (19 of 21), 9.524 mins elapsed.
+2020-10-06 07:52:19 : Group OPC._.CEMBA171214_4D (32 of 36) : Processed Fragments Chr (19 of 21), 9.546 mins elapsed.
+2020-10-06 07:52:19 : Group OPC._.CEMBA171219_4D (33 of 36) : Processed Fragments Chr (19 of 21), 9.547 mins elapsed.
+2020-10-06 07:52:20 : Group VLMC._.Rep1 (35 of 36) : Processed Fragments Chr (14 of 21), 9.565 mins elapsed.
+2020-10-06 07:52:21 : Group VLMC._.Rep2 (36 of 36) : Processed Fragments Chr (14 of 21), 9.578 mins elapsed.
+2020-10-06 07:52:22 : Group OPC._.CEMBA180813_5E (31 of 36) : Processed Fragments Chr (20 of 21), 9.587 mins elapsed.
+2020-10-06 07:52:22 : Group OPC._.CEMBA180820_5E (34 of 36) : Processed Fragments Chr (20 of 21), 9.592 mins elapsed.
+2020-10-06 07:52:23 : Group OPC._.CEMBA171214_4D (32 of 36) : Processed Fragments Chr (20 of 21), 9.614 mins elapsed.
+2020-10-06 07:52:23 : Group OPC._.CEMBA171219_4D (33 of 36) : Processed Fragments Chr (20 of 21), 9.616 mins elapsed.
+2020-10-06 07:52:26 : Group OPC._.CEMBA180813_5E (31 of 36) : Processed Fragments Chr (21 of 21), 9.657 mins elapsed.
+2020-10-06 07:52:26 : Group VLMC._.Rep1 (35 of 36) : Processed Fragments Chr (15 of 21), 9.658 mins elapsed.
+2020-10-06 07:52:26 : Group OPC._.CEMBA180820_5E (34 of 36) : Processed Fragments Chr (21 of 21), 9.662 mins elapsed.
+2020-10-06 07:52:27 : Group VLMC._.Rep2 (36 of 36) : Processed Fragments Chr (15 of 21), 9.671 mins elapsed.
+2020-10-06 07:52:28 : Group OPC._.CEMBA171214_4D (32 of 36) : Processed Fragments Chr (21 of 21), 9.685 mins elapsed.
+2020-10-06 07:52:28 : Group OPC._.CEMBA171219_4D (33 of 36) : Processed Fragments Chr (21 of 21), 9.686 mins elapsed.
+2020-10-06 07:52:31 : Group VLMC._.Rep1 (35 of 36) : Processed Fragments Chr (16 of 21), 9.744 mins elapsed.
+2020-10-06 07:52:32 : Group VLMC._.Rep2 (36 of 36) : Processed Fragments Chr (16 of 21), 9.751 mins elapsed.
+2020-10-06 07:52:33 : Group VLMC._.Rep1 (35 of 36) : Processed Fragments Chr (17 of 21), 9.78 mins elapsed.
+2020-10-06 07:52:33 : Group VLMC._.Rep2 (36 of 36) : Processed Fragments Chr (17 of 21), 9.784 mins elapsed.
+2020-10-06 07:52:35 : Group VLMC._.Rep1 (35 of 36) : Processed Fragments Chr (18 of 21), 9.81 mins elapsed.
+2020-10-06 07:52:35 : Group VLMC._.Rep2 (36 of 36) : Processed Fragments Chr (18 of 21), 9.814 mins elapsed.
+2020-10-06 07:52:37 : Group VLMC._.Rep1 (35 of 36) : Processed Fragments Chr (19 of 21), 9.841 mins elapsed.
+2020-10-06 07:52:37 : Group VLMC._.Rep2 (36 of 36) : Processed Fragments Chr (19 of 21), 9.845 mins elapsed.
+2020-10-06 07:52:39 : Group VLMC._.Rep1 (35 of 36) : Processed Fragments Chr (20 of 21), 9.87 mins elapsed.
+2020-10-06 07:52:39 : Group VLMC._.Rep2 (36 of 36) : Processed Fragments Chr (20 of 21), 9.874 mins elapsed.
+2020-10-06 07:52:40 : Group VLMC._.Rep1 (35 of 36) : Processed Fragments Chr (21 of 21), 9.898 mins elapsed.
+2020-10-06 07:52:41 : Group VLMC._.Rep2 (36 of 36) : Processed Fragments Chr (21 of 21), 9.901 mins elapsed.
+
+2020-10-06 07:52:42 : kmerBias-Parameters, Class = list
+
+kmerBias-Parameters$: length = 1
+                       
+1 function (name)      
+2 .Internal(args(name))
+
+
+kmerBias-Parameters$genome: length = 1
+[1] "BSgenome.Mmusculus.UCSC.mm10"
+
+
+kmerBias-Parameters$kmerLength: length = 1
+[1] 6
+
+
+kmerBias-Parameters$threads: length = 1
+[1] 10
+
+
+kmerBias-Parameters$verbose: length = 1
+[1] FALSE
+
+
+kmerBias-Parameters$tstart: length = 0
+NULL
+
+
+kmerBias-Parameters$logFile: length = 1
+[1] "ArchRLogs/ArchR-addGroupCoverages-45261768878d9-Date-2020-10-06_Time-07-42-46.log"
+
+
+
+2020-10-06 07:52:45 : 
+
+2020-10-06 07:52:45 : 
+
+2020-10-06 07:52:45 : 
+
+2020-10-06 07:52:46 : 
+
+2020-10-06 07:52:46 : 
+
+2020-10-06 07:52:46 : 
+
+2020-10-06 07:52:46 : 
+
+2020-10-06 07:52:46 : 
+
+2020-10-06 07:52:46 : 
+
+2020-10-06 07:52:46 : 
+
+2020-10-06 07:52:53 : 
+
+2020-10-06 07:52:53 : 
+
+2020-10-06 07:52:54 : 
+
+2020-10-06 07:52:54 : 
+
+2020-10-06 07:52:54 : 
+
+2020-10-06 07:52:54 : 
+
+2020-10-06 07:52:55 : 
+
+2020-10-06 07:52:55 : 
+
+2020-10-06 07:52:55 : 
+
+2020-10-06 07:52:58 : 
+
+2020-10-06 07:53:04 : 
+
+2020-10-06 07:53:04 : 
+
+2020-10-06 07:53:04 : 
+
+2020-10-06 07:53:05 : 
+
+2020-10-06 07:53:05 : 
+
+2020-10-06 07:53:05 : 
+
+2020-10-06 07:53:05 : 
+
+2020-10-06 07:53:06 : 
+
+2020-10-06 07:53:06 : 
+
+2020-10-06 07:53:10 : 
+
+2020-10-06 07:53:11 : 
+
+2020-10-06 07:53:11 : 
+
+2020-10-06 07:53:12 : 
+
+2020-10-06 07:53:12 : 
+
+2020-10-06 07:53:12 : 
+
+2020-10-06 07:53:13 : 
+
+2020-10-06 07:53:13 : 
+
+2020-10-06 07:53:13 : 
+
+2020-10-06 07:53:13 : 
+
+2020-10-06 07:53:17 : 
+
+2020-10-06 07:53:18 : 
+
+2020-10-06 07:53:18 : 
+
+2020-10-06 07:53:19 : 
+
+2020-10-06 07:53:19 : 
+
+2020-10-06 07:53:19 : 
+
+2020-10-06 07:53:20 : 
+
+2020-10-06 07:53:20 : 
+
+2020-10-06 07:53:20 : 
+
+2020-10-06 07:53:20 : 
+
+2020-10-06 07:53:24 : 
+
+2020-10-06 07:53:25 : 
+
+2020-10-06 07:53:25 : 
+
+2020-10-06 07:53:26 : 
+
+2020-10-06 07:53:26 : 
+
+2020-10-06 07:53:26 : 
+
+2020-10-06 07:53:27 : 
+
+2020-10-06 07:53:27 : 
+
+2020-10-06 07:53:27 : 
+
+2020-10-06 07:53:27 : 
+
+2020-10-06 07:53:32 : 
+
+2020-10-06 07:53:33 : 
+
+2020-10-06 07:53:33 : 
+
+2020-10-06 07:53:33 : 
+
+2020-10-06 07:53:34 : 
+
+2020-10-06 07:53:34 : 
+
+2020-10-06 07:53:34 : 
+
+2020-10-06 07:53:35 : 
+
+2020-10-06 07:53:35 : 
+
+2020-10-06 07:53:35 : 
+
+2020-10-06 07:53:40 : 
+
+2020-10-06 07:53:40 : 
+
+2020-10-06 07:53:40 : 
+
+2020-10-06 07:53:41 : 
+
+2020-10-06 07:53:41 : 
+
+2020-10-06 07:53:42 : 
+
+2020-10-06 07:53:42 : 
+
+2020-10-06 07:53:42 : 
+
+2020-10-06 07:53:43 : 
+
+2020-10-06 07:53:43 : 
+
+2020-10-06 07:53:47 : 
+
+2020-10-06 07:53:47 : 
+
+2020-10-06 07:53:47 : 
+
+2020-10-06 07:53:48 : 
+
+2020-10-06 07:53:48 : 
+
+2020-10-06 07:53:48 : 
+
+2020-10-06 07:53:49 : 
+
+2020-10-06 07:53:49 : 
+
+2020-10-06 07:53:49 : 
+
+2020-10-06 07:53:50 : 
+
+2020-10-06 07:53:53 : 
+
+2020-10-06 07:53:53 : 
+
+2020-10-06 07:53:54 : 
+
+2020-10-06 07:53:54 : 
+
+2020-10-06 07:53:55 : 
+
+2020-10-06 07:53:55 : 
+
+2020-10-06 07:53:55 : 
+
+2020-10-06 07:53:56 : 
+
+2020-10-06 07:53:56 : 
+
+2020-10-06 07:53:56 : 
+
+2020-10-06 07:54:00 : 
+
+2020-10-06 07:54:00 : 
+
+2020-10-06 07:54:01 : 
+
+2020-10-06 07:54:01 : 
+
+2020-10-06 07:54:02 : 
+
+2020-10-06 07:54:02 : 
+
+2020-10-06 07:54:02 : 
+
+2020-10-06 07:54:02 : 
+
+2020-10-06 07:54:02 : 
+
+2020-10-06 07:54:03 : 
+
+2020-10-06 07:54:07 : 
+
+2020-10-06 07:54:07 : 
+
+2020-10-06 07:54:07 : 
+
+2020-10-06 07:54:08 : 
+
+2020-10-06 07:54:09 : 
+
+2020-10-06 07:54:09 : 
+
+2020-10-06 07:54:09 : 
+
+2020-10-06 07:54:09 : 
+
+2020-10-06 07:54:09 : 
+
+2020-10-06 07:54:10 : 
+
+2020-10-06 07:54:13 : 
+
+2020-10-06 07:54:13 : 
+
+2020-10-06 07:54:14 : 
+
+2020-10-06 07:54:14 : 
+
+2020-10-06 07:54:15 : 
+
+2020-10-06 07:54:15 : 
+
+2020-10-06 07:54:15 : 
+
+2020-10-06 07:54:16 : 
+
+2020-10-06 07:54:16 : 
+
+2020-10-06 07:54:17 : 
+
+2020-10-06 07:54:20 : 
+
+2020-10-06 07:54:20 : 
+
+2020-10-06 07:54:20 : 
+
+2020-10-06 07:54:21 : 
+
+2020-10-06 07:54:22 : 
+
+2020-10-06 07:54:22 : 
+
+2020-10-06 07:54:22 : 
+
+2020-10-06 07:54:22 : 
+
+2020-10-06 07:54:22 : 
+
+2020-10-06 07:54:23 : 
+
+2020-10-06 07:54:27 : 
+
+2020-10-06 07:54:27 : 
+
+2020-10-06 07:54:27 : 
+
+2020-10-06 07:54:28 : 
+
+2020-10-06 07:54:28 : 
+
+2020-10-06 07:54:29 : 
+
+2020-10-06 07:54:29 : 
+
+2020-10-06 07:54:29 : 
+
+2020-10-06 07:54:30 : 
+
+2020-10-06 07:54:30 : 
+
+2020-10-06 07:54:34 : 
+
+2020-10-06 07:54:34 : 
+
+2020-10-06 07:54:34 : 
+
+2020-10-06 07:54:35 : 
+
+2020-10-06 07:54:36 : 
+
+2020-10-06 07:54:36 : 
+
+2020-10-06 07:54:36 : 
+
+2020-10-06 07:54:36 : 
+
+2020-10-06 07:54:37 : 
+
+2020-10-06 07:54:37 : 
+
+2020-10-06 07:54:40 : 
+
+2020-10-06 07:54:40 : 
+
+2020-10-06 07:54:41 : 
+
+2020-10-06 07:54:42 : 
+
+2020-10-06 07:54:43 : 
+
+2020-10-06 07:54:43 : 
+
+2020-10-06 07:54:44 : 
+
+2020-10-06 07:54:44 : 
+
+2020-10-06 07:54:45 : 
+
+2020-10-06 07:54:45 : 
+
+2020-10-06 07:54:48 : 
+
+2020-10-06 07:54:48 : 
+
+2020-10-06 07:54:48 : 
+
+2020-10-06 07:54:49 : 
+
+2020-10-06 07:54:50 : 
+
+2020-10-06 07:54:51 : 
+
+2020-10-06 07:54:51 : 
+
+2020-10-06 07:54:51 : 
+
+2020-10-06 07:54:52 : 
+
+2020-10-06 07:54:52 : 
+
+2020-10-06 07:54:55 : 
+
+2020-10-06 07:54:55 : 
+
+2020-10-06 07:54:55 : 
+
+2020-10-06 07:54:56 : 
+
+2020-10-06 07:54:58 : 
+
+2020-10-06 07:54:58 : 
+
+2020-10-06 07:54:58 : 
+
+2020-10-06 07:54:59 : 
+
+2020-10-06 07:54:59 : 
+
+2020-10-06 07:55:00 : 
+
+2020-10-06 07:55:02 : 
+
+2020-10-06 07:55:02 : 
+
+2020-10-06 07:55:02 : 
+
+2020-10-06 07:55:03 : 
+
+2020-10-06 07:55:05 : 
+
+2020-10-06 07:55:05 : 
+
+2020-10-06 07:55:05 : 
+
+2020-10-06 07:55:06 : 
+
+2020-10-06 07:55:07 : 
+
+2020-10-06 07:55:07 : 
+
+2020-10-06 07:55:08 : 
+
+2020-10-06 07:55:08 : 
+
+2020-10-06 07:55:08 : 
+
+2020-10-06 07:55:10 : 
+
+2020-10-06 07:55:12 : 
+
+2020-10-06 07:55:12 : 
+
+2020-10-06 07:55:12 : 
+
+2020-10-06 07:55:14 : 
+
+2020-10-06 07:55:14 : 
+
+2020-10-06 07:55:15 : 
+
+2020-10-06 07:55:15 : 
+
+2020-10-06 07:55:15 : 
+
+2020-10-06 07:55:15 : 
+
+2020-10-06 07:55:17 : 
+
+2020-10-06 07:55:19 : 
+
+2020-10-06 07:55:19 : 
+
+2020-10-06 07:55:19 : 
+
+2020-10-06 07:55:20 : 
+
+2020-10-06 07:55:21 : 
+
+2020-10-06 07:55:22 : 
+
+2020-10-06 07:55:22 : 
+
+2020-10-06 07:55:22 : 
+
+2020-10-06 07:55:22 : 
+
+2020-10-06 07:55:24 : 
+
+2020-10-06 07:55:26 : 
+
+2020-10-06 07:55:26 : 
+
+2020-10-06 07:55:26 : 
+
+2020-10-06 07:55:28 : 
+
+2020-10-06 07:55:28 : 
+
+2020-10-06 07:55:29 : 
+
+2020-10-06 07:55:29 : 
+
+2020-10-06 07:55:29 : 
+
+2020-10-06 07:55:29 : 
+
+2020-10-06 07:55:31 : 
+
+2020-10-06 07:55:33 : 
+
+2020-10-06 07:55:33 : 
+
+2020-10-06 07:55:33 : 
+
+2020-10-06 07:55:35 : 
+
+2020-10-06 07:55:35 : 
+
+2020-10-06 07:55:36 : 
+
+2020-10-06 07:55:36 : 
+
+2020-10-06 07:55:36 : 
+
+2020-10-06 07:55:36 : 
+
+2020-10-06 07:55:38 : 
+
+2020-10-06 07:55:40 : 
+
+2020-10-06 07:55:40 : 
+
+2020-10-06 07:55:40 : 
+
+2020-10-06 07:55:42 : 
+
+2020-10-06 07:55:42 : 
+
+2020-10-06 07:55:42 : 
+
+2020-10-06 07:55:42 : 
+
+2020-10-06 07:55:42 : 
+
+2020-10-06 07:55:44 : 
+
+2020-10-06 07:55:44 : 
+
+2020-10-06 07:55:46 : 
+
+2020-10-06 07:55:46 : 
+
+2020-10-06 07:55:46 : 
+
+2020-10-06 07:55:48 : 
+
+2020-10-06 07:55:48 : 
+
+2020-10-06 07:55:49 : 
+
+2020-10-06 07:55:49 : 
+
+2020-10-06 07:55:49 : 
+
+2020-10-06 07:55:51 : 
+
+2020-10-06 07:55:51 : 
+
+2020-10-06 07:55:53 : 
+
+2020-10-06 07:55:53 : 
+
+2020-10-06 07:55:53 : 
+
+2020-10-06 07:55:55 : 
+
+2020-10-06 07:55:55 : 
+
+2020-10-06 07:55:55 : 
+
+2020-10-06 07:55:55 : 
+
+2020-10-06 07:55:55 : 
+
+2020-10-06 07:55:57 : 
+
+2020-10-06 07:55:57 : 
+
+2020-10-06 07:55:59 : 
+
+2020-10-06 07:55:59 : 
+
+2020-10-06 07:55:59 : 
+
+2020-10-06 07:56:01 : 
+
+2020-10-06 07:56:01 : 
+
+2020-10-06 07:56:02 : 
+
+2020-10-06 07:56:02 : 
+
+2020-10-06 07:56:02 : 
+
+2020-10-06 07:56:04 : 
+
+2020-10-06 07:56:04 : 
+
+2020-10-06 07:56:06 : 
+
+2020-10-06 07:56:06 : 
+
+2020-10-06 07:56:06 : 
+
+2020-10-06 07:56:08 : 
+
+2020-10-06 07:56:08 : 
+
+2020-10-06 07:56:08 : 
+
+2020-10-06 07:56:08 : 
+
+2020-10-06 07:56:08 : 
+
+2020-10-06 07:56:10 : 
+
+2020-10-06 07:56:10 : 
+
+2020-10-06 07:56:12 : 
+
+2020-10-06 07:56:12 : 
+
+2020-10-06 07:56:12 : 
+
+2020-10-06 07:56:15 : 
+
+2020-10-06 07:56:15 : 
+
+2020-10-06 07:56:15 : 
+
+2020-10-06 07:56:15 : 
+
+2020-10-06 07:56:15 : 
+
+2020-10-06 07:56:17 : 
+
+2020-10-06 07:56:17 : 
+
+2020-10-06 07:56:19 : 
+
+2020-10-06 07:56:19 : 
+
+2020-10-06 07:56:19 : 
+
+2020-10-06 07:56:22 : 
+
+2020-10-06 07:56:22 : 
+
+2020-10-06 07:56:22 : 
+
+2020-10-06 07:56:22 : 
+
+2020-10-06 07:56:22 : 
+
+2020-10-06 07:56:24 : 
+
+2020-10-06 07:56:24 : 
+
+2020-10-06 07:56:26 : 
+
+2020-10-06 07:56:26 : 
+
+2020-10-06 07:56:26 : 
+
+2020-10-06 07:56:28 : 
+
+2020-10-06 07:56:28 : 
+
+2020-10-06 07:56:28 : 
+
+2020-10-06 07:56:28 : 
+
+2020-10-06 07:56:28 : 
+
+2020-10-06 07:56:30 : 
+
+2020-10-06 07:56:31 : 
+
+2020-10-06 07:56:32 : 
+
+2020-10-06 07:56:32 : 
+
+2020-10-06 07:56:32 : 
+
+2020-10-06 07:56:35 : 
+
+2020-10-06 07:56:35 : 
+
+2020-10-06 07:56:35 : 
+
+2020-10-06 07:56:35 : 
+
+2020-10-06 07:56:35 : 
+
+2020-10-06 07:56:37 : 
+
+2020-10-06 07:56:38 : 
+
+2020-10-06 07:56:39 : 
+
+2020-10-06 07:56:39 : 
+
+2020-10-06 07:56:39 : 
+
+2020-10-06 07:56:41 : 
+
+2020-10-06 07:56:41 : 
+
+2020-10-06 07:56:41 : 
+
+2020-10-06 07:56:42 : 
+
+2020-10-06 07:56:42 : 
+
+2020-10-06 07:56:43 : 
+
+2020-10-06 07:56:45 : 
+
+2020-10-06 07:56:45 : 
+
+2020-10-06 07:56:45 : 
+
+2020-10-06 07:56:45 : 
+
+2020-10-06 07:56:48 : 
+
+2020-10-06 07:56:48 : 
+
+2020-10-06 07:56:48 : 
+
+2020-10-06 07:56:48 : 
+
+2020-10-06 07:56:48 : 
+
+2020-10-06 07:56:50 : 
+
+2020-10-06 07:56:51 : 
+
+2020-10-06 07:56:52 : 
+
+2020-10-06 07:56:52 : 
+
+2020-10-06 07:56:52 : 
+
+2020-10-06 07:56:54 : 
+
+2020-10-06 07:56:54 : 
+
+2020-10-06 07:56:54 : 
+
+2020-10-06 07:56:54 : 
+
+2020-10-06 07:56:55 : 
+
+2020-10-06 07:56:57 : 
+
+2020-10-06 07:56:58 : 
+
+2020-10-06 07:56:59 : 
+
+2020-10-06 07:56:59 : 
+
+2020-10-06 07:56:59 : 
+
+2020-10-06 07:57:00 : 
+
+2020-10-06 07:57:01 : 
+
+2020-10-06 07:57:02 : 
+
+2020-10-06 07:57:02 : 
+
+2020-10-06 07:57:02 : 
+
+2020-10-06 07:57:04 : 
+
+2020-10-06 07:57:05 : 
+
+2020-10-06 07:57:06 : 
+
+2020-10-06 07:57:06 : 
+
+2020-10-06 07:57:06 : 
+
+2020-10-06 07:57:06 : 
+
+2020-10-06 07:57:08 : 
+
+2020-10-06 07:57:09 : 
+
+2020-10-06 07:57:12 : 
+
+2020-10-06 07:57:13 : 
+
+2020-10-06 07:57:14 : 
+
+2020-10-06 07:57:15 : 
+
+2020-10-06 07:57:16 : 
+
+2020-10-06 07:57:17 : 
+
+2020-10-06 07:57:17 : 
+
+2020-10-06 07:57:17 : 
+
+2020-10-06 07:57:17 : 
+
+2020-10-06 07:57:18 : 
+
+2020-10-06 07:57:19 : 
+
+2020-10-06 07:57:24 : 
+
+2020-10-06 07:57:25 : 
+
+2020-10-06 07:57:26 : 
+
+2020-10-06 07:57:26 : 
+
+2020-10-06 07:57:28 : 
+
+2020-10-06 07:57:28 : 
+
+2020-10-06 07:57:28 : 
+
+2020-10-06 07:57:29 : 
+
+2020-10-06 07:57:29 : 
+
+2020-10-06 07:57:31 : 
+
+2020-10-06 07:57:31 : 
+
+2020-10-06 07:57:32 : 
+
+2020-10-06 07:57:33 : 
+
+2020-10-06 07:57:33 : 
+
+2020-10-06 07:57:35 : 
+
+2020-10-06 07:57:35 : 
+
+2020-10-06 07:57:35 : 
+
+2020-10-06 07:57:36 : 
+
+2020-10-06 07:57:36 : 
+
+2020-10-06 07:57:38 : 
+
+2020-10-06 07:57:39 : 
+
+2020-10-06 07:57:40 : 
+
+2020-10-06 07:57:41 : 
+
+2020-10-06 07:57:42 : 
+
+2020-10-06 07:57:42 : 
+
+2020-10-06 07:57:42 : 
+
+2020-10-06 07:57:42 : 
+
+2020-10-06 07:57:43 : 
+
+2020-10-06 07:57:43 : 
+
+2020-10-06 07:57:45 : 
+
+2020-10-06 07:57:46 : 
+
+2020-10-06 07:57:48 : 
+
+2020-10-06 07:57:48 : 
+
+2020-10-06 07:57:48 : 
+
+2020-10-06 07:57:49 : 
+
+2020-10-06 07:57:49 : 
+
+2020-10-06 07:57:50 : 
+
+2020-10-06 07:57:50 : 
+
+2020-10-06 07:57:51 : 
+
+2020-10-06 07:57:52 : 
+
+2020-10-06 07:57:54 : 
+
+2020-10-06 07:57:55 : 
+
+2020-10-06 07:57:56 : 
+
+2020-10-06 07:57:56 : 
+
+2020-10-06 07:57:57 : 
+
+2020-10-06 07:57:58 : 
+
+2020-10-06 07:57:58 : 
+
+2020-10-06 07:57:58 : 
+
+2020-10-06 07:57:59 : 
+
+2020-10-06 07:57:59 : 
+
+2020-10-06 07:58:02 : 
+
+2020-10-06 07:58:03 : 
+
+2020-10-06 07:58:04 : 
+
+2020-10-06 07:58:04 : 
+
+2020-10-06 07:58:05 : 
+
+2020-10-06 07:58:05 : 
+
+2020-10-06 07:58:06 : 
+
+2020-10-06 07:58:06 : 
+
+2020-10-06 07:58:06 : 
+
+2020-10-06 07:58:06 : 
+
+2020-10-06 07:58:09 : 
+
+2020-10-06 07:58:10 : 
+
+2020-10-06 07:58:10 : 
+
+2020-10-06 07:58:11 : 
+
+2020-10-06 07:58:12 : 
+
+2020-10-06 07:58:12 : 
+
+2020-10-06 07:58:12 : 
+
+2020-10-06 07:58:12 : 
+
+2020-10-06 07:58:13 : 
+
+2020-10-06 07:58:13 : 
+
+2020-10-06 07:58:15 : 
+
+2020-10-06 07:58:16 : 
+
+2020-10-06 07:58:17 : 
+
+2020-10-06 07:58:18 : 
+
+2020-10-06 07:58:18 : 
+
+2020-10-06 07:58:18 : 
+
+2020-10-06 07:58:19 : 
+
+2020-10-06 07:58:19 : 
+
+2020-10-06 07:58:19 : 
+
+2020-10-06 07:58:19 : 
+
+2020-10-06 07:58:22 : 
+
+2020-10-06 07:58:23 : 
+
+2020-10-06 07:58:23 : 
+
+2020-10-06 07:58:25 : 
+
+2020-10-06 07:58:25 : 
+
+2020-10-06 07:58:25 : 
+
+2020-10-06 07:58:25 : 
+
+2020-10-06 07:58:25 : 
+
+2020-10-06 07:58:26 : 
+
+2020-10-06 07:58:26 : 
+
+2020-10-06 07:58:28 : 
+
+2020-10-06 07:58:29 : 
+
+2020-10-06 07:58:30 : 
+
+2020-10-06 07:58:32 : 
+
+2020-10-06 07:58:32 : 
+
+2020-10-06 07:58:32 : 
+
+2020-10-06 07:58:32 : 
+
+2020-10-06 07:58:32 : 
+
+2020-10-06 07:58:32 : 
+
+2020-10-06 07:58:33 : 
+
+2020-10-06 07:58:35 : 
+
+2020-10-06 07:58:36 : 
+
+2020-10-06 07:58:37 : 
+
+2020-10-06 07:58:38 : 
+
+2020-10-06 07:58:38 : 
+
+2020-10-06 07:58:39 : 
+
+2020-10-06 07:58:39 : 
+
+2020-10-06 07:58:39 : 
+
+2020-10-06 07:58:39 : 
+
+2020-10-06 07:58:40 : 
+
+2020-10-06 07:58:42 : 
+
+2020-10-06 07:58:43 : 
+
+2020-10-06 07:58:44 : 
+
+2020-10-06 07:58:45 : 
+
+2020-10-06 07:58:45 : 
+
+2020-10-06 07:58:45 : 
+
+2020-10-06 07:58:45 : 
+
+2020-10-06 07:58:46 : 
+
+2020-10-06 07:58:46 : 
+
+2020-10-06 07:58:46 : 
+
+2020-10-06 07:58:49 : 
+
+2020-10-06 07:58:49 : 
+
+2020-10-06 07:58:51 : 
+
+2020-10-06 07:58:52 : 
+
+2020-10-06 07:58:52 : 
+
+2020-10-06 07:58:52 : 
+
+2020-10-06 07:58:53 : 
+
+2020-10-06 07:58:53 : 
+
+2020-10-06 07:58:53 : 
+
+2020-10-06 07:58:53 : 
+
+2020-10-06 07:58:56 : 
+
+2020-10-06 07:58:57 : 
+
+2020-10-06 07:58:58 : 
+
+2020-10-06 07:58:59 : 
+
+2020-10-06 07:58:59 : 
+
+2020-10-06 07:59:00 : 
+
+2020-10-06 07:59:00 : 
+
+2020-10-06 07:59:00 : 
+
+2020-10-06 07:59:00 : 
+
+2020-10-06 07:59:01 : 
+
+2020-10-06 07:59:03 : 
+
+2020-10-06 07:59:04 : 
+
+2020-10-06 07:59:05 : 
+
+2020-10-06 07:59:05 : 
+
+2020-10-06 07:59:06 : 
+
+2020-10-06 07:59:07 : 
+
+2020-10-06 07:59:07 : 
+
+2020-10-06 07:59:08 : 
+
+2020-10-06 07:59:08 : 
+
+2020-10-06 07:59:08 : 
+
+2020-10-06 07:59:10 : 
+
+2020-10-06 07:59:12 : 
+
+2020-10-06 07:59:12 : 
+
+2020-10-06 07:59:13 : 
+
+2020-10-06 07:59:13 : 
+
+2020-10-06 07:59:15 : 
+
+2020-10-06 07:59:15 : 
+
+2020-10-06 07:59:15 : 
+
+2020-10-06 07:59:15 : 
+
+2020-10-06 07:59:15 : 
+
+2020-10-06 07:59:16 : 
+
+2020-10-06 07:59:19 : 
+
+2020-10-06 07:59:19 : 
+
+2020-10-06 07:59:20 : 
+
+2020-10-06 07:59:20 : 
+
+2020-10-06 07:59:22 : 
+
+2020-10-06 07:59:22 : 
+
+2020-10-06 07:59:22 : 
+
+2020-10-06 07:59:22 : 
+
+2020-10-06 07:59:23 : 
+
+2020-10-06 07:59:23 : 
+
+2020-10-06 07:59:26 : 
+
+2020-10-06 07:59:27 : 
+
+2020-10-06 07:59:27 : 
+
+2020-10-06 07:59:27 : 
+
+2020-10-06 07:59:29 : 
+
+2020-10-06 07:59:29 : 
+
+2020-10-06 07:59:29 : 
+
+2020-10-06 07:59:30 : 
+
+2020-10-06 07:59:30 : 
+
+2020-10-06 07:59:31 : 
+
+2020-10-06 07:59:32 : 
+
+2020-10-06 07:59:34 : 
+
+2020-10-06 07:59:34 : 
+
+2020-10-06 07:59:34 : 
+
+2020-10-06 07:59:36 : 
+
+2020-10-06 07:59:36 : 
+
+2020-10-06 07:59:36 : 
+
+2020-10-06 07:59:37 : 
+
+2020-10-06 07:59:37 : 
+
+2020-10-06 07:59:38 : 
+
+2020-10-06 07:59:39 : 
+
+2020-10-06 07:59:40 : 
+
+2020-10-06 07:59:40 : 
+
+2020-10-06 07:59:41 : 
+
+2020-10-06 07:59:43 : 
+
+2020-10-06 07:59:43 : 
+
+2020-10-06 07:59:43 : 
+
+2020-10-06 07:59:44 : 
+
+2020-10-06 07:59:44 : 
+
+2020-10-06 07:59:45 : 
+
+2020-10-06 07:59:46 : 
+
+2020-10-06 07:59:48 : 
+
+2020-10-06 07:59:48 : 
+
+2020-10-06 07:59:49 : 
+
+2020-10-06 07:59:50 : 
+
+2020-10-06 07:59:51 : 
+
+2020-10-06 07:59:51 : 
+
+2020-10-06 07:59:51 : 
+
+2020-10-06 07:59:51 : 
+
+2020-10-06 07:59:52 : 
+
+2020-10-06 07:59:52 : 
+
+2020-10-06 07:59:55 : 
+
+2020-10-06 07:59:56 : 
+
+2020-10-06 07:59:56 : 
+
+2020-10-06 07:59:58 : 
+
+2020-10-06 07:59:58 : 
+
+2020-10-06 07:59:58 : 
+
+2020-10-06 07:59:58 : 
+
+2020-10-06 07:59:58 : 
+
+2020-10-06 07:59:59 : 
+
+2020-10-06 08:00:00 : 
+
+2020-10-06 08:00:01 : 
+
+2020-10-06 08:00:02 : 
+
+2020-10-06 08:00:03 : 
+
+2020-10-06 08:00:04 : 
+
+2020-10-06 08:00:04 : 
+
+2020-10-06 08:00:05 : 
+
+2020-10-06 08:00:05 : 
+
+2020-10-06 08:00:05 : 
+
+2020-10-06 08:00:06 : 
+
+2020-10-06 08:00:06 : 
+
+2020-10-06 08:00:08 : 
+
+2020-10-06 08:00:09 : 
+
+2020-10-06 08:00:09 : 
+
+2020-10-06 08:00:11 : 
+
+2020-10-06 08:00:11 : 
+
+2020-10-06 08:00:11 : 
+
+2020-10-06 08:00:11 : 
+
+2020-10-06 08:00:11 : 
+
+2020-10-06 08:00:12 : 
+
+2020-10-06 08:00:13 : 
+
+2020-10-06 08:00:14 : 
+
+2020-10-06 08:00:15 : 
+
+2020-10-06 08:00:16 : 
+
+2020-10-06 08:00:17 : 
+
+2020-10-06 08:00:17 : 
+
+2020-10-06 08:00:18 : 
+
+2020-10-06 08:00:18 : 
+
+2020-10-06 08:00:18 : 
+
+2020-10-06 08:00:19 : 
+
+2020-10-06 08:00:19 : 
+
+2020-10-06 08:00:21 : 
+
+2020-10-06 08:00:22 : 
+
+2020-10-06 08:00:22 : 
+
+2020-10-06 08:00:24 : 
+
+2020-10-06 08:00:24 : 
+
+2020-10-06 08:00:24 : 
+
+2020-10-06 08:00:24 : 
+
+2020-10-06 08:00:24 : 
+
+2020-10-06 08:00:25 : 
+
+2020-10-06 08:00:26 : 
+
+2020-10-06 08:00:28 : 
+
+2020-10-06 08:00:29 : 
+
+2020-10-06 08:00:29 : 
+
+2020-10-06 08:00:30 : 
+
+2020-10-06 08:00:30 : 
+
+2020-10-06 08:00:31 : 
+
+2020-10-06 08:00:31 : 
+
+2020-10-06 08:00:31 : 
+
+2020-10-06 08:00:32 : 
+
+2020-10-06 08:00:33 : 
+
+2020-10-06 08:00:34 : 
+
+2020-10-06 08:00:35 : 
+
+2020-10-06 08:00:36 : 
+
+2020-10-06 08:00:37 : 
+
+2020-10-06 08:00:37 : 
+
+2020-10-06 08:00:37 : 
+
+2020-10-06 08:00:37 : 
+
+2020-10-06 08:00:38 : 
+
+2020-10-06 08:00:39 : 
+
+2020-10-06 08:00:40 : 
+
+2020-10-06 08:00:41 : 
+
+2020-10-06 08:00:42 : 
+
+2020-10-06 08:00:42 : 
+
+2020-10-06 08:00:43 : 
+
+2020-10-06 08:00:44 : 
+
+2020-10-06 08:00:44 : 
+
+2020-10-06 08:00:44 : 
+
+2020-10-06 08:00:44 : 
+
+2020-10-06 08:00:45 : 
+
+2020-10-06 08:00:47 : 
+
+2020-10-06 08:00:48 : 
+
+2020-10-06 08:00:49 : 
+
+2020-10-06 08:00:49 : 
+
+2020-10-06 08:00:50 : 
+
+2020-10-06 08:00:50 : 
+
+2020-10-06 08:00:50 : 
+
+2020-10-06 08:00:51 : 
+
+2020-10-06 08:00:51 : 
+
+2020-10-06 08:00:52 : 
+
+2020-10-06 08:00:54 : 
+
+2020-10-06 08:00:55 : 
+
+2020-10-06 08:00:55 : 
+
+2020-10-06 08:00:56 : 
+
+2020-10-06 08:00:56 : 
+
+2020-10-06 08:00:57 : 
+
+2020-10-06 08:00:57 : 
+
+2020-10-06 08:00:57 : 
+
+2020-10-06 08:00:58 : 
+
+2020-10-06 08:00:59 : 
+
+2020-10-06 08:01:00 : 
+
+2020-10-06 08:01:01 : 
+
+2020-10-06 08:01:02 : 
+
+2020-10-06 08:01:02 : 
+
+2020-10-06 08:01:03 : 
+
+2020-10-06 08:01:03 : 
+
+2020-10-06 08:01:04 : 
+
+2020-10-06 08:01:04 : 
+
+2020-10-06 08:01:04 : 
+
+2020-10-06 08:01:05 : 
+
+2020-10-06 08:01:07 : 
+
+2020-10-06 08:01:08 : 
+
+2020-10-06 08:01:08 : 
+
+2020-10-06 08:01:09 : 
+
+2020-10-06 08:01:10 : 
+
+2020-10-06 08:01:10 : 
+
+2020-10-06 08:01:11 : 
+
+2020-10-06 08:01:11 : 
+
+2020-10-06 08:01:11 : 
+
+2020-10-06 08:01:12 : 
+
+2020-10-06 08:01:14 : 
+
+2020-10-06 08:01:14 : 
+
+2020-10-06 08:01:15 : 
+
+2020-10-06 08:01:15 : 
+
+2020-10-06 08:01:16 : 
+
+2020-10-06 08:01:17 : 
+
+2020-10-06 08:01:17 : 
+
+2020-10-06 08:01:17 : 
+
+2020-10-06 08:01:17 : 
+
+2020-10-06 08:01:18 : 
+
+2020-10-06 08:01:21 : 
+
+2020-10-06 08:01:21 : 
+
+2020-10-06 08:01:22 : 
+
+2020-10-06 08:01:22 : 
+
+2020-10-06 08:01:22 : 
+
+2020-10-06 08:01:23 : 
+
+2020-10-06 08:01:24 : 
+
+2020-10-06 08:01:24 : 
+
+2020-10-06 08:01:25 : 
+
+2020-10-06 08:01:27 : 
+
+2020-10-06 08:01:27 : 
+
+2020-10-06 08:01:29 : 
+
+2020-10-06 08:01:31 : 
+
+2020-10-06 08:01:32 : 
+
+2020-10-06 08:01:33 : 
+
+2020-10-06 08:01:33 : 
+
+2020-10-06 08:01:34 : 
+
+2020-10-06 08:01:35 : 
+
+2020-10-06 08:01:35 : 
+
+2020-10-06 08:01:36 : 
+
+2020-10-06 08:01:37 : 
+
+2020-10-06 08:01:37 : 
+
+2020-10-06 08:01:38 : 
+
+2020-10-06 08:01:38 : 
+
+2020-10-06 08:01:39 : 
+
+2020-10-06 08:01:40 : 
+
+2020-10-06 08:01:40 : 
+
+2020-10-06 08:01:41 : 
+
+2020-10-06 08:01:41 : 
+
+2020-10-06 08:01:42 : 
+
+2020-10-06 08:01:43 : 
+
+2020-10-06 08:01:43 : 
+
+2020-10-06 08:01:44 : 
+
+2020-10-06 08:01:45 : 
+
+2020-10-06 08:01:45 : 
+
+2020-10-06 08:01:46 : 
+
+2020-10-06 08:01:46 : 
+
+2020-10-06 08:01:47 : 
+
+2020-10-06 08:01:48 : 
+
+2020-10-06 08:01:48 : 
+
+2020-10-06 08:01:49 : 
+
+2020-10-06 08:01:49 : 
+
+2020-10-06 08:01:50 : 
+
+2020-10-06 08:01:51 : 
+
+2020-10-06 08:01:51 : 
+
+2020-10-06 08:01:52 : 
+
+2020-10-06 08:01:52 : 
+
+2020-10-06 08:01:56 : 
+
+2020-10-06 08:01:57 : 
+
+2020-10-06 08:01:57 : 
+
+2020-10-06 08:01:57 : 
+
+2020-10-06 08:01:57 : 
+
+2020-10-06 08:01:57 : 
+
+2020-10-06 08:01:57 : 
+
+2020-10-06 08:01:57 : 
+
+2020-10-06 08:01:57 : 
+
+2020-10-06 08:01:57 : 
+
+2020-10-06 08:01:57 : 
+
+2020-10-06 08:01:57 : 
+
+2020-10-06 08:01:57 : 
+
+2020-10-06 08:01:57 : 
+
+2020-10-06 08:01:57 : 
+
+2020-10-06 08:01:57 : 
+
+2020-10-06 08:01:57 : 
+
+2020-10-06 08:01:57 : 
+
+2020-10-06 08:01:57 : 
+
+2020-10-06 08:01:57 : 
+
+2020-10-06 08:01:57 : 
+
+2020-10-06 08:01:57 : 
+
+2020-10-06 08:01:57 : 
+
+2020-10-06 08:01:57 : 
+
+2020-10-06 08:01:57 : 
+
+2020-10-06 08:01:57 : 
+
+2020-10-06 08:01:57 : 
+
+2020-10-06 08:01:57 : 
+
+2020-10-06 08:01:57 : 
+
+2020-10-06 08:01:58 : 
+
+2020-10-06 08:01:58 : 
+
+2020-10-06 08:01:58 : 
+
+2020-10-06 08:01:58 : 
+
+2020-10-06 08:01:58 : 
+
+2020-10-06 08:01:58 : 
+
+2020-10-06 08:01:58 : 
+
+------- Completed
+
+End Time : 2020-10-06 08:01:58
+Elapsed Time Minutes = 19.20458436807
+Elapsed Time Hours = 0.320076455275218
+
+-------
+
+
+

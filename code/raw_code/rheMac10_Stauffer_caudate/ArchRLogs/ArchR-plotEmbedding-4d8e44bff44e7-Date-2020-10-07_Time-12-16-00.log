@@ -1,0 +1,736 @@
+
+           ___      .______        ______  __    __  .______      
+          /   \     |   _  \      /      ||  |  |  | |   _  \     
+         /  ^  \    |  |_)  |    |  ,----'|  |__|  | |  |_)  |    
+        /  /_\  \   |      /     |  |     |   __   | |      /     
+       /  _____  \  |  |\  \\___ |  `----.|  |  |  | |  |\  \\___.
+      /__/     \__\ | _| `._____| \______||__|  |__| | _| `._____|
+    
+Logging With ArchR!
+
+Start Time : 2020-10-07 12:16:00
+
+------- ArchR Info
+
+ArchRThreads = 10
+ArchRGenome = Mm10
+
+------- System Info
+
+Computer OS = unix
+Total Cores = 64
+
+------- Session Info
+
+R version 3.6.3 (2020-02-29)
+Platform: x86_64-conda_cos6-linux-gnu (64-bit)
+Running under: CentOS Linux 7 (Core)
+
+Matrix products: default
+BLAS/LAPACK: /home/bnphan/miniconda3/lib/libmkl_rt.so
+
+locale:
+ [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+ [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+ [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
+ [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+ [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+[11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+
+attached base packages:
+[1] parallel  stats4    stats     graphics  grDevices utils     datasets 
+[8] methods   base     
+
+other attached packages:
+ [1] ArchR_0.9.5                 magrittr_1.5               
+ [3] rhdf5_2.30.1                Matrix_1.2-18              
+ [5] data.table_1.13.0           SummarizedExperiment_1.16.1
+ [7] DelayedArray_0.12.3         BiocParallel_1.20.1        
+ [9] matrixStats_0.57.0          Biobase_2.46.0             
+[11] GenomicRanges_1.38.0        GenomeInfoDb_1.22.1        
+[13] IRanges_2.20.2              S4Vectors_0.24.4           
+[15] BiocGenerics_0.32.0         ggplot2_3.3.2              
+[17] colorout_1.2-2             
+
+loaded via a namespace (and not attached):
+ [1] Rcpp_1.0.5                         lattice_0.20-41                   
+ [3] Rsamtools_2.2.3                    Biostrings_2.54.0                 
+ [5] gtools_3.8.2                       digest_0.6.25                     
+ [7] BSgenome.Mmusculus.UCSC.mm10_1.4.0 IRdisplay_0.7.0                   
+ [9] R6_2.4.1                           repr_1.1.0                        
+[11] evaluate_0.14                      pillar_1.4.6                      
+[13] zlibbioc_1.32.0                    rlang_0.4.7                       
+[15] uuid_0.1-4                         hexbin_1.28.1                     
+[17] labeling_0.3                       stringr_1.4.0                     
+[19] RCurl_1.98-1.2                     munsell_0.5.0                     
+[21] compiler_3.6.3                     rtracklayer_1.46.0                
+[23] pkgconfig_2.0.3                    base64enc_0.1-3                   
+[25] htmltools_0.5.0                    tidyselect_1.1.0                  
+[27] tibble_3.0.3                       GenomeInfoDbData_1.2.2            
+[29] XML_3.99-0.3                       crayon_1.3.4                      
+[31] dplyr_1.0.2                        withr_2.3.0                       
+[33] GenomicAlignments_1.22.1           bitops_1.0-6                      
+[35] grid_3.6.3                         jsonlite_1.7.1                    
+[37] gtable_0.3.0                       lifecycle_0.2.0                   
+[39] scales_1.1.1                       stringi_1.5.3                     
+[41] farver_2.0.3                       XVector_0.26.0                    
+[43] ellipsis_0.3.1                     generics_0.0.2                    
+[45] vctrs_0.3.4                        cowplot_1.1.0                     
+[47] IRkernel_1.1.1                     Rhdf5lib_1.8.0                    
+[49] tools_3.6.3                        Cairo_1.5-12.2                    
+[51] BSgenome_1.54.0                    glue_1.4.2                        
+[53] purrr_0.3.4                        colorspace_1.4-1                  
+[55] pbdZMQ_0.3-3                      
+
+
+------- Log Info
+
+
+2020-10-07 12:16:00 : Input-Parameters, Class = list
+
+Input-Parameters$ArchRProj: length = 1
+class: ArchRProject 
+outputDirectory: /home/bnphan/projects/snATAC_cross_species_caudate/data/raw_data/rheMac10/Stauffer_caudate/ArchR_Stauffer_caudate 
+samples(1): CAUD_WS1H_STA682A131
+sampleColData names(1): ArrowFiles
+cellColData names(16): Sample TSSEnrichment ... Region Clusters
+numberOfCells(1): 1
+medianTSS(1): 10.409
+medianFrags(1): 99782
+
+
+Input-Parameters$embedding: length = 1
+[1] "UMAP"
+
+
+Input-Parameters$colorBy: length = 1
+[1] "GeneScoreMatrix"
+
+
+Input-Parameters$name: length = 6
+[1] "Drd2"    "Adora2a" "Penk"    "Grik3"   "Sp9"     "Gpr52"  
+
+
+Input-Parameters$log2Norm: length = 0
+NULL
+
+
+Input-Parameters$pal: length = 0
+NULL
+
+
+Input-Parameters$size: length = 1
+[1] 0.1
+
+
+Input-Parameters$sampleCells: length = 0
+NULL
+
+
+Input-Parameters$highlightCells: length = 0
+NULL
+
+
+Input-Parameters$rastr: length = 1
+[1] TRUE
+
+
+Input-Parameters$quantCut: length = 2
+[1] 0.01 0.99
+
+
+Input-Parameters$discreteSet: length = 0
+NULL
+
+
+Input-Parameters$continuousSet: length = 0
+NULL
+
+
+Input-Parameters$randomize: length = 1
+[1] TRUE
+
+
+Input-Parameters$keepAxis: length = 1
+[1] FALSE
+
+
+Input-Parameters$baseSize: length = 1
+[1] 10
+
+
+Input-Parameters$plotAs: length = 0
+NULL
+
+
+Input-Parameters$threads: length = 1
+[1] 10
+
+
+Input-Parameters$logFile: length = 1
+[1] "ArchRLogs/ArchR-plotEmbedding-4d8e44bff44e7-Date-2020-10-07_Time-12-16-00.log"
+
+
+
+2020-10-07 12:16:00 : 
+
+2020-10-07 12:16:00 : Embedding data.frame, Class = data.frame
+Embedding data.frame: nRows = 3810, nCols = 2
+                                        Harmony#UMAP_Dimension_1
+CAUD_WS1H_STA682A131#AGCGATTGTAGCATGG-1              -2.02326998
+CAUD_WS1H_STA682A131#GGTGCTGAGCGTATCT-1              -8.85965183
+CAUD_WS1H_STA682A131#TCCCACATCACGTCAA-1              -3.20845177
+CAUD_WS1H_STA682A131#GGATAGGGTCTGGTTA-1              11.38817093
+CAUD_WS1H_STA682A131#CATGTTTGTCTGATTG-1               0.03029272
+CAUD_WS1H_STA682A131#CCCACATAGGCAGTAC-1              11.00890801
+                                        Harmony#UMAP_Dimension_2
+CAUD_WS1H_STA682A131#AGCGATTGTAGCATGG-1                 1.120647
+CAUD_WS1H_STA682A131#GGTGCTGAGCGTATCT-1                -5.041982
+CAUD_WS1H_STA682A131#TCCCACATCACGTCAA-1                 1.877142
+CAUD_WS1H_STA682A131#GGATAGGGTCTGGTTA-1               -12.098674
+CAUD_WS1H_STA682A131#CATGTTTGTCTGATTG-1                -7.171798
+CAUD_WS1H_STA682A131#CCCACATAGGCAGTAC-1               -10.669672
+
+
+
+2020-10-07 12:16:00 : 
+
+2020-10-07 12:16:00 : 
+
+2020-10-07 12:16:00 : FeatureDF, Class = DFrame
+DataFrame with 34276 rows and 6 columns
+      seqnames     start       end  strand         name     idx
+         <Rle>   <array>   <array> <array>      <array> <array>
+1         chr1   1004699   1003761       2        OR2L8       1
+2         chr1   1077962   1066577       2       OR2AJ1       2
+3         chr1   1082597   1079674       2        OR2T8       3
+4         chr1   1097887   1096880       2       OR2AK2       4
+5         chr1   1147161   1146217       2        OR2W3       5
+...        ...       ...       ...     ...          ...     ...
+34272     chrX 151432051 151431449       2        H2AB3    1238
+34273     chrX 151436862 151461517       1 LOC101927830    1239
+34274     chrX 151560568 151456825       2        TMLHE    1240
+34275     chrX 151560181 151726587       1        SPRY3    1241
+34276     chrX 151842317 151901358       1        VAMP7    1242
+
+
+2020-10-07 12:16:00 : idx, Class = integer
+
+idx: length = 6
+[1] 10749  3893 30785  2640  7189   376
+
+
+
+2020-10-07 12:16:00 : FeatureDF-Subset, Class = DFrame
+DataFrame with 6 rows and 6 columns
+  seqnames     start       end  strand    name     idx
+     <Rle>   <array>   <array> <array> <array> <array>
+1    chr14 106616381 106549673       2    DRD2    1578
+2    chr10  28841378  28822546       2 ADORA2A     555
+3     chr8  57063707  57057987       2    PENK     580
+4     chr1 187548631 187786904       1   GRIK3    2640
+5    chr12  61431098  61434654       1     SP9     429
+6     chr1  31732152  31733718       1   GPR52     376
+
+
+2020-10-07 12:16:02 : Feature-Matrix, Class = dgCMatrix
+Feature-Matrix: nRows = 6, nCols = 3810
+Feature-Matrix: NonZeroEntries = 7601, EntryRange = [ 0.035 , 10.844 ]
+5 x 5 sparse Matrix of class "dgCMatrix"
+     CAUD_WS1H_STA682A131#AGCGATTGTAGCATGG-1
+[1,]                                   .    
+[2,]                                   0.260
+[3,]                                   .    
+[4,]                                   0.893
+[5,]                                   0.157
+     CAUD_WS1H_STA682A131#GGTGCTGAGCGTATCT-1
+[1,]                                   0.063
+[2,]                                   0.182
+[3,]                                   .    
+[4,]                                   0.688
+[5,]                                   0.935
+     CAUD_WS1H_STA682A131#TCCCACATCACGTCAA-1
+[1,]                                   0.149
+[2,]                                   0.088
+[3,]                                   0.615
+[4,]                                   1.232
+[5,]                                   .    
+     CAUD_WS1H_STA682A131#GGATAGGGTCTGGTTA-1
+[1,]                                   0.383
+[2,]                                   0.092
+[3,]                                   0.143
+[4,]                                   0.641
+[5,]                                   0.076
+     CAUD_WS1H_STA682A131#CATGTTTGTCTGATTG-1
+[1,]                                   0.327
+[2,]                                   0.094
+[3,]                                   0.376
+[4,]                                   1.415
+[5,]                                   0.899
+
+
+
+2020-10-07 12:16:02 : colorMat-Before-Impute, Class = matrix
+        CAUD_WS1H_STA682A131#AGCGATTGTAGCATGG-1
+Drd2                                      0.000
+Adora2a                                   0.260
+Penk                                      0.000
+Grik3                                     0.893
+Sp9                                       0.157
+        CAUD_WS1H_STA682A131#GGTGCTGAGCGTATCT-1
+Drd2                                      0.063
+Adora2a                                   0.182
+Penk                                      0.000
+Grik3                                     0.688
+Sp9                                       0.935
+        CAUD_WS1H_STA682A131#TCCCACATCACGTCAA-1
+Drd2                                      0.149
+Adora2a                                   0.088
+Penk                                      0.615
+Grik3                                     1.232
+Sp9                                       0.000
+        CAUD_WS1H_STA682A131#GGATAGGGTCTGGTTA-1
+Drd2                                      0.383
+Adora2a                                   0.092
+Penk                                      0.143
+Grik3                                     0.641
+Sp9                                       0.076
+        CAUD_WS1H_STA682A131#CATGTTTGTCTGATTG-1
+Drd2                                      0.327
+Adora2a                                   0.094
+Penk                                      0.376
+Grik3                                     1.415
+Sp9                                       0.899
+
+colorMat-Before-Impute: nRows = 6, nCols = 3810
+
+
+2020-10-07 12:16:02 : imputeMatrix Input-Parameters, Class = list
+
+imputeMatrix Input-Parameters$mat: nRows = 6, nCols = 3810
+        CAUD_WS1H_STA682A131#AGCGATTGTAGCATGG-1
+Drd2                                      0.000
+Adora2a                                   0.260
+Penk                                      0.000
+Grik3                                     0.893
+Sp9                                       0.157
+        CAUD_WS1H_STA682A131#GGTGCTGAGCGTATCT-1
+Drd2                                      0.063
+Adora2a                                   0.182
+Penk                                      0.000
+Grik3                                     0.688
+Sp9                                       0.935
+        CAUD_WS1H_STA682A131#TCCCACATCACGTCAA-1
+Drd2                                      0.149
+Adora2a                                   0.088
+Penk                                      0.615
+Grik3                                     1.232
+Sp9                                       0.000
+        CAUD_WS1H_STA682A131#GGATAGGGTCTGGTTA-1
+Drd2                                      0.383
+Adora2a                                   0.092
+Penk                                      0.143
+Grik3                                     0.641
+Sp9                                       0.076
+        CAUD_WS1H_STA682A131#CATGTTTGTCTGATTG-1
+Drd2                                      0.327
+Adora2a                                   0.094
+Penk                                      0.376
+Grik3                                     1.415
+Sp9                                       0.899
+
+
+imputeMatrix Input-Parameters$threads: length = 1
+[1] 10
+
+
+imputeMatrix Input-Parameters$verbose: length = 1
+[1] FALSE
+
+
+imputeMatrix Input-Parameters$logFile: length = 1
+[1] "ArchRLogs/ArchR-plotEmbedding-4d8e44bff44e7-Date-2020-10-07_Time-12-16-00.log"
+
+
+
+2020-10-07 12:16:02 : mat, Class = matrix
+        CAUD_WS1H_STA682A131#AGCGATTGTAGCATGG-1
+Drd2                                      0.000
+Adora2a                                   0.260
+Penk                                      0.000
+Grik3                                     0.893
+Sp9                                       0.157
+        CAUD_WS1H_STA682A131#GGTGCTGAGCGTATCT-1
+Drd2                                      0.063
+Adora2a                                   0.182
+Penk                                      0.000
+Grik3                                     0.688
+Sp9                                       0.935
+        CAUD_WS1H_STA682A131#TCCCACATCACGTCAA-1
+Drd2                                      0.149
+Adora2a                                   0.088
+Penk                                      0.615
+Grik3                                     1.232
+Sp9                                       0.000
+        CAUD_WS1H_STA682A131#GGATAGGGTCTGGTTA-1
+Drd2                                      0.383
+Adora2a                                   0.092
+Penk                                      0.143
+Grik3                                     0.641
+Sp9                                       0.076
+        CAUD_WS1H_STA682A131#CATGTTTGTCTGATTG-1
+Drd2                                      0.327
+Adora2a                                   0.094
+Penk                                      0.376
+Grik3                                     1.415
+Sp9                                       0.899
+
+mat: nRows = 6, nCols = 3810
+
+
+2020-10-07 12:16:02 : weightList, Class = SimpleList
+
+weightList$w1: length = 1
+[1] "/home/bnphan/projects/snATAC_cross_species_caudate/data/raw_data/rheMac10/Stauffer_caudate/ArchR_Stauffer_caudate/ImputeWeights/Impute-Weights-Rep-1"
+
+
+2020-10-07 12:16:02 : Imputing Matrix (1 of 1), 0 mins elapsed.
+
+2020-10-07 12:16:02 : 
+
+2020-10-07 12:16:02 : 
+2020-10-07 12:16:02 : Finished Imputing Matrix, 0.002 mins elapsed.
+
+2020-10-07 12:16:02 : colorMat-After-Impute, Class = matrix
+        CAUD_WS1H_STA682A131#AGCGATTGTAGCATGG-1
+Drd2                                 0.14289426
+Adora2a                              0.17443332
+Penk                                 0.05746238
+Grik3                                1.03236898
+Sp9                                  0.15141560
+        CAUD_WS1H_STA682A131#GGTGCTGAGCGTATCT-1
+Drd2                                 0.12641575
+Adora2a                              0.18233408
+Penk                                 0.08789974
+Grik3                                0.87882285
+Sp9                                  0.31717923
+        CAUD_WS1H_STA682A131#TCCCACATCACGTCAA-1
+Drd2                                 0.15117903
+Adora2a                              0.18776133
+Penk                                 0.07660799
+Grik3                                1.02036857
+Sp9                                  0.15210307
+        CAUD_WS1H_STA682A131#GGATAGGGTCTGGTTA-1
+Drd2                                  0.9075006
+Adora2a                               0.6017975
+Penk                                  0.6718496
+Grik3                                 0.9872089
+Sp9                                   0.7179577
+        CAUD_WS1H_STA682A131#CATGTTTGTCTGATTG-1
+Drd2                                  0.3420867
+Adora2a                               0.1774699
+Penk                                  0.2568701
+Grik3                                 1.5081809
+Sp9                                   1.5899488
+
+colorMat-After-Impute: nRows = 6, nCols = 3810
+
+
+2020-10-07 12:16:02 : ColorParams 1, Class = list
+
+ColorParams 1$color: length = 3810
+CAUD_WS1H_STA682A131#AGCGATTGTAGCATGG-1 CAUD_WS1H_STA682A131#GGTGCTGAGCGTATCT-1 
+                              0.1428943                               0.1264157 
+CAUD_WS1H_STA682A131#TCCCACATCACGTCAA-1 CAUD_WS1H_STA682A131#GGATAGGGTCTGGTTA-1 
+                              0.1511790                               0.9075006 
+CAUD_WS1H_STA682A131#CATGTTTGTCTGATTG-1 CAUD_WS1H_STA682A131#CCCACATAGGCAGTAC-1 
+                              0.3420867                               0.6571884 
+
+
+ColorParams 1$discrete: length = 1
+[1] FALSE
+
+
+ColorParams 1$title: length = 1
+[1] "UMAP of Harmony colored by\nGeneScoreMatrix : Drd2"
+
+
+ColorParams 1$continuousSet: length = 1
+[1] "horizonExtra"
+
+
+
+2020-10-07 12:16:02 : PlotParams-1, Class = list
+
+PlotParams-1$color: length = 3810
+CAUD_WS1H_STA682A131#AGCGATTGTAGCATGG-1 CAUD_WS1H_STA682A131#GGTGCTGAGCGTATCT-1 
+                              0.1926919                               0.1717394 
+CAUD_WS1H_STA682A131#TCCCACATCACGTCAA-1 CAUD_WS1H_STA682A131#GGATAGGGTCTGGTTA-1 
+                              0.2031122                               0.9316835 
+CAUD_WS1H_STA682A131#CATGTTTGTCTGATTG-1 CAUD_WS1H_STA682A131#CCCACATAGGCAGTAC-1 
+                              0.4244779                               0.7287377 
+
+
+PlotParams-1$title: length = 1
+[1] "UMAP of Harmony colored by\nGeneScoreMatrix : Drd2"
+
+
+PlotParams-1$x: length = 3810
+[1] -2.02326998 -8.85965183 -3.20845177 11.38817093  0.03029272 11.00890801
+
+
+PlotParams-1$y: length = 3810
+[1]   1.120647  -5.041982   1.877142 -12.098674  -7.171798 -10.669672
+
+
+PlotParams-1$baseSize: length = 1
+[1] 10
+
+
+PlotParams-1$xlabel: length = 1
+[1] "UMAP Dimension 1"
+
+
+PlotParams-1$ylabel: length = 1
+[1] "UMAP Dimension 2"
+
+
+PlotParams-1$pal: length = 256
+[1] "#000436" "#000439" "#00053D" "#000640" "#000744" "#000848"
+
+
+PlotParams-1$colorTitle: length = 1
+[1] "Log2(NormCounts + 1)"
+
+
+
+2020-10-07 12:16:02 : PlotParams-2, Class = list
+
+PlotParams-2$color: length = 3810
+CAUD_WS1H_STA682A131#AGCGATTGTAGCATGG-1 CAUD_WS1H_STA682A131#GGTGCTGAGCGTATCT-1 
+                              0.2319648                               0.2416377 
+CAUD_WS1H_STA682A131#TCCCACATCACGTCAA-1 CAUD_WS1H_STA682A131#GGATAGGGTCTGGTTA-1 
+                              0.2482450                               0.6796918 
+CAUD_WS1H_STA682A131#CATGTTTGTCTGATTG-1 CAUD_WS1H_STA682A131#CCCACATAGGCAGTAC-1 
+                              0.2356902                               0.5393685 
+
+
+PlotParams-2$title: length = 1
+[1] "UMAP of Harmony colored by\nGeneScoreMatrix : Adora2a"
+
+
+PlotParams-2$x: length = 3810
+[1] -2.02326998 -8.85965183 -3.20845177 11.38817093  0.03029272 11.00890801
+
+
+PlotParams-2$y: length = 3810
+[1]   1.120647  -5.041982   1.877142 -12.098674  -7.171798 -10.669672
+
+
+PlotParams-2$baseSize: length = 1
+[1] 10
+
+
+PlotParams-2$xlabel: length = 1
+[1] "UMAP Dimension 1"
+
+
+PlotParams-2$ylabel: length = 1
+[1] "UMAP Dimension 2"
+
+
+PlotParams-2$pal: length = 256
+[1] "#000436" "#000439" "#00053D" "#000640" "#000744" "#000848"
+
+
+PlotParams-2$colorTitle: length = 1
+[1] "Log2(NormCounts + 1)"
+
+
+
+2020-10-07 12:16:02 : PlotParams-3, Class = list
+
+PlotParams-3$color: length = 3810
+CAUD_WS1H_STA682A131#AGCGATTGTAGCATGG-1 CAUD_WS1H_STA682A131#GGTGCTGAGCGTATCT-1 
+                             0.08060634                              0.12154560 
+CAUD_WS1H_STA682A131#TCCCACATCACGTCAA-1 CAUD_WS1H_STA682A131#GGATAGGGTCTGGTTA-1 
+                             0.10649304                              0.74144509 
+CAUD_WS1H_STA682A131#CATGTTTGTCTGATTG-1 CAUD_WS1H_STA682A131#CCCACATAGGCAGTAC-1 
+                             0.32983557                              0.46759049 
+
+
+PlotParams-3$title: length = 1
+[1] "UMAP of Harmony colored by\nGeneScoreMatrix : Penk"
+
+
+PlotParams-3$x: length = 3810
+[1] -2.02326998 -8.85965183 -3.20845177 11.38817093  0.03029272 11.00890801
+
+
+PlotParams-3$y: length = 3810
+[1]   1.120647  -5.041982   1.877142 -12.098674  -7.171798 -10.669672
+
+
+PlotParams-3$baseSize: length = 1
+[1] 10
+
+
+PlotParams-3$xlabel: length = 1
+[1] "UMAP Dimension 1"
+
+
+PlotParams-3$ylabel: length = 1
+[1] "UMAP Dimension 2"
+
+
+PlotParams-3$pal: length = 256
+[1] "#000436" "#000439" "#00053D" "#000640" "#000744" "#000848"
+
+
+PlotParams-3$colorTitle: length = 1
+[1] "Log2(NormCounts + 1)"
+
+
+
+2020-10-07 12:16:02 : PlotParams-4, Class = list
+
+PlotParams-4$color: length = 3810
+CAUD_WS1H_STA682A131#AGCGATTGTAGCATGG-1 CAUD_WS1H_STA682A131#GGTGCTGAGCGTATCT-1 
+                              1.0231624                               0.9098290 
+CAUD_WS1H_STA682A131#TCCCACATCACGTCAA-1 CAUD_WS1H_STA682A131#GGATAGGGTCTGGTTA-1 
+                              1.0146185                               0.9907436 
+CAUD_WS1H_STA682A131#CATGTTTGTCTGATTG-1 CAUD_WS1H_STA682A131#CCCACATAGGCAGTAC-1 
+                              1.3266414                               0.9065124 
+
+
+PlotParams-4$title: length = 1
+[1] "UMAP of Harmony colored by\nGeneScoreMatrix : Grik3"
+
+
+PlotParams-4$x: length = 3810
+[1] -2.02326998 -8.85965183 -3.20845177 11.38817093  0.03029272 11.00890801
+
+
+PlotParams-4$y: length = 3810
+[1]   1.120647  -5.041982   1.877142 -12.098674  -7.171798 -10.669672
+
+
+PlotParams-4$baseSize: length = 1
+[1] 10
+
+
+PlotParams-4$xlabel: length = 1
+[1] "UMAP Dimension 1"
+
+
+PlotParams-4$ylabel: length = 1
+[1] "UMAP Dimension 2"
+
+
+PlotParams-4$pal: length = 256
+[1] "#000436" "#000439" "#00053D" "#000640" "#000744" "#000848"
+
+
+PlotParams-4$colorTitle: length = 1
+[1] "Log2(NormCounts + 1)"
+
+
+
+2020-10-07 12:16:02 : PlotParams-5, Class = list
+
+PlotParams-5$color: length = 3810
+CAUD_WS1H_STA682A131#AGCGATTGTAGCATGG-1 CAUD_WS1H_STA682A131#GGTGCTGAGCGTATCT-1 
+                              0.2034087                               0.3974517 
+CAUD_WS1H_STA682A131#TCCCACATCACGTCAA-1 CAUD_WS1H_STA682A131#GGATAGGGTCTGGTTA-1 
+                              0.2042698                               0.7806945 
+CAUD_WS1H_STA682A131#CATGTTTGTCTGATTG-1 CAUD_WS1H_STA682A131#CCCACATAGGCAGTAC-1 
+                              1.2924520                               0.5832379 
+
+
+PlotParams-5$title: length = 1
+[1] "UMAP of Harmony colored by\nGeneScoreMatrix : Sp9"
+
+
+PlotParams-5$x: length = 3810
+[1] -2.02326998 -8.85965183 -3.20845177 11.38817093  0.03029272 11.00890801
+
+
+PlotParams-5$y: length = 3810
+[1]   1.120647  -5.041982   1.877142 -12.098674  -7.171798 -10.669672
+
+
+PlotParams-5$baseSize: length = 1
+[1] 10
+
+
+PlotParams-5$xlabel: length = 1
+[1] "UMAP Dimension 1"
+
+
+PlotParams-5$ylabel: length = 1
+[1] "UMAP Dimension 2"
+
+
+PlotParams-5$pal: length = 256
+[1] "#000436" "#000439" "#00053D" "#000640" "#000744" "#000848"
+
+
+PlotParams-5$colorTitle: length = 1
+[1] "Log2(NormCounts + 1)"
+
+
+
+2020-10-07 12:16:03 : PlotParams-6, Class = list
+
+PlotParams-6$color: length = 3810
+CAUD_WS1H_STA682A131#AGCGATTGTAGCATGG-1 CAUD_WS1H_STA682A131#GGTGCTGAGCGTATCT-1 
+                              0.1174461                               0.1069178 
+CAUD_WS1H_STA682A131#TCCCACATCACGTCAA-1 CAUD_WS1H_STA682A131#GGATAGGGTCTGGTTA-1 
+                              0.1134828                               0.7250060 
+CAUD_WS1H_STA682A131#CATGTTTGTCTGATTG-1 CAUD_WS1H_STA682A131#CCCACATAGGCAGTAC-1 
+                              0.2329413                               0.5705245 
+
+
+PlotParams-6$title: length = 1
+[1] "UMAP of Harmony colored by\nGeneScoreMatrix : Gpr52"
+
+
+PlotParams-6$x: length = 3810
+[1] -2.02326998 -8.85965183 -3.20845177 11.38817093  0.03029272 11.00890801
+
+
+PlotParams-6$y: length = 3810
+[1]   1.120647  -5.041982   1.877142 -12.098674  -7.171798 -10.669672
+
+
+PlotParams-6$baseSize: length = 1
+[1] 10
+
+
+PlotParams-6$xlabel: length = 1
+[1] "UMAP Dimension 1"
+
+
+PlotParams-6$ylabel: length = 1
+[1] "UMAP Dimension 2"
+
+
+PlotParams-6$pal: length = 256
+[1] "#000436" "#000439" "#00053D" "#000640" "#000744" "#000848"
+
+
+PlotParams-6$colorTitle: length = 1
+[1] "Log2(NormCounts + 1)"
+
+
+
+------- Completed
+
+End Time : 2020-10-07 12:16:03
+Elapsed Time Minutes = 0.0519967118899027
+Elapsed Time Hours = 0.000866657892862956
+
+-------
+
+
+

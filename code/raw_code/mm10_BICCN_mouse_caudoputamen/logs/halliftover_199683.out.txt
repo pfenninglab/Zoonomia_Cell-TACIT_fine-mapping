@@ -1,0 +1,11 @@
+Source species Mouse.
+Target species Human.
+Output dir is ../../../data/raw_data/mm10/BICCN_mouse_caudoputamen/halper.
+NarrowPeak file is ../../../data/raw_data/mm10/BICCN_mouse_caudoputamen/peak/BICCN_CP.Oligo.narrowPeak.
+Overwrite intermediate halLiftover files.
+Converting narrowpeak file to bed file. Make sure has unique peak name in 4th column.
+Extracting narrowPeak summits to halLiftover.
+Lifting Mouse summits to Human genome.
+Lifting Mouse peaks to Human genome.
+Apply HALPER to identify 1-1 orthologous in the Human genome.
+Done.

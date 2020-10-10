@@ -1,0 +1,14 @@
+Source species Human.
+Target species Rhesus.
+Output dir is ../../../data/raw_data/hg38/Corces_2020/halper.
+NarrowPeak file is ../../../data/raw_data/hg38/Corces_2020/peak/Corces2020_caudate.Astro.narrowPeak.gz.
+Converting narrowpeak file to bed file. Make sure has unique peak name in 4th column.
+Extracting narrowPeak summits to halLiftover.
+Lifting Human summits to Rhesus genome.
+The file ../../../data/raw_data/hg38/Corces_2020/halper/Corces2020_caudate.Astro_HumanToRhesus_halLiftover.sFile.bed.gz exist without permission to overwrite.
+Unzipping and using the previous halliftover sFile.
+Lifting Human peaks to Rhesus genome.
+The file ../../../data/raw_data/hg38/Corces_2020/halper/Corces2020_caudate.Astro_HumanToRhesus_halLiftover.tFile.bed exist without permission to overwrite.
+Unzipping and using the previous halliftover tFile.
+Apply HALPER to identify 1-1 orthologous in the Rhesus genome.
+Done.

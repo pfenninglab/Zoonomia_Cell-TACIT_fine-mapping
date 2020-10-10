@@ -1,0 +1,10 @@
+Source species Mouse.
+Target species Rhesus.
+Output dir is ../../../data/raw_data/mm10/BICCN_mouse_caudoputamen/halper.
+NarrowPeak file is ../../../data/raw_data/mm10/BICCN_mouse_caudoputamen/peak/BICCN_CP.Astro.narrowPeak.gz.
+Converting narrowpeak file to bed file. Make sure has unique peak name in 4th column.
+Extracting narrowPeak summits to halLiftover.
+Lifting Mouse summits to Rhesus genome.
+Lifting Mouse peaks to Rhesus genome.
+Apply HALPER to identify 1-1 orthologous in the Rhesus genome.
+Done.

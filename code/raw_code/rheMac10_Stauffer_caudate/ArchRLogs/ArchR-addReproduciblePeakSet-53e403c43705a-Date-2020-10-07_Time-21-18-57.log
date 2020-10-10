@@ -1,0 +1,814 @@
+
+           ___      .______        ______  __    __  .______      
+          /   \     |   _  \      /      ||  |  |  | |   _  \     
+         /  ^  \    |  |_)  |    |  ,----'|  |__|  | |  |_)  |    
+        /  /_\  \   |      /     |  |     |   __   | |      /     
+       /  _____  \  |  |\  \\___ |  `----.|  |  |  | |  |\  \\___.
+      /__/     \__\ | _| `._____| \______||__|  |__| | _| `._____|
+    
+Logging With ArchR!
+
+Start Time : 2020-10-07 21:18:57
+
+------- ArchR Info
+
+ArchRThreads = 10
+ArchRGenome = Mm10
+
+------- System Info
+
+Computer OS = unix
+Total Cores = 64
+
+------- Session Info
+
+R version 3.6.3 (2020-02-29)
+Platform: x86_64-conda_cos6-linux-gnu (64-bit)
+Running under: CentOS Linux 7 (Core)
+
+Matrix products: default
+BLAS/LAPACK: /home/bnphan/miniconda3/lib/libmkl_rt.so
+
+locale:
+ [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+ [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+ [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
+ [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+ [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+[11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+
+attached base packages:
+[1] parallel  stats4    stats     graphics  grDevices utils     datasets 
+[8] methods   base     
+
+other attached packages:
+ [1] BSgenome.Mmulatta.UCSC.rheMac10_1.4.3 BSgenome_1.54.0                      
+ [3] rtracklayer_1.46.0                    Biostrings_2.54.0                    
+ [5] XVector_0.26.0                        ArchR_0.9.5                          
+ [7] magrittr_1.5                          rhdf5_2.30.1                         
+ [9] Matrix_1.2-18                         data.table_1.13.0                    
+[11] SummarizedExperiment_1.16.1           DelayedArray_0.12.3                  
+[13] BiocParallel_1.20.1                   matrixStats_0.57.0                   
+[15] Biobase_2.46.0                        GenomicRanges_1.38.0                 
+[17] GenomeInfoDb_1.22.1                   IRanges_2.20.2                       
+[19] S4Vectors_0.24.4                      BiocGenerics_0.32.0                  
+[21] ggplot2_3.3.2                         colorout_1.2-2                       
+
+loaded via a namespace (and not attached):
+ [1] Rcpp_1.0.5                         lattice_0.20-41                   
+ [3] Rsamtools_2.2.3                    gtools_3.8.2                      
+ [5] digest_0.6.25                      BSgenome.Mmusculus.UCSC.mm10_1.4.0
+ [7] IRdisplay_0.7.0                    plyr_1.8.6                        
+ [9] R6_2.4.1                           repr_1.1.0                        
+[11] evaluate_0.14                      pillar_1.4.6                      
+[13] zlibbioc_1.32.0                    rlang_0.4.7                       
+[15] uuid_0.1-4                         hexbin_1.28.1                     
+[17] labeling_0.3                       stringr_1.4.0                     
+[19] RCurl_1.98-1.2                     munsell_0.5.0                     
+[21] compiler_3.6.3                     pkgconfig_2.0.3                   
+[23] base64enc_0.1-3                    htmltools_0.5.0                   
+[25] tidyselect_1.1.0                   tibble_3.0.3                      
+[27] GenomeInfoDbData_1.2.2             XML_3.99-0.3                      
+[29] crayon_1.3.4                       dplyr_1.0.2                       
+[31] withr_2.3.0                        GenomicAlignments_1.22.1          
+[33] bitops_1.0-6                       grid_3.6.3                        
+[35] jsonlite_1.7.1                     gtable_0.3.0                      
+[37] lifecycle_0.2.0                    scales_1.1.1                      
+[39] stringi_1.5.3                      farver_2.0.3                      
+[41] ellipsis_0.3.1                     generics_0.0.2                    
+[43] vctrs_0.3.4                        cowplot_1.1.0                     
+[45] IRkernel_1.1.1                     Rhdf5lib_1.8.0                    
+[47] tools_3.6.3                        Cairo_1.5-12.2                    
+[49] glue_1.4.2                         purrr_0.3.4                       
+[51] colorspace_1.4-1                   pbdZMQ_0.3-3                      
+
+
+------- Log Info
+
+
+2020-10-07 21:18:57 : ReproduciblePeakSet Args, Class = list
+
+ReproduciblePeakSet Args$ArchRProj: length = 1
+class: ArchRProject 
+outputDirectory: /home/bnphan/projects/snATAC_cross_species_caudate/data/raw_data/rheMac10/Stauffer_caudate/ArchR_Stauffer_caudate_labeled 
+samples(1): CAUD_WS1H_STA682A131
+sampleColData names(1): ArrowFiles
+cellColData names(17): Sample TSSEnrichment ... Clusters Clusters2
+numberOfCells(1): 1
+medianTSS(1): 7.836
+medianFrags(1): 99935
+
+
+ReproduciblePeakSet Args$groupBy: length = 1
+[1] "Clusters2"
+
+
+ReproduciblePeakSet Args$peakMethod: length = 1
+[1] "Macs2"
+
+
+ReproduciblePeakSet Args$reproducibility: length = 1
+[1] "2"
+
+
+ReproduciblePeakSet Args$peaksPerCell: length = 1
+[1] 500
+
+
+ReproduciblePeakSet Args$maxPeaks: length = 1
+[1] 150000
+
+
+ReproduciblePeakSet Args$minCells: length = 1
+[1] 25
+
+
+ReproduciblePeakSet Args$excludeChr: length = 2
+[1] "chrM" "chrY"
+
+
+ReproduciblePeakSet Args$pathToMacs2: length = 1
+[1] "macs2"
+
+
+ReproduciblePeakSet Args$genomeSize: length = 1
+[1] 2.7e+09
+
+
+ReproduciblePeakSet Args$shift: length = 1
+[1] -75
+
+
+ReproduciblePeakSet Args$extsize: length = 1
+[1] 150
+
+
+ReproduciblePeakSet Args$method: length = 1
+[1] "q"
+
+
+ReproduciblePeakSet Args$cutOff: length = 1
+[1] 0.1
+
+
+ReproduciblePeakSet Args$additionalParams: length = 1
+[1] "--nomodel --nolambda"
+
+
+ReproduciblePeakSet Args$extendSummits: length = 1
+[1] 250
+
+
+ReproduciblePeakSet Args$promoterRegion: length = 2
+[1] 2000  100
+
+
+ReproduciblePeakSet Args$plot: length = 1
+[1] FALSE
+
+
+ReproduciblePeakSet Args$threads: length = 1
+[1] 10
+
+
+ReproduciblePeakSet Args$parallelParam: length = 0
+NULL
+
+
+ReproduciblePeakSet Args$force: length = 1
+[1] FALSE
+
+
+ReproduciblePeakSet Args$verbose: length = 1
+[1] TRUE
+
+
+ReproduciblePeakSet Args$logFile: length = 1
+[1] "ArchRLogs/ArchR-addReproduciblePeakSet-53e403c43705a-Date-2020-10-07_Time-21-18-57.log"
+
+
+
+2020-10-07 21:18:57 : 
+2020-10-07 21:18:57 : Peak Calling Parameters!, 0.003 mins elapsed.
+
+2020-10-07 21:18:57 : PeakCallSummary, Class = data.frame
+PeakCallSummary: nRows = 8, nCols = 7
+                  Group nCells nCellsUsed nReplicates nMin nMax maxPeaks
+Astro             Astro   1035        540           2   40  500   150000
+Interneuron Interneuron    193        193           2   40  153    96500
+Microglia     Microglia    519        519           2   40  479   150000
+MSN_D1           MSN_D1    975        540           2   40  500   150000
+MSN_D2           MSN_D2    925        540           2   40  500   150000
+MSN_UNK1       MSN_UNK1    400        400           2   40  360   150000
+
+
+2020-10-07 21:18:57 : Batching Peak Calls!, 0.004 mins elapsed.
+
+2020-10-07 21:18:57 : PeakArgs, Class = list
+
+PeakArgs$X: length = 16
+[1] 1 2 3 4 5 6
+
+
+PeakArgs$FUN: length = 1
+                                                                                
+1 function (i = NULL, coverageFiles = NULL, outFiles = NULL, peakParams = NULL, 
+2     bedDir = NULL, excludeChr = NULL, subThreads = 1, tstart = NULL,          
+3     logFile = NULL)                                                           
+4 {                                                                             
+5     .logDiffTime(sprintf("Group %s of %s, Calling Peaks with MACS2!",         
+6         i, length(coverageFiles)), tstart, verbose = TRUE, logFile = logFile) 
+
+
+PeakArgs$coverageFiles: length = 16
+                                                                                                                                                                                  Astro._.Rep1 
+      "/home/bnphan/projects/snATAC_cross_species_caudate/data/raw_data/rheMac10/Stauffer_caudate/ArchR_Stauffer_caudate_labeled/GroupCoverages/Clusters2/Astro._.Rep1.insertions.coverage.h5" 
+                                                                                                                                                                                  Astro._.Rep2 
+      "/home/bnphan/projects/snATAC_cross_species_caudate/data/raw_data/rheMac10/Stauffer_caudate/ArchR_Stauffer_caudate_labeled/GroupCoverages/Clusters2/Astro._.Rep2.insertions.coverage.h5" 
+                                                                                                                                                                            Interneuron._.Rep1 
+"/home/bnphan/projects/snATAC_cross_species_caudate/data/raw_data/rheMac10/Stauffer_caudate/ArchR_Stauffer_caudate_labeled/GroupCoverages/Clusters2/Interneuron._.Rep1.insertions.coverage.h5" 
+                                                                                                                                                                            Interneuron._.Rep2 
+"/home/bnphan/projects/snATAC_cross_species_caudate/data/raw_data/rheMac10/Stauffer_caudate/ArchR_Stauffer_caudate_labeled/GroupCoverages/Clusters2/Interneuron._.Rep2.insertions.coverage.h5" 
+                                                                                                                                                                              Microglia._.Rep1 
+  "/home/bnphan/projects/snATAC_cross_species_caudate/data/raw_data/rheMac10/Stauffer_caudate/ArchR_Stauffer_caudate_labeled/GroupCoverages/Clusters2/Microglia._.Rep1.insertions.coverage.h5" 
+                                                                                                                                                                              Microglia._.Rep2 
+  "/home/bnphan/projects/snATAC_cross_species_caudate/data/raw_data/rheMac10/Stauffer_caudate/ArchR_Stauffer_caudate_labeled/GroupCoverages/Clusters2/Microglia._.Rep2.insertions.coverage.h5" 
+
+
+PeakArgs$outFiles: length = 16
+[1] "/home/bnphan/projects/snATAC_cross_species_caudate/data/raw_data/rheMac10/Stauffer_caudate/ArchR_Stauffer_caudate_labeled/PeakCalls/ReplicateCalls/Astro._.Rep1-summits.rds"      
+[2] "/home/bnphan/projects/snATAC_cross_species_caudate/data/raw_data/rheMac10/Stauffer_caudate/ArchR_Stauffer_caudate_labeled/PeakCalls/ReplicateCalls/Astro._.Rep2-summits.rds"      
+[3] "/home/bnphan/projects/snATAC_cross_species_caudate/data/raw_data/rheMac10/Stauffer_caudate/ArchR_Stauffer_caudate_labeled/PeakCalls/ReplicateCalls/Interneuron._.Rep1-summits.rds"
+[4] "/home/bnphan/projects/snATAC_cross_species_caudate/data/raw_data/rheMac10/Stauffer_caudate/ArchR_Stauffer_caudate_labeled/PeakCalls/ReplicateCalls/Interneuron._.Rep2-summits.rds"
+[5] "/home/bnphan/projects/snATAC_cross_species_caudate/data/raw_data/rheMac10/Stauffer_caudate/ArchR_Stauffer_caudate_labeled/PeakCalls/ReplicateCalls/Microglia._.Rep1-summits.rds"  
+[6] "/home/bnphan/projects/snATAC_cross_species_caudate/data/raw_data/rheMac10/Stauffer_caudate/ArchR_Stauffer_caudate_labeled/PeakCalls/ReplicateCalls/Microglia._.Rep2-summits.rds"  
+
+
+PeakArgs$bedDir: length = 1
+[1] "/home/bnphan/projects/snATAC_cross_species_caudate/data/raw_data/rheMac10/Stauffer_caudate/ArchR_Stauffer_caudate_labeled/PeakCalls/InsertionBeds"
+
+
+PeakArgs$excludeChr: length = 2
+[1] "chrM" "chrY"
+
+
+PeakArgs$threads: length = 1
+[1] 10
+
+
+PeakArgs$logFile: length = 1
+[1] "ArchRLogs/ArchR-addReproduciblePeakSet-53e403c43705a-Date-2020-10-07_Time-21-18-57.log"
+
+
+PeakArgs$registryDir: length = 1
+[1] "/home/bnphan/projects/snATAC_cross_species_caudate/data/raw_data/rheMac10/Stauffer_caudate/ArchR_Stauffer_caudate_labeled/PeakCalls/batchRegistry"
+
+
+2020-10-07 21:18:57 : Batch Execution w/ safelapply!, 0 mins elapsed.
+2020-10-07 21:18:57 : Group 1 of 16, Calling Peaks with MACS2!, 0.001 mins elapsed.
+2020-10-07 21:18:57 : Group 2 of 16, Calling Peaks with MACS2!, 0.001 mins elapsed.
+2020-10-07 21:18:57 : Group 3 of 16, Calling Peaks with MACS2!, 0.002 mins elapsed.
+2020-10-07 21:18:57 : Group 4 of 16, Calling Peaks with MACS2!, 0.002 mins elapsed.
+2020-10-07 21:18:57 : Group 5 of 16, Calling Peaks with MACS2!, 0.004 mins elapsed.
+2020-10-07 21:18:57 : Group 6 of 16, Calling Peaks with MACS2!, 0.006 mins elapsed.
+2020-10-07 21:18:58 : Group 7 of 16, Calling Peaks with MACS2!, 0.008 mins elapsed.
+2020-10-07 21:18:58 : Group 8 of 16, Calling Peaks with MACS2!, 0.01 mins elapsed.
+2020-10-07 21:18:58 : Group 9 of 16, Calling Peaks with MACS2!, 0.012 mins elapsed.
+2020-10-07 21:18:58 : Group 10 of 16, Calling Peaks with MACS2!, 0.015 mins elapsed.
+
+2020-10-07 21:18:58 : InsertionSites, Class = integer
+
+InsertionSites: length = 165924
+[1]  1080  1179 25850 26054 26147 26153
+
+
+
+2020-10-07 21:18:58 : InsertionSites-DT, Class = data.table
+ 
+2020-10-07 21:18:58 : InsertionSites-DT, Class = data.frame
+InsertionSites-DT: nRows = 165924, nCols = 3
+
+2020-10-07 21:18:58 : InsertionSites, Class = integer
+
+InsertionSites: length = 117126
+[1]  1052  1144 22389 22735 23490 23862
+
+
+
+2020-10-07 21:18:58 : InsertionSites-DT, Class = data.table
+ 
+2020-10-07 21:18:58 : InsertionSites-DT, Class = data.frame
+InsertionSites-DT: nRows = 117126, nCols = 3
+   seqnames start   end
+1:     chr1  1079  1080
+2:     chr1  1178  1179
+3:     chr1 25849 25850
+4:     chr1 26053 26054
+5:     chr1 26146 26147
+6:     chr1 26152 26153
+
+
+   seqnames start   end
+1:     chr1  1051  1052
+2:     chr1  1143  1144
+3:     chr1 22388 22389
+4:     chr1 22734 22735
+5:     chr1 23489 23490
+6:     chr1 23861 23862
+
+
+
+2020-10-07 21:18:59 : InsertionSites, Class = integer
+
+InsertionSites: length = 155044
+[1] 25968 25990 26011 26051 26148 26161
+
+
+
+2020-10-07 21:18:59 : InsertionSites-DT, Class = data.table
+ 
+2020-10-07 21:18:59 : InsertionSites-DT, Class = data.frame
+InsertionSites-DT: nRows = 155044, nCols = 3
+   seqnames start   end
+1:     chr1 25967 25968
+2:     chr1 25989 25990
+3:     chr1 26010 26011
+4:     chr1 26050 26051
+5:     chr1 26147 26148
+6:     chr1 26160 26161
+
+
+
+2020-10-07 21:19:00 : InsertionSites, Class = integer
+
+InsertionSites: length = 654286
+[1]  924  982 1055 1067 1078 1124
+
+2020-10-07 21:19:00 : InsertionSites, Class = integer
+
+
+
+InsertionSites: length = 437758
+[1] 641 759 924 927 929 980
+
+
+
+2020-10-07 21:19:00 : InsertionSites-DT, Class = data.table
+ 
+2020-10-07 21:19:00 : InsertionSites-DT, Class = data.frame
+InsertionSites-DT: nRows = 654286, nCols = 3
+
+2020-10-07 21:19:00 : InsertionSites-DT, Class = data.table
+ 
+2020-10-07 21:19:00 : InsertionSites-DT, Class = data.frame
+InsertionSites-DT: nRows = 437758, nCols = 3
+   seqnames start  end
+1:     chr1   923  924
+2:     chr1   981  982
+3:     chr1  1054 1055
+4:     chr1  1066 1067
+5:     chr1  1077 1078
+6:     chr1  1123 1124
+
+2020-10-07 21:19:00 : InsertionSites, Class = integer
+
+InsertionSites: length = 389428
+   seqnames start end
+1:     chr1   640 641
+2:     chr1   758 759
+3:     chr1   923 924
+4:     chr1   926 927
+5:     chr1   928 929
+6:     chr1   979 980
+[1]  1004  1004  1138  1152 10419 10745
+
+
+
+
+
+
+
+2020-10-07 21:19:00 : InsertionSites-DT, Class = data.table
+ 
+2020-10-07 21:19:00 : InsertionSites-DT, Class = data.frame
+InsertionSites-DT: nRows = 389428, nCols = 3
+   seqnames start   end
+1:     chr1  1003  1004
+2:     chr1  1003  1004
+3:     chr1  1137  1138
+4:     chr1  1151  1152
+5:     chr1 10418 10419
+6:     chr1 10744 10745
+
+
+
+2020-10-07 21:19:04 : InsertionSites, Class = integer
+
+InsertionSites: length = 1716710
+[1]  1080  1157  1908  2028 11740 12068
+
+
+
+2020-10-07 21:19:04 : InsertionSites-DT, Class = data.table
+ 
+2020-10-07 21:19:04 : InsertionSites-DT, Class = data.frame
+InsertionSites-DT: nRows = 1716710, nCols = 3
+   seqnames start   end
+1:     chr1  1079  1080
+2:     chr1  1156  1157
+3:     chr1  1907  1908
+4:     chr1  2027  2028
+5:     chr1 11739 11740
+6:     chr1 12067 12068
+
+
+
+2020-10-07 21:19:04 : InsertionSites, Class = integer
+
+InsertionSites: length = 2274596
+[1] 1040 1057 1070 1073 1081 1082
+
+
+
+2020-10-07 21:19:05 : InsertionSites-DT, Class = data.table
+ 
+2020-10-07 21:19:05 : InsertionSites-DT, Class = data.frame
+InsertionSites-DT: nRows = 2274596, nCols = 3
+   seqnames start  end
+1:     chr1  1039 1040
+2:     chr1  1056 1057
+3:     chr1  1069 1070
+4:     chr1  1072 1073
+5:     chr1  1080 1081
+6:     chr1  1081 1082
+
+
+
+2020-10-07 21:19:08 : 
+
+2020-10-07 21:19:09 : 
+
+2020-10-07 21:19:10 : 
+
+2020-10-07 21:19:21 : 
+
+2020-10-07 21:19:27 : InsertionSites, Class = integer
+
+InsertionSites: length = 4342440
+[1] 629 641 651 658 667 667
+
+
+
+2020-10-07 21:19:27 : InsertionSites, Class = integer
+
+InsertionSites: length = 4345286
+[1] 631 653 658 663 663 667
+
+
+
+2020-10-07 21:19:27 : InsertionSites-DT, Class = data.table
+ 
+2020-10-07 21:19:27 : InsertionSites-DT, Class = data.frame
+InsertionSites-DT: nRows = 4342440, nCols = 3
+   seqnames start end
+1:     chr1   628 629
+2:     chr1   640 641
+3:     chr1   650 651
+4:     chr1   657 658
+5:     chr1   666 667
+6:     chr1   666 667
+
+
+
+2020-10-07 21:19:27 : InsertionSites-DT, Class = data.table
+ 
+2020-10-07 21:19:27 : InsertionSites-DT, Class = data.frame
+InsertionSites-DT: nRows = 4345286, nCols = 3
+   seqnames start end
+1:     chr1   630 631
+2:     chr1   652 653
+3:     chr1   657 658
+4:     chr1   662 663
+5:     chr1   662 663
+6:     chr1   666 667
+
+
+
+2020-10-07 21:19:30 : 
+
+2020-10-07 21:19:31 : 
+
+2020-10-07 21:20:21 : 
+
+2020-10-07 21:20:40 : 
+
+2020-10-07 21:23:00 : 
+
+2020-10-07 21:23:20 : 
+2020-10-07 21:29:25 : Group 11 of 16, Calling Peaks with MACS2!, 10.459 mins elapsed.
+
+2020-10-07 21:29:27 : InsertionSites, Class = integer
+
+InsertionSites: length = 399806
+[1]  934  996 1050 1053 1071 1078
+
+
+
+2020-10-07 21:29:27 : InsertionSites-DT, Class = data.table
+ 
+2020-10-07 21:29:27 : InsertionSites-DT, Class = data.frame
+InsertionSites-DT: nRows = 399806, nCols = 3
+   seqnames start  end
+1:     chr1   933  934
+2:     chr1   995  996
+3:     chr1  1049 1050
+4:     chr1  1052 1053
+5:     chr1  1070 1071
+6:     chr1  1077 1078
+
+
+
+2020-10-07 21:29:49 : 
+2020-10-07 21:30:47 : Group 12 of 16, Calling Peaks with MACS2!, 11.831 mins elapsed.
+
+2020-10-07 21:30:48 : InsertionSites, Class = integer
+
+InsertionSites: length = 39868
+[1] 26450 26718 26878 26998 45546 45609
+
+
+
+2020-10-07 21:30:48 : InsertionSites-DT, Class = data.table
+ 
+2020-10-07 21:30:48 : InsertionSites-DT, Class = data.frame
+InsertionSites-DT: nRows = 39868, nCols = 3
+   seqnames start   end
+1:     chr1 26449 26450
+2:     chr1 26717 26718
+3:     chr1 26877 26878
+4:     chr1 26997 26998
+5:     chr1 45545 45546
+6:     chr1 45608 45609
+
+
+
+2020-10-07 21:30:55 : 
+2020-10-07 21:31:31 : Group 13 of 16, Calling Peaks with MACS2!, 12.563 mins elapsed.
+
+2020-10-07 21:31:35 : InsertionSites, Class = integer
+
+InsertionSites: length = 1050884
+[1]  926  931  962 1026 1066 1071
+
+
+
+2020-10-07 21:31:35 : InsertionSites-DT, Class = data.table
+ 
+2020-10-07 21:31:35 : InsertionSites-DT, Class = data.frame
+InsertionSites-DT: nRows = 1050884, nCols = 3
+   seqnames start  end
+1:     chr1   925  926
+2:     chr1   930  931
+3:     chr1   961  962
+4:     chr1  1025 1026
+5:     chr1  1065 1066
+6:     chr1  1070 1071
+
+
+
+2020-10-07 21:32:25 : 
+2020-10-07 21:36:26 : Group 14 of 16, Calling Peaks with MACS2!, 17.48 mins elapsed.
+
+2020-10-07 21:36:27 : InsertionSites, Class = integer
+
+InsertionSites: length = 74650
+[1]  838  970 1040 1080 1234 1253
+
+
+
+2020-10-07 21:36:27 : InsertionSites-DT, Class = data.table
+ 
+2020-10-07 21:36:27 : InsertionSites-DT, Class = data.frame
+InsertionSites-DT: nRows = 74650, nCols = 3
+   seqnames start  end
+1:     chr1   837  838
+2:     chr1   969  970
+3:     chr1  1039 1040
+4:     chr1  1079 1080
+5:     chr1  1233 1234
+6:     chr1  1252 1253
+
+
+
+2020-10-07 21:36:35 : 
+2020-10-07 21:38:07 : Group 15 of 16, Calling Peaks with MACS2!, 19.162 mins elapsed.
+
+2020-10-07 21:38:11 : InsertionSites, Class = integer
+
+InsertionSites: length = 907140
+[1]  999 1076 1085 1105 1142 1175
+
+
+
+2020-10-07 21:38:11 : InsertionSites-DT, Class = data.table
+ 
+2020-10-07 21:38:11 : InsertionSites-DT, Class = data.frame
+InsertionSites-DT: nRows = 907140, nCols = 3
+   seqnames start  end
+1:     chr1   998  999
+2:     chr1  1075 1076
+3:     chr1  1084 1085
+4:     chr1  1104 1105
+5:     chr1  1141 1142
+6:     chr1  1174 1175
+
+
+
+2020-10-07 21:38:56 : 
+2020-10-07 21:42:05 : Group 16 of 16, Calling Peaks with MACS2!, 23.127 mins elapsed.
+
+2020-10-07 21:42:06 : InsertionSites, Class = integer
+
+InsertionSites: length = 129796
+[1]  1112  1155 26008 26170 26273 26274
+
+
+
+2020-10-07 21:42:06 : InsertionSites-DT, Class = data.table
+ 
+2020-10-07 21:42:06 : InsertionSites-DT, Class = data.frame
+InsertionSites-DT: nRows = 129796, nCols = 3
+   seqnames start   end
+1:     chr1  1111  1112
+2:     chr1  1154  1155
+3:     chr1 26007 26008
+4:     chr1 26169 26170
+5:     chr1 26272 26273
+6:     chr1 26273 26274
+
+
+
+2020-10-07 21:42:16 : 
+2020-10-07 21:56:50 : Identifying Reproducible Peaks!, 37.878 mins elapsed.
+2020-10-07 21:56:50 : Rep. Peaks Group (1 of 8) : Creating Reproducible Peaks, 37.879 mins elapsed.
+
+2020-10-07 21:56:50 : 
+2020-10-07 21:56:50 : Rep. Peaks Group (2 of 8) : Creating Reproducible Peaks, 37.879 mins elapsed.
+
+2020-10-07 21:56:50 : 
+2020-10-07 21:56:50 : Rep. Peaks Group (3 of 8) : Creating Reproducible Peaks, 37.881 mins elapsed.
+
+2020-10-07 21:56:50 : 
+2020-10-07 21:56:50 : Rep. Peaks Group (4 of 8) : Creating Reproducible Peaks, 37.882 mins elapsed.
+
+2020-10-07 21:56:50 : 
+2020-10-07 21:56:50 : Rep. Peaks Group (5 of 8) : Creating Reproducible Peaks, 37.883 mins elapsed.
+
+2020-10-07 21:56:50 : 
+2020-10-07 21:56:50 : Rep. Peaks Group (6 of 8) : Creating Reproducible Peaks, 37.885 mins elapsed.
+
+2020-10-07 21:56:50 : 
+2020-10-07 21:56:50 : Rep. Peaks Group (7 of 8) : Creating Reproducible Peaks, 37.887 mins elapsed.
+
+2020-10-07 21:56:50 : 
+2020-10-07 21:56:50 : Rep. Peaks Group (8 of 8) : Creating Reproducible Peaks, 37.889 mins elapsed.
+
+2020-10-07 21:56:50 : 
+
+2020-10-07 21:56:51 : 
+
+2020-10-07 21:56:51 : 
+
+2020-10-07 21:56:52 : 
+
+2020-10-07 21:56:52 : 
+
+2020-10-07 21:56:52 : 
+
+2020-10-07 21:56:52 : 
+
+2020-10-07 21:56:52 : 
+
+2020-10-07 21:56:52 : 
+
+2020-10-07 21:57:04 : 
+
+2020-10-07 21:57:04 : 
+
+2020-10-07 21:57:05 : 
+
+2020-10-07 21:57:05 : 
+
+2020-10-07 21:57:06 : 
+
+2020-10-07 21:57:07 : 
+
+2020-10-07 21:57:08 : 
+
+2020-10-07 21:57:09 : 
+
+2020-10-07 21:57:09 : 
+2020-10-07 21:57:09 : Rep. Peaks Group (2 of 8) : Annotating and Filtering Peaks, 38.208 mins elapsed.
+
+2020-10-07 21:57:09 : 
+
+2020-10-07 21:57:10 : 
+2020-10-07 21:57:10 : Rep. Peaks Group (7 of 8) : Annotating and Filtering Peaks, 38.214 mins elapsed.
+
+2020-10-07 21:57:10 : 
+
+2020-10-07 21:57:10 : 
+
+2020-10-07 21:57:10 : 
+
+2020-10-07 21:57:10 : 
+
+2020-10-07 21:57:11 : 
+2020-10-07 21:57:11 : Rep. Peaks Group (3 of 8) : Annotating and Filtering Peaks, 38.231 mins elapsed.
+
+2020-10-07 21:57:11 : 
+
+2020-10-07 21:57:11 : 
+
+2020-10-07 21:57:11 : 
+2020-10-07 21:57:11 : Rep. Peaks Group (6 of 8) : Annotating and Filtering Peaks, 38.243 mins elapsed.
+
+2020-10-07 21:57:12 : 
+
+2020-10-07 21:57:12 : 
+
+2020-10-07 21:57:12 : 
+
+2020-10-07 21:57:12 : 
+
+2020-10-07 21:57:12 : 
+2020-10-07 21:57:12 : Rep. Peaks Group (8 of 8) : Annotating and Filtering Peaks, 38.256 mins elapsed.
+
+2020-10-07 21:57:12 : 
+
+2020-10-07 21:57:12 : 
+2020-10-07 21:57:13 : Rep. Peaks Group (1 of 8) : Annotating and Filtering Peaks, 38.264 mins elapsed.
+
+2020-10-07 21:57:13 : 
+
+2020-10-07 21:57:13 : 
+
+2020-10-07 21:57:13 : 
+
+2020-10-07 21:57:14 : 
+
+2020-10-07 21:57:14 : 
+
+2020-10-07 21:57:14 : 
+
+2020-10-07 21:57:15 : 
+
+2020-10-07 21:57:15 : 
+
+2020-10-07 21:57:15 : 
+
+2020-10-07 21:57:15 : 
+
+2020-10-07 21:57:15 : 
+
+2020-10-07 21:57:16 : 
+
+2020-10-07 21:57:16 : 
+
+2020-10-07 21:57:17 : 
+
+2020-10-07 21:57:17 : 
+
+2020-10-07 21:57:17 : 
+
+2020-10-07 21:57:17 : 
+
+2020-10-07 21:57:17 : 
+
+2020-10-07 21:57:18 : 
+
+2020-10-07 21:57:18 : 
+2020-10-07 21:57:18 : Rep. Peaks Group (4 of 8) : Annotating and Filtering Peaks, 38.359 mins elapsed.
+
+2020-10-07 21:57:19 : 
+
+2020-10-07 21:57:19 : 
+2020-10-07 21:57:19 : Rep. Peaks Group (5 of 8) : Annotating and Filtering Peaks, 38.375 mins elapsed.
+
+2020-10-07 21:57:20 : 
+
+2020-10-07 21:57:21 : 
+
+2020-10-07 21:57:22 : 
+
+2020-10-07 21:57:23 : 
+
+2020-10-07 21:57:24 : 
+
+2020-10-07 21:57:24 : 
+
+2020-10-07 21:57:26 : 
+
+2020-10-07 21:57:27 : 
+2020-10-07 21:57:34 : Creating Union Peak Set!, 38.612 mins elapsed.
+2020-10-07 21:57:36 : Finished Creating Union Peak Set (293503)!, 38.653 mins elapsed.

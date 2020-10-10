@@ -1,0 +1,791 @@
+
+           ___      .______        ______  __    __  .______      
+          /   \     |   _  \      /      ||  |  |  | |   _  \     
+         /  ^  \    |  |_)  |    |  ,----'|  |__|  | |  |_)  |    
+        /  /_\  \   |      /     |  |     |   __   | |      /     
+       /  _____  \  |  |\  \\___ |  `----.|  |  |  | |  |\  \\___.
+      /__/     \__\ | _| `._____| \______||__|  |__| | _| `._____|
+    
+Logging With ArchR!
+
+Start Time : 2020-10-05 13:15:48
+
+------- ArchR Info
+
+ArchRThreads = 10
+ArchRGenome = Hg38
+
+------- System Info
+
+Computer OS = unix
+Total Cores = 64
+
+------- Session Info
+
+R version 3.6.3 (2020-02-29)
+Platform: x86_64-conda_cos6-linux-gnu (64-bit)
+Running under: CentOS Linux 7 (Core)
+
+Matrix products: default
+BLAS/LAPACK: /home/bnphan/miniconda3/lib/libmkl_rt.so
+
+locale:
+ [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+ [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+ [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
+ [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+ [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+[11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+
+attached base packages:
+[1] parallel  stats4    stats     graphics  grDevices utils     datasets 
+[8] methods   base     
+
+other attached packages:
+ [1] gtable_0.3.0                ArchR_0.9.5                
+ [3] magrittr_1.5                rhdf5_2.30.1               
+ [5] Matrix_1.2-18               data.table_1.13.0          
+ [7] SummarizedExperiment_1.16.1 DelayedArray_0.12.3        
+ [9] BiocParallel_1.20.1         matrixStats_0.57.0         
+[11] Biobase_2.46.0              GenomicRanges_1.38.0       
+[13] GenomeInfoDb_1.22.1         IRanges_2.20.2             
+[15] S4Vectors_0.24.4            BiocGenerics_0.32.0        
+[17] ggplot2_3.3.2               colorout_1.2-2             
+
+loaded via a namespace (and not attached):
+ [1] BSgenome.Hsapiens.UCSC.hg38_1.4.1 Rcpp_1.0.5                       
+ [3] lattice_0.20-41                   Rsamtools_2.2.3                  
+ [5] Biostrings_2.54.0                 gtools_3.8.2                     
+ [7] digest_0.6.25                     IRdisplay_0.7.0                  
+ [9] R6_2.4.1                          repr_1.1.0                       
+[11] evaluate_0.14                     pillar_1.4.6                     
+[13] zlibbioc_1.32.0                   rlang_0.4.7                      
+[15] uuid_0.1-4                        hexbin_1.28.1                    
+[17] labeling_0.3                      stringr_1.4.0                    
+[19] pheatmap_1.0.12                   RCurl_1.98-1.2                   
+[21] munsell_0.5.0                     compiler_3.6.3                   
+[23] rtracklayer_1.46.0                pkgconfig_2.0.3                  
+[25] base64enc_0.1-3                   htmltools_0.5.0                  
+[27] tidyselect_1.1.0                  tibble_3.0.3                     
+[29] GenomeInfoDbData_1.2.2            XML_3.99-0.3                     
+[31] crayon_1.3.4                      dplyr_1.0.2                      
+[33] withr_2.3.0                       GenomicAlignments_1.22.1         
+[35] bitops_1.0-6                      grid_3.6.3                       
+[37] jsonlite_1.7.1                    lifecycle_0.2.0                  
+[39] scales_1.1.1                      stringi_1.5.3                    
+[41] farver_2.0.3                      XVector_0.26.0                   
+[43] ellipsis_0.3.1                    generics_0.0.2                   
+[45] vctrs_0.3.4                       cowplot_1.1.0                    
+[47] IRkernel_1.1.1                    Rhdf5lib_1.8.0                   
+[49] RColorBrewer_1.1-2                tools_3.6.3                      
+[51] Cairo_1.5-12.2                    BSgenome_1.54.0                  
+[53] glue_1.4.2                        purrr_0.3.4                      
+[55] colorspace_1.4-1                  pbdZMQ_0.3-3                     
+
+
+------- Log Info
+
+
+2020-10-05 13:15:48 : Input-Parameters, Class = list
+
+Input-Parameters$ArchRProj: length = 1
+class: ArchRProject 
+outputDirectory: /home/bnphan/projects/snATAC_cross_species_caudate/data/raw_data/mm10/BICCN_mouse_caudoputamen/ArchR_BICCN_CP_4D 
+samples(2): CEMBA171214_4D CEMBA171219_4D
+sampleColData names(1): ArrowFiles
+cellColData names(18): Sample TSSEnrichment ... Region Clusters
+numberOfCells(1): 1
+medianTSS(1): 14.205
+medianFrags(1): 42336
+
+
+Input-Parameters$embedding: length = 1
+[1] "UMAP"
+
+
+Input-Parameters$colorBy: length = 1
+[1] "GeneScoreMatrix"
+
+
+Input-Parameters$name: length = 6
+[1] "Drd1"    "Tac1"    "Foxp2"   "Slc35d3" "Chrm4"   "Pdyn"   
+
+
+Input-Parameters$log2Norm: length = 0
+NULL
+
+
+Input-Parameters$pal: length = 0
+NULL
+
+
+Input-Parameters$size: length = 1
+[1] 0.1
+
+
+Input-Parameters$sampleCells: length = 0
+NULL
+
+
+Input-Parameters$highlightCells: length = 0
+NULL
+
+
+Input-Parameters$rastr: length = 1
+[1] TRUE
+
+
+Input-Parameters$quantCut: length = 2
+[1] 0.01 0.99
+
+
+Input-Parameters$discreteSet: length = 0
+NULL
+
+
+Input-Parameters$continuousSet: length = 0
+NULL
+
+
+Input-Parameters$randomize: length = 1
+[1] TRUE
+
+
+Input-Parameters$keepAxis: length = 1
+[1] FALSE
+
+
+Input-Parameters$baseSize: length = 1
+[1] 10
+
+
+Input-Parameters$plotAs: length = 0
+NULL
+
+
+Input-Parameters$threads: length = 1
+[1] 10
+
+
+Input-Parameters$logFile: length = 1
+[1] "ArchRLogs/ArchR-plotEmbedding-3974138b8b508-Date-2020-10-05_Time-13-15-48.log"
+
+
+
+2020-10-05 13:15:48 : 
+
+2020-10-05 13:15:48 : Embedding data.frame, Class = data.frame
+Embedding data.frame: nRows = 11224, nCols = 2
+                                                IterativeLSI#UMAP_Dimension_1
+CEMBA171214_4D#ATTCAGAATCTATCCGTGCCTTACCAGGACGT                     5.3821647
+CEMBA171214_4D#ATTCAGAACAGAACTGTTACGACCGTACTGAC                    -0.9132533
+CEMBA171214_4D#ATTCAGAATTAGCCTCTAAGATCCGTACTGAC                     5.1650488
+CEMBA171214_4D#CTGAAGCTGCAACCTAAATGACGTCCTATCCT                     4.1907997
+CEMBA171214_4D#GAGATTCCATAAGTCGTCCGGTAAGTACTGAC                     4.7818687
+CEMBA171214_4D#CTGAAGCTCGCTTGATATAGCCTTGTACTGAC                    -3.7316730
+                                                IterativeLSI#UMAP_Dimension_2
+CEMBA171214_4D#ATTCAGAATCTATCCGTGCCTTACCAGGACGT                    1.42122660
+CEMBA171214_4D#ATTCAGAACAGAACTGTTACGACCGTACTGAC                   -0.26661875
+CEMBA171214_4D#ATTCAGAATTAGCCTCTAAGATCCGTACTGAC                    1.32904408
+CEMBA171214_4D#CTGAAGCTGCAACCTAAATGACGTCCTATCCT                    1.43104921
+CEMBA171214_4D#GAGATTCCATAAGTCGTCCGGTAAGTACTGAC                    1.27323792
+CEMBA171214_4D#CTGAAGCTCGCTTGATATAGCCTTGTACTGAC                   -0.04745848
+
+
+
+2020-10-05 13:15:48 : 
+
+2020-10-05 13:15:48 : 
+
+2020-10-05 13:15:48 : FeatureDF, Class = DFrame
+DataFrame with 24333 rows and 6 columns
+      seqnames     start       end  strand          name     idx
+         <Rle>   <array>   <array> <array>       <array> <array>
+1         chr1   3671498   3214482       2          Xkr4       1
+2         chr1   4409241   4290846       2           Rp1       2
+3         chr1   4497354   4490928       2         Sox17       3
+4         chr1   4785726   4773198       2        Mrpl15       4
+5         chr1   4807893   4846735       1        Lypla1       5
+...        ...       ...       ...     ...           ...     ...
+24329     chrX 169320372 169251538       2          Hccs    1039
+24330     chrX 169320422 169368178       1       Gm15246    1040
+24331     chrX 169685199 169990798       1          Mid1    1041
+24332     chrX 169779635 169776378       2 4933400A11Rik    1042
+24333     chrX 170672644 170678054       1          Asmt    1043
+
+
+2020-10-05 13:15:48 : idx, Class = integer
+
+idx: length = 6
+[1]  5618 17320 17345  1448 12266 12650
+
+
+
+2020-10-05 13:15:48 : FeatureDF-Subset, Class = DFrame
+DataFrame with 6 rows and 6 columns
+  seqnames     start       end  strand    name     idx
+     <Rle>   <array>   <array> <array> <array> <array>
+1    chr13  54055658  54051183       2    Drd1     443
+2     chr6   7554885   7562978       1    Tac1      33
+3     chr6  14901349  15441977       1   Foxp2      58
+4    chr10  19851459  19847917       2 Slc35d3      90
+5     chr2  91922189  91929829       1   Chrm4    1013
+6     chr2 129699938 129686549       2    Pdyn    1397
+
+
+2020-10-05 13:15:50 : Feature-Matrix, Class = dgCMatrix
+Feature-Matrix: nRows = 6, nCols = 11224
+Feature-Matrix: NonZeroEntries = 17836, EntryRange = [ 0.06 , 69.349 ]
+5 x 5 sparse Matrix of class "dgCMatrix"
+     CEMBA171214_4D#ATTCAGAATCTATCCGTGCCTTACCAGGACGT
+[1,]                                           .    
+[2,]                                           0.210
+[3,]                                           0.479
+[4,]                                           0.139
+[5,]                                           0.399
+     CEMBA171214_4D#ATTCAGAACAGAACTGTTACGACCGTACTGAC
+[1,]                                           0.979
+[2,]                                           0.318
+[3,]                                           3.377
+[4,]                                           1.705
+[5,]                                           1.207
+     CEMBA171214_4D#ATTCAGAATTAGCCTCTAAGATCCGTACTGAC
+[1,]                                           .    
+[2,]                                           1.803
+[3,]                                           1.137
+[4,]                                           .    
+[5,]                                           0.765
+     CEMBA171214_4D#CTGAAGCTGCAACCTAAATGACGTCCTATCCT
+[1,]                                           0.150
+[2,]                                           1.186
+[3,]                                           2.580
+[4,]                                           0.949
+[5,]                                           .    
+     CEMBA171214_4D#GAGATTCCATAAGTCGTCCGGTAAGTACTGAC
+[1,]                                           0.140
+[2,]                                           1.515
+[3,]                                           0.330
+[4,]                                           0.533
+[5,]                                           .    
+
+
+
+2020-10-05 13:15:50 : colorMat-Before-Impute, Class = matrix
+        CEMBA171214_4D#ATTCAGAATCTATCCGTGCCTTACCAGGACGT
+Drd1                                              0.000
+Tac1                                              0.210
+Foxp2                                             0.479
+Slc35d3                                           0.139
+Chrm4                                             0.399
+        CEMBA171214_4D#ATTCAGAACAGAACTGTTACGACCGTACTGAC
+Drd1                                              0.979
+Tac1                                              0.318
+Foxp2                                             3.377
+Slc35d3                                           1.705
+Chrm4                                             1.207
+        CEMBA171214_4D#ATTCAGAATTAGCCTCTAAGATCCGTACTGAC
+Drd1                                              0.000
+Tac1                                              1.803
+Foxp2                                             1.137
+Slc35d3                                           0.000
+Chrm4                                             0.765
+        CEMBA171214_4D#CTGAAGCTGCAACCTAAATGACGTCCTATCCT
+Drd1                                              0.150
+Tac1                                              1.186
+Foxp2                                             2.580
+Slc35d3                                           0.949
+Chrm4                                             0.000
+        CEMBA171214_4D#GAGATTCCATAAGTCGTCCGGTAAGTACTGAC
+Drd1                                              0.140
+Tac1                                              1.515
+Foxp2                                             0.330
+Slc35d3                                           0.533
+Chrm4                                             0.000
+
+colorMat-Before-Impute: nRows = 6, nCols = 11224
+
+
+2020-10-05 13:15:50 : imputeMatrix Input-Parameters, Class = list
+
+imputeMatrix Input-Parameters$mat: nRows = 6, nCols = 11224
+        CEMBA171214_4D#ATTCAGAATCTATCCGTGCCTTACCAGGACGT
+Drd1                                              0.000
+Tac1                                              0.210
+Foxp2                                             0.479
+Slc35d3                                           0.139
+Chrm4                                             0.399
+        CEMBA171214_4D#ATTCAGAACAGAACTGTTACGACCGTACTGAC
+Drd1                                              0.979
+Tac1                                              0.318
+Foxp2                                             3.377
+Slc35d3                                           1.705
+Chrm4                                             1.207
+        CEMBA171214_4D#ATTCAGAATTAGCCTCTAAGATCCGTACTGAC
+Drd1                                              0.000
+Tac1                                              1.803
+Foxp2                                             1.137
+Slc35d3                                           0.000
+Chrm4                                             0.765
+        CEMBA171214_4D#CTGAAGCTGCAACCTAAATGACGTCCTATCCT
+Drd1                                              0.150
+Tac1                                              1.186
+Foxp2                                             2.580
+Slc35d3                                           0.949
+Chrm4                                             0.000
+        CEMBA171214_4D#GAGATTCCATAAGTCGTCCGGTAAGTACTGAC
+Drd1                                              0.140
+Tac1                                              1.515
+Foxp2                                             0.330
+Slc35d3                                           0.533
+Chrm4                                             0.000
+
+
+imputeMatrix Input-Parameters$threads: length = 1
+[1] 10
+
+
+imputeMatrix Input-Parameters$verbose: length = 1
+[1] FALSE
+
+
+imputeMatrix Input-Parameters$logFile: length = 1
+[1] "ArchRLogs/ArchR-plotEmbedding-3974138b8b508-Date-2020-10-05_Time-13-15-48.log"
+
+
+
+2020-10-05 13:15:50 : mat, Class = matrix
+        CEMBA171214_4D#ATTCAGAATCTATCCGTGCCTTACCAGGACGT
+Drd1                                              0.000
+Tac1                                              0.210
+Foxp2                                             0.479
+Slc35d3                                           0.139
+Chrm4                                             0.399
+        CEMBA171214_4D#ATTCAGAACAGAACTGTTACGACCGTACTGAC
+Drd1                                              0.979
+Tac1                                              0.318
+Foxp2                                             3.377
+Slc35d3                                           1.705
+Chrm4                                             1.207
+        CEMBA171214_4D#ATTCAGAATTAGCCTCTAAGATCCGTACTGAC
+Drd1                                              0.000
+Tac1                                              1.803
+Foxp2                                             1.137
+Slc35d3                                           0.000
+Chrm4                                             0.765
+        CEMBA171214_4D#CTGAAGCTGCAACCTAAATGACGTCCTATCCT
+Drd1                                              0.150
+Tac1                                              1.186
+Foxp2                                             2.580
+Slc35d3                                           0.949
+Chrm4                                             0.000
+        CEMBA171214_4D#GAGATTCCATAAGTCGTCCGGTAAGTACTGAC
+Drd1                                              0.140
+Tac1                                              1.515
+Foxp2                                             0.330
+Slc35d3                                           0.533
+Chrm4                                             0.000
+
+mat: nRows = 6, nCols = 11224
+
+
+2020-10-05 13:15:50 : weightList, Class = SimpleList
+
+weightList$w1: length = 1
+[1] "/home/bnphan/projects/snATAC_cross_species_caudate/data/raw_data/mm10/BICCN_mouse_caudoputamen/ArchR_BICCN_CP_4D/ImputeWeights/Impute-Weights-Rep-1"
+
+
+weightList$w2: length = 1
+[1] "/home/bnphan/projects/snATAC_cross_species_caudate/data/raw_data/mm10/BICCN_mouse_caudoputamen/ArchR_BICCN_CP_4D/ImputeWeights/Impute-Weights-Rep-2"
+
+
+2020-10-05 13:15:50 : Imputing Matrix (1 of 2), 0 mins elapsed.
+
+2020-10-05 13:15:50 : 
+
+2020-10-05 13:15:50 : 
+
+2020-10-05 13:15:50 : 
+2020-10-05 13:15:53 : Imputing Matrix (2 of 2), 0.04 mins elapsed.
+
+2020-10-05 13:15:53 : 
+
+2020-10-05 13:15:53 : 
+
+2020-10-05 13:15:53 : 
+2020-10-05 13:15:55 : Finished Imputing Matrix, 0.082 mins elapsed.
+
+2020-10-05 13:15:55 : colorMat-After-Impute, Class = matrix
+        CEMBA171214_4D#ATTCAGAATCTATCCGTGCCTTACCAGGACGT
+Drd1                                          0.8191799
+Tac1                                          0.4286534
+Foxp2                                         1.7736064
+Slc35d3                                       0.7329231
+Chrm4                                         0.6842437
+        CEMBA171214_4D#ATTCAGAACAGAACTGTTACGACCGTACTGAC
+Drd1                                          1.4940997
+Tac1                                          0.9186304
+Foxp2                                         2.9147282
+Slc35d3                                       1.4379766
+Chrm4                                         0.8693433
+        CEMBA171214_4D#ATTCAGAATTAGCCTCTAAGATCCGTACTGAC
+Drd1                                          0.5313869
+Tac1                                          0.3599518
+Foxp2                                         1.3086432
+Slc35d3                                       0.7057583
+Chrm4                                         0.6228349
+        CEMBA171214_4D#CTGAAGCTGCAACCTAAATGACGTCCTATCCT
+Drd1                                          0.8514616
+Tac1                                          0.5029798
+Foxp2                                         2.3063583
+Slc35d3                                       0.9069005
+Chrm4                                         0.6658889
+        CEMBA171214_4D#GAGATTCCATAAGTCGTCCGGTAAGTACTGAC
+Drd1                                          1.2634286
+Tac1                                          0.7831153
+Foxp2                                         2.7033137
+Slc35d3                                       1.1750633
+Chrm4                                         0.8074117
+
+colorMat-After-Impute: nRows = 6, nCols = 11224
+
+
+2020-10-05 13:15:55 : ColorParams 1, Class = list
+
+ColorParams 1$color: length = 11224
+CEMBA171214_4D#ATTCAGAATCTATCCGTGCCTTACCAGGACGT 
+                                      0.8191799 
+CEMBA171214_4D#ATTCAGAACAGAACTGTTACGACCGTACTGAC 
+                                      1.4940997 
+CEMBA171214_4D#ATTCAGAATTAGCCTCTAAGATCCGTACTGAC 
+                                      0.5313869 
+CEMBA171214_4D#CTGAAGCTGCAACCTAAATGACGTCCTATCCT 
+                                      0.8514616 
+CEMBA171214_4D#GAGATTCCATAAGTCGTCCGGTAAGTACTGAC 
+                                      1.2634286 
+CEMBA171214_4D#CTGAAGCTCGCTTGATATAGCCTTGTACTGAC 
+                                      1.6998284 
+
+
+ColorParams 1$discrete: length = 1
+[1] FALSE
+
+
+ColorParams 1$title: length = 1
+[1] "UMAP of IterativeLSI colored by\nGeneScoreMatrix : Drd1"
+
+
+ColorParams 1$continuousSet: length = 1
+[1] "horizonExtra"
+
+
+
+2020-10-05 13:15:55 : PlotParams-1, Class = list
+
+PlotParams-1$color: length = 11224
+CEMBA171214_4D#ATTCAGAATCTATCCGTGCCTTACCAGGACGT 
+                                      0.8632882 
+CEMBA171214_4D#ATTCAGAACAGAACTGTTACGACCGTACTGAC 
+                                      1.3185191 
+CEMBA171214_4D#ATTCAGAATTAGCCTCTAAGATCCGTACTGAC 
+                                      0.6148388 
+CEMBA171214_4D#CTGAAGCTGCAACCTAAATGACGTCCTATCCT 
+                                      0.8886646 
+CEMBA171214_4D#GAGATTCCATAAGTCGTCCGGTAAGTACTGAC 
+                                      1.1785098 
+CEMBA171214_4D#CTGAAGCTCGCTTGATATAGCCTTGTACTGAC 
+                                      1.4328677 
+
+
+PlotParams-1$title: length = 1
+[1] "UMAP of IterativeLSI colored by\nGeneScoreMatrix : Drd1"
+
+
+PlotParams-1$x: length = 11224
+[1]  5.3821647 -0.9132533  5.1650488  4.1907997  4.7818687 -3.7316730
+
+
+PlotParams-1$y: length = 11224
+[1]  1.42122660 -0.26661875  1.32904408  1.43104921  1.27323792 -0.04745848
+
+
+PlotParams-1$baseSize: length = 1
+[1] 10
+
+
+PlotParams-1$xlabel: length = 1
+[1] "UMAP Dimension 1"
+
+
+PlotParams-1$ylabel: length = 1
+[1] "UMAP Dimension 2"
+
+
+PlotParams-1$pal: length = 256
+[1] "#000436" "#000439" "#00053D" "#000640" "#000744" "#000848"
+
+
+PlotParams-1$colorTitle: length = 1
+[1] "Log2(NormCounts + 1)"
+
+
+
+2020-10-05 13:15:56 : PlotParams-2, Class = list
+
+PlotParams-2$color: length = 11224
+CEMBA171214_4D#ATTCAGAATCTATCCGTGCCTTACCAGGACGT 
+                                      0.5146560 
+CEMBA171214_4D#ATTCAGAACAGAACTGTTACGACCGTACTGAC 
+                                      0.9400769 
+CEMBA171214_4D#ATTCAGAATTAGCCTCTAAGATCCGTACTGAC 
+                                      0.4435555 
+CEMBA171214_4D#CTGAAGCTGCAACCTAAATGACGTCCTATCCT 
+                                      0.5878256 
+CEMBA171214_4D#GAGATTCCATAAGTCGTCCGGTAAGTACTGAC 
+                                      0.8344000 
+CEMBA171214_4D#CTGAAGCTCGCTTGATATAGCCTTGTACTGAC 
+                                      0.9975130 
+
+
+PlotParams-2$title: length = 1
+[1] "UMAP of IterativeLSI colored by\nGeneScoreMatrix : Tac1"
+
+
+PlotParams-2$x: length = 11224
+[1]  5.3821647 -0.9132533  5.1650488  4.1907997  4.7818687 -3.7316730
+
+
+PlotParams-2$y: length = 11224
+[1]  1.42122660 -0.26661875  1.32904408  1.43104921  1.27323792 -0.04745848
+
+
+PlotParams-2$baseSize: length = 1
+[1] 10
+
+
+PlotParams-2$xlabel: length = 1
+[1] "UMAP Dimension 1"
+
+
+PlotParams-2$ylabel: length = 1
+[1] "UMAP Dimension 2"
+
+
+PlotParams-2$pal: length = 256
+[1] "#000436" "#000439" "#00053D" "#000640" "#000744" "#000848"
+
+
+PlotParams-2$colorTitle: length = 1
+[1] "Log2(NormCounts + 1)"
+
+
+
+2020-10-05 13:15:56 : PlotParams-3, Class = list
+
+PlotParams-3$color: length = 11224
+CEMBA171214_4D#ATTCAGAATCTATCCGTGCCTTACCAGGACGT 
+                                       1.471763 
+CEMBA171214_4D#ATTCAGAACAGAACTGTTACGACCGTACTGAC 
+                                       1.968912 
+CEMBA171214_4D#ATTCAGAATTAGCCTCTAAGATCCGTACTGAC 
+                                       1.207045 
+CEMBA171214_4D#CTGAAGCTGCAACCTAAATGACGTCCTATCCT 
+                                       1.725243 
+CEMBA171214_4D#GAGATTCCATAAGTCGTCCGGTAAGTACTGAC 
+                                       1.888817 
+CEMBA171214_4D#CTGAAGCTCGCTTGATATAGCCTTGTACTGAC 
+                                       1.911074 
+
+
+PlotParams-3$title: length = 1
+[1] "UMAP of IterativeLSI colored by\nGeneScoreMatrix : Foxp2"
+
+
+PlotParams-3$x: length = 11224
+[1]  5.3821647 -0.9132533  5.1650488  4.1907997  4.7818687 -3.7316730
+
+
+PlotParams-3$y: length = 11224
+[1]  1.42122660 -0.26661875  1.32904408  1.43104921  1.27323792 -0.04745848
+
+
+PlotParams-3$baseSize: length = 1
+[1] 10
+
+
+PlotParams-3$xlabel: length = 1
+[1] "UMAP Dimension 1"
+
+
+PlotParams-3$ylabel: length = 1
+[1] "UMAP Dimension 2"
+
+
+PlotParams-3$pal: length = 256
+[1] "#000436" "#000439" "#00053D" "#000640" "#000744" "#000848"
+
+
+PlotParams-3$colorTitle: length = 1
+[1] "Log2(NormCounts + 1)"
+
+
+
+2020-10-05 13:15:56 : PlotParams-4, Class = list
+
+PlotParams-4$color: length = 11224
+CEMBA171214_4D#ATTCAGAATCTATCCGTGCCTTACCAGGACGT 
+                                      0.7932076 
+CEMBA171214_4D#ATTCAGAACAGAACTGTTACGACCGTACTGAC 
+                                      1.2856843 
+CEMBA171214_4D#ATTCAGAATTAGCCTCTAAGATCCGTACTGAC 
+                                      0.7704132 
+CEMBA171214_4D#CTGAAGCTGCAACCTAAATGACGTCCTATCCT 
+                                      0.9312295 
+CEMBA171214_4D#GAGATTCCATAAGTCGTCCGGTAAGTACTGAC 
+                                      1.1210574 
+CEMBA171214_4D#CTGAAGCTCGCTTGATATAGCCTTGTACTGAC 
+                                      1.4475171 
+
+
+PlotParams-4$title: length = 1
+[1] "UMAP of IterativeLSI colored by\nGeneScoreMatrix : Slc35d3"
+
+
+PlotParams-4$x: length = 11224
+[1]  5.3821647 -0.9132533  5.1650488  4.1907997  4.7818687 -3.7316730
+
+
+PlotParams-4$y: length = 11224
+[1]  1.42122660 -0.26661875  1.32904408  1.43104921  1.27323792 -0.04745848
+
+
+PlotParams-4$baseSize: length = 1
+[1] 10
+
+
+PlotParams-4$xlabel: length = 1
+[1] "UMAP Dimension 1"
+
+
+PlotParams-4$ylabel: length = 1
+[1] "UMAP Dimension 2"
+
+
+PlotParams-4$pal: length = 256
+[1] "#000436" "#000439" "#00053D" "#000640" "#000744" "#000848"
+
+
+PlotParams-4$colorTitle: length = 1
+[1] "Log2(NormCounts + 1)"
+
+
+
+2020-10-05 13:15:56 : PlotParams-5, Class = list
+
+PlotParams-5$color: length = 11224
+CEMBA171214_4D#ATTCAGAATCTATCCGTGCCTTACCAGGACGT 
+                                      0.7521009 
+CEMBA171214_4D#ATTCAGAACAGAACTGTTACGACCGTACTGAC 
+                                      0.9025315 
+CEMBA171214_4D#ATTCAGAATTAGCCTCTAAGATCCGTACTGAC 
+                                      0.6985162 
+CEMBA171214_4D#CTGAAGCTGCAACCTAAATGACGTCCTATCCT 
+                                      0.7362922 
+CEMBA171214_4D#GAGATTCCATAAGTCGTCCGGTAAGTACTGAC 
+                                      0.8539252 
+CEMBA171214_4D#CTGAAGCTCGCTTGATATAGCCTTGTACTGAC 
+                                      0.9112625 
+
+
+PlotParams-5$title: length = 1
+[1] "UMAP of IterativeLSI colored by\nGeneScoreMatrix : Chrm4"
+
+
+PlotParams-5$x: length = 11224
+[1]  5.3821647 -0.9132533  5.1650488  4.1907997  4.7818687 -3.7316730
+
+
+PlotParams-5$y: length = 11224
+[1]  1.42122660 -0.26661875  1.32904408  1.43104921  1.27323792 -0.04745848
+
+
+PlotParams-5$baseSize: length = 1
+[1] 10
+
+
+PlotParams-5$xlabel: length = 1
+[1] "UMAP Dimension 1"
+
+
+PlotParams-5$ylabel: length = 1
+[1] "UMAP Dimension 2"
+
+
+PlotParams-5$pal: length = 256
+[1] "#000436" "#000439" "#00053D" "#000640" "#000744" "#000848"
+
+
+PlotParams-5$colorTitle: length = 1
+[1] "Log2(NormCounts + 1)"
+
+
+
+2020-10-05 13:15:56 : PlotParams-6, Class = list
+
+PlotParams-6$color: length = 11224
+CEMBA171214_4D#ATTCAGAATCTATCCGTGCCTTACCAGGACGT 
+                                      0.3567929 
+CEMBA171214_4D#ATTCAGAACAGAACTGTTACGACCGTACTGAC 
+                                      0.7638341 
+CEMBA171214_4D#ATTCAGAATTAGCCTCTAAGATCCGTACTGAC 
+                                      0.4557092 
+CEMBA171214_4D#CTGAAGCTGCAACCTAAATGACGTCCTATCCT 
+                                      0.4705643 
+CEMBA171214_4D#GAGATTCCATAAGTCGTCCGGTAAGTACTGAC 
+                                      0.6123636 
+CEMBA171214_4D#CTGAAGCTCGCTTGATATAGCCTTGTACTGAC 
+                                      0.7784443 
+
+
+PlotParams-6$title: length = 1
+[1] "UMAP of IterativeLSI colored by\nGeneScoreMatrix : Pdyn"
+
+
+PlotParams-6$x: length = 11224
+[1]  5.3821647 -0.9132533  5.1650488  4.1907997  4.7818687 -3.7316730
+
+
+PlotParams-6$y: length = 11224
+[1]  1.42122660 -0.26661875  1.32904408  1.43104921  1.27323792 -0.04745848
+
+
+PlotParams-6$baseSize: length = 1
+[1] 10
+
+
+PlotParams-6$xlabel: length = 1
+[1] "UMAP Dimension 1"
+
+
+PlotParams-6$ylabel: length = 1
+[1] "UMAP Dimension 2"
+
+
+PlotParams-6$pal: length = 256
+[1] "#000436" "#000439" "#00053D" "#000640" "#000744" "#000848"
+
+
+PlotParams-6$colorTitle: length = 1
+[1] "Log2(NormCounts + 1)"
+
+
+
+------- Completed
+
+End Time : 2020-10-05 13:15:57
+Elapsed Time Minutes = 0.1510436018308
+Elapsed Time Hours = 0.00251744435893165
+
+-------
+
+
+

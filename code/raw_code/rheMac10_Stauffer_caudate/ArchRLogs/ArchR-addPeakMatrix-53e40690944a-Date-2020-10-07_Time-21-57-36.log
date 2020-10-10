@@ -1,0 +1,190 @@
+
+           ___      .______        ______  __    __  .______      
+          /   \     |   _  \      /      ||  |  |  | |   _  \     
+         /  ^  \    |  |_)  |    |  ,----'|  |__|  | |  |_)  |    
+        /  /_\  \   |      /     |  |     |   __   | |      /     
+       /  _____  \  |  |\  \\___ |  `----.|  |  |  | |  |\  \\___.
+      /__/     \__\ | _| `._____| \______||__|  |__| | _| `._____|
+    
+Logging With ArchR!
+
+Start Time : 2020-10-07 21:57:36
+
+------- ArchR Info
+
+ArchRThreads = 10
+ArchRGenome = Mm10
+
+------- System Info
+
+Computer OS = unix
+Total Cores = 64
+
+------- Session Info
+
+R version 3.6.3 (2020-02-29)
+Platform: x86_64-conda_cos6-linux-gnu (64-bit)
+Running under: CentOS Linux 7 (Core)
+
+Matrix products: default
+BLAS/LAPACK: /home/bnphan/miniconda3/lib/libmkl_rt.so
+
+locale:
+ [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+ [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+ [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
+ [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+ [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+[11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+
+attached base packages:
+[1] parallel  stats4    stats     graphics  grDevices utils     datasets 
+[8] methods   base     
+
+other attached packages:
+ [1] BSgenome.Mmulatta.UCSC.rheMac10_1.4.3 BSgenome_1.54.0                      
+ [3] rtracklayer_1.46.0                    Biostrings_2.54.0                    
+ [5] XVector_0.26.0                        ArchR_0.9.5                          
+ [7] magrittr_1.5                          rhdf5_2.30.1                         
+ [9] Matrix_1.2-18                         data.table_1.13.0                    
+[11] SummarizedExperiment_1.16.1           DelayedArray_0.12.3                  
+[13] BiocParallel_1.20.1                   matrixStats_0.57.0                   
+[15] Biobase_2.46.0                        GenomicRanges_1.38.0                 
+[17] GenomeInfoDb_1.22.1                   IRanges_2.20.2                       
+[19] S4Vectors_0.24.4                      BiocGenerics_0.32.0                  
+[21] ggplot2_3.3.2                         colorout_1.2-2                       
+
+loaded via a namespace (and not attached):
+ [1] Rcpp_1.0.5                         lattice_0.20-41                   
+ [3] Rsamtools_2.2.3                    gtools_3.8.2                      
+ [5] digest_0.6.25                      BSgenome.Mmusculus.UCSC.mm10_1.4.0
+ [7] IRdisplay_0.7.0                    plyr_1.8.6                        
+ [9] R6_2.4.1                           repr_1.1.0                        
+[11] evaluate_0.14                      pillar_1.4.6                      
+[13] zlibbioc_1.32.0                    rlang_0.4.7                       
+[15] uuid_0.1-4                         hexbin_1.28.1                     
+[17] labeling_0.3                       stringr_1.4.0                     
+[19] RCurl_1.98-1.2                     munsell_0.5.0                     
+[21] compiler_3.6.3                     pkgconfig_2.0.3                   
+[23] base64enc_0.1-3                    htmltools_0.5.0                   
+[25] tidyselect_1.1.0                   tibble_3.0.3                      
+[27] GenomeInfoDbData_1.2.2             XML_3.99-0.3                      
+[29] crayon_1.3.4                       dplyr_1.0.2                       
+[31] withr_2.3.0                        GenomicAlignments_1.22.1          
+[33] bitops_1.0-6                       grid_3.6.3                        
+[35] jsonlite_1.7.1                     gtable_0.3.0                      
+[37] lifecycle_0.2.0                    scales_1.1.1                      
+[39] stringi_1.5.3                      farver_2.0.3                      
+[41] ellipsis_0.3.1                     generics_0.0.2                    
+[43] vctrs_0.3.4                        cowplot_1.1.0                     
+[45] IRkernel_1.1.1                     Rhdf5lib_1.8.0                    
+[47] tools_3.6.3                        Cairo_1.5-12.2                    
+[49] glue_1.4.2                         purrr_0.3.4                       
+[51] colorspace_1.4-1                   pbdZMQ_0.3-3                      
+
+
+------- Log Info
+
+
+2020-10-07 21:57:36 : peakSet, Class = GRanges
+GRanges object with 293503 ranges and 12 metadata columns:
+              seqnames              ranges strand |     score
+                 <Rle>           <IRanges>  <Rle> | <numeric>
+       MSN_D1     chr1            825-1325      * |   82.2024
+  Interneuron     chr1         24910-25410      * |   5.76779
+        Astro     chr1         25963-26463      * |   21.8332
+        Astro     chr1         26494-26994      * |   232.053
+       MSN_D2     chr1         55246-55746      * |   103.014
+          ...      ...                 ...    ... .       ...
+       MSN_D1     chrX 151956052-151956552      * |   7.38676
+       MSN_D2     chrX 151981860-151982360      * |   118.465
+       MSN_D1     chrX 151994824-151995324      * |   10.7882
+     MSN_UNK1     chrX 151995441-151995941      * |   2.38716
+     MSN_UNK1     chrX 152005397-152005897      * |   2.38716
+              replicateScoreQuantile groupScoreQuantile Reproducibility
+                           <numeric>          <numeric>       <numeric>
+       MSN_D1                   0.82              0.616               2
+  Interneuron                  0.517              0.134               2
+        Astro                  0.885              0.734               2
+        Astro                  0.928              0.828               2
+       MSN_D2                  0.853              0.663               2
+          ...                    ...                ...             ...
+       MSN_D1                  0.273              0.052               2
+       MSN_D2                  0.876              0.713               2
+       MSN_D1                  0.371              0.088               2
+     MSN_UNK1                  0.756              0.431               2
+     MSN_UNK1                  0.756              0.431               2
+                  GroupReplicate distToGeneStart nearestGene    peakType
+                     <character>       <integer> <character> <character>
+       MSN_D1      MSN_D1._.Rep1         1003623       OR2L8      Distal
+  Interneuron Interneuron._.Rep1          979538       OR2L8      Distal
+        Astro       Astro._.Rep2          978485       OR2L8      Distal
+        Astro       Astro._.Rep1          977954       OR2L8      Distal
+       MSN_D2      MSN_D2._.Rep1          949202       OR2L8      Distal
+          ...                ...             ...         ...         ...
+       MSN_D1      MSN_D1._.Rep1          113984       VAMP7      Distal
+       MSN_D2      MSN_D2._.Rep1          139792       VAMP7      Distal
+       MSN_D1      MSN_D1._.Rep1          152756       VAMP7      Distal
+     MSN_UNK1    MSN_UNK1._.Rep2          153373       VAMP7      Distal
+     MSN_UNK1    MSN_UNK1._.Rep2          163329       VAMP7      Distal
+              distToTSS  nearestTSS        GC       idx
+              <integer> <character> <numeric> <integer>
+       MSN_D1   1003623       OR2L8    0.5409         1
+  Interneuron    979538       OR2L8     0.493         2
+        Astro    978485       OR2L8    0.6846         3
+        Astro    977954       OR2L8    0.6627         4
+       MSN_D2    949202       OR2L8     0.491         5
+          ...       ...         ...       ...       ...
+       MSN_D1    113984        <NA>    0.3433      6973
+       MSN_D2    139792        <NA>    0.3673      6974
+       MSN_D1    152756        <NA>    0.5409      6975
+     MSN_UNK1    153373        <NA>    0.5409      6976
+     MSN_UNK1    163329        <NA>    0.5509      6977
+  -------
+  seqinfo: 21 sequences from an unspecified genome; no seqlengths
+
+2020-10-07 21:57:36 : Batch Execution w/ safelapply!, 0 mins elapsed.
+
+2020-10-07 21:57:37 : featureDF, Class = data.frame
+featureDF: nRows = 293503, nCols = 4
+  seqnames idx start   end
+1     chr1   1   825  1325
+2     chr1   2 24910 25410
+3     chr1   3 25963 26463
+4     chr1   4 26494 26994
+5     chr1   5 55246 55746
+6     chr1   6 55836 56336
+
+
+2020-10-07 21:57:38 : Adding CAUD_WS1H_STA682A131 to PeakMatrix for Chr (1 of 21)!, 0.017 mins elapsed.
+2020-10-07 21:57:53 : Adding CAUD_WS1H_STA682A131 to PeakMatrix for Chr (2 of 21)!, 0.269 mins elapsed.
+2020-10-07 21:58:02 : Adding CAUD_WS1H_STA682A131 to PeakMatrix for Chr (3 of 21)!, 0.416 mins elapsed.
+2020-10-07 21:58:10 : Adding CAUD_WS1H_STA682A131 to PeakMatrix for Chr (4 of 21)!, 0.547 mins elapsed.
+2020-10-07 21:58:17 : Adding CAUD_WS1H_STA682A131 to PeakMatrix for Chr (5 of 21)!, 0.661 mins elapsed.
+2020-10-07 21:58:23 : Adding CAUD_WS1H_STA682A131 to PeakMatrix for Chr (6 of 21)!, 0.768 mins elapsed.
+2020-10-07 21:58:30 : Adding CAUD_WS1H_STA682A131 to PeakMatrix for Chr (7 of 21)!, 0.88 mins elapsed.
+2020-10-07 21:58:39 : Adding CAUD_WS1H_STA682A131 to PeakMatrix for Chr (8 of 21)!, 1.027 mins elapsed.
+2020-10-07 21:58:45 : Adding CAUD_WS1H_STA682A131 to PeakMatrix for Chr (9 of 21)!, 1.132 mins elapsed.
+2020-10-07 21:58:51 : Adding CAUD_WS1H_STA682A131 to PeakMatrix for Chr (10 of 21)!, 1.237 mins elapsed.
+2020-10-07 21:58:58 : Adding CAUD_WS1H_STA682A131 to PeakMatrix for Chr (11 of 21)!, 1.343 mins elapsed.
+2020-10-07 21:59:04 : Adding CAUD_WS1H_STA682A131 to PeakMatrix for Chr (12 of 21)!, 1.449 mins elapsed.
+2020-10-07 21:59:09 : Adding CAUD_WS1H_STA682A131 to PeakMatrix for Chr (13 of 21)!, 1.535 mins elapsed.
+2020-10-07 21:59:15 : Adding CAUD_WS1H_STA682A131 to PeakMatrix for Chr (14 of 21)!, 1.622 mins elapsed.
+2020-10-07 21:59:21 : Adding CAUD_WS1H_STA682A131 to PeakMatrix for Chr (15 of 21)!, 1.733 mins elapsed.
+2020-10-07 21:59:27 : Adding CAUD_WS1H_STA682A131 to PeakMatrix for Chr (16 of 21)!, 1.837 mins elapsed.
+2020-10-07 21:59:33 : Adding CAUD_WS1H_STA682A131 to PeakMatrix for Chr (17 of 21)!, 1.935 mins elapsed.
+2020-10-07 21:59:37 : Adding CAUD_WS1H_STA682A131 to PeakMatrix for Chr (18 of 21)!, 2.002 mins elapsed.
+2020-10-07 21:59:41 : Adding CAUD_WS1H_STA682A131 to PeakMatrix for Chr (19 of 21)!, 2.06 mins elapsed.
+2020-10-07 21:59:46 : Adding CAUD_WS1H_STA682A131 to PeakMatrix for Chr (20 of 21)!, 2.142 mins elapsed.
+2020-10-07 21:59:51 : Adding CAUD_WS1H_STA682A131 to PeakMatrix for Chr (21 of 21)!, 2.23 mins elapsed.
+
+------- Completed
+
+End Time : 2020-10-07 21:59:55
+Elapsed Time Minutes = 2.32742168505987
+Elapsed Time Hours = 0.0387904241349962
+
+-------
+
+
+

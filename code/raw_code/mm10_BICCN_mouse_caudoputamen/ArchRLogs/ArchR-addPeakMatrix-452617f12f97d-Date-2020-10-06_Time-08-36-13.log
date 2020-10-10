@@ -1,0 +1,278 @@
+
+           ___      .______        ______  __    __  .______      
+          /   \     |   _  \      /      ||  |  |  | |   _  \     
+         /  ^  \    |  |_)  |    |  ,----'|  |__|  | |  |_)  |    
+        /  /_\  \   |      /     |  |     |   __   | |      /     
+       /  _____  \  |  |\  \\___ |  `----.|  |  |  | |  |\  \\___.
+      /__/     \__\ | _| `._____| \______||__|  |__| | _| `._____|
+    
+Logging With ArchR!
+
+Start Time : 2020-10-06 08:36:13
+
+------- ArchR Info
+
+ArchRThreads = 10
+ArchRGenome = Mm10
+
+------- System Info
+
+Computer OS = unix
+Total Cores = 64
+
+------- Session Info
+
+R version 3.6.3 (2020-02-29)
+Platform: x86_64-conda_cos6-linux-gnu (64-bit)
+Running under: CentOS Linux 7 (Core)
+
+Matrix products: default
+BLAS/LAPACK: /home/bnphan/miniconda3/lib/libmkl_rt.so
+
+locale:
+ [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+ [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+ [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
+ [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+ [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+[11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+
+attached base packages:
+[1] parallel  stats4    stats     graphics  grDevices utils     datasets 
+[8] methods   base     
+
+other attached packages:
+ [1] BSgenome.Mmusculus.UCSC.mm10_1.4.0 BSgenome_1.54.0                   
+ [3] rtracklayer_1.46.0                 Biostrings_2.54.0                 
+ [5] XVector_0.26.0                     gtable_0.3.0                      
+ [7] ArchR_0.9.5                        magrittr_1.5                      
+ [9] rhdf5_2.30.1                       Matrix_1.2-18                     
+[11] data.table_1.13.0                  SummarizedExperiment_1.16.1       
+[13] DelayedArray_0.12.3                BiocParallel_1.20.1               
+[15] matrixStats_0.57.0                 Biobase_2.46.0                    
+[17] GenomicRanges_1.38.0               GenomeInfoDb_1.22.1               
+[19] IRanges_2.20.2                     S4Vectors_0.24.4                  
+[21] BiocGenerics_0.32.0                ggplot2_3.3.2                     
+[23] colorout_1.2-2                    
+
+loaded via a namespace (and not attached):
+ [1] Rcpp_1.0.5               lattice_0.20-41          Rsamtools_2.2.3         
+ [4] gtools_3.8.2             digest_0.6.25            IRdisplay_0.7.0         
+ [7] plyr_1.8.6               R6_2.4.1                 repr_1.1.0              
+[10] evaluate_0.14            pillar_1.4.6             zlibbioc_1.32.0         
+[13] rlang_0.4.7              uuid_0.1-4               hexbin_1.28.1           
+[16] labeling_0.3             stringr_1.4.0            pheatmap_1.0.12         
+[19] RCurl_1.98-1.2           munsell_0.5.0            compiler_3.6.3          
+[22] pkgconfig_2.0.3          base64enc_0.1-3          htmltools_0.5.0         
+[25] tidyselect_1.1.0         tibble_3.0.3             GenomeInfoDbData_1.2.2  
+[28] XML_3.99-0.3             crayon_1.3.4             dplyr_1.0.2             
+[31] withr_2.3.0              GenomicAlignments_1.22.1 bitops_1.0-6            
+[34] grid_3.6.3               jsonlite_1.7.1           lifecycle_0.2.0         
+[37] scales_1.1.1             stringi_1.5.3            farver_2.0.3            
+[40] ellipsis_0.3.1           generics_0.0.2           vctrs_0.3.4             
+[43] cowplot_1.1.0            IRkernel_1.1.1           Rhdf5lib_1.8.0          
+[46] RColorBrewer_1.1-2       tools_3.6.3              Cairo_1.5-12.2          
+[49] glue_1.4.2               purrr_0.3.4              colorspace_1.4-1        
+[52] pbdZMQ_0.3-3            
+
+
+------- Log Info
+
+
+2020-10-06 08:36:13 : peakSet, Class = GRanges
+GRanges object with 267329 ranges and 12 metadata columns:
+              seqnames              ranges strand |     score
+                 <Rle>           <IRanges>  <Rle> | <numeric>
+  Interneuron     chr1     3094361-3094861      * |   5.55415
+  Interneuron     chr1     3094886-3095386      * |   13.9115
+       MSN_D1     chr1     3100713-3101213      * |   11.3921
+  Interneuron     chr1     3134652-3135152      * |   4.26744
+  Interneuron     chr1     3206933-3207433      * |   13.9115
+          ...      ...                 ...    ... .       ...
+        Astro     chrX 169883792-169884292      * |   4.64369
+        Mural     chrX 169885434-169885934      * |   2.97739
+        Oligo     chrX 169886917-169887417      * |   5.05328
+        Astro     chrX 169925491-169925991      * |   36.5364
+        Astro     chrX 169950955-169951455      * |   12.8058
+              replicateScoreQuantile groupScoreQuantile Reproducibility
+                           <numeric>          <numeric>       <numeric>
+  Interneuron                  0.629              0.413               4
+  Interneuron                  0.846               0.73               4
+       MSN_D1                  0.689              0.549               4
+  Interneuron                  0.614              0.301               2
+  Interneuron                  0.846               0.73               4
+          ...                    ...                ...             ...
+        Astro                   0.21              0.036               2
+        Mural                  0.605              0.467               2
+        Oligo                    0.6              0.417               2
+        Astro                    0.9              0.846               4
+        Astro                  0.596              0.379               3
+                            GroupReplicate distToGeneStart   nearestGene
+                               <character>       <integer>   <character>
+  Interneuron Interneuron._.CEMBA171219_4D          576886          Xkr4
+  Interneuron Interneuron._.CEMBA171219_4D          576361          Xkr4
+       MSN_D1      MSN_D1._.CEMBA171214_4D          570534          Xkr4
+  Interneuron Interneuron._.CEMBA180813_5E          536595          Xkr4
+  Interneuron Interneuron._.CEMBA171219_4D          464314          Xkr4
+          ...                          ...             ...           ...
+        Astro       Astro._.CEMBA171214_4D          104406 4933400A11Rik
+        Mural                 Mural._.Rep1          106048 4933400A11Rik
+        Oligo       Oligo._.CEMBA171214_4D          107531 4933400A11Rik
+        Astro       Astro._.CEMBA171219_4D          146105 4933400A11Rik
+        Astro       Astro._.CEMBA180813_5E          171569 4933400A11Rik
+                 peakType distToTSS  nearestTSS        GC       idx
+              <character> <integer> <character> <numeric> <integer>
+  Interneuron      Distal    121020  uc007afg.1    0.4371         1
+  Interneuron      Distal    120495  uc007afg.1    0.4291         2
+       MSN_D1      Distal    114668  uc007afg.1    0.3952         3
+  Interneuron      Distal     80729  uc007afg.1    0.3613         4
+  Interneuron      Distal      8448  uc007afg.1    0.4112         5
+          ...         ...       ...         ...       ...       ...
+        Astro    Intronic      4422  uc009rco.1    0.3872      5653
+        Mural    Intronic      6064  uc009rco.1    0.3812      5654
+        Oligo    Intronic      7547  uc009rco.1    0.3832      5655
+        Astro    Intronic      1212  uc009rco.1     0.501      5656
+        Astro    Intronic     21679  uc009rco.1    0.3812      5657
+  -------
+  seqinfo: 20 sequences from an unspecified genome; no seqlengths
+
+2020-10-06 08:36:13 : Batch Execution w/ safelapply!, 0 mins elapsed.
+
+2020-10-06 08:36:14 : featureDF, Class = data.frame
+
+2020-10-06 08:36:14 : featureDF, Class = data.frame
+featureDF: nRows = 267329, nCols = 4
+  seqnames idx   start     end
+1     chr1   1 3094361 3094861
+2     chr1   2 3094886 3095386
+3     chr1   3 3100713 3101213
+4     chr1   4 3134652 3135152
+5     chr1   5 3206933 3207433
+6     chr1   6 3210424 3210924
+
+featureDF: nRows = 267329, nCols = 4
+
+  seqnames idx   start     end
+1     chr1   1 3094361 3094861
+2     chr1   2 3094886 3095386
+3     chr1   3 3100713 3101213
+4     chr1   4 3134652 3135152
+5     chr1   5 3206933 3207433
+6     chr1   6 3210424 3210924
+
+
+
+2020-10-06 08:36:14 : featureDF, Class = data.frame
+featureDF: nRows = 267329, nCols = 4
+  seqnames idx   start     end
+1     chr1   1 3094361 3094861
+2     chr1   2 3094886 3095386
+3     chr1   3 3100713 3101213
+4     chr1   4 3134652 3135152
+5     chr1   5 3206933 3207433
+6     chr1   6 3210424 3210924
+
+
+
+2020-10-06 08:36:14 : featureDF, Class = data.frame
+featureDF: nRows = 267329, nCols = 4
+  seqnames idx   start     end
+1     chr1   1 3094361 3094861
+2     chr1   2 3094886 3095386
+3     chr1   3 3100713 3101213
+4     chr1   4 3134652 3135152
+5     chr1   5 3206933 3207433
+6     chr1   6 3210424 3210924
+
+
+2020-10-06 08:36:17 : Adding CEMBA180813_5E to PeakMatrix for Chr (1 of 20)!, 0.063 mins elapsed.
+2020-10-06 08:36:17 : Adding CEMBA171219_4D to PeakMatrix for Chr (1 of 20)!, 0.062 mins elapsed.
+2020-10-06 08:36:17 : Adding CEMBA171214_4D to PeakMatrix for Chr (1 of 20)!, 0.062 mins elapsed.
+2020-10-06 08:36:17 : Adding CEMBA180820_5E to PeakMatrix for Chr (1 of 20)!, 0.062 mins elapsed.
+2020-10-06 08:36:28 : Adding CEMBA180820_5E to PeakMatrix for Chr (2 of 20)!, 0.244 mins elapsed.
+2020-10-06 08:36:29 : Adding CEMBA171214_4D to PeakMatrix for Chr (2 of 20)!, 0.252 mins elapsed.
+2020-10-06 08:36:29 : Adding CEMBA180813_5E to PeakMatrix for Chr (2 of 20)!, 0.257 mins elapsed.
+2020-10-06 08:36:29 : Adding CEMBA171219_4D to PeakMatrix for Chr (2 of 20)!, 0.257 mins elapsed.
+2020-10-06 08:36:37 : Adding CEMBA180820_5E to PeakMatrix for Chr (3 of 20)!, 0.395 mins elapsed.
+2020-10-06 08:36:38 : Adding CEMBA171214_4D to PeakMatrix for Chr (3 of 20)!, 0.415 mins elapsed.
+2020-10-06 08:36:39 : Adding CEMBA180813_5E to PeakMatrix for Chr (3 of 20)!, 0.419 mins elapsed.
+2020-10-06 08:36:39 : Adding CEMBA171219_4D to PeakMatrix for Chr (3 of 20)!, 0.422 mins elapsed.
+2020-10-06 08:36:46 : Adding CEMBA180820_5E to PeakMatrix for Chr (4 of 20)!, 0.536 mins elapsed.
+2020-10-06 08:36:47 : Adding CEMBA171214_4D to PeakMatrix for Chr (4 of 20)!, 0.561 mins elapsed.
+2020-10-06 08:36:48 : Adding CEMBA180813_5E to PeakMatrix for Chr (4 of 20)!, 0.574 mins elapsed.
+2020-10-06 08:36:48 : Adding CEMBA171219_4D to PeakMatrix for Chr (4 of 20)!, 0.576 mins elapsed.
+2020-10-06 08:36:55 : Adding CEMBA180820_5E to PeakMatrix for Chr (5 of 20)!, 0.684 mins elapsed.
+2020-10-06 08:36:56 : Adding CEMBA171214_4D to PeakMatrix for Chr (5 of 20)!, 0.713 mins elapsed.
+2020-10-06 08:36:57 : Adding CEMBA180813_5E to PeakMatrix for Chr (5 of 20)!, 0.727 mins elapsed.
+2020-10-06 08:36:57 : Adding CEMBA171219_4D to PeakMatrix for Chr (5 of 20)!, 0.729 mins elapsed.
+2020-10-06 08:37:03 : Adding CEMBA180820_5E to PeakMatrix for Chr (6 of 20)!, 0.82 mins elapsed.
+2020-10-06 08:37:05 : Adding CEMBA171214_4D to PeakMatrix for Chr (6 of 20)!, 0.856 mins elapsed.
+2020-10-06 08:37:06 : Adding CEMBA180813_5E to PeakMatrix for Chr (6 of 20)!, 0.871 mins elapsed.
+2020-10-06 08:37:06 : Adding CEMBA171219_4D to PeakMatrix for Chr (6 of 20)!, 0.871 mins elapsed.
+2020-10-06 08:37:11 : Adding CEMBA180820_5E to PeakMatrix for Chr (7 of 20)!, 0.959 mins elapsed.
+2020-10-06 08:37:14 : Adding CEMBA171214_4D to PeakMatrix for Chr (7 of 20)!, 1.001 mins elapsed.
+2020-10-06 08:37:15 : Adding CEMBA171219_4D to PeakMatrix for Chr (7 of 20)!, 1.021 mins elapsed.
+2020-10-06 08:37:15 : Adding CEMBA180813_5E to PeakMatrix for Chr (7 of 20)!, 1.024 mins elapsed.
+2020-10-06 08:37:19 : Adding CEMBA180820_5E to PeakMatrix for Chr (8 of 20)!, 1.083 mins elapsed.
+2020-10-06 08:37:22 : Adding CEMBA171214_4D to PeakMatrix for Chr (8 of 20)!, 1.136 mins elapsed.
+2020-10-06 08:37:23 : Adding CEMBA180813_5E to PeakMatrix for Chr (8 of 20)!, 1.153 mins elapsed.
+2020-10-06 08:37:23 : Adding CEMBA171219_4D to PeakMatrix for Chr (8 of 20)!, 1.155 mins elapsed.
+2020-10-06 08:37:26 : Adding CEMBA180820_5E to PeakMatrix for Chr (9 of 20)!, 1.213 mins elapsed.
+2020-10-06 08:37:30 : Adding CEMBA171214_4D to PeakMatrix for Chr (9 of 20)!, 1.274 mins elapsed.
+2020-10-06 08:37:31 : Adding CEMBA171219_4D to PeakMatrix for Chr (9 of 20)!, 1.295 mins elapsed.
+2020-10-06 08:37:31 : Adding CEMBA180813_5E to PeakMatrix for Chr (9 of 20)!, 1.296 mins elapsed.
+2020-10-06 08:37:34 : Adding CEMBA180820_5E to PeakMatrix for Chr (10 of 20)!, 1.339 mins elapsed.
+2020-10-06 08:37:38 : Adding CEMBA171214_4D to PeakMatrix for Chr (10 of 20)!, 1.406 mins elapsed.
+2020-10-06 08:37:39 : Adding CEMBA180813_5E to PeakMatrix for Chr (10 of 20)!, 1.427 mins elapsed.
+2020-10-06 08:37:39 : Adding CEMBA171219_4D to PeakMatrix for Chr (10 of 20)!, 1.429 mins elapsed.
+2020-10-06 08:37:42 : Adding CEMBA180820_5E to PeakMatrix for Chr (11 of 20)!, 1.471 mins elapsed.
+2020-10-06 08:37:46 : Adding CEMBA171214_4D to PeakMatrix for Chr (11 of 20)!, 1.546 mins elapsed.
+2020-10-06 08:37:48 : Adding CEMBA180813_5E to PeakMatrix for Chr (11 of 20)!, 1.575 mins elapsed.
+2020-10-06 08:37:48 : Adding CEMBA171219_4D to PeakMatrix for Chr (11 of 20)!, 1.575 mins elapsed.
+2020-10-06 08:37:50 : Adding CEMBA180820_5E to PeakMatrix for Chr (12 of 20)!, 1.61 mins elapsed.
+2020-10-06 08:37:55 : Adding CEMBA171214_4D to PeakMatrix for Chr (12 of 20)!, 1.696 mins elapsed.
+2020-10-06 08:37:57 : Adding CEMBA180813_5E to PeakMatrix for Chr (12 of 20)!, 1.723 mins elapsed.
+2020-10-06 08:37:57 : Adding CEMBA171219_4D to PeakMatrix for Chr (12 of 20)!, 1.725 mins elapsed.
+2020-10-06 08:37:58 : Adding CEMBA180820_5E to PeakMatrix for Chr (13 of 20)!, 1.744 mins elapsed.
+2020-10-06 08:38:03 : Adding CEMBA171214_4D to PeakMatrix for Chr (13 of 20)!, 1.83 mins elapsed.
+2020-10-06 08:38:05 : Adding CEMBA180813_5E to PeakMatrix for Chr (13 of 20)!, 1.861 mins elapsed.
+2020-10-06 08:38:05 : Adding CEMBA171219_4D to PeakMatrix for Chr (13 of 20)!, 1.861 mins elapsed.
+2020-10-06 08:38:06 : Adding CEMBA180820_5E to PeakMatrix for Chr (14 of 20)!, 1.871 mins elapsed.
+2020-10-06 08:38:11 : Adding CEMBA171214_4D to PeakMatrix for Chr (14 of 20)!, 1.963 mins elapsed.
+2020-10-06 08:38:13 : Adding CEMBA180813_5E to PeakMatrix for Chr (14 of 20)!, 1.997 mins elapsed.
+2020-10-06 08:38:13 : Adding CEMBA171219_4D to PeakMatrix for Chr (14 of 20)!, 1.997 mins elapsed.
+2020-10-06 08:38:13 : Adding CEMBA180820_5E to PeakMatrix for Chr (15 of 20)!, 1.996 mins elapsed.
+2020-10-06 08:38:19 : Adding CEMBA171214_4D to PeakMatrix for Chr (15 of 20)!, 2.094 mins elapsed.
+2020-10-06 08:38:21 : Adding CEMBA180820_5E to PeakMatrix for Chr (16 of 20)!, 2.117 mins elapsed.
+2020-10-06 08:38:21 : Adding CEMBA180813_5E to PeakMatrix for Chr (15 of 20)!, 2.131 mins elapsed.
+2020-10-06 08:38:21 : Adding CEMBA171219_4D to PeakMatrix for Chr (15 of 20)!, 2.131 mins elapsed.
+2020-10-06 08:38:27 : Adding CEMBA171214_4D to PeakMatrix for Chr (16 of 20)!, 2.22 mins elapsed.
+2020-10-06 08:38:28 : Adding CEMBA180820_5E to PeakMatrix for Chr (17 of 20)!, 2.234 mins elapsed.
+2020-10-06 08:38:29 : Adding CEMBA180813_5E to PeakMatrix for Chr (16 of 20)!, 2.258 mins elapsed.
+2020-10-06 08:38:29 : Adding CEMBA171219_4D to PeakMatrix for Chr (16 of 20)!, 2.259 mins elapsed.
+2020-10-06 08:38:34 : Adding CEMBA171214_4D to PeakMatrix for Chr (17 of 20)!, 2.343 mins elapsed.
+2020-10-06 08:38:35 : Adding CEMBA180820_5E to PeakMatrix for Chr (18 of 20)!, 2.351 mins elapsed.
+2020-10-06 08:38:36 : Adding CEMBA180813_5E to PeakMatrix for Chr (17 of 20)!, 2.382 mins elapsed.
+2020-10-06 08:38:36 : Adding CEMBA171219_4D to PeakMatrix for Chr (17 of 20)!, 2.383 mins elapsed.
+2020-10-06 08:38:42 : Adding CEMBA171214_4D to PeakMatrix for Chr (18 of 20)!, 2.467 mins elapsed.
+2020-10-06 08:38:42 : Adding CEMBA180820_5E to PeakMatrix for Chr (19 of 20)!, 2.47 mins elapsed.
+2020-10-06 08:38:44 : Adding CEMBA180813_5E to PeakMatrix for Chr (18 of 20)!, 2.503 mins elapsed.
+2020-10-06 08:38:44 : Adding CEMBA171219_4D to PeakMatrix for Chr (18 of 20)!, 2.508 mins elapsed.
+2020-10-06 08:38:48 : Adding CEMBA180820_5E to PeakMatrix for Chr (20 of 20)!, 2.576 mins elapsed.
+2020-10-06 08:38:49 : Adding CEMBA171214_4D to PeakMatrix for Chr (19 of 20)!, 2.59 mins elapsed.
+2020-10-06 08:38:51 : Adding CEMBA180813_5E to PeakMatrix for Chr (19 of 20)!, 2.628 mins elapsed.
+2020-10-06 08:38:52 : Adding CEMBA171219_4D to PeakMatrix for Chr (19 of 20)!, 2.633 mins elapsed.
+2020-10-06 08:38:56 : Adding CEMBA171214_4D to PeakMatrix for Chr (20 of 20)!, 2.701 mins elapsed.
+2020-10-06 08:38:57 : Adding CEMBA180813_5E to PeakMatrix for Chr (20 of 20)!, 2.732 mins elapsed.
+2020-10-06 08:38:58 : Adding CEMBA171219_4D to PeakMatrix for Chr (20 of 20)!, 2.737 mins elapsed.
+
+------- Completed
+
+End Time : 2020-10-06 08:39:02
+Elapsed Time Minutes = 2.83081868489583
+Elapsed Time Hours = 0.0471803685691622
+
+-------
+
+
+

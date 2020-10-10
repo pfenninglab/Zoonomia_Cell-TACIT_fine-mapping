@@ -1,0 +1,8 @@
+Source species Human.
+Target species Rhesus.
+Output dir is ../../../data/raw_data/multiSpeciesOrthologs/halper.
+NarrowPeak file is ../../../data/raw_data/multiSpeciesOrthologs/peaks/HumanMergedOrthologs.Consensus.narrowPeak.gz.
+Converting narrowpeak file to bed file. Make sure has unique peak name in 4th column.
+Extracting narrowPeak summits to halLiftover.
+Lifting Human summits to Rhesus genome.
+slurmstepd: error: *** JOB 203516 ON compute-1-13 CANCELLED AT 2020-10-09T22:15:19 ***

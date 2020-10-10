@@ -1,0 +1,1788 @@
+
+           ___      .______        ______  __    __  .______      
+          /   \     |   _  \      /      ||  |  |  | |   _  \     
+         /  ^  \    |  |_)  |    |  ,----'|  |__|  | |  |_)  |    
+        /  /_\  \   |      /     |  |     |   __   | |      /     
+       /  _____  \  |  |\  \\___ |  `----.|  |  |  | |  |\  \\___.
+      /__/     \__\ | _| `._____| \______||__|  |__| | _| `._____|
+    
+Logging With ArchR!
+
+Start Time : 2020-10-07 21:07:10
+
+------- ArchR Info
+
+ArchRThreads = 10
+ArchRGenome = Mm10
+
+------- System Info
+
+Computer OS = unix
+Total Cores = 64
+
+------- Session Info
+
+R version 3.6.3 (2020-02-29)
+Platform: x86_64-conda_cos6-linux-gnu (64-bit)
+Running under: CentOS Linux 7 (Core)
+
+Matrix products: default
+BLAS/LAPACK: /home/bnphan/miniconda3/lib/libmkl_rt.so
+
+locale:
+ [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+ [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+ [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
+ [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+ [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+[11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+
+attached base packages:
+[1] parallel  stats4    stats     graphics  grDevices utils     datasets 
+[8] methods   base     
+
+other attached packages:
+ [1] ArchR_0.9.5                 magrittr_1.5               
+ [3] rhdf5_2.30.1                Matrix_1.2-18              
+ [5] data.table_1.13.0           SummarizedExperiment_1.16.1
+ [7] DelayedArray_0.12.3         BiocParallel_1.20.1        
+ [9] matrixStats_0.57.0          Biobase_2.46.0             
+[11] GenomicRanges_1.38.0        GenomeInfoDb_1.22.1        
+[13] IRanges_2.20.2              S4Vectors_0.24.4           
+[15] BiocGenerics_0.32.0         ggplot2_3.3.2              
+[17] colorout_1.2-2             
+
+loaded via a namespace (and not attached):
+ [1] Rcpp_1.0.5                         lattice_0.20-41                   
+ [3] Rsamtools_2.2.3                    Biostrings_2.54.0                 
+ [5] gtools_3.8.2                       digest_0.6.25                     
+ [7] BSgenome.Mmusculus.UCSC.mm10_1.4.0 IRdisplay_0.7.0                   
+ [9] plyr_1.8.6                         R6_2.4.1                          
+[11] repr_1.1.0                         evaluate_0.14                     
+[13] pillar_1.4.6                       zlibbioc_1.32.0                   
+[15] rlang_0.4.7                        uuid_0.1-4                        
+[17] hexbin_1.28.1                      labeling_0.3                      
+[19] stringr_1.4.0                      RCurl_1.98-1.2                    
+[21] munsell_0.5.0                      compiler_3.6.3                    
+[23] rtracklayer_1.46.0                 pkgconfig_2.0.3                   
+[25] base64enc_0.1-3                    htmltools_0.5.0                   
+[27] tidyselect_1.1.0                   tibble_3.0.3                      
+[29] GenomeInfoDbData_1.2.2             XML_3.99-0.3                      
+[31] crayon_1.3.4                       dplyr_1.0.2                       
+[33] withr_2.3.0                        GenomicAlignments_1.22.1          
+[35] bitops_1.0-6                       grid_3.6.3                        
+[37] jsonlite_1.7.1                     gtable_0.3.0                      
+[39] lifecycle_0.2.0                    scales_1.1.1                      
+[41] stringi_1.5.3                      farver_2.0.3                      
+[43] XVector_0.26.0                     ellipsis_0.3.1                    
+[45] generics_0.0.2                     vctrs_0.3.4                       
+[47] cowplot_1.1.0                      IRkernel_1.1.1                    
+[49] Rhdf5lib_1.8.0                     tools_3.6.3                       
+[51] Cairo_1.5-12.2                     BSgenome_1.54.0                   
+[53] glue_1.4.2                         purrr_0.3.4                       
+[55] colorspace_1.4-1                   pbdZMQ_0.3-3                      
+
+
+------- Log Info
+
+
+2020-10-07 21:07:10 : addGroupCoverages Input-Parameters, Class = list
+
+addGroupCoverages Input-Parameters$ArchRProj: length = 1
+class: ArchRProject 
+outputDirectory: /home/bnphan/projects/snATAC_cross_species_caudate/data/raw_data/rheMac10/Stauffer_caudate/ArchR_Stauffer_caudate_labeled 
+samples(1): CAUD_WS1H_STA682A131
+sampleColData names(1): ArrowFiles
+cellColData names(17): Sample TSSEnrichment ... Clusters Clusters2
+numberOfCells(1): 1
+medianTSS(1): 7.836
+medianFrags(1): 99935
+
+
+addGroupCoverages Input-Parameters$groupBy: length = 1
+[1] "Clusters2"
+
+
+addGroupCoverages Input-Parameters$useLabels: length = 1
+[1] TRUE
+
+
+addGroupCoverages Input-Parameters$minCells: length = 1
+[1] 40
+
+
+addGroupCoverages Input-Parameters$maxCells: length = 1
+[1] 500
+
+
+addGroupCoverages Input-Parameters$maxFragments: length = 1
+[1] 2.5e+07
+
+
+addGroupCoverages Input-Parameters$minReplicates: length = 1
+[1] 2
+
+
+addGroupCoverages Input-Parameters$maxReplicates: length = 1
+[1] 5
+
+
+addGroupCoverages Input-Parameters$sampleRatio: length = 1
+[1] 0.8
+
+
+addGroupCoverages Input-Parameters$kmerLength: length = 1
+[1] 6
+
+
+addGroupCoverages Input-Parameters$threads: length = 1
+[1] 10
+
+
+addGroupCoverages Input-Parameters$returnGroups: length = 1
+[1] FALSE
+
+
+addGroupCoverages Input-Parameters$parallelParam: length = 0
+NULL
+
+
+addGroupCoverages Input-Parameters$force: length = 1
+[1] TRUE
+
+
+addGroupCoverages Input-Parameters$verbose: length = 1
+[1] TRUE
+
+
+addGroupCoverages Input-Parameters$logFile: length = 1
+[1] "ArchRLogs/ArchR-addGroupCoverages-53e406381f491-Date-2020-10-07_Time-21-07-10.log"
+
+
+
+2020-10-07 21:07:10 : 
+
+2020-10-07 21:07:10 : 
+
+2020-10-07 21:07:10 : 
+
+2020-10-07 21:07:10 : 
+
+2020-10-07 21:07:10 : 
+
+2020-10-07 21:07:10 : 
+
+2020-10-07 21:07:10 : 
+
+2020-10-07 21:07:10 : 
+2020-10-07 21:07:10 : Batch Execution w/ safelapply!, 0.011 mins elapsed.
+2020-10-07 21:07:10 : Group Astro._.Rep1 (1 of 16) : Creating Group Coverage File : Astro._.Rep1.insertions.coverage.h5, 0.012 mins elapsed.
+
+2020-10-07 21:07:10 : Group Astro._.Rep1 (1 of 16) : cellGroupi, Class = character
+2020-10-07 21:07:10 : Group Astro._.Rep2 (2 of 16) : Creating Group Coverage File : Astro._.Rep2.insertions.coverage.h5, 0.012 mins elapsed.
+
+2020-10-07 21:07:10 : Group Astro._.Rep2 (2 of 16) : cellGroupi, Class = character
+
+Group Astro._.Rep1 (1 of 16) : cellGroupi: length = 500
+
+[1] "CAUD_WS1H_STA682A131#AGATAGAGTACTTCAG-1"
+[2] "CAUD_WS1H_STA682A131#CAGCTGGGTGAGGTCA-1"
+[3] "CAUD_WS1H_STA682A131#GAAACAAAGTATAGTG-1"
+[4] "CAUD_WS1H_STA682A131#TTGTTGTGTAGGGTCA-1"
+[5] "CAUD_WS1H_STA682A131#CCACAGGTCCGTGCAG-1"
+[6] "CAUD_WS1H_STA682A131#ACAAACCAGGCGCTTC-1"
+2020-10-07 21:07:10 : Group Interneuron._.Rep1 (3 of 16) : Creating Group Coverage File : Interneuron._.Rep1.insertions.coverage.h5, 0.013 mins elapsed.
+Group Astro._.Rep2 (2 of 16) : cellGroupi: length = 40
+
+
+
+2020-10-07 21:07:10 : Group Interneuron._.Rep1 (3 of 16) : cellGroupi, Class = character
+[1] "CAUD_WS1H_STA682A131#CAGTATGTCTACATCT-1"
+[2] "CAUD_WS1H_STA682A131#GCCCGAATCTCGCGGA-1"
+[3] "CAUD_WS1H_STA682A131#CGATGATCATCGACCG-1"
+[4] "CAUD_WS1H_STA682A131#TTGGTCCTCGGATCGC-1"
+[5] "CAUD_WS1H_STA682A131#GTTATTCAGGTCCTCG-1"
+[6] "CAUD_WS1H_STA682A131#GTGGATTCAAGGAAGA-1"
+
+2020-10-07 21:07:10 : 
+
+
+
+2020-10-07 21:07:11 : 
+
+Group Interneuron._.Rep1 (3 of 16) : cellGroupi: length = 153
+[1] "CAUD_WS1H_STA682A131#ACAAACCAGGTCTTTG-1"
+[2] "CAUD_WS1H_STA682A131#TGGCCTTAGGTAAGCC-1"
+[3] "CAUD_WS1H_STA682A131#TCTCTGGGTATCCCTC-1"
+[4] "CAUD_WS1H_STA682A131#ATTCGTTTCCCTATTA-1"
+[5] "CAUD_WS1H_STA682A131#GTGGATTAGTCGATAA-1"
+[6] "CAUD_WS1H_STA682A131#GGGTCTGCATGCCTTC-1"
+
+
+
+2020-10-07 21:07:11 : 
+
+2020-10-07 21:07:11 : 
+
+2020-10-07 21:07:11 : 
+
+2020-10-07 21:07:11 : 
+
+2020-10-07 21:07:11 : 
+2020-10-07 21:07:11 : Group Interneuron._.Rep2 (4 of 16) : Creating Group Coverage File : Interneuron._.Rep2.insertions.coverage.h5, 0.014 mins elapsed.
+
+2020-10-07 21:07:11 : 
+
+2020-10-07 21:07:11 : Group Interneuron._.Rep2 (4 of 16) : cellGroupi, Class = character
+
+2020-10-07 21:07:11 : 
+
+2020-10-07 21:07:11 : 
+
+Group Interneuron._.Rep2 (4 of 16) : cellGroupi: length = 40
+
+2020-10-07 21:07:11 : 
+[1] "CAUD_WS1H_STA682A131#GCGGGTTCAAGTTCGT-1"
+[2] "CAUD_WS1H_STA682A131#GAGGCTCGTTACGCTA-1"
+[3] "CAUD_WS1H_STA682A131#TAGTCCCAGCTAGCAG-1"
+[4] "CAUD_WS1H_STA682A131#TTACGTTTCTATCCTA-1"
+[5] "CAUD_WS1H_STA682A131#GGCGTTGCAACTACTG-1"
+[6] "CAUD_WS1H_STA682A131#GAACGTTTCTTAATCC-1"
+
+
+
+2020-10-07 21:07:11 : 
+
+2020-10-07 21:07:11 : 
+
+2020-10-07 21:07:11 : 
+
+2020-10-07 21:07:11 : 
+
+2020-10-07 21:07:11 : 
+2020-10-07 21:07:11 : Group Microglia._.Rep1 (5 of 16) : Creating Group Coverage File : Microglia._.Rep1.insertions.coverage.h5, 0.016 mins elapsed.
+
+2020-10-07 21:07:11 : 
+
+2020-10-07 21:07:11 : 
+
+2020-10-07 21:07:11 : 
+
+2020-10-07 21:07:11 : 
+
+2020-10-07 21:07:11 : Group Microglia._.Rep1 (5 of 16) : cellGroupi, Class = character
+
+Group Microglia._.Rep1 (5 of 16) : cellGroupi: length = 479
+
+2020-10-07 21:07:11 : 
+2020-10-07 21:07:11 : Group Microglia._.Rep2 (6 of 16) : Creating Group Coverage File : Microglia._.Rep2.insertions.coverage.h5, 0.017 mins elapsed.
+
+2020-10-07 21:07:11 : 
+
+2020-10-07 21:07:11 : 
+
+2020-10-07 21:07:11 : 
+[1] "CAUD_WS1H_STA682A131#TGCCTCAAGTTCAACC-1"
+[2] "CAUD_WS1H_STA682A131#AATGCCAGTTGCTTGA-1"
+[3] "CAUD_WS1H_STA682A131#TACGCAAAGGCTCCTG-1"
+[4] "CAUD_WS1H_STA682A131#GCTCCTAGTTACTTTC-1"
+[5] "CAUD_WS1H_STA682A131#GCTCGAGCACCCTTAC-1"
+[6] "CAUD_WS1H_STA682A131#ACTGTCCTCCCTATTA-1"
+2020-10-07 21:07:11 : Group Astro._.Rep2 (2 of 16) : Processed Fragments Chr (1 of 22), 0.018 mins elapsed.
+
+
+2020-10-07 21:07:11 : Group Astro._.Rep1 (1 of 16) : Processed Fragments Chr (1 of 22), 0.018 mins elapsed.
+
+2020-10-07 21:07:11 : 
+
+2020-10-07 21:07:11 : Group Microglia._.Rep2 (6 of 16) : cellGroupi, Class = character
+
+
+2020-10-07 21:07:11 : 
+Group Microglia._.Rep2 (6 of 16) : cellGroupi: length = 40
+[1] "CAUD_WS1H_STA682A131#TCGATTTGTCCGCTTT-1"
+[2] "CAUD_WS1H_STA682A131#GACCTTCTCCGATTGA-1"
+[3] "CAUD_WS1H_STA682A131#TCTAGTTCAAGACTAA-1"
+[4] "CAUD_WS1H_STA682A131#TTGAGTGTCCATAGGT-1"
+[5] "CAUD_WS1H_STA682A131#CCGTGAGCACAGCCAC-1"
+[6] "CAUD_WS1H_STA682A131#TTGTTCAGTCTGATTG-1"
+
+2020-10-07 21:07:11 : 
+2020-10-07 21:07:11 : Group Interneuron._.Rep1 (3 of 16) : Processed Fragments Chr (1 of 22), 0.019 mins elapsed.
+
+2020-10-07 21:07:11 : 
+
+
+
+2020-10-07 21:07:11 : 
+2020-10-07 21:07:11 : Group MSN_D1._.Rep1 (7 of 16) : Creating Group Coverage File : MSN_D1._.Rep1.insertions.coverage.h5, 0.019 mins elapsed.
+
+2020-10-07 21:07:11 : 
+
+2020-10-07 21:07:11 : 
+
+2020-10-07 21:07:11 : Group MSN_D1._.Rep1 (7 of 16) : cellGroupi, Class = character
+
+Group MSN_D1._.Rep1 (7 of 16) : cellGroupi: length = 430
+[1] "CAUD_WS1H_STA682A131#CGTAAACAGAGTAAGG-1"
+[2] "CAUD_WS1H_STA682A131#CGTACAACAAGCAACG-1"
+[3] "CAUD_WS1H_STA682A131#ACTATTCGTGAGCTAG-1"
+[4] "CAUD_WS1H_STA682A131#GCTGTTCCAAGTTGCT-1"
+[5] "CAUD_WS1H_STA682A131#TTCATTGCAATCCATG-1"
+[6] "CAUD_WS1H_STA682A131#GCTGTTCCAATCCATG-1"
+
+2020-10-07 21:07:11 : 
+
+
+2020-10-07 21:07:11 : 
+
+
+2020-10-07 21:07:11 : 
+
+2020-10-07 21:07:11 : 
+
+2020-10-07 21:07:11 : 
+2020-10-07 21:07:11 : Group Interneuron._.Rep2 (4 of 16) : Processed Fragments Chr (1 of 22), 0.021 mins elapsed.
+
+2020-10-07 21:07:11 : 
+2020-10-07 21:07:11 : Group MSN_D1._.Rep2 (8 of 16) : Creating Group Coverage File : MSN_D1._.Rep2.insertions.coverage.h5, 0.021 mins elapsed.
+
+2020-10-07 21:07:11 : Group MSN_D1._.Rep2 (8 of 16) : cellGroupi, Class = character
+
+Group MSN_D1._.Rep2 (8 of 16) : cellGroupi: length = 40
+[1] "CAUD_WS1H_STA682A131#GATTAGCCACACACAT-1"
+[2] "CAUD_WS1H_STA682A131#TAGGAGGCAAAGGTCG-1"
+[3] "CAUD_WS1H_STA682A131#CTCTCAGGTCTGAGCC-1"
+[4] "CAUD_WS1H_STA682A131#CTGCGTTAGTACAGAT-1"
+[5] "CAUD_WS1H_STA682A131#CAGTGTATCCATGTTT-1"
+[6] "CAUD_WS1H_STA682A131#GGAGGATGTTATAGAG-1"
+
+2020-10-07 21:07:11 : 
+
+2020-10-07 21:07:11 : 
+
+2020-10-07 21:07:11 : 
+
+2020-10-07 21:07:11 : 
+
+
+
+2020-10-07 21:07:11 : 
+
+2020-10-07 21:07:11 : 
+
+2020-10-07 21:07:11 : 
+
+2020-10-07 21:07:11 : 
+2020-10-07 21:07:11 : Group Microglia._.Rep1 (5 of 16) : Processed Fragments Chr (1 of 22), 0.025 mins elapsed.
+
+2020-10-07 21:07:11 : 
+
+2020-10-07 21:07:11 : 
+
+2020-10-07 21:07:11 : 
+2020-10-07 21:07:11 : Group Microglia._.Rep2 (6 of 16) : Processed Fragments Chr (1 of 22), 0.026 mins elapsed.
+
+2020-10-07 21:07:11 : 
+2020-10-07 21:07:11 : Group MSN_D2._.Rep1 (9 of 16) : Creating Group Coverage File : MSN_D2._.Rep1.insertions.coverage.h5, 0.028 mins elapsed.
+2020-10-07 21:07:11 : Group MSN_D2._.Rep2 (10 of 16) : Creating Group Coverage File : MSN_D2._.Rep2.insertions.coverage.h5, 0.028 mins elapsed.
+
+2020-10-07 21:07:11 : Group MSN_D2._.Rep1 (9 of 16) : cellGroupi, Class = character
+
+2020-10-07 21:07:11 : Group MSN_D2._.Rep2 (10 of 16) : cellGroupi, Class = character
+
+2020-10-07 21:07:11 : 
+
+Group MSN_D2._.Rep2 (10 of 16) : cellGroupi: length = 40
+[1] "CAUD_WS1H_STA682A131#GTAATCGGTAACTGAA-1"
+[2] "CAUD_WS1H_STA682A131#AACCTTTGTAGCGTTT-1"
+[3] "CAUD_WS1H_STA682A131#CGGACCACAGATACAA-1"
+[4] "CAUD_WS1H_STA682A131#ACAATCGCAAACCTAC-1"
+[5] "CAUD_WS1H_STA682A131#AGCTGTAGTATGGATA-1"
+[6] "CAUD_WS1H_STA682A131#TTAGCTTGTAGGTGAC-1"
+
+
+
+
+2020-10-07 21:07:11 : 
+2020-10-07 21:07:11 : Group MSN_D1._.Rep1 (7 of 16) : Processed Fragments Chr (1 of 22), 0.029 mins elapsed.
+
+2020-10-07 21:07:11 : 
+Group MSN_D2._.Rep1 (9 of 16) : cellGroupi: length = 418
+
+2020-10-07 21:07:11 : 
+[1] "CAUD_WS1H_STA682A131#GGAACTTAGGCTCAGA-1"
+[2] "CAUD_WS1H_STA682A131#CGTAAACAGGCTCAGA-1"
+[3] "CAUD_WS1H_STA682A131#CAGCCTTAGGCTCAGA-1"
+[4] "CAUD_WS1H_STA682A131#TAGGTCAAGGCTCAGA-1"
+[5] "CAUD_WS1H_STA682A131#GAATCTGCAGTAGTCT-1"
+[6] "CAUD_WS1H_STA682A131#TCCAGAAAGGCTCAGA-1"
+
+
+
+2020-10-07 21:07:12 : 
+
+2020-10-07 21:07:12 : 
+
+2020-10-07 21:07:12 : 
+
+2020-10-07 21:07:12 : 
+
+2020-10-07 21:07:12 : 
+
+2020-10-07 21:07:12 : 
+
+2020-10-07 21:07:12 : 
+
+2020-10-07 21:07:12 : 
+
+2020-10-07 21:07:12 : 
+
+2020-10-07 21:07:12 : 
+
+2020-10-07 21:07:12 : 
+
+2020-10-07 21:07:12 : 
+
+2020-10-07 21:07:12 : 
+2020-10-07 21:07:12 : Group MSN_D1._.Rep2 (8 of 16) : Processed Fragments Chr (1 of 22), 0.035 mins elapsed.
+
+2020-10-07 21:07:12 : 
+
+2020-10-07 21:07:12 : 
+
+2020-10-07 21:07:12 : 
+2020-10-07 21:07:12 : Group MSN_D2._.Rep2 (10 of 16) : Processed Fragments Chr (1 of 22), 0.037 mins elapsed.
+
+2020-10-07 21:07:12 : 
+2020-10-07 21:07:12 : Group MSN_D2._.Rep1 (9 of 16) : Processed Fragments Chr (1 of 22), 0.038 mins elapsed.
+2020-10-07 21:07:24 : Group Interneuron._.Rep2 (4 of 16) : Processed Fragments Chr (2 of 22), 0.244 mins elapsed.
+2020-10-07 21:07:24 : Group Astro._.Rep2 (2 of 16) : Processed Fragments Chr (2 of 22), 0.245 mins elapsed.
+2020-10-07 21:07:25 : Group Microglia._.Rep2 (6 of 16) : Processed Fragments Chr (2 of 22), 0.254 mins elapsed.
+2020-10-07 21:07:26 : Group MSN_D2._.Rep2 (10 of 16) : Processed Fragments Chr (2 of 22), 0.278 mins elapsed.
+2020-10-07 21:07:26 : Group MSN_D1._.Rep2 (8 of 16) : Processed Fragments Chr (2 of 22), 0.279 mins elapsed.
+2020-10-07 21:07:27 : Group Interneuron._.Rep1 (3 of 16) : Processed Fragments Chr (2 of 22), 0.28 mins elapsed.
+2020-10-07 21:07:32 : Group Microglia._.Rep1 (5 of 16) : Processed Fragments Chr (2 of 22), 0.379 mins elapsed.
+2020-10-07 21:07:33 : Group Interneuron._.Rep2 (4 of 16) : Processed Fragments Chr (3 of 22), 0.387 mins elapsed.
+2020-10-07 21:07:33 : Group Astro._.Rep2 (2 of 16) : Processed Fragments Chr (3 of 22), 0.389 mins elapsed.
+2020-10-07 21:07:33 : Group Microglia._.Rep2 (6 of 16) : Processed Fragments Chr (3 of 22), 0.396 mins elapsed.
+2020-10-07 21:07:35 : Group Astro._.Rep1 (1 of 16) : Processed Fragments Chr (2 of 22), 0.414 mins elapsed.
+2020-10-07 21:07:35 : Group MSN_D2._.Rep2 (10 of 16) : Processed Fragments Chr (3 of 22), 0.428 mins elapsed.
+2020-10-07 21:07:35 : Group MSN_D1._.Rep2 (8 of 16) : Processed Fragments Chr (3 of 22), 0.43 mins elapsed.
+2020-10-07 21:07:36 : Group Interneuron._.Rep1 (3 of 16) : Processed Fragments Chr (3 of 22), 0.441 mins elapsed.
+2020-10-07 21:07:41 : Group Interneuron._.Rep2 (4 of 16) : Processed Fragments Chr (4 of 22), 0.522 mins elapsed.
+2020-10-07 21:07:41 : Group Astro._.Rep2 (2 of 16) : Processed Fragments Chr (4 of 22), 0.522 mins elapsed.
+2020-10-07 21:07:41 : Group Microglia._.Rep2 (6 of 16) : Processed Fragments Chr (4 of 22), 0.529 mins elapsed.
+2020-10-07 21:07:44 : Group Microglia._.Rep1 (5 of 16) : Processed Fragments Chr (3 of 22), 0.567 mins elapsed.
+2020-10-07 21:07:44 : Group MSN_D2._.Rep2 (10 of 16) : Processed Fragments Chr (4 of 22), 0.569 mins elapsed.
+2020-10-07 21:07:44 : Group MSN_D1._.Rep2 (8 of 16) : Processed Fragments Chr (4 of 22), 0.571 mins elapsed.
+2020-10-07 21:07:45 : Group MSN_D1._.Rep1 (7 of 16) : Processed Fragments Chr (2 of 22), 0.587 mins elapsed.
+2020-10-07 21:07:45 : Group MSN_D2._.Rep1 (9 of 16) : Processed Fragments Chr (2 of 22), 0.595 mins elapsed.
+2020-10-07 21:07:45 : Group Interneuron._.Rep1 (3 of 16) : Processed Fragments Chr (4 of 22), 0.596 mins elapsed.
+2020-10-07 21:07:48 : Group Astro._.Rep1 (1 of 16) : Processed Fragments Chr (3 of 22), 0.636 mins elapsed.
+2020-10-07 21:07:49 : Group Interneuron._.Rep2 (4 of 16) : Processed Fragments Chr (5 of 22), 0.655 mins elapsed.
+2020-10-07 21:07:49 : Group Astro._.Rep2 (2 of 16) : Processed Fragments Chr (5 of 22), 0.658 mins elapsed.
+2020-10-07 21:07:49 : Group Microglia._.Rep2 (6 of 16) : Processed Fragments Chr (5 of 22), 0.662 mins elapsed.
+2020-10-07 21:07:52 : Group MSN_D2._.Rep2 (10 of 16) : Processed Fragments Chr (5 of 22), 0.712 mins elapsed.
+2020-10-07 21:07:53 : Group MSN_D1._.Rep2 (8 of 16) : Processed Fragments Chr (5 of 22), 0.715 mins elapsed.
+2020-10-07 21:07:54 : Group Interneuron._.Rep1 (3 of 16) : Processed Fragments Chr (5 of 22), 0.741 mins elapsed.
+2020-10-07 21:07:56 : Group Microglia._.Rep1 (5 of 16) : Processed Fragments Chr (4 of 22), 0.772 mins elapsed.
+2020-10-07 21:07:57 : Group Interneuron._.Rep2 (4 of 16) : Processed Fragments Chr (6 of 22), 0.79 mins elapsed.
+2020-10-07 21:07:57 : Group Astro._.Rep2 (2 of 16) : Processed Fragments Chr (6 of 22), 0.79 mins elapsed.
+2020-10-07 21:07:57 : Group Microglia._.Rep2 (6 of 16) : Processed Fragments Chr (6 of 22), 0.795 mins elapsed.
+2020-10-07 21:08:01 : Group Astro._.Rep1 (1 of 16) : Processed Fragments Chr (4 of 22), 0.848 mins elapsed.
+2020-10-07 21:08:01 : Group MSN_D2._.Rep2 (10 of 16) : Processed Fragments Chr (6 of 22), 0.848 mins elapsed.
+2020-10-07 21:08:01 : Group MSN_D1._.Rep2 (8 of 16) : Processed Fragments Chr (6 of 22), 0.853 mins elapsed.
+2020-10-07 21:08:03 : Group Interneuron._.Rep1 (3 of 16) : Processed Fragments Chr (6 of 22), 0.885 mins elapsed.
+2020-10-07 21:08:03 : Group MSN_D1._.Rep1 (7 of 16) : Processed Fragments Chr (3 of 22), 0.887 mins elapsed.
+2020-10-07 21:08:03 : Group MSN_D2._.Rep1 (9 of 16) : Processed Fragments Chr (3 of 22), 0.895 mins elapsed.
+2020-10-07 21:08:05 : Group Interneuron._.Rep2 (4 of 16) : Processed Fragments Chr (7 of 22), 0.924 mins elapsed.
+2020-10-07 21:08:05 : Group Astro._.Rep2 (2 of 16) : Processed Fragments Chr (7 of 22), 0.926 mins elapsed.
+2020-10-07 21:08:05 : Group Microglia._.Rep2 (6 of 16) : Processed Fragments Chr (7 of 22), 0.929 mins elapsed.
+2020-10-07 21:08:06 : Group Microglia._.Rep1 (5 of 16) : Processed Fragments Chr (5 of 22), 0.941 mins elapsed.
+2020-10-07 21:08:09 : Group MSN_D2._.Rep2 (10 of 16) : Processed Fragments Chr (7 of 22), 0.993 mins elapsed.
+2020-10-07 21:08:10 : Group MSN_D1._.Rep2 (8 of 16) : Processed Fragments Chr (7 of 22), 0.999 mins elapsed.
+2020-10-07 21:08:12 : Group Astro._.Rep1 (1 of 16) : Processed Fragments Chr (5 of 22), 1.034 mins elapsed.
+2020-10-07 21:08:12 : Group Interneuron._.Rep1 (3 of 16) : Processed Fragments Chr (7 of 22), 1.042 mins elapsed.
+2020-10-07 21:08:13 : Group Interneuron._.Rep2 (4 of 16) : Processed Fragments Chr (8 of 22), 1.057 mins elapsed.
+2020-10-07 21:08:13 : Group Astro._.Rep2 (2 of 16) : Processed Fragments Chr (8 of 22), 1.058 mins elapsed.
+2020-10-07 21:08:13 : Group Microglia._.Rep2 (6 of 16) : Processed Fragments Chr (8 of 22), 1.061 mins elapsed.
+2020-10-07 21:08:17 : Group Microglia._.Rep1 (5 of 16) : Processed Fragments Chr (6 of 22), 1.12 mins elapsed.
+2020-10-07 21:08:17 : Group MSN_D2._.Rep2 (10 of 16) : Processed Fragments Chr (8 of 22), 1.126 mins elapsed.
+2020-10-07 21:08:18 : Group MSN_D1._.Rep2 (8 of 16) : Processed Fragments Chr (8 of 22), 1.132 mins elapsed.
+2020-10-07 21:08:21 : Group Interneuron._.Rep1 (3 of 16) : Processed Fragments Chr (8 of 22), 1.188 mins elapsed.
+2020-10-07 21:08:21 : Group Interneuron._.Rep2 (4 of 16) : Processed Fragments Chr (9 of 22), 1.189 mins elapsed.
+2020-10-07 21:08:21 : Group Astro._.Rep2 (2 of 16) : Processed Fragments Chr (9 of 22), 1.192 mins elapsed.
+2020-10-07 21:08:21 : Group Microglia._.Rep2 (6 of 16) : Processed Fragments Chr (9 of 22), 1.192 mins elapsed.
+2020-10-07 21:08:23 : Group MSN_D1._.Rep1 (7 of 16) : Processed Fragments Chr (4 of 22), 1.216 mins elapsed.
+2020-10-07 21:08:23 : Group Astro._.Rep1 (1 of 16) : Processed Fragments Chr (6 of 22), 1.225 mins elapsed.
+2020-10-07 21:08:23 : Group MSN_D2._.Rep1 (9 of 16) : Processed Fragments Chr (4 of 22), 1.226 mins elapsed.
+2020-10-07 21:08:25 : Group MSN_D2._.Rep2 (10 of 16) : Processed Fragments Chr (9 of 22), 1.262 mins elapsed.
+2020-10-07 21:08:26 : Group MSN_D1._.Rep2 (8 of 16) : Processed Fragments Chr (9 of 22), 1.27 mins elapsed.
+2020-10-07 21:08:29 : Group Interneuron._.Rep2 (4 of 16) : Processed Fragments Chr (10 of 22), 1.314 mins elapsed.
+2020-10-07 21:08:29 : Group Astro._.Rep2 (2 of 16) : Processed Fragments Chr (10 of 22), 1.315 mins elapsed.
+2020-10-07 21:08:29 : Group Microglia._.Rep2 (6 of 16) : Processed Fragments Chr (10 of 22), 1.316 mins elapsed.
+2020-10-07 21:08:29 : Group Microglia._.Rep1 (5 of 16) : Processed Fragments Chr (7 of 22), 1.321 mins elapsed.
+2020-10-07 21:08:30 : Group Interneuron._.Rep1 (3 of 16) : Processed Fragments Chr (9 of 22), 1.332 mins elapsed.
+2020-10-07 21:08:33 : Group MSN_D2._.Rep2 (10 of 16) : Processed Fragments Chr (10 of 22), 1.391 mins elapsed.
+2020-10-07 21:08:34 : Group MSN_D1._.Rep2 (8 of 16) : Processed Fragments Chr (10 of 22), 1.4 mins elapsed.
+2020-10-07 21:08:36 : Group Microglia._.Rep2 (6 of 16) : Processed Fragments Chr (11 of 22), 1.432 mins elapsed.
+2020-10-07 21:08:36 : Group Interneuron._.Rep2 (4 of 16) : Processed Fragments Chr (11 of 22), 1.434 mins elapsed.
+2020-10-07 21:08:36 : Group Astro._.Rep2 (2 of 16) : Processed Fragments Chr (11 of 22), 1.436 mins elapsed.
+2020-10-07 21:08:37 : Group Astro._.Rep1 (1 of 16) : Processed Fragments Chr (7 of 22), 1.458 mins elapsed.
+2020-10-07 21:08:38 : Group Interneuron._.Rep1 (3 of 16) : Processed Fragments Chr (10 of 22), 1.464 mins elapsed.
+2020-10-07 21:08:39 : Group MSN_D1._.Rep1 (7 of 16) : Processed Fragments Chr (5 of 22), 1.487 mins elapsed.
+2020-10-07 21:08:40 : Group Microglia._.Rep1 (5 of 16) : Processed Fragments Chr (8 of 22), 1.497 mins elapsed.
+2020-10-07 21:08:40 : Group MSN_D2._.Rep1 (9 of 16) : Processed Fragments Chr (5 of 22), 1.5 mins elapsed.
+2020-10-07 21:08:41 : Group MSN_D2._.Rep2 (10 of 16) : Processed Fragments Chr (11 of 22), 1.515 mins elapsed.
+2020-10-07 21:08:41 : Group MSN_D1._.Rep2 (8 of 16) : Processed Fragments Chr (11 of 22), 1.526 mins elapsed.
+2020-10-07 21:08:43 : Group Interneuron._.Rep2 (4 of 16) : Processed Fragments Chr (12 of 22), 1.56 mins elapsed.
+2020-10-07 21:08:43 : Group Astro._.Rep2 (2 of 16) : Processed Fragments Chr (12 of 22), 1.561 mins elapsed.
+2020-10-07 21:08:43 : Group Microglia._.Rep2 (6 of 16) : Processed Fragments Chr (12 of 22), 1.563 mins elapsed.
+2020-10-07 21:08:45 : Group Interneuron._.Rep1 (3 of 16) : Processed Fragments Chr (11 of 22), 1.591 mins elapsed.
+2020-10-07 21:08:48 : Group MSN_D2._.Rep2 (10 of 16) : Processed Fragments Chr (12 of 22), 1.645 mins elapsed.
+2020-10-07 21:08:49 : Group MSN_D1._.Rep2 (8 of 16) : Processed Fragments Chr (12 of 22), 1.655 mins elapsed.
+2020-10-07 21:08:49 : Group Astro._.Rep1 (1 of 16) : Processed Fragments Chr (8 of 22), 1.659 mins elapsed.
+2020-10-07 21:08:51 : Group Microglia._.Rep1 (5 of 16) : Processed Fragments Chr (9 of 22), 1.681 mins elapsed.
+2020-10-07 21:08:52 : Group Interneuron._.Rep2 (4 of 16) : Processed Fragments Chr (13 of 22), 1.703 mins elapsed.
+2020-10-07 21:08:52 : Group Astro._.Rep2 (2 of 16) : Processed Fragments Chr (13 of 22), 1.704 mins elapsed.
+2020-10-07 21:08:52 : Group Microglia._.Rep2 (6 of 16) : Processed Fragments Chr (13 of 22), 1.705 mins elapsed.
+2020-10-07 21:08:53 : Group Interneuron._.Rep1 (3 of 16) : Processed Fragments Chr (12 of 22), 1.725 mins elapsed.
+2020-10-07 21:08:55 : Group MSN_D1._.Rep1 (7 of 16) : Processed Fragments Chr (6 of 22), 1.75 mins elapsed.
+2020-10-07 21:08:55 : Group MSN_D2._.Rep1 (9 of 16) : Processed Fragments Chr (6 of 22), 1.762 mins elapsed.
+2020-10-07 21:08:58 : Group MSN_D2._.Rep2 (10 of 16) : Processed Fragments Chr (13 of 22), 1.798 mins elapsed.
+2020-10-07 21:08:58 : Group MSN_D1._.Rep2 (8 of 16) : Processed Fragments Chr (13 of 22), 1.81 mins elapsed.
+2020-10-07 21:08:59 : Group Microglia._.Rep1 (5 of 16) : Processed Fragments Chr (10 of 22), 1.829 mins elapsed.
+2020-10-07 21:09:00 : Group Interneuron._.Rep2 (4 of 16) : Processed Fragments Chr (14 of 22), 1.83 mins elapsed.
+2020-10-07 21:09:00 : Group Microglia._.Rep2 (6 of 16) : Processed Fragments Chr (14 of 22), 1.831 mins elapsed.
+2020-10-07 21:09:00 : Group Astro._.Rep2 (2 of 16) : Processed Fragments Chr (14 of 22), 1.832 mins elapsed.
+2020-10-07 21:09:02 : Group Astro._.Rep1 (1 of 16) : Processed Fragments Chr (9 of 22), 1.871 mins elapsed.
+2020-10-07 21:09:03 : Group Interneuron._.Rep1 (3 of 16) : Processed Fragments Chr (13 of 22), 1.888 mins elapsed.
+2020-10-07 21:09:05 : Group MSN_D2._.Rep2 (10 of 16) : Processed Fragments Chr (14 of 22), 1.928 mins elapsed.
+2020-10-07 21:09:06 : Group MSN_D1._.Rep2 (8 of 16) : Processed Fragments Chr (14 of 22), 1.943 mins elapsed.
+2020-10-07 21:09:08 : Group Microglia._.Rep1 (5 of 16) : Processed Fragments Chr (11 of 22), 1.967 mins elapsed.
+2020-10-07 21:09:08 : Group Interneuron._.Rep2 (4 of 16) : Processed Fragments Chr (15 of 22), 1.971 mins elapsed.
+2020-10-07 21:09:08 : Group Astro._.Rep2 (2 of 16) : Processed Fragments Chr (15 of 22), 1.971 mins elapsed.
+2020-10-07 21:09:08 : Group Microglia._.Rep2 (6 of 16) : Processed Fragments Chr (15 of 22), 1.972 mins elapsed.
+2020-10-07 21:09:11 : Group Astro._.Rep1 (1 of 16) : Processed Fragments Chr (10 of 22), 2.026 mins elapsed.
+2020-10-07 21:09:11 : Group Interneuron._.Rep1 (3 of 16) : Processed Fragments Chr (14 of 22), 2.027 mins elapsed.
+2020-10-07 21:09:14 : Group MSN_D1._.Rep1 (7 of 16) : Processed Fragments Chr (7 of 22), 2.068 mins elapsed.
+2020-10-07 21:09:15 : Group MSN_D2._.Rep2 (10 of 16) : Processed Fragments Chr (15 of 22), 2.082 mins elapsed.
+2020-10-07 21:09:15 : Group MSN_D2._.Rep1 (9 of 16) : Processed Fragments Chr (7 of 22), 2.082 mins elapsed.
+2020-10-07 21:09:16 : Group MSN_D1._.Rep2 (8 of 16) : Processed Fragments Chr (15 of 22), 2.099 mins elapsed.
+2020-10-07 21:09:17 : Group Interneuron._.Rep2 (4 of 16) : Processed Fragments Chr (16 of 22), 2.115 mins elapsed.
+2020-10-07 21:09:17 : Group Astro._.Rep2 (2 of 16) : Processed Fragments Chr (16 of 22), 2.117 mins elapsed.
+2020-10-07 21:09:17 : Group Microglia._.Rep2 (6 of 16) : Processed Fragments Chr (16 of 22), 2.117 mins elapsed.
+2020-10-07 21:09:19 : Group Microglia._.Rep1 (5 of 16) : Processed Fragments Chr (12 of 22), 2.159 mins elapsed.
+2020-10-07 21:09:21 : Group Astro._.Rep1 (1 of 16) : Processed Fragments Chr (11 of 22), 2.184 mins elapsed.
+2020-10-07 21:09:22 : Group Interneuron._.Rep1 (3 of 16) : Processed Fragments Chr (15 of 22), 2.2 mins elapsed.
+2020-10-07 21:09:24 : Group MSN_D2._.Rep2 (10 of 16) : Processed Fragments Chr (16 of 22), 2.231 mins elapsed.
+2020-10-07 21:09:25 : Group Microglia._.Rep2 (6 of 16) : Processed Fragments Chr (17 of 22), 2.247 mins elapsed.
+2020-10-07 21:09:25 : Group Interneuron._.Rep2 (4 of 16) : Processed Fragments Chr (17 of 22), 2.247 mins elapsed.
+2020-10-07 21:09:25 : Group Astro._.Rep2 (2 of 16) : Processed Fragments Chr (17 of 22), 2.247 mins elapsed.
+2020-10-07 21:09:25 : Group MSN_D1._.Rep2 (8 of 16) : Processed Fragments Chr (16 of 22), 2.249 mins elapsed.
+2020-10-07 21:09:30 : Group MSN_D1._.Rep1 (7 of 16) : Processed Fragments Chr (8 of 22), 2.335 mins elapsed.
+2020-10-07 21:09:31 : Group MSN_D2._.Rep1 (9 of 16) : Processed Fragments Chr (8 of 22), 2.35 mins elapsed.
+2020-10-07 21:09:31 : Group Interneuron._.Rep1 (3 of 16) : Processed Fragments Chr (16 of 22), 2.355 mins elapsed.
+2020-10-07 21:09:32 : Group MSN_D2._.Rep2 (10 of 16) : Processed Fragments Chr (17 of 22), 2.374 mins elapsed.
+2020-10-07 21:09:32 : Group Microglia._.Rep1 (5 of 16) : Processed Fragments Chr (13 of 22), 2.376 mins elapsed.
+2020-10-07 21:09:32 : Group Astro._.Rep1 (1 of 16) : Processed Fragments Chr (12 of 22), 2.379 mins elapsed.
+2020-10-07 21:09:33 : Group Interneuron._.Rep2 (4 of 16) : Processed Fragments Chr (18 of 22), 2.384 mins elapsed.
+2020-10-07 21:09:33 : Group Microglia._.Rep2 (6 of 16) : Processed Fragments Chr (18 of 22), 2.385 mins elapsed.
+2020-10-07 21:09:33 : Group Astro._.Rep2 (2 of 16) : Processed Fragments Chr (18 of 22), 2.385 mins elapsed.
+2020-10-07 21:09:33 : Group MSN_D1._.Rep2 (8 of 16) : Processed Fragments Chr (17 of 22), 2.393 mins elapsed.
+2020-10-07 21:09:40 : Group Interneuron._.Rep1 (3 of 16) : Processed Fragments Chr (17 of 22), 2.504 mins elapsed.
+2020-10-07 21:09:41 : Group MSN_D2._.Rep2 (10 of 16) : Processed Fragments Chr (18 of 22), 2.518 mins elapsed.
+2020-10-07 21:09:41 : Group Interneuron._.Rep2 (4 of 16) : Processed Fragments Chr (19 of 22), 2.527 mins elapsed.
+2020-10-07 21:09:41 : Group Microglia._.Rep2 (6 of 16) : Processed Fragments Chr (19 of 22), 2.527 mins elapsed.
+2020-10-07 21:09:41 : Group Astro._.Rep2 (2 of 16) : Processed Fragments Chr (19 of 22), 2.528 mins elapsed.
+2020-10-07 21:09:42 : Group MSN_D1._.Rep2 (8 of 16) : Processed Fragments Chr (18 of 22), 2.538 mins elapsed.
+2020-10-07 21:09:42 : Group Microglia._.Rep1 (5 of 16) : Processed Fragments Chr (14 of 22), 2.545 mins elapsed.
+2020-10-07 21:09:46 : Group MSN_D1._.Rep1 (7 of 16) : Processed Fragments Chr (9 of 22), 2.6 mins elapsed.
+2020-10-07 21:09:47 : Group MSN_D2._.Rep1 (9 of 16) : Processed Fragments Chr (9 of 22), 2.613 mins elapsed.
+2020-10-07 21:09:47 : Group Astro._.Rep1 (1 of 16) : Processed Fragments Chr (13 of 22), 2.622 mins elapsed.
+2020-10-07 21:09:49 : Group Interneuron._.Rep2 (4 of 16) : Processed Fragments Chr (20 of 22), 2.66 mins elapsed.
+2020-10-07 21:09:49 : Group Astro._.Rep2 (2 of 16) : Processed Fragments Chr (20 of 22), 2.661 mins elapsed.
+2020-10-07 21:09:49 : Group Microglia._.Rep2 (6 of 16) : Processed Fragments Chr (20 of 22), 2.661 mins elapsed.
+2020-10-07 21:09:49 : Group Interneuron._.Rep1 (3 of 16) : Processed Fragments Chr (18 of 22), 2.662 mins elapsed.
+2020-10-07 21:09:50 : Group MSN_D2._.Rep2 (10 of 16) : Processed Fragments Chr (19 of 22), 2.674 mins elapsed.
+2020-10-07 21:09:51 : Group MSN_D1._.Rep2 (8 of 16) : Processed Fragments Chr (19 of 22), 2.695 mins elapsed.
+2020-10-07 21:09:55 : Group Microglia._.Rep1 (5 of 16) : Processed Fragments Chr (15 of 22), 2.758 mins elapsed.
+2020-10-07 21:09:57 : Group Interneuron._.Rep2 (4 of 16) : Processed Fragments Chr (21 of 22), 2.79 mins elapsed.
+2020-10-07 21:09:57 : Group Microglia._.Rep2 (6 of 16) : Processed Fragments Chr (21 of 22), 2.791 mins elapsed.
+2020-10-07 21:09:57 : Group Astro._.Rep2 (2 of 16) : Processed Fragments Chr (21 of 22), 2.791 mins elapsed.
+2020-10-07 21:09:58 : Group MSN_D2._.Rep2 (10 of 16) : Processed Fragments Chr (20 of 22), 2.81 mins elapsed.
+2020-10-07 21:09:58 : Group Astro._.Rep1 (1 of 16) : Processed Fragments Chr (14 of 22), 2.81 mins elapsed.
+2020-10-07 21:09:59 : Group MSN_D1._.Rep1 (7 of 16) : Processed Fragments Chr (10 of 22), 2.817 mins elapsed.
+2020-10-07 21:09:59 : Group Interneuron._.Rep1 (3 of 16) : Processed Fragments Chr (19 of 22), 2.827 mins elapsed.
+2020-10-07 21:10:00 : Group MSN_D2._.Rep1 (9 of 16) : Processed Fragments Chr (10 of 22), 2.831 mins elapsed.
+2020-10-07 21:10:00 : Group MSN_D1._.Rep2 (8 of 16) : Processed Fragments Chr (20 of 22), 2.832 mins elapsed.
+2020-10-07 21:10:04 : Group Interneuron._.Rep2 (4 of 16) : Processed Fragments Chr (22 of 22), 2.912 mins elapsed.
+2020-10-07 21:10:04 : Group Astro._.Rep2 (2 of 16) : Processed Fragments Chr (22 of 22), 2.912 mins elapsed.
+2020-10-07 21:10:04 : Group Microglia._.Rep2 (6 of 16) : Processed Fragments Chr (22 of 22), 2.913 mins elapsed.
+2020-10-07 21:10:07 : Group MSN_D2._.Rep2 (10 of 16) : Processed Fragments Chr (21 of 22), 2.95 mins elapsed.
+2020-10-07 21:10:08 : Group Microglia._.Rep1 (5 of 16) : Processed Fragments Chr (16 of 22), 2.966 mins elapsed.
+2020-10-07 21:10:08 : Group MSN_D1._.Rep2 (8 of 16) : Processed Fragments Chr (21 of 22), 2.974 mins elapsed.
+2020-10-07 21:10:08 : Group Interneuron._.Rep1 (3 of 16) : Processed Fragments Chr (20 of 22), 2.975 mins elapsed.
+2020-10-07 21:10:11 : Group MSN_D1._.Rep1 (7 of 16) : Processed Fragments Chr (11 of 22), 3.017 mins elapsed.
+2020-10-07 21:10:11 : Group MSN_UNK1._.Rep1 (11 of 16) : Creating Group Coverage File : MSN_UNK1._.Rep1.insertions.coverage.h5, 3.018 mins elapsed.
+
+2020-10-07 21:10:11 : Group MSN_UNK1._.Rep1 (11 of 16) : cellGroupi, Class = character
+
+Group MSN_UNK1._.Rep1 (11 of 16) : cellGroupi: length = 360
+[1] "CAUD_WS1H_STA682A131#CGGACCACATACCCGG-1"
+[2] "CAUD_WS1H_STA682A131#TATGTTCGTCGTAGTT-1"
+[3] "CAUD_WS1H_STA682A131#TAAACCGAGGCTTCGC-1"
+[4] "CAUD_WS1H_STA682A131#TGTACAGCACTCGGAC-1"
+[5] "CAUD_WS1H_STA682A131#TGATGCATCTGAGTAC-1"
+[6] "CAUD_WS1H_STA682A131#AGCCTTCGTAGCTGTT-1"
+
+
+
+2020-10-07 21:10:11 : 
+2020-10-07 21:10:11 : Group MSN_UNK1._.Rep2 (12 of 16) : Creating Group Coverage File : MSN_UNK1._.Rep2.insertions.coverage.h5, 3.022 mins elapsed.
+
+2020-10-07 21:10:11 : Group MSN_UNK1._.Rep2 (12 of 16) : cellGroupi, Class = character
+
+Group MSN_UNK1._.Rep2 (12 of 16) : cellGroupi: length = 40
+[1] "CAUD_WS1H_STA682A131#GGAACTTAGAGTAAGG-1"
+[2] "CAUD_WS1H_STA682A131#GCCCGAAAGAACAGGA-1"
+[3] "CAUD_WS1H_STA682A131#ACTTTCAAGGAAACTT-1"
+[4] "CAUD_WS1H_STA682A131#AACGGGATCTGACATG-1"
+[5] "CAUD_WS1H_STA682A131#CAGTGTACACTAGGAG-1"
+[6] "CAUD_WS1H_STA682A131#AAGGTTCTCCAATCCC-1"
+
+
+
+2020-10-07 21:10:11 : 
+
+2020-10-07 21:10:11 : 
+2020-10-07 21:10:11 : Group Oligo._.Rep1 (13 of 16) : Creating Group Coverage File : Oligo._.Rep1.insertions.coverage.h5, 3.025 mins elapsed.
+
+2020-10-07 21:10:11 : 
+
+2020-10-07 21:10:11 : 
+
+2020-10-07 21:10:11 : Group Oligo._.Rep1 (13 of 16) : cellGroupi, Class = character
+
+
+2020-10-07 21:10:11 : 
+Group Oligo._.Rep1 (13 of 16) : cellGroupi: length = 500
+[1] "CAUD_WS1H_STA682A131#GGCACGTGTGCCCGAT-1"
+[2] "CAUD_WS1H_STA682A131#TCTCAGCCATTGCGAT-1"
+[3] "CAUD_WS1H_STA682A131#GCGATTAAGTCCAGAG-1"
+[4] "CAUD_WS1H_STA682A131#ATTGTCTCACGTTGTA-1"
+[5] "CAUD_WS1H_STA682A131#AACGTACAGCCTGGTC-1"
+[6] "CAUD_WS1H_STA682A131#GCTCGAGGTGCTTCCT-1"
+
+
+
+2020-10-07 21:10:11 : 
+
+2020-10-07 21:10:11 : 
+
+2020-10-07 21:10:12 : 
+
+2020-10-07 21:10:12 : 
+
+2020-10-07 21:10:12 : 
+
+2020-10-07 21:10:12 : 
+
+2020-10-07 21:10:12 : 
+
+2020-10-07 21:10:12 : 
+
+2020-10-07 21:10:12 : 
+2020-10-07 21:10:12 : Group MSN_UNK1._.Rep1 (11 of 16) : Processed Fragments Chr (1 of 22), 3.032 mins elapsed.
+
+2020-10-07 21:10:12 : 
+
+2020-10-07 21:10:12 : 
+
+2020-10-07 21:10:12 : 
+2020-10-07 21:10:12 : Group MSN_UNK1._.Rep2 (12 of 16) : Processed Fragments Chr (1 of 22), 3.034 mins elapsed.
+
+2020-10-07 21:10:12 : 
+2020-10-07 21:10:12 : Group MSN_D2._.Rep1 (9 of 16) : Processed Fragments Chr (11 of 22), 3.034 mins elapsed.
+
+2020-10-07 21:10:12 : 
+
+2020-10-07 21:10:12 : 
+2020-10-07 21:10:12 : Group Oligo._.Rep1 (13 of 16) : Processed Fragments Chr (1 of 22), 3.037 mins elapsed.
+2020-10-07 21:10:13 : Group Astro._.Rep1 (1 of 16) : Processed Fragments Chr (15 of 22), 3.047 mins elapsed.
+2020-10-07 21:10:14 : Group MSN_D2._.Rep2 (10 of 16) : Processed Fragments Chr (22 of 22), 3.078 mins elapsed.
+2020-10-07 21:10:16 : Group MSN_D1._.Rep2 (8 of 16) : Processed Fragments Chr (22 of 22), 3.104 mins elapsed.
+2020-10-07 21:10:17 : Group Interneuron._.Rep1 (3 of 16) : Processed Fragments Chr (21 of 22), 3.127 mins elapsed.
+2020-10-07 21:10:19 : Group Microglia._.Rep1 (5 of 16) : Processed Fragments Chr (17 of 22), 3.151 mins elapsed.
+2020-10-07 21:10:21 : Group Oligo._.Rep2 (14 of 16) : Creating Group Coverage File : Oligo._.Rep2.insertions.coverage.h5, 3.188 mins elapsed.
+
+2020-10-07 21:10:21 : Group Oligo._.Rep2 (14 of 16) : cellGroupi, Class = character
+
+Group Oligo._.Rep2 (14 of 16) : cellGroupi: length = 40
+[1] "CAUD_WS1H_STA682A131#CCTTGGTCAAGGAGTC-1"
+[2] "CAUD_WS1H_STA682A131#GACCAATAGTTACACC-1"
+[3] "CAUD_WS1H_STA682A131#CAAGGCCAGCGAATAT-1"
+[4] "CAUD_WS1H_STA682A131#TTGTCTATCAGTGTAC-1"
+[5] "CAUD_WS1H_STA682A131#TTGAGCAGTTCTTAGG-1"
+[6] "CAUD_WS1H_STA682A131#TCTAGTTGTCAGTGTT-1"
+
+
+
+2020-10-07 21:10:21 : 
+
+2020-10-07 21:10:21 : 
+
+2020-10-07 21:10:21 : 
+
+2020-10-07 21:10:21 : 
+
+2020-10-07 21:10:22 : 
+
+2020-10-07 21:10:22 : 
+
+2020-10-07 21:10:22 : 
+2020-10-07 21:10:22 : Group Oligo._.Rep2 (14 of 16) : Processed Fragments Chr (1 of 22), 3.201 mins elapsed.
+2020-10-07 21:10:23 : Group OPC._.Rep1 (15 of 16) : Creating Group Coverage File : OPC._.Rep1.insertions.coverage.h5, 3.216 mins elapsed.
+
+2020-10-07 21:10:23 : Group OPC._.Rep1 (15 of 16) : cellGroupi, Class = character
+
+Group OPC._.Rep1 (15 of 16) : cellGroupi: length = 264
+[1] "CAUD_WS1H_STA682A131#TCAATTCCAACCTCTC-1"
+[2] "CAUD_WS1H_STA682A131#GGAGTAGCATGGGAAC-1"
+[3] "CAUD_WS1H_STA682A131#TGGCCTTAGGAGTCTG-1"
+[4] "CAUD_WS1H_STA682A131#TGGCAATCAGATACAA-1"
+[5] "CAUD_WS1H_STA682A131#TACTGCCTCGCATACA-1"
+[6] "CAUD_WS1H_STA682A131#CCTTGGTAGTCGAGCA-1"
+
+
+
+2020-10-07 21:10:23 : 
+
+2020-10-07 21:10:23 : 
+
+2020-10-07 21:10:23 : 
+
+2020-10-07 21:10:23 : 
+
+2020-10-07 21:10:23 : 
+
+2020-10-07 21:10:23 : 
+
+2020-10-07 21:10:23 : 
+2020-10-07 21:10:23 : Group OPC._.Rep1 (15 of 16) : Processed Fragments Chr (1 of 22), 3.228 mins elapsed.
+2020-10-07 21:10:25 : Group MSN_UNK1._.Rep2 (12 of 16) : Processed Fragments Chr (2 of 22), 3.261 mins elapsed.
+2020-10-07 21:10:25 : Group Interneuron._.Rep1 (3 of 16) : Processed Fragments Chr (22 of 22), 3.263 mins elapsed.
+2020-10-07 21:10:26 : Group MSN_D1._.Rep1 (7 of 16) : Processed Fragments Chr (12 of 22), 3.265 mins elapsed.
+2020-10-07 21:10:27 : Group MSN_D2._.Rep1 (9 of 16) : Processed Fragments Chr (12 of 22), 3.28 mins elapsed.
+2020-10-07 21:10:27 : Group Astro._.Rep1 (1 of 16) : Processed Fragments Chr (16 of 22), 3.283 mins elapsed.
+2020-10-07 21:10:27 : Group MSN_UNK1._.Rep1 (11 of 16) : Processed Fragments Chr (2 of 22), 3.288 mins elapsed.
+2020-10-07 21:10:31 : Group Oligo._.Rep1 (13 of 16) : Processed Fragments Chr (2 of 22), 3.354 mins elapsed.
+2020-10-07 21:10:31 : Group Microglia._.Rep1 (5 of 16) : Processed Fragments Chr (18 of 22), 3.356 mins elapsed.
+2020-10-07 21:10:32 : Group OPC._.Rep2 (16 of 16) : Creating Group Coverage File : OPC._.Rep2.insertions.coverage.h5, 3.369 mins elapsed.
+
+2020-10-07 21:10:32 : Group OPC._.Rep2 (16 of 16) : cellGroupi, Class = character
+
+Group OPC._.Rep2 (16 of 16) : cellGroupi: length = 40
+[1] "CAUD_WS1H_STA682A131#AGCTGGCAGGTAGGAA-1"
+[2] "CAUD_WS1H_STA682A131#GTTGGGCAGATGTTGA-1"
+[3] "CAUD_WS1H_STA682A131#GAGTGAGCATAGATAG-1"
+[4] "CAUD_WS1H_STA682A131#GAAAGTATCTTCCGTG-1"
+[5] "CAUD_WS1H_STA682A131#TGCTATTCAAATAGTG-1"
+[6] "CAUD_WS1H_STA682A131#CATGCCTGTAGTCCAT-1"
+
+
+
+2020-10-07 21:10:32 : 
+
+2020-10-07 21:10:32 : 
+
+2020-10-07 21:10:32 : 
+
+2020-10-07 21:10:32 : 
+
+2020-10-07 21:10:32 : 
+
+2020-10-07 21:10:32 : 
+
+2020-10-07 21:10:33 : 
+2020-10-07 21:10:33 : Group OPC._.Rep2 (16 of 16) : Processed Fragments Chr (1 of 22), 3.381 mins elapsed.
+2020-10-07 21:10:34 : Group MSN_UNK1._.Rep2 (12 of 16) : Processed Fragments Chr (3 of 22), 3.4 mins elapsed.
+2020-10-07 21:10:35 : Group Oligo._.Rep2 (14 of 16) : Processed Fragments Chr (2 of 22), 3.422 mins elapsed.
+2020-10-07 21:10:36 : Group MSN_UNK1._.Rep1 (11 of 16) : Processed Fragments Chr (3 of 22), 3.441 mins elapsed.
+2020-10-07 21:10:38 : Group Astro._.Rep1 (1 of 16) : Processed Fragments Chr (17 of 22), 3.479 mins elapsed.
+2020-10-07 21:10:40 : Group OPC._.Rep1 (15 of 16) : Processed Fragments Chr (2 of 22), 3.51 mins elapsed.
+2020-10-07 21:10:41 : Group Oligo._.Rep1 (13 of 16) : Processed Fragments Chr (3 of 22), 3.518 mins elapsed.
+2020-10-07 21:10:41 : Group MSN_UNK1._.Rep2 (12 of 16) : Processed Fragments Chr (4 of 22), 3.529 mins elapsed.
+2020-10-07 21:10:43 : Group Oligo._.Rep2 (14 of 16) : Processed Fragments Chr (3 of 22), 3.559 mins elapsed.
+2020-10-07 21:10:44 : Group Microglia._.Rep1 (5 of 16) : Processed Fragments Chr (19 of 22), 3.573 mins elapsed.
+2020-10-07 21:10:45 : Group MSN_UNK1._.Rep1 (11 of 16) : Processed Fragments Chr (4 of 22), 3.585 mins elapsed.
+2020-10-07 21:10:46 : Group OPC._.Rep2 (16 of 16) : Processed Fragments Chr (2 of 22), 3.601 mins elapsed.
+2020-10-07 21:10:48 : Group MSN_D1._.Rep1 (7 of 16) : Processed Fragments Chr (13 of 22), 3.643 mins elapsed.
+2020-10-07 21:10:49 : Group MSN_D2._.Rep1 (9 of 16) : Processed Fragments Chr (13 of 22), 3.656 mins elapsed.
+2020-10-07 21:10:49 : Group MSN_UNK1._.Rep2 (12 of 16) : Processed Fragments Chr (5 of 22), 3.658 mins elapsed.
+2020-10-07 21:10:50 : Group OPC._.Rep1 (15 of 16) : Processed Fragments Chr (3 of 22), 3.676 mins elapsed.
+2020-10-07 21:10:51 : Group Oligo._.Rep2 (14 of 16) : Processed Fragments Chr (4 of 22), 3.689 mins elapsed.
+2020-10-07 21:10:51 : Group Oligo._.Rep1 (13 of 16) : Processed Fragments Chr (4 of 22), 3.689 mins elapsed.
+2020-10-07 21:10:51 : Group Astro._.Rep1 (1 of 16) : Processed Fragments Chr (18 of 22), 3.692 mins elapsed.
+2020-10-07 21:10:53 : Group MSN_UNK1._.Rep1 (11 of 16) : Processed Fragments Chr (5 of 22), 3.727 mins elapsed.
+2020-10-07 21:10:54 : Group OPC._.Rep2 (16 of 16) : Processed Fragments Chr (3 of 22), 3.741 mins elapsed.
+2020-10-07 21:10:55 : Group Microglia._.Rep1 (5 of 16) : Processed Fragments Chr (20 of 22), 3.752 mins elapsed.
+2020-10-07 21:10:57 : Group MSN_UNK1._.Rep2 (12 of 16) : Processed Fragments Chr (6 of 22), 3.788 mins elapsed.
+2020-10-07 21:10:59 : Group Oligo._.Rep2 (14 of 16) : Processed Fragments Chr (5 of 22), 3.819 mins elapsed.
+2020-10-07 21:11:00 : Group OPC._.Rep1 (15 of 16) : Processed Fragments Chr (4 of 22), 3.837 mins elapsed.
+2020-10-07 21:11:00 : Group Oligo._.Rep1 (13 of 16) : Processed Fragments Chr (5 of 22), 3.845 mins elapsed.
+2020-10-07 21:11:02 : Group MSN_UNK1._.Rep1 (11 of 16) : Processed Fragments Chr (6 of 22), 3.865 mins elapsed.
+2020-10-07 21:11:02 : Group OPC._.Rep2 (16 of 16) : Processed Fragments Chr (4 of 22), 3.872 mins elapsed.
+2020-10-07 21:11:04 : Group MSN_D1._.Rep1 (7 of 16) : Processed Fragments Chr (14 of 22), 3.907 mins elapsed.
+2020-10-07 21:11:05 : Group MSN_UNK1._.Rep2 (12 of 16) : Processed Fragments Chr (7 of 22), 3.918 mins elapsed.
+2020-10-07 21:11:05 : Group MSN_D2._.Rep1 (9 of 16) : Processed Fragments Chr (14 of 22), 3.919 mins elapsed.
+2020-10-07 21:11:06 : Group Microglia._.Rep1 (5 of 16) : Processed Fragments Chr (21 of 22), 3.939 mins elapsed.
+2020-10-07 21:11:06 : Group Astro._.Rep1 (1 of 16) : Processed Fragments Chr (19 of 22), 3.946 mins elapsed.
+2020-10-07 21:11:07 : Group Oligo._.Rep2 (14 of 16) : Processed Fragments Chr (6 of 22), 3.949 mins elapsed.
+2020-10-07 21:11:09 : Group OPC._.Rep1 (15 of 16) : Processed Fragments Chr (5 of 22), 3.99 mins elapsed.
+2020-10-07 21:11:09 : Group Oligo._.Rep1 (13 of 16) : Processed Fragments Chr (6 of 22), 3.996 mins elapsed.
+2020-10-07 21:11:10 : Group OPC._.Rep2 (16 of 16) : Processed Fragments Chr (5 of 22), 4.003 mins elapsed.
+2020-10-07 21:11:10 : Group MSN_UNK1._.Rep1 (11 of 16) : Processed Fragments Chr (7 of 22), 4.008 mins elapsed.
+2020-10-07 21:11:12 : Group MSN_UNK1._.Rep2 (12 of 16) : Processed Fragments Chr (8 of 22), 4.041 mins elapsed.
+2020-10-07 21:11:15 : Group Oligo._.Rep2 (14 of 16) : Processed Fragments Chr (7 of 22), 4.081 mins elapsed.
+2020-10-07 21:11:15 : Group Microglia._.Rep1 (5 of 16) : Processed Fragments Chr (22 of 22), 4.088 mins elapsed.
+2020-10-07 21:11:18 : Group OPC._.Rep2 (16 of 16) : Processed Fragments Chr (6 of 22), 4.135 mins elapsed.
+2020-10-07 21:11:18 : Group OPC._.Rep1 (15 of 16) : Processed Fragments Chr (6 of 22), 4.137 mins elapsed.
+2020-10-07 21:11:18 : Group Astro._.Rep1 (1 of 16) : Processed Fragments Chr (20 of 22), 4.141 mins elapsed.
+2020-10-07 21:11:18 : Group MSN_UNK1._.Rep1 (11 of 16) : Processed Fragments Chr (8 of 22), 4.142 mins elapsed.
+2020-10-07 21:11:20 : Group Oligo._.Rep1 (13 of 16) : Processed Fragments Chr (7 of 22), 4.17 mins elapsed.
+2020-10-07 21:11:20 : Group MSN_UNK1._.Rep2 (12 of 16) : Processed Fragments Chr (9 of 22), 4.171 mins elapsed.
+2020-10-07 21:11:22 : Group Oligo._.Rep2 (14 of 16) : Processed Fragments Chr (8 of 22), 4.207 mins elapsed.
+2020-10-07 21:11:26 : Group OPC._.Rep2 (16 of 16) : Processed Fragments Chr (7 of 22), 4.269 mins elapsed.
+2020-10-07 21:11:26 : Group MSN_D1._.Rep1 (7 of 16) : Processed Fragments Chr (15 of 22), 4.278 mins elapsed.
+2020-10-07 21:11:27 : Group MSN_UNK1._.Rep1 (11 of 16) : Processed Fragments Chr (9 of 22), 4.281 mins elapsed.
+2020-10-07 21:11:27 : Group MSN_UNK1._.Rep2 (12 of 16) : Processed Fragments Chr (10 of 22), 4.285 mins elapsed.
+2020-10-07 21:11:27 : Group MSN_D2._.Rep1 (9 of 16) : Processed Fragments Chr (15 of 22), 4.288 mins elapsed.
+2020-10-07 21:11:28 : Group OPC._.Rep1 (15 of 16) : Processed Fragments Chr (7 of 22), 4.3 mins elapsed.
+2020-10-07 21:11:29 : Group Oligo._.Rep1 (13 of 16) : Processed Fragments Chr (8 of 22), 4.325 mins elapsed.
+2020-10-07 21:11:29 : Group Oligo._.Rep2 (14 of 16) : Processed Fragments Chr (9 of 22), 4.327 mins elapsed.
+2020-10-07 21:11:31 : Group Astro._.Rep1 (1 of 16) : Processed Fragments Chr (21 of 22), 4.35 mins elapsed.
+2020-10-07 21:11:33 : Group OPC._.Rep2 (16 of 16) : Processed Fragments Chr (8 of 22), 4.382 mins elapsed.
+2020-10-07 21:11:33 : Group MSN_UNK1._.Rep2 (12 of 16) : Processed Fragments Chr (11 of 22), 4.392 mins elapsed.
+2020-10-07 21:11:34 : Group MSN_UNK1._.Rep1 (11 of 16) : Processed Fragments Chr (10 of 22), 4.397 mins elapsed.
+2020-10-07 21:11:36 : Group Oligo._.Rep2 (14 of 16) : Processed Fragments Chr (10 of 22), 4.434 mins elapsed.
+2020-10-07 21:11:36 : Group OPC._.Rep1 (15 of 16) : Processed Fragments Chr (8 of 22), 4.438 mins elapsed.
+2020-10-07 21:11:38 : Group Oligo._.Rep1 (13 of 16) : Processed Fragments Chr (9 of 22), 4.468 mins elapsed.
+2020-10-07 21:11:39 : Group Astro._.Rep1 (1 of 16) : Processed Fragments Chr (22 of 22), 4.488 mins elapsed.
+2020-10-07 21:11:40 : Group OPC._.Rep2 (16 of 16) : Processed Fragments Chr (9 of 22), 4.5 mins elapsed.
+2020-10-07 21:11:40 : Group MSN_UNK1._.Rep2 (12 of 16) : Processed Fragments Chr (12 of 22), 4.504 mins elapsed.
+2020-10-07 21:11:40 : Group MSN_UNK1._.Rep1 (11 of 16) : Processed Fragments Chr (11 of 22), 4.51 mins elapsed.
+2020-10-07 21:11:42 : Group Oligo._.Rep2 (14 of 16) : Processed Fragments Chr (11 of 22), 4.541 mins elapsed.
+2020-10-07 21:11:44 : Group OPC._.Rep1 (15 of 16) : Processed Fragments Chr (9 of 22), 4.579 mins elapsed.
+2020-10-07 21:11:45 : Group Oligo._.Rep1 (13 of 16) : Processed Fragments Chr (10 of 22), 4.59 mins elapsed.
+2020-10-07 21:11:46 : Group OPC._.Rep2 (16 of 16) : Processed Fragments Chr (10 of 22), 4.608 mins elapsed.
+2020-10-07 21:11:47 : Group MSN_UNK1._.Rep1 (11 of 16) : Processed Fragments Chr (12 of 22), 4.623 mins elapsed.
+2020-10-07 21:11:47 : Group MSN_UNK1._.Rep2 (12 of 16) : Processed Fragments Chr (13 of 22), 4.624 mins elapsed.
+2020-10-07 21:11:49 : Group Oligo._.Rep2 (14 of 16) : Processed Fragments Chr (12 of 22), 4.647 mins elapsed.
+2020-10-07 21:11:50 : Group MSN_D1._.Rep1 (7 of 16) : Processed Fragments Chr (16 of 22), 4.665 mins elapsed.
+2020-10-07 21:11:50 : Group MSN_D2._.Rep1 (9 of 16) : Processed Fragments Chr (16 of 22), 4.674 mins elapsed.
+2020-10-07 21:11:51 : Group OPC._.Rep1 (15 of 16) : Processed Fragments Chr (10 of 22), 4.689 mins elapsed.
+2020-10-07 21:11:51 : Group Oligo._.Rep1 (13 of 16) : Processed Fragments Chr (11 of 22), 4.694 mins elapsed.
+2020-10-07 21:11:52 : Group OPC._.Rep2 (16 of 16) : Processed Fragments Chr (11 of 22), 4.702 mins elapsed.
+2020-10-07 21:11:53 : Group MSN_UNK1._.Rep2 (12 of 16) : Processed Fragments Chr (14 of 22), 4.722 mins elapsed.
+2020-10-07 21:11:55 : Group MSN_UNK1._.Rep1 (11 of 16) : Processed Fragments Chr (13 of 22), 4.746 mins elapsed.
+2020-10-07 21:11:55 : Group Oligo._.Rep2 (14 of 16) : Processed Fragments Chr (13 of 22), 4.758 mins elapsed.
+2020-10-07 21:11:57 : Group OPC._.Rep1 (15 of 16) : Processed Fragments Chr (11 of 22), 4.792 mins elapsed.
+2020-10-07 21:11:58 : Group OPC._.Rep2 (16 of 16) : Processed Fragments Chr (12 of 22), 4.804 mins elapsed.
+2020-10-07 21:11:59 : Group Oligo._.Rep1 (13 of 16) : Processed Fragments Chr (12 of 22), 4.817 mins elapsed.
+2020-10-07 21:12:00 : Group MSN_UNK1._.Rep2 (12 of 16) : Processed Fragments Chr (15 of 22), 4.831 mins elapsed.
+2020-10-07 21:12:01 : Group MSN_UNK1._.Rep1 (11 of 16) : Processed Fragments Chr (14 of 22), 4.853 mins elapsed.
+2020-10-07 21:12:01 : Group Oligo._.Rep2 (14 of 16) : Processed Fragments Chr (14 of 22), 4.858 mins elapsed.
+2020-10-07 21:12:04 : Group OPC._.Rep1 (15 of 16) : Processed Fragments Chr (12 of 22), 4.91 mins elapsed.
+2020-10-07 21:12:05 : Group OPC._.Rep2 (16 of 16) : Processed Fragments Chr (13 of 22), 4.918 mins elapsed.
+2020-10-07 21:12:05 : Group MSN_D1._.Rep1 (7 of 16) : Processed Fragments Chr (17 of 22), 4.924 mins elapsed.
+2020-10-07 21:12:06 : Group MSN_D2._.Rep1 (9 of 16) : Processed Fragments Chr (17 of 22), 4.936 mins elapsed.
+2020-10-07 21:12:06 : Group MSN_UNK1._.Rep2 (12 of 16) : Processed Fragments Chr (16 of 22), 4.937 mins elapsed.
+2020-10-07 21:12:07 : Group Oligo._.Rep1 (13 of 16) : Processed Fragments Chr (13 of 22), 4.963 mins elapsed.
+2020-10-07 21:12:08 : Group Oligo._.Rep2 (14 of 16) : Processed Fragments Chr (15 of 22), 4.966 mins elapsed.
+2020-10-07 21:12:08 : Group MSN_UNK1._.Rep1 (11 of 16) : Processed Fragments Chr (15 of 22), 4.978 mins elapsed.
+2020-10-07 21:12:11 : Group OPC._.Rep2 (16 of 16) : Processed Fragments Chr (14 of 22), 5.017 mins elapsed.
+2020-10-07 21:12:12 : Group MSN_UNK1._.Rep2 (12 of 16) : Processed Fragments Chr (17 of 22), 5.042 mins elapsed.
+2020-10-07 21:12:13 : Group OPC._.Rep1 (15 of 16) : Processed Fragments Chr (13 of 22), 5.048 mins elapsed.
+2020-10-07 21:12:14 : Group Oligo._.Rep2 (14 of 16) : Processed Fragments Chr (16 of 22), 5.071 mins elapsed.
+2020-10-07 21:12:15 : Group Oligo._.Rep1 (13 of 16) : Processed Fragments Chr (14 of 22), 5.086 mins elapsed.
+2020-10-07 21:12:15 : Group MSN_UNK1._.Rep1 (11 of 16) : Processed Fragments Chr (16 of 22), 5.096 mins elapsed.
+2020-10-07 21:12:17 : Group OPC._.Rep2 (16 of 16) : Processed Fragments Chr (15 of 22), 5.127 mins elapsed.
+2020-10-07 21:12:18 : Group MSN_UNK1._.Rep2 (12 of 16) : Processed Fragments Chr (18 of 22), 5.146 mins elapsed.
+2020-10-07 21:12:20 : Group OPC._.Rep1 (15 of 16) : Processed Fragments Chr (14 of 22), 5.169 mins elapsed.
+2020-10-07 21:12:20 : Group Oligo._.Rep2 (14 of 16) : Processed Fragments Chr (17 of 22), 5.177 mins elapsed.
+2020-10-07 21:12:21 : Group MSN_D1._.Rep1 (7 of 16) : Processed Fragments Chr (18 of 22), 5.194 mins elapsed.
+2020-10-07 21:12:22 : Group MSN_D2._.Rep1 (9 of 16) : Processed Fragments Chr (18 of 22), 5.205 mins elapsed.
+2020-10-07 21:12:22 : Group MSN_UNK1._.Rep1 (11 of 16) : Processed Fragments Chr (17 of 22), 5.211 mins elapsed.
+2020-10-07 21:12:24 : Group Oligo._.Rep1 (13 of 16) : Processed Fragments Chr (15 of 22), 5.232 mins elapsed.
+2020-10-07 21:12:24 : Group OPC._.Rep2 (16 of 16) : Processed Fragments Chr (16 of 22), 5.234 mins elapsed.
+2020-10-07 21:12:25 : Group MSN_UNK1._.Rep2 (12 of 16) : Processed Fragments Chr (19 of 22), 5.26 mins elapsed.
+2020-10-07 21:12:27 : Group Oligo._.Rep2 (14 of 16) : Processed Fragments Chr (18 of 22), 5.284 mins elapsed.
+2020-10-07 21:12:28 : Group OPC._.Rep1 (15 of 16) : Processed Fragments Chr (15 of 22), 5.307 mins elapsed.
+2020-10-07 21:12:30 : Group MSN_UNK1._.Rep1 (11 of 16) : Processed Fragments Chr (18 of 22), 5.334 mins elapsed.
+2020-10-07 21:12:31 : Group OPC._.Rep2 (16 of 16) : Processed Fragments Chr (17 of 22), 5.347 mins elapsed.
+2020-10-07 21:12:32 : Group MSN_UNK1._.Rep2 (12 of 16) : Processed Fragments Chr (20 of 22), 5.368 mins elapsed.
+2020-10-07 21:12:33 : Group Oligo._.Rep1 (13 of 16) : Processed Fragments Chr (16 of 22), 5.38 mins elapsed.
+2020-10-07 21:12:34 : Group Oligo._.Rep2 (14 of 16) : Processed Fragments Chr (19 of 22), 5.401 mins elapsed.
+2020-10-07 21:12:36 : Group OPC._.Rep1 (15 of 16) : Processed Fragments Chr (16 of 22), 5.441 mins elapsed.
+2020-10-07 21:12:37 : Group OPC._.Rep2 (16 of 16) : Processed Fragments Chr (18 of 22), 5.455 mins elapsed.
+2020-10-07 21:12:37 : Group MSN_UNK1._.Rep1 (11 of 16) : Processed Fragments Chr (19 of 22), 5.461 mins elapsed.
+2020-10-07 21:12:38 : Group MSN_UNK1._.Rep2 (12 of 16) : Processed Fragments Chr (21 of 22), 5.468 mins elapsed.
+2020-10-07 21:12:40 : Group Oligo._.Rep2 (14 of 16) : Processed Fragments Chr (20 of 22), 5.503 mins elapsed.
+2020-10-07 21:12:40 : Group Oligo._.Rep1 (13 of 16) : Processed Fragments Chr (17 of 22), 5.505 mins elapsed.
+2020-10-07 21:12:40 : Group MSN_D1._.Rep1 (7 of 16) : Processed Fragments Chr (19 of 22), 5.507 mins elapsed.
+2020-10-07 21:12:41 : Group MSN_D2._.Rep1 (9 of 16) : Processed Fragments Chr (19 of 22), 5.52 mins elapsed.
+2020-10-07 21:12:43 : Group MSN_UNK1._.Rep2 (12 of 16) : Processed Fragments Chr (22 of 22), 5.562 mins elapsed.
+2020-10-07 21:12:43 : Group OPC._.Rep1 (15 of 16) : Processed Fragments Chr (17 of 22), 5.563 mins elapsed.
+2020-10-07 21:12:44 : Group OPC._.Rep2 (16 of 16) : Processed Fragments Chr (19 of 22), 5.567 mins elapsed.
+2020-10-07 21:12:44 : Group MSN_UNK1._.Rep1 (11 of 16) : Processed Fragments Chr (20 of 22), 5.572 mins elapsed.
+2020-10-07 21:12:46 : Group Oligo._.Rep2 (14 of 16) : Processed Fragments Chr (21 of 22), 5.606 mins elapsed.
+2020-10-07 21:12:48 : Group Oligo._.Rep1 (13 of 16) : Processed Fragments Chr (18 of 22), 5.64 mins elapsed.
+2020-10-07 21:12:50 : Group OPC._.Rep2 (16 of 16) : Processed Fragments Chr (20 of 22), 5.67 mins elapsed.
+2020-10-07 21:12:50 : Group MSN_UNK1._.Rep1 (11 of 16) : Processed Fragments Chr (21 of 22), 5.679 mins elapsed.
+2020-10-07 21:12:51 : Group OPC._.Rep1 (15 of 16) : Processed Fragments Chr (18 of 22), 5.686 mins elapsed.
+2020-10-07 21:12:51 : Group Oligo._.Rep2 (14 of 16) : Processed Fragments Chr (22 of 22), 5.695 mins elapsed.
+2020-10-07 21:12:54 : Group MSN_D1._.Rep1 (7 of 16) : Processed Fragments Chr (20 of 22), 5.731 mins elapsed.
+2020-10-07 21:12:54 : Group MSN_D2._.Rep1 (9 of 16) : Processed Fragments Chr (20 of 22), 5.745 mins elapsed.
+2020-10-07 21:12:55 : Group OPC._.Rep2 (16 of 16) : Processed Fragments Chr (21 of 22), 5.759 mins elapsed.
+2020-10-07 21:12:56 : Group MSN_UNK1._.Rep1 (11 of 16) : Processed Fragments Chr (22 of 22), 5.765 mins elapsed.
+2020-10-07 21:12:56 : Group Oligo._.Rep1 (13 of 16) : Processed Fragments Chr (19 of 22), 5.769 mins elapsed.
+2020-10-07 21:12:58 : Group OPC._.Rep1 (15 of 16) : Processed Fragments Chr (19 of 22), 5.804 mins elapsed.
+2020-10-07 21:13:00 : Group OPC._.Rep2 (16 of 16) : Processed Fragments Chr (22 of 22), 5.833 mins elapsed.
+2020-10-07 21:13:01 : Group Oligo._.Rep1 (13 of 16) : Processed Fragments Chr (20 of 22), 5.858 mins elapsed.
+2020-10-07 21:13:03 : Group OPC._.Rep1 (15 of 16) : Processed Fragments Chr (20 of 22), 5.883 mins elapsed.
+2020-10-07 21:13:04 : Group MSN_D1._.Rep1 (7 of 16) : Processed Fragments Chr (21 of 22), 5.898 mins elapsed.
+2020-10-07 21:13:04 : Group MSN_D2._.Rep1 (9 of 16) : Processed Fragments Chr (21 of 22), 5.905 mins elapsed.
+2020-10-07 21:13:05 : Group Oligo._.Rep1 (13 of 16) : Processed Fragments Chr (21 of 22), 5.927 mins elapsed.
+2020-10-07 21:13:06 : Group OPC._.Rep1 (15 of 16) : Processed Fragments Chr (21 of 22), 5.945 mins elapsed.
+2020-10-07 21:13:09 : Group Oligo._.Rep1 (13 of 16) : Processed Fragments Chr (22 of 22), 5.98 mins elapsed.
+2020-10-07 21:13:09 : Group MSN_D1._.Rep1 (7 of 16) : Processed Fragments Chr (22 of 22), 5.985 mins elapsed.
+2020-10-07 21:13:09 : Group MSN_D2._.Rep1 (9 of 16) : Processed Fragments Chr (22 of 22), 5.991 mins elapsed.
+2020-10-07 21:13:10 : Group OPC._.Rep1 (15 of 16) : Processed Fragments Chr (22 of 22), 5.996 mins elapsed.
+
+2020-10-07 21:13:12 : kmerBias-Parameters, Class = list
+
+kmerBias-Parameters$: length = 1
+                       
+1 function (name)      
+2 .Internal(args(name))
+
+
+kmerBias-Parameters$genome: length = 1
+[1] "BSgenome.Mmulatta.UCSC.rheMac10"
+
+
+kmerBias-Parameters$kmerLength: length = 1
+[1] 6
+
+
+kmerBias-Parameters$threads: length = 1
+[1] 10
+
+
+kmerBias-Parameters$verbose: length = 1
+[1] FALSE
+
+
+kmerBias-Parameters$tstart: length = 0
+NULL
+
+
+kmerBias-Parameters$logFile: length = 1
+[1] "ArchRLogs/ArchR-addGroupCoverages-53e406381f491-Date-2020-10-07_Time-21-07-10.log"
+
+
+
+2020-10-07 21:13:13 : 
+
+2020-10-07 21:13:13 : 
+
+2020-10-07 21:13:13 : 
+
+2020-10-07 21:13:13 : 
+
+2020-10-07 21:13:13 : 
+
+2020-10-07 21:13:13 : 
+
+2020-10-07 21:13:13 : 
+
+2020-10-07 21:13:14 : 
+
+2020-10-07 21:13:14 : 
+
+2020-10-07 21:13:14 : 
+
+2020-10-07 21:13:19 : 
+
+2020-10-07 21:13:20 : 
+
+2020-10-07 21:13:20 : 
+
+2020-10-07 21:13:21 : 
+
+2020-10-07 21:13:21 : 
+
+2020-10-07 21:13:21 : 
+
+2020-10-07 21:13:22 : 
+
+2020-10-07 21:13:22 : 
+
+2020-10-07 21:13:22 : 
+
+2020-10-07 21:13:27 : 
+
+2020-10-07 21:13:32 : 
+
+2020-10-07 21:13:33 : 
+
+2020-10-07 21:13:35 : 
+
+2020-10-07 21:13:35 : 
+
+2020-10-07 21:13:35 : 
+
+2020-10-07 21:13:36 : 
+
+2020-10-07 21:13:36 : 
+
+2020-10-07 21:13:36 : 
+
+2020-10-07 21:13:38 : 
+
+2020-10-07 21:13:39 : 
+
+2020-10-07 21:13:40 : 
+
+2020-10-07 21:13:41 : 
+
+2020-10-07 21:13:41 : 
+
+2020-10-07 21:13:42 : 
+
+2020-10-07 21:13:42 : 
+
+2020-10-07 21:13:43 : 
+
+2020-10-07 21:13:43 : 
+
+2020-10-07 21:13:45 : 
+
+2020-10-07 21:13:45 : 
+
+2020-10-07 21:13:47 : 
+
+2020-10-07 21:13:49 : 
+
+2020-10-07 21:13:49 : 
+
+2020-10-07 21:13:50 : 
+
+2020-10-07 21:13:50 : 
+
+2020-10-07 21:13:50 : 
+
+2020-10-07 21:13:51 : 
+
+2020-10-07 21:13:52 : 
+
+2020-10-07 21:13:53 : 
+
+2020-10-07 21:13:53 : 
+
+2020-10-07 21:13:55 : 
+
+2020-10-07 21:13:56 : 
+
+2020-10-07 21:13:56 : 
+
+2020-10-07 21:13:56 : 
+
+2020-10-07 21:13:57 : 
+
+2020-10-07 21:13:58 : 
+
+2020-10-07 21:13:59 : 
+
+2020-10-07 21:14:00 : 
+
+2020-10-07 21:14:00 : 
+
+2020-10-07 21:14:01 : 
+
+2020-10-07 21:14:04 : 
+
+2020-10-07 21:14:05 : 
+
+2020-10-07 21:14:05 : 
+
+2020-10-07 21:14:06 : 
+
+2020-10-07 21:14:06 : 
+
+2020-10-07 21:14:06 : 
+
+2020-10-07 21:14:06 : 
+
+2020-10-07 21:14:08 : 
+
+2020-10-07 21:14:08 : 
+
+2020-10-07 21:14:10 : 
+
+2020-10-07 21:14:11 : 
+
+2020-10-07 21:14:12 : 
+
+2020-10-07 21:14:12 : 
+
+2020-10-07 21:14:12 : 
+
+2020-10-07 21:14:13 : 
+
+2020-10-07 21:14:14 : 
+
+2020-10-07 21:14:15 : 
+
+2020-10-07 21:14:16 : 
+
+2020-10-07 21:14:17 : 
+
+2020-10-07 21:14:20 : 
+
+2020-10-07 21:14:22 : 
+
+2020-10-07 21:14:23 : 
+
+2020-10-07 21:14:25 : 
+
+2020-10-07 21:14:26 : 
+
+2020-10-07 21:14:26 : 
+
+2020-10-07 21:14:26 : 
+
+2020-10-07 21:14:27 : 
+
+2020-10-07 21:14:27 : 
+
+2020-10-07 21:14:31 : 
+
+2020-10-07 21:14:32 : 
+
+2020-10-07 21:14:33 : 
+
+2020-10-07 21:14:33 : 
+
+2020-10-07 21:14:34 : 
+
+2020-10-07 21:14:34 : 
+
+2020-10-07 21:14:34 : 
+
+2020-10-07 21:14:35 : 
+
+2020-10-07 21:14:38 : 
+
+2020-10-07 21:14:38 : 
+
+2020-10-07 21:14:39 : 
+
+2020-10-07 21:14:41 : 
+
+2020-10-07 21:14:41 : 
+
+2020-10-07 21:14:45 : 
+
+2020-10-07 21:14:46 : 
+
+2020-10-07 21:14:47 : 
+
+2020-10-07 21:14:48 : 
+
+2020-10-07 21:14:52 : 
+
+2020-10-07 21:14:53 : 
+
+2020-10-07 21:14:53 : 
+
+2020-10-07 21:14:53 : 
+
+2020-10-07 21:14:54 : 
+
+2020-10-07 21:14:54 : 
+
+2020-10-07 21:14:55 : 
+
+2020-10-07 21:14:58 : 
+
+2020-10-07 21:14:59 : 
+
+2020-10-07 21:15:00 : 
+
+2020-10-07 21:15:00 : 
+
+2020-10-07 21:15:00 : 
+
+2020-10-07 21:15:01 : 
+
+2020-10-07 21:15:01 : 
+
+2020-10-07 21:15:02 : 
+
+2020-10-07 21:15:02 : 
+
+2020-10-07 21:15:05 : 
+
+2020-10-07 21:15:06 : 
+
+2020-10-07 21:15:06 : 
+
+2020-10-07 21:15:07 : 
+
+2020-10-07 21:15:07 : 
+
+2020-10-07 21:15:07 : 
+
+2020-10-07 21:15:07 : 
+
+2020-10-07 21:15:09 : 
+
+2020-10-07 21:15:09 : 
+
+2020-10-07 21:15:12 : 
+
+2020-10-07 21:15:12 : 
+
+2020-10-07 21:15:13 : 
+
+2020-10-07 21:15:13 : 
+
+2020-10-07 21:15:14 : 
+
+2020-10-07 21:15:14 : 
+
+2020-10-07 21:15:14 : 
+
+2020-10-07 21:15:15 : 
+
+2020-10-07 21:15:16 : 
+
+2020-10-07 21:15:16 : 
+
+2020-10-07 21:15:18 : 
+
+2020-10-07 21:15:20 : 
+
+2020-10-07 21:15:20 : 
+
+2020-10-07 21:15:20 : 
+
+2020-10-07 21:15:21 : 
+
+2020-10-07 21:15:21 : 
+
+2020-10-07 21:15:22 : 
+
+2020-10-07 21:15:22 : 
+
+2020-10-07 21:15:24 : 
+
+2020-10-07 21:15:24 : 
+
+2020-10-07 21:15:25 : 
+
+2020-10-07 21:15:25 : 
+
+2020-10-07 21:15:26 : 
+
+2020-10-07 21:15:27 : 
+
+2020-10-07 21:15:28 : 
+
+2020-10-07 21:15:28 : 
+
+2020-10-07 21:15:29 : 
+
+2020-10-07 21:15:30 : 
+
+2020-10-07 21:15:31 : 
+
+2020-10-07 21:15:34 : 
+
+2020-10-07 21:15:35 : 
+
+2020-10-07 21:15:35 : 
+
+2020-10-07 21:15:35 : 
+
+2020-10-07 21:15:36 : 
+
+2020-10-07 21:15:37 : 
+
+2020-10-07 21:15:38 : 
+
+2020-10-07 21:15:38 : 
+
+2020-10-07 21:15:39 : 
+
+2020-10-07 21:15:41 : 
+
+2020-10-07 21:15:42 : 
+
+2020-10-07 21:15:42 : 
+
+2020-10-07 21:15:43 : 
+
+2020-10-07 21:15:43 : 
+
+2020-10-07 21:15:45 : 
+
+2020-10-07 21:15:46 : 
+
+2020-10-07 21:15:47 : 
+
+2020-10-07 21:15:48 : 
+
+2020-10-07 21:15:50 : 
+
+2020-10-07 21:15:53 : 
+
+2020-10-07 21:15:54 : 
+
+2020-10-07 21:15:54 : 
+
+2020-10-07 21:15:54 : 
+
+2020-10-07 21:15:55 : 
+
+2020-10-07 21:15:56 : 
+
+2020-10-07 21:15:56 : 
+
+2020-10-07 21:15:56 : 
+
+2020-10-07 21:15:57 : 
+
+2020-10-07 21:16:00 : 
+
+2020-10-07 21:16:01 : 
+
+2020-10-07 21:16:02 : 
+
+2020-10-07 21:16:03 : 
+
+2020-10-07 21:16:03 : 
+
+2020-10-07 21:16:04 : 
+
+2020-10-07 21:16:09 : 
+
+2020-10-07 21:16:10 : 
+
+2020-10-07 21:16:10 : 
+
+2020-10-07 21:16:10 : 
+
+2020-10-07 21:16:10 : 
+
+2020-10-07 21:16:11 : 
+
+2020-10-07 21:16:11 : 
+
+2020-10-07 21:16:12 : 
+
+2020-10-07 21:16:16 : 
+
+2020-10-07 21:16:16 : 
+
+2020-10-07 21:16:16 : 
+
+2020-10-07 21:16:17 : 
+
+2020-10-07 21:16:17 : 
+
+2020-10-07 21:16:17 : 
+
+2020-10-07 21:16:17 : 
+
+2020-10-07 21:16:18 : 
+
+2020-10-07 21:16:19 : 
+
+2020-10-07 21:16:20 : 
+
+2020-10-07 21:16:23 : 
+
+2020-10-07 21:16:24 : 
+
+2020-10-07 21:16:24 : 
+
+2020-10-07 21:16:25 : 
+
+2020-10-07 21:16:25 : 
+
+2020-10-07 21:16:26 : 
+
+2020-10-07 21:16:27 : 
+
+2020-10-07 21:16:27 : 
+
+2020-10-07 21:16:28 : 
+
+2020-10-07 21:16:28 : 
+
+2020-10-07 21:16:31 : 
+
+2020-10-07 21:16:31 : 
+
+2020-10-07 21:16:31 : 
+
+2020-10-07 21:16:32 : 
+
+2020-10-07 21:16:32 : 
+
+2020-10-07 21:16:33 : 
+
+2020-10-07 21:16:34 : 
+
+2020-10-07 21:16:34 : 
+
+2020-10-07 21:16:35 : 
+
+2020-10-07 21:16:36 : 
+
+2020-10-07 21:16:38 : 
+
+2020-10-07 21:16:40 : 
+
+2020-10-07 21:16:40 : 
+
+2020-10-07 21:16:42 : 
+
+2020-10-07 21:16:43 : 
+
+2020-10-07 21:16:43 : 
+
+2020-10-07 21:16:46 : 
+
+2020-10-07 21:16:46 : 
+
+2020-10-07 21:16:46 : 
+
+2020-10-07 21:16:47 : 
+
+2020-10-07 21:16:48 : 
+
+2020-10-07 21:16:48 : 
+
+2020-10-07 21:16:50 : 
+
+2020-10-07 21:16:50 : 
+
+2020-10-07 21:16:53 : 
+
+2020-10-07 21:16:53 : 
+
+2020-10-07 21:16:54 : 
+
+2020-10-07 21:16:54 : 
+
+2020-10-07 21:16:54 : 
+
+2020-10-07 21:16:57 : 
+
+2020-10-07 21:17:01 : 
+
+2020-10-07 21:17:06 : 
+
+2020-10-07 21:17:07 : 
+
+2020-10-07 21:17:07 : 
+
+2020-10-07 21:17:08 : 
+
+2020-10-07 21:17:13 : 
+
+2020-10-07 21:17:14 : 
+
+2020-10-07 21:17:15 : 
+
+2020-10-07 21:17:15 : 
+
+2020-10-07 21:17:15 : 
+
+2020-10-07 21:17:16 : 
+
+2020-10-07 21:17:20 : 
+
+2020-10-07 21:17:20 : 
+
+2020-10-07 21:17:21 : 
+
+2020-10-07 21:17:21 : 
+
+2020-10-07 21:17:23 : 
+
+2020-10-07 21:17:23 : 
+
+2020-10-07 21:17:23 : 
+
+2020-10-07 21:17:23 : 
+
+2020-10-07 21:17:27 : 
+
+2020-10-07 21:17:27 : 
+
+2020-10-07 21:17:27 : 
+
+2020-10-07 21:17:28 : 
+
+2020-10-07 21:17:29 : 
+
+2020-10-07 21:17:29 : 
+
+2020-10-07 21:17:30 : 
+
+2020-10-07 21:17:32 : 
+
+2020-10-07 21:17:34 : 
+
+2020-10-07 21:17:35 : 
+
+2020-10-07 21:17:35 : 
+
+2020-10-07 21:17:38 : 
+
+2020-10-07 21:17:39 : 
+
+2020-10-07 21:17:40 : 
+
+2020-10-07 21:17:41 : 
+
+2020-10-07 21:17:44 : 
+
+2020-10-07 21:17:45 : 
+
+2020-10-07 21:17:45 : 
+
+2020-10-07 21:17:46 : 
+
+2020-10-07 21:17:46 : 
+
+2020-10-07 21:17:47 : 
+
+2020-10-07 21:17:48 : 
+
+2020-10-07 21:17:48 : 
+
+2020-10-07 21:17:51 : 
+
+2020-10-07 21:17:52 : 
+
+2020-10-07 21:17:52 : 
+
+2020-10-07 21:17:53 : 
+
+2020-10-07 21:17:54 : 
+
+2020-10-07 21:17:55 : 
+
+2020-10-07 21:17:55 : 
+
+2020-10-07 21:17:55 : 
+
+2020-10-07 21:17:57 : 
+
+2020-10-07 21:17:59 : 
+
+2020-10-07 21:17:59 : 
+
+2020-10-07 21:17:59 : 
+
+2020-10-07 21:18:00 : 
+
+2020-10-07 21:18:00 : 
+
+2020-10-07 21:18:02 : 
+
+2020-10-07 21:18:02 : 
+
+2020-10-07 21:18:02 : 
+
+2020-10-07 21:18:03 : 
+
+2020-10-07 21:18:05 : 
+
+2020-10-07 21:18:05 : 
+
+2020-10-07 21:18:06 : 
+
+2020-10-07 21:18:06 : 
+
+2020-10-07 21:18:07 : 
+
+2020-10-07 21:18:07 : 
+
+2020-10-07 21:18:09 : 
+
+2020-10-07 21:18:09 : 
+
+2020-10-07 21:18:09 : 
+
+2020-10-07 21:18:10 : 
+
+2020-10-07 21:18:12 : 
+
+2020-10-07 21:18:13 : 
+
+2020-10-07 21:18:13 : 
+
+2020-10-07 21:18:13 : 
+
+2020-10-07 21:18:14 : 
+
+2020-10-07 21:18:14 : 
+
+2020-10-07 21:18:16 : 
+
+2020-10-07 21:18:17 : 
+
+2020-10-07 21:18:17 : 
+
+2020-10-07 21:18:19 : 
+
+2020-10-07 21:18:19 : 
+
+2020-10-07 21:18:20 : 
+
+2020-10-07 21:18:20 : 
+
+2020-10-07 21:18:21 : 
+
+2020-10-07 21:18:22 : 
+
+2020-10-07 21:18:24 : 
+
+2020-10-07 21:18:25 : 
+
+2020-10-07 21:18:25 : 
+
+2020-10-07 21:18:27 : 
+
+2020-10-07 21:18:27 : 
+
+2020-10-07 21:18:28 : 
+
+2020-10-07 21:18:28 : 
+
+2020-10-07 21:18:29 : 
+
+2020-10-07 21:18:30 : 
+
+2020-10-07 21:18:30 : 
+
+2020-10-07 21:18:30 : 
+
+2020-10-07 21:18:32 : 
+
+2020-10-07 21:18:34 : 
+
+2020-10-07 21:18:34 : 
+
+2020-10-07 21:18:35 : 
+
+2020-10-07 21:18:36 : 
+
+2020-10-07 21:18:38 : 
+
+2020-10-07 21:18:38 : 
+
+2020-10-07 21:18:38 : 
+
+2020-10-07 21:18:40 : 
+
+2020-10-07 21:18:40 : 
+
+2020-10-07 21:18:40 : 
+
+2020-10-07 21:18:42 : 
+
+2020-10-07 21:18:42 : 
+
+2020-10-07 21:18:44 : 
+
+2020-10-07 21:18:44 : 
+
+2020-10-07 21:18:44 : 
+
+2020-10-07 21:18:45 : 
+
+2020-10-07 21:18:46 : 
+
+2020-10-07 21:18:47 : 
+
+2020-10-07 21:18:47 : 
+
+2020-10-07 21:18:48 : 
+
+2020-10-07 21:18:49 : 
+
+2020-10-07 21:18:49 : 
+
+2020-10-07 21:18:50 : 
+
+2020-10-07 21:18:51 : 
+
+2020-10-07 21:18:51 : 
+
+2020-10-07 21:18:52 : 
+
+2020-10-07 21:18:53 : 
+
+2020-10-07 21:18:54 : 
+
+2020-10-07 21:18:56 : 
+
+2020-10-07 21:18:56 : 
+
+2020-10-07 21:18:56 : 
+
+2020-10-07 21:18:56 : 
+
+2020-10-07 21:18:56 : 
+
+2020-10-07 21:18:56 : 
+
+2020-10-07 21:18:56 : 
+
+2020-10-07 21:18:56 : 
+
+2020-10-07 21:18:56 : 
+
+2020-10-07 21:18:56 : 
+
+2020-10-07 21:18:56 : 
+
+2020-10-07 21:18:56 : 
+
+2020-10-07 21:18:56 : 
+
+2020-10-07 21:18:56 : 
+
+2020-10-07 21:18:56 : 
+
+2020-10-07 21:18:56 : 
+
+------- Completed
+
+End Time : 2020-10-07 21:18:56
+Elapsed Time Minutes = 11.7813872496287
+Elapsed Time Hours = 0.196356507539749
+
+-------
+
+
+

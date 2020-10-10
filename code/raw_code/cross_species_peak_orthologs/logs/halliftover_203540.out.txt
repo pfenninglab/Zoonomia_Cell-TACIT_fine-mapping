@@ -1,0 +1,10 @@
+Source species Human.
+Target species Rhesus.
+Output dir is ../../../data/raw_data/multiSpeciesOrthologs/halper.
+NarrowPeak file is ../../../data/raw_data/multiSpeciesOrthologs/peaks/HumanMergedOrthologs.Interneuron.narrowPeak.gz.
+Converting narrowpeak file to bed file. Make sure has unique peak name in 4th column.
+Extracting narrowPeak summits to halLiftover.
+Lifting Human summits to Rhesus genome.
+Lifting Human peaks to Rhesus genome.
+Apply HALPER to identify 1-1 orthologous in the Rhesus genome.
+Done.

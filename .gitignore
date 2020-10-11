@@ -5,4 +5,7 @@ data/
 *.snap
 *.rda
 *.rds
-logs/*
+logs*
+*.out.txt
+ArchRLogs*
+notebook*

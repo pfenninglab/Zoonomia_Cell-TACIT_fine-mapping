@@ -19,8 +19,6 @@ ARCHDIR=file.path(PROJDIR,paste0('ArchR_',LABEL,'_labeled'))
 
 ##################################
 ### set Arrow File parameters ####
-# addArchRThreads(threads = 10)
-# addArchRGenome(GENOME)
 proj = loadArchRProject(ARCHDIR, showLogo = F)
 
 #######################################################

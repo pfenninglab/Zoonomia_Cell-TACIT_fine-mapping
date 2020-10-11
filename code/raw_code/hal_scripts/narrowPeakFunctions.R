@@ -77,11 +77,13 @@ liftOver_narrowPeak <- function(p, chainFile){
   ############################
   # liftover the peak regions
   p2 = unlist(GenomicRanges::reduce(rtracklayer::liftOver(p, chain = chain)))
+  p2 = GenomeInfoDb::keepStandardChromosomes(p2,pruning.mode="coarse")
   
   ####################################################
   # lift over the peak summits, 
   s = p; start(s) = end(s) = start(s) + mcols(s)$peak
   s2 = unlist(GenomicRanges::reduce(rtracklayer::liftOver(s, chain = chain)))
+  s2 = GenomeInfoDb::keepStandardChromosomes(s2,pruning.mode="coarse")
   
   ############################
   # keep peaks that survived

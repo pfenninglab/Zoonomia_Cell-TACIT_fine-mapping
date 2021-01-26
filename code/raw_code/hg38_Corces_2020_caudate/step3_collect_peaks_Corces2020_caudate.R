@@ -6,7 +6,7 @@ ss <- function(x, pattern, slot = 1, ...) { sapply(strsplit(x = x, split = patte
 options(stringsAsFactors = F)
 options(repr.plot.width=11, repr.plot.height=8.5)
 
-source('code/raw_code/hal_scripts/narrowPeakFunctions.R')
+source('../hal_scripts/narrowPeakFunctions.R')
 
 ### set Arrow File parameters ####
 addArchRThreads(threads = 10)
@@ -15,8 +15,8 @@ addArchRGenome("hg38")
 ### read in ArchR project ####
 PROJDIR='../../../data/raw_data/hg38/Corces_2020'
 LABEL='Corces2020_caudate'; GENOME = 'hg38'; 
-SOURCE_SPECIES = 'Human'
-TARGET_SPECIES = c('Rhesus','Mouse')
+SOURCE_SPECIES = 'Homo_sapiens'
+TARGET_SPECIES = c('Macaca_mulatta','Mus_musculus')
 ARCHDIR=file.path(PROJDIR,paste0('ArchR_',LABEL,'_labeled'))
 proj = loadArchRProject(ARCHDIR, showLogo = F)
 
@@ -46,13 +46,13 @@ outList = mapply(write_GRangesToNarrowPeak,gr = peakList, file = narrowPeak_fn,
 
 #####################################
 # halLiftOver and HALPER the peaks ##
-halmapper_script = '../hal_scripts/halper_map_narrowPeaks.sh'
+halmapper_script = '../hal_scripts/halper_map_peak_orthologs.sh'
 system('mkdir -p logs')
-sbatch = 'sbatch -p pool1'
+sbatch = 'sbatch -p pfen1 -w compute-1-40'
 target_species = paste('-t', TARGET_SPECIES)
 source_species = paste('-s', SOURCE_SPECIES)
 outdir = paste('-o', file.path(PROJDIR, 'halper'))
-peak_files = paste('-p',narrowPeak_fn)
+peak_files = paste('-b',narrowPeak_fn)
 
 # paste the parameter calls together
 thecall = paste(sbatch, halmapper_script, 

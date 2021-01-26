@@ -1,6 +1,0 @@
-Source species Human.
-Target species Mouse.
-Output dir is ../../../data/raw_data/hg38/Corces_2020/halper.
-NarrowPeak file is ../../../data/raw_data/hg38/Corces_2020/peak/Corces2020_caudate.Consensus.narrowPeak.
-ls: cannot access ../../../data/raw_data/hg38/Corces_2020/peak/Corces2020_caudate.Consensus.narrowPeak: No such file or directory
-Input mouse narrowPeak ../../../data/raw_data/hg38/Corces_2020/peak/Corces2020_caudate.Consensus.narrowPeak does not exist.

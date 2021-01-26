@@ -11,8 +11,8 @@ source('../hal_scripts/narrowPeakFunctions.R')
 ### read in ArchR project ####
 PROJDIR='../../../data/raw_data/mm10/BICCN_mouse_caudoputamen'
 LABEL='BICCN_CP'; GENOME = 'mm10'; 
-SOURCE_SPECIES = 'Mouse'
-TARGET_SPECIES = c('Human','Rhesus')
+SOURCE_SPECIES = 'Mus_musculus'
+TARGET_SPECIES = c('Homo_sapiens','Macaca_mulatta')
 ARCHDIR=file.path(PROJDIR,paste0('ArchR_',LABEL,'_labeled'))
 
 ### set Arrow File parameters ####
@@ -42,13 +42,13 @@ out = mapply(write_GRangesToNarrowPeak,gr = peakList, file = narrowPeak_fn,
 
 #####################################
 # halLiftOver and HALPER the peaks ##
-halmapper_script = '../hal_scripts/halper_map_narrowPeaks.sh'
+halmapper_script = '../hal_scripts/halper_map_peak_orthologs.sh'
 system('mkdir -p logs')
-sbatch = 'sbatch -p pool1'
+sbatch = 'sbatch -p pfen1 -w compute-1-40'
 target_species = paste('-t', TARGET_SPECIES)
 source_species = paste('-s', SOURCE_SPECIES)
 outdir = paste('-o', file.path(PROJDIR, 'halper'))
-peak_files = paste('-p',narrowPeak_fn)
+peak_files = paste('-b',narrowPeak_fn)
 
 # paste the parameter calls together
 thecall = paste(sbatch, halmapper_script, 

@@ -13,8 +13,8 @@ source('../hal_scripts/narrowPeakFunctions.R')
 ### read in ArchR project ####
 PROJDIR='../../../data/raw_data/rheMac10/Stauffer_caudate'
 LABEL='Stauffer_caudate'; GENOME = 'rheMac10'; 
-SOURCE_SPECIES = 'Rhesus'
-TARGET_SPECIES = c('Human','Mouse')
+SOURCE_SPECIES = 'Macaca_mulatta'
+TARGET_SPECIES = c('Homo_sapiens','Mus_musculus')
 ARCHDIR=file.path(PROJDIR,paste0('ArchR_',LABEL,'_labeled'))
 
 ##################################
@@ -41,6 +41,23 @@ chainFile =file.path("/home/bnphan/resources/liftOver_chainz",
                      'rheMac10ToRheMac8.over.chain')
 peakList_rheMac8 = lapply(peakList, liftOver_narrowPeak, chainFile = chainFile)
 
+
+##################################################################
+# map rheMac8 UCSC chr to GenBank chromosome names (for halper) ##
+library(tidyverse)
+CHRDIR = '../../../data/tidy_data/200mam_chromosomes/tables/'
+chrmap_fn = file.path(CHRDIR, 'GCF_000772875.2_Mmul_8.0.1_assembly_report.txt')
+map = read_tsv(chrmap_fn, skip = 30)
+names(map) = make.names(gsub('# ', '', names(map)))
+map = map %>% filter(Assigned.Molecule != 'na') %>%
+  filter(GenBank.Accn != 'na') %>% 
+  select(GenBank.Accn, UCSC.style.name) %>%
+  column_to_rownames(var = "UCSC.style.name")
+
+peakList_rheMac8[[2]]
+seqlevels()
+seqnames(peakList_rheMac8[[2]]) = map[as.character(seqnames(peakList_rheMac8[[2]])),1]
+         
 ###############################################
 # create directory and narrowPeak file names ##
 PEAKDIR=file.path(PROJDIR,'peak')
@@ -61,7 +78,7 @@ sbatch = 'sbatch -p pool1'
 target_species = paste('-t', TARGET_SPECIES)
 source_species = paste('-s', SOURCE_SPECIES)
 outdir = paste('-o', file.path(PROJDIR, 'halper'))
-peak_files = paste('-p',narrowPeak_fn)
+peak_files = paste('-b',narrowPeak_fn)
 
 # paste the parameter calls together
 thecall = paste(sbatch, halmapper_script, 

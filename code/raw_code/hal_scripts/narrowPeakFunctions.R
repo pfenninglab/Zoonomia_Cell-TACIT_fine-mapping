@@ -122,7 +122,6 @@ keepOrthologs <- function(peakList, idxReturn = NA){
 }
 
 mergeNarrowPeaks <- function(narrowPeakList, width = 501, min.gapwidth = 100){
-  
   # extract the summits
   summits = GRangesList(lapply(narrowPeakList, function(p){
     start(p) = end(p) =  start(p) + mcols(p)$peak
@@ -130,8 +129,12 @@ mergeNarrowPeaks <- function(narrowPeakList, width = 501, min.gapwidth = 100){
     return(p)
   }))
   
-  # merge the summits
+  # merge the summits, keep those not too spread out after merging
   summits = GenomicRanges::reduce(unlist(summits), min.gapwidth=min.gapwidth)
+  summits = summits[width(summits) < width]
+  
+  # merge the peaks
+  peaks = GenomicRanges::reduce(unlist(GRangesList(narrowPeakList)))
   
   # take the average of merged summits
   start(summits) = end(summits) = 
@@ -142,7 +145,57 @@ mergeNarrowPeaks <- function(narrowPeakList, width = 501, min.gapwidth = 100){
   end(summits) = end(summits) + round(width/2)
   mcols(summits)$peaks = round(width/2)
   
-  summits = GenomeInfoDb::keepStandardChromosomes(summits,pruning.mode="coarse")
+  # drop non-standard chromosomes
+  summits = GenomeInfoDb::keepStandardChromosomes(
+    summits,pruning.mode="coarse")
   return(summits)
 }
+
+
+# instead of merging, keep peaks separate but ordered by overlapping
+linkNarrowPeaks <- function(narrowPeakList, min.gapwidth = 100){
+  # param min.gapwidth to merge peaks
+  # find peaks that overlaps other list
+  tmpList = lapply(names(narrowPeakList), function(x){
+    ooList = suppressWarnings(
+      lapply(narrowPeakList[!names(narrowPeakList) %in% x], 
+             findOverlaps,subject = narrowPeakList[[x]]))
+    idx = Reduce('intersect', lapply(ooList, subjectHits))
+    return(narrowPeakList[[x]][idx])
+  })
+  
+  # extract the summits
+  summits = GRangesList(lapply(tmpList, function(p){
+    start(p) = end(p) =  start(p) + mcols(p)$peak
+    mcols(p) = NULL
+    return(p)
+  }))
+  
+  # merge the summits, keep those not too spread out after merging
+  summits = GenomicRanges::reduce(unlist(summits), min.gapwidth=min.gapwidth)
+  summits = sort(summits)
+  
+  # keep summits overlapping all peak sets
+  summits = summits[Reduce('intersect', lapply(tmpList, function(x)
+    subjectHits(findOverlaps(x, subject = summits))))]
+  
+  # take the average of merged summits
+  start(summits) = end(summits) = 
+    (start(summits) + end(summits))/2
+  
+  # return the closest peak to summit
+  tmpList = lapply(tmpList,function(x) {
+    idx = nearest(x = summits, subject = x, select= 'arbitrary')
+    return(x[idx])
+    })
+  
+  # remove any peak duplicated in any group
+  dupIdx = sapply(tmpList, duplicated)
+  keepIdx = which(!apply(dupIdx, 1, all))
+  tmpList = lapply(tmpList, function(x) x[keepIdx])
+  names(tmpList) = names(narrowPeakList)
+  
+  return(tmpList)
+}
+
 

@@ -7,6 +7,7 @@ options(stringsAsFactors = F)
 suppressMessages(library(tidyverse))
 suppressMessages(library(data.table))
 suppressMessages(library(ggplot2))
+library(rcartocolor)
 library(ggrepel)
 
 # to be run in the root github directory
@@ -24,62 +25,74 @@ pheno = pheno %>% select( -file) %>% mutate(label = ss(as.character(trait), '_')
 enrich_fn =file.path(PROJDIR,'enrichments') %>% 
   list.files(path = ., pattern = '.results.gz', full.names = T)
 names(enrich_fn) = ss(basename(enrich_fn), '.results.gz')
-input = lapply(enrich_fn, read_tsv) %>% lapply('[[', )
-  rbindlist(fill = T, idcol='file')
+input = lapply(enrich_fn, read_tsv) %>% rbindlist(fill = T, idcol='file') %>%
+  select(file:Coefficient_SE)
 input %>% data.frame() %>% tail()
 
 #########################################
 ## format groupings and calculate conditional cell type enrichment p-value
-enrichments = input %>% filter(!is.na(Observed_scale_h2)) %>%
+enrichments = input %>% 
   mutate(
-    file = gsub('Corces2020_', '', file), 
-    annot_group = ss(file, '\\.', 1),
-    match = ss(file, '\\.', 2), 
-    tmpcol = ss(Name,'\\.', 1),
+    annot_group = ss(file, '\\.', 2),
+    match = ss(file, '\\.', 3), 
     peak_group = case_when(
-      grepl('mappedToMm10', tmpcol) ~ 'mappableToMm10', 
+      grepl('mappedToMm10', Categories) ~ 'mappableToMm10', 
       TRUE ~ 'hg38'
     ),
     annot_group = case_when(
       grepl('binary', annot_group) ~ 'binary annotation', 
       grepl('phyloP', annot_group) ~ 'phyloP score + peak', 
     ),
-    celltype = ss(Name,'\\.', 2),
-    celltype = gsub('Consensus', 'Caudate',celltype) %>% 
-      factor(c('Caudate', 'MSN_D1', 'MSN_D2', "MSN_SN", 'INT_Pvalb', 'Astro', 
+    celltype = ss(Categories,'\\.', 2),
+    celltype = celltype %>% 
+      factor(c('MSN_D1', 'MSN_D2', "MSN_SN", 'INT_Pvalb', 'Astro', 
                'Microglia', 'OPC', 'Oligo')), 
     cell_group = case_when(
-      celltype =='Caudate' ~ 'Neuron', 
       grepl('MSN|INT', celltype) ~ 'Neuron', 
       TRUE ~ 'Glia'
-    )) %>%
-  select(-tmpcol) %>%
-  inner_join(x = pheno, by = 'match') %>%
-  filter(celltype != 'stromal_b')
+    )) %>% inner_join(x = pheno, by = 'match') %>% 
+  filter(! group %in% c('Other', 'Metabolism') ) %>%
+  group_by(file) %>% type_convert() %>%
+  filter(grepl('Corces2020', Categories)) %>%
+  filter(Categories != 'Corces2020_caudate.All_Roadmap_DHS_cCREs.BG')
+
+## Truncate heritability preditions to be positive ##
+enrichments = enrichments %>% mutate(
+  Observed_scale_h2 = pmax(Observed_scale_h2, 0),
+  Proportion_of_h2g = Observed_scale_h2 / h2,
+  Enrichment = Proportion_of_h2g / Proportion_of_SNPs,
+  Observed_scale_h2_min = pmax(Observed_scale_h2 - Observed_scale_h2_SE, 0), 
+  Observed_scale_h2_max = pmax(Observed_scale_h2 + Observed_scale_h2_SE, 0), 
+)
+
 enrichments %>% data.frame() %>% head()
+summary(enrichments$Enrichment)
 
 ## normalize the coefficients by per SNP heritability
-# compute Padj within a particular peak_group (hg38 or mappableToMm10) 
-# and peaktype (full, core), these features are overlapping, nested
-enrichments = enrichments %>%
-  mutate(Padj = p.adjust(Coefficient_P_value, 'bonferroni'), 
-         logPadj = -log10(Padj), 
-         Coef_norm = Coefficient / h2_perSNP, 
-         Coef_norm_se = Coefficient_std_error / h2_perSNP) %>% 
-  ungroup()
-
+# compute Padj w/ bonferroni family mutliple hypothesis correction
+enrichments = enrichments %>% group_by(annot_group, peak_group) %>% 
+  mutate(
+  # normalize conditional coefficients
+  Coef_norm = Coefficients / h2_perSNP,
+  Coef_norm_se = Coefficient_SE / h2_perSNP, 
+  # calculate 2-sided p-value for non-zero effect
+  Coef_z = Coef_norm / Coef_norm_se,
+  Coefficient_P_value = pnorm(- Coef_z ),
+  Padj = p.adjust(Coefficient_P_value, 'fdr'), 
+  logPadj = -log10(Padj)
+) %>% ungroup() %>% filter(complete.cases(Coefficient_P_value))
 # look at top signif celltypes
-enrichments %>% filter(Padj < .1) %>% select(match, celltype, annot_group, Padj) %>%
+enrichments %>% filter(Padj < 0.05) %>% 
+  select(match, celltype, annot_group, Padj) %>%
   group_by(match) %>% top_n(1, -Padj) %>% ungroup() %>% 
-  data.frame() %>% arrange(Padj) 
-enrichments %>% data.frame() %>% head(15)
+  data.frame() %>% arrange(Padj)
 
 ###################################################################
 ## pivot table to pair up peak_group with each celltype and trait  ##
 alpha = 0.05; 
 enrich_wide = enrichments %>% 
   # these id columns make up all combinations aside form peakgroup
-  pivot_wider(id_col = c(eval(names(pheno)), celltype,cell_group,  annot_group), 
+  pivot_wider(id_col = c(eval(names(pheno)), celltype, cell_group,  annot_group), 
               names_from = c(peak_group), values_from = where(is.numeric)) %>% 
   mutate(
     p.signif = case_when(
@@ -91,38 +104,40 @@ enrich_wide = enrichments %>%
     pointsize = max((Padj_hg38 + Padj_mappableToMm10)^2, .1),
     norm_coeff_diff = Coef_norm_mappableToMm10 - Coef_norm_hg38, 
     norm_coeff_mean = (Coef_norm_mappableToMm10 + Coef_norm_hg38)/2, 
-    label = ifelse(p.signif != 'NS',label,NA))
+    label = ifelse(p.signif != 'NS',as.character(celltype),NA),
+    ) %>% arrange(trait) %>%
+mutate(trait = as.character(trait) %>% ss('_') %>% factor(., unique(.)))
 
-enrich_wide %>% data.frame() %>% head(2)
+# look at conditionally enriched cell types
+# both 8        hg38 6      mappableToMm10 3
 enrich_wide%>% pull(p.signif) %>% table()
-# both 107        hg38 34      mappableToMm10 8
-# enrichments %>% filter(grepl('AD',trait)) %>% pull(Padj)
-
 
 #################################
 ## make plots for presentation ##
 system(paste('mkdir -p', file.path( 'plots')))
 height_ppt = 5; width_ppt = 8
 height_fig = 6; width_fig = 2.25; font_fig = 7
-plot_celltypes = enrichments %>% filter(Padj < alpha) %>% pull(celltype) %>% unique() 
+# plot_celltypes = enrichments %>% filter(Padj < alpha) %>% pull(celltype) %>% unique() 
+plot_traits = enrich_wide %>% filter(p.signif !='NS') %>% pull(trait) %>% unique() 
 
 # make plots
-plot_fn = file.path('plots','Corces2020_caudate_ldsc_hum_v_hum2mouse.ppt.pdf')
+plot_fn = file.path('plots','Corces2020_caudate_conditional_herit_enrichments.ppt.pdf')
 pdf(width = width_ppt, height = height_ppt, file = plot_fn)
-for(cell in c("Neuron", "Glia")){
-  pp = ggplot(data = enrich_wide %>% filter(cell_group == cell), 
+  pp = ggplot(data = enrich_wide %>% filter(trait %in% plot_traits), 
               aes(y = norm_coeff_diff, x = norm_coeff_mean, 
-                  fill = group, color = p.signif)) +
-    geom_point(pch = 21, aes(alpha = p.signif != 'NS'), size =1.5) + 
+                  fill = celltype, color = p.signif)) +
+    geom_hline(yintercept = 0, color = 'black') + 
+    geom_vline(xintercept = 0, color = 'black') + 
+    geom_point(aes(alpha = p.signif != 'NS', shape = annot_group), size =2.5) + 
     scale_color_manual(values = c('black', 'darkred', 'blue','grey50'), 
                        name = paste('P_bonf <',alpha)) + 
-    scale_fill_manual(values = group_col, name = 'GWAS Trait') + 
+    scale_shape_manual(values = c(21,22), name = '') + 
+    scale_fill_carto_d(name = "Cell type:", palette = "Safe") +
     scale_alpha_manual(values = c(.2, 1), guide = 'none') + 
-    geom_abline( slope = 0, intercept = 0, color = 'black', linetype = 'dashed') + 
-    coord_cartesian(ylim=c(-4, 6), xlim=c(0, 7)) +
-    facet_grid(annot_group ~ celltype, scales = 'fixed') +  
+    coord_cartesian(ylim=c(-2, 4), xlim=c(0, 4)) +
+    facet_wrap( ~ trait, scales = 'fixed', nrow =2 ) +  
     geom_label_repel(aes(label = label), box.padding = .1, label.size = .01,
-                     max.overlaps = 40, size = 2, show.legend = F,na.rm = T,
+                     max.overlaps = 40, size = 3, show.legend = F,na.rm = T,
                      point.padding = .1, segment.color = 'grey50', max.time = 2,
                      min.segment.length = .1, alpha = .7, 
                      label.padding = .1, force_pull = 1, force = 40) +
@@ -130,17 +145,17 @@ for(cell in c("Neuron", "Glia")){
     ylab('Norm. Contrib. Diff. (mappedToMm10 - hg38)') + 
     theme_bw(base_size = 12) + 
     guides(colour = guide_legend(nrow = 2), 
-           fill = guide_legend(nrow = 2)) + 
+           fill = guide_legend(override.aes = list(shape = 21), nrow = 2),
+           shape = guide_legend(nrow = 2)) + 
     theme(legend.position = "bottom", 
-          legend.text=element_text(size=8),
-          legend.title=element_text(size=9))
+          legend.text=element_text(size=7),
+          legend.title=element_text(size=8))
   print(pp)
-}
 dev.off()
 
 
 # make plots
-plot_fn2 = file.path('plots','Corces2020_caudate_ldsc_hum_v_hum2mouse.fig.pdf')
+plot_fn2 = file.path('plots','Corces2020_caudate_conditional_herit_enrichments.fig.pdf')
 pdf(width = width_fig, height = height_fig, file = plot_fn2)
 for(cell in c("Neuron", "Glia")){
   pp = ggplot(data = enrich_wide %>% filter(cell_group == cell), 
@@ -152,7 +167,7 @@ for(cell in c("Neuron", "Glia")){
     scale_fill_manual(values = group_col, guide = 'none') + 
     scale_alpha_manual(values = c(.2, 1), guide = 'none') + 
     geom_abline( slope = 0, intercept = 0, color = 'black', linetype = 'dashed') + 
-    coord_cartesian(ylim=c(-4, 6), xlim=c(0, 7)) +
+    coord_cartesian(ylim=c(-2, 4), xlim=c(0, 4)) +
     facet_grid(celltype ~ annot_group, scales = 'fixed') +  
     geom_label_repel(aes(label = label), box.padding = .08, label.size = .01,
                      max.overlaps = 40, size = 1.2, show.legend = F,na.rm = T,

@@ -98,12 +98,14 @@ pdf(width = width_ppt, height = height_ppt, file = plot_fn)
 for(peak in c('full', 'core')){
   pp = ggplot(data = enrich_wide %>% filter(tissue %in% plot_tissues & peaktype ==peak), 
          aes(y = norm_coeff_diff, x = norm_coeff_mean, fill = group, color = p.signif)) +
+    geom_hline(yintercept = 0, color = 'black') + 
+    geom_vline(xintercept = 0, color = 'black') + 
     geom_point(pch = 21, aes(alpha = p.signif != 'NS'), size =2) + 
     scale_color_manual(values = c('black', 'darkred', 'blue','grey50'), 
+                       breaks = c('both', 'hg38','mappableToMm10','NS'),
                        name = paste('P_bonf <',alpha)) + 
     scale_fill_manual(values = group_col, name = 'GWAS Trait') + 
     scale_alpha_manual(values = c(.2, 1), guide = 'none') + 
-    geom_abline( slope = 0, intercept = 0, color = 'black', linetype = 'dashed') + 
     coord_cartesian(ylim=c(-2, 5), xlim=c(0, 7)) +
     facet_grid(annot_group~tissue, scales = 'fixed') +  
     geom_label_repel(aes(label = label), box.padding = .25, label.size = .01,
@@ -131,13 +133,15 @@ pdf(width = width_fig, height = height_fig, file = plot_fn2)
   pp = ggplot(data = enrich_wide %>% filter(tissue %in% plot_tissues), 
               aes(y = norm_coeff_diff, x = norm_coeff_mean,
                   fill = group, color = p.signif)) +
+    geom_hline(yintercept = 0, color = 'black') + 
+    geom_vline(xintercept = 0, color = 'black') + 
     geom_point(pch = 21, aes(alpha = p.signif != 'NS'), size =2) + 
     scale_color_manual(values = c('black', 'darkred', 'blue','grey50'), 
+                       breaks = c('both', 'hg38','mappableToMm10','NS'),
                        name = paste('P_bonf <',alpha)) + 
     scale_fill_manual(values = group_col, name = 'GWAS Trait') + 
     scale_alpha_manual(values = c(.2, 1), guide = 'none') + 
-    geom_abline( slope = 0, intercept = 0, color = 'black', linetype = 'dashed') + 
-    coord_cartesian(ylim=c(-2, 10), xlim=c(0, 7)) +
+    coord_cartesian(ylim=c(-2, 7), xlim=c(0, 7)) +
     facet_grid(tissue~peaktype + annot_group, scales = 'fixed') +  
     geom_label_repel(aes(label = label), box.padding = .25, label.size = .01,
                      max.overlaps = 40, size = 1, show.legend = F,na.rm = T,

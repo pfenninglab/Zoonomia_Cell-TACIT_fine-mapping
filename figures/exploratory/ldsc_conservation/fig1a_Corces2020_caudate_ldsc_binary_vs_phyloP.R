@@ -111,28 +111,29 @@ for(cell in c("Neuron", "Glia")){
   pp = ggplot(data = enrich_wide %>% filter(cell_group == cell), 
               aes(y = norm_coeff_diff, x = norm_coeff_mean, 
                   fill = group, color = p.signif)) +
+    geom_hline(yintercept = 0, color = 'black') + 
+    geom_vline(xintercept = 0, color = 'black') + 
     geom_point(pch = 21, aes(alpha = p.signif != 'NS'), size =1.5) + 
-  scale_color_manual(values = c('black', 'darkred', 'blue','grey50'), 
-                     name = paste('P_bonf <',alpha)) + 
-  scale_fill_manual(values = group_col, name = 'GWAS Trait') + 
-  scale_alpha_manual(values = c(.2, 1), guide = 'none') + 
-  geom_abline( slope = 0, intercept = 0, color = 'black', linetype = 'dashed') + 
+    scale_color_manual(values = c('black', 'darkred', 'blue','grey50'), 
+                       name = paste('P_bonf <',alpha)) + 
+    scale_fill_manual(values = group_col, name = 'GWAS Trait') + 
+    scale_alpha_manual(values = c(.2, 1), guide = 'none') + 
     coord_cartesian(ylim=c(-4, 6), xlim=c(0, 7)) +
     facet_grid(annot_group ~ celltype, scales = 'fixed') +  
-  geom_label_repel(aes(label = label), box.padding = .1, label.size = .01,
+    geom_label_repel(aes(label = label), box.padding = .1, label.size = .01,
                    max.overlaps = 40, size = 2, show.legend = F,na.rm = T,
                    point.padding = .1, segment.color = 'grey50', max.time = 2,
                    min.segment.length = .1, alpha = .7, 
                    label.padding = .1, force_pull = 1, force = 40) +
-  xlab('Avg. Normalized Herit. Contribution (mappedToMm10 + hg38)/2') + 
-  ylab('Norm. Contrib. Diff. (mappedToMm10 - hg38)') + 
-  theme_bw(base_size = 12) + 
-  guides(colour = guide_legend(nrow = 2), 
-       fill = guide_legend(nrow = 2)) + 
-  theme(legend.position = "bottom", 
-        legend.text=element_text(size=8),
-        legend.title=element_text(size=9))
-  print(pp)
+    xlab('Avg. Normalized Herit. Contribution (mappedToMm10 + hg38)/2') + 
+    ylab('Norm. Contrib. Diff. (mappedToMm10 - hg38)') + 
+    theme_bw(base_size = 12) + 
+    guides(colour = guide_legend(nrow = 2), 
+         fill = guide_legend(nrow = 2)) + 
+    theme(legend.position = "bottom", 
+          legend.text=element_text(size=8),
+          legend.title=element_text(size=9))
+    print(pp)
   }
 dev.off()
 
@@ -144,12 +145,13 @@ for(cell in c("Neuron", "Glia")){
   pp = ggplot(data = enrich_wide %>% filter(cell_group == cell), 
               aes(y = norm_coeff_diff, x = norm_coeff_mean, 
                   fill = group, color = p.signif)) +
+    geom_hline(yintercept = 0, color = 'black') + 
+    geom_vline(xintercept = 0, color = 'black') + 
     geom_point(pch = 21, aes(alpha = p.signif != 'NS',), size =1) + 
     scale_color_manual(values = c('black', 'darkred', 'blue','grey50'), 
                        name = paste('P_bonf <',alpha)) + 
     scale_fill_manual(values = group_col, guide = 'none') + 
     scale_alpha_manual(values = c(.2, 1), guide = 'none') + 
-    geom_abline( slope = 0, intercept = 0, color = 'black', linetype = 'dashed') + 
     coord_cartesian(ylim=c(-4, 6), xlim=c(0, 7)) +
     facet_grid(celltype ~ annot_group, scales = 'fixed') +  
     geom_label_repel(aes(label = label), box.padding = .08, label.size = .01,

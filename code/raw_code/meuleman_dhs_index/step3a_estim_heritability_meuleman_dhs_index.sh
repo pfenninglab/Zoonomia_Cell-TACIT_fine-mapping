@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH -n 1
-#SBATCH --partition=pool1
+#SBATCH --partition=pfen1
 #SBATCH --time 1-0
 #SBATCH --job-name=est_herit
 #SBATCH --ntasks-per-node=1

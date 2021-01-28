@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH -n 1
-#SBATCH --partition=pool1
+#SBATCH --partition=pfen1
 #SBATCH --time 1-0
 #SBATCH --job-name=est_herit
 #SBATCH --ntasks-per-node=1
@@ -48,22 +48,22 @@ for SLURM_ARRAY_TASK_ID in {1..68}; do
 GWAS=$(awk -F '\t' -v IND=${SLURM_ARRAY_TASK_ID} 'NR==(IND + 1) {print $1}' ${GWASDIR}/gwas_list_sumstats.tsv)
 POP=$(awk -F '\t' -v IND=${SLURM_ARRAY_TASK_ID} 'NR==(IND + 1) {print $2}' ${GWASDIR}/gwas_list_sumstats.tsv)
 GWAS_Label=$(awk -F '\t' -v IND=${SLURM_ARRAY_TASK_ID} 'NR==(IND+ 1) {print $3}' ${GWASDIR}/gwas_list_sumstats.tsv)
-PEAKTYPES=$(stat -c "%n" $DATADIR/annotation/*.1.annot.gz | sed 's!.*/!!' | cut -d'.' -f1 | sort | uniq )
+PEAKTYPES=$(stat -c "%n" $DATADIR/annotation/*.1.annot.gz |grep -E 'Corces2020'| sed 's!.*/!!' | cut -d'.' -f1 | sort | uniq )
 
 ########################################################################
 ## Estimate SNP heritability on binary Meuleman DHS index annotations ##
 for PEAKTYPE in $PEAKTYPES; do
 ## use DHS/roadmap/cCRE/Corces2020 merged peaks as bg instead of All
-BINARY_DHS_BG=${SETDIR}/data/raw_data/caudate_conservation_ldsc/annotation/Corces2020_caudate.All_Roadmap_DHS_cCREs.BG.${POP}.,
+BINARY_DHS_BG=${SETDIR}/data/raw_data/caudate_conservation_ldsc/annotation/Corces2020_caudate.All_Roadmap_DHS_cCREs_mmToHg.BG.${POP}.,
 CELLTYPES=$(stat -c "%n" $DATADIR/annotation/${PEAKTYPE}.*.${POP}.1.annot.gz | sed "s/${POP}.*/${POP}.,/g" | sed '/Consensus/d' | sed '/All/d' | sort| uniq | sed -z 's/\n//g')
 OUT=${DATADIR}/enrichments/${PEAKTYPE}.binary.${GWAS_Label}.${POP}
-if [[ ! -f "${OUT}.results.gz" ]]; then
+# if [[ ! -f "${OUT}.results.gz" ]]; then
 ldsc.py --h2 $GWAS --print-coefficients --print-snps ${SNPLIST} --n-blocks 400 \
 --w-ld-chr ${GWASDIR}/1000G_ALL_Phase3_hg38_files/weights/1000G.${POP}.weights.hm3_noMHC. \
 --ref-ld-chr ${CELLTYPES}${BINARY_DHS_BG}${GWASDIR}/1000G_ALL_Phase3_hg38_files/baselineLD_v2.2/baselineLD_v2.2.${POP}. \
 --frqfile-chr ${GWASDIR}/1000G_ALL_Phase3_hg38_files/plink/1000G.${POP}.HM3. \
 --out ${OUT} 
-fi
+# fi
 log2results
 ## format logs file to make .results file, --print-snps doesn't make a .results file
 
@@ -72,13 +72,13 @@ log2results
 CONTIN_DHS_BG=${SETDIR}/data/raw_data/caudate_conservation_ldsc/annot_phyloP/Corces2020_caudate.All_Roadmap_DHS_cCREs.BG.${POP}.,
 CELLTYPES=$(stat -c "%n" $DATADIR/annot_phyloP/${PEAKTYPE}.*.${POP}.1.annot.gz | sed "s/${POP}.*/${POP}.,/g" | sed '/Consensus/d'| sed '/All/d' | sort| uniq | sed -z 's/\n//g')
 OUT=${DATADIR}/enrichments/${PEAKTYPE}.phyloP.${GWAS_Label}.${POP}
-if [[ ! -f "${OUT}.results.gz" ]]; then
+# if [[ ! -f "${OUT}.results.gz" ]]; then
 ldsc.py --h2 $GWAS --print-coefficients --print-snps ${SNPLIST} \
 --w-ld-chr ${GWASDIR}/1000G_ALL_Phase3_hg38_files/weights/1000G.${POP}.weights.hm3_noMHC. \
 --ref-ld-chr ${CELLTYPES}${CONTIN_DHS_BG}${GWASDIR}/1000G_ALL_Phase3_hg38_files/baselineLD_v2.2/baselineLD_v2.2.${POP}. \
 --frqfile-chr ${GWASDIR}/1000G_ALL_Phase3_hg38_files/plink/1000G.${POP}.HM3. \
 --out ${OUT}  
-fi
+# fi
 log2results
 ## format logs file to make .results file, --print-snps doesn't make a .results file
 done

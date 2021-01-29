@@ -9,13 +9,12 @@ function cleanup()
 CACTUSFILE=/data/pfenninggroup/machineLearningForComputationalBiology/alignCactus/mam241/241-mammalian-2020v2.hal
 OVERWRITE='FALSE'
 
-cd /projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/code/raw_code/meuleman_dhs_index
-mv annotate_* logs
+cd /projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/code/raw_code/rheMac10_Stauffer_caudate
 
 # read in command line arguments
-BEDFILE='../../../data/raw_data/meuleman_dhs_index/peaks/DHS_Index_and_Vocabulary.embryonic.full.narrowPeak.gz'
-SOURCE='Homo_sapiens'
-TARGET='Mus_musculus'
-OUTDIR='../../../data/raw_data/meuleman_dhs_index/halper'
+BEDFILE='../../../data/raw_data/rheMac10/Stauffer_caudate/peak/Stauffer_caudate.Astro.GenBankRheMac8.narrowPeak.gz'
+SOURCE='Macaca_mulatta'
+TARGET='Homo_sapiens'
+OUTDIR='../../../raw_data/rheMac10/Stauffer_caudate/peaks'
 NAME=''
 

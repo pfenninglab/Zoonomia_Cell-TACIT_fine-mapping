@@ -92,6 +92,7 @@ while [[ $1 != "" ]]; do
     shift
 done
 
+
 ############################################################
 # check required parameters, and some sensibilites. ########
 if [[ -z "$SOURCE" ]];
@@ -108,6 +109,7 @@ elif [[ ${NAME} == '' ]]
     then NAME=$(basename $BEDFILE | sed 's/.gz$//g;s/.narrowPeak$//g;s/.bed$//g')
 fi
 
+
 ########################################################################
 # make output directory and working directory in scratch if do not exist
 # copy over cactus file to speed up the IO during hal-liftover, need > 1Tb
@@ -123,11 +125,8 @@ fi
 
 ##########################################
 UNIQUEBED=${TMPDIR}/${NAME}.unique.tmp.bed
-# check if duplicate peaks
-if [[ $(awk '++A[$1,$2,$3,$10] > 1 { print "true"; exit 1 }' $INPUTBED) ]]; then
-    echo "Repeat chr:start-end:summits detected. Remove duplicate peaks before proceeding."; cleanup; exit 1
 # check if basic 3 column bed file w/o name column
-elif [[ $(awk '{print NF; exit}' ${INPUTBED}) -lt 4 ]]; 
+if [[ $(awk '{print NF; exit}' ${INPUTBED}) -lt 4 ]]; 
     then echo "Bed file doesn't have name column. Adding"
     echo "USING CHR:START-END in the NAME column."
     awk 'BEGIN {FS="\t"; OFS="\t"} {print $1, $2, $3, $1":"$2-$3"," 0, "."}' $INPUTBED > $UNIQUEBED    

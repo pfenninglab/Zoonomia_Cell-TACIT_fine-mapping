@@ -27,7 +27,7 @@ enrich_fn =file.path(PROJDIR,'enrichments') %>%
 names(enrich_fn) = ss(basename(enrich_fn), '.results.gz')
 input = lapply(enrich_fn, read_tsv) %>% rbindlist(fill = T, idcol='file') %>%
   select(file:Coefficient_SE)
-input %>% data.frame() %>% tail()
+input %>% data.frame() %>% head()
 
 #########################################
 ## format groupings and calculate conditional cell type enrichment p-value
@@ -35,9 +35,16 @@ enrichments = input %>%
   mutate(
     annot_group = ss(file, '\\.', 2),
     match = ss(file, '\\.', 3), 
+    tmpcol = ss(file, '\\.', 1), 
+    peaktype = case_when(
+      tmpcol == 'Corces2020_caudate' ~ 'hgPeak',
+      grepl('peakInMouse', tmpcol) ~ 'hgToMm', 
+      grepl('hgMmOrth', tmpcol) ~ 'hgMmOrth', 
+      TRUE ~ 'mmToHg',
+    ),
     peak_group = case_when(
-      grepl('mappedToMm10', Categories) ~ 'mappableToMm10', 
-      TRUE ~ 'hg38'
+      peaktype == 'hgPeak' ~ 'hgPeak' ,
+      TRUE ~ 'inMm'
     ),
     annot_group = case_when(
       grepl('binary', annot_group) ~ 'binary annotation', 
@@ -53,8 +60,11 @@ enrichments = input %>%
     )) %>% inner_join(x = pheno, by = 'match') %>% 
   filter(! group %in% c('Other', 'Metabolism') ) %>%
   group_by(file) %>% type_convert() %>%
+  filter(!grepl('CP.MSN_D|CP.INT', Categories)) %>%
   filter(grepl('Corces2020', Categories)) %>%
   filter(Categories != 'Corces2020_caudate.All_Roadmap_DHS_cCREs.BG')
+
+enrichments$file %>% ss('\\.') %>% table()
 
 ## Truncate heritability preditions to be positive ##
 enrichments = enrichments %>% mutate(

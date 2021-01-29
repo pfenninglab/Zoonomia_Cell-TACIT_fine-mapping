@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH -n 1
-#SBATCH --partition=pool1
+#SBATCH --partition=pool3-bigmem
 #SBATCH --time 1-0
 #SBATCH --job-name=ldsc_Corces
 #SBATCH --ntasks-per-node=1
@@ -8,7 +8,7 @@
 #SBATCH --mem=8G
 #SBATCH --error=logs/ldsc_Corces_%A_%a.txt
 #SBATCH --output=logs/ldsc_Corces_%A_%a.txt
-#SBATCH --array=1-68%30
+#SBATCH --array=34-35
 
 # get the GWAS for this array job
 SETDIR=/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate

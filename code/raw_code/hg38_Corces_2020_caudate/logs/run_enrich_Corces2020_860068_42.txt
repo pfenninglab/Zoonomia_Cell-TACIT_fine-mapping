@@ -1,0 +1,130 @@
+*********************************************************************
+* LD Score Regression (LDSC)
+* Version 1.0.1
+* (C) 2014-2019 Brendan Bulik-Sullivan and Hilary Finucane
+* Broad Institute of MIT and Harvard / MIT Department of Mathematics
+* GNU General Public License v3
+*********************************************************************
+Call: 
+./ldsc.py \
+--h2-cts /projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/tidy_data/ldsc_gwas/munged/Worry-Nagel_2018.sumstats.gz \
+--ref-ld-chr /projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/tidy_data/ldsc_gwas/1000G_ALL_Phase3_hg38_files/baseline_v1.1/baseline_v1.1.EUR. \
+--out /projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/caudate_conservation_ldsc/enrichments/Corces2020_binary.Worry-Nagel_2018.EUR \
+--ref-ld-chr-cts /projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/caudate_conservation_ldsc/Corces2020_binary_EUR_hg38_celltypes.ldcts \
+--w-ld-chr /projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/tidy_data/ldsc_gwas/1000G_ALL_Phase3_hg38_files/weights/1000G.EUR.weights.hm3_noMHC. 
+
+Beginning analysis at Wed Jan 27 00:14:28 2021
+Reading summary statistics from /projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/tidy_data/ldsc_gwas/munged/Worry-Nagel_2018.sumstats.gz ...
+Read summary statistics for 1134065 SNPs.
+Reading reference panel LD Score from /projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/tidy_data/ldsc_gwas/1000G_ALL_Phase3_hg38_files/baseline_v1.1/baseline_v1.1.EUR.[1-22] ... (ldscore_fromlist)
+Read reference panel LD Scores for 1198864 SNPs.
+Removing partitioned LD Scores with zero variance.
+Reading regression weight LD Score from /projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/tidy_data/ldsc_gwas/1000G_ALL_Phase3_hg38_files/weights/1000G.EUR.weights.hm3_noMHC.[1-22] ... (ldscore_fromlist)
+Read regression weight LD Scores for 1198864 SNPs.
+After merging with reference panel LD, 1124265 SNPs remain.
+After merging with regression SNP LD, 1124265 SNPs remain.
+Removed 0 SNPs with chi^2 > 348.219 (1124265 SNPs remain)
+Reading cts reference panel LD Score from /projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/caudate_conservation_ldsc/annotation/Corces2020_caudate.Astro.EUR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/caudate_conservation_ldsc/annotation/Corces2020_caudate.All_Roadmap_DHS_cCREs.BG.EUR.[1-22] ... (ldscore_fromlist)
+Performing regression.
+Reading cts reference panel LD Score from /projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/caudate_conservation_ldsc/annotation/Corces2020_caudate.Consensus.EUR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/caudate_conservation_ldsc/annotation/Corces2020_caudate.All_Roadmap_DHS_cCREs.BG.EUR.[1-22] ... (ldscore_fromlist)
+Performing regression.
+Reading cts reference panel LD Score from /projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/caudate_conservation_ldsc/annotation/Corces2020_caudate.INT_Pvalb.EUR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/caudate_conservation_ldsc/annotation/Corces2020_caudate.All_Roadmap_DHS_cCREs.BG.EUR.[1-22] ... (ldscore_fromlist)
+Performing regression.
+Reading cts reference panel LD Score from /projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/caudate_conservation_ldsc/annotation/Corces2020_caudate_mappedToMm10.Astro.EUR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/caudate_conservation_ldsc/annotation/Corces2020_caudate.All_Roadmap_DHS_cCREs.BG.EUR.[1-22] ... (ldscore_fromlist)
+Performing regression.
+Reading cts reference panel LD Score from /projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/caudate_conservation_ldsc/annotation/Corces2020_caudate_mappedToMm10.Consensus.EUR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/caudate_conservation_ldsc/annotation/Corces2020_caudate.All_Roadmap_DHS_cCREs.BG.EUR.[1-22] ... (ldscore_fromlist)
+Performing regression.
+Reading cts reference panel LD Score from /projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/caudate_conservation_ldsc/annotation/Corces2020_caudate_mappedToMm10.INT_Pvalb.EUR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/caudate_conservation_ldsc/annotation/Corces2020_caudate.All_Roadmap_DHS_cCREs.BG.EUR.[1-22] ... (ldscore_fromlist)
+Performing regression.
+Reading cts reference panel LD Score from /projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/caudate_conservation_ldsc/annotation/Corces2020_caudate_mappedToMm10.Microglia.EUR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/caudate_conservation_ldsc/annotation/Corces2020_caudate.All_Roadmap_DHS_cCREs.BG.EUR.[1-22] ... (ldscore_fromlist)
+Performing regression.
+Reading cts reference panel LD Score from /projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/caudate_conservation_ldsc/annotation/Corces2020_caudate_mappedToMm10.MSN_D1.EUR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/caudate_conservation_ldsc/annotation/Corces2020_caudate.All_Roadmap_DHS_cCREs.BG.EUR.[1-22] ... (ldscore_fromlist)
+Performing regression.
+Reading cts reference panel LD Score from /projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/caudate_conservation_ldsc/annotation/Corces2020_caudate_mappedToMm10.MSN_D2.EUR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/caudate_conservation_ldsc/annotation/Corces2020_caudate.All_Roadmap_DHS_cCREs.BG.EUR.[1-22] ... (ldscore_fromlist)
+Performing regression.
+Reading cts reference panel LD Score from /projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/caudate_conservation_ldsc/annotation/Corces2020_caudate_mappedToMm10.MSN_SN.EUR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/caudate_conservation_ldsc/annotation/Corces2020_caudate.All_Roadmap_DHS_cCREs.BG.EUR.[1-22] ... (ldscore_fromlist)
+Performing regression.
+Reading cts reference panel LD Score from /projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/caudate_conservation_ldsc/annotation/Corces2020_caudate_mappedToMm10.Oligo.EUR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/caudate_conservation_ldsc/annotation/Corces2020_caudate.All_Roadmap_DHS_cCREs.BG.EUR.[1-22] ... (ldscore_fromlist)
+Performing regression.
+Reading cts reference panel LD Score from /projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/caudate_conservation_ldsc/annotation/Corces2020_caudate_mappedToMm10.OPC.EUR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/caudate_conservation_ldsc/annotation/Corces2020_caudate.All_Roadmap_DHS_cCREs.BG.EUR.[1-22] ... (ldscore_fromlist)
+Performing regression.
+Reading cts reference panel LD Score from /projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/caudate_conservation_ldsc/annotation/Corces2020_caudate.Microglia.EUR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/caudate_conservation_ldsc/annotation/Corces2020_caudate.All_Roadmap_DHS_cCREs.BG.EUR.[1-22] ... (ldscore_fromlist)
+Performing regression.
+Reading cts reference panel LD Score from /projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/caudate_conservation_ldsc/annotation/Corces2020_caudate.MSN_D1.EUR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/caudate_conservation_ldsc/annotation/Corces2020_caudate.All_Roadmap_DHS_cCREs.BG.EUR.[1-22] ... (ldscore_fromlist)
+Performing regression.
+Reading cts reference panel LD Score from /projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/caudate_conservation_ldsc/annotation/Corces2020_caudate.MSN_D2.EUR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/caudate_conservation_ldsc/annotation/Corces2020_caudate.All_Roadmap_DHS_cCREs.BG.EUR.[1-22] ... (ldscore_fromlist)
+Performing regression.
+Reading cts reference panel LD Score from /projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/caudate_conservation_ldsc/annotation/Corces2020_caudate.MSN_SN.EUR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/caudate_conservation_ldsc/annotation/Corces2020_caudate.All_Roadmap_DHS_cCREs.BG.EUR.[1-22] ... (ldscore_fromlist)
+Performing regression.
+Reading cts reference panel LD Score from /projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/caudate_conservation_ldsc/annotation/Corces2020_caudate.Oligo.EUR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/caudate_conservation_ldsc/annotation/Corces2020_caudate.All_Roadmap_DHS_cCREs.BG.EUR.[1-22] ... (ldscore_fromlist)
+Performing regression.
+Reading cts reference panel LD Score from /projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/caudate_conservation_ldsc/annotation/Corces2020_caudate.OPC.EUR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/caudate_conservation_ldsc/annotation/Corces2020_caudate.All_Roadmap_DHS_cCREs.BG.EUR.[1-22] ... (ldscore_fromlist)
+Performing regression.
+Results printed to /projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/caudate_conservation_ldsc/enrichments/Corces2020_binary.Worry-Nagel_2018.EUR.cell_type_results.txt
+Analysis finished at Wed Jan 27 00:34:36 2021
+Total time elapsed: 20.0m:8.21s
+*********************************************************************
+* LD Score Regression (LDSC)
+* Version 1.0.1
+* (C) 2014-2019 Brendan Bulik-Sullivan and Hilary Finucane
+* Broad Institute of MIT and Harvard / MIT Department of Mathematics
+* GNU General Public License v3
+*********************************************************************
+Call: 
+./ldsc.py \
+--h2-cts /projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/tidy_data/ldsc_gwas/munged/Worry-Nagel_2018.sumstats.gz \
+--ref-ld-chr /projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/tidy_data/ldsc_gwas/1000G_ALL_Phase3_hg38_files/baseline_v1.1/baseline_v1.1.EUR. \
+--out /projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/caudate_conservation_ldsc/enrichments/Corces2020_phyloP.Worry-Nagel_2018.EUR \
+--ref-ld-chr-cts /projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/caudate_conservation_ldsc/Corces2020_phyloP_EUR_hg38_celltypes.ldcts \
+--w-ld-chr /projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/tidy_data/ldsc_gwas/1000G_ALL_Phase3_hg38_files/weights/1000G.EUR.weights.hm3_noMHC. 
+
+Beginning analysis at Wed Jan 27 00:34:37 2021
+Reading summary statistics from /projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/tidy_data/ldsc_gwas/munged/Worry-Nagel_2018.sumstats.gz ...
+Read summary statistics for 1134065 SNPs.
+Reading reference panel LD Score from /projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/tidy_data/ldsc_gwas/1000G_ALL_Phase3_hg38_files/baseline_v1.1/baseline_v1.1.EUR.[1-22] ... (ldscore_fromlist)
+Read reference panel LD Scores for 1198864 SNPs.
+Removing partitioned LD Scores with zero variance.
+Reading regression weight LD Score from /projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/tidy_data/ldsc_gwas/1000G_ALL_Phase3_hg38_files/weights/1000G.EUR.weights.hm3_noMHC.[1-22] ... (ldscore_fromlist)
+Read regression weight LD Scores for 1198864 SNPs.
+After merging with reference panel LD, 1124265 SNPs remain.
+After merging with regression SNP LD, 1124265 SNPs remain.
+Removed 0 SNPs with chi^2 > 348.219 (1124265 SNPs remain)
+Reading cts reference panel LD Score from /projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/caudate_conservation_ldsc/annot_phyloP/Corces2020_caudate.Astro.EUR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/caudate_conservation_ldsc/annot_phyloP/Corces2020_caudate.All_Roadmap_DHS_cCREs.BG.EUR.[1-22] ... (ldscore_fromlist)
+Performing regression.
+Reading cts reference panel LD Score from /projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/caudate_conservation_ldsc/annot_phyloP/Corces2020_caudate.Consensus.EUR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/caudate_conservation_ldsc/annot_phyloP/Corces2020_caudate.All_Roadmap_DHS_cCREs.BG.EUR.[1-22] ... (ldscore_fromlist)
+Performing regression.
+Reading cts reference panel LD Score from /projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/caudate_conservation_ldsc/annot_phyloP/Corces2020_caudate.INT_Pvalb.EUR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/caudate_conservation_ldsc/annot_phyloP/Corces2020_caudate.All_Roadmap_DHS_cCREs.BG.EUR.[1-22] ... (ldscore_fromlist)
+Performing regression.
+Reading cts reference panel LD Score from /projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/caudate_conservation_ldsc/annot_phyloP/Corces2020_caudate_mappedToMm10.Astro.EUR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/caudate_conservation_ldsc/annot_phyloP/Corces2020_caudate.All_Roadmap_DHS_cCREs.BG.EUR.[1-22] ... (ldscore_fromlist)
+Performing regression.
+Reading cts reference panel LD Score from /projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/caudate_conservation_ldsc/annot_phyloP/Corces2020_caudate_mappedToMm10.Consensus.EUR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/caudate_conservation_ldsc/annot_phyloP/Corces2020_caudate.All_Roadmap_DHS_cCREs.BG.EUR.[1-22] ... (ldscore_fromlist)
+Performing regression.
+Reading cts reference panel LD Score from /projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/caudate_conservation_ldsc/annot_phyloP/Corces2020_caudate_mappedToMm10.INT_Pvalb.EUR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/caudate_conservation_ldsc/annot_phyloP/Corces2020_caudate.All_Roadmap_DHS_cCREs.BG.EUR.[1-22] ... (ldscore_fromlist)
+Performing regression.
+Reading cts reference panel LD Score from /projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/caudate_conservation_ldsc/annot_phyloP/Corces2020_caudate_mappedToMm10.Microglia.EUR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/caudate_conservation_ldsc/annot_phyloP/Corces2020_caudate.All_Roadmap_DHS_cCREs.BG.EUR.[1-22] ... (ldscore_fromlist)
+Performing regression.
+Reading cts reference panel LD Score from /projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/caudate_conservation_ldsc/annot_phyloP/Corces2020_caudate_mappedToMm10.MSN_D1.EUR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/caudate_conservation_ldsc/annot_phyloP/Corces2020_caudate.All_Roadmap_DHS_cCREs.BG.EUR.[1-22] ... (ldscore_fromlist)
+Performing regression.
+Reading cts reference panel LD Score from /projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/caudate_conservation_ldsc/annot_phyloP/Corces2020_caudate_mappedToMm10.MSN_D2.EUR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/caudate_conservation_ldsc/annot_phyloP/Corces2020_caudate.All_Roadmap_DHS_cCREs.BG.EUR.[1-22] ... (ldscore_fromlist)
+Performing regression.
+Reading cts reference panel LD Score from /projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/caudate_conservation_ldsc/annot_phyloP/Corces2020_caudate_mappedToMm10.MSN_SN.EUR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/caudate_conservation_ldsc/annot_phyloP/Corces2020_caudate.All_Roadmap_DHS_cCREs.BG.EUR.[1-22] ... (ldscore_fromlist)
+Performing regression.
+Reading cts reference panel LD Score from /projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/caudate_conservation_ldsc/annot_phyloP/Corces2020_caudate_mappedToMm10.Oligo.EUR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/caudate_conservation_ldsc/annot_phyloP/Corces2020_caudate.All_Roadmap_DHS_cCREs.BG.EUR.[1-22] ... (ldscore_fromlist)
+Performing regression.
+Reading cts reference panel LD Score from /projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/caudate_conservation_ldsc/annot_phyloP/Corces2020_caudate_mappedToMm10.OPC.EUR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/caudate_conservation_ldsc/annot_phyloP/Corces2020_caudate.All_Roadmap_DHS_cCREs.BG.EUR.[1-22] ... (ldscore_fromlist)
+Performing regression.
+Reading cts reference panel LD Score from /projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/caudate_conservation_ldsc/annot_phyloP/Corces2020_caudate.Microglia.EUR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/caudate_conservation_ldsc/annot_phyloP/Corces2020_caudate.All_Roadmap_DHS_cCREs.BG.EUR.[1-22] ... (ldscore_fromlist)
+Performing regression.
+Reading cts reference panel LD Score from /projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/caudate_conservation_ldsc/annot_phyloP/Corces2020_caudate.MSN_D1.EUR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/caudate_conservation_ldsc/annot_phyloP/Corces2020_caudate.All_Roadmap_DHS_cCREs.BG.EUR.[1-22] ... (ldscore_fromlist)
+Performing regression.
+Reading cts reference panel LD Score from /projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/caudate_conservation_ldsc/annot_phyloP/Corces2020_caudate.MSN_D2.EUR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/caudate_conservation_ldsc/annot_phyloP/Corces2020_caudate.All_Roadmap_DHS_cCREs.BG.EUR.[1-22] ... (ldscore_fromlist)
+Performing regression.
+Reading cts reference panel LD Score from /projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/caudate_conservation_ldsc/annot_phyloP/Corces2020_caudate.MSN_SN.EUR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/caudate_conservation_ldsc/annot_phyloP/Corces2020_caudate.All_Roadmap_DHS_cCREs.BG.EUR.[1-22] ... (ldscore_fromlist)
+Performing regression.
+Reading cts reference panel LD Score from /projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/caudate_conservation_ldsc/annot_phyloP/Corces2020_caudate.Oligo.EUR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/caudate_conservation_ldsc/annot_phyloP/Corces2020_caudate.All_Roadmap_DHS_cCREs.BG.EUR.[1-22] ... (ldscore_fromlist)
+Performing regression.
+Reading cts reference panel LD Score from /projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/caudate_conservation_ldsc/annot_phyloP/Corces2020_caudate.OPC.EUR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/caudate_conservation_ldsc/annot_phyloP/Corces2020_caudate.All_Roadmap_DHS_cCREs.BG.EUR.[1-22] ... (ldscore_fromlist)
+Performing regression.
+Results printed to /projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/caudate_conservation_ldsc/enrichments/Corces2020_phyloP.Worry-Nagel_2018.EUR.cell_type_results.txt
+Analysis finished at Wed Jan 27 00:54:43 2021
+Total time elapsed: 20.0m:5.34s

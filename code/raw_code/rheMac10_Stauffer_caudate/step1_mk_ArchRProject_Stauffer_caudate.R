@@ -9,11 +9,8 @@ options(stringsAsFactors = F)
 GENOMEDIR='/home/bnphan/resources/genomes/rheMac10'
 load(file.path(GENOMEDIR,'rheMac10_liftoff_GRCh38.p13_ArchR_annotations.rda'))
 
-##################################
-### set Arrow File parameters ####
-addArchRThreads(threads = 15)
-
 ### find the pre-processed arrow files
+setwd('code/raw_code/rheMac10_Stauffer_caudate')
 PROJDIR='../../../data/raw_data/rheMac10/Stauffer_caudate'
 ARCHDIR=file.path(PROJDIR,'ArchR_Stauffer_caudate')
 ArrowFiles = list.files(path = file.path(PROJDIR,'arrow'),
@@ -22,16 +19,22 @@ print(ArrowFiles)
 
 ##################################
 ### make an ArchR Projects ######
-proj = ArchRProject( 
-  ArrowFiles = ArrowFiles, outputDirectory = ARCHDIR,
-  geneAnnotation = geneAnnotation, #must be the custom rheMac10 version
-  genomeAnnotation = genomeAnnotation, #must be the custom rheMac10 version
-  copyArrows = TRUE, showLogo = FALSE)
-
-proj$Subject = ss(basename(proj$Sample),'_', 3)
-proj$Region = ss(basename(proj$Sample),'_', 1)
-
-proj = filterDoublets( ArchRProj = proj,  cutEnrich = .5)
+if(FALSE){
+  proj = ArchRProject( 
+    ArrowFiles = ArrowFiles, outputDirectory = ARCHDIR,
+    geneAnnotation = geneAnnotation, #must be the custom rheMac10 version
+    genomeAnnotation = genomeAnnotation, #must be the custom rheMac10 version
+    copyArrows = TRUE, showLogo = FALSE)
+  
+  proj$Subject = 'm015_Peanut'
+  proj$Replicate = ss(basename(proj$Sample),'_', 2)
+  proj$Region = ss(basename(proj$Sample),'_', 1)
+  
+  proj = filterDoublets( ArchRProj = proj,  cutEnrich = .5)
+  proj = saveArchRProject(ArchRProj = proj)
+} else {
+  proj = loadArchRProject(ARCHDIR)
+}
 
 ####################
 # add iterative LSI
@@ -49,24 +52,24 @@ proj <- addIterativeLSI(
     sampleCells = 10000,  n.start = 10), 
   varFeatures = 150000, # also can reduce this if noticing subtle batch effects
   dimsToUse = 1:30, force = TRUE)
-
+proj = saveArchRProject(ArchRProj = proj)
 
 # add harmony batch correction #
 proj <- addHarmony( ArchRProj = proj, reducedDims = "IterativeLSI",
-                    name = "Harmony", groupBy = "Sample",force = TRUE)
+                    name = "HarmonyI150", groupBy = "Sample",force = TRUE)
 
 # add imputation
-proj <- addImputeWeights(proj, reducedDims = "IterativeLSI")
+proj <- addImputeWeights(proj, reducedDims = "HarmonyI150")
 
 
 # add umap
-proj <- addUMAP( ArchRProj = proj, reducedDims = "IterativeLSI", 
+proj <- addUMAP( ArchRProj = proj, reducedDims = "HarmonyI150", 
                  name = "UMAP", nNeighbors = 30, minDist = 0.5, 
                  metric = "cosine", force = TRUE)
 
 # add clusters
-proj <- addClusters(input = proj, reducedDims = "IterativeLSI", 
-                    method = "Seurat", name = "Clusters", 
+proj <- addClusters(input = proj, reducedDims = "HarmonyI150", 
+                    method = "Seurat", name = "ClustersI150", 
                     resolution = .5, force = TRUE)
 proj = saveArchRProject(ArchRProj = proj)
 

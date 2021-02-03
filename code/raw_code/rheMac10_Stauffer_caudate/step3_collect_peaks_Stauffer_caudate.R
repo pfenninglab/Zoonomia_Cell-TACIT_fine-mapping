@@ -86,7 +86,7 @@ sapply(outRanges, function(gr){
 # halLiftOver and HALPER the peaks ##
 halmapper_script = '../hal_scripts/halper_map_peak_orthologs.sh'
 system('mkdir -p logs')
-sbatch = 'sbatch -p pfen1 -w compute-1-40 --mem 10G'
+sbatch = 'sbatch -p pfen1 -w compute-1-38 --mem 10G'
 target_species = paste('-t', TARGET_SPECIES)
 source_species = paste('-s', SOURCE_SPECIES)
 outdir = paste('-o', file.path(PROJDIR, 'halper'))

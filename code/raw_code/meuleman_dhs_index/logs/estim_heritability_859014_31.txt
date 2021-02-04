@@ -1,0 +1,224 @@
+*********************************************************************
+* LD Score Regression (LDSC)
+* Version 1.0.1
+* (C) 2014-2019 Brendan Bulik-Sullivan and Hilary Finucane
+* Broad Institute of MIT and Harvard / MIT Department of Mathematics
+* GNU General Public License v3
+*********************************************************************
+Call: 
+./ldsc.py \
+--h2 /projects/pfenninggroup/machineLearningForComputationalBiology/gwasEnrichments/gwas/munged/OD_vs_OE_AFR-Polimanti_2020.sumstats.gz \
+--ref-ld-chr /projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annotation/DHS_Index_and_Vocabulary.cardiac.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annotation/DHS_Index_and_Vocabulary.digestive.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annotation/DHS_Index_and_Vocabulary.lymphoid.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annotation/DHS_Index_and_Vocabulary.musculoskeletal.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annotation/DHS_Index_and_Vocabulary.myeloid.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annotation/DHS_Index_and_Vocabulary.neural.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annotation/DHS_Index_and_Vocabulary.organ_devel.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annotation/DHS_Index_and_Vocabulary.placental.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annotation/DHS_Index_and_Vocabulary.primitive.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annotation/DHS_Index_and_Vocabulary.pulmonary_devel.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annotation/DHS_Index_and_Vocabulary.renal.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annotation/DHS_Index_and_Vocabulary.stromal_a.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annotation/DHS_Index_and_Vocabulary.stromal_b.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annotation/DHS_Index_and_Vocabulary.tissue_invariant.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annotation/DHS_Index_and_Vocabulary.vascular.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/caudate_conservation_ldsc/annotation/Corces2020_caudate.All_Roadmap_DHS_cCREs.BG.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/gwasEnrichments/1000G_ALL_Phase3_hg38_files/baselineLD_v2.2/baselineLD_v2.2.AFR. \
+--print-snps /projects/pfenninggroup/machineLearningForComputationalBiology/gwasEnrichments/1000G_EUR_Phase3_GRCh38_files/hapmap3_snps/listHM3.noMHC.txt \
+--out /projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/enrichments/DHS_Index_and_Vocabulary.binary.full.OD_vs_OE_AFR-Polimanti_2020.AFR \
+--frqfile-chr /projects/pfenninggroup/machineLearningForComputationalBiology/gwasEnrichments/1000G_ALL_Phase3_hg38_files/plink/1000G.AFR.HM3. \
+--w-ld-chr /projects/pfenninggroup/machineLearningForComputationalBiology/gwasEnrichments/1000G_ALL_Phase3_hg38_files/weights/1000G.AFR.weights.hm3_noMHC. \
+--print-coefficients  
+
+Beginning analysis at Tue Jan 26 11:44:42 2021
+The frequency file is unnecessary and is being ignored.
+Reading summary statistics from /projects/pfenninggroup/machineLearningForComputationalBiology/gwasEnrichments/gwas/munged/OD_vs_OE_AFR-Polimanti_2020.sumstats.gz ...
+Read summary statistics for 1000168 SNPs.
+Reading reference panel LD Score from /projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annotation/DHS_Index_and_Vocabulary.cardiac.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annotation/DHS_Index_and_Vocabulary.digestive.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annotation/DHS_Index_and_Vocabulary.lymphoid.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annotation/DHS_Index_and_Vocabulary.musculoskeletal.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annotation/DHS_Index_and_Vocabulary.myeloid.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annotation/DHS_Index_and_Vocabulary.neural.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annotation/DHS_Index_and_Vocabulary.organ_devel.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annotation/DHS_Index_and_Vocabulary.placental.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annotation/DHS_Index_and_Vocabulary.primitive.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annotation/DHS_Index_and_Vocabulary.pulmonary_devel.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annotation/DHS_Index_and_Vocabulary.renal.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annotation/DHS_Index_and_Vocabulary.stromal_a.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annotation/DHS_Index_and_Vocabulary.stromal_b.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annotation/DHS_Index_and_Vocabulary.tissue_invariant.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annotation/DHS_Index_and_Vocabulary.vascular.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/caudate_conservation_ldsc/annotation/Corces2020_caudate.All_Roadmap_DHS_cCREs.BG.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/gwasEnrichments/1000G_ALL_Phase3_hg38_files/baselineLD_v2.2/baselineLD_v2.2.AFR.[1-22] ... (ldscore_fromlist)
+Read reference panel LD Scores for 1192221 SNPs.
+Removing partitioned LD Scores with zero variance.
+Reading regression weight LD Score from /projects/pfenninggroup/machineLearningForComputationalBiology/gwasEnrichments/1000G_ALL_Phase3_hg38_files/weights/1000G.AFR.weights.hm3_noMHC.[1-22] ... (ldscore_fromlist)
+Read regression weight LD Scores for 1192221 SNPs.
+After merging with reference panel LD, 996140 SNPs remain.
+After merging with regression SNP LD, 996140 SNPs remain.
+Removed 0 SNPs with chi^2 > 80 (996140 SNPs remain)
+Traceback (most recent call last):
+  File "/home/bnphan/src/ldsc/ldsc.py", line 644, in <module>
+    sumstats.estimate_h2(args, log)
+  File "/home/bnphan/src/ldsc/ldscore/sumstats.py", line 359, in estimate_h2
+    twostep=args.two_step, old_weights=old_weights)
+  File "/home/bnphan/src/ldsc/ldscore/regressions.py", line 346, in __init__
+    slow=slow, step1_ii=step1_ii, old_weights=old_weights)
+  File "/home/bnphan/src/ldsc/ldscore/regressions.py", line 219, in __init__
+    self.tot, self.tot_cov, self.tot_se = self._tot(self.cat, self.cat_cov)
+  File "/home/bnphan/src/ldsc/ldscore/regressions.py", line 282, in _tot
+    tot_se = np.sqrt(tot_cov)
+FloatingPointError: invalid value encountered in sqrt
+
+Analysis finished at Tue Jan 26 11:58:39 2021
+Total time elapsed: 13.0m:56.4s
+Traceback (most recent call last):
+  File "/home/bnphan/src/ldsc/ldsc.py", line 644, in <module>
+    sumstats.estimate_h2(args, log)
+  File "/home/bnphan/src/ldsc/ldscore/sumstats.py", line 359, in estimate_h2
+    twostep=args.two_step, old_weights=old_weights)
+  File "/home/bnphan/src/ldsc/ldscore/regressions.py", line 346, in __init__
+    slow=slow, step1_ii=step1_ii, old_weights=old_weights)
+  File "/home/bnphan/src/ldsc/ldscore/regressions.py", line 219, in __init__
+    self.tot, self.tot_cov, self.tot_se = self._tot(self.cat, self.cat_cov)
+  File "/home/bnphan/src/ldsc/ldscore/regressions.py", line 282, in _tot
+    tot_se = np.sqrt(tot_cov)
+FloatingPointError: invalid value encountered in sqrt
+*********************************************************************
+* LD Score Regression (LDSC)
+* Version 1.0.1
+* (C) 2014-2019 Brendan Bulik-Sullivan and Hilary Finucane
+* Broad Institute of MIT and Harvard / MIT Department of Mathematics
+* GNU General Public License v3
+*********************************************************************
+Call: 
+./ldsc.py \
+--h2 /projects/pfenninggroup/machineLearningForComputationalBiology/gwasEnrichments/gwas/munged/OD_vs_OE_AFR-Polimanti_2020.sumstats.gz \
+--ref-ld-chr /projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annotation/DHS_Index_and_Vocabulary.cardiac.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annotation/DHS_Index_and_Vocabulary.digestive.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annotation/DHS_Index_and_Vocabulary.lymphoid.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annotation/DHS_Index_and_Vocabulary.musculoskeletal.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annotation/DHS_Index_and_Vocabulary.myeloid.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annotation/DHS_Index_and_Vocabulary.neural.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annotation/DHS_Index_and_Vocabulary.organ_devel.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annotation/DHS_Index_and_Vocabulary.placental.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annotation/DHS_Index_and_Vocabulary.primitive.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annotation/DHS_Index_and_Vocabulary.pulmonary_devel.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annotation/DHS_Index_and_Vocabulary.renal.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annotation/DHS_Index_and_Vocabulary.stromal_a.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annotation/DHS_Index_and_Vocabulary.stromal_b.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annotation/DHS_Index_and_Vocabulary.tissue_invariant.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annotation/DHS_Index_and_Vocabulary.vascular.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/caudate_conservation_ldsc/annotation/Corces2020_caudate.All_Roadmap_DHS_cCREs.BG.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/gwasEnrichments/1000G_ALL_Phase3_hg38_files/baselineLD_v2.2/baselineLD_v2.2.AFR. \
+--print-snps /projects/pfenninggroup/machineLearningForComputationalBiology/gwasEnrichments/1000G_EUR_Phase3_GRCh38_files/hapmap3_snps/listHM3.noMHC.txt \
+--out /projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/enrichments/DHS_Index_and_Vocabulary.binary.core.OD_vs_OE_AFR-Polimanti_2020.AFR \
+--frqfile-chr /projects/pfenninggroup/machineLearningForComputationalBiology/gwasEnrichments/1000G_ALL_Phase3_hg38_files/plink/1000G.AFR.HM3. \
+--w-ld-chr /projects/pfenninggroup/machineLearningForComputationalBiology/gwasEnrichments/1000G_ALL_Phase3_hg38_files/weights/1000G.AFR.weights.hm3_noMHC. \
+--print-coefficients  
+
+Beginning analysis at Tue Jan 26 11:58:40 2021
+The frequency file is unnecessary and is being ignored.
+Reading summary statistics from /projects/pfenninggroup/machineLearningForComputationalBiology/gwasEnrichments/gwas/munged/OD_vs_OE_AFR-Polimanti_2020.sumstats.gz ...
+Read summary statistics for 1000168 SNPs.
+Reading reference panel LD Score from /projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annotation/DHS_Index_and_Vocabulary.cardiac.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annotation/DHS_Index_and_Vocabulary.digestive.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annotation/DHS_Index_and_Vocabulary.lymphoid.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annotation/DHS_Index_and_Vocabulary.musculoskeletal.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annotation/DHS_Index_and_Vocabulary.myeloid.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annotation/DHS_Index_and_Vocabulary.neural.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annotation/DHS_Index_and_Vocabulary.organ_devel.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annotation/DHS_Index_and_Vocabulary.placental.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annotation/DHS_Index_and_Vocabulary.primitive.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annotation/DHS_Index_and_Vocabulary.pulmonary_devel.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annotation/DHS_Index_and_Vocabulary.renal.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annotation/DHS_Index_and_Vocabulary.stromal_a.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annotation/DHS_Index_and_Vocabulary.stromal_b.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annotation/DHS_Index_and_Vocabulary.tissue_invariant.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annotation/DHS_Index_and_Vocabulary.vascular.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/caudate_conservation_ldsc/annotation/Corces2020_caudate.All_Roadmap_DHS_cCREs.BG.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/gwasEnrichments/1000G_ALL_Phase3_hg38_files/baselineLD_v2.2/baselineLD_v2.2.AFR.[1-22] ... (ldscore_fromlist)
+Read reference panel LD Scores for 1192221 SNPs.
+Removing partitioned LD Scores with zero variance.
+Reading regression weight LD Score from /projects/pfenninggroup/machineLearningForComputationalBiology/gwasEnrichments/1000G_ALL_Phase3_hg38_files/weights/1000G.AFR.weights.hm3_noMHC.[1-22] ... (ldscore_fromlist)
+Read regression weight LD Scores for 1192221 SNPs.
+After merging with reference panel LD, 996140 SNPs remain.
+After merging with regression SNP LD, 996140 SNPs remain.
+Removed 0 SNPs with chi^2 > 80 (996140 SNPs remain)
+Traceback (most recent call last):
+  File "/home/bnphan/src/ldsc/ldsc.py", line 644, in <module>
+    sumstats.estimate_h2(args, log)
+  File "/home/bnphan/src/ldsc/ldscore/sumstats.py", line 359, in estimate_h2
+    twostep=args.two_step, old_weights=old_weights)
+  File "/home/bnphan/src/ldsc/ldscore/regressions.py", line 346, in __init__
+    slow=slow, step1_ii=step1_ii, old_weights=old_weights)
+  File "/home/bnphan/src/ldsc/ldscore/regressions.py", line 219, in __init__
+    self.tot, self.tot_cov, self.tot_se = self._tot(self.cat, self.cat_cov)
+  File "/home/bnphan/src/ldsc/ldscore/regressions.py", line 282, in _tot
+    tot_se = np.sqrt(tot_cov)
+FloatingPointError: invalid value encountered in sqrt
+
+Analysis finished at Tue Jan 26 12:12:05 2021
+Total time elapsed: 13.0m:24.03s
+Traceback (most recent call last):
+  File "/home/bnphan/src/ldsc/ldsc.py", line 644, in <module>
+    sumstats.estimate_h2(args, log)
+  File "/home/bnphan/src/ldsc/ldscore/sumstats.py", line 359, in estimate_h2
+    twostep=args.two_step, old_weights=old_weights)
+  File "/home/bnphan/src/ldsc/ldscore/regressions.py", line 346, in __init__
+    slow=slow, step1_ii=step1_ii, old_weights=old_weights)
+  File "/home/bnphan/src/ldsc/ldscore/regressions.py", line 219, in __init__
+    self.tot, self.tot_cov, self.tot_se = self._tot(self.cat, self.cat_cov)
+  File "/home/bnphan/src/ldsc/ldscore/regressions.py", line 282, in _tot
+    tot_se = np.sqrt(tot_cov)
+FloatingPointError: invalid value encountered in sqrt
+*********************************************************************
+* LD Score Regression (LDSC)
+* Version 1.0.1
+* (C) 2014-2019 Brendan Bulik-Sullivan and Hilary Finucane
+* Broad Institute of MIT and Harvard / MIT Department of Mathematics
+* GNU General Public License v3
+*********************************************************************
+Call: 
+./ldsc.py \
+--h2 /projects/pfenninggroup/machineLearningForComputationalBiology/gwasEnrichments/gwas/munged/OD_vs_OE_AFR-Polimanti_2020.sumstats.gz \
+--ref-ld-chr /projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annot_phyloP/DHS_Index_and_Vocabulary_mappedToMm10.cardiac.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annot_phyloP/DHS_Index_and_Vocabulary_mappedToMm10.digestive.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annot_phyloP/DHS_Index_and_Vocabulary_mappedToMm10.lymphoid.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annot_phyloP/DHS_Index_and_Vocabulary_mappedToMm10.musculoskeletal.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annot_phyloP/DHS_Index_and_Vocabulary_mappedToMm10.myeloid.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annot_phyloP/DHS_Index_and_Vocabulary_mappedToMm10.neural.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annot_phyloP/DHS_Index_and_Vocabulary_mappedToMm10.organ_devel.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annot_phyloP/DHS_Index_and_Vocabulary_mappedToMm10.placental.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annot_phyloP/DHS_Index_and_Vocabulary_mappedToMm10.primitive.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annot_phyloP/DHS_Index_and_Vocabulary_mappedToMm10.pulmonary_devel.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annot_phyloP/DHS_Index_and_Vocabulary_mappedToMm10.renal.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annot_phyloP/DHS_Index_and_Vocabulary_mappedToMm10.stromal_a.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annot_phyloP/DHS_Index_and_Vocabulary_mappedToMm10.stromal_b.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annot_phyloP/DHS_Index_and_Vocabulary_mappedToMm10.tissue_invariant.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annot_phyloP/DHS_Index_and_Vocabulary_mappedToMm10.vascular.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/caudate_conservation_ldsc/annot_phyloP/Corces2020_caudate.All_Roadmap_DHS_cCREs.BG.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/gwasEnrichments/1000G_ALL_Phase3_hg38_files/baselineLD_v2.2/baselineLD_v2.2.AFR. \
+--print-snps /projects/pfenninggroup/machineLearningForComputationalBiology/gwasEnrichments/1000G_EUR_Phase3_GRCh38_files/hapmap3_snps/listHM3.noMHC.txt \
+--out /projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/enrichments/DHS_Index_and_Vocabulary_mappedToMm10.phyloP.full.OD_vs_OE_AFR-Polimanti_2020.AFR \
+--frqfile-chr /projects/pfenninggroup/machineLearningForComputationalBiology/gwasEnrichments/1000G_ALL_Phase3_hg38_files/plink/1000G.AFR.HM3. \
+--w-ld-chr /projects/pfenninggroup/machineLearningForComputationalBiology/gwasEnrichments/1000G_ALL_Phase3_hg38_files/weights/1000G.AFR.weights.hm3_noMHC. \
+--print-coefficients  
+
+Beginning analysis at Tue Jan 26 12:12:07 2021
+The frequency file is unnecessary and is being ignored.
+Reading summary statistics from /projects/pfenninggroup/machineLearningForComputationalBiology/gwasEnrichments/gwas/munged/OD_vs_OE_AFR-Polimanti_2020.sumstats.gz ...
+Read summary statistics for 1000168 SNPs.
+Reading reference panel LD Score from /projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annot_phyloP/DHS_Index_and_Vocabulary_mappedToMm10.cardiac.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annot_phyloP/DHS_Index_and_Vocabulary_mappedToMm10.digestive.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annot_phyloP/DHS_Index_and_Vocabulary_mappedToMm10.lymphoid.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annot_phyloP/DHS_Index_and_Vocabulary_mappedToMm10.musculoskeletal.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annot_phyloP/DHS_Index_and_Vocabulary_mappedToMm10.myeloid.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annot_phyloP/DHS_Index_and_Vocabulary_mappedToMm10.neural.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annot_phyloP/DHS_Index_and_Vocabulary_mappedToMm10.organ_devel.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annot_phyloP/DHS_Index_and_Vocabulary_mappedToMm10.placental.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annot_phyloP/DHS_Index_and_Vocabulary_mappedToMm10.primitive.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annot_phyloP/DHS_Index_and_Vocabulary_mappedToMm10.pulmonary_devel.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annot_phyloP/DHS_Index_and_Vocabulary_mappedToMm10.renal.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annot_phyloP/DHS_Index_and_Vocabulary_mappedToMm10.stromal_a.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annot_phyloP/DHS_Index_and_Vocabulary_mappedToMm10.stromal_b.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annot_phyloP/DHS_Index_and_Vocabulary_mappedToMm10.tissue_invariant.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annot_phyloP/DHS_Index_and_Vocabulary_mappedToMm10.vascular.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/caudate_conservation_ldsc/annot_phyloP/Corces2020_caudate.All_Roadmap_DHS_cCREs.BG.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/gwasEnrichments/1000G_ALL_Phase3_hg38_files/baselineLD_v2.2/baselineLD_v2.2.AFR.[1-22] ... (ldscore_fromlist)
+Read reference panel LD Scores for 1192221 SNPs.
+Removing partitioned LD Scores with zero variance.
+Reading regression weight LD Score from /projects/pfenninggroup/machineLearningForComputationalBiology/gwasEnrichments/1000G_ALL_Phase3_hg38_files/weights/1000G.AFR.weights.hm3_noMHC.[1-22] ... (ldscore_fromlist)
+Read regression weight LD Scores for 1192221 SNPs.
+After merging with reference panel LD, 996140 SNPs remain.
+After merging with regression SNP LD, 996140 SNPs remain.
+Removed 0 SNPs with chi^2 > 80 (996140 SNPs remain)
+Traceback (most recent call last):
+  File "/home/bnphan/src/ldsc/ldsc.py", line 644, in <module>
+    sumstats.estimate_h2(args, log)
+  File "/home/bnphan/src/ldsc/ldscore/sumstats.py", line 359, in estimate_h2
+    twostep=args.two_step, old_weights=old_weights)
+  File "/home/bnphan/src/ldsc/ldscore/regressions.py", line 346, in __init__
+    slow=slow, step1_ii=step1_ii, old_weights=old_weights)
+  File "/home/bnphan/src/ldsc/ldscore/regressions.py", line 219, in __init__
+    self.tot, self.tot_cov, self.tot_se = self._tot(self.cat, self.cat_cov)
+  File "/home/bnphan/src/ldsc/ldscore/regressions.py", line 282, in _tot
+    tot_se = np.sqrt(tot_cov)
+FloatingPointError: invalid value encountered in sqrt
+
+Analysis finished at Tue Jan 26 12:25:08 2021
+Total time elapsed: 13.0m:1.83s
+Traceback (most recent call last):
+  File "/home/bnphan/src/ldsc/ldsc.py", line 644, in <module>
+    sumstats.estimate_h2(args, log)
+  File "/home/bnphan/src/ldsc/ldscore/sumstats.py", line 359, in estimate_h2
+    twostep=args.two_step, old_weights=old_weights)
+  File "/home/bnphan/src/ldsc/ldscore/regressions.py", line 346, in __init__
+    slow=slow, step1_ii=step1_ii, old_weights=old_weights)
+  File "/home/bnphan/src/ldsc/ldscore/regressions.py", line 219, in __init__
+    self.tot, self.tot_cov, self.tot_se = self._tot(self.cat, self.cat_cov)
+  File "/home/bnphan/src/ldsc/ldscore/regressions.py", line 282, in _tot
+    tot_se = np.sqrt(tot_cov)
+FloatingPointError: invalid value encountered in sqrt
+*********************************************************************
+* LD Score Regression (LDSC)
+* Version 1.0.1
+* (C) 2014-2019 Brendan Bulik-Sullivan and Hilary Finucane
+* Broad Institute of MIT and Harvard / MIT Department of Mathematics
+* GNU General Public License v3
+*********************************************************************
+Call: 
+./ldsc.py \
+--h2 /projects/pfenninggroup/machineLearningForComputationalBiology/gwasEnrichments/gwas/munged/OD_vs_OE_AFR-Polimanti_2020.sumstats.gz \
+--ref-ld-chr /projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annot_phyloP/DHS_Index_and_Vocabulary_mappedToMm10.cardiac.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annot_phyloP/DHS_Index_and_Vocabulary_mappedToMm10.digestive.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annot_phyloP/DHS_Index_and_Vocabulary_mappedToMm10.lymphoid.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annot_phyloP/DHS_Index_and_Vocabulary_mappedToMm10.musculoskeletal.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annot_phyloP/DHS_Index_and_Vocabulary_mappedToMm10.myeloid.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annot_phyloP/DHS_Index_and_Vocabulary_mappedToMm10.neural.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annot_phyloP/DHS_Index_and_Vocabulary_mappedToMm10.organ_devel.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annot_phyloP/DHS_Index_and_Vocabulary_mappedToMm10.placental.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annot_phyloP/DHS_Index_and_Vocabulary_mappedToMm10.primitive.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annot_phyloP/DHS_Index_and_Vocabulary_mappedToMm10.pulmonary_devel.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annot_phyloP/DHS_Index_and_Vocabulary_mappedToMm10.renal.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annot_phyloP/DHS_Index_and_Vocabulary_mappedToMm10.stromal_a.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annot_phyloP/DHS_Index_and_Vocabulary_mappedToMm10.stromal_b.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annot_phyloP/DHS_Index_and_Vocabulary_mappedToMm10.tissue_invariant.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annot_phyloP/DHS_Index_and_Vocabulary_mappedToMm10.vascular.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/caudate_conservation_ldsc/annot_phyloP/Corces2020_caudate.All_Roadmap_DHS_cCREs.BG.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/gwasEnrichments/1000G_ALL_Phase3_hg38_files/baselineLD_v2.2/baselineLD_v2.2.AFR. \
+--print-snps /projects/pfenninggroup/machineLearningForComputationalBiology/gwasEnrichments/1000G_EUR_Phase3_GRCh38_files/hapmap3_snps/listHM3.noMHC.txt \
+--out /projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/enrichments/DHS_Index_and_Vocabulary_mappedToMm10.phyloP.core.OD_vs_OE_AFR-Polimanti_2020.AFR \
+--frqfile-chr /projects/pfenninggroup/machineLearningForComputationalBiology/gwasEnrichments/1000G_ALL_Phase3_hg38_files/plink/1000G.AFR.HM3. \
+--w-ld-chr /projects/pfenninggroup/machineLearningForComputationalBiology/gwasEnrichments/1000G_ALL_Phase3_hg38_files/weights/1000G.AFR.weights.hm3_noMHC. \
+--print-coefficients  
+
+Beginning analysis at Tue Jan 26 12:25:10 2021
+The frequency file is unnecessary and is being ignored.
+Reading summary statistics from /projects/pfenninggroup/machineLearningForComputationalBiology/gwasEnrichments/gwas/munged/OD_vs_OE_AFR-Polimanti_2020.sumstats.gz ...
+Read summary statistics for 1000168 SNPs.
+Reading reference panel LD Score from /projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annot_phyloP/DHS_Index_and_Vocabulary_mappedToMm10.cardiac.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annot_phyloP/DHS_Index_and_Vocabulary_mappedToMm10.digestive.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annot_phyloP/DHS_Index_and_Vocabulary_mappedToMm10.lymphoid.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annot_phyloP/DHS_Index_and_Vocabulary_mappedToMm10.musculoskeletal.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annot_phyloP/DHS_Index_and_Vocabulary_mappedToMm10.myeloid.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annot_phyloP/DHS_Index_and_Vocabulary_mappedToMm10.neural.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annot_phyloP/DHS_Index_and_Vocabulary_mappedToMm10.organ_devel.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annot_phyloP/DHS_Index_and_Vocabulary_mappedToMm10.placental.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annot_phyloP/DHS_Index_and_Vocabulary_mappedToMm10.primitive.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annot_phyloP/DHS_Index_and_Vocabulary_mappedToMm10.pulmonary_devel.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annot_phyloP/DHS_Index_and_Vocabulary_mappedToMm10.renal.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annot_phyloP/DHS_Index_and_Vocabulary_mappedToMm10.stromal_a.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annot_phyloP/DHS_Index_and_Vocabulary_mappedToMm10.stromal_b.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annot_phyloP/DHS_Index_and_Vocabulary_mappedToMm10.tissue_invariant.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/meuleman_dhs_index/annot_phyloP/DHS_Index_and_Vocabulary_mappedToMm10.vascular.full.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/caudate_conservation_ldsc/annot_phyloP/Corces2020_caudate.All_Roadmap_DHS_cCREs.BG.AFR.,/projects/pfenninggroup/machineLearningForComputationalBiology/gwasEnrichments/1000G_ALL_Phase3_hg38_files/baselineLD_v2.2/baselineLD_v2.2.AFR.[1-22] ... (ldscore_fromlist)
+Read reference panel LD Scores for 1192221 SNPs.
+Removing partitioned LD Scores with zero variance.
+Reading regression weight LD Score from /projects/pfenninggroup/machineLearningForComputationalBiology/gwasEnrichments/1000G_ALL_Phase3_hg38_files/weights/1000G.AFR.weights.hm3_noMHC.[1-22] ... (ldscore_fromlist)
+Read regression weight LD Scores for 1192221 SNPs.
+After merging with reference panel LD, 996140 SNPs remain.
+After merging with regression SNP LD, 996140 SNPs remain.
+Removed 0 SNPs with chi^2 > 80 (996140 SNPs remain)
+Traceback (most recent call last):
+  File "/home/bnphan/src/ldsc/ldsc.py", line 644, in <module>
+    sumstats.estimate_h2(args, log)
+  File "/home/bnphan/src/ldsc/ldscore/sumstats.py", line 359, in estimate_h2
+    twostep=args.two_step, old_weights=old_weights)
+  File "/home/bnphan/src/ldsc/ldscore/regressions.py", line 346, in __init__
+    slow=slow, step1_ii=step1_ii, old_weights=old_weights)
+  File "/home/bnphan/src/ldsc/ldscore/regressions.py", line 219, in __init__
+    self.tot, self.tot_cov, self.tot_se = self._tot(self.cat, self.cat_cov)
+  File "/home/bnphan/src/ldsc/ldscore/regressions.py", line 282, in _tot
+    tot_se = np.sqrt(tot_cov)
+FloatingPointError: invalid value encountered in sqrt
+
+Analysis finished at Tue Jan 26 12:38:00 2021
+Total time elapsed: 12.0m:49.64s
+Traceback (most recent call last):
+  File "/home/bnphan/src/ldsc/ldsc.py", line 644, in <module>
+    sumstats.estimate_h2(args, log)
+  File "/home/bnphan/src/ldsc/ldscore/sumstats.py", line 359, in estimate_h2
+    twostep=args.two_step, old_weights=old_weights)
+  File "/home/bnphan/src/ldsc/ldscore/regressions.py", line 346, in __init__
+    slow=slow, step1_ii=step1_ii, old_weights=old_weights)
+  File "/home/bnphan/src/ldsc/ldscore/regressions.py", line 219, in __init__
+    self.tot, self.tot_cov, self.tot_se = self._tot(self.cat, self.cat_cov)
+  File "/home/bnphan/src/ldsc/ldscore/regressions.py", line 282, in _tot
+    tot_se = np.sqrt(tot_cov)
+FloatingPointError: invalid value encountered in sqrt

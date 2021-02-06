@@ -40,7 +40,7 @@ lengths(human_mappable_peakList) / lengths(human_peakList)
 
 # write mappable peak to narrowPeak files
 out_narrowPeak_fn = human_peak_fn %>% 
-  gsub(pattern = 'hg38_cCRES', replacement = 'hg38_cCRES_mappedToMm10')
+  gsub(pattern = 'Corces2020_caudate.', replacement = 'Corces2020_caudate_mappedToMm10.')
 outList = mapply(write_GRangesToNarrowPeak,gr = human_mappable_peakList, 
                  file = out_narrowPeak_fn, genome = 'hg38')
 

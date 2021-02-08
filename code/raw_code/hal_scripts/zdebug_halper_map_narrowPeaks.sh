@@ -25,3 +25,9 @@ SOURCE='Homo_sapiens'
 TARGETS='Macaca_mulatta,Mus_musculus'
 OUTDIR='/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/hg38/Corces_2020/haper_zoo'
 NAME=''
+
+
+QUERY=/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/hg38/Corces_2020/peak/Corces2020_caudate_hgMmOrth.MSN_D1.narrowPeak.gz
+REF=/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/rheMac10/Stauffer_caudate/halper/Stauffer_caudate.MSN_D1.GenBankRheMac8.Macaca_mulattaToHomo_sapiens.HALPER.narrowPeak.gz
+
+

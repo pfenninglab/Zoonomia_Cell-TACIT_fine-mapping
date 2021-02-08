@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH -n 1
-#SBATCH --partition=pool1
+#SBATCH --partition=pfen1
 #SBATCH --time 1-0
 #SBATCH --job-name=ldsc_caud
 #SBATCH --ntasks-per-node=1
@@ -8,7 +8,7 @@
 #SBATCH --mem=4G
 #SBATCH --error=logs/ldsc_caud_%A_%a.txt
 #SBATCH --output=logs/ldsc_caud_%A_%a.txt
-#SBATCH --array=65-68
+#SBATCH --array=1-71
 
 # get the GWAS for this array job
 SETDIR=/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate

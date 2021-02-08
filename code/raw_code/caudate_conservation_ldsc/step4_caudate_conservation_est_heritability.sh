@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH -n 1
-#SBATCH --partition=pool1
+#SBATCH --partition=pfen3
 #SBATCH --time=1-0
 #SBATCH --job-name=est_herit
 #SBATCH --ntasks-per-node=1
@@ -8,7 +8,7 @@
 #SBATCH --mem=8G
 #SBATCH --error=logs/estim_heritability_%A_%a.txt
 #SBATCH --output=logs/estim_heritability_%A_%a.txt
-#SBATCH --array=48-71
+#SBATCH --array=1-71
 
 log2results() {
 	awk -F '\t' '/Total Observed scale h2*/{flag=1;next}/Lambda GC/{flag=0}flag' ${OUT}.log | \
@@ -54,7 +54,7 @@ PEAKTYPES=$(stat -c "%n" $DATADIR/annotation/*.1.annot.gz |grep -E 'Corces2020'|
 for PEAKTYPE in $PEAKTYPES; do
 	## use DHS/roadmap/cCRE/Corces2020 merged peaks as bg instead of All
 	BINARY_DHS_BG=${SETDIR}/data/raw_data/caudate_conservation_ldsc/annotation/Corces2020_caudate.All_Roadmap_DHS_cCREs_BICCN_Stauffer.BG.${POP}.,
-	CELLTYPES=$(stat -c "%n" $DATADIR/annotation/${PEAKTYPE}.*.${POP}.1.annot.gz | sed "s/${POP}.*/${POP}.,/g" | sed '/Consensus/d' | sed '/All/d' | sort| uniq | sed -z 's/\n//g')
+	CELLTYPES=$(stat -c "%n" $DATADIR/annotation/${PEAKTYPE}.*.${POP}.1.annot.gz | sed "s/${POP}.*/${POP}.,/g" | sed '/Consensus/d' |sed '/All_Roadmap_DHS_cCREs_mmToHg/d' |sed '/Roadmap/d' | sed '/All/d' | sort| uniq | sed -z 's/\n//g')
 	OUT=${DATADIR}/est_herit_cond/${PEAKTYPE}.binary.${GWAS_Label}.${POP}
 	# if [[ ! -f "${OUT}.results.gz" ]]; then
 		ldsc.py --h2 $GWAS --print-coefficients --print-snps ${SNPLIST} --n-blocks 400 \
@@ -62,8 +62,8 @@ for PEAKTYPE in $PEAKTYPES; do
 		--ref-ld-chr ${CELLTYPES}${BINARY_DHS_BG}${GWASDIR}/1000G_ALL_Phase3_hg38_files/baselineLD_v2.2/baselineLD_v2.2.${POP}. \
 		--frqfile-chr ${GWASDIR}/1000G_ALL_Phase3_hg38_files/plink/1000G.${POP}.HM3. \
 		--out ${OUT} 
-	# fi
-	log2results
+		log2results
+	fi
 	## format logs file to make .results file, --print-snps doesn't make a .results file
 
 	# #############################################################################################

@@ -41,8 +41,8 @@ lengths(human_mappable_peakList) / lengths(human_peakList)
 ## write mappable peak to narrowPeak files
 out_narrowPeak_fn = human_peak_fn %>%
   gsub(pattern = 'Corces2020_caudate.', replacement = 'Corces2020_caudate_mappedToRheMac10.')
-outList = mapply(write_GRangesToNarrowPeak,gr = human_mappable_peakList,
-                 file = out_narrowPeak_fn, genome = 'hg38')
+# outList = mapply(write_GRangesToNarrowPeak,gr = human_mappable_peakList,
+#                  file = out_narrowPeak_fn, genome = 'hg38')
 
 #########################################################
 ## find rhesus peaks that can be halpered to hg38
@@ -90,5 +90,19 @@ lengths(ortholog_peakList)
 # write mappable peak to narrowPeak files
 out_narrowPeak3_fn = human_peak_fn %>% 
   gsub(pattern = 'Corces2020_caudate', replacement = 'Corces2020_caudate_hgRmOrth')
-outList = mapply(write_GRangesToNarrowPeak,gr = ortholog_peakList, 
-                 file = out_narrowPeak3_fn, genome = 'hg38')
+# outList = mapply(write_GRangesToNarrowPeak,gr = ortholog_peakList, 
+#                  file = out_narrowPeak3_fn, genome = 'hg38')
+
+##################################################
+## export granges list objects for making plots ##
+human_macaque_orthologs = list(hgPeaks = human_peakList,
+                               hg2Rm = human_mappable_peakList,
+                               rmPeaks = rhesus_peakList, 
+                               rm2Hg = rhesus_hal2hg38_peakList,
+                               hgRmOrth = ortholog_peakList)
+save_fn = PROJDIR=file.path('../../../data/raw_data/','caudate_conservation_ldsc',
+                            'rdas/human_macaque_orthologs_peakList.rda')
+save(human_macaque_orthologs, file = save_fn, compress = T)
+
+
+

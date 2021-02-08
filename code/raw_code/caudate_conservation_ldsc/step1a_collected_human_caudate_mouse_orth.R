@@ -41,8 +41,8 @@ lengths(human_mappable_peakList) / lengths(human_peakList)
 # write mappable peak to narrowPeak files
 out_narrowPeak_fn = human_peak_fn %>% 
   gsub(pattern = 'Corces2020_caudate.', replacement = 'Corces2020_caudate_mappedToMm10.')
-outList = mapply(write_GRangesToNarrowPeak,gr = human_mappable_peakList, 
-                 file = out_narrowPeak_fn, genome = 'hg38')
+# outList = mapply(write_GRangesToNarrowPeak,gr = human_mappable_peakList, 
+#                  file = out_narrowPeak_fn, genome = 'hg38')
 
 #########################################################
 ## find mouse peaks that can be halpered to hg38
@@ -92,5 +92,16 @@ lengths(ortholog_peakList)
 # write mappable peak to narrowPeak files
 out_narrowPeak3_fn = human_peak_fn %>% 
   gsub(pattern = 'Corces2020_caudate', replacement = 'Corces2020_caudate_hgMmOrth')
-outList = mapply(write_GRangesToNarrowPeak,gr = ortholog_peakList, 
-                 file = out_narrowPeak3_fn, genome = 'hg38')
+# outList = mapply(write_GRangesToNarrowPeak,gr = ortholog_peakList, 
+#                  file = out_narrowPeak3_fn, genome = 'hg38')
+
+##################################################
+## export granges list objects for making plots ##
+human_mouse_orthologs = list(hgPeaks = human_peakList,
+                               hg2Mm = human_mappable_peakList,
+                               MmPeaks = mouse_peakList, 
+                               Mm2Hg = mouse_hal2hg38_peakList,
+                               hgMmOrth = ortholog_peakList)
+save_fn = PROJDIR=file.path('../../../data/raw_data/','caudate_conservation_ldsc',
+                            'rdas/human_mouse_orthologs_peakList.rda')
+save(human_mouse_orthologs, file = save_fn, compress = T)

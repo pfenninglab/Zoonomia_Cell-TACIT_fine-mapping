@@ -1,0 +1,2 @@
+/var/spool/slurmd/job927892/slurm_script: line 66: syntax error near unexpected token `fi'
+/var/spool/slurmd/job927892/slurm_script: line 66: `	fi'

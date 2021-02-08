@@ -22,7 +22,7 @@ pheno = pheno %>% select( -file) %>% mutate(label = ss(as.character(trait), '_')
 
 #########################################
 # read in the LDSC partitioned heritability estimation
-enrich_fn =file.path(PROJDIR,'enrichments') %>% 
+enrich_fn =file.path(PROJDIR,'est_herit_cond') %>% 
   list.files(path = ., pattern = '.results.gz', full.names = T)
 names(enrich_fn) = ss(basename(enrich_fn), '.results.gz')
 input = lapply(enrich_fn, read_tsv) %>% rbindlist(fill = T, idcol='file') %>%
@@ -37,14 +37,15 @@ enrichments = input %>%
     match = ss(file, '\\.', 3), 
     tmpcol = ss(file, '\\.', 1), 
     peaktype = case_when(
-      tmpcol == 'Corces2020_caudate' ~ 'hgPeak',
-      grepl('peakInMouse', tmpcol) ~ 'hgToMm', 
-      grepl('hgMmOrth', tmpcol) ~ 'hgMmOrth', 
-      TRUE ~ 'mmToHg',
+      tmpcol == 'Corces2020_caudate' ~ 'Human peak',
+      grepl('Corces2020_caudate_mappedTo', tmpcol) ~ 'Hg -> Model Org', 
+      grepl('Orth',tmpcol)  ~ 'Enhancer Ortholog', 
+      TRUE ~ 'Model Org -> Hg',
     ),
-    peak_group = case_when(
-      peaktype == 'hgPeak' ~ 'hgPeak' ,
-      TRUE ~ 'inMm'
+    model_species = case_when(
+      tmpcol == 'Corces2020_caudate' ~ 'hg38',
+      grepl('Rm|Rhe|Stauffer',tmpcol) ~ 'rheMac10',
+      TRUE ~ 'mm10'
     ),
     annot_group = case_when(
       grepl('binary', annot_group) ~ 'binary annotation', 
@@ -58,13 +59,15 @@ enrichments = input %>%
       grepl('MSN|INT', celltype) ~ 'Neuron', 
       TRUE ~ 'Glia'
     )) %>% inner_join(x = pheno, by = 'match') %>% 
-  filter(! group %in% c('Other', 'Metabolism') ) %>%
   group_by(file) %>% type_convert() %>%
   filter(!grepl('CP.MSN_D|CP.INT', Categories)) %>%
   filter(grepl('Corces2020', Categories)) %>%
-  filter(Categories != 'Corces2020_caudate.All_Roadmap_DHS_cCREs.BG')
+  filter(Categories != 'Corces2020_caudate.All_Roadmap_DHS_cCREs_BICCN_Stauffer.BG')
 
 enrichments$file %>% ss('\\.') %>% table()
+enrichments$Categories %>% ss('\\.',2) %>% table()
+enrichments$celltype %>% table()
+enrichments$model_species %>% ss('\\.') %>% table()
 
 ## Truncate heritability preditions to be positive ##
 enrichments = enrichments %>% mutate(

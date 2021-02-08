@@ -11,7 +11,8 @@ library(rcartocolor)
 library(wesanderson)
 
 cols_darjeeling = c(wesanderson::wes_palette('Darjeeling1', 5), 
-                    wesanderson::wes_palette('Darjeeling2', 5))
+                    wesanderson::wes_palette('Darjeeling2', 5),
+                    wesanderson::wes_palette('Zissou1', 1))
 
 # to be run in the root github directory
 LABEL='ldsc_gwas'

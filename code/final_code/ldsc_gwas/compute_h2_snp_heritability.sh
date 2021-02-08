@@ -8,7 +8,7 @@
 #SBATCH --mem=2G
 #SBATCH --error=/dev/null
 #SBATCH --output=/dev/null
-#SBATCH --array=1-67
+#SBATCH --array=68-71
 
 # get the GWAS for this array job
 SETDIR=/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate

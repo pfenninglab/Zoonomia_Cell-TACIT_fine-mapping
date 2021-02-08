@@ -12,7 +12,7 @@ mkdir -p $HALDIR
 for PEAK in ${DATADIR}/peak/*.narrowPeak.gz; do
 # zcat $PEAK | awk -v OFS='\t' '{$4="."; print}'| gzip > tmp.txt.gz
 # mv tmp.txt.gz $PEAK
-sbatch --mem 10G -p pfen1 -w compute-1-40 \
-${SETDIR}/code/raw_code/hal_scripts/halper_map_peak_orthologs.sh \
--b $PEAK -o $HALDIR -s Mus_musculus -t Homo_sapiens
+sbatch --mem 10G -p pfen1 -w compute-1-40 ${SETDIR}/code/raw_code/hal_scripts/halper_map_peak_orthologs.sh -b $PEAK -o $HALDIR -s Mus_musculus -t Homo_sapiens
+sbatch --mem 10G -p pfen1 -w compute-1-38 ${SETDIR}/code/raw_code/hal_scripts/halper_map_peak_orthologs.sh -b $PEAK -o $HALDIR -s Mus_musculus -t Macaca_mulatta
 done
+

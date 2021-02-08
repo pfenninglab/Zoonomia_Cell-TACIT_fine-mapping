@@ -11,7 +11,7 @@
 # cd /projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/code/raw_code/meme-chip_analyses
 
 PROJDIR=/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/rheMac10/Stauffer_caudate
-GENOME=/home/bnphan/resources/genomes/rheMac10/rheMac10.fa
+GENOME=/home/bnphan/resources/genomes/rheMac8/rheMac8.fa
 DBFILE=/home/bnphan/resources/motif_databases/HUMAN/HOCOMOCOv11_full_HUMAN_mono_meme_format.meme
 
 TMPDIR=/scratch/bnphan/meme-chip

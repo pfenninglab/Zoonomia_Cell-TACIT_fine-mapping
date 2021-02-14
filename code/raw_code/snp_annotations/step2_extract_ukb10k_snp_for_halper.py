@@ -18,7 +18,7 @@ zoo_df = pd.read_csv(f'{ZOONOMIADIR}/tables/200_Mammals_Genome_Information.tsv',
 # zoo_df = zoo_df.sort_values(by='Zoonomia Index')
 zoo_df = zoo_df[zoo_df['Species'] != 'Homo_sapiens']
 zoo_df = zoo_df.sort_index(ascending=False)
-TARGETS=zoo_df['Species'].str.cat(sep=',')
+
 SOURCE='Homo_sapiens'
 SLURM_CALL=f'sbatch --mem 4G -p pfen1 -w compute-1-39 {SETDIR}/code/raw_code/hal_scripts/halper_map_peak_orthologs.sh'
 

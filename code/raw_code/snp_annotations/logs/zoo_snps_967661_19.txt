@@ -1,0 +1,310 @@
+Extracting mapped SNPs on chr19 from Acinonyx_jubatus.
+Extracting mapped SNPs on chr19 from Acomys_cahirinus.
+Extracting mapped SNPs on chr19 from Ailuropoda_melanoleuca.
+Extracting mapped SNPs on chr19 from Ailurus_fulgens.
+Extracting mapped SNPs on chr19 from Allactaga_bullata.
+Extracting mapped SNPs on chr19 from Alouatta_palliata.
+Extracting mapped SNPs on chr19 from Ammotragus_lervia.
+Extracting mapped SNPs on chr19 from Anoura_caudifer.
+Extracting mapped SNPs on chr19 from Antilocapra_americana.
+Extracting mapped SNPs on chr19 from Aotus_nancymaae.
+Extracting mapped SNPs on chr19 from Aplodontia_rufa.
+Extracting mapped SNPs on chr19 from Artibeus_jamaicensis.
+Extracting mapped SNPs on chr19 from Ateles_geoffroyi.
+Extracting mapped SNPs on chr19 from Balaenoptera_acutorostrata.
+Extracting mapped SNPs on chr19 from Balaenoptera_bonaerensis.
+Extracting mapped SNPs on chr19 from Beatragus_hunteri.
+Extracting mapped SNPs on chr19 from Bison_bison.
+Extracting mapped SNPs on chr19 from Bos_indicus.
+Extracting mapped SNPs on chr19 from Bos_mutus.
+Extracting mapped SNPs on chr19 from Bos_taurus.
+Extracting mapped SNPs on chr19 from Bubalus_bubalis.
+Extracting mapped SNPs on chr19 from Callicebus_donacophilus.
+Extracting mapped SNPs on chr19 from Callithrix_jacchus.
+Extracting mapped SNPs on chr19 from Camelus_bactrianus.
+Extracting mapped SNPs on chr19 from Camelus_dromedarius.
+Extracting mapped SNPs on chr19 from Camelus_ferus.
+Extracting mapped SNPs on chr19 from Canis_lupus.
+Extracting mapped SNPs on chr19 from Canis_lupus_familiaris.
+Extracting mapped SNPs on chr19 from Capra_aegagrus.
+Extracting mapped SNPs on chr19 from Capra_hircus.
+Extracting mapped SNPs on chr19 from Capromys_pilorides.
+Extracting mapped SNPs on chr19 from Carollia_perspicillata.
+Extracting mapped SNPs on chr19 from Castor_canadensis.
+Extracting mapped SNPs on chr19 from Catagonus_wagneri.
+Extracting mapped SNPs on chr19 from Cavia_aperea.
+Extracting mapped SNPs on chr19 from Cavia_porcellus.
+Extracting mapped SNPs on chr19 from Cavia_tschudii.
+Extracting mapped SNPs on chr19 from Cebus_albifrons.
+Extracting mapped SNPs on chr19 from Cebus_capucinus.
+Extracting mapped SNPs on chr19 from Ceratotherium_simum.
+Extracting mapped SNPs on chr19 from Ceratotherium_simum_cottoni.
+Extracting mapped SNPs on chr19 from Cercocebus_atys.
+Extracting mapped SNPs on chr19 from Cercopithecus_neglectus.
+Extracting mapped SNPs on chr19 from Chaetophractus_vellerosus.
+Extracting mapped SNPs on chr19 from Cheirogaleus_medius.
+Extracting mapped SNPs on chr19 from Chinchilla_lanigera.
+Extracting mapped SNPs on chr19 from Chlorocebus_sabaeus.
+Extracting mapped SNPs on chr19 from Choloepus_didactylus.
+Extracting mapped SNPs on chr19 from Choloepus_hoffmanni.
+Extracting mapped SNPs on chr19 from Chrysochloris_asiatica.
+Extracting mapped SNPs on chr19 from Colobus_angolensis.
+Extracting mapped SNPs on chr19 from Condylura_cristata.
+Extracting mapped SNPs on chr19 from Craseonycteris_thonglongyai.
+Extracting mapped SNPs on chr19 from Cricetomys_gambianus.
+Extracting mapped SNPs on chr19 from Cricetulus_griseus.
+Extracting mapped SNPs on chr19 from Crocidura_indochinensis.
+Extracting mapped SNPs on chr19 from Cryptoprocta_ferox.
+Extracting mapped SNPs on chr19 from Ctenodactylus_gundi.
+Extracting mapped SNPs on chr19 from Ctenomys_sociabilis.
+Extracting mapped SNPs on chr19 from Cuniculus_paca.
+Extracting mapped SNPs on chr19 from Dasyprocta_punctata.
+Extracting mapped SNPs on chr19 from Dasypus_novemcinctus.
+Extracting mapped SNPs on chr19 from Daubentonia_madagascariensis.
+Extracting mapped SNPs on chr19 from Delphinapterus_leucas.
+Extracting mapped SNPs on chr19 from Desmodus_rotundus.
+Extracting mapped SNPs on chr19 from Dicerorhinus_sumatrensis.
+Extracting mapped SNPs on chr19 from Diceros_bicornis.
+Extracting mapped SNPs on chr19 from Dinomys_branickii.
+Extracting mapped SNPs on chr19 from Dipodomys_ordii.
+Extracting mapped SNPs on chr19 from Dipodomys_stephensi.
+Extracting mapped SNPs on chr19 from Dolichotis_patagonum.
+Extracting mapped SNPs on chr19 from Echinops_telfairi.
+Extracting mapped SNPs on chr19 from Eidolon_helvum.
+Extracting mapped SNPs on chr19 from Elaphurus_davidianus.
+Extracting mapped SNPs on chr19 from Elephantulus_edwardii.
+Extracting mapped SNPs on chr19 from Ellobius_lutescens.
+Extracting mapped SNPs on chr19 from Ellobius_talpinus.
+Extracting mapped SNPs on chr19 from Enhydra_lutris.
+Extracting mapped SNPs on chr19 from Eptesicus_fuscus.
+Extracting mapped SNPs on chr19 from Equus_asinus.
+Extracting mapped SNPs on chr19 from Equus_caballus.
+Extracting mapped SNPs on chr19 from Equus_przewalskii.
+Extracting mapped SNPs on chr19 from Erinaceus_europaeus.
+Extracting mapped SNPs on chr19 from Erythrocebus_patas.
+Extracting mapped SNPs on chr19 from Eschrichtius_robustus.
+Extracting mapped SNPs on chr19 from Eubalaena_japonica.
+Extracting mapped SNPs on chr19 from Eulemur_flavifrons.
+Extracting mapped SNPs on chr19 from Eulemur_fulvus.
+Extracting mapped SNPs on chr19 from Felis_catus.
+Extracting mapped SNPs on chr19 from Felis_nigripes.
+Extracting mapped SNPs on chr19 from Fukomys_damarensis.
+Extracting mapped SNPs on chr19 from Galeopterus_variegatus.
+Extracting mapped SNPs on chr19 from Giraffa_tippelskirchi.
+Extracting mapped SNPs on chr19 from Glis_glis.
+Extracting mapped SNPs on chr19 from Gorilla_gorilla.
+Extracting mapped SNPs on chr19 from Graphiurus_murinus.
+Extracting mapped SNPs on chr19 from Helogale_parvula.
+Extracting mapped SNPs on chr19 from Hemitragus_hylocrius.
+Extracting mapped SNPs on chr19 from Heterocephalus_glaber.
+Extracting mapped SNPs on chr19 from Heterohyrax_brucei.
+Extracting mapped SNPs on chr19 from Hippopotamus_amphibius.
+Extracting mapped SNPs on chr19 from Hipposideros_armiger.
+Extracting mapped SNPs on chr19 from Hipposideros_galeritus.
+Extracting mapped SNPs on chr19 from Hyaena_hyaena.
+Extracting mapped SNPs on chr19 from Hydrochoerus_hydrochaeris.
+Extracting mapped SNPs on chr19 from Hystrix_cristata.
+Extracting mapped SNPs on chr19 from Ictidomys_tridecemlineatus.
+Extracting mapped SNPs on chr19 from Indri_indri.
+Extracting mapped SNPs on chr19 from Inia_geoffrensis.
+Extracting mapped SNPs on chr19 from Jaculus_jaculus.
+Extracting mapped SNPs on chr19 from Kogia_breviceps.
+Extracting mapped SNPs on chr19 from Lasiurus_borealis.
+Extracting mapped SNPs on chr19 from Lemur_catta.
+Extracting mapped SNPs on chr19 from Leptonychotes_weddellii.
+Extracting mapped SNPs on chr19 from Lepus_americanus.
+Extracting mapped SNPs on chr19 from Lipotes_vexillifer.
+Extracting mapped SNPs on chr19 from Loxodonta_africana.
+Extracting mapped SNPs on chr19 from Lycaon_pictus.
+Extracting mapped SNPs on chr19 from Macaca_fascicularis.
+Extracting mapped SNPs on chr19 from Macaca_mulatta.
+Extracting mapped SNPs on chr19 from Macaca_nemestrina.
+Extracting mapped SNPs on chr19 from Macroglossus_sobrinus.
+Extracting mapped SNPs on chr19 from Mandrillus_leucophaeus.
+Extracting mapped SNPs on chr19 from Manis_javanica.
+Extracting mapped SNPs on chr19 from Manis_pentadactyla.
+Extracting mapped SNPs on chr19 from Marmota_marmota.
+Extracting mapped SNPs on chr19 from Megaderma_lyra.
+Extracting mapped SNPs on chr19 from Mellivora_capensis.
+Extracting mapped SNPs on chr19 from Meriones_unguiculatus.
+Extracting mapped SNPs on chr19 from Mesocricetus_auratus.
+Extracting mapped SNPs on chr19 from Mesoplodon_bidens.
+Extracting mapped SNPs on chr19 from Microcebus_murinus.
+Extracting mapped SNPs on chr19 from Microgale_talazaci.
+Extracting mapped SNPs on chr19 from Micronycteris_hirsuta.
+Extracting mapped SNPs on chr19 from Microtus_ochrogaster.
+Extracting mapped SNPs on chr19 from Miniopterus_natalensis.
+Extracting mapped SNPs on chr19 from Miniopterus_schreibersii.
+Extracting mapped SNPs on chr19 from Mirounga_angustirostris.
+Extracting mapped SNPs on chr19 from Mirza_coquereli.
+Extracting mapped SNPs on chr19 from Monodon_monoceros.
+Extracting mapped SNPs on chr19 from Mormoops_blainvillei.
+Extracting mapped SNPs on chr19 from Moschus_moschiferus.
+Extracting mapped SNPs on chr19 from Mungos_mungo.
+Extracting mapped SNPs on chr19 from Murina_feae.
+Extracting mapped SNPs on chr19 from Muscardinus_avellanarius.
+Extracting mapped SNPs on chr19 from Mus_caroli.
+Extracting mapped SNPs on chr19 from Mus_musculus.
+Extracting mapped SNPs on chr19 from Mus_pahari.
+Extracting mapped SNPs on chr19 from Mus_spretus.
+Extracting mapped SNPs on chr19 from Mustela_putorius.
+Extracting mapped SNPs on chr19 from Myocastor_coypus.
+Extracting mapped SNPs on chr19 from Myotis_brandtii.
+Extracting mapped SNPs on chr19 from Myotis_davidii.
+Extracting mapped SNPs on chr19 from Myotis_lucifugus.
+Extracting mapped SNPs on chr19 from Myotis_myotis.
+Extracting mapped SNPs on chr19 from Myrmecophaga_tridactyla.
+Extracting mapped SNPs on chr19 from Nannospalax_galili.
+Extracting mapped SNPs on chr19 from Nasalis_larvatus.
+Extracting mapped SNPs on chr19 from Neomonachus_schauinslandi.
+Extracting mapped SNPs on chr19 from Neophocaena_asiaeorientalis.
+Extracting mapped SNPs on chr19 from Noctilio_leporinus.
+Extracting mapped SNPs on chr19 from Nomascus_leucogenys.
+Extracting mapped SNPs on chr19 from Nycticebus_coucang.
+Extracting mapped SNPs on chr19 from Ochotona_princeps.
+Extracting mapped SNPs on chr19 from Octodon_degus.
+Extracting mapped SNPs on chr19 from Odobenus_rosmarus.
+Extracting mapped SNPs on chr19 from Odocoileus_virginianus.
+Extracting mapped SNPs on chr19 from Okapia_johnstoni.
+Extracting mapped SNPs on chr19 from Ondatra_zibethicus.
+Extracting mapped SNPs on chr19 from Onychomys_torridus.
+Extracting mapped SNPs on chr19 from Orcinus_orca.
+Extracting mapped SNPs on chr19 from Orycteropus_afer.
+Extracting mapped SNPs on chr19 from Oryctolagus_cuniculus.
+Extracting mapped SNPs on chr19 from Otolemur_garnettii.
+Extracting mapped SNPs on chr19 from Ovis_aries.
+Extracting mapped SNPs on chr19 from Ovis_canadensis.
+Extracting mapped SNPs on chr19 from Pan_paniscus.
+Extracting mapped SNPs on chr19 from Panthera_onca.
+Extracting mapped SNPs on chr19 from Panthera_pardus.
+Extracting mapped SNPs on chr19 from Panthera_tigris.
+Extracting mapped SNPs on chr19 from Pantholops_hodgsonii.
+Extracting mapped SNPs on chr19 from Pan_troglodytes.
+Extracting mapped SNPs on chr19 from Papio_anubis.
+Extracting mapped SNPs on chr19 from Paradoxurus_hermaphroditus.
+Extracting mapped SNPs on chr19 from Perognathus_longimembris.
+Extracting mapped SNPs on chr19 from Peromyscus_maniculatus.
+Extracting mapped SNPs on chr19 from Petromus_typicus.
+Extracting mapped SNPs on chr19 from Phocoena_phocoena.
+Extracting mapped SNPs on chr19 from Piliocolobus_tephrosceles.
+Extracting mapped SNPs on chr19 from Pipistrellus_pipistrellus.
+Extracting mapped SNPs on chr19 from Pithecia_pithecia.
+Extracting mapped SNPs on chr19 from Platanista_gangetica.
+Extracting mapped SNPs on chr19 from Pongo_abelii.
+Extracting mapped SNPs on chr19 from Procavia_capensis.
+Extracting mapped SNPs on chr19 from Propithecus_coquereli.
+Extracting mapped SNPs on chr19 from Psammomys_obesus.
+Extracting mapped SNPs on chr19 from Pteronotus_parnellii.
+Extracting mapped SNPs on chr19 from Pteronura_brasiliensis.
+Extracting mapped SNPs on chr19 from Pteropus_alecto.
+Extracting mapped SNPs on chr19 from Pteropus_vampyrus.
+Extracting mapped SNPs on chr19 from Puma_concolor.
+Extracting mapped SNPs on chr19 from Pygathrix_nemaeus.
+Extracting mapped SNPs on chr19 from Rangifer_tarandus.
+Extracting mapped SNPs on chr19 from Rattus_norvegicus.
+Extracting mapped SNPs on chr19 from Rhinolophus_sinicus.
+Extracting mapped SNPs on chr19 from Rhinopithecus_bieti.
+Extracting mapped SNPs on chr19 from Rhinopithecus_roxellana.
+Extracting mapped SNPs on chr19 from Rousettus_aegyptiacus.
+Extracting mapped SNPs on chr19 from Saguinus_imperator.
+Extracting mapped SNPs on chr19 from Saiga_tatarica.
+Extracting mapped SNPs on chr19 from Saimiri_boliviensis.
+Extracting mapped SNPs on chr19 from Scalopus_aquaticus.
+Extracting mapped SNPs on chr19 from Semnopithecus_entellus.
+Extracting mapped SNPs on chr19 from Sigmodon_hispidus.
+Extracting mapped SNPs on chr19 from Solenodon_paradoxus.
+Extracting mapped SNPs on chr19 from Sorex_araneus.
+Extracting mapped SNPs on chr19 from Spermophilus_dauricus.
+Extracting mapped SNPs on chr19 from Spilogale_gracilis.
+Extracting mapped SNPs on chr19 from Suricata_suricatta.
+Extracting mapped SNPs on chr19 from Sus_scrofa.
+Extracting mapped SNPs on chr19 from Tadarida_brasiliensis.
+Extracting mapped SNPs on chr19 from Tamandua_tetradactyla.
+Extracting mapped SNPs on chr19 from Tapirus_indicus.
+Extracting mapped SNPs on chr19 from Tapirus_terrestris.
+Extracting mapped SNPs on chr19 from Thryonomys_swinderianus.
+Extracting mapped SNPs on chr19 from Tolypeutes_matacus.
+Extracting mapped SNPs on chr19 from Tonatia_saurophila.
+Extracting mapped SNPs on chr19 from Tragulus_javanicus.
+Extracting mapped SNPs on chr19 from Trichechus_manatus.
+Extracting mapped SNPs on chr19 from Tupaia_chinensis.
+Extracting mapped SNPs on chr19 from Tupaia_tana.
+Extracting mapped SNPs on chr19 from Tursiops_truncatus.
+Extracting mapped SNPs on chr19 from Uropsilus_gracilis.
+Extracting mapped SNPs on chr19 from Ursus_maritimus.
+Extracting mapped SNPs on chr19 from Vicugna_pacos.
+Extracting mapped SNPs on chr19 from Vulpes_lagopus.
+Extracting mapped SNPs on chr19 from Xerus_inauris.
+Extracting mapped SNPs on chr19 from Zalophus_californianus.
+Extracting mapped SNPs on chr19 from Zapus_hudsonius.
+Extracting mapped SNPs on chr19 from Ziphius_cavirostris.
+*********************************************************************
+* LD Score Regression (LDSC)
+* Version 1.0.1
+* (C) 2014-2019 Brendan Bulik-Sullivan and Hilary Finucane
+* Broad Institute of MIT and Harvard / MIT Department of Mathematics
+* GNU General Public License v3
+*********************************************************************
+Call: 
+./ldsc.py \
+--print-snps /projects/pfenninggroup/machineLearningForComputationalBiology/gwasEnrichments/1000G_EUR_Phase3_GRCh38_files/hapmap3_snps/listHM3.noMHC.txt \
+--out /projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/tidy_data/ldsc_gwas/1000G_ALL_Phase3_hg38_files/zoonomia_snps/Zoonomia_240v2.hm3_noMHC.AFR.19 \
+--bfile /projects/pfenninggroup/machineLearningForComputationalBiology/gwasEnrichments/1000G_ALL_Phase3_hg38_files/plink/1000G.AFR.HM3.19 \
+--annot /projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/tidy_data/ldsc_gwas/1000G_ALL_Phase3_hg38_files/zoonomia_snps/Zoonomia_240v2.hm3_noMHC.AFR.19.annot.gz \
+--l2  \
+--ld-wind-kb 1000.0 
+
+Beginning analysis at Fri Feb 12 17:10:26 2021
+Read list of 22524 SNPs from /projects/pfenninggroup/machineLearningForComputationalBiology/gwasEnrichments/1000G_ALL_Phase3_hg38_files/plink/1000G.AFR.HM3.19.bim
+Read 240 annotations for 22523 SNPs from /projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/tidy_data/ldsc_gwas/1000G_ALL_Phase3_hg38_files/zoonomia_snps/Zoonomia_240v2.hm3_noMHC.AFR.19.annot.gz
+Error parsing .annot file
+Traceback (most recent call last):
+  File "/home/bnphan/src/ldsc/ldsc.py", line 620, in <module>
+    ldscore(args, log)
+  File "/home/bnphan/src/ldsc/ldsc.py", line 158, in ldscore
+    ' order as the .bim file.')
+ValueError: The .annot file must contain the same SNPs in the same order as the .bim file.
+
+Analysis finished at Fri Feb 12 17:10:27 2021
+Total time elapsed: 0.87s
+Traceback (most recent call last):
+  File "/home/bnphan/src/ldsc/ldsc.py", line 620, in <module>
+    ldscore(args, log)
+  File "/home/bnphan/src/ldsc/ldsc.py", line 158, in ldscore
+    ' order as the .bim file.')
+ValueError: The .annot file must contain the same SNPs in the same order as the .bim file.
+*********************************************************************
+* LD Score Regression (LDSC)
+* Version 1.0.1
+* (C) 2014-2019 Brendan Bulik-Sullivan and Hilary Finucane
+* Broad Institute of MIT and Harvard / MIT Department of Mathematics
+* GNU General Public License v3
+*********************************************************************
+Call: 
+./ldsc.py \
+--print-snps /projects/pfenninggroup/machineLearningForComputationalBiology/gwasEnrichments/1000G_EUR_Phase3_GRCh38_files/hapmap3_snps/listHM3.noMHC.txt \
+--out /projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/tidy_data/ldsc_gwas/1000G_ALL_Phase3_hg38_files/zoonomia_snps/Zoonomia_240v2.hm3_noMHC.EUR.19 \
+--bfile /projects/pfenninggroup/machineLearningForComputationalBiology/gwasEnrichments/1000G_ALL_Phase3_hg38_files/plink/1000G.EUR.HM3.19 \
+--annot /projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/tidy_data/ldsc_gwas/1000G_ALL_Phase3_hg38_files/zoonomia_snps/Zoonomia_240v2.hm3_noMHC.EUR.19.annot.gz \
+--l2  \
+--ld-wind-kb 1000.0 
+
+Beginning analysis at Fri Feb 12 17:10:31 2021
+Read list of 22710 SNPs from /projects/pfenninggroup/machineLearningForComputationalBiology/gwasEnrichments/1000G_ALL_Phase3_hg38_files/plink/1000G.EUR.HM3.19.bim
+Read 240 annotations for 22709 SNPs from /projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/tidy_data/ldsc_gwas/1000G_ALL_Phase3_hg38_files/zoonomia_snps/Zoonomia_240v2.hm3_noMHC.EUR.19.annot.gz
+Error parsing .annot file
+Traceback (most recent call last):
+  File "/home/bnphan/src/ldsc/ldsc.py", line 620, in <module>
+    ldscore(args, log)
+  File "/home/bnphan/src/ldsc/ldsc.py", line 158, in ldscore
+    ' order as the .bim file.')
+ValueError: The .annot file must contain the same SNPs in the same order as the .bim file.
+
+Analysis finished at Fri Feb 12 17:10:32 2021
+Total time elapsed: 0.93s
+Traceback (most recent call last):
+  File "/home/bnphan/src/ldsc/ldsc.py", line 620, in <module>
+    ldscore(args, log)
+  File "/home/bnphan/src/ldsc/ldsc.py", line 158, in ldscore
+    ' order as the .bim file.')
+ValueError: The .annot file must contain the same SNPs in the same order as the .bim file.

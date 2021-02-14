@@ -1,0 +1,23 @@
+awk: fatal: cannot open file `/projects/pfenninggroup/machineLearningForComputationalBiology/gwasEnrichments/1000G_EUR_Phase3_GRCh38_files/zoonomia_snps/tmp1.10_SNP.txt' for reading (No such file or directory)
+Traceback (most recent call last):
+  File "/home/bnphan/src/ldsc/ldsc.py", line 620, in <module>
+    ldscore(args, log)
+  File "/home/bnphan/src/ldsc/ldsc.py", line 135, in ldscore
+    array_snps = snp_obj(snp_file)
+  File "/home/bnphan/src/ldsc/ldscore/parse.py", line 256, in __init__
+    self.__read__(fname)
+  File "/home/bnphan/src/ldsc/ldscore/parse.py", line 266, in __read__
+    delim_whitespace=True, compression=comp)
+  File "/home/bnphan/miniconda3/envs/ldsc/lib/python2.7/site-packages/pandas/io/parsers.py", line 655, in parser_f
+    return _read(filepath_or_buffer, kwds)
+  File "/home/bnphan/miniconda3/envs/ldsc/lib/python2.7/site-packages/pandas/io/parsers.py", line 405, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+  File "/home/bnphan/miniconda3/envs/ldsc/lib/python2.7/site-packages/pandas/io/parsers.py", line 762, in __init__
+    self._make_engine(self.engine)
+  File "/home/bnphan/miniconda3/envs/ldsc/lib/python2.7/site-packages/pandas/io/parsers.py", line 966, in _make_engine
+    self._engine = CParserWrapper(self.f, **self.options)
+  File "/home/bnphan/miniconda3/envs/ldsc/lib/python2.7/site-packages/pandas/io/parsers.py", line 1582, in __init__
+    self._reader = parsers.TextReader(src, **kwds)
+  File "pandas/_libs/parsers.pyx", line 394, in pandas._libs.parsers.TextReader.__cinit__ (pandas/_libs/parsers.c:4209)
+  File "pandas/_libs/parsers.pyx", line 710, in pandas._libs.parsers.TextReader._setup_parser_source (pandas/_libs/parsers.c:8873)
+IOError: File /projects/pfenninggroup/machineLearningForComputationalBiology/gwasEnrichments/1000G_EUR_Phase3_GRCh38_files/plink/1000G.HM3.10.bim does not exist

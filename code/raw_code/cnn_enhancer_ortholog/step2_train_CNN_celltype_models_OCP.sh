@@ -1,11 +1,11 @@
 #!/bin/bash
 #SBATCH -n 1
-#SBATCH --partition=pfen3
+#SBATCH --partition=gpu
 #SBATCH --time=0-12
 #SBATCH --job-name=cnn_ocp
 #SBATCH --gres=gpu:1
-#SBATCH --mem=95G
-#SBATCH --array=1-8
+#SBATCH --mem=62G
+#SBATCH --array=5-8
 #SBATCH --error=logs/cnn_ocp_%A_%a.txt
 #SBATCH --output=logs/cnn_ocp_%A_%a.txt
 
@@ -41,7 +41,7 @@ VALIDNEGFILE=$DATADIR/fasta/${CELLTYPE}_validNeg.fa
 cat $DATADIR/fasta/hg38_${CELLTYPE}_valid_negative.fa $DATADIR/fasta/mm10_${CELLTYPE}_valid_negative.fa \
 	$DATADIR/fasta/rheMac10_${CELLTYPE}_valid_negative.fa > $VALIDNEGFILE
 
-# cyclical learning rate parameters
+#### cyclical learning rate parameters
 BATCH_SIZE=1000
 EPOCHS=23
 NUM_CYCLES=2.35
@@ -50,11 +50,11 @@ MAX_LR=1e-1
 BASE_M=.85
 MAX_M=.99
 L2_REG=1e-10
-DROPOUT=.2
+# DROPOUT=.2
 
-for DROPOUT in .1 .15 .2 .25; do
-	#############################################
-	## train CNN models with default parameters
+#############################################
+## train CNN models with default parameters
+for DROPOUT in .05 .1 .15 .2 .25 .3; do
 	python train_singleTask_CNN_classifier_OCP.py --mode 'train' --out_dir $DATADIR \
 		--conv_width 11 --l2_reg $L2_REG --dropout $DROPOUT --batch_size $BATCH_SIZE \
 		--epochs $EPOCHS --numCycles $NUM_CYCLES --base_lr $BASE_LR --max_lr $MAX_LR \

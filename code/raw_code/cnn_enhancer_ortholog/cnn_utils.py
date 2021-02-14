@@ -22,7 +22,6 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'  # or any {'0', '1', '2'}
 tf.config.experimental.list_physical_devices('GPU')
 # tf.get_logger().setLevel('WARNING')
 
-
 def onehot_seq(seq, size = 501):
     letter_to_index =  {'A':0, 'a':0,
                         'C':1, 'c':1,
@@ -34,6 +33,7 @@ def onehot_seq(seq, size = 501):
         if letter not in ['N','n'] and idx < size:
             to_return[idx,letter_to_index[letter]] = 1
     return to_return
+
 
 def encode_sequence(fasta_pos, fasta_neg, size, shuffleOff = True):
     x_pos = np.array([onehot_seq(seq, size) for seq in SeqIO.parse(fasta_pos, "fasta") ] +
@@ -53,6 +53,7 @@ def encode_sequence(fasta_pos, fasta_neg, size, shuffleOff = True):
     #
     return x, y
 
+
 def encode_sequence2(fasta_file, label_file, shuffleOff = True):
     y = np.tile(np.loadtxt(label_file), (2, 1))
     print(f'There {sum(np.sum(y, axis = 1) > 0)} positives and {sum(np.sum(y, axis = 1) == 0)} negatives.')
@@ -67,7 +68,6 @@ def encode_sequence2(fasta_file, label_file, shuffleOff = True):
         y = y[indices]
     #
     return x, y
-
 
 
 def encode_sequence3(fasta_file, shuffleOff = True):
@@ -99,7 +99,6 @@ def macro_f1(y, y_hat, thresh=0.5):
     return macro_f1
 
 
-
 def macro_soft_f1(y, y_hat):
     """Compute the macro soft F1-score as a cost.
     Average (1 - soft-F1) across all labels.
@@ -119,7 +118,6 @@ def macro_soft_f1(y, y_hat):
     cost = 1 - soft_f1 # reduce 1 - soft-f1 in order to increase soft-f1
     macro_cost = tf.reduce_mean(cost, axis=-1) # average on all labels
     return macro_cost
-
 
 
 def macro_double_soft_f1(y, y_hat):
@@ -193,7 +191,6 @@ def get_model(input_shape, args):
     myoptimizer = SGD(lr=args.base_lr, momentum=args.max_m)      
     model.compile(loss = args.mylossfunc , optimizer = myoptimizer, metrics =['accuracy', macro_f1])
     return model
-
 
 
 def evaluate_sequences(model_name, x, y, args):

@@ -79,8 +79,6 @@ def train_model_clr(x_train, y_train, x_valid, y_valid,  args):
     return model, clr, hist
 
 
-
-
 def predict_sequences(model_name, x):
     # Creating an empty Dataframe with column names only
     # predict labels
@@ -88,7 +86,6 @@ def predict_sequences(model_name, x):
     y_pred_score = model.predict(x)
     y_pred_class = (y_pred_score > 0.5).astype("int32")
     return y_pred_class, y_pred_score
-
 
 
 def plot_training_performance(args, hist, clr ):
@@ -147,6 +144,9 @@ def main(args):
     # call main functions
     if args.mode == 'train':
         print('In training mode.')
+        if os.path.exists(model_name) and not args.force:
+            print('Model exists w/o permission to overwrite. Use --force to overwrite.')
+            return
         (x_train, y_train) = encode_sequence(args.train_fasta_pos, args.train_fasta_neg, size = args.seq_length, shuffleOff = False)
         (x_valid, y_valid) = encode_sequence(args.valid_fasta_pos, args.valid_fasta_neg, size = args.seq_length, shuffleOff = False)
         #
@@ -160,6 +160,9 @@ def main(args):
         #
     elif args.mode == 'evaluate':
         print('In evaluation mode.')
+        if not os.path.exists(model_name):
+            print('No model found with specified training parameters. Please train model first.')
+            return
         (x_valid, y_valid) = encode_sequence(args.valid_fasta_pos, args.valid_fasta_neg, size = args.seq_length, shuffleOff = True)
         df = evaluate_sequences(model_name, x_valid, y_valid, args)
         model_test_performance = f'{args.out_dir}/predictions/{args.label}/{lab}_testPerformance.feather'
@@ -218,8 +221,10 @@ if __name__ == '__main__':
     parser.add_argument("--base_m", help="Momentum floor value for cyclical learning rate model.", 
         type=float, default = .875, required=False)
     parser.add_argument("--max_m", help="Momentum ceiling value for cyclical learning rate model.", 
-        type=float,default = .99, required=False)
-    parser.add_argument("--cyclical_momentum", help="Whether to cycle the momemtum for OCP.",
+        type=float, default = .99, required=False)
+    parser.add_argument("--cyclical_momentum", help="Whether to cycle the momemtum for OCP.", default = False, 
+        action='store_true')
+    parser.add_argument("--force", help="Whether to overwrite previously trained model.",
         action='store_true')
     parser.add_argument("--out_dir", type=str, default = '.', help="path to ouputput directory, default is pwd")
     #

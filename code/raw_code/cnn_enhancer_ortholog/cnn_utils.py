@@ -23,26 +23,27 @@ tf.config.experimental.list_physical_devices('GPU')
 # tf.get_logger().setLevel('WARNING')
 
 
-def onehot_seq(seq):
+def onehot_seq(seq, size = 501):
     letter_to_index =  {'A':0, 'a':0,
                         'C':1, 'c':1,
                         'G':2, 'g':2,
                         'T':3, 't':3}
-    to_return = np.zeros((len(seq),4), dtype='uint8')
+    to_return = np.zeros((size,4), dtype='uint8')
+    # cap length with size
     for idx,letter in enumerate(seq):
-        if letter not in ['N','n']:
+        if letter not in ['N','n'] and idx < size:
             to_return[idx,letter_to_index[letter]] = 1
     return to_return
 
-def encode_sequence(fasta_pos, fasta_neg, shuffleOff = True):
-    x_pos = np.array([onehot_seq(seq) for seq in SeqIO.parse(fasta_pos, "fasta") ] +
-    [onehot_seq(seq.reverse_complement()) for seq in SeqIO.parse(fasta_pos, "fasta") ]) 
-    x_neg = np.array([onehot_seq(seq) for seq in SeqIO.parse(fasta_neg, "fasta") ] +
-    [onehot_seq(seq.reverse_complement()) for seq in SeqIO.parse(fasta_neg, "fasta") ])
+def encode_sequence(fasta_pos, fasta_neg, size, shuffleOff = True):
+    x_pos = np.array([onehot_seq(seq, size) for seq in SeqIO.parse(fasta_pos, "fasta") ] +
+    [onehot_seq(seq.reverse_complement()) for seq in SeqIO.parse(fasta_pos, "fasta") ], dtype="uint8") 
+    x_neg = np.array([onehot_seq(seq, size) for seq in SeqIO.parse(fasta_neg, "fasta") ] +
+    [onehot_seq(seq.reverse_complement()) for seq in SeqIO.parse(fasta_neg, "fasta") ], dtype="uint8")
     # concatenate positives and negatives
     print(f'There {x_pos.shape[0]} positives and {x_neg.shape[0]} negatives.')
     x = np.concatenate((x_pos, x_neg))
-    y = np.concatenate((np.ones(len(x_pos)),np.zeros(len(x_neg))))
+    y = np.concatenate((np.ones(len(x_pos)),np.zeros(len(x_neg)))).astype('uint8')
     # need to shuffle order of training set for validation splitting last
     if not shuffleOff:
         indices = np.arange(y.shape[0])

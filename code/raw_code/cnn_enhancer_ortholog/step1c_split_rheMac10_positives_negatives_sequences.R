@@ -18,7 +18,7 @@ fromTSS = c(-5000,5000)
 include = c('Distal.Intergenic','Intron')
 testSet = c('chr1','chr2')
 validSet = c('chr8','chr9')
-genome = 'rheMac8' # do everything in rheMac8 coordinates
+genome = 'rheMac10' # do everything in rheMac8 coordinates, export in rheMac10
 
 ############################
 ### get the human peaks ####
@@ -135,26 +135,21 @@ lengths(rhesus_enhList) / lengths(nonEnh_peakList)
 #     Astro INT_Pvalb Microglia    MSN_D1    MSN_D2    MSN_SN     Oligo       OPC 
 # 1.8402529 0.3115139 2.4274417 1.0452050 1.0206977 1.2150721 1.1272491 1.5744607 
 
+#############################################################
+## liftOver rheMac8 coordinates to rheMac10 
+## liftover peaks to rheMac8 (the version in Cactus hal file) ##
+chainFile =file.path("/home/bnphan/resources/liftOver_chainz",
+                     'rheMac8ToRheMac10.over.chain')
+
 # export postive sequences to summit-centered 501bp fasta file
 positiveSet = summitCenter(rhesus_enhList, width = 501)
-positiveSet = lapply(positiveSet, function(gr){
-  idx <- GenomicRanges:::get_out_of_bound_index(gr)
-  if (length(idx) != 0L)
-    gr <- gr[-idx]
-  return(gr)
-}) %>% GRangesList()
-positiveSplit_list = lapply(positiveSet, splitPeakSet, testSet = testSet, validSet = validSet)
+positiveSet_rheMac10 = lapply(positiveSet, liftOver_narrowPeak, chainFile = chainFile)
+positiveSplit_list = lapply(positiveSet_rheMac10, splitPeakSet, testSet = testSet, validSet = validSet)
 
 # export postive sequences to summit-centered 501bp fasta file
 negativeSet = summitCenter(nonEnh_peakList, width = 501)
-negativeSet = lapply(negativeSet, function(gr){
-  idx <- GenomicRanges:::get_out_of_bound_index(gr)
-  if (length(idx) != 0L)
-    gr <- gr[-idx]
-  return(gr)
-}) %>% GRangesList()
-
-negativeSplit_list = lapply(negativeSet, splitPeakSet, testSet = testSet, validSet = validSet)
+negativeSet_rheMac10 = lapply(negativeSet, liftOver_narrowPeak, chainFile = chainFile)
+negativeSplit_list = lapply(negativeSet_rheMac10, splitPeakSet, testSet = testSet, validSet = validSet)
 
 split = names(negativeSplit_list[[1]])
 system(paste('mkdir -p',  file.path(PROJDIR, 'fasta')))
@@ -174,7 +169,7 @@ for(cell in names(positiveSet)){
 system(paste('mkdir -p',  file.path(PROJDIR, 'rdas')))
 save_fn = file.path(PROJDIR, 'rdas', 
                     paste('cnn_enhancer_non-enhancer_split', genome,'.rda', sep = '_'))
-save(positiveSet, positiveSplit_list, 
-     negativeSet, negativeSplit_list, file = save_fn )
+save(positiveSet_rheMac10, positiveSplit_list, 
+     negativeSet_rheMac10, negativeSplit_list, file = save_fn )
 
 

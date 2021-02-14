@@ -99,11 +99,11 @@ def plot_training_performance(args, hist, clr ):
         clr (argparse):
     """
     # file names
-    lab = f'{args.label}_OCP_NB{args.batch_size}_NE{args.epochs}_BR{args.base_lr}_MR{args.max_lr}_BM{args.base_m}_MM{args.max_m}'
-    model_train_performance = f'plots/{args.label}/{lab}_trainingPerformance.pdf'
+    lab = f'{args.label}_OCP_NB{args.batch_size}_NE{args.epochs}_BR{args.base_lr}_MR{args.max_lr}_BM{args.base_m}_MM{args.max_m}_DO{args.dropout}'
+    model_train_performance = f'{args.out_dir}/plots/{args.label}/{lab}_trainPerformance.pdf'
     # plot performance by iteration
-    if not os.path.exists(f'plots/{args.label}'):
-        os.makedirs(f'plots/{args.label}')
+    if not os.path.exists(f'{args.out_dir}/plots/{args.label}'):
+        os.makedirs(f'{args.out_dir}/plots/{args.label}')
     fig, axs = plt.subplots(2, 2, figsize=(8, 6))
     fig.suptitle(f"Training performance {args.label}")
     axs[0, 0].plot(clr.history['iterations'], clr.history['lr'])
@@ -134,7 +134,7 @@ def plot_training_performance(args, hist, clr ):
 def main(args):
     """Main function
     Args:
-        args (argparse):
+    args (argparse):
     """
     # file names
     print(f'Running cyclical learning rate for {args.label}.')
@@ -147,8 +147,8 @@ def main(args):
     # call main functions
     if args.mode == 'train':
         print('In training mode.')
-        (x_train, y_train) = encode_sequence(args.train_fasta_pos, args.train_fasta_neg, shuffleOff = False)
-        (x_valid, y_valid) = encode_sequence(args.valid_fasta_pos, args.valid_fasta_neg, shuffleOff = False)
+        (x_train, y_train) = encode_sequence(args.train_fasta_pos, args.train_fasta_neg, size = args.seq_length, shuffleOff = False)
+        (x_valid, y_valid) = encode_sequence(args.valid_fasta_pos, args.valid_fasta_neg, size = args.seq_length, shuffleOff = False)
         #
         model, clr, hist = train_model_clr(x_train, y_train, x_valid, y_valid, args)
         plot_training_performance(args, hist, clr )
@@ -160,7 +160,7 @@ def main(args):
         #
     elif args.mode == 'evaluate':
         print('In evaluation mode.')
-        (x_valid, y_valid) = encode_sequence(args.valid_fasta_pos, args.valid_fasta_neg, shuffleOff = True)
+        (x_valid, y_valid) = encode_sequence(args.valid_fasta_pos, args.valid_fasta_neg, size = args.seq_length, shuffleOff = True)
         df = evaluate_sequences(model_name, x_valid, y_valid, args)
         model_test_performance = f'{args.out_dir}/predictions/{args.label}/{lab}_testPerformance.feather'
         # save model performances to feather object
@@ -182,7 +182,7 @@ def main(args):
 
 
 if __name__ == '__main__':  
-    # set cnn parameters:
+    #### set cnn parameters:
     parser = argparse.ArgumentParser(description='Parse CNN parameters.')
     parser.add_argument("--mode", type=str, help="Mode to perform", 
         choices=['train', 'evaluate', 'predict'], default = 'train', required=False)
@@ -193,7 +193,8 @@ if __name__ == '__main__':
     parser.add_argument("valid_fasta_pos", type=str, help="validation fasta sequence file of positives.")
     parser.add_argument("valid_fasta_neg", type=str, help="validation fasta sequence file of negatives.")
     #
-    # set cnn parameters:
+    #### set cnn parameters:
+    parser.add_argument("--seq_length", type=int, help="DNA sequence length.", default = 501, required=False)
     parser.add_argument("--conv_width", type=int, help="Convolution width.", default = 8, required=False)
     parser.add_argument("--conv_filters", type=int, help="Convolution filter width.", default = 200, required=False)
     parser.add_argument("--max_pool_size", type=int, help="Max pool size.", default = 26, required=False)
@@ -207,7 +208,7 @@ if __name__ == '__main__':
     parser.add_argument("--mylossfunc", help="Loss function.", default = 'binary_crossentropy',
         choices=['binary_crossentropy', 'categorical_crossentropy', 'sparse_categorical_crossentropy'], required=False)
     #
-    # parameters for cyclical learning Rate, see https://github.com/bckenstler/CLR for details
+    #### parameters for cyclical learning Rate, see https://github.com/bckenstler/CLR for details
     parser.add_argument("--numCycles", help="Number of cyclical learning rate cycles.", 
         type=float, default = 2.5, required=False)
     parser.add_argument("--base_lr", help="Learning rate floor value for cyclical learning rate model.", 
@@ -222,8 +223,15 @@ if __name__ == '__main__':
         action='store_true')
     parser.add_argument("--out_dir", type=str, default = '.', help="path to ouputput directory, default is pwd")
     #
-    # parse arguments
+    ### parse arguments
+    # args = parser.parse_args(['MSN_D1_hgRmMm_enhVsNonEnhOrth', 
+    #     '/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/cnn_enhancer_ortholog/fasta/MSN_D1_trainPos.fa', 
+    #     '/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/cnn_enhancer_ortholog/fasta/MSN_D1_trainNeg.fa', 
+    #     '/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/cnn_enhancer_ortholog/fasta/MSN_D1_validPos.fa', 
+    #     '/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/cnn_enhancer_ortholog/fasta/MSN_D1_validNeg.fa',
+    #     '--cyclical_momentum'])
     args = parser.parse_args()
+
     main(args)
 
 

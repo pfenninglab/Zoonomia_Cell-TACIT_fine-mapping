@@ -1,0 +1,76 @@
+Query bed file is /projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/hg38/Corces_2020/peak/Corces2020_caudate_hgMmOrth.MSN_D1.narrowPeak.gz.
+Reference bed file is /projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/hg38/Corces_2020/peak/Corces2020_caudate.OPC.narrowPeak.gz.
+Output dir is /projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/figures/explanatory/overlap_caudate_peak_orth/tables.
+
+ISTAT v1.0.0 © The Regents of the University of California. All Rights Reserved.
+
+scale is 100000
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Number of query intervals (n) is 12442
+Number of reference intervals (m) is 5179
+Overlap is 623
+eta is 0
+DP p-value is 1
+PB p-value is 0.999977
+Unable to open filersync: getcwd(): No such file or directory (2)
+rsync error: errors selecting input/output files, dirs (code 3) at util.c(1008) [Receiver=3.0.9]
+rm: cannot remove ‘/scratch/bnphan/istat/tmp1612718812’: No such file or directory

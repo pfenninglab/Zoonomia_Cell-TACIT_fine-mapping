@@ -14,16 +14,13 @@ setwd('figures/explanatory/overlap_caudate_peak_orth')
 PROJDIR=file.path('../../../data/raw_data/',LABEL)
 source('../../../code/raw_code/hal_scripts/gen_enh_ortholog_sets.R')
 
-
-
-
 ###############################################################
 ## load the rData files of caudate peaks in hg38 coordinates ##
 save_fn = file.path(PROJDIR, 'rdas', 'human_macaque_mouse_orthologs_peakList.rda')
 group_class = c("hgPeaks", "rm2Hg", "hgRmOrth", "mm2Hg", "hgMmOrth")
 annot_class = c('Distal.Intergenic','Promoter',"5' UTR", 'Exon', "Intron","3' UTR", 'Downstream')
-celltype_class = c('Caudate', 'MSN_D1', 'MSN_D2', "MSN_SN", 'INT_Pvalb', 'Astro', 
-                   'Microglia', 'OPC', 'Oligo')
+celltype_class = c('Caudate', 'MSN_D1', 'MSN_D2', "MSN_SN", 'INT_Pvalb', 'Astro', 'Microglia', 'OPC', 'Oligo')
+
 if(FALSE){
   load(file.path(PROJDIR, 'rdas', 'human_macaque_orthologs_peakList.rda'))
   load(file.path(PROJDIR, 'rdas', 'human_mouse_orthologs_peakList.rda'))
@@ -31,19 +28,13 @@ if(FALSE){
   # split the peakList by genome coordinates for annotation
   all_peaks = c(human_macaque_orthologs, human_mouse_orthologs[-1])
   human_peakList = all_peaks[grepl('hgPeaks|Hg|Orth',names(all_peaks))]
-  mouse_peaks = all_peaks[['MmPeaks']]
-  macaque_peaks = lapply(all_peaks[['rmPeaks']], convertHalChrName, chrOut = 'UCSC',
-                         species = 'Macaca_mulatta') %>% GRangesList()
-    
+
   # annotate peak +/- 5kb for promoter region 
-  fromTSS = c(-2000,2000)
-  human_peakList = parallel::mclapply(human_peakList, annotatePeaks, 
-                                      fromTSS = fromTSS, genome = 'hg38', mc.cores = 4)
-  macaque_peaks = annotatePeaks(macaque_peaks, fromTSS = fromTSS, genome = 'rheMac8')
-  mouse_peaks = annotatePeaks(mouse_peaks, fromTSS = fromTSS, genome = 'mm10')
+  fromTSS = c(-5000,5000)
+  human_peakList = lapply(human_peakList, annotatePeaks, fromTSS = fromTSS, genome = 'hg38')
 
   names(human_peakList) = group_class
-  save(human_peakList, macaque_peaks, mouse_peaks, file = save_fn)
+  save(human_peakList, file = save_fn)
 } else {
   load(save_fn)
 }

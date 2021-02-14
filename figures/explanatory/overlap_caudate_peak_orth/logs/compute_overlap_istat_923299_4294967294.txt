@@ -1,0 +1,12 @@
+Query bed file is /projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/hg38/Corces_2020/peak/Corces2020_caudate_mappedToRheMac10.MSN_SN.narrowPeak.gz.
+Reference bed file is /projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/hg38/Corces_2020/peak/Corces2020_caudate.OPC.narrowPeak.gz.
+Output dir is /projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/figures/explanatory/overlap_caudate_peak_orth/tables.
+
+ISTAT v1.0.0 © The Regents of the University of California. All Rights Reserved.
+
+scale is 100000
+/var/spool/slurmd/job923299/slurm_script: line 92:  3192 Killed                  ${ISTAT} ${QUERYBED} ${REFBED} ${CHRSIZE} ${SCALE} ${OUTPUT_FILE} s
+rsync: getcwd(): No such file or directory (2)
+rsync error: errors selecting input/output files, dirs (code 3) at util.c(1008) [Receiver=3.0.9]
+rm: cannot remove ‘/scratch/bnphan/istat/tmp1612718813’: No such file or directory
+slurmstepd: error: Detected 1 oom-kill event(s) in step 923299.batch cgroup. Some of your processes may have been killed by the cgroup out-of-memory handler.

@@ -1,0 +1,108 @@
+Query bed file is /projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/hg38/Corces_2020/peak/Corces2020_caudate_hgMmOrth.MSN_SN.narrowPeak.gz.
+Reference bed file is /projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/hg38/Corces_2020/peak/Corces2020_caudate.OPC.narrowPeak.gz.
+Output dir is /projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/figures/explanatory/overlap_caudate_peak_orth/tables.
+
+ISTAT v1.0.0 © The Regents of the University of California. All Rights Reserved.
+
+scale is 100000
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Unable to open file
+Number of query intervals (n) is 1411
+Number of reference intervals (m) is 11673
+Overlap is 1390
+eta is 0
+DP p-value is 6.94713e-35
+PB p-value is 1.66364e-07
+Unable to open filersync: getcwd(): No such file or directory (2)
+rsync error: errors selecting input/output files, dirs (code 3) at util.c(1008) [Receiver=3.0.9]
+rm: cannot remove ‘/scratch/bnphan/istat/tmp1612718812’: No such file or directory

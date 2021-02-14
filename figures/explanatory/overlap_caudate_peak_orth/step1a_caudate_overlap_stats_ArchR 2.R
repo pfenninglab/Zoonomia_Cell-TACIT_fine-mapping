@@ -1,13 +1,13 @@
 # to be run in the root github directory
 setwd('figures/explanatory/overlap_caudate_peak_orth')
 
-suppressMessages(library(ArchR))
 ss <- function(x, pattern, slot = 1, ...) { 
   sapply(strsplit(x = x, split = pattern, ...), '[', slot) }
 options(stringsAsFactors = F)
 options(repr.plot.width=11, repr.plot.height=8.5)
 
 ### set Arrow File parameters ####
+suppressMessages(library(ArchR))
 addArchRThreads(threads = 10)
 addArchRGenome("hg38")
 system('mkdir -p plots')

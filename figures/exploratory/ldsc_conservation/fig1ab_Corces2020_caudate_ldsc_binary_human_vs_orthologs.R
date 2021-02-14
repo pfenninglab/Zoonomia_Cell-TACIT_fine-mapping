@@ -111,8 +111,9 @@ enrich_wide = enrichments %>%
 # look at the top values
 enrich_wide %>% data.frame() %>% head(2)
 enrich_wide%>% pull(p.signif) %>% table()
-# both       inHg38 inModelOrg         NS 
-#  198        132         36       3306 
+# both     inHg38 inModelOrg         NS 
+# 196        134         36       3306 
+
 
 #################################
 ## make plots for presentation ##

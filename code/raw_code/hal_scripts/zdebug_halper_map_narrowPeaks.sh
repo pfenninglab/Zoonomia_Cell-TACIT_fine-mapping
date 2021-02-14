@@ -14,16 +14,17 @@ TARGET='Macaca_mulatta'
 
 # read in command line arguments
 SETDIR=/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate
-CODEDIR=${SETDIR}/code/raw_code/hg38_Corces_2020_caudate
-DATADIR=${SETDIR}/data/raw_data/hg38/Corces_2020
+CODEDIR=${SETDIR}/code/raw_code/mm10_BICCN_mouse_caudoputamen
+DATADIR=${SETDIR}/data/raw_data/mm10/Corces_2020
 ZOONOMIADIR=${SETDIR}/data/tidy_data/Zoonomia_data
 GWASDIR=/projects/pfenninggroup/machineLearningForComputationalBiology/gwasEnrichments
 
 cd $CODEDIR
-BEDFILE='/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/hg38/Corces_2020/peak/Corces2020_caudate.OPC.narrowPeak.gz'
-SOURCE='Homo_sapiens'
-TARGETS='Macaca_mulatta,Mus_musculus'
-OUTDIR='/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/hg38/Corces_2020/haper_zoo'
+BEDFILE='/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/mm10/Mouse_cSNAIL_D1D2/peak/Pfenning_Cpu.MSN_D2.narrowPeak.gz'
+SOURCE='Mus_musculus'
+TARGETS='Macaca_mulatta,Homo_sapiens'
+TARGET='Macaca_mulatta'
+OUTDIR='/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/mm10/Mouse_cSNAIL_D1D2/halper'
 NAME=''
 
 

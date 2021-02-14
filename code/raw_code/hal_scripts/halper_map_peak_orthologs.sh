@@ -131,7 +131,7 @@ function format_bed()
     if [[ $(awk '{print NF; exit}' ${INPUTBED}) -lt 4 ]]; 
         then echo "Bed file doesn't have name column. Adding"
         echo "USING CHR:START-END in the NAME column."
-        awk 'BEGIN {FS="\t"; OFS="\t"} {print $1, $2, $3, $1":"$2-$3"," 0, "."}' $INPUTBED > $UNIQUEBED    
+        awk 'BEGIN {FS="\t"; OFS="\t"} {print $1, $2, $3, $1 ":" $2 "-" $3, "0", "."}' $INPUTBED > $UNIQUEBED    
     # name column found, check if duplicate names
     elif [[ $(awk '++A[$4] > 1 { print "true"; exit 1 }' $INPUTBED) ]]; then
         echo "Non-unique bed peak names detected. Giving unique names now."
@@ -139,10 +139,10 @@ function format_bed()
         if [[ $(awk '{print NF; exit}' ${INPUTBED}) == 10 ]]; 
         # use summit if there's a 10th column (assume narrowpeak file)
             then echo "Appending CHR:START-END:SUMMIT to NAME column."
-            awk 'BEGIN {FS="\t"; OFS="\t"} {print $1, $2, $3, $4":"$1":"$2-$3":"$10, $5, $6}' $INPUTBED > $UNIQUEBED
+            awk 'BEGIN {FS="\t"; OFS="\t"} {print $1, $2, $3, $1 ":" $2 "-" $3 ":" $10, $5, $6}' $INPUTBED > $UNIQUEBED
         else # if there isn't a narrowpeak summit column
             echo "Appending CHR:START-END to NAME column."
-            awk 'BEGIN {FS="\t"; OFS="\t"} {print $1, $2, $3, $4":"$1":"$2-$3"," $5, $6}' $INPUTBED > $UNIQUEBED
+            awk 'BEGIN {FS="\t"; OFS="\t"} {print $1, $2, $3, $1 ":" $2 "-" $3, $5, $6}' $INPUTBED > $UNIQUEBED
         fi
     else 
         echo "Bed peak names are unique; moving onwards."

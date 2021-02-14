@@ -16,11 +16,14 @@ supported_genomes = c('hg38', 'mm10', 'rheMac10','rheMac8', 'rn6')
 require(GenomicRanges) # for working w/ genomic regiosn
 require(ChIPseeker) # for annotating regions
 
+# for ease of not in
+`%ni%` <- Negate(`%in%`)
+
 annotatePeaks <- function(peaks, genome = 'hg38', fromTSS = c(-5000,5000)){
   txdb = getTxDb(genome)
   annodb = getAnnoDb(genome)
   print(paste('Using TSS boundaries from',fromTSS[1], 'to',fromTSS[2]))
-  if(class(peaks) == c('CompressedGRangesList', 'GRangesList')){
+  if(class(peaks) %in% c('CompressedGRangesList', 'GRangesList')){
     ret = lapply(peaks, annotatePeak, TxDb=txdb, annoDb=annodb, tssRegion=fromTSS)
     ret = lapply(ret, function(x){
       ret = as.GRanges(x)
@@ -38,6 +41,19 @@ annotatePeaks <- function(peaks, genome = 'hg38', fromTSS = c(-5000,5000)){
   return(ret)
 }
 
+filterPeaks <-function(peaks, include =c('Distal.Intergenic','Intron')){
+  if(class(peaks) %in% c('CompressedGRangesList', 'GRangesList')){
+    ret = lapply(peaks, function(x) x[which(x$annot %in% include)])
+    ret = GRangesList(ret)
+  } else if(class(peaks) == "GRanges"){
+    ret = peaks[which(peaks$annot %in% include)]
+  } else{
+    stop("Is inputs to peaks a GRanges or GRangesList?")
+  }
+  return(ret)
+}
+
+
 getTxDb <- function(genome){
   if(genome =='hg38'){
     suppressMessages(require(TxDb.Hsapiens.UCSC.hg38.knownGene))
@@ -46,11 +62,27 @@ getTxDb <- function(genome){
     suppressMessages(require(TxDb.Mmusculus.UCSC.mm10.knownGene))
     txdb = TxDb.Mmusculus.UCSC.mm10.knownGene
   }else if(genome =='rheMac8'){
-    suppressMessages(require(TxDb.Mmulatta.UCSC.rheMac8.refGene))
-    txdb = TxDb.Mmulatta.UCSC.rheMac10.refGene
+    print('Using LiftOff of GRCh38 gene annotation -> rheMac8.')
+    liftOff_gff= '/home/bnphan/resources/genomes/rheMac8/rheMac8_liftoff_GRCh38.p13_RefSeq.gff3'
+    liftOff_txdb= '/home/bnphan/resources/genomes/rheMac8/rheMac8_liftoff_GRCh38.p13_RefSeq.txDb'
+    if(!file.exists(liftOff_txdb)){
+      txdb = makeTxDbFromGFF(liftOff_gff, dataSource= 'GRCh38 Refseq liftoff to rheMac8',
+                             organism = 'Macaca mulatta', dbxrefTag = 'Dbxref')
+      AnnotationDbi::saveDb(txdb, file = liftOff_txdb)
+      } else{
+      txdb = AnnotationDbi::loadDb(liftOff_txdb)
+    }
   }else if(genome =='rheMac10'){
-    suppressMessages(require(TxDb.Mmulatta.UCSC.rheMac10.refGene))
-    txdb = TxDb.Mmulatta.UCSC.rheMac10.refGene
+    print('Using LiftOff of GRCh38 gene annotation -> rheMac10')
+    liftOff_gff= '/home/bnphan/resources/genomes/rheMac10/rheMac10_liftoff_GRCh38.p13_RefSeq.gff3'
+    liftOff_txdb= '/home/bnphan/resources/genomes/rheMac10/rheMac10_liftoff_GRCh38.p13_RefSeq.txDb'
+    if(!file.exists(liftOff_txdb)){
+      txdb = makeTxDbFromGFF(liftOff_gff, dataSource= 'GRCh38 Refseq liftoff to rheMac10',
+                             organism = 'Macaca mulatta', dbxrefTag = 'Dbxref')
+      AnnotationDbi::saveDb(txdb, file = liftOff_txdb)
+    } else{
+      txdb = AnnotationDbi::loadDb(liftOff_txdb)
+    }
   }else if(genome =='rn6'){
     suppressMessages(require(TxDb.Rnorvegicus.UCSC.rn6.refGene))
     txdb = TxDb.Rnorvegicus.UCSC.rn6.refGene
@@ -60,20 +92,106 @@ getTxDb <- function(genome){
   return(txdb)
 }
 
+getBSgenome <- function(genome){
+  if(genome =='hg38'){
+    suppressMessages(require(BSgenome.Hsapiens.UCSC.hg38))
+    bsgenome = BSgenome.Hsapiens.UCSC.hg38
+  }else if(genome =='mm10'){
+    suppressMessages(require(BSgenome.Mmusculus.UCSC.mm10))
+    bsgenome = BSgenome.Mmusculus.UCSC.mm10
+  }else if(genome =='rheMac8'){
+    suppressMessages(require(BSgenome.Mmulatta.UCSC.rheMac8))
+    bsgenome = BSgenome.Mmulatta.UCSC.rheMac8
+  }else if(genome =='rheMac10'){
+    suppressMessages(require(BSgenome.Mmulatta.UCSC.rheMac10))
+    bsgenome = BSgenome.Mmulatta.UCSC.rheMac10
+  }else if(genome =='rn6'){
+    suppressMessages(require(BSgenome.Rnorvegicus.UCSC.rn6))
+    bsgenome = BSgenome.Rnorvegicus.UCSC.rn6
+  }else{
+    stop(paste0("Genome is not in current set. Choose from: ",supported_genomes))
+  }
+  return(bsgenome)
+}
+
+
 getAnnoDb <- function(genome){
   # check if the genome is supported
   error_msg = paste0("Genome is not in current set. Choose from: ",
                      supported_genomes)
   if(!genome %in% supported_genomes) stop(error_msg)
   
-  # get the org.db.
+  # get the org.db for each genome
   annodb = case_when(
     genome == 'hg38' ~ 'org.Hs.eg.db',
     genome == 'mm10' ~ 'org.Mm.eg.db',
-    genome == 'rheMac10' ~ 'org.Mmu.eg.db',
+    grepl('rheMac', genome) ~ 'org.Mmu.eg.db',
     genome == 'rn6' ~ 'org.Rn.eg.db',
   )
   return(annodb)
+}
+
+splitPeakSet <- function(gr, testSet = c('chr1','chr2'),
+                         validSet = c('chr8','chr9'), useCol = 'seqnames'){
+  indTest = gr %>% data.frame() %>% pull(useCol) %in% testSet %>% which()
+  indValid= gr %>% data.frame() %>% pull(useCol) %in% validSet %>% which()
+  indTrain = gr %>% data.frame() %>% pull(useCol) %ni% c(testSet, validSet) %>% which()
+  
+  ret = list(test = gr[indTest], train = gr[indTrain], valid = gr[indValid])
+  return(ret)
+}
+
+getNonEnhOrthPeaks <- function(inPeaks, excludePeaks){
+  oo = findOverlaps(query = inPeaks, subject = excludePeaks)
+  # return queries NOT IN THE BG SET
+  overlaps = unique(queryHits(oo))
+  ret = inPeaks[seq_along(inPeaks) %ni% overlaps]
+  return(ret)
+  }
+
+transferColumn <- function(toPeaks, fromPeaks, colOut = 'col'){
+  tmp = fromPeaks %>% data.frame() %>% rename(col = seqnames) %>% 
+    dplyr::select(col, name)
+  ret = toPeaks %>% data.frame() %>% left_join(y = tmp, by = 'name') %>% 
+    arrange(seqnames, start) %>% fill(contains('col')) %>% GRanges()
+  return(ret)
+}
+
+
+writeGRangesToFasta <- function(gr, genome, file){
+  bsgenome = getBSgenome(genome)
+  seq <- getSeq(bsgenome,gr)
+  
+  ## add names
+  names(seq) <- gr$name
+  names(seq)[is.na(names(seq))] = 
+    paste(genome,seq_len(sum(is.na(names(seq)))), sep = '_')
+  
+  ## write to fasta file
+  writeXStringSet(seq,file=file)
+  return(seq)
+}
+
+
+summitCenter <- function(peaks, width = 501){
+  if(class(peaks) %in% c('CompressedGRangesList', 'GRangesList')){
+    ret = lapply(peaks, function(x) {
+      ret = x
+      start(ret) = start(x) + x$peak - (width - 1)/2
+      end(ret) = start(ret) + width -1
+      return(ret)
+    })
+    ret = GRangesList(ret)
+  } else if(class(peaks) == "GRanges"){
+    ret = peaks
+    start(ret) = start(peaks) + peaks$peak - ( width - 1)/2
+    end(ret) = start(ret) + width -1
+  } else{
+    stop("Is inputs to peaks a GRanges or GRangesList?")
+  }
+  return(ret)
+  
+  return(ret)
 }
 
 convertHalChrName <- function(gr, species = 'Macaca_mulatta', chrOut = 'GenBank',

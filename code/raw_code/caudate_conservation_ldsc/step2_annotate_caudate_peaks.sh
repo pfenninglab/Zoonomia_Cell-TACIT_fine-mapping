@@ -21,7 +21,7 @@ BG6=/home/bnphan/src/atac-seq-pipeline/genome/hg38/ataqc/reg2map_honeybadger2_dn
 BGNAME=Corces2020_caudate.All_Roadmap_DHS_cCREs_BICCN_Stauffer.BG
 BGFILE=${DATADIR}/peak/${BGNAME}.bed.gz
 
-# cat ${BG1} ${BG2} ${BG3} ${BG4} ${BG5} ${BG6} ${MUSDIR2}/*Mus_musculusToHomo_sapiens.HALPER.narrowPeak.gz | \
+# cat ${BG1} ${BG2} ${BG3} ${BG4} ${BG5} ${BG6} ${MUSDIR1}/*Mus_musculusToHomo_sapiens.HALPER.narrowPeak.gz ${MUSDIR2}/*Mus_musculusToHomo_sapiens.HALPER.narrowPeak.gz | \
 # 	zcat | cut -f 1-3 | sort --parallel=10 -k1,1 -k2,2n | gzip > ${DATADIR}/${BGNAME}.tmp.bed.gz 
 # bedtools merge -i ${DATADIR}/${BGNAME}.tmp.bed.gz | gzip > ${BGFILE}
 # rm ${DATADIR}/${BGNAME}.tmp.bed.gz
@@ -35,6 +35,7 @@ mkdir -p $ANNOTDIR
 CTS_AFR_FN=${SETDIR}/data/raw_data/caudate_conservation_ldsc/caudate_conservation_binary_AFR_hg38_celltypes.ldcts; > $CTS_AFR_FN
 CTS_EUR_FN=${SETDIR}/data/raw_data/caudate_conservation_ldsc/caudate_conservation_binary_EUR_hg38_celltypes.ldcts; > $CTS_EUR_FN
 for BED in ${DATADIR}/peak/*.narrowPeak.gz ${MUSDIR}/*ToHomo_sapiens.HALPER.narrowPeak.gz ${MACDIR}/*ToHomo_sapiens.HALPER.narrowPeak.gz ${MUSDIR2}/*Mus_musculusToHomo_sapiens.HALPER.narrowPeak.gz; do
+# for BED in ${MUSDIR}/*ToHomo_sapiens.HALPER.narrowPeak.gz ${MUSDIR2}/*Mus_musculusToHomo_sapiens.HALPER.narrowPeak.gz; do
 NAME=$(basename $BED | sed 's/.narrowPeak.gz//g')
 if [[ ! -f "${ANNOTDIR}/${NAME}.AFR.1.l2.ldscore.gz" ]]; then 
 echo "Annotations for ${NAME} not found."

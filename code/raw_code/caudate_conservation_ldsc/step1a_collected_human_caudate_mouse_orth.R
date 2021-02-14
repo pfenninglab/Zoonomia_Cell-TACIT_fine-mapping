@@ -41,7 +41,7 @@ lengths(human_mappable_peakList) / lengths(human_peakList)
 # write mappable peak to narrowPeak files
 out_narrowPeak_fn = human_peak_fn %>% 
   gsub(pattern = 'Corces2020_caudate.', replacement = 'Corces2020_caudate_mappedToMm10.')
-# outList = mapply(write_GRangesToNarrowPeak,gr = human_mappable_peakList, 
+# outList = mapply(write_GRangesToNarrowPeak,gr = human_mappable_peakList,
 #                  file = out_narrowPeak_fn, genome = 'hg38')
 
 #########################################################
@@ -92,8 +92,8 @@ lengths(ortholog_peakList)
 # write mappable peak to narrowPeak files
 out_narrowPeak3_fn = human_peak_fn %>% 
   gsub(pattern = 'Corces2020_caudate', replacement = 'Corces2020_caudate_hgMmOrth')
-# outList = mapply(write_GRangesToNarrowPeak,gr = ortholog_peakList, 
-#                  file = out_narrowPeak3_fn, genome = 'hg38')
+outList = mapply(write_GRangesToNarrowPeak,gr = ortholog_peakList,
+                 file = out_narrowPeak3_fn, genome = 'hg38')
 
 ##################################################
 ## export granges list objects for making plots ##

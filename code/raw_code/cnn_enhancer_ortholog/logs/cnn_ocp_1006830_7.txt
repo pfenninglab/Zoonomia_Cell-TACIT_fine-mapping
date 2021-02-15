@@ -1,0 +1,111 @@
+Running cyclical learning rate for Oligo_hgRmMm_enhVsNonEnhOrth.
+One-cycle policy training for 23 epochs.
+Learning rates range: 0.001 - 0.01.
+Momentum rates range: 0.85 - 0.99.
+Dropout: 0.05.
+In training mode.
+There 158908 positives and 130382 negatives.
+There 22170 positives and 18018 negatives.
+Epoch 1/23
+290/290 - 229s - loss: 0.7034 - accuracy: 0.5138 - macro_f1: 0.4971 - val_loss: 0.7023 - val_accuracy: 0.5533 - val_macro_f1: 0.6396
+Epoch 2/23
+290/290 - 228s - loss: 0.6987 - accuracy: 0.5413 - macro_f1: 0.5557 - val_loss: 0.6910 - val_accuracy: 0.5542 - val_macro_f1: 0.5950
+Epoch 3/23
+290/290 - 228s - loss: 0.6923 - accuracy: 0.5504 - macro_f1: 0.5512 - val_loss: 0.6897 - val_accuracy: 0.5589 - val_macro_f1: 0.5898
+Epoch 4/23
+290/290 - 228s - loss: 0.6904 - accuracy: 0.5564 - macro_f1: 0.5630 - val_loss: 0.6887 - val_accuracy: 0.5606 - val_macro_f1: 0.5801
+Epoch 5/23
+290/290 - 229s - loss: 0.6885 - accuracy: 0.5615 - macro_f1: 0.5726 - val_loss: 0.6824 - val_accuracy: 0.5782 - val_macro_f1: 0.6476
+Epoch 6/23
+290/290 - 228s - loss: 0.6856 - accuracy: 0.5723 - macro_f1: 0.5846 - val_loss: 0.6826 - val_accuracy: 0.5833 - val_macro_f1: 0.6025
+Epoch 7/23
+290/290 - 228s - loss: 0.6817 - accuracy: 0.5827 - macro_f1: 0.5984 - val_loss: 0.6807 - val_accuracy: 0.5875 - val_macro_f1: 0.5958
+Epoch 8/23
+290/290 - 228s - loss: 0.6785 - accuracy: 0.5896 - macro_f1: 0.6073 - val_loss: 0.6915 - val_accuracy: 0.5645 - val_macro_f1: 0.5043
+Epoch 9/23
+290/290 - 228s - loss: 0.6766 - accuracy: 0.5940 - macro_f1: 0.6126 - val_loss: 0.6695 - val_accuracy: 0.6032 - val_macro_f1: 0.6952
+Epoch 10/23
+290/290 - 228s - loss: 0.6755 - accuracy: 0.5963 - macro_f1: 0.6147 - val_loss: 0.6701 - val_accuracy: 0.6111 - val_macro_f1: 0.6570
+Epoch 11/23
+290/290 - 229s - loss: 0.6745 - accuracy: 0.5984 - macro_f1: 0.6167 - val_loss: 0.7059 - val_accuracy: 0.5443 - val_macro_f1: 0.4065
+Epoch 12/23
+290/290 - 228s - loss: 0.6739 - accuracy: 0.5997 - macro_f1: 0.6180 - val_loss: 0.6685 - val_accuracy: 0.6106 - val_macro_f1: 0.6520
+Epoch 13/23
+290/290 - 228s - loss: 0.6718 - accuracy: 0.6040 - macro_f1: 0.6232 - val_loss: 0.6707 - val_accuracy: 0.6080 - val_macro_f1: 0.6252
+Epoch 14/23
+290/290 - 228s - loss: 0.6715 - accuracy: 0.6028 - macro_f1: 0.6187 - val_loss: 0.6685 - val_accuracy: 0.6126 - val_macro_f1: 0.6364
+Epoch 15/23
+290/290 - 228s - loss: 0.6692 - accuracy: 0.6072 - macro_f1: 0.6254 - val_loss: 0.6683 - val_accuracy: 0.6127 - val_macro_f1: 0.6309
+Epoch 16/23
+290/290 - 228s - loss: 0.6686 - accuracy: 0.6076 - macro_f1: 0.6221 - val_loss: 0.6741 - val_accuracy: 0.6043 - val_macro_f1: 0.5890
+Epoch 17/23
+290/290 - 228s - loss: 0.6643 - accuracy: 0.6153 - macro_f1: 0.6343 - val_loss: 0.6722 - val_accuracy: 0.6044 - val_macro_f1: 0.5850
+Epoch 18/23
+290/290 - 228s - loss: 0.6626 - accuracy: 0.6176 - macro_f1: 0.6349 - val_loss: 0.6644 - val_accuracy: 0.6191 - val_macro_f1: 0.6224
+Epoch 19/23
+290/290 - 228s - loss: 0.6618 - accuracy: 0.6182 - macro_f1: 0.6342 - val_loss: 0.6771 - val_accuracy: 0.5996 - val_macro_f1: 0.5575
+Epoch 20/23
+290/290 - 228s - loss: 0.6567 - accuracy: 0.6250 - macro_f1: 0.6427 - val_loss: 0.6537 - val_accuracy: 0.6314 - val_macro_f1: 0.6594
+Epoch 21/23
+290/290 - 228s - loss: 0.6605 - accuracy: 0.6180 - macro_f1: 0.6254 - val_loss: 0.6851 - val_accuracy: 0.5741 - val_macro_f1: 0.4777
+Epoch 22/23
+290/290 - 228s - loss: 0.6603 - accuracy: 0.6195 - macro_f1: 0.6276 - val_loss: 0.6714 - val_accuracy: 0.6044 - val_macro_f1: 0.5653
+Epoch 23/23
+290/290 - 228s - loss: 0.6522 - accuracy: 0.6312 - macro_f1: 0.6481 - val_loss: 0.6467 - val_accuracy: 0.6404 - val_macro_f1: 0.6831
+Running cyclical learning rate for Oligo_hgRmMm_enhVsNonEnhOrth.
+One-cycle policy training for 23 epochs.
+Learning rates range: 0.001 - 0.01.
+Momentum rates range: 0.85 - 0.99.
+Dropout: 0.05.
+In evaluation mode.
+Traceback (most recent call last):
+  File "train_singleTask_CNN_classifier_OCP.py", line 274, in <module>
+    main(args)
+  File "train_singleTask_CNN_classifier_OCP.py", line 197, in main
+    (x_valid, y_valid, ids_valid) = encode_sequence2(args.valid_fasta_pos, args.valid_fasta_neg, size = args.seq_length, shuffleOff = True)
+TypeError: encode_sequence2() got an unexpected keyword argument 'size'
+2021-02-14 16:06:46.249413: F ./tensorflow/core/kernels/random_op_gpu.h:232] Non-OK-status: GpuLaunchKernel(FillPhiloxRandomKernelLaunch<Distribution>, num_blocks, block_size, 0, d.stream(), gen, data, size, dist) status: Internal: out of memory
+/var/spool/slurmd/job1009257/slurm_script: line 55:  9116 Aborted                 python train_singleTask_CNN_classifier_OCP.py --mode 'train' --out_dir $DATADIR --conv_width 11 --l2_reg $L2_REG --dropout $DROPOUT --batch_size $BATCH_SIZE --epochs $EPOCHS --numCycles $NUM_CYCLES --base_lr $BASE_LR --max_lr $MAX_LR --base_m $BASE_M --max_m $MAX_M --verbose 2 --cyclical_momentum $LABEL $TRAINPOSFILE $TRAINNEGFILE $VALIDPOSFILE $VALIDNEGFILE
+Running cyclical learning rate for Oligo_hgRmMm_enhVsNonEnhOrth.
+One-cycle policy training for 23 epochs.
+Learning rates range: 0.001 - 0.01.
+Momentum rates range: 0.85 - 0.99.
+Dropout: 0.1.
+In evaluation mode.
+No model found with specified training parameters. Please train model first.
+2021-02-14 16:09:28.360189: F ./tensorflow/core/kernels/random_op_gpu.h:232] Non-OK-status: GpuLaunchKernel(FillPhiloxRandomKernelLaunch<Distribution>, num_blocks, block_size, 0, d.stream(), gen, data, size, dist) status: Internal: out of memory
+/var/spool/slurmd/job1009257/slurm_script: line 55:  9218 Aborted                 python train_singleTask_CNN_classifier_OCP.py --mode 'train' --out_dir $DATADIR --conv_width 11 --l2_reg $L2_REG --dropout $DROPOUT --batch_size $BATCH_SIZE --epochs $EPOCHS --numCycles $NUM_CYCLES --base_lr $BASE_LR --max_lr $MAX_LR --base_m $BASE_M --max_m $MAX_M --verbose 2 --cyclical_momentum $LABEL $TRAINPOSFILE $TRAINNEGFILE $VALIDPOSFILE $VALIDNEGFILE
+Running cyclical learning rate for Oligo_hgRmMm_enhVsNonEnhOrth.
+One-cycle policy training for 23 epochs.
+Learning rates range: 0.001 - 0.01.
+Momentum rates range: 0.85 - 0.99.
+Dropout: 0.15.
+In evaluation mode.
+No model found with specified training parameters. Please train model first.
+2021-02-14 16:12:13.015589: F ./tensorflow/core/kernels/random_op_gpu.h:232] Non-OK-status: GpuLaunchKernel(FillPhiloxRandomKernelLaunch<Distribution>, num_blocks, block_size, 0, d.stream(), gen, data, size, dist) status: Internal: out of memory
+/var/spool/slurmd/job1009257/slurm_script: line 55:  9278 Aborted                 python train_singleTask_CNN_classifier_OCP.py --mode 'train' --out_dir $DATADIR --conv_width 11 --l2_reg $L2_REG --dropout $DROPOUT --batch_size $BATCH_SIZE --epochs $EPOCHS --numCycles $NUM_CYCLES --base_lr $BASE_LR --max_lr $MAX_LR --base_m $BASE_M --max_m $MAX_M --verbose 2 --cyclical_momentum $LABEL $TRAINPOSFILE $TRAINNEGFILE $VALIDPOSFILE $VALIDNEGFILE
+Running cyclical learning rate for Oligo_hgRmMm_enhVsNonEnhOrth.
+One-cycle policy training for 23 epochs.
+Learning rates range: 0.001 - 0.01.
+Momentum rates range: 0.85 - 0.99.
+Dropout: 0.2.
+In evaluation mode.
+No model found with specified training parameters. Please train model first.
+2021-02-14 16:14:55.519335: F ./tensorflow/core/kernels/random_op_gpu.h:232] Non-OK-status: GpuLaunchKernel(FillPhiloxRandomKernelLaunch<Distribution>, num_blocks, block_size, 0, d.stream(), gen, data, size, dist) status: Internal: out of memory
+/var/spool/slurmd/job1009257/slurm_script: line 55:  9344 Aborted                 python train_singleTask_CNN_classifier_OCP.py --mode 'train' --out_dir $DATADIR --conv_width 11 --l2_reg $L2_REG --dropout $DROPOUT --batch_size $BATCH_SIZE --epochs $EPOCHS --numCycles $NUM_CYCLES --base_lr $BASE_LR --max_lr $MAX_LR --base_m $BASE_M --max_m $MAX_M --verbose 2 --cyclical_momentum $LABEL $TRAINPOSFILE $TRAINNEGFILE $VALIDPOSFILE $VALIDNEGFILE
+Running cyclical learning rate for Oligo_hgRmMm_enhVsNonEnhOrth.
+One-cycle policy training for 23 epochs.
+Learning rates range: 0.001 - 0.01.
+Momentum rates range: 0.85 - 0.99.
+Dropout: 0.25.
+In evaluation mode.
+No model found with specified training parameters. Please train model first.
+2021-02-14 16:17:35.363677: F ./tensorflow/core/kernels/random_op_gpu.h:232] Non-OK-status: GpuLaunchKernel(FillPhiloxRandomKernelLaunch<Distribution>, num_blocks, block_size, 0, d.stream(), gen, data, size, dist) status: Internal: out of memory
+/var/spool/slurmd/job1009257/slurm_script: line 55:  9405 Aborted                 python train_singleTask_CNN_classifier_OCP.py --mode 'train' --out_dir $DATADIR --conv_width 11 --l2_reg $L2_REG --dropout $DROPOUT --batch_size $BATCH_SIZE --epochs $EPOCHS --numCycles $NUM_CYCLES --base_lr $BASE_LR --max_lr $MAX_LR --base_m $BASE_M --max_m $MAX_M --verbose 2 --cyclical_momentum $LABEL $TRAINPOSFILE $TRAINNEGFILE $VALIDPOSFILE $VALIDNEGFILE
+Running cyclical learning rate for Oligo_hgRmMm_enhVsNonEnhOrth.
+One-cycle policy training for 23 epochs.
+Learning rates range: 0.001 - 0.01.
+Momentum rates range: 0.85 - 0.99.
+Dropout: 0.3.
+In evaluation mode.
+No model found with specified training parameters. Please train model first.

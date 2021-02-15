@@ -1,0 +1,48 @@
+  File "train_singleTask_CNN_classifier_OCP.py", line 152
+    break
+    ^
+SyntaxError: 'break' outside loop
+  File "train_singleTask_CNN_classifier_OCP.py", line 152
+    break
+    ^
+SyntaxError: 'break' outside loop
+  File "train_singleTask_CNN_classifier_OCP.py", line 152
+    break
+    ^
+SyntaxError: 'break' outside loop
+  File "train_singleTask_CNN_classifier_OCP.py", line 152
+    break
+    ^
+SyntaxError: 'break' outside loop
+  File "train_singleTask_CNN_classifier_OCP.py", line 152
+    break
+    ^
+SyntaxError: 'break' outside loop
+  File "train_singleTask_CNN_classifier_OCP.py", line 152
+    break
+    ^
+SyntaxError: 'break' outside loop
+  File "train_singleTask_CNN_classifier_OCP.py", line 152
+    break
+    ^
+SyntaxError: 'break' outside loop
+  File "train_singleTask_CNN_classifier_OCP.py", line 152
+    break
+    ^
+SyntaxError: 'break' outside loop
+  File "train_singleTask_CNN_classifier_OCP.py", line 152
+    break
+    ^
+SyntaxError: 'break' outside loop
+  File "train_singleTask_CNN_classifier_OCP.py", line 152
+    break
+    ^
+SyntaxError: 'break' outside loop
+  File "train_singleTask_CNN_classifier_OCP.py", line 152
+    break
+    ^
+SyntaxError: 'break' outside loop
+  File "train_singleTask_CNN_classifier_OCP.py", line 152
+    break
+    ^
+SyntaxError: 'break' outside loop

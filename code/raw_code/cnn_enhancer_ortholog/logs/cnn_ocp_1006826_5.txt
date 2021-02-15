@@ -1,0 +1,161 @@
+Running cyclical learning rate for Astro_hgRmMm_enhVsNonEnhOrth.
+One-cycle policy training for 23 epochs.
+Learning rates range: 0.01 - 0.1.
+Momentum rates range: 0.85 - 0.99.
+Dropout: 0.05.
+In training mode.
+Model exists w/o permission to overwrite. Use --force to overwrite.
+Running cyclical learning rate for Astro_hgRmMm_enhVsNonEnhOrth.
+One-cycle policy training for 23 epochs.
+Learning rates range: 0.01 - 0.1.
+Momentum rates range: 0.85 - 0.99.
+Dropout: 0.05.
+In evaluation mode.
+There 33166 positives and 25686 negatives.
+59/59 - 8s
+Accuracy: 0.6384476185846549. 
+f1_score: 0.6349156245324672.
+roc_auc: 0.6943182567894709.
+prc_auc: 0.7286003499154797.
+Running cyclical learning rate for Astro_hgRmMm_enhVsNonEnhOrth.
+One-cycle policy training for 23 epochs.
+Learning rates range: 0.01 - 0.1.
+Momentum rates range: 0.85 - 0.99.
+Dropout: 0.1.
+In training mode.
+Model exists w/o permission to overwrite. Use --force to overwrite.
+Running cyclical learning rate for Astro_hgRmMm_enhVsNonEnhOrth.
+One-cycle policy training for 23 epochs.
+Learning rates range: 0.01 - 0.1.
+Momentum rates range: 0.85 - 0.99.
+Dropout: 0.1.
+In evaluation mode.
+There 33166 positives and 25686 negatives.
+59/59 - 8s
+Accuracy: 0.6593135968161666. 
+f1_score: 0.662119872530476.
+roc_auc: 0.7171760765086048.
+prc_auc: 0.7501413841071666.
+Running cyclical learning rate for Astro_hgRmMm_enhVsNonEnhOrth.
+One-cycle policy training for 23 epochs.
+Learning rates range: 0.01 - 0.1.
+Momentum rates range: 0.85 - 0.99.
+Dropout: 0.15.
+In training mode.
+Model exists w/o permission to overwrite. Use --force to overwrite.
+Running cyclical learning rate for Astro_hgRmMm_enhVsNonEnhOrth.
+One-cycle policy training for 23 epochs.
+Learning rates range: 0.01 - 0.1.
+Momentum rates range: 0.85 - 0.99.
+Dropout: 0.15.
+In evaluation mode.
+There 33166 positives and 25686 negatives.
+59/59 - 8s
+Accuracy: 0.6692731581682771. 
+f1_score: 0.6705384399409693.
+roc_auc: 0.7317599233693904.
+prc_auc: 0.763019570077799.
+Running cyclical learning rate for Astro_hgRmMm_enhVsNonEnhOrth.
+One-cycle policy training for 23 epochs.
+Learning rates range: 0.01 - 0.1.
+Momentum rates range: 0.85 - 0.99.
+Dropout: 0.2.
+In training mode.
+Model exists w/o permission to overwrite. Use --force to overwrite.
+Running cyclical learning rate for Astro_hgRmMm_enhVsNonEnhOrth.
+One-cycle policy training for 23 epochs.
+Learning rates range: 0.01 - 0.1.
+Momentum rates range: 0.85 - 0.99.
+Dropout: 0.2.
+In evaluation mode.
+There 33166 positives and 25686 negatives.
+59/59 - 8s
+Accuracy: 0.6527367302099942. 
+f1_score: 0.6330185619125461.
+roc_auc: 0.7287479761342843.
+prc_auc: 0.7593554126141542.
+Running cyclical learning rate for Astro_hgRmMm_enhVsNonEnhOrth.
+One-cycle policy training for 23 epochs.
+Learning rates range: 0.01 - 0.1.
+Momentum rates range: 0.85 - 0.99.
+Dropout: 0.25.
+In training mode.
+Model exists w/o permission to overwrite. Use --force to overwrite.
+Running cyclical learning rate for Astro_hgRmMm_enhVsNonEnhOrth.
+One-cycle policy training for 23 epochs.
+Learning rates range: 0.01 - 0.1.
+Momentum rates range: 0.85 - 0.99.
+Dropout: 0.25.
+In evaluation mode.
+There 33166 positives and 25686 negatives.
+59/59 - 8s
+Accuracy: 0.6579238346459516. 
+f1_score: 0.6465616871996306.
+roc_auc: 0.7280343628448589.
+prc_auc: 0.7603900663921079.
+Running cyclical learning rate for Astro_hgRmMm_enhVsNonEnhOrth.
+One-cycle policy training for 23 epochs.
+Learning rates range: 0.01 - 0.1.
+Momentum rates range: 0.85 - 0.99.
+Dropout: 0.3.
+In training mode.
+There 239306 positives and 185294 negatives.
+There 33166 positives and 25686 negatives.
+Epoch 1/23
+425/425 - 263s - loss: 0.6950 - accuracy: 0.5388 - macro_f1: 0.5179 - val_loss: 0.7196 - val_accuracy: 0.4620 - val_macro_f1: 0.1237
+Epoch 2/23
+425/425 - 261s - loss: 0.6797 - accuracy: 0.5837 - macro_f1: 0.5987 - val_loss: 0.7416 - val_accuracy: 0.4937 - val_macro_f1: 0.2473
+Epoch 3/23
+425/425 - 261s - loss: 0.6705 - accuracy: 0.6039 - macro_f1: 0.6236 - val_loss: 0.6678 - val_accuracy: 0.6194 - val_macro_f1: 0.6437
+Epoch 4/23
+425/425 - 261s - loss: 0.6705 - accuracy: 0.6045 - macro_f1: 0.6222 - val_loss: 0.6800 - val_accuracy: 0.5877 - val_macro_f1: 0.5517
+Epoch 5/23
+425/425 - 261s - loss: 0.6661 - accuracy: 0.6118 - macro_f1: 0.6324 - val_loss: 0.6710 - val_accuracy: 0.6086 - val_macro_f1: 0.6089
+Epoch 6/23
+425/425 - 261s - loss: 0.6617 - accuracy: 0.6185 - macro_f1: 0.6410 - val_loss: 0.6508 - val_accuracy: 0.6394 - val_macro_f1: 0.6825
+Epoch 7/23
+425/425 - 261s - loss: 0.6578 - accuracy: 0.6241 - macro_f1: 0.6474 - val_loss: 0.6511 - val_accuracy: 0.6397 - val_macro_f1: 0.6796
+Epoch 8/23
+425/425 - 260s - loss: 0.6555 - accuracy: 0.6274 - macro_f1: 0.6511 - val_loss: 0.6644 - val_accuracy: 0.6125 - val_macro_f1: 0.5937
+Epoch 9/23
+425/425 - 260s - loss: 0.6536 - accuracy: 0.6298 - macro_f1: 0.6526 - val_loss: 0.6964 - val_accuracy: 0.5354 - val_macro_f1: 0.3701
+Epoch 10/23
+425/425 - 260s - loss: 0.6505 - accuracy: 0.6339 - macro_f1: 0.6582 - val_loss: 0.6503 - val_accuracy: 0.6322 - val_macro_f1: 0.6338
+Epoch 11/23
+425/425 - 260s - loss: 0.6479 - accuracy: 0.6372 - macro_f1: 0.6615 - val_loss: 0.6462 - val_accuracy: 0.6504 - val_macro_f1: 0.6798
+Epoch 12/23
+425/425 - 260s - loss: 0.6464 - accuracy: 0.6388 - macro_f1: 0.6625 - val_loss: 0.6617 - val_accuracy: 0.6101 - val_macro_f1: 0.5731
+Epoch 13/23
+425/425 - 260s - loss: 0.6442 - accuracy: 0.6413 - macro_f1: 0.6654 - val_loss: 0.6382 - val_accuracy: 0.6470 - val_macro_f1: 0.7442
+Epoch 14/23
+425/425 - 260s - loss: 0.6418 - accuracy: 0.6443 - macro_f1: 0.6688 - val_loss: 0.6384 - val_accuracy: 0.6436 - val_macro_f1: 0.7440
+Epoch 15/23
+425/425 - 260s - loss: 0.6396 - accuracy: 0.6468 - macro_f1: 0.6716 - val_loss: 0.6332 - val_accuracy: 0.6635 - val_macro_f1: 0.7374
+Epoch 16/23
+425/425 - 260s - loss: 0.6375 - accuracy: 0.6492 - macro_f1: 0.6751 - val_loss: 0.6519 - val_accuracy: 0.6245 - val_macro_f1: 0.6010
+Epoch 17/23
+425/425 - 260s - loss: 0.6348 - accuracy: 0.6526 - macro_f1: 0.6786 - val_loss: 0.6234 - val_accuracy: 0.6723 - val_macro_f1: 0.7371
+Epoch 18/23
+425/425 - 260s - loss: 0.6320 - accuracy: 0.6563 - macro_f1: 0.6835 - val_loss: 0.6351 - val_accuracy: 0.6525 - val_macro_f1: 0.6614
+Epoch 19/23
+425/425 - 260s - loss: 0.6325 - accuracy: 0.6547 - macro_f1: 0.6811 - val_loss: 0.6432 - val_accuracy: 0.6389 - val_macro_f1: 0.6299
+Epoch 20/23
+425/425 - 260s - loss: 0.6295 - accuracy: 0.6578 - macro_f1: 0.6851 - val_loss: 0.6243 - val_accuracy: 0.6647 - val_macro_f1: 0.6923
+Epoch 21/23
+425/425 - 260s - loss: 0.6277 - accuracy: 0.6599 - macro_f1: 0.6873 - val_loss: 0.6271 - val_accuracy: 0.6631 - val_macro_f1: 0.6818
+Epoch 22/23
+425/425 - 259s - loss: 0.6314 - accuracy: 0.6556 - macro_f1: 0.6798 - val_loss: 0.6153 - val_accuracy: 0.6777 - val_macro_f1: 0.7341
+Epoch 23/23
+425/425 - 259s - loss: 0.6221 - accuracy: 0.6660 - macro_f1: 0.6936 - val_loss: 0.6226 - val_accuracy: 0.6675 - val_macro_f1: 0.6911
+Running cyclical learning rate for Astro_hgRmMm_enhVsNonEnhOrth.
+One-cycle policy training for 23 epochs.
+Learning rates range: 0.01 - 0.1.
+Momentum rates range: 0.85 - 0.99.
+Dropout: 0.3.
+In evaluation mode.
+Traceback (most recent call last):
+  File "train_singleTask_CNN_classifier_OCP.py", line 274, in <module>
+    main(args)
+  File "train_singleTask_CNN_classifier_OCP.py", line 197, in main
+    (x_valid, y_valid, ids_valid) = encode_sequence2(args.valid_fasta_pos, args.valid_fasta_neg, size = args.seq_length, shuffleOff = True)
+TypeError: encode_sequence2() got an unexpected keyword argument 'size'

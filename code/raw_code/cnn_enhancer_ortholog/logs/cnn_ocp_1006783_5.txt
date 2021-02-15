@@ -1,0 +1,330 @@
+Running cyclical learning rate for Astro_hgRmMm_enhVsNonEnhOrth.
+One-cycle policy training for 23 epochs.
+Learning rates range: 0.01 - 0.1.
+Momentum rates range: 0.85 - 0.99.
+Dropout: 0.05.
+In training mode.
+There 239306 positives and 185294 negatives.
+There 33166 positives and 25686 negatives.
+Epoch 1/23
+425/425 - 335s - loss: 0.6833 - accuracy: 0.5412 - macro_f1: 0.5126 - val_loss: 0.6691 - val_accuracy: 0.5832 - val_macro_f1: 0.6110
+Epoch 2/23
+425/425 - 333s - loss: 0.6674 - accuracy: 0.5880 - macro_f1: 0.6029 - val_loss: 0.6468 - val_accuracy: 0.6272 - val_macro_f1: 0.7146
+Epoch 3/23
+425/425 - 333s - loss: 0.6598 - accuracy: 0.6060 - macro_f1: 0.6270 - val_loss: 0.6411 - val_accuracy: 0.6365 - val_macro_f1: 0.6898
+Epoch 4/23
+425/425 - 334s - loss: 0.6537 - accuracy: 0.6144 - macro_f1: 0.6354 - val_loss: 0.6599 - val_accuracy: 0.6010 - val_macro_f1: 0.5754
+Epoch 5/23
+425/425 - 335s - loss: 0.6465 - accuracy: 0.6254 - macro_f1: 0.6470 - val_loss: 0.6601 - val_accuracy: 0.6002 - val_macro_f1: 0.5604
+Epoch 6/23
+425/425 - 335s - loss: 0.6431 - accuracy: 0.6305 - macro_f1: 0.6529 - val_loss: 0.6354 - val_accuracy: 0.6410 - val_macro_f1: 0.6694
+Epoch 7/23
+425/425 - 335s - loss: 0.6377 - accuracy: 0.6375 - macro_f1: 0.6618 - val_loss: 0.6291 - val_accuracy: 0.6522 - val_macro_f1: 0.6828
+Epoch 8/23
+425/425 - 335s - loss: 0.6338 - accuracy: 0.6426 - macro_f1: 0.6673 - val_loss: 0.6207 - val_accuracy: 0.6600 - val_macro_f1: 0.7207
+Epoch 9/23
+425/425 - 335s - loss: 0.6288 - accuracy: 0.6482 - macro_f1: 0.6732 - val_loss: 0.6190 - val_accuracy: 0.6625 - val_macro_f1: 0.7095
+Epoch 10/23
+425/425 - 335s - loss: 0.6268 - accuracy: 0.6507 - macro_f1: 0.6752 - val_loss: 0.6233 - val_accuracy: 0.6545 - val_macro_f1: 0.6799
+Epoch 11/23
+425/425 - 335s - loss: 0.6231 - accuracy: 0.6549 - macro_f1: 0.6791 - val_loss: 0.6482 - val_accuracy: 0.6237 - val_macro_f1: 0.5992
+Epoch 12/23
+425/425 - 335s - loss: 0.6155 - accuracy: 0.6632 - macro_f1: 0.6889 - val_loss: 0.6112 - val_accuracy: 0.6694 - val_macro_f1: 0.7091
+Epoch 13/23
+425/425 - 336s - loss: 0.6133 - accuracy: 0.6643 - macro_f1: 0.6892 - val_loss: 0.6096 - val_accuracy: 0.6708 - val_macro_f1: 0.7402
+Epoch 14/23
+425/425 - 336s - loss: 0.6071 - accuracy: 0.6707 - macro_f1: 0.6954 - val_loss: 0.6099 - val_accuracy: 0.6691 - val_macro_f1: 0.7304
+Epoch 15/23
+425/425 - 336s - loss: 0.6030 - accuracy: 0.6758 - macro_f1: 0.7003 - val_loss: 0.6223 - val_accuracy: 0.6548 - val_macro_f1: 0.6702
+Epoch 16/23
+425/425 - 336s - loss: 0.5951 - accuracy: 0.6819 - macro_f1: 0.7065 - val_loss: 0.6436 - val_accuracy: 0.6379 - val_macro_f1: 0.6300
+Epoch 17/23
+425/425 - 336s - loss: 0.5891 - accuracy: 0.6878 - macro_f1: 0.7119 - val_loss: 0.6341 - val_accuracy: 0.6461 - val_macro_f1: 0.6470
+Epoch 18/23
+425/425 - 336s - loss: 0.5837 - accuracy: 0.6920 - macro_f1: 0.7149 - val_loss: 0.6344 - val_accuracy: 0.6377 - val_macro_f1: 0.6365
+Epoch 19/23
+425/425 - 336s - loss: 0.5792 - accuracy: 0.6953 - macro_f1: 0.7176 - val_loss: 0.6462 - val_accuracy: 0.6308 - val_macro_f1: 0.6201
+Epoch 20/23
+425/425 - 336s - loss: 0.5775 - accuracy: 0.6971 - macro_f1: 0.7195 - val_loss: 0.6186 - val_accuracy: 0.6604 - val_macro_f1: 0.7051
+Epoch 21/23
+425/425 - 338s - loss: 0.5607 - accuracy: 0.7111 - macro_f1: 0.7337 - val_loss: 0.6484 - val_accuracy: 0.6317 - val_macro_f1: 0.6302
+Epoch 22/23
+425/425 - 338s - loss: 0.5457 - accuracy: 0.7235 - macro_f1: 0.7462 - val_loss: 0.6265 - val_accuracy: 0.6571 - val_macro_f1: 0.7152
+Epoch 23/23
+425/425 - 338s - loss: 0.5334 - accuracy: 0.7317 - macro_f1: 0.7531 - val_loss: 0.6685 - val_accuracy: 0.6336 - val_macro_f1: 0.6485
+Running cyclical learning rate for Astro_hgRmMm_enhVsNonEnhOrth.
+One-cycle policy training for 23 epochs.
+Learning rates range: 0.01 - 0.1.
+Momentum rates range: 0.85 - 0.99.
+Dropout: 0.05.
+In evaluation mode.
+There 33166 positives and 25686 negatives.
+59/59 - 11s
+Accuracy: 0.6384476185846549. 
+f1_score: 0.6349156245324672.
+roc_auc: 0.6943182567894709.
+prc_auc: 0.7286003499154797.
+Running cyclical learning rate for Astro_hgRmMm_enhVsNonEnhOrth.
+One-cycle policy training for 23 epochs.
+Learning rates range: 0.01 - 0.1.
+Momentum rates range: 0.85 - 0.99.
+Dropout: 0.1.
+In training mode.
+There 239306 positives and 185294 negatives.
+There 33166 positives and 25686 negatives.
+Epoch 1/23
+425/425 - 336s - loss: 0.6830 - accuracy: 0.5444 - macro_f1: 0.5266 - val_loss: 0.6685 - val_accuracy: 0.5853 - val_macro_f1: 0.6044
+Epoch 2/23
+425/425 - 334s - loss: 0.6669 - accuracy: 0.5907 - macro_f1: 0.6083 - val_loss: 0.6579 - val_accuracy: 0.6114 - val_macro_f1: 0.6446
+Epoch 3/23
+425/425 - 335s - loss: 0.6606 - accuracy: 0.6040 - macro_f1: 0.6238 - val_loss: 0.6472 - val_accuracy: 0.6313 - val_macro_f1: 0.6972
+Epoch 4/23
+425/425 - 335s - loss: 0.6561 - accuracy: 0.6104 - macro_f1: 0.6319 - val_loss: 0.6459 - val_accuracy: 0.6292 - val_macro_f1: 0.6599
+Epoch 5/23
+425/425 - 335s - loss: 0.6506 - accuracy: 0.6204 - macro_f1: 0.6430 - val_loss: 0.6398 - val_accuracy: 0.6384 - val_macro_f1: 0.7215
+Epoch 6/23
+425/425 - 335s - loss: 0.6450 - accuracy: 0.6286 - macro_f1: 0.6527 - val_loss: 0.6581 - val_accuracy: 0.6062 - val_macro_f1: 0.5762
+Epoch 7/23
+425/425 - 335s - loss: 0.6412 - accuracy: 0.6332 - macro_f1: 0.6581 - val_loss: 0.6300 - val_accuracy: 0.6539 - val_macro_f1: 0.7210
+Epoch 8/23
+425/425 - 335s - loss: 0.6376 - accuracy: 0.6383 - macro_f1: 0.6633 - val_loss: 0.6391 - val_accuracy: 0.6381 - val_macro_f1: 0.7412
+Epoch 9/23
+425/425 - 335s - loss: 0.6339 - accuracy: 0.6420 - macro_f1: 0.6672 - val_loss: 0.6199 - val_accuracy: 0.6591 - val_macro_f1: 0.7362
+Epoch 10/23
+425/425 - 337s - loss: 0.6308 - accuracy: 0.6471 - macro_f1: 0.6725 - val_loss: 0.6505 - val_accuracy: 0.6208 - val_macro_f1: 0.5967
+Epoch 11/23
+425/425 - 338s - loss: 0.6256 - accuracy: 0.6518 - macro_f1: 0.6773 - val_loss: 0.6154 - val_accuracy: 0.6678 - val_macro_f1: 0.7146
+Epoch 12/23
+425/425 - 338s - loss: 0.6206 - accuracy: 0.6575 - macro_f1: 0.6838 - val_loss: 0.6111 - val_accuracy: 0.6701 - val_macro_f1: 0.7170
+Epoch 13/23
+425/425 - 337s - loss: 0.6194 - accuracy: 0.6586 - macro_f1: 0.6841 - val_loss: 0.6107 - val_accuracy: 0.6706 - val_macro_f1: 0.7126
+Epoch 14/23
+425/425 - 338s - loss: 0.6150 - accuracy: 0.6631 - macro_f1: 0.6883 - val_loss: 0.6241 - val_accuracy: 0.6525 - val_macro_f1: 0.6658
+Epoch 15/23
+425/425 - 339s - loss: 0.6086 - accuracy: 0.6693 - macro_f1: 0.6956 - val_loss: 0.6071 - val_accuracy: 0.6751 - val_macro_f1: 0.7252
+Epoch 16/23
+425/425 - 339s - loss: 0.6072 - accuracy: 0.6712 - macro_f1: 0.6963 - val_loss: 0.6041 - val_accuracy: 0.6756 - val_macro_f1: 0.7329
+Epoch 17/23
+425/425 - 339s - loss: 0.6035 - accuracy: 0.6744 - macro_f1: 0.6991 - val_loss: 0.6064 - val_accuracy: 0.6740 - val_macro_f1: 0.7374
+Epoch 18/23
+425/425 - 339s - loss: 0.5966 - accuracy: 0.6811 - macro_f1: 0.7070 - val_loss: 0.6294 - val_accuracy: 0.6472 - val_macro_f1: 0.6480
+Epoch 19/23
+425/425 - 339s - loss: 0.5942 - accuracy: 0.6825 - macro_f1: 0.7070 - val_loss: 0.6368 - val_accuracy: 0.6403 - val_macro_f1: 0.6306
+Epoch 20/23
+425/425 - 339s - loss: 0.5939 - accuracy: 0.6823 - macro_f1: 0.7055 - val_loss: 0.6338 - val_accuracy: 0.6423 - val_macro_f1: 0.6425
+Epoch 21/23
+425/425 - 339s - loss: 0.5829 - accuracy: 0.6929 - macro_f1: 0.7177 - val_loss: 0.6070 - val_accuracy: 0.6743 - val_macro_f1: 0.7342
+Epoch 22/23
+425/425 - 339s - loss: 0.5777 - accuracy: 0.6969 - macro_f1: 0.7203 - val_loss: 0.6085 - val_accuracy: 0.6731 - val_macro_f1: 0.7267
+Epoch 23/23
+425/425 - 339s - loss: 0.5657 - accuracy: 0.7080 - macro_f1: 0.7320 - val_loss: 0.6177 - val_accuracy: 0.6611 - val_macro_f1: 0.6914
+Running cyclical learning rate for Astro_hgRmMm_enhVsNonEnhOrth.
+One-cycle policy training for 23 epochs.
+Learning rates range: 0.01 - 0.1.
+Momentum rates range: 0.85 - 0.99.
+Dropout: 0.1.
+In evaluation mode.
+There 33166 positives and 25686 negatives.
+59/59 - 11s
+Accuracy: 0.6593135968161666. 
+f1_score: 0.662119872530476.
+roc_auc: 0.7171760765086048.
+prc_auc: 0.7501413841071666.
+Running cyclical learning rate for Astro_hgRmMm_enhVsNonEnhOrth.
+One-cycle policy training for 23 epochs.
+Learning rates range: 0.01 - 0.1.
+Momentum rates range: 0.85 - 0.99.
+Dropout: 0.15.
+In training mode.
+There 239306 positives and 185294 negatives.
+There 33166 positives and 25686 negatives.
+Epoch 1/23
+425/425 - 335s - loss: 0.6838 - accuracy: 0.5403 - macro_f1: 0.5186 - val_loss: 0.6762 - val_accuracy: 0.5685 - val_macro_f1: 0.5622
+Epoch 2/23
+425/425 - 333s - loss: 0.6677 - accuracy: 0.5870 - macro_f1: 0.6033 - val_loss: 0.6579 - val_accuracy: 0.6121 - val_macro_f1: 0.6243
+Epoch 3/23
+425/425 - 335s - loss: 0.6658 - accuracy: 0.5926 - macro_f1: 0.6070 - val_loss: 0.6561 - val_accuracy: 0.6131 - val_macro_f1: 0.6341
+Epoch 4/23
+425/425 - 337s - loss: 0.6576 - accuracy: 0.6083 - macro_f1: 0.6270 - val_loss: 0.6438 - val_accuracy: 0.6366 - val_macro_f1: 0.6969
+Epoch 5/23
+425/425 - 338s - loss: 0.6548 - accuracy: 0.6130 - macro_f1: 0.6342 - val_loss: 0.6476 - val_accuracy: 0.6299 - val_macro_f1: 0.6619
+Epoch 6/23
+425/425 - 338s - loss: 0.6515 - accuracy: 0.6187 - macro_f1: 0.6415 - val_loss: 0.6622 - val_accuracy: 0.5996 - val_macro_f1: 0.5753
+Epoch 7/23
+425/425 - 337s - loss: 0.6471 - accuracy: 0.6241 - macro_f1: 0.6474 - val_loss: 0.6337 - val_accuracy: 0.6431 - val_macro_f1: 0.7338
+Epoch 8/23
+425/425 - 337s - loss: 0.6442 - accuracy: 0.6289 - macro_f1: 0.6528 - val_loss: 0.6278 - val_accuracy: 0.6505 - val_macro_f1: 0.7327
+Epoch 9/23
+425/425 - 337s - loss: 0.6400 - accuracy: 0.6342 - macro_f1: 0.6584 - val_loss: 0.6433 - val_accuracy: 0.6301 - val_macro_f1: 0.6303
+Epoch 10/23
+425/425 - 337s - loss: 0.6372 - accuracy: 0.6387 - macro_f1: 0.6622 - val_loss: 0.6638 - val_accuracy: 0.5929 - val_macro_f1: 0.5387
+Epoch 11/23
+425/425 - 337s - loss: 0.6358 - accuracy: 0.6402 - macro_f1: 0.6640 - val_loss: 0.6193 - val_accuracy: 0.6586 - val_macro_f1: 0.7346
+Epoch 12/23
+425/425 - 337s - loss: 0.6320 - accuracy: 0.6450 - macro_f1: 0.6697 - val_loss: 0.6342 - val_accuracy: 0.6394 - val_macro_f1: 0.6432
+Epoch 13/23
+425/425 - 337s - loss: 0.6274 - accuracy: 0.6489 - macro_f1: 0.6747 - val_loss: 0.6634 - val_accuracy: 0.5918 - val_macro_f1: 0.5233
+Epoch 14/23
+425/425 - 337s - loss: 0.6241 - accuracy: 0.6531 - macro_f1: 0.6790 - val_loss: 0.6254 - val_accuracy: 0.6528 - val_macro_f1: 0.6715
+Epoch 15/23
+425/425 - 337s - loss: 0.6242 - accuracy: 0.6538 - macro_f1: 0.6780 - val_loss: 0.6256 - val_accuracy: 0.6499 - val_macro_f1: 0.6608
+Epoch 16/23
+425/425 - 338s - loss: 0.6186 - accuracy: 0.6598 - macro_f1: 0.6859 - val_loss: 0.6113 - val_accuracy: 0.6694 - val_macro_f1: 0.7090
+Epoch 17/23
+425/425 - 338s - loss: 0.6171 - accuracy: 0.6617 - macro_f1: 0.6873 - val_loss: 0.6091 - val_accuracy: 0.6728 - val_macro_f1: 0.7227
+Epoch 18/23
+425/425 - 338s - loss: 0.6152 - accuracy: 0.6622 - macro_f1: 0.6870 - val_loss: 0.6148 - val_accuracy: 0.6655 - val_macro_f1: 0.6971
+Epoch 19/23
+425/425 - 338s - loss: 0.6121 - accuracy: 0.6663 - macro_f1: 0.6920 - val_loss: 0.6247 - val_accuracy: 0.6490 - val_macro_f1: 0.6510
+Epoch 20/23
+425/425 - 338s - loss: 0.6075 - accuracy: 0.6707 - macro_f1: 0.6966 - val_loss: 0.6029 - val_accuracy: 0.6764 - val_macro_f1: 0.7312
+Epoch 21/23
+425/425 - 338s - loss: 0.6086 - accuracy: 0.6695 - macro_f1: 0.6938 - val_loss: 0.6410 - val_accuracy: 0.6295 - val_macro_f1: 0.6071
+Epoch 22/23
+425/425 - 338s - loss: 0.6037 - accuracy: 0.6736 - macro_f1: 0.6984 - val_loss: 0.6035 - val_accuracy: 0.6758 - val_macro_f1: 0.7131
+Epoch 23/23
+425/425 - 337s - loss: 0.5979 - accuracy: 0.6793 - macro_f1: 0.7040 - val_loss: 0.6071 - val_accuracy: 0.6694 - val_macro_f1: 0.6953
+Running cyclical learning rate for Astro_hgRmMm_enhVsNonEnhOrth.
+One-cycle policy training for 23 epochs.
+Learning rates range: 0.01 - 0.1.
+Momentum rates range: 0.85 - 0.99.
+Dropout: 0.15.
+In evaluation mode.
+There 33166 positives and 25686 negatives.
+59/59 - 11s
+Accuracy: 0.6692731581682771. 
+f1_score: 0.6705384399409693.
+roc_auc: 0.7317599233693904.
+prc_auc: 0.763019570077799.
+Running cyclical learning rate for Astro_hgRmMm_enhVsNonEnhOrth.
+One-cycle policy training for 23 epochs.
+Learning rates range: 0.01 - 0.1.
+Momentum rates range: 0.85 - 0.99.
+Dropout: 0.2.
+In training mode.
+There 239306 positives and 185294 negatives.
+There 33166 positives and 25686 negatives.
+Epoch 1/23
+425/425 - 336s - loss: 0.6853 - accuracy: 0.5374 - macro_f1: 0.5189 - val_loss: 0.6869 - val_accuracy: 0.5397 - val_macro_f1: 0.4474
+Epoch 2/23
+425/425 - 333s - loss: 0.6702 - accuracy: 0.5818 - macro_f1: 0.5925 - val_loss: 0.6530 - val_accuracy: 0.6216 - val_macro_f1: 0.6755
+Epoch 3/23
+425/425 - 333s - loss: 0.6620 - accuracy: 0.6003 - macro_f1: 0.6186 - val_loss: 0.6987 - val_accuracy: 0.5316 - val_macro_f1: 0.3697
+Epoch 4/23
+425/425 - 333s - loss: 0.6574 - accuracy: 0.6091 - macro_f1: 0.6299 - val_loss: 0.6753 - val_accuracy: 0.5696 - val_macro_f1: 0.4961
+Epoch 5/23
+425/425 - 333s - loss: 0.6541 - accuracy: 0.6151 - macro_f1: 0.6374 - val_loss: 0.6571 - val_accuracy: 0.6130 - val_macro_f1: 0.6099
+Epoch 6/23
+425/425 - 334s - loss: 0.6495 - accuracy: 0.6224 - macro_f1: 0.6460 - val_loss: 0.6418 - val_accuracy: 0.6358 - val_macro_f1: 0.7297
+Epoch 7/23
+425/425 - 335s - loss: 0.6482 - accuracy: 0.6234 - macro_f1: 0.6462 - val_loss: 0.6334 - val_accuracy: 0.6446 - val_macro_f1: 0.6936
+Epoch 8/23
+425/425 - 335s - loss: 0.6434 - accuracy: 0.6303 - macro_f1: 0.6541 - val_loss: 0.6383 - val_accuracy: 0.6459 - val_macro_f1: 0.6892
+Epoch 9/23
+425/425 - 335s - loss: 0.6412 - accuracy: 0.6330 - macro_f1: 0.6573 - val_loss: 0.6428 - val_accuracy: 0.6314 - val_macro_f1: 0.6343
+Epoch 10/23
+425/425 - 335s - loss: 0.6370 - accuracy: 0.6383 - macro_f1: 0.6628 - val_loss: 0.6340 - val_accuracy: 0.6401 - val_macro_f1: 0.6502
+Epoch 11/23
+425/425 - 335s - loss: 0.6351 - accuracy: 0.6410 - macro_f1: 0.6647 - val_loss: 0.6520 - val_accuracy: 0.6134 - val_macro_f1: 0.5829
+Epoch 12/23
+425/425 - 336s - loss: 0.6337 - accuracy: 0.6421 - macro_f1: 0.6656 - val_loss: 0.6339 - val_accuracy: 0.6474 - val_macro_f1: 0.6674
+Epoch 13/23
+425/425 - 336s - loss: 0.6298 - accuracy: 0.6465 - macro_f1: 0.6715 - val_loss: 0.6196 - val_accuracy: 0.6625 - val_macro_f1: 0.7396
+Epoch 14/23
+425/425 - 336s - loss: 0.6279 - accuracy: 0.6493 - macro_f1: 0.6735 - val_loss: 0.6289 - val_accuracy: 0.6458 - val_macro_f1: 0.6556
+Epoch 15/23
+425/425 - 337s - loss: 0.6263 - accuracy: 0.6510 - macro_f1: 0.6758 - val_loss: 0.6226 - val_accuracy: 0.6544 - val_macro_f1: 0.6709
+Epoch 16/23
+425/425 - 337s - loss: 0.6217 - accuracy: 0.6563 - macro_f1: 0.6824 - val_loss: 0.6479 - val_accuracy: 0.6212 - val_macro_f1: 0.5879
+Epoch 17/23
+425/425 - 337s - loss: 0.6192 - accuracy: 0.6586 - macro_f1: 0.6850 - val_loss: 0.6354 - val_accuracy: 0.6385 - val_macro_f1: 0.6299
+Epoch 18/23
+425/425 - 338s - loss: 0.6183 - accuracy: 0.6595 - macro_f1: 0.6845 - val_loss: 0.6417 - val_accuracy: 0.6238 - val_macro_f1: 0.5927
+Epoch 19/23
+425/425 - 338s - loss: 0.6141 - accuracy: 0.6640 - macro_f1: 0.6905 - val_loss: 0.6156 - val_accuracy: 0.6619 - val_macro_f1: 0.6796
+Epoch 20/23
+425/425 - 338s - loss: 0.6136 - accuracy: 0.6640 - macro_f1: 0.6893 - val_loss: 0.6389 - val_accuracy: 0.6332 - val_macro_f1: 0.6165
+Epoch 21/23
+425/425 - 339s - loss: 0.6153 - accuracy: 0.6623 - macro_f1: 0.6865 - val_loss: 0.6043 - val_accuracy: 0.6784 - val_macro_f1: 0.7441
+Epoch 22/23
+425/425 - 339s - loss: 0.6067 - accuracy: 0.6718 - macro_f1: 0.6978 - val_loss: 0.6085 - val_accuracy: 0.6671 - val_macro_f1: 0.6869
+Epoch 23/23
+425/425 - 339s - loss: 0.6039 - accuracy: 0.6741 - macro_f1: 0.6990 - val_loss: 0.6356 - val_accuracy: 0.6361 - val_macro_f1: 0.6175
+Running cyclical learning rate for Astro_hgRmMm_enhVsNonEnhOrth.
+One-cycle policy training for 23 epochs.
+Learning rates range: 0.01 - 0.1.
+Momentum rates range: 0.85 - 0.99.
+Dropout: 0.2.
+In evaluation mode.
+There 33166 positives and 25686 negatives.
+59/59 - 11s
+Accuracy: 0.6527367302099942. 
+f1_score: 0.6330185619125461.
+roc_auc: 0.7287479761342843.
+prc_auc: 0.7593554126141542.
+Running cyclical learning rate for Astro_hgRmMm_enhVsNonEnhOrth.
+One-cycle policy training for 23 epochs.
+Learning rates range: 0.01 - 0.1.
+Momentum rates range: 0.85 - 0.99.
+Dropout: 0.25.
+In training mode.
+There 239306 positives and 185294 negatives.
+There 33166 positives and 25686 negatives.
+Epoch 1/23
+425/425 - 335s - loss: 0.6844 - accuracy: 0.5406 - macro_f1: 0.5255 - val_loss: 0.6793 - val_accuracy: 0.5630 - val_macro_f1: 0.5317
+Epoch 2/23
+425/425 - 334s - loss: 0.6702 - accuracy: 0.5821 - macro_f1: 0.5904 - val_loss: 0.7681 - val_accuracy: 0.4415 - val_macro_f1: 0.0207
+Epoch 3/23
+425/425 - 334s - loss: 0.6619 - accuracy: 0.6001 - macro_f1: 0.6153 - val_loss: 0.6554 - val_accuracy: 0.6228 - val_macro_f1: 0.6600
+Epoch 4/23
+425/425 - 334s - loss: 0.6587 - accuracy: 0.6066 - macro_f1: 0.6252 - val_loss: 0.6493 - val_accuracy: 0.6362 - val_macro_f1: 0.7025
+Epoch 5/23
+425/425 - 336s - loss: 0.6540 - accuracy: 0.6152 - macro_f1: 0.6382 - val_loss: 0.6583 - val_accuracy: 0.6086 - val_macro_f1: 0.5958
+Epoch 6/23
+425/425 - 337s - loss: 0.6509 - accuracy: 0.6184 - macro_f1: 0.6413 - val_loss: 0.6380 - val_accuracy: 0.6413 - val_macro_f1: 0.7076
+Epoch 7/23
+425/425 - 338s - loss: 0.6472 - accuracy: 0.6249 - macro_f1: 0.6487 - val_loss: 0.6330 - val_accuracy: 0.6478 - val_macro_f1: 0.7076
+Epoch 8/23
+425/425 - 338s - loss: 0.6439 - accuracy: 0.6292 - macro_f1: 0.6520 - val_loss: 0.6338 - val_accuracy: 0.6448 - val_macro_f1: 0.6818
+Epoch 9/23
+425/425 - 338s - loss: 0.6425 - accuracy: 0.6307 - macro_f1: 0.6537 - val_loss: 0.6334 - val_accuracy: 0.6441 - val_macro_f1: 0.6691
+Epoch 10/23
+425/425 - 338s - loss: 0.6404 - accuracy: 0.6338 - macro_f1: 0.6567 - val_loss: 0.6284 - val_accuracy: 0.6529 - val_macro_f1: 0.7293
+Epoch 11/23
+425/425 - 336s - loss: 0.6365 - accuracy: 0.6382 - macro_f1: 0.6617 - val_loss: 0.6286 - val_accuracy: 0.6551 - val_macro_f1: 0.6995
+Epoch 12/23
+425/425 - 337s - loss: 0.6336 - accuracy: 0.6424 - macro_f1: 0.6675 - val_loss: 0.6350 - val_accuracy: 0.6404 - val_macro_f1: 0.6479
+Epoch 13/23
+425/425 - 338s - loss: 0.6320 - accuracy: 0.6432 - macro_f1: 0.6677 - val_loss: 0.6189 - val_accuracy: 0.6643 - val_macro_f1: 0.7247
+Epoch 14/23
+425/425 - 338s - loss: 0.6309 - accuracy: 0.6453 - macro_f1: 0.6687 - val_loss: 0.6488 - val_accuracy: 0.6206 - val_macro_f1: 0.5947
+Epoch 15/23
+425/425 - 339s - loss: 0.6268 - accuracy: 0.6503 - macro_f1: 0.6763 - val_loss: 0.6310 - val_accuracy: 0.6442 - val_macro_f1: 0.6476
+Epoch 16/23
+425/425 - 339s - loss: 0.6247 - accuracy: 0.6526 - macro_f1: 0.6781 - val_loss: 0.6104 - val_accuracy: 0.6720 - val_macro_f1: 0.7319
+Epoch 17/23
+425/425 - 339s - loss: 0.6223 - accuracy: 0.6539 - macro_f1: 0.6800 - val_loss: 0.6108 - val_accuracy: 0.6714 - val_macro_f1: 0.7378
+Epoch 18/23
+425/425 - 339s - loss: 0.6216 - accuracy: 0.6558 - macro_f1: 0.6811 - val_loss: 0.6087 - val_accuracy: 0.6744 - val_macro_f1: 0.7403
+Epoch 19/23
+425/425 - 339s - loss: 0.6217 - accuracy: 0.6558 - macro_f1: 0.6805 - val_loss: 0.6228 - val_accuracy: 0.6527 - val_macro_f1: 0.7469
+Epoch 20/23
+425/425 - 339s - loss: 0.6183 - accuracy: 0.6590 - macro_f1: 0.6851 - val_loss: 0.6193 - val_accuracy: 0.6580 - val_macro_f1: 0.6739
+Epoch 21/23
+425/425 - 339s - loss: 0.6173 - accuracy: 0.6600 - macro_f1: 0.6844 - val_loss: 0.6093 - val_accuracy: 0.6733 - val_macro_f1: 0.7136
+Epoch 22/23
+425/425 - 338s - loss: 0.6125 - accuracy: 0.6652 - macro_f1: 0.6914 - val_loss: 0.6192 - val_accuracy: 0.6551 - val_macro_f1: 0.6635
+Epoch 23/23
+425/425 - 339s - loss: 0.6084 - accuracy: 0.6692 - macro_f1: 0.6962 - val_loss: 0.6260 - val_accuracy: 0.6468 - val_macro_f1: 0.6450
+  File "train_singleTask_CNN_classifier_OCP.py", line 152
+    break
+    ^
+SyntaxError: 'break' outside loop
+  File "train_singleTask_CNN_classifier_OCP.py", line 152
+    break
+    ^
+SyntaxError: 'break' outside loop
+  File "train_singleTask_CNN_classifier_OCP.py", line 152
+    break
+    ^
+SyntaxError: 'break' outside loop

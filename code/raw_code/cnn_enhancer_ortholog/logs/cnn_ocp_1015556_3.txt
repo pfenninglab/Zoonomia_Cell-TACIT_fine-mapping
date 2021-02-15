@@ -1,0 +1,84 @@
+Running cyclical learning rate for MSN_SN_hgRmMm_enhVsNonEnhOrth.
+One-cycle policy training for 23 epochs.
+Learning rates range: 0.001 - 0.01.
+Momentum rates range: 0.85 - 0.99.
+Dropout: 0.05.
+In training mode.
+Model exists w/o permission to overwrite. Use --force to overwrite.
+Running cyclical learning rate for MSN_SN_hgRmMm_enhVsNonEnhOrth.
+One-cycle policy training for 23 epochs.
+Learning rates range: 0.001 - 0.01.
+Momentum rates range: 0.85 - 0.99.
+Dropout: 0.05.
+In evaluation mode.
+There 21926 positives and 20114 negatives.
+1314/1314 - 10s
+Accuracy: 0.6375296448299967. 
+f1_score: 0.6386397773755703.
+roc_auc: 0.6889274100320866.
+prc_auc: 0.6947649922590369.
+Model performance written to /projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/cnn_enhancer_ortholog/predictions/MSN_SN_hgRmMm_enhVsNonEnhOrth/MSN_SN_hgRmMm_enhVsNonEnhOrth_OCP_NB1000_NE23_BR0.001_MR0.01_BM0.85_MM0.99_DO0.05_testPerformance.feather
+Running cyclical learning rate for MSN_SN_hgRmMm_enhVsNonEnhOrth.
+One-cycle policy training for 23 epochs.
+Learning rates range: 0.001 - 0.01.
+Momentum rates range: 0.85 - 0.99.
+Dropout: 0.1.
+In training mode.
+Model exists w/o permission to overwrite. Use --force to overwrite.
+Running cyclical learning rate for MSN_SN_hgRmMm_enhVsNonEnhOrth.
+One-cycle policy training for 23 epochs.
+Learning rates range: 0.001 - 0.01.
+Momentum rates range: 0.85 - 0.99.
+Dropout: 0.1.
+In evaluation mode.
+There 21926 positives and 20114 negatives.
+1314/1314 - 10s
+Accuracy: 0.6339482164106442. 
+f1_score: 0.6317842536931668.
+roc_auc: 0.685852349171521.
+prc_auc: 0.6916202462192236.
+Model performance written to /projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/cnn_enhancer_ortholog/predictions/MSN_SN_hgRmMm_enhVsNonEnhOrth/MSN_SN_hgRmMm_enhVsNonEnhOrth_OCP_NB1000_NE23_BR0.001_MR0.01_BM0.85_MM0.99_DO0.1_testPerformance.feather
+Running cyclical learning rate for MSN_SN_hgRmMm_enhVsNonEnhOrth.
+One-cycle policy training for 23 epochs.
+Learning rates range: 0.001 - 0.01.
+Momentum rates range: 0.85 - 0.99.
+Dropout: 0.15.
+In training mode.
+There 174046 positives and 162366 negatives.
+Traceback (most recent call last):
+  File "train_singleTask_CNN_classifier_OCP.py", line 295, in <module>
+    main(args)
+  File "train_singleTask_CNN_classifier_OCP.py", line 200, in main
+    (x_train, y_train, ids_train) = encode_sequence(args.train_fasta_pos, args.train_fasta_neg, size = args.seq_length, shuffleOff = False)
+  File "/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/code/raw_code/cnn_enhancer_ortholog/cnn_utils.py", line 57, in encode_sequence
+    ids = ids[indices]
+TypeError: only integer scalar arrays can be converted to a scalar index
+Running cyclical learning rate for MSN_SN_hgRmMm_enhVsNonEnhOrth.
+One-cycle policy training for 23 epochs.
+Learning rates range: 0.001 - 0.01.
+Momentum rates range: 0.85 - 0.99.
+Dropout: 0.15.
+In evaluation mode.
+No model found with specified training parameters. Please train model first.
+Running cyclical learning rate for MSN_SN_hgRmMm_enhVsNonEnhOrth.
+One-cycle policy training for 23 epochs.
+Learning rates range: 0.001 - 0.01.
+Momentum rates range: 0.85 - 0.99.
+Dropout: 0.2.
+In training mode.
+There 174046 positives and 162366 negatives.
+Traceback (most recent call last):
+  File "train_singleTask_CNN_classifier_OCP.py", line 295, in <module>
+    main(args)
+  File "train_singleTask_CNN_classifier_OCP.py", line 200, in main
+    (x_train, y_train, ids_train) = encode_sequence(args.train_fasta_pos, args.train_fasta_neg, size = args.seq_length, shuffleOff = False)
+  File "/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/code/raw_code/cnn_enhancer_ortholog/cnn_utils.py", line 57, in encode_sequence
+    ids = ids[indices]
+TypeError: only integer scalar arrays can be converted to a scalar index
+Running cyclical learning rate for MSN_SN_hgRmMm_enhVsNonEnhOrth.
+One-cycle policy training for 23 epochs.
+Learning rates range: 0.001 - 0.01.
+Momentum rates range: 0.85 - 0.99.
+Dropout: 0.2.
+In evaluation mode.
+No model found with specified training parameters. Please train model first.

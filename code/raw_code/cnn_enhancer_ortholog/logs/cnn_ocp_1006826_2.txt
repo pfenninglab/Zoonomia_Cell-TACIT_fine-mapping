@@ -1,0 +1,208 @@
+Running cyclical learning rate for MSN_D2_hgRmMm_enhVsNonEnhOrth.
+One-cycle policy training for 23 epochs.
+Learning rates range: 0.01 - 0.1.
+Momentum rates range: 0.85 - 0.99.
+Dropout: 0.05.
+In training mode.
+Model exists w/o permission to overwrite. Use --force to overwrite.
+Running cyclical learning rate for MSN_D2_hgRmMm_enhVsNonEnhOrth.
+One-cycle policy training for 23 epochs.
+Learning rates range: 0.01 - 0.1.
+Momentum rates range: 0.85 - 0.99.
+Dropout: 0.05.
+In evaluation mode.
+There 49808 positives and 35642 negatives.
+86/86 - 11s
+Accuracy: 0.7242570457144291. 
+f1_score: 0.7323613908391107.
+roc_auc: 0.7993813594519998.
+prc_auc: 0.8318078081289909.
+Running cyclical learning rate for MSN_D2_hgRmMm_enhVsNonEnhOrth.
+One-cycle policy training for 23 epochs.
+Learning rates range: 0.01 - 0.1.
+Momentum rates range: 0.85 - 0.99.
+Dropout: 0.1.
+In training mode.
+Model exists w/o permission to overwrite. Use --force to overwrite.
+Running cyclical learning rate for MSN_D2_hgRmMm_enhVsNonEnhOrth.
+One-cycle policy training for 23 epochs.
+Learning rates range: 0.01 - 0.1.
+Momentum rates range: 0.85 - 0.99.
+Dropout: 0.1.
+In evaluation mode.
+There 49808 positives and 35642 negatives.
+86/86 - 11s
+Accuracy: 0.7386578884103443. 
+f1_score: 0.7451315616920543.
+roc_auc: 0.8165228164496878.
+prc_auc: 0.8454782798896232.
+Running cyclical learning rate for MSN_D2_hgRmMm_enhVsNonEnhOrth.
+One-cycle policy training for 23 epochs.
+Learning rates range: 0.01 - 0.1.
+Momentum rates range: 0.85 - 0.99.
+Dropout: 0.15.
+In training mode.
+Model exists w/o permission to overwrite. Use --force to overwrite.
+Running cyclical learning rate for MSN_D2_hgRmMm_enhVsNonEnhOrth.
+One-cycle policy training for 23 epochs.
+Learning rates range: 0.01 - 0.1.
+Momentum rates range: 0.85 - 0.99.
+Dropout: 0.15.
+In evaluation mode.
+There 49808 positives and 35642 negatives.
+86/86 - 11s
+Accuracy: 0.7454539741568962. 
+f1_score: 0.7501951350322823.
+roc_auc: 0.8248696671893658.
+prc_auc: 0.8547370713005809.
+Running cyclical learning rate for MSN_D2_hgRmMm_enhVsNonEnhOrth.
+One-cycle policy training for 23 epochs.
+Learning rates range: 0.01 - 0.1.
+Momentum rates range: 0.85 - 0.99.
+Dropout: 0.2.
+In training mode.
+Model exists w/o permission to overwrite. Use --force to overwrite.
+Running cyclical learning rate for MSN_D2_hgRmMm_enhVsNonEnhOrth.
+One-cycle policy training for 23 epochs.
+Learning rates range: 0.01 - 0.1.
+Momentum rates range: 0.85 - 0.99.
+Dropout: 0.2.
+In evaluation mode.
+There 49808 positives and 35642 negatives.
+86/86 - 11s
+Accuracy: 0.7462140422488164. 
+f1_score: 0.7456298793756254.
+roc_auc: 0.8276788022845164.
+prc_auc: 0.8565336841902949.
+Running cyclical learning rate for MSN_D2_hgRmMm_enhVsNonEnhOrth.
+One-cycle policy training for 23 epochs.
+Learning rates range: 0.01 - 0.1.
+Momentum rates range: 0.85 - 0.99.
+Dropout: 0.25.
+In training mode.
+There 396702 positives and 286498 negatives.
+There 49808 positives and 35642 negatives.
+Epoch 1/23
+684/684 - 428s - loss: 0.6805 - accuracy: 0.5813 - macro_f1: 0.6078 - val_loss: 0.6767 - val_accuracy: 0.5963 - val_macro_f1: 0.5905
+Epoch 2/23
+684/684 - 430s - loss: 0.6410 - accuracy: 0.6466 - macro_f1: 0.6805 - val_loss: 0.6550 - val_accuracy: 0.6245 - val_macro_f1: 0.6024
+Epoch 3/23
+684/684 - 430s - loss: 0.6117 - accuracy: 0.6789 - macro_f1: 0.7127 - val_loss: 0.5860 - val_accuracy: 0.7032 - val_macro_f1: 0.7398
+Epoch 4/23
+684/684 - 430s - loss: 0.5912 - accuracy: 0.6972 - macro_f1: 0.7302 - val_loss: 0.5685 - val_accuracy: 0.7183 - val_macro_f1: 0.7637
+Epoch 5/23
+684/684 - 430s - loss: 0.5801 - accuracy: 0.7068 - macro_f1: 0.7396 - val_loss: 0.5666 - val_accuracy: 0.7198 - val_macro_f1: 0.7499
+Epoch 6/23
+684/684 - 430s - loss: 0.5746 - accuracy: 0.7114 - macro_f1: 0.7434 - val_loss: 0.5513 - val_accuracy: 0.7318 - val_macro_f1: 0.7853
+Epoch 7/23
+684/684 - 430s - loss: 0.5680 - accuracy: 0.7174 - macro_f1: 0.7490 - val_loss: 0.5443 - val_accuracy: 0.7374 - val_macro_f1: 0.7846
+Epoch 8/23
+684/684 - 429s - loss: 0.5628 - accuracy: 0.7216 - macro_f1: 0.7528 - val_loss: 0.5740 - val_accuracy: 0.7092 - val_macro_f1: 0.7205
+Epoch 9/23
+684/684 - 430s - loss: 0.5579 - accuracy: 0.7254 - macro_f1: 0.7565 - val_loss: 0.5447 - val_accuracy: 0.7402 - val_macro_f1: 0.7744
+Epoch 10/23
+684/684 - 430s - loss: 0.5528 - accuracy: 0.7299 - macro_f1: 0.7608 - val_loss: 0.5936 - val_accuracy: 0.6963 - val_macro_f1: 0.6936
+Epoch 11/23
+684/684 - 430s - loss: 0.5495 - accuracy: 0.7325 - macro_f1: 0.7630 - val_loss: 0.5296 - val_accuracy: 0.7461 - val_macro_f1: 0.7997
+Epoch 12/23
+684/684 - 430s - loss: 0.5469 - accuracy: 0.7347 - macro_f1: 0.7649 - val_loss: 0.5712 - val_accuracy: 0.7123 - val_macro_f1: 0.7217
+Epoch 13/23
+684/684 - 430s - loss: 0.5412 - accuracy: 0.7390 - macro_f1: 0.7693 - val_loss: 0.5258 - val_accuracy: 0.7495 - val_macro_f1: 0.7836
+Epoch 14/23
+684/684 - 430s - loss: 0.5387 - accuracy: 0.7400 - macro_f1: 0.7703 - val_loss: 0.5222 - val_accuracy: 0.7524 - val_macro_f1: 0.7962
+Epoch 15/23
+684/684 - 429s - loss: 0.5352 - accuracy: 0.7431 - macro_f1: 0.7731 - val_loss: 0.5281 - val_accuracy: 0.7508 - val_macro_f1: 0.7836
+Epoch 16/23
+684/684 - 429s - loss: 0.5333 - accuracy: 0.7446 - macro_f1: 0.7747 - val_loss: 0.5386 - val_accuracy: 0.7397 - val_macro_f1: 0.7645
+Epoch 17/23
+684/684 - 429s - loss: 0.5303 - accuracy: 0.7461 - macro_f1: 0.7760 - val_loss: 0.5493 - val_accuracy: 0.7319 - val_macro_f1: 0.7482
+Epoch 18/23
+684/684 - 430s - loss: 0.5283 - accuracy: 0.7479 - macro_f1: 0.7773 - val_loss: 0.5462 - val_accuracy: 0.7380 - val_macro_f1: 0.7577
+Epoch 19/23
+684/684 - 430s - loss: 0.5323 - accuracy: 0.7456 - macro_f1: 0.7745 - val_loss: 0.5207 - val_accuracy: 0.7538 - val_macro_f1: 0.7868
+Epoch 20/23
+684/684 - 430s - loss: 0.5313 - accuracy: 0.7458 - macro_f1: 0.7749 - val_loss: 0.5236 - val_accuracy: 0.7510 - val_macro_f1: 0.7846
+Epoch 21/23
+684/684 - 430s - loss: 0.5244 - accuracy: 0.7515 - macro_f1: 0.7810 - val_loss: 0.5327 - val_accuracy: 0.7465 - val_macro_f1: 0.7713
+Epoch 22/23
+684/684 - 430s - loss: 0.5212 - accuracy: 0.7533 - macro_f1: 0.7822 - val_loss: 0.5462 - val_accuracy: 0.7351 - val_macro_f1: 0.7530
+Epoch 23/23
+684/684 - 425s - loss: 0.5224 - accuracy: 0.7520 - macro_f1: 0.7805 - val_loss: 0.5846 - val_accuracy: 0.7040 - val_macro_f1: 0.7019
+Running cyclical learning rate for MSN_D2_hgRmMm_enhVsNonEnhOrth.
+One-cycle policy training for 23 epochs.
+Learning rates range: 0.01 - 0.1.
+Momentum rates range: 0.85 - 0.99.
+Dropout: 0.25.
+In evaluation mode.
+Traceback (most recent call last):
+  File "train_singleTask_CNN_classifier_OCP.py", line 274, in <module>
+    main(args)
+  File "train_singleTask_CNN_classifier_OCP.py", line 197, in main
+    (x_valid, y_valid, ids_valid) = encode_sequence2(args.valid_fasta_pos, args.valid_fasta_neg, size = args.seq_length, shuffleOff = True)
+TypeError: encode_sequence2() got an unexpected keyword argument 'size'
+Running cyclical learning rate for MSN_D2_hgRmMm_enhVsNonEnhOrth.
+One-cycle policy training for 23 epochs.
+Learning rates range: 0.01 - 0.1.
+Momentum rates range: 0.85 - 0.99.
+Dropout: 0.3.
+In training mode.
+There 396702 positives and 286498 negatives.
+There 49808 positives and 35642 negatives.
+Epoch 1/23
+684/684 - 429s - loss: 0.6819 - accuracy: 0.5801 - macro_f1: 0.6137 - val_loss: 0.7264 - val_accuracy: 0.4688 - val_macro_f1: 0.2024
+Epoch 2/23
+684/684 - 430s - loss: 0.6457 - accuracy: 0.6394 - macro_f1: 0.6701 - val_loss: 0.6371 - val_accuracy: 0.6509 - val_macro_f1: 0.6570
+Epoch 3/23
+684/684 - 430s - loss: 0.6178 - accuracy: 0.6722 - macro_f1: 0.7054 - val_loss: 0.6122 - val_accuracy: 0.6786 - val_macro_f1: 0.6881
+Epoch 4/23
+684/684 - 430s - loss: 0.5976 - accuracy: 0.6921 - macro_f1: 0.7256 - val_loss: 0.6037 - val_accuracy: 0.6820 - val_macro_f1: 0.6962
+Epoch 5/23
+684/684 - 430s - loss: 0.5856 - accuracy: 0.7028 - macro_f1: 0.7363 - val_loss: 0.5811 - val_accuracy: 0.7044 - val_macro_f1: 0.7250
+Epoch 6/23
+684/684 - 429s - loss: 0.5786 - accuracy: 0.7091 - macro_f1: 0.7423 - val_loss: 0.5994 - val_accuracy: 0.6845 - val_macro_f1: 0.6903
+Epoch 7/23
+684/684 - 430s - loss: 0.5748 - accuracy: 0.7118 - macro_f1: 0.7440 - val_loss: 0.5674 - val_accuracy: 0.7173 - val_macro_f1: 0.7424
+Epoch 8/23
+684/684 - 429s - loss: 0.5689 - accuracy: 0.7174 - macro_f1: 0.7495 - val_loss: 0.5862 - val_accuracy: 0.7045 - val_macro_f1: 0.7156
+Epoch 9/23
+684/684 - 429s - loss: 0.5633 - accuracy: 0.7221 - macro_f1: 0.7537 - val_loss: 0.5763 - val_accuracy: 0.7102 - val_macro_f1: 0.7211
+Epoch 10/23
+684/684 - 430s - loss: 0.5601 - accuracy: 0.7250 - macro_f1: 0.7566 - val_loss: 0.5469 - val_accuracy: 0.7323 - val_macro_f1: 0.7623
+Epoch 11/23
+684/684 - 429s - loss: 0.5567 - accuracy: 0.7269 - macro_f1: 0.7584 - val_loss: 0.5307 - val_accuracy: 0.7453 - val_macro_f1: 0.7964
+Epoch 12/23
+684/684 - 430s - loss: 0.5533 - accuracy: 0.7296 - macro_f1: 0.7610 - val_loss: 0.5298 - val_accuracy: 0.7487 - val_macro_f1: 0.7949
+Epoch 13/23
+684/684 - 430s - loss: 0.5496 - accuracy: 0.7331 - macro_f1: 0.7645 - val_loss: 0.5536 - val_accuracy: 0.7291 - val_macro_f1: 0.7485
+Epoch 14/23
+684/684 - 430s - loss: 0.5481 - accuracy: 0.7333 - macro_f1: 0.7643 - val_loss: 0.5340 - val_accuracy: 0.7465 - val_macro_f1: 0.7762
+Epoch 15/23
+684/684 - 430s - loss: 0.5461 - accuracy: 0.7350 - macro_f1: 0.7656 - val_loss: 0.5367 - val_accuracy: 0.7424 - val_macro_f1: 0.7733
+Epoch 16/23
+684/684 - 430s - loss: 0.5441 - accuracy: 0.7360 - macro_f1: 0.7670 - val_loss: 0.5398 - val_accuracy: 0.7392 - val_macro_f1: 0.7655
+Epoch 17/23
+684/684 - 430s - loss: 0.5421 - accuracy: 0.7380 - macro_f1: 0.7685 - val_loss: 0.5571 - val_accuracy: 0.7255 - val_macro_f1: 0.7400
+Epoch 18/23
+684/684 - 430s - loss: 0.5397 - accuracy: 0.7398 - macro_f1: 0.7706 - val_loss: 0.5288 - val_accuracy: 0.7515 - val_macro_f1: 0.7884
+Epoch 19/23
+684/684 - 430s - loss: 0.5379 - accuracy: 0.7412 - macro_f1: 0.7717 - val_loss: 0.5319 - val_accuracy: 0.7462 - val_macro_f1: 0.7777
+Epoch 20/23
+684/684 - 430s - loss: 0.5401 - accuracy: 0.7397 - macro_f1: 0.7699 - val_loss: 0.5409 - val_accuracy: 0.7366 - val_macro_f1: 0.7670
+Epoch 21/23
+684/684 - 430s - loss: 0.5361 - accuracy: 0.7429 - macro_f1: 0.7732 - val_loss: 0.5318 - val_accuracy: 0.7470 - val_macro_f1: 0.7749
+Epoch 22/23
+684/684 - 426s - loss: 0.5328 - accuracy: 0.7451 - macro_f1: 0.7751 - val_loss: 0.5308 - val_accuracy: 0.7468 - val_macro_f1: 0.7755
+Epoch 23/23
+684/684 - 421s - loss: 0.5305 - accuracy: 0.7466 - macro_f1: 0.7766 - val_loss: 0.5260 - val_accuracy: 0.7498 - val_macro_f1: 0.7780
+Running cyclical learning rate for MSN_D2_hgRmMm_enhVsNonEnhOrth.
+One-cycle policy training for 23 epochs.
+Learning rates range: 0.01 - 0.1.
+Momentum rates range: 0.85 - 0.99.
+Dropout: 0.3.
+In evaluation mode.
+Traceback (most recent call last):
+  File "train_singleTask_CNN_classifier_OCP.py", line 274, in <module>
+    main(args)
+  File "train_singleTask_CNN_classifier_OCP.py", line 197, in main
+    (x_valid, y_valid, ids_valid) = encode_sequence2(args.valid_fasta_pos, args.valid_fasta_neg, size = args.seq_length, shuffleOff = True)
+TypeError: encode_sequence2() got an unexpected keyword argument 'size'

@@ -1,0 +1,120 @@
+Running cyclical learning rate for MSN_D1_hgRmMm_enhVsNonEnhOrth.
+One-cycle policy training for 23 epochs.
+Learning rates range: 0.01 - 0.1.
+Momentum rates range: 0.85 - 0.99.
+Dropout: 0.05.
+In training mode.
+Model exists w/o permission to overwrite. Use --force to overwrite.
+Running cyclical learning rate for MSN_D1_hgRmMm_enhVsNonEnhOrth.
+One-cycle policy training for 23 epochs.
+Learning rates range: 0.01 - 0.1.
+Momentum rates range: 0.85 - 0.99.
+Dropout: 0.05.
+In evaluation mode.
+There 48948 positives and 35420 negatives.
+2637/2637 - 24s
+Accuracy: 0.7297121936798114. 
+f1_score: 0.7309533008280563.
+roc_auc: 0.804927409569159.
+prc_auc: 0.833858135408464.
+Model performance written to /projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/cnn_enhancer_ortholog/predictions/MSN_D1_hgRmMm_enhVsNonEnhOrth/MSN_D1_hgRmMm_enhVsNonEnhOrth_OCP_NB1000_NE23_BR0.01_MR0.1_BM0.85_MM0.99_DO0.05_testPerformance.feather
+Running cyclical learning rate for MSN_D1_hgRmMm_enhVsNonEnhOrth.
+One-cycle policy training for 23 epochs.
+Learning rates range: 0.01 - 0.1.
+Momentum rates range: 0.85 - 0.99.
+Dropout: 0.1.
+In training mode.
+Model exists w/o permission to overwrite. Use --force to overwrite.
+Running cyclical learning rate for MSN_D1_hgRmMm_enhVsNonEnhOrth.
+One-cycle policy training for 23 epochs.
+Learning rates range: 0.01 - 0.1.
+Momentum rates range: 0.85 - 0.99.
+Dropout: 0.1.
+In evaluation mode.
+There 48948 positives and 35420 negatives.
+2637/2637 - 24s
+Accuracy: 0.7428575489161524. 
+f1_score: 0.7501716813482975.
+roc_auc: 0.8204533941849674.
+prc_auc: 0.8468757529502171.
+Model performance written to /projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/cnn_enhancer_ortholog/predictions/MSN_D1_hgRmMm_enhVsNonEnhOrth/MSN_D1_hgRmMm_enhVsNonEnhOrth_OCP_NB1000_NE23_BR0.01_MR0.1_BM0.85_MM0.99_DO0.1_testPerformance.feather
+Running cyclical learning rate for MSN_D1_hgRmMm_enhVsNonEnhOrth.
+One-cycle policy training for 23 epochs.
+Learning rates range: 0.01 - 0.1.
+Momentum rates range: 0.85 - 0.99.
+Dropout: 0.15.
+In training mode.
+Model exists w/o permission to overwrite. Use --force to overwrite.
+Running cyclical learning rate for MSN_D1_hgRmMm_enhVsNonEnhOrth.
+One-cycle policy training for 23 epochs.
+Learning rates range: 0.01 - 0.1.
+Momentum rates range: 0.85 - 0.99.
+Dropout: 0.15.
+In evaluation mode.
+There 48948 positives and 35420 negatives.
+2637/2637 - 24s
+Accuracy: 0.7305918859166138. 
+f1_score: 0.7147672742082657.
+roc_auc: 0.8232468344585552.
+prc_auc: 0.8512779680435199.
+Model performance written to /projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/cnn_enhancer_ortholog/predictions/MSN_D1_hgRmMm_enhVsNonEnhOrth/MSN_D1_hgRmMm_enhVsNonEnhOrth_OCP_NB1000_NE23_BR0.01_MR0.1_BM0.85_MM0.99_DO0.15_testPerformance.feather
+Running cyclical learning rate for MSN_D1_hgRmMm_enhVsNonEnhOrth.
+One-cycle policy training for 23 epochs.
+Learning rates range: 0.01 - 0.1.
+Momentum rates range: 0.85 - 0.99.
+Dropout: 0.2.
+In training mode.
+Model exists w/o permission to overwrite. Use --force to overwrite.
+Running cyclical learning rate for MSN_D1_hgRmMm_enhVsNonEnhOrth.
+One-cycle policy training for 23 epochs.
+Learning rates range: 0.01 - 0.1.
+Momentum rates range: 0.85 - 0.99.
+Dropout: 0.2.
+In evaluation mode.
+There 48948 positives and 35420 negatives.
+2637/2637 - 24s
+Accuracy: 0.753736889542767. 
+f1_score: 0.7593322852587918.
+roc_auc: 0.8298572732574567.
+prc_auc: 0.856666005989691.
+Model performance written to /projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/cnn_enhancer_ortholog/predictions/MSN_D1_hgRmMm_enhVsNonEnhOrth/MSN_D1_hgRmMm_enhVsNonEnhOrth_OCP_NB1000_NE23_BR0.01_MR0.1_BM0.85_MM0.99_DO0.2_testPerformance.feather
+Running cyclical learning rate for MSN_D1_hgRmMm_enhVsNonEnhOrth.
+One-cycle policy training for 23 epochs.
+Learning rates range: 0.01 - 0.1.
+Momentum rates range: 0.85 - 0.99.
+Dropout: 0.25.
+In training mode.
+Model exists w/o permission to overwrite. Use --force to overwrite.
+Running cyclical learning rate for MSN_D1_hgRmMm_enhVsNonEnhOrth.
+One-cycle policy training for 23 epochs.
+Learning rates range: 0.01 - 0.1.
+Momentum rates range: 0.85 - 0.99.
+Dropout: 0.25.
+In evaluation mode.
+There 48948 positives and 35420 negatives.
+2637/2637 - 24s
+Accuracy: 0.7379558721831444. 
+f1_score: 0.7520109657312368.
+roc_auc: 0.8253558138213904.
+prc_auc: 0.8529395777468471.
+Model performance written to /projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/cnn_enhancer_ortholog/predictions/MSN_D1_hgRmMm_enhVsNonEnhOrth/MSN_D1_hgRmMm_enhVsNonEnhOrth_OCP_NB1000_NE23_BR0.01_MR0.1_BM0.85_MM0.99_DO0.25_testPerformance.feather
+Running cyclical learning rate for MSN_D1_hgRmMm_enhVsNonEnhOrth.
+One-cycle policy training for 23 epochs.
+Learning rates range: 0.01 - 0.1.
+Momentum rates range: 0.85 - 0.99.
+Dropout: 0.3.
+In training mode.
+Model exists w/o permission to overwrite. Use --force to overwrite.
+Running cyclical learning rate for MSN_D1_hgRmMm_enhVsNonEnhOrth.
+One-cycle policy training for 23 epochs.
+Learning rates range: 0.01 - 0.1.
+Momentum rates range: 0.85 - 0.99.
+Dropout: 0.3.
+In evaluation mode.
+There 48948 positives and 35420 negatives.
+2637/2637 - 24s
+Accuracy: 0.7465726058656977. 
+f1_score: 0.7492523455226594.
+roc_auc: 0.8232406651301948.
+prc_auc: 0.8508720578270461.
+Model performance written to /projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/cnn_enhancer_ortholog/predictions/MSN_D1_hgRmMm_enhVsNonEnhOrth/MSN_D1_hgRmMm_enhVsNonEnhOrth_OCP_NB1000_NE23_BR0.01_MR0.1_BM0.85_MM0.99_DO0.3_testPerformance.feather

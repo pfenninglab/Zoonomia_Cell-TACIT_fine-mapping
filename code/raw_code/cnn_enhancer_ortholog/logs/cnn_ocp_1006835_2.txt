@@ -1,0 +1,93 @@
+2021-02-14 18:57:38.834220: F ./tensorflow/core/kernels/random_op_gpu.h:232] Non-OK-status: GpuLaunchKernel(FillPhiloxRandomKernelLaunch<Distribution>, num_blocks, block_size, 0, d.stream(), gen, data, size, dist) status: Internal: out of memory
+/var/spool/slurmd/job1014607/slurm_script: line 55: 16077 Aborted                 python train_singleTask_CNN_classifier_OCP.py --mode 'train' --out_dir $DATADIR --conv_width 11 --l2_reg $L2_REG --dropout $DROPOUT --batch_size $BATCH_SIZE --epochs $EPOCHS --numCycles $NUM_CYCLES --base_lr $BASE_LR --max_lr $MAX_LR --base_m $BASE_M --max_m $MAX_M --verbose 2 --cyclical_momentum $LABEL $TRAINPOSFILE $TRAINNEGFILE $VALIDPOSFILE $VALIDNEGFILE
+Running cyclical learning rate for MSN_D2_hgRmMm_enhVsNonEnhOrth.
+One-cycle policy training for 23 epochs.
+Learning rates range: 0.01 - 1.0.
+Momentum rates range: 0.85 - 0.99.
+Dropout: 0.05.
+In evaluation mode.
+No model found with specified training parameters. Please train model first.
+2021-02-14 19:03:30.281820: F ./tensorflow/core/kernels/random_op_gpu.h:232] Non-OK-status: GpuLaunchKernel(FillPhiloxRandomKernelLaunch<Distribution>, num_blocks, block_size, 0, d.stream(), gen, data, size, dist) status: Internal: out of memory
+/var/spool/slurmd/job1014607/slurm_script: line 55: 16156 Aborted                 python train_singleTask_CNN_classifier_OCP.py --mode 'train' --out_dir $DATADIR --conv_width 11 --l2_reg $L2_REG --dropout $DROPOUT --batch_size $BATCH_SIZE --epochs $EPOCHS --numCycles $NUM_CYCLES --base_lr $BASE_LR --max_lr $MAX_LR --base_m $BASE_M --max_m $MAX_M --verbose 2 --cyclical_momentum $LABEL $TRAINPOSFILE $TRAINNEGFILE $VALIDPOSFILE $VALIDNEGFILE
+Running cyclical learning rate for MSN_D2_hgRmMm_enhVsNonEnhOrth.
+One-cycle policy training for 23 epochs.
+Learning rates range: 0.01 - 1.0.
+Momentum rates range: 0.85 - 0.99.
+Dropout: 0.1.
+In evaluation mode.
+No model found with specified training parameters. Please train model first.
+2021-02-14 19:09:32.416613: F ./tensorflow/core/kernels/random_op_gpu.h:232] Non-OK-status: GpuLaunchKernel(FillPhiloxRandomKernelLaunch<Distribution>, num_blocks, block_size, 0, d.stream(), gen, data, size, dist) status: Internal: out of memory
+/var/spool/slurmd/job1014607/slurm_script: line 55: 16251 Aborted                 python train_singleTask_CNN_classifier_OCP.py --mode 'train' --out_dir $DATADIR --conv_width 11 --l2_reg $L2_REG --dropout $DROPOUT --batch_size $BATCH_SIZE --epochs $EPOCHS --numCycles $NUM_CYCLES --base_lr $BASE_LR --max_lr $MAX_LR --base_m $BASE_M --max_m $MAX_M --verbose 2 --cyclical_momentum $LABEL $TRAINPOSFILE $TRAINNEGFILE $VALIDPOSFILE $VALIDNEGFILE
+Running cyclical learning rate for MSN_D2_hgRmMm_enhVsNonEnhOrth.
+One-cycle policy training for 23 epochs.
+Learning rates range: 0.01 - 1.0.
+Momentum rates range: 0.85 - 0.99.
+Dropout: 0.15.
+In evaluation mode.
+No model found with specified training parameters. Please train model first.
+2021-02-14 19:15:40.191584: F ./tensorflow/core/kernels/random_op_gpu.h:232] Non-OK-status: GpuLaunchKernel(FillPhiloxRandomKernelLaunch<Distribution>, num_blocks, block_size, 0, d.stream(), gen, data, size, dist) status: Internal: out of memory
+/var/spool/slurmd/job1014607/slurm_script: line 55: 16326 Aborted                 python train_singleTask_CNN_classifier_OCP.py --mode 'train' --out_dir $DATADIR --conv_width 11 --l2_reg $L2_REG --dropout $DROPOUT --batch_size $BATCH_SIZE --epochs $EPOCHS --numCycles $NUM_CYCLES --base_lr $BASE_LR --max_lr $MAX_LR --base_m $BASE_M --max_m $MAX_M --verbose 2 --cyclical_momentum $LABEL $TRAINPOSFILE $TRAINNEGFILE $VALIDPOSFILE $VALIDNEGFILE
+Running cyclical learning rate for MSN_D2_hgRmMm_enhVsNonEnhOrth.
+One-cycle policy training for 23 epochs.
+Learning rates range: 0.01 - 1.0.
+Momentum rates range: 0.85 - 0.99.
+Dropout: 0.2.
+In evaluation mode.
+No model found with specified training parameters. Please train model first.
+2021-02-14 19:21:31.362397: F ./tensorflow/core/kernels/random_op_gpu.h:232] Non-OK-status: GpuLaunchKernel(FillPhiloxRandomKernelLaunch<Distribution>, num_blocks, block_size, 0, d.stream(), gen, data, size, dist) status: Internal: out of memory
+/var/spool/slurmd/job1014607/slurm_script: line 55: 16401 Aborted                 python train_singleTask_CNN_classifier_OCP.py --mode 'train' --out_dir $DATADIR --conv_width 11 --l2_reg $L2_REG --dropout $DROPOUT --batch_size $BATCH_SIZE --epochs $EPOCHS --numCycles $NUM_CYCLES --base_lr $BASE_LR --max_lr $MAX_LR --base_m $BASE_M --max_m $MAX_M --verbose 2 --cyclical_momentum $LABEL $TRAINPOSFILE $TRAINNEGFILE $VALIDPOSFILE $VALIDNEGFILE
+Running cyclical learning rate for MSN_D2_hgRmMm_enhVsNonEnhOrth.
+One-cycle policy training for 23 epochs.
+Learning rates range: 0.01 - 1.0.
+Momentum rates range: 0.85 - 0.99.
+Dropout: 0.25.
+In evaluation mode.
+No model found with specified training parameters. Please train model first.
+Running cyclical learning rate for MSN_D2_hgRmMm_enhVsNonEnhOrth.
+One-cycle policy training for 23 epochs.
+Learning rates range: 0.01 - 1.0.
+Momentum rates range: 0.85 - 0.99.
+Dropout: 0.3.
+In training mode.
+There 396702 positives and 286498 negatives.
+There 49808 positives and 35642 negatives.
+Epoch 1/23
+684/684 - 533s - loss: 0.6881 - accuracy: 0.5638 - macro_f1: 0.5661 - val_loss: 0.6847 - val_accuracy: 0.6164 - val_macro_f1: 0.6619
+Epoch 2/23
+684/684 - 529s - loss: 0.6586 - accuracy: 0.6290 - macro_f1: 0.6605 - val_loss: 0.7025 - val_accuracy: 0.5298 - val_macro_f1: 0.3695
+Epoch 3/23
+684/684 - 529s - loss: 0.6296 - accuracy: 0.6631 - macro_f1: 0.6901 - val_loss: 0.6841 - val_accuracy: 0.6096 - val_macro_f1: 0.7437
+Epoch 4/23
+684/684 - 530s - loss: 0.6587 - accuracy: 0.6245 - macro_f1: 0.6301 - val_loss: 0.6638 - val_accuracy: 0.6466 - val_macro_f1: 0.6489
+Epoch 5/23
+684/684 - 529s - loss: 0.6922 - accuracy: 0.5693 - macro_f1: 0.5279 - val_loss: 0.7193 - val_accuracy: 0.5829 - val_macro_f1: 0.7364
+Epoch 6/23
+684/684 - 532s - loss: 0.7247 - accuracy: 0.5026 - macro_f1: 0.3790 - val_loss: 0.7168 - val_accuracy: 0.5829 - val_macro_f1: 0.7364
+Epoch 7/23
+684/684 - 531s - loss: 0.7200 - accuracy: 0.5015 - macro_f1: 0.3718 - val_loss: 0.7152 - val_accuracy: 0.5829 - val_macro_f1: 0.7364
+Epoch 8/23
+684/684 - 533s - loss: 0.7157 - accuracy: 0.5019 - macro_f1: 0.3768 - val_loss: 0.7166 - val_accuracy: 0.4171 - val_macro_f1: 0.0000e+00
+Epoch 9/23
+684/684 - 532s - loss: 0.7120 - accuracy: 0.5030 - macro_f1: 0.3793 - val_loss: 0.7088 - val_accuracy: 0.5829 - val_macro_f1: 0.7364
+Epoch 10/23
+684/684 - 532s - loss: 0.7090 - accuracy: 0.5023 - macro_f1: 0.3800 - val_loss: 0.7032 - val_accuracy: 0.5829 - val_macro_f1: 0.7364
+Epoch 11/23
+684/684 - 532s - loss: 0.7064 - accuracy: 0.5004 - macro_f1: 0.3654 - val_loss: 0.7115 - val_accuracy: 0.4171 - val_macro_f1: 0.0000e+00
+Epoch 12/23
+684/684 - 533s - loss: 0.7044 - accuracy: 0.5001 - macro_f1: 0.3663 - val_loss: 0.7057 - val_accuracy: 0.4171 - val_macro_f1: 0.0000e+00
+Epoch 13/23
+684/684 - 533s - loss: 0.7026 - accuracy: 0.5004 - macro_f1: 0.3723 - val_loss: 0.7123 - val_accuracy: 0.4171 - val_macro_f1: 0.0000e+00
+Epoch 14/23
+684/684 - 534s - loss: 0.7011 - accuracy: 0.5006 - macro_f1: 0.3704 - val_loss: 0.6993 - val_accuracy: 0.5829 - val_macro_f1: 0.7364
+Epoch 15/23
+684/684 - 536s - loss: 0.6998 - accuracy: 0.4979 - macro_f1: 0.3606 - val_loss: 0.6989 - val_accuracy: 0.5829 - val_macro_f1: 0.7364
+Epoch 16/23
+684/684 - 536s - loss: 0.6989 - accuracy: 0.4972 - macro_f1: 0.3605 - val_loss: 0.6969 - val_accuracy: 0.5829 - val_macro_f1: 0.7364
+Epoch 17/23
+684/684 - 537s - loss: 0.6980 - accuracy: 0.5009 - macro_f1: 0.3697 - val_loss: 0.6928 - val_accuracy: 0.5829 - val_macro_f1: 0.7364
+Epoch 18/23
+684/684 - 525s - loss: 0.6974 - accuracy: 0.5001 - macro_f1: 0.3674 - val_loss: 0.6953 - val_accuracy: 0.5829 - val_macro_f1: 0.7364
+Epoch 19/23
+684/684 - 525s - loss: 0.6967 - accuracy: 0.4998 - macro_f1: 0.3685 - val_loss: 0.6938 - val_accuracy: 0.5829 - val_macro_f1: 0.7364
+Epoch 20/23
+684/684 - 525s - loss: 0.6963 - accuracy: 0.5034 - macro_f1: 0.3862 - val_loss: 0.6961 - val_accuracy: 0.4171 - val_macro_f1: 0.0000e+00

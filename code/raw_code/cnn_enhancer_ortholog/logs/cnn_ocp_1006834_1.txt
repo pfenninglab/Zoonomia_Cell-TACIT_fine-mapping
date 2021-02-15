@@ -1,0 +1,64 @@
+Running cyclical learning rate for MSN_D1_hgRmMm_enhVsNonEnhOrth.
+One-cycle policy training for 23 epochs.
+Learning rates range: 0.1 - 1.0.
+Momentum rates range: 0.85 - 0.99.
+Dropout: 0.05.
+In training mode.
+Model exists w/o permission to overwrite. Use --force to overwrite.
+Running cyclical learning rate for MSN_D1_hgRmMm_enhVsNonEnhOrth.
+One-cycle policy training for 23 epochs.
+Learning rates range: 0.1 - 1.0.
+Momentum rates range: 0.85 - 0.99.
+Dropout: 0.05.
+In evaluation mode.
+Traceback (most recent call last):
+  File "train_singleTask_CNN_classifier_OCP.py", line 274, in <module>
+    main(args)
+  File "train_singleTask_CNN_classifier_OCP.py", line 197, in main
+    (x_valid, y_valid, ids_valid) = encode_sequence2(args.valid_fasta_pos, args.valid_fasta_neg, size = args.seq_length, shuffleOff = True)
+TypeError: encode_sequence2() got an unexpected keyword argument 'size'
+2021-02-14 15:11:04.876241: F ./tensorflow/core/kernels/random_op_gpu.h:232] Non-OK-status: GpuLaunchKernel(FillPhiloxRandomKernelLaunch<Distribution>, num_blocks, block_size, 0, d.stream(), gen, data, size, dist) status: Internal: out of memory
+/var/spool/slurmd/job1009617/slurm_script: line 55:  7846 Aborted                 python train_singleTask_CNN_classifier_OCP.py --mode 'train' --out_dir $DATADIR --conv_width 11 --l2_reg $L2_REG --dropout $DROPOUT --batch_size $BATCH_SIZE --epochs $EPOCHS --numCycles $NUM_CYCLES --base_lr $BASE_LR --max_lr $MAX_LR --base_m $BASE_M --max_m $MAX_M --verbose 2 --cyclical_momentum $LABEL $TRAINPOSFILE $TRAINNEGFILE $VALIDPOSFILE $VALIDNEGFILE
+Running cyclical learning rate for MSN_D1_hgRmMm_enhVsNonEnhOrth.
+One-cycle policy training for 23 epochs.
+Learning rates range: 0.1 - 1.0.
+Momentum rates range: 0.85 - 0.99.
+Dropout: 0.1.
+In evaluation mode.
+No model found with specified training parameters. Please train model first.
+2021-02-14 15:16:58.539458: F ./tensorflow/core/kernels/random_op_gpu.h:232] Non-OK-status: GpuLaunchKernel(FillPhiloxRandomKernelLaunch<Distribution>, num_blocks, block_size, 0, d.stream(), gen, data, size, dist) status: Internal: out of memory
+/var/spool/slurmd/job1009617/slurm_script: line 55:  7930 Aborted                 python train_singleTask_CNN_classifier_OCP.py --mode 'train' --out_dir $DATADIR --conv_width 11 --l2_reg $L2_REG --dropout $DROPOUT --batch_size $BATCH_SIZE --epochs $EPOCHS --numCycles $NUM_CYCLES --base_lr $BASE_LR --max_lr $MAX_LR --base_m $BASE_M --max_m $MAX_M --verbose 2 --cyclical_momentum $LABEL $TRAINPOSFILE $TRAINNEGFILE $VALIDPOSFILE $VALIDNEGFILE
+Running cyclical learning rate for MSN_D1_hgRmMm_enhVsNonEnhOrth.
+One-cycle policy training for 23 epochs.
+Learning rates range: 0.1 - 1.0.
+Momentum rates range: 0.85 - 0.99.
+Dropout: 0.15.
+In evaluation mode.
+No model found with specified training parameters. Please train model first.
+2021-02-14 15:22:51.925064: F ./tensorflow/core/kernels/random_op_gpu.h:232] Non-OK-status: GpuLaunchKernel(FillPhiloxRandomKernelLaunch<Distribution>, num_blocks, block_size, 0, d.stream(), gen, data, size, dist) status: Internal: out of memory
+/var/spool/slurmd/job1009617/slurm_script: line 55:  8012 Aborted                 python train_singleTask_CNN_classifier_OCP.py --mode 'train' --out_dir $DATADIR --conv_width 11 --l2_reg $L2_REG --dropout $DROPOUT --batch_size $BATCH_SIZE --epochs $EPOCHS --numCycles $NUM_CYCLES --base_lr $BASE_LR --max_lr $MAX_LR --base_m $BASE_M --max_m $MAX_M --verbose 2 --cyclical_momentum $LABEL $TRAINPOSFILE $TRAINNEGFILE $VALIDPOSFILE $VALIDNEGFILE
+Running cyclical learning rate for MSN_D1_hgRmMm_enhVsNonEnhOrth.
+One-cycle policy training for 23 epochs.
+Learning rates range: 0.1 - 1.0.
+Momentum rates range: 0.85 - 0.99.
+Dropout: 0.2.
+In evaluation mode.
+No model found with specified training parameters. Please train model first.
+2021-02-14 15:28:42.400456: F ./tensorflow/core/kernels/random_op_gpu.h:232] Non-OK-status: GpuLaunchKernel(FillPhiloxRandomKernelLaunch<Distribution>, num_blocks, block_size, 0, d.stream(), gen, data, size, dist) status: Internal: out of memory
+/var/spool/slurmd/job1009617/slurm_script: line 55:  8093 Aborted                 python train_singleTask_CNN_classifier_OCP.py --mode 'train' --out_dir $DATADIR --conv_width 11 --l2_reg $L2_REG --dropout $DROPOUT --batch_size $BATCH_SIZE --epochs $EPOCHS --numCycles $NUM_CYCLES --base_lr $BASE_LR --max_lr $MAX_LR --base_m $BASE_M --max_m $MAX_M --verbose 2 --cyclical_momentum $LABEL $TRAINPOSFILE $TRAINNEGFILE $VALIDPOSFILE $VALIDNEGFILE
+Running cyclical learning rate for MSN_D1_hgRmMm_enhVsNonEnhOrth.
+One-cycle policy training for 23 epochs.
+Learning rates range: 0.1 - 1.0.
+Momentum rates range: 0.85 - 0.99.
+Dropout: 0.25.
+In evaluation mode.
+No model found with specified training parameters. Please train model first.
+2021-02-14 15:34:41.092876: F ./tensorflow/core/kernels/random_op_gpu.h:232] Non-OK-status: GpuLaunchKernel(FillPhiloxRandomKernelLaunch<Distribution>, num_blocks, block_size, 0, d.stream(), gen, data, size, dist) status: Internal: out of memory
+/var/spool/slurmd/job1009617/slurm_script: line 55:  8165 Aborted                 python train_singleTask_CNN_classifier_OCP.py --mode 'train' --out_dir $DATADIR --conv_width 11 --l2_reg $L2_REG --dropout $DROPOUT --batch_size $BATCH_SIZE --epochs $EPOCHS --numCycles $NUM_CYCLES --base_lr $BASE_LR --max_lr $MAX_LR --base_m $BASE_M --max_m $MAX_M --verbose 2 --cyclical_momentum $LABEL $TRAINPOSFILE $TRAINNEGFILE $VALIDPOSFILE $VALIDNEGFILE
+Running cyclical learning rate for MSN_D1_hgRmMm_enhVsNonEnhOrth.
+One-cycle policy training for 23 epochs.
+Learning rates range: 0.1 - 1.0.
+Momentum rates range: 0.85 - 0.99.
+Dropout: 0.3.
+In evaluation mode.
+No model found with specified training parameters. Please train model first.

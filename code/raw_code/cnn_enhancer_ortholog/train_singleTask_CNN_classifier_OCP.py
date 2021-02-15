@@ -23,6 +23,8 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'  # or any {'0', '1', '2'}
 # make sure running on GPU #
 tf.config.experimental.list_physical_devices('GPU')
 # tf.get_logger().setLevel('WARNING')
+np.seterr(divide = 'ignore')
+
 
 def range_test(x, y, args):
     #####################################
@@ -52,6 +54,8 @@ def range_test(x, y, args):
         verbose = 2,  validation_split = args.validation_split, callbacks = [clr])
     return model, clr
 
+
+
 def train_model_clr(x_train, y_train, x_valid, y_valid,  args):
     # dealing w/ class imbalance
     total = y_train.shape[0]
@@ -79,13 +83,58 @@ def train_model_clr(x_train, y_train, x_valid, y_valid,  args):
     return model, clr, hist
 
 
-def predict_sequences(model_name, x):
+
+
+def predict_sequences(model_name, x, ids):
     # Creating an empty Dataframe with column names only
     # predict labels
+    # combineStrands will average the logit of the for and rev DNA strands
     model = load_model(model_name, compile=False)
-    y_pred_score = model.predict(x)
-    y_pred_class = (y_pred_score > 0.5).astype("int32")
-    return y_pred_class, y_pred_score
+    y_pred_score = model.predict(x, verbose = args.verbose).flatten()
+    df = pd.DataFrame({'id': ids, 'y_pred_logit': np.log10(y_pred_score) - np.log10(1-y_pred_score)})
+    df = df.groupby(['id']).mean()
+    df['y_pred_score'] = 1 / (1 + np.exp(-df['y_pred_logit']))
+    df['y_pred_class'] = df['y_pred_score'] > 0.5
+    return df
+
+
+
+
+def predict_sequences2(model_name, x, y, ids):
+    # Creating an empty Dataframe with column names only
+    # predict labels
+    # combineStrands will average the logit of the for and rev DNA strands
+    model = load_model(model_name, compile=False)
+    y_pred_score = model.predict(x, verbose = args.verbose).flatten()
+    df = pd.DataFrame({'id': ids, 'y' : y, 'y_pred_logit': np.log10(y_pred_score) - np.log10(1-y_pred_score)})
+    df = df.groupby(['id']).mean()
+    df['y_pred_score'] = 1 / (1 + np.exp(-df['y_pred_logit']))
+    df['y_pred_class'] = df['y_pred_score'] > 0.5
+    return df
+
+
+
+def evaluate_sequences(model_name, x, y, ids, args):
+    # Creating an empty Dataframe with column names only
+    df = pd.DataFrame(vars(args), index=[0])
+    tmp = predict_sequences2(model_name, x, y, ids)
+    # compute prediction statistics 
+    accuracy = metrics.balanced_accuracy_score(tmp['y'], tmp['y_pred_class'])
+    f1_score = metrics.f1_score(tmp['y'], tmp['y_pred_class'], average = 'weighted')
+    fhalf_score = metrics.fbeta_score(tmp['y'], tmp['y_pred_class'], beta = 0.5, average = 'weighted')
+    roc_auc = metrics.roc_auc_score(tmp['y'], tmp['y_pred_score'])
+    precision, recall, thresholds = metrics.precision_recall_curve(tmp['y'], tmp['y_pred_score'])
+    prc_auc = metrics.auc(recall, precision) # x, y
+    print(f'Accuracy: {accuracy}. ')
+    print(f'f1_score: {f1_score}.')
+    print(f'roc_auc: {roc_auc}.')
+    print(f'prc_auc: {prc_auc}.')
+    # add this row to dataframe
+    df = pd.concat([df.reset_index(drop=True),
+        pd.DataFrame({'model': model_name, 'accuracy': accuracy, 'auROC': roc_auc, 'auPRC': prc_auc,
+            'f1_score': f1_score, 'fhalf_score': fhalf_score}, index=[0])], axis = 1)    
+    return df
+
 
 
 def plot_training_performance(args, hist, clr ):
@@ -128,6 +177,7 @@ def plot_training_performance(args, hist, clr ):
     return
 
 
+
 def main(args):
     """Main function
     Args:
@@ -147,8 +197,8 @@ def main(args):
         if os.path.exists(model_name) and not args.force:
             print('Model exists w/o permission to overwrite. Use --force to overwrite.')
             return
-        (x_train, y_train) = encode_sequence(args.train_fasta_pos, args.train_fasta_neg, size = args.seq_length, shuffleOff = False)
-        (x_valid, y_valid) = encode_sequence(args.valid_fasta_pos, args.valid_fasta_neg, size = args.seq_length, shuffleOff = False)
+        (x_train, y_train, ids_train) = encode_sequence(args.train_fasta_pos, args.train_fasta_neg, size = args.seq_length, shuffleOff = False)
+        (x_valid, y_valid, ids_valid) = encode_sequence(args.valid_fasta_pos, args.valid_fasta_neg, size = args.seq_length, shuffleOff = False)
         #
         model, clr, hist = train_model_clr(x_train, y_train, x_valid, y_valid, args)
         plot_training_performance(args, hist, clr )
@@ -163,25 +213,29 @@ def main(args):
         if not os.path.exists(model_name):
             print('No model found with specified training parameters. Please train model first.')
             return
-        (x_valid, y_valid) = encode_sequence(args.valid_fasta_pos, args.valid_fasta_neg, size = args.seq_length, shuffleOff = True)
-        df = evaluate_sequences(model_name, x_valid, y_valid, args)
+        (x_valid, y_valid, ids_valid) = encode_sequence(args.valid_fasta_pos, args.valid_fasta_neg, size = args.seq_length, shuffleOff = True)
+        df = evaluate_sequences(model_name, x_valid, y_valid, ids_valid, args)
         model_test_performance = f'{args.out_dir}/predictions/{args.label}/{lab}_testPerformance.feather'
         # save model performances to feather object
         if not os.path.exists(f'{args.out_dir}/predictions/{args.label}'):
             os.makedirs(f'{args.out_dir}/predictions/{args.label}')
         df.to_feather(model_test_performance)
+        print(f'Model performance written to {model_test_performance}')
         #
     elif args.mode == 'predict':
-        print('In evaluation mode.')
-        x = encode_sequence2(args.valid_fasta_pos)
-        y_pred_class, y_pred_score = predict_sequences(model_name, x)
+        print('In prediction mode.')
+        if not os.path.exists(model_name):
+            print('No model found with specified training parameters. Please train model first.')
+            return
+        (x, ids) = encode_sequence3(args.predict_fasta, size = args.seq_length)
+        df = predict_sequences(model_name, x, ids)
         model_predictions = f'{args.out_dir}/predictions/{args.label}/{lab}_testPredictions.txt'
         # save model performances to feather object
         if not os.path.exists(f'{args.out_dir}/predictions/{args.label}'):
             os.makedirs(f'{args.out_dir}/predictions/{args.label}')
-        np.savetxt(model_predictions, np.concatenate([y_pred_class, y_pred_score], axis = 1))
+        np.savetxt(model_predictions, df, axis = 1)
+        print(f'Prediction written to {model_predictions}')
     return
-
 
 
 if __name__ == '__main__':  
@@ -191,35 +245,36 @@ if __name__ == '__main__':
         choices=['train', 'evaluate', 'predict'], default = 'train', required=False)
     #
     parser.add_argument("label", type=str, help="label of model.")
-    parser.add_argument("train_fasta_pos", type=str, help="training fasta sequence file of positives.")
-    parser.add_argument("train_fasta_neg", type=str, help="training fasta sequence file of negatives.")
-    parser.add_argument("valid_fasta_pos", type=str, help="validation fasta sequence file of positives.")
-    parser.add_argument("valid_fasta_neg", type=str, help="validation fasta sequence file of negatives.")
+    parser.add_argument("--predict_fasta", type=str, help="fasta sequence file for predictions.")
+    parser.add_argument("--train_fasta_pos", type=str, help="training fasta sequence file of positives.")
+    parser.add_argument("--train_fasta_neg", type=str, help="training fasta sequence file of negatives.")
+    parser.add_argument("--valid_fasta_pos", type=str, help="validation fasta sequence file of positives.")
+    parser.add_argument("--valid_fasta_neg", type=str, help="validation fasta sequence file of negatives.")
     #
     #### set cnn parameters:
     parser.add_argument("--seq_length", type=int, help="DNA sequence length.", default = 501, required=False)
-    parser.add_argument("--conv_width", type=int, help="Convolution width.", default = 8, required=False)
+    parser.add_argument("--conv_width", type=int, help="Convolution width.", default = 11, required=False)
     parser.add_argument("--conv_filters", type=int, help="Convolution filter width.", default = 200, required=False)
     parser.add_argument("--max_pool_size", type=int, help="Max pool size.", default = 26, required=False)
     parser.add_argument("--max_pool_stride", type=int, help="Max pool stride.", default = 26, required=False)
     parser.add_argument("--dense_filters", type=int, help="Number of dense filters.", default = 300, required=False)
     parser.add_argument("--l2_reg", type=float, help="L2 regularization rate.", default = 1e-10, required=False)
     parser.add_argument("--dropout", type=float, help="Percent dropout.", default = .2, required=False)
-    parser.add_argument("--epochs", type=int, help="Number of epochs.", default = 25, required=False)
-    parser.add_argument("--batch_size", type=int, help="Batch size.", default = 1000, required=False)
-    parser.add_argument("--verbose", type=int, help="keras verbosity", default = 2, required=False)
+    parser.add_argument("--verbose", type=int, help="keras verbosity", default = 1, required=False)
     parser.add_argument("--mylossfunc", help="Loss function.", default = 'binary_crossentropy',
         choices=['binary_crossentropy', 'categorical_crossentropy', 'sparse_categorical_crossentropy'], required=False)
     #
     #### parameters for cyclical learning Rate, see https://github.com/bckenstler/CLR for details
+    parser.add_argument("--batch_size", type=int, help="Batch size.", default = 1000, required=False)
+    parser.add_argument("--epochs", type=int, help="Number of epochs.", default = 23, required=False)
     parser.add_argument("--numCycles", help="Number of cyclical learning rate cycles.", 
-        type=float, default = 2.5, required=False)
+        type=float, default = 2.35, required=False)
     parser.add_argument("--base_lr", help="Learning rate floor value for cyclical learning rate model.", 
-        type=float, default = 2e-3, required=False)
+        type=float, default = 1e-2, required=False)
     parser.add_argument("--max_lr", help="Learning rate ceiling value for cyclical learning rate model.", 
-        type=float,default = .2, required=False)
+        type=float,default = 1e-1, required=False)
     parser.add_argument("--base_m", help="Momentum floor value for cyclical learning rate model.", 
-        type=float, default = .875, required=False)
+        type=float, default = .85, required=False)
     parser.add_argument("--max_m", help="Momentum ceiling value for cyclical learning rate model.", 
         type=float, default = .99, required=False)
     parser.add_argument("--cyclical_momentum", help="Whether to cycle the momemtum for OCP.", default = False, 
@@ -229,12 +284,12 @@ if __name__ == '__main__':
     parser.add_argument("--out_dir", type=str, default = '.', help="path to ouputput directory, default is pwd")
     #
     ### parse arguments
-    # args = parser.parse_args(['MSN_D1_hgRmMm_enhVsNonEnhOrth', 
-    #     '/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/cnn_enhancer_ortholog/fasta/MSN_D1_trainPos.fa', 
-    #     '/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/cnn_enhancer_ortholog/fasta/MSN_D1_trainNeg.fa', 
-    #     '/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/cnn_enhancer_ortholog/fasta/MSN_D1_validPos.fa', 
-    #     '/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/cnn_enhancer_ortholog/fasta/MSN_D1_validNeg.fa',
-    #     '--cyclical_momentum'])
+    # args = parser.parse_args(['--out_dir=/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/cnn_enhancer_ortholog', 
+    #     '--cyclical_momentum', 'MSN_D1_hgRmMm_enhVsNonEnhOrth', 
+    #     '--train_fasta_pos=/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/cnn_enhancer_ortholog/fasta/MSN_D1_trainPos.fa', 
+    #     '--train_fasta_neg=/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/cnn_enhancer_ortholog/fasta/MSN_D1_trainNeg.fa', 
+    #     '--valid_fasta_pos=/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/cnn_enhancer_ortholog/fasta/MSN_D1_validPos.fa', 
+    #     '--valid_fasta_neg=/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/cnn_enhancer_ortholog/fasta/MSN_D1_validNeg.fa'])
     args = parser.parse_args()
 
     main(args)

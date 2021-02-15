@@ -1,0 +1,114 @@
+Running cyclical learning rate for INT_Pvalb_hgRmMm_enhVsNonEnhOrth.
+One-cycle policy training for 23 epochs.
+Learning rates range: 0.01 - 0.1.
+Momentum rates range: 0.85 - 0.99.
+Dropout: 0.05.
+In training mode.
+Model exists w/o permission to overwrite. Use --force to overwrite.
+Running cyclical learning rate for INT_Pvalb_hgRmMm_enhVsNonEnhOrth.
+One-cycle policy training for 23 epochs.
+Learning rates range: 0.01 - 0.1.
+Momentum rates range: 0.85 - 0.99.
+Dropout: 0.05.
+In evaluation mode.
+There 34354 positives and 29736 negatives.
+65/65 - 8s
+Accuracy: 0.6346213389124288. 
+f1_score: 0.6378985712307713.
+roc_auc: 0.690870616383324.
+prc_auc: 0.7051786679798104.
+Running cyclical learning rate for INT_Pvalb_hgRmMm_enhVsNonEnhOrth.
+One-cycle policy training for 23 epochs.
+Learning rates range: 0.01 - 0.1.
+Momentum rates range: 0.85 - 0.99.
+Dropout: 0.1.
+In training mode.
+Model exists w/o permission to overwrite. Use --force to overwrite.
+Running cyclical learning rate for INT_Pvalb_hgRmMm_enhVsNonEnhOrth.
+One-cycle policy training for 23 epochs.
+Learning rates range: 0.01 - 0.1.
+Momentum rates range: 0.85 - 0.99.
+Dropout: 0.1.
+In evaluation mode.
+There 34354 positives and 29736 negatives.
+65/65 - 8s
+Accuracy: 0.6523948784662387. 
+f1_score: 0.6447225922465909.
+roc_auc: 0.7204561740216743.
+prc_auc: 0.7336178305950303.
+Running cyclical learning rate for INT_Pvalb_hgRmMm_enhVsNonEnhOrth.
+One-cycle policy training for 23 epochs.
+Learning rates range: 0.01 - 0.1.
+Momentum rates range: 0.85 - 0.99.
+Dropout: 0.15.
+In training mode.
+Model exists w/o permission to overwrite. Use --force to overwrite.
+Running cyclical learning rate for INT_Pvalb_hgRmMm_enhVsNonEnhOrth.
+One-cycle policy training for 23 epochs.
+Learning rates range: 0.01 - 0.1.
+Momentum rates range: 0.85 - 0.99.
+Dropout: 0.15.
+In evaluation mode.
+There 34354 positives and 29736 negatives.
+65/65 - 8s
+Accuracy: 0.6487846126583825. 
+f1_score: 0.6325608568846252.
+roc_auc: 0.7253966363704467.
+prc_auc: 0.7398642441715034.
+Running cyclical learning rate for INT_Pvalb_hgRmMm_enhVsNonEnhOrth.
+One-cycle policy training for 23 epochs.
+Learning rates range: 0.01 - 0.1.
+Momentum rates range: 0.85 - 0.99.
+Dropout: 0.2.
+In training mode.
+Model exists w/o permission to overwrite. Use --force to overwrite.
+Running cyclical learning rate for INT_Pvalb_hgRmMm_enhVsNonEnhOrth.
+One-cycle policy training for 23 epochs.
+Learning rates range: 0.01 - 0.1.
+Momentum rates range: 0.85 - 0.99.
+Dropout: 0.2.
+In evaluation mode.
+There 34354 positives and 29736 negatives.
+65/65 - 8s
+Accuracy: 0.6565913864365776. 
+f1_score: 0.6443255784839036.
+roc_auc: 0.7298505902415731.
+prc_auc: 0.7450548769386335.
+Running cyclical learning rate for INT_Pvalb_hgRmMm_enhVsNonEnhOrth.
+One-cycle policy training for 23 epochs.
+Learning rates range: 0.01 - 0.1.
+Momentum rates range: 0.85 - 0.99.
+Dropout: 0.25.
+In training mode.
+Model exists w/o permission to overwrite. Use --force to overwrite.
+Running cyclical learning rate for INT_Pvalb_hgRmMm_enhVsNonEnhOrth.
+One-cycle policy training for 23 epochs.
+Learning rates range: 0.01 - 0.1.
+Momentum rates range: 0.85 - 0.99.
+Dropout: 0.25.
+In evaluation mode.
+There 34354 positives and 29736 negatives.
+65/65 - 8s
+Accuracy: 0.6338787990503972. 
+f1_score: 0.603603414654711.
+roc_auc: 0.7251521261976833.
+prc_auc: 0.7401739852319876.
+Running cyclical learning rate for INT_Pvalb_hgRmMm_enhVsNonEnhOrth.
+One-cycle policy training for 23 epochs.
+Learning rates range: 0.01 - 0.1.
+Momentum rates range: 0.85 - 0.99.
+Dropout: 0.3.
+In training mode.
+Model exists w/o permission to overwrite. Use --force to overwrite.
+Running cyclical learning rate for INT_Pvalb_hgRmMm_enhVsNonEnhOrth.
+One-cycle policy training for 23 epochs.
+Learning rates range: 0.01 - 0.1.
+Momentum rates range: 0.85 - 0.99.
+Dropout: 0.3.
+In evaluation mode.
+There 34354 positives and 29736 negatives.
+65/65 - 8s
+Accuracy: 0.6672448054611383. 
+f1_score: 0.6694324454332755.
+roc_auc: 0.7326892236474596.
+prc_auc: 0.7465074425945741.

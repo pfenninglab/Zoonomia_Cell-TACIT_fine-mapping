@@ -56,13 +56,13 @@ done
 #####################################
 ## annotate for phyloP traits LDSC ##
 ANNOTDIR2=${SETDIR}/data/raw_data/caudate_conservation_ldsc/annot_phyloP
-BWFILE=${GWASDIR}/phyloP/200m_scoresPhyloP_20201221.@.bigWig
+BWFILE=${GWASDIR}/phyloP/200m_scoresPhyloP_20210214.@.bigWig
 mkdir -p $ANNOTDIR2
 
 ## for foreground
 CTS_AFR_FN2=${SETDIR}/data/raw_data/caudate_conservation_ldsc/caudate_conservation_phyloP_AFR_hg38_celltypes.ldcts; > $CTS_AFR_FN2
 CTS_EUR_FN2=${SETDIR}/data/raw_data/caudate_conservation_ldsc/caudate_conservation_phyloP_EUR_hg38_celltypes.ldcts; > $CTS_EUR_FN2
-for BED in ${DATADIR}/peak/*.narrowPeak.gz ${MUSDIR}/halper/*ToHomo_sapiens.HALPER.narrowPeak.gz ${MACDIR}/halper/*ToHomo_sapiens.HALPER.narrowPeak.gz; do
+for BED in ${DATADIR}/peak/*.narrowPeak.gz ${MUSDIR}/*ToHomo_sapiens.HALPER.narrowPeak.gz ${MACDIR}/*ToHomo_sapiens.HALPER.narrowPeak.gz ${MUSDIR2}/*Mus_musculusToHomo_sapiens.HALPER.narrowPeak.gz; do
 NAME=$(basename $BED | sed 's/.narrowPeak.gz//g')
 if [[ ! -f "${ANNOTDIR2}/${NAME}.AFR.1.l2.ldscore.gz" ]]; then
 echo "Annotations for ${NAME} not found."

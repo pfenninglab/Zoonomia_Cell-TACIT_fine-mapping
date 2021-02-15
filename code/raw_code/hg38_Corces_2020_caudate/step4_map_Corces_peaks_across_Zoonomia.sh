@@ -36,7 +36,6 @@ fi
 done
 
 
-
 ##########################################
 # recover any unmmapped Corces 2020 peaks
 SOURCE='Homo_sapiens'
@@ -51,10 +50,9 @@ for TARGET in ${TARGETS}; do OUTFILE=${OUTDIR}/${NAME}.${SOURCE}To${TARGET}.HALP
 if [[ ! -f "$OUTFILE" ]]; then REMAINING+=",${TARGET}"; fi
 done
 REMAINING=$(echo $REMAINING | sed 's/^,//g') #strip leading comma
-sbatch --mem 4G -p pfen1 -w compute-1-39 ${CODEDIR}/../hal_scripts/halper_map_peak_orthologs.sh \
+sbatch --mem 4G -p pfen1 -w compute-1-40 ${CODEDIR}/../hal_scripts/halper_map_peak_orthologs.sh \
 	-s ${SOURCE} -t ${REMAINING} -o ${OUTDIR} -b ${BEDFILE}
 done
-
 
 
 ########################################
@@ -70,7 +68,7 @@ for TARGET in ${TARGETS}; do OUTFILE=${OUTDIR}/${NAME}.${SOURCE}To${TARGET}.HALP
 if [[ ! -f "$OUTFILE" ]]; then REMAINING+=",${TARGET}"; fi
 done
 REMAINING=$(echo $REMAINING | sed 's/^,//g') #strip leading comma
-sbatch --mem 4G -p pfen1 -w compute-1-39 ${CODEDIR}/../hal_scripts/halper_map_peak_orthologs.sh -s ${SOURCE} -t ${REMAINING} -o ${OUTDIR} -b ${BEDFILE}
+sbatch --mem 4G -p pool3-bigmem --time 4-4 -w compute-1-35 ${CODEDIR}/../hal_scripts/halper_map_peak_orthologs.sh -s ${SOURCE} -t ${REMAINING} -o ${OUTDIR} -b ${BEDFILE}
 
 
 

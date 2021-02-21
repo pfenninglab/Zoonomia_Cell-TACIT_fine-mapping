@@ -33,13 +33,13 @@ if [[ ! -f "$OUTDIR/caudate_conservation_binary.${GWAS_Label}.${POP}.cell_type_r
 	--h2-cts $GWAS --out $OUTDIR/caudate_conservation_binary.${GWAS_Label}.${POP}
 fi
 
-# #################################################################################
-# # run LD score regression over the Corces caudate peaks intersect Zoonomia phyloP
-# CTS_FN2=${DATADIR}/caudate_conservation_phyloP_${POP}_hg38_celltypes.ldcts
-# if [[ ! -f "$OUTDIR/caudate_conservation_phyloP.${GWAS_Label}.${POP}.cell_type_results.txt" ]]; then
-# 	ldsc.py --ref-ld-chr-cts $CTS_FN2 \
-# 	--ref-ld-chr ${GWASDIR}/1000G_ALL_Phase3_hg38_files/baseline_v1.1/baseline_v1.1.${POP}. \
-# 	--w-ld-chr ${GWASDIR}/1000G_ALL_Phase3_hg38_files/weights/1000G.${POP}.weights.hm3_noMHC. \
-# 	--h2-cts $GWAS --out $OUTDIR/caudate_conservation_phyloP.${GWAS_Label}.${POP}
-# fi
+#################################################################################
+# run LD score regression over the Corces caudate peaks intersect Zoonomia phyloP
+CTS_FN2=${DATADIR}/caudate_conservation_phyloP_${POP}_hg38_celltypes.ldcts
+if [[ ! -f "$OUTDIR/caudate_conservation_phyloP.${GWAS_Label}.${POP}.cell_type_results.txt" ]]; then
+	ldsc.py --ref-ld-chr-cts $CTS_FN2 \
+	--ref-ld-chr ${GWASDIR}/1000G_ALL_Phase3_hg38_files/baseline_v1.1/baseline_v1.1.${POP}. \
+	--w-ld-chr ${GWASDIR}/1000G_ALL_Phase3_hg38_files/weights/1000G.${POP}.weights.hm3_noMHC. \
+	--h2-cts $GWAS --out $OUTDIR/caudate_conservation_phyloP.${GWAS_Label}.${POP}
+fi
 

@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH -n 1
-#SBATCH --partition=pfen3
-#SBATCH --time=1-0
+#SBATCH --partition=pfen1
+##SBATCH --time=1-0
 #SBATCH --job-name=est_herit
 #SBATCH --ntasks-per-node=1
 #SBATCH --cpus-per-task=1
@@ -56,7 +56,7 @@ for PEAKTYPE in $PEAKTYPES; do
 	BINARY_DHS_BG=${SETDIR}/data/raw_data/caudate_conservation_ldsc/annotation/Corces2020_caudate.All_Roadmap_DHS_cCREs_BICCN_Stauffer.BG.${POP}.,
 	CELLTYPES=$(stat -c "%n" $DATADIR/annotation/${PEAKTYPE}.*.${POP}.1.annot.gz | sed "s/${POP}.*/${POP}.,/g" | sed '/Consensus/d' |sed '/All_Roadmap_DHS_cCREs_mmToHg/d' |sed '/Roadmap/d' | sed '/All/d' | sort| uniq | sed -z 's/\n//g')
 	OUT=${DATADIR}/est_herit_cond/${PEAKTYPE}.binary.${GWAS_Label}.${POP}
-	# if [[ ! -f "${OUT}.results.gz" ]]; then
+	if [[ ! -f "${OUT}.results.gz" ]]; then
 		ldsc.py --h2 $GWAS --print-coefficients --print-snps ${SNPLIST} --n-blocks 400 \
 		--w-ld-chr ${GWASDIR}/1000G_ALL_Phase3_hg38_files/weights/1000G.${POP}.weights.hm3_noMHC. \
 		--ref-ld-chr ${CELLTYPES}${BINARY_DHS_BG}${GWASDIR}/1000G_ALL_Phase3_hg38_files/baselineLD_v2.2/baselineLD_v2.2.${POP}. \
@@ -64,22 +64,22 @@ for PEAKTYPE in $PEAKTYPES; do
 		--out ${OUT} 
 		log2results
 	fi
-	## format logs file to make .results file, --print-snps doesn't make a .results file
+	# format logs file to make .results file, --print-snps doesn't make a .results file
 
-	# #############################################################################################
-	# ## Estimate SNP heritability on continuous phyloP scores intersected w/ Meuleman DHS peaks ##
-	# CONTIN_DHS_BG=${SETDIR}/data/raw_data/caudate_conservation_ldsc/annot_phyloP/Corces2020_caudate.All_Roadmap_DHS_cCREs_BICCN_Stauffer.BG.${POP}.,
-	# CELLTYPES=$(stat -c "%n" $DATADIR/annot_phyloP/${PEAKTYPE}.*.${POP}.1.annot.gz | sed "s/${POP}.*/${POP}.,/g" | sed '/Consensus/d'| sed '/All/d' | sort| uniq | sed -z 's/\n//g')
-	# OUT=${DATADIR}/est_herit_cond/${PEAKTYPE}.phyloP.${GWAS_Label}.${POP}
-	# if [[ ! -f "${OUT}.results.gz" ]]; then
-	# 	ldsc.py --h2 $GWAS --print-coefficients --print-snps ${SNPLIST} \
-	# 	--w-ld-chr ${GWASDIR}/1000G_ALL_Phase3_hg38_files/weights/1000G.${POP}.weights.hm3_noMHC. \
-	# 	--ref-ld-chr ${CELLTYPES}${CONTIN_DHS_BG}${GWASDIR}/1000G_ALL_Phase3_hg38_files/baselineLD_v2.2/baselineLD_v2.2.${POP}. \
-	# 	--frqfile-chr ${GWASDIR}/1000G_ALL_Phase3_hg38_files/plink/1000G.${POP}.HM3. \
-	# 	--out ${OUT}  
-	# fi
-	# log2results
-	## format logs file to make .results file, --print-snps doesn't make a .results file
+	#############################################################################################
+	## Estimate SNP heritability on continuous phyloP scores intersected w/ Meuleman DHS peaks ##
+	CONTIN_DHS_BG=${SETDIR}/data/raw_data/caudate_conservation_ldsc/annot_phyloP/Corces2020_caudate.All_Roadmap_DHS_cCREs_BICCN_Stauffer.BG.${POP}.,
+	CELLTYPES=$(stat -c "%n" $DATADIR/annot_phyloP/${PEAKTYPE}.*.${POP}.1.annot.gz | sed "s/${POP}.*/${POP}.,/g" | sed '/Consensus/d'| sed '/All/d' | sort| uniq | sed -z 's/\n//g')
+	OUT=${DATADIR}/est_herit_cond/${PEAKTYPE}.phyloP.${GWAS_Label}.${POP}
+	if [[ ! -f "${OUT}.results.gz" ]]; then
+		ldsc.py --h2 $GWAS --print-coefficients --print-snps ${SNPLIST} \
+		--w-ld-chr ${GWASDIR}/1000G_ALL_Phase3_hg38_files/weights/1000G.${POP}.weights.hm3_noMHC. \
+		--ref-ld-chr ${CELLTYPES}${CONTIN_DHS_BG}${GWASDIR}/1000G_ALL_Phase3_hg38_files/baselineLD_v2.2/baselineLD_v2.2.${POP}. \
+		--frqfile-chr ${GWASDIR}/1000G_ALL_Phase3_hg38_files/plink/1000G.${POP}.HM3. \
+		--out ${OUT}  
+	fi
+	log2results
+	# format logs file to make .results file, --print-snps doesn't make a .results file
 done
 
 

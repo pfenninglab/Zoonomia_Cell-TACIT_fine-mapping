@@ -52,7 +52,6 @@ echo -e "${NAME}\t${ANNOTDIR}/${NAME}.EUR.,${ANNOTDIR}/${BGNAME}.EUR." >> $CTS_E
 done
 
 
-
 #####################################
 ## annotate for phyloP traits LDSC ##
 ANNOTDIR2=${SETDIR}/data/raw_data/caudate_conservation_ldsc/annot_phyloP

@@ -1,67 +1,165 @@
 # to be run in the root github directory
-setwd('code/raw_code/hg38_Corces_2020_caudate')
+LABEL='cnn_enhancer_ortholog'
+setwd('code/raw_code/cnn_enhancer_ortholog')
+PROJDIR=file.path('../../../data/raw_data',LABEL)
 
-suppressMessages(library(ArchR))
-ss <- function(x, pattern, slot = 1, ...) { sapply(strsplit(x = x, split = pattern, ...), '[', slot) }
+### set up libraries and functions ####
+ss <- function(x, pattern, slot = 1, ...) { 
+  sapply(strsplit(x = x, split = pattern, ...), '[', slot) }
 options(stringsAsFactors = F)
 options(repr.plot.width=11, repr.plot.height=8.5)
-
+suppressMessages(library(rtracklayer))
+suppressMessages(library(tidyverse))
+suppressMessages(library(Biostrings))
 source('../hal_scripts/narrowPeakFunctions.R')
+source('../hal_scripts/gen_enh_ortholog_sets.R')
 
-### set Arrow File parameters ####
-addArchRThreads(threads = 10)
-addArchRGenome("hg38")
+## parameters for annotation and filtering
+fromTSS = c(-20000,20000)
+include = c('Distal.Intergenic','Intron')
 
-### read in ArchR project ####
-PROJDIR='../../../data/raw_data/hg38/Corces_2020'
-LABEL='Corces2020_caudate'; GENOME = 'hg38'; 
-SOURCE_SPECIES = 'Homo_sapiens'
-TARGET_SPECIES = c('Macaca_mulatta','Mus_musculus')
-ARCHDIR=file.path(PROJDIR,paste0('ArchR_',LABEL,'_labeled'))
-proj = loadArchRProject(ARCHDIR, showLogo = F)
+## chromosomal splits
+testSet = c('chr1','chr2')
+folds = list(fold1 = c('chr6', 'chr13', 'chr21'),
+             fold2 = c('chr7', 'chr14', 'chr18'),
+             fold3 = c('chr11','chr17', 'chrX'),
+             fold4 = c('chr9', 'chr12'), 
+             fold5 = c('chr8', 'chr10'))
 
-# get the reproducible peaks across Cluster2 cell types
-peak_rds_fn = list.files(path = file.path(ARCHDIR,'PeakCalls'), full.names = T,
-                         pattern = '.rds')
-names(peak_rds_fn) = ss(basename(peak_rds_fn),'-reproduciblePeaks.gr.rds')
-peakList = lapply(peak_rds_fn, readRDS)
+########################
+## get the hg38 peaks ##
+genome = 'hg38'
+load(file.path(PROJDIR, 'rdas', paste('caudate_nonEnh_sequences', genome,'.rda', sep = '.')))
+bias_fn = file.path(PROJDIR,'fasta',paste(genome, names(negativeSet), 'biasAway10x.fa',sep = '_'))
+names(bias_fn) = names(negativeSet)
+bias_seq = lapply(bias_fn, readDNAStringSet)
+bias_gr = lapply(bias_seq, function(seq){
+  gr = paste(ss(names(seq),' ', 1), ss(names(seq),'_', 2), sep = ':') %>% GRanges()
+  gr = resize(gr, width = 501)
+  names(gr) = mcols(gr)$name = names(seq)
+  return(gr)
+}) %>% GRangesList()
 
-# get the consensus peak matrix
-peakList = c('Consensus' = getPeakSet(proj), peakList)
+# annotate the GC-matched negatives, exclude promoters, exonic
+bias_gr = annotatePeaks(bias_gr, fromTSS = fromTSS, genome = genome)
+biasFilt_gr = filterPeaks(bias_gr, include = include)
+biasFilt_gr = mapply(getNonEnhOrthPeaks, inPeaks = biasFilt_gr, 
+                          excludePeaks = human_pos_list)
+lengths(biasFilt_gr) / 1000
+lengths(biasFilt_gr) / lengths(bias_gr)
 
-# add peak summits, unique peak names, and sort
-peakList = lapply(peakList, addSummitCenter)
-peakList = lapply(peakList, nameNarrowPeakRanges, genome = GENOME)
-peakList = lapply(peakList, sort)
+negativeSplit_list = lapply(folds, function(fold){
+  lapply(biasFilt_gr, splitPeakSet, testSet = testSet, validSet = fold)
+})
 
-# create directory and 
-PEAKDIR=file.path(PROJDIR,'peak')
-system(paste('mkdir -p',PEAKDIR))
-narrowPeak_fn = file.path(PEAKDIR, 
-                          paste0(LABEL, '.',names(peakList),'.narrowPeak.gz'))
 
-# write peaks to narrowPeak file
-outList = mapply(write_GRangesToNarrowPeak,gr = peakList, file = narrowPeak_fn, 
-             genome = GENOME)
+# export postive sequences to summit-centered 501bp fasta file
+split = names(negativeSplit_list[[1]][[1]])
+system(paste('mkdir -p',  file.path(PROJDIR, 'fasta')))
+for(cell in names(negativeSet)){
+  for(fold in names(folds)){
+    # write the negatives
+    neg_fasta_fn = file.path(PROJDIR, 'fasta', 
+                             paste(genome, cell, fold, split, 'biasAway10x.fa', sep = '_'))
+    negSeq = lapply(negativeSplit_list[[fold]][[cell]], function(gr) bias_seq[[cell]][names(gr)])
+    tmp = mapply(writeXStringSet, x = negSeq, filepath = neg_fasta_fn )
+  }}
 
-#####################################
-# halLiftOver and HALPER the peaks ##
-halmapper_script = '../hal_scripts/halper_map_peak_orthologs.sh'
-system('mkdir -p logs')
-sbatch = 'sbatch -p pfen1 -w compute-1-40'
-target_species = paste('-t', TARGET_SPECIES)
-source_species = paste('-s', SOURCE_SPECIES)
-outdir = paste('-o', file.path(PROJDIR, 'halper'))
-peak_files = paste('-b',narrowPeak_fn)
 
-# paste the parameter calls together
-thecall = paste(sbatch, halmapper_script, 
-                source_species, 
-                rep(target_species, each= length(peak_files)), 
-                outdir, 
-                rep(peak_files, times = length(target_species)))
-cat(thecall, file= 'step3b_run_halmaper.sh', sep = '\n')
-system('chmod u+x step3b_run_halmaper.sh')
 
+
+
+
+########################
+## get the mm10 peaks ##
+genome = 'mm10'
+load(file.path(PROJDIR, 'rdas', paste('caudate_nonEnh_sequences', genome,'.rda', sep = '.')))
+bias_fn = file.path(PROJDIR,'fasta',paste(genome, names(negativeSet), 'biasAway10x.fa',sep = '_'))
+names(bias_fn) = names(negativeSet)
+bias_seq = lapply(bias_fn, readDNAStringSet)
+bias_gr = lapply(bias_seq, function(seq){
+  gr = ss(names(seq),':', 1) %>% gsub(pattern = '_',replacement = ':') %>% GRanges()
+  gr = resize(gr, width = 501)
+  names(gr) = mcols(gr)$name = names(seq)
+  return(gr)
+}) %>% GRangesList()
+
+# annotate the GC-matched negatives, exclude promoters, exonic
+bias_gr = annotatePeaks(bias_gr, fromTSS = fromTSS, genome = genome)
+biasFilt_gr = filterPeaks(bias_gr, include = include)
+biasFilt_gr = mapply(getNonEnhOrthPeaks, inPeaks = biasFilt_gr, 
+                     excludePeaks = mouse_pos_list)
+
+# get the hg38 chromosomes
+chainFile =file.path("/home/bnphan/resources/liftOver_chainz", paste0(genome,'ToHg38.over.chain'))
+biasFilt_gr = mapply(getLiftedChr, p = biasFilt_gr, chainFile = chainFile) %>% GRangesList()
+table(seqnames(biasFilt_gr[[1]]), biasFilt_gr[[1]]$col)
+negativeSplit_list = lapply(folds, function(fold){
+  lapply(biasFilt_gr, splitPeakSet, testSet = testSet, validSet = fold, useCol = 'col')
+})
+
+lengths(biasFilt_gr) / 1000
+lengths(biasFilt_gr) / lengths(bias_gr)
+
+# export postive sequences to summit-centered 501bp fasta file
+split = names(negativeSplit_list[[1]][[1]])
+system(paste('mkdir -p',  file.path(PROJDIR, 'fasta')))
+for(cell in names(negativeSet)){
+  for(fold in names(folds)){
+    # write the negatives
+    neg_fasta_fn = file.path(PROJDIR, 'fasta', 
+                             paste(genome, cell, fold, split, 'biasAway10x.fa', sep = '_'))
+    negSeq = lapply(negativeSplit_list[[fold]][[cell]], function(gr) bias_seq[[cell]][names(gr)])
+    tmp = mapply(writeXStringSet, x = negSeq, filepath = neg_fasta_fn )
+  }}
+
+
+
+
+
+############################
+## get the rheMac10 peaks ##
+genome = 'rheMac10'
+load(file.path(PROJDIR, 'rdas', paste('caudate_nonEnh_sequences', genome,'.rda', sep = '.')))
+bias_fn = file.path(PROJDIR,'fasta',paste(genome, names(negativeSet), 'biasAway10x.fa',sep = '_'))
+names(bias_fn) = names(negativeSet)
+bias_seq = lapply(bias_fn, readDNAStringSet)
+bias_gr = lapply(bias_seq, function(seq){
+  tmp = names(seq)
+  tmp = tmp[!is.na(as.numeric(ss(tmp, '_', 2)))]
+  gr = tmp %>% gsub(pattern = '_',replacement = ':') %>% GRanges()
+  gr = resize(gr, width = 501)
+  names(gr) = mcols(gr)$name = tmp
+  return(gr)
+}) %>% GRangesList()
+
+# annotate the GC-matched negatives, exclude promoters, exonic
+bias_gr = annotatePeaks(bias_gr, fromTSS = fromTSS, genome = genome)
+biasFilt_gr = filterPeaks(bias_gr, include = include)
+biasFilt_gr = mapply(getNonEnhOrthPeaks, inPeaks = biasFilt_gr, 
+                     excludePeaks = mouse_pos_list)
+
+# get the hg38 chromosomes
+chainFile =file.path("/home/bnphan/resources/liftOver_chainz", paste0(genome,'ToHg38.over.chain'))
+biasFilt_gr = mapply(getLiftedChr, p = biasFilt_gr, chainFile = chainFile) %>% GRangesList()
+table(seqnames(biasFilt_gr[[1]]), biasFilt_gr[[1]]$col)
+negativeSplit_list = lapply(folds, function(fold){
+  lapply(biasFilt_gr, splitPeakSet, testSet = testSet, validSet = fold, useCol = 'col')
+})
+
+lengths(biasFilt_gr) / 1000
+lengths(biasFilt_gr) / lengths(bias_gr)
+
+# export postive sequences to summit-centered 501bp fasta file
+split = names(negativeSplit_list[[1]][[1]])
+system(paste('mkdir -p',  file.path(PROJDIR, 'fasta')))
+for(cell in names(negativeSet)){
+  for(fold in names(folds)){
+    # write the negatives
+    neg_fasta_fn = file.path(PROJDIR, 'fasta', 
+                             paste(genome, cell, fold, split, 'biasAway10x.fa', sep = '_'))
+    negSeq = lapply(negativeSplit_list[[fold]][[cell]], function(gr) bias_seq[[cell]][names(gr)])
+    tmp = mapply(writeXStringSet, x = negSeq, filepath = neg_fasta_fn )
+  }}
 
 

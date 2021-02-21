@@ -8,6 +8,7 @@ suppressMessages(library(ggplot2))
 suppressMessages(library(ggsci))
 suppressMessages(library(ggpubr))
 suppressMessages(library(ChIPseeker))
+suppressMessages(library(scales))
 
 LABEL='caudate_conservation_ldsc'
 setwd('figures/explanatory/overlap_caudate_peak_orth')
@@ -19,7 +20,7 @@ source('../../../code/raw_code/hal_scripts/gen_enh_ortholog_sets.R')
 save_fn = file.path(PROJDIR, 'rdas', 'human_macaque_mouse_orthologs_peakList.rda')
 group_class = c("hgPeaks", "rm2Hg", "hgRmOrth", "mm2Hg", "hgMmOrth")
 annot_class = c('Distal.Intergenic','Promoter',"5' UTR", 'Exon', "Intron","3' UTR", 'Downstream')
-celltype_class = c('Caudate', 'MSN_D1', 'MSN_D2', "MSN_SN", 'INT_Pvalb', 'Astro', 'Microglia', 'OPC', 'Oligo')
+celltype_class = c('MSN_D1', 'MSN_D2', "MSN_SN", 'INT_Pvalb', 'Astro', 'Microglia', 'OPC', 'Oligo')
 
 if(FALSE){
   load(file.path(PROJDIR, 'rdas', 'human_macaque_orthologs_peakList.rda'))
@@ -41,7 +42,8 @@ if(FALSE){
 
 #######################################
 ## gather matrix of peak annotations ##
-human_peaks = do.call(c,lapply(human_peakList, as.list))
+human_peakList2 = lapply(human_peakList, function(ll) ll[celltype_class])
+human_peaks = do.call(c,lapply(human_peakList2, as.list))
 annot_df = lapply(human_peaks, function(gr){
   df = gr %>% as.data.frame() %>% group_by(annot) %>%
     summarise (n = n()) %>%
@@ -60,8 +62,8 @@ annot_df = lapply(human_peaks, function(gr){
 #################################
 ## make plots for presentation ##
 system(paste('mkdir -p', file.path( 'plots')))
-height_ppt = 4; width_ppt = 8
-height_fig = 4; width_fig = 2.25; font_fig = 5
+height_ppt = 3.75; width_ppt = 8
+height_fig = 3.75; width_fig = 2.25; font_fig = 5
 
 plot_fn = file.path('plots','Corces2020_caudate_peaks_barplot_ppt.pdf')
 pdf(width = width_ppt, height = height_ppt, file = plot_fn)
@@ -97,7 +99,8 @@ pp1 = ggplot(annot_df, aes(x = group, y = n, fill = annot)) +
   geom_bar(stat = 'identity') + scale_fill_jco() +
   xlab('Peak Annotation') + ylab('Number of Peaks') + 
   scale_x_discrete(position = "top") +
-  facet_wrap(~celltype, ncol = 1, scales = 'free_y',strip.position ='right') + 
+  scale_y_continuous(labels = comma) +
+  facet_wrap(~celltype, ncol = 1, strip.position ='right') + 
   theme_bw(base_size = font_fig) + theme(legend.position="bottom") + 
   guides(fill = guide_legend(nrow = 2, override.aes = list(size = 2)))+ 
   theme(axis.text.x = element_text(angle = 45, hjust = 0)) +
@@ -108,7 +111,8 @@ pp2 = ggplot(annot_df, aes(x = group, y = freq, fill = annot)) +
   geom_bar(stat = 'identity') + scale_fill_jco() +
   xlab('Peak Annotation Fraction') + ylab('Peak Annotation Fraction') + 
   scale_x_discrete(position = "top") +
-  facet_wrap(~celltype, ncol = 1, scales = 'free_y',strip.position ='right') + 
+  scale_y_continuous(labels = comma) +
+  facet_wrap(~celltype, ncol = 1,strip.position ='right') + 
   theme_bw(base_size = font_fig) + theme(legend.position="bottom") + 
   guides(fill = guide_legend(nrow = 2, override.aes = list(size = 2)))+ 
   theme(axis.text.x = element_text(angle = 45, hjust = 0)) +

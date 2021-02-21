@@ -31,7 +31,7 @@ input = lapply(enrich_fn, read_tsv) %>% bind_rows(.id = 'file')
 enrichments = input %>% 
   filter(!grepl('CP.MSN_D|CP.INT', Name)) %>%
   mutate(
-    file = gsub('Corces2020_', '', file), 
+    file = gsub('caudate_conservation_', '', file), 
     annot_group = ss(file, '\\.', 1),
     match = ss(file, '\\.', 2), 
     tmpcol = ss(Name,'\\.', 1),
@@ -59,6 +59,7 @@ enrichments = input %>%
       grepl('MSN|INT', celltype) ~ 'Neuron', 
       TRUE ~ 'Glia'
     )) %>%
+  filter(celltype != 'Caudate') %>%
   select(-tmpcol) %>% inner_join(x = pheno, by = 'match')
 enrichments %>% data.frame() %>% head()
 enrichments %>% pull(peaktype) %>% table()
@@ -67,7 +68,7 @@ enrichments %>% pull(model_species) %>% table()
 ## normalize the coefficients by per SNP heritability
 # compute Padj within a particular peak_group (hg38 or inModelOrg) 
 # and peaktype (full, core), these features are overlapping, nested
-enrichments = enrichments %>% #group_by(peaktype) %>%
+enrichments = enrichments %>% group_by(annot_group) %>%
   mutate(Padj = p.adjust(Coefficient_P_value, 'bonferroni'), 
          logPadj = -log10(Padj), 
          Coef_norm = Coefficient / h2_perSNP, 
@@ -85,7 +86,7 @@ enrichments %>% data.frame() %>% head(2)
 alpha = 0.05; 
 enrich_wide = enrichments %>% 
   # these id columns make up all combinations aside form peakgroup
-  group_by(celltype, match) %>% 
+  group_by(celltype, match, annot_group) %>% 
   mutate(
     Padj_inModel = Padj,
     Coef_norm_inModel = Coef_norm,
@@ -112,22 +113,20 @@ enrich_wide = enrichments %>%
 enrich_wide %>% data.frame() %>% head(2)
 enrich_wide%>% pull(p.signif) %>% table()
 # both     inHg38 inModelOrg         NS 
-# 196        134         36       3306 
-
+# 196        134         38       6976 
 
 #################################
 ## make plots for presentation ##
 system(paste('mkdir -p', file.path( 'plots')))
 height_ppt = 4.5; width_ppt = 8
-height_fig = 4; width_fig = 4.75; font_fig = 5
+height_fig = 3.5; width_fig = 4.75; font_fig = 5
 plot_celltypes = enrichments %>% filter(Padj < alpha) %>% pull(celltype) %>% unique() 
 
 # make plots
-for(annot in c('binary annotation')){
+for(annot in c('binary annotation', 'phyloP score + peak')){
   for(cell in c("Neuron", "Glia")){
     for(species in c('rheMac10','mm10')){
-      plot_fn = 
-        file.path('plots',paste('Corces2020_caudate_ldsc',
+      plot_fn = file.path('plots',paste('Corces2020_caudate_ldsc',
                                 annot,species,cell,'ppt.pdf', sep = '_'))
       pdf(width = width_ppt, height = height_ppt, file = plot_fn)
       pp = ggplot(data = enrich_wide %>% filter(cell_group == cell) %>%
@@ -165,7 +164,7 @@ for(annot in c('binary annotation')){
 
 
 # make plots
-for(annot in c('binary annotation')){
+for(annot in c('binary annotation', 'phyloP score + peak')){
   for(cell in c("Neuron", "Glia")){
     plot_fn2 = file.path('plots',paste('Corces2020_caudate_ldsc',
                                        annot,cell,'fig.pdf', sep = '_'))

@@ -131,7 +131,7 @@ function format_bed()
     if [[ $(awk '{print NF; exit}' ${INPUTBED}) -lt 4 ]]; 
         then echo "Bed file doesn't have name column. Adding"
         echo "USING CHR:START-END in the NAME column."
-        awk 'BEGIN {FS="\t"; OFS="\t"} {print $1, $2, $3, $1 ":" $2 "-" $3, "0", "."}' $INPUTBED > $UNIQUEBED    
+        awk 'BEGIN {FS="\t"; OFS="\t"} {print $1, $2, $3, $1 ":" $2 "-" $3 ":" int(($2 + $3)/2), "0", "."}' $INPUTBED > $UNIQUEBED    
     # name column found, check if duplicate names
     elif [[ $(awk '++A[$4] > 1 { print "true"; exit 1 }' $INPUTBED) ]]; then
         echo "Non-unique bed peak names detected. Giving unique names now."

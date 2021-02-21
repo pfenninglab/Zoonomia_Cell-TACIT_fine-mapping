@@ -54,6 +54,26 @@ filterPeaks <-function(peaks, include =c('Distal.Intergenic','Intron')){
 }
 
 
+getLiftedChr <- function(p, chainFile){
+  require(rtracklayer)
+  # import the chain file for liftOver
+  chain <- import.chain(chainFile)
+  p = nameNarrowPeakRanges(p)
+  
+  # liftover the peak regions
+  p1 = resize(p, width = 1); names(p1) = mcols(p1)$name
+  p2 = unlist(GenomicRanges::reduce(rtracklayer::liftOver(p1, chain = chain)))
+  p2 = GenomeInfoDb::keepStandardChromosomes(p2,pruning.mode="coarse")
+
+  # add lifted chromosome to col
+  mcols(p)$col = NA
+  mcols(p)$col = as.character(seqnames(p2))[match(mcols(p)$name, names(p2))]
+  p = p %>% sort() %>% as.data.frame() %>% fill(col, .direction = "updown") %>% GRanges()
+  
+  return(p)
+}
+
+
 getTxDb <- function(genome){
   if(genome =='hg38'){
     suppressMessages(require(TxDb.Hsapiens.UCSC.hg38.knownGene))

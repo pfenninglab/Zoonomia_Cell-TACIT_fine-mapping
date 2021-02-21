@@ -1,1 +1,0 @@
-slurmstepd: error: *** JOB 967702 ON compute-0-10 CANCELLED AT 2021-02-12T16:45:01 ***

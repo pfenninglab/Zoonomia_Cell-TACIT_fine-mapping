@@ -61,7 +61,7 @@ ANNOTFN=${ANNOTDIR}/Zoonomia_240v2.hm3_noMHC.${CHR}.annot.gz
 SPECIES_FN=$(ls ${ANNOTDIR}/zooSNP.*.hm3_noMHC.${CHR}.tmp.txt )
 FIRST_COL=${ANNOTDIR}/tmp2.${CHR}.EUR_SNP.txt
 sort -k5,5n  $EUR_SNP| cut -f1-4 | sed -e '1i\CHR\tSNP\tCM\tBP' > $FIRST_COL
-paste $FIRST_COL $SPECIES_FN |gzip > ${ANNOTFN}
+paste $FIRST_COL $SPECIES_FN | gzip > ${ANNOTFN}
 
 ### generate LD scores for Zoonomia SNPs 
 source activate ldsc

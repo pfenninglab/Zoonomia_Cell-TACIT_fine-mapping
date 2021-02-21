@@ -1,2 +1,0 @@
-/var/spool/slurmd/job967803/slurm_script: line 71: 31928 Killed                  ~/src/ldsc/ldsc.py --l2 --ld-wind-kb 1000 --print-snps ${SNPLIST} --bfile ${GWASDIR}/1000G_EUR_Phase3_GRCh38_files/plink_files/1000G.EUR.hg38.${CHR} --out ${ANNOTDIR}/Zoonomia_240v2.hm3_noMHC.${CHR} --annot ${ANNOTFN}
-slurmstepd: error: Detected 1 oom-kill event(s) in step 967803.batch cgroup. Some of your processes may have been killed by the cgroup out-of-memory handler.

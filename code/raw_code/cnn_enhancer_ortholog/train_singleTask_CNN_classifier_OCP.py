@@ -1,22 +1,21 @@
-from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Dropout, Activation, Embedding, Conv2D, MaxPooling2D, Flatten
-from tensorflow.keras.optimizers import SGD, Adam
 from tensorflow.keras.callbacks import EarlyStopping
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.optimizers import SGD, Adam
 from tensorflow.keras.regularizers import l2
 from tensorflow.keras.models import load_model
-from sklearn import metrics
-from Bio import SeqIO
-
-import tensorflow as tf
 import tensorflow.keras.backend as K
 import matplotlib; matplotlib.use('agg')
-import matplotlib.pyplot as plt
 import os, sys, gc, math, argparse
+import matplotlib.pyplot as plt
+import tensorflow as tf
 import pandas as pd
 import numpy as np
 
+from sklearn import metrics
 from callback_ocp import *
 from cnn_utils import *
+from Bio import SeqIO
 
 # gc.collect()
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'  # or any {'0', '1', '2'}
@@ -42,7 +41,7 @@ def range_test(x, y, args):
     step_size = len(iterations)/(args.numCycles)
     #
     # set cyclic learning rate
-    clr =  CyclicLR(base_lr=args.base_lr,
+    clr = CyclicLR(base_lr=args.base_lr,
                 max_lr=args.max_lr,
                 step_size=step_size,
                 max_m=args.max_m,
@@ -91,6 +90,7 @@ def predict_sequences(model_name, x, ids):
     # combineStrands will average the logit of the for and rev DNA strands
     model = load_model(model_name, compile=False)
     y_pred_score = model.predict(x, verbose = args.verbose).flatten()
+    y_pred_score = np.nan_to_num(y_pred_score)
     df = pd.DataFrame({'id': ids, 'y_pred_logit': np.log10(y_pred_score) - np.log10(1-y_pred_score)})
     df = df.groupby(['id']).mean()
     df['y_pred_score'] = 1 / (1 + np.exp(-df['y_pred_logit']))
@@ -106,6 +106,7 @@ def predict_sequences2(model_name, x, y, ids):
     # combineStrands will average the logit of the for and rev DNA strands
     model = load_model(model_name, compile=False)
     y_pred_score = model.predict(x, verbose = args.verbose).flatten()
+    y_pred_score = np.nan_to_num(y_pred_score)
     df = pd.DataFrame({'id': ids, 'y' : y, 'y_pred_logit': np.log10(y_pred_score) - np.log10(1-y_pred_score)})
     df = df.groupby(['id']).mean()
     df['y_pred_score'] = 1 / (1 + np.exp(-df['y_pred_logit']))
@@ -144,14 +145,11 @@ def plot_training_performance(args, hist, clr ):
         hist (keras training history):
         clr (argparse):
     """
-    # file names
-    lab = f'{args.label}_OCP_NB{args.batch_size}_NE{args.epochs}_BR{args.base_lr}_MR{args.max_lr}_BM{args.base_m}_MM{args.max_m}_DO{args.dropout}'
-    model_train_performance = f'{args.out_dir}/plots/{args.label}/{lab}_trainPerformance.pdf'
     # plot performance by iteration
-    if not os.path.exists(f'{args.out_dir}/plots/{args.label}'):
-        os.makedirs(f'{args.out_dir}/plots/{args.label}')
+    if not os.path.exists(f'{args.out_dir}/plots/{label}'):
+        os.makedirs(f'{args.out_dir}/plots/{label}')
     fig, axs = plt.subplots(2, 2, figsize=(8, 6))
-    fig.suptitle(f"Training performance {args.label}")
+    fig.suptitle(f"Training performance {label}")
     axs[0, 0].plot(clr.history['iterations'], clr.history['lr'])
     axs[0, 0].set(xlabel='Training Iterations', ylabel='Learning Rate')
     axs[0, 0].set_title("One Cycle Policy")
@@ -177,25 +175,24 @@ def plot_training_performance(args, hist, clr ):
     return
 
 
-
 def main(args):
     """Main function
     Args:
     args (argparse):
     """
     # file names
-    print(f'Running cyclical learning rate for {args.label}.')
+    print(f'Running cyclical learning rate for {label}.')
     print(f'One-cycle policy training for {args.epochs} epochs.')
+    print(f'Model is: {args.model_name}')
+    print(f'Batch size: {args.batch_size}.')
     print(f'Learning rates range: {args.base_lr} - {args.max_lr}.')
     print(f'Momentum rates range: {args.base_m} - {args.max_m}.')
     print(f'Dropout: {args.dropout}.')
-    lab = f'{args.label}_OCP_NB{args.batch_size}_NE{args.epochs}_BR{args.base_lr}_MR{args.max_lr}_BM{args.base_m}_MM{args.max_m}_DO{args.dropout}'
-    model_name = f"{args.out_dir}/models/{args.label}/{lab}.h5"
     # call main functions
     if args.mode == 'train':
         print('In training mode.')
-        if os.path.exists(model_name) and not args.force:
-            print('Model exists w/o permission to overwrite. Use --force to overwrite.')
+        if os.path.exists(args.model_name) and not args.force:
+            print(f'The model exists w/o permission to overwrite. Use --force to overwrite.')
             return
         (x_train, y_train, ids_train) = encode_sequence(args.train_fasta_pos, args.train_fasta_neg, size = args.seq_length, shuffleOff = False)
         (x_valid, y_valid, ids_valid) = encode_sequence(args.valid_fasta_pos, args.valid_fasta_neg, size = args.seq_length, shuffleOff = False)
@@ -203,36 +200,35 @@ def main(args):
         model, clr, hist = train_model_clr(x_train, y_train, x_valid, y_valid, args)
         plot_training_performance(args, hist, clr )
         # make sure to create folder
-        if not os.path.exists(f'{args.out_dir}/models/{args.label}'):
-            os.makedirs(f'{args.out_dir}/models/{args.label}')
-        #
-        model.save(model_name)
+        if not os.path.exists(f'{args.out_dir}/models/{args.prefix}'):
+            os.makedirs(f'{args.out_dir}/models/{args.prefix}') 
+        model.save(args.model_name)
         #
     elif args.mode == 'evaluate':
         print('In evaluation mode.')
-        if not os.path.exists(model_name):
+        if not os.path.exists(args.model_name):
             print('No model found with specified training parameters. Please train model first.')
             return
         (x_valid, y_valid, ids_valid) = encode_sequence(args.valid_fasta_pos, args.valid_fasta_neg, size = args.seq_length, shuffleOff = True)
-        df = evaluate_sequences(model_name, x_valid, y_valid, ids_valid, args)
-        model_test_performance = f'{args.out_dir}/predictions/{args.label}/{lab}_testPerformance.feather'
+        df = evaluate_sequences(args.model_name, x_valid, y_valid, ids_valid, args)
+        model_test_performance = f'{args.out_dir}/predictions/{args.prefix}/{label}.performance.feather'
         # save model performances to feather object
-        if not os.path.exists(f'{args.out_dir}/predictions/{args.label}'):
-            os.makedirs(f'{args.out_dir}/predictions/{args.label}')
+        if not os.path.exists(f'{args.out_dir}/predictions/{args.prefix}'):
+            os.makedirs(f'{args.out_dir}/predictions/{args.prefix}')
         df.to_feather(model_test_performance)
         print(f'Model performance written to {model_test_performance}')
         #
     elif args.mode == 'predict':
         print('In prediction mode.')
-        if not os.path.exists(model_name):
+        if not os.path.exists(args.model_name):
             print('No model found with specified training parameters. Please train model first.')
             return
         (x, ids) = encode_sequence3(args.predict_fasta, size = args.seq_length)
-        df = predict_sequences(model_name, x, ids)
-        model_predictions = f'{args.out_dir}/predictions/{args.label}/{lab}_testPredictions.txt'
+        df = predict_sequences(args.model_name, x, ids)
+        model_predictions = f'{args.out_dir}/predictions/{args.prefix}/{label}.predictions.txt'
         # save model performances to feather object
-        if not os.path.exists(f'{args.out_dir}/predictions/{args.label}'):
-            os.makedirs(f'{args.out_dir}/predictions/{args.label}')
+        if not os.path.exists(f'{args.out_dir}/predictions/{args.prefix}'):
+            os.makedirs(f'{args.out_dir}/predictions/{args.prefix}') 
         np.savetxt(model_predictions, df, axis = 1)
         print(f'Prediction written to {model_predictions}')
     return
@@ -241,10 +237,11 @@ def main(args):
 if __name__ == '__main__':  
     #### set cnn parameters:
     parser = argparse.ArgumentParser(description='Parse CNN parameters.')
-    parser.add_argument("--mode", type=str, help="Mode to perform", 
+    parser.add_argument("--mode", type=str, help="Mode to perform. Train needs all fasta. Evaluate needs validation fasta. Predict only fasta passed predict_fasta.", 
         choices=['train', 'evaluate', 'predict'], default = 'train', required=False)
     #
-    parser.add_argument("label", type=str, help="label of model.")
+    parser.add_argument("--prefix", type=str, help="prefix of model.")
+    parser.add_argument("--model_name", type=str, help="complete model name")
     parser.add_argument("--predict_fasta", type=str, help="fasta sequence file for predictions.")
     parser.add_argument("--train_fasta_pos", type=str, help="training fasta sequence file of positives.")
     parser.add_argument("--train_fasta_neg", type=str, help="training fasta sequence file of negatives.")
@@ -282,15 +279,36 @@ if __name__ == '__main__':
     parser.add_argument("--force", help="Whether to overwrite previously trained model.",
         action='store_true')
     parser.add_argument("--out_dir", type=str, default = '.', help="path to ouputput directory, default is pwd")
-    #
+
     ### parse arguments
     # args = parser.parse_args(['--out_dir=/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/cnn_enhancer_ortholog', 
-    #     '--cyclical_momentum', 'MSN_D1_hgRmMm_enhVsNonEnhOrth', 
+    #     '--cyclical_momentum', '--label=MSN_D1_hgRmMm_enhVsNonEnhOrth', 
     #     '--train_fasta_pos=/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/cnn_enhancer_ortholog/fasta/MSN_D1_trainPos.fa', 
     #     '--train_fasta_neg=/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/cnn_enhancer_ortholog/fasta/MSN_D1_trainNeg.fa', 
     #     '--valid_fasta_pos=/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/cnn_enhancer_ortholog/fasta/MSN_D1_validPos.fa', 
     #     '--valid_fasta_neg=/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/cnn_enhancer_ortholog/fasta/MSN_D1_validNeg.fa'])
+
+    # args = parser.parse_args(['--model_name=/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/cnn_enhancer_ortholog/models/MSN_D1_hgRmMm_enhVsNonEnhOrth/MSN_D1_hgRmMm_enhVsNonEnhOrth_OCP_NB1000_NE23_BR0.1_MR1.0_BM0.85_MM0.99_DO0.15.h5', 
+    # '--train_fasta_pos=/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/cnn_enhancer_ortholog/fasta/MSN_D1_trainPos.fa', 
+    # '--train_fasta_neg=/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/cnn_enhancer_ortholog/fasta/MSN_D1_trainNeg.fa', 
+    # '--valid_fasta_pos=/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/cnn_enhancer_ortholog/fasta/MSN_D1_validPos.fa', 
+    # '--valid_fasta_neg=/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/cnn_enhancer_ortholog/fasta/MSN_D1_validNeg.fa'])
+
     args = parser.parse_args()
+    if args.model_name is None:
+        label = f'{args.prefix}_OCP_NB{args.batch_size}_NE{args.epochs}_BR{args.base_lr}_MR{args.max_lr}_BM{args.base_m}_MM{args.max_m}_DO{args.dropout}'
+        args.model_name = f"{args.out_dir}/models/{args.prefix}/{label}.h5"
+    else:
+        # parse the model name to get the OCP parameters
+        label = os.path.splitext(os.path.basename(args.model_name))[0]
+        args.prefix     = label.split('_OCP')[0]
+        args.batch_size = int(label.split('_NB')[1].split('_')[0])
+        args.epochs     = int(label.split('_NE')[1].split('_')[0])
+        args.base_lr    = float(label.split('_BR')[1].split('_')[0])
+        args.max_lr     = float(label.split('_MR')[1].split('_')[0])
+        args.base_m     = float(label.split('_BM')[1].split('_')[0])
+        args.max_m      = float(label.split('_MM')[1].split('_')[0])
+        args.dropout    = float(label.split('_DO')[1].split('_')[0])
 
     main(args)
 

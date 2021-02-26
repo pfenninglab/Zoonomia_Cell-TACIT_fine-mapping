@@ -38,7 +38,7 @@ enrichments = input %>%
     peaktype = case_when(
       tmpcol == 'Corces2020_caudate' ~ 'Human peak',
       grepl('Corces2020_caudate_mappedTo', tmpcol) ~ 'Hg -> Model Org', 
-      grepl('Orth',tmpcol)  ~ 'Enhancer Ortholog', 
+      grepl('Orth',tmpcol)  ~ 'OCR Ortholog', 
       TRUE ~ 'Model Org -> Hg',
     ),
     model_species = case_when(
@@ -103,7 +103,7 @@ enrich_wide = enrichments %>%
       TRUE ~ 'NS'
     ),
     peaktype = factor(peaktype, levels = 
-                        c('Enhancer Ortholog', 'Hg -> Model Org','Model Org -> Hg')),
+                        c('OCR Ortholog', 'Hg -> Model Org','Model Org -> Hg')),
     norm_coeff_diff = Coef_norm_inModel - Coef_norm_hgPeak, 
     norm_coeff_mean = (Coef_norm_inModel + Coef_norm_hgPeak)/2, 
     label = ifelse(p.signif !='NS' & annot_group=='phyloP score + peak' |
@@ -123,7 +123,7 @@ height_fig = 3.5; width_fig = 4.75; font_fig = 5
 plot_celltypes = enrichments %>% filter(Padj < alpha) %>% pull(celltype) %>% unique() 
 
 # make plots
-for(annot in c('binary annotation', 'phyloP score + peak')){
+for(annot in unique(enrich_wide$annot_group)){
   for(cell in c("Neuron", "Glia")){
     for(species in c('rheMac10','mm10')){
       plot_fn = file.path('plots',paste('Corces2020_caudate_ldsc',
@@ -164,7 +164,7 @@ for(annot in c('binary annotation', 'phyloP score + peak')){
 
 
 # make plots
-for(annot in c('binary annotation', 'phyloP score + peak')){
+for(annot in unique(enrich_wide$annot_group)){
   for(cell in c("Neuron", "Glia")){
     plot_fn2 = file.path('plots',paste('Corces2020_caudate_ldsc',
                                        annot,cell,'fig.pdf', sep = '_'))

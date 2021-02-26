@@ -146,8 +146,9 @@ def plot_training_performance(args, hist, clr ):
         clr (argparse):
     """
     # plot performance by iteration
-    if not os.path.exists(f'{args.out_dir}/plots/{label}'):
-        os.makedirs(f'{args.out_dir}/plots/{label}')
+    model_train_performance = f"{args.out_dir}/plots/{args.prefix}/{label}.pdf"
+    if not os.path.exists(f'{args.out_dir}/plots/{args.prefix}'):
+        os.makedirs(f'{args.out_dir}/plots/{args.prefix}')
     fig, axs = plt.subplots(2, 2, figsize=(8, 6))
     fig.suptitle(f"Training performance {label}")
     axs[0, 0].plot(clr.history['iterations'], clr.history['lr'])
@@ -198,12 +199,11 @@ def main(args):
         (x_valid, y_valid, ids_valid) = encode_sequence(args.valid_fasta_pos, args.valid_fasta_neg, size = args.seq_length, shuffleOff = False)
         #
         model, clr, hist = train_model_clr(x_train, y_train, x_valid, y_valid, args)
-        plot_training_performance(args, hist, clr )
         # make sure to create folder
         if not os.path.exists(f'{args.out_dir}/models/{args.prefix}'):
             os.makedirs(f'{args.out_dir}/models/{args.prefix}') 
         model.save(args.model_name)
-        #
+        plot_training_performance(args, hist, clr )
     elif args.mode == 'evaluate':
         print('In evaluation mode.')
         if not os.path.exists(args.model_name):

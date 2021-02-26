@@ -37,21 +37,27 @@ checkFile(){
 HASFILE=TRUE
 for CHR in {1..22}; do 
 F1=$(echo $FILE |sed "s/#/$CHR/g")
-if [[ ! -f $F1 ]]; then HASFILE=FALSE; fi
+if [[ ! -f $F1 ]]; then 
+	# if no annotation found for chr
+	HASFILE=FALSE
+elif [[ $(cat $F1) == "0" ]]; then
+	# if annotation crashed and 0 SNPs annotated
+	HASFILE=FALSE
+fi
 done
 }
 
 #######################################
 # for background for binary annotations
-FILE=${ANNOTDIR}/${BGNAME}.AFR.#.l2.ldscore.gz; checkFile
+FILE=${ANNOTDIR}/${BGNAME}.AFR.#.l2.M; checkFile
 if [[ $HASFILE == "FALSE" ]]; then 
-	sbatch --mem 24G -p pfen_bigmem --job-name=${BGNAME}.AFR ${GWASDIR}/scripts/annotate_bed_LDSC_1000G_hg19_hg38.sh \
+	sbatch --mem 24G -p pfen1 --job-name=${BGNAME}.AFR ${GWASDIR}/scripts/annotate_bed_LDSC_1000G_hg19_hg38.sh \
 	-i ${BGFILE} -n ${BGNAME} -g hg38 -p AFR -o $ANNOTDIR
 fi
 
-FILE=${ANNOTDIR}/${BGNAME}.EUR.#.l2.ldscore.gz; checkFile
+FILE=${ANNOTDIR}/${BGNAME}.EUR.#.l2.M; checkFile
 if [[ $HASFILE == "FALSE" ]]; then 
-	sbatch --mem 24G -p pfen_bigmem --job-name=${BGNAME}.EUR ${GWASDIR}/scripts/annotate_bed_LDSC_1000G_hg19_hg38.sh \
+	sbatch --mem 24G -p pfen1 --job-name=${BGNAME}.EUR ${GWASDIR}/scripts/annotate_bed_LDSC_1000G_hg19_hg38.sh \
 	-i ${BGFILE} -n ${BGNAME} -g hg38 -p EUR -o $ANNOTDIR
 fi
 
@@ -63,7 +69,7 @@ CTS_EUR_FN=${SETDIR}/data/raw_data/caudate_conservation_ldsc/caudate_conservatio
 for BED in ${DATADIR}/peak/*.narrowPeak.gz ${MACDIR}/*ToHomo_sapiens.HALPER.narrowPeak.gz ${MUSDIR1}/*ToHomo_sapiens.HALPER.narrowPeak.gz ${MUSDIR2}/*Mus_musculusToHomo_sapiens.HALPER.narrowPeak.gz; do
 # for AFR annotations
 NAME=$(basename $BED | sed 's/.narrowPeak.gz//g')
-FILE=${ANNOTDIR}/${NAME}.AFR.#.l2.ldscore.gz; checkFile
+FILE=${ANNOTDIR}/${NAME}.AFR.#.l2.M; checkFile
 if [[ $HASFILE == "FALSE" ]]; then 
 echo "Annotations for ${NAME} not found."
 sbatch --mem 4G -p pfen1 --job-name=${NAME}.AFR ${GWASDIR}/scripts/annotate_bed_LDSC_1000G_hg19_hg38.sh \
@@ -71,7 +77,7 @@ sbatch --mem 4G -p pfen1 --job-name=${NAME}.AFR ${GWASDIR}/scripts/annotate_bed_
 fi
 
 # for EUR annotations
-FILE=${ANNOTDIR}/${NAME}.EUR.#.l2.ldscore.gz; checkFile
+FILE=${ANNOTDIR}/${NAME}.EUR.#.l2.M; checkFile
 if [[ $HASFILE == "FALSE" ]]; then 
 echo "Annotations for ${NAME} not found."
 sbatch --mem 4G -p pfen1 --job-name=${NAME}.EUR ${GWASDIR}/scripts/annotate_bed_LDSC_1000G_hg19_hg38.sh \
@@ -85,34 +91,34 @@ done
 # annotate the PhyloP conserved and accelerating regions
 PHYLOCONS=${PHYLODIR}/200m_scoresPhyloP_20210214.cons.qval0.05.bed.gz
 NAME=200m_scoresPhyloP_20210214.cons5FDR
-FILE=${ANNOTDIR}/${NAME}.AFR.#.l2.ldscore.gz; checkFile
+FILE=${ANNOTDIR}/${NAME}.AFR.#.l2.M; checkFile
 if [[ $HASFILE == "FALSE" ]]; then 
-	sbatch --mem 24G -p pfen1 --job-name=${BGNAME}.AFR \
+	sbatch --mem 24G -p pfen1 --job-name=${NAME}.AFR \
 	${GWASDIR}/scripts/annotate_bed_LDSC_1000G_hg19_hg38.sh \
-	-i ${annotate} -n ${BGNAME} -g hg38 -p AFR -o $ANNOTDIR
+	-i ${PHYLOCONS} -n ${NAME} -g hg38 -p AFR -o $ANNOTDIR
 fi
-FILE=${ANNOTDIR}/${NAME}.EUR.#.l2.ldscore.gz; checkFile
+FILE=${ANNOTDIR}/${NAME}.EUR.#.l2.M; checkFile
 if [[ $HASFILE == "FALSE" ]]; then 
-	sbatch --mem 24G -p pfen1 --job-name=${BGNAME}.EUR \
+	sbatch --mem 24G -p pfen1 --job-name=${NAME}.EUR \
 	${GWASDIR}/scripts/annotate_bed_LDSC_1000G_hg19_hg38.sh \
-	-i ${annotate} -n ${BGNAME} -g hg38 -p EUR -o $ANNOTDIR
+	-i ${PHYLOCONS} -n ${NAME} -g hg38 -p EUR -o $ANNOTDIR
 fi
 echo -e "${NAME}\t${ANNOTDIR}/${NAME}.AFR.,${ANNOTDIR}/${BGNAME}.AFR." >> $CTS_AFR_FN
 echo -e "${NAME}\t${ANNOTDIR}/${NAME}.EUR.,${ANNOTDIR}/${BGNAME}.EUR." >> $CTS_EUR_FN
 
 PHYLOACCL=${PHYLODIR}/200m_scoresPhyloP_20210214.accl.qval0.05.bed.gz
 NAME=200m_scoresPhyloP_20210214.accl5FDR
-FILE=${ANNOTDIR}/${NAME}.AFR.#.l2.ldscore.gz; checkFile
+FILE=${ANNOTDIR}/${NAME}.AFR.#.l2.M; checkFile
 if [[ $HASFILE == "FALSE" ]]; then 
-	sbatch --mem 24G -p pfen1 --job-name=${BGNAME}.AFR \
+	sbatch --mem 24G -p pfen1 --job-name=${NAME}.AFR \
 	${GWASDIR}/scripts/annotate_bed_LDSC_1000G_hg19_hg38.sh \
-	-i ${annotate} -n ${BGNAME} -g hg38 -p AFR -o $ANNOTDIR
+	-i ${PHYLOACCL} -n ${NAME} -g hg38 -p AFR -o $ANNOTDIR
 fi
-FILE=${ANNOTDIR}/${NAME}.EUR.#.l2.ldscore.gz; checkFile
+FILE=${ANNOTDIR}/${NAME}.EUR.#.l2.M; checkFile
 if [[ $HASFILE == "FALSE" ]]; then 
-	sbatch --mem 24G -p pfen1 --job-name=${BGNAME}.EUR \
+	sbatch --mem 24G -p pfen1 --job-name=${NAME}.EUR \
 	${GWASDIR}/scripts/annotate_bed_LDSC_1000G_hg19_hg38.sh \
-	-i ${annotate} -n ${BGNAME} -g hg38 -p EUR -o $ANNOTDIR
+	-i ${annotate} -n ${NAME} -g hg38 -p EUR -o $ANNOTDIR
 fi
 echo -e "${NAME}\t${ANNOTDIR}/${NAME}.AFR.,${ANNOTDIR}/${BGNAME}.AFR." >> $CTS_AFR_FN
 echo -e "${NAME}\t${ANNOTDIR}/${NAME}.EUR.,${ANNOTDIR}/${BGNAME}.EUR." >> $CTS_EUR_FN
@@ -143,12 +149,12 @@ CTS_AFR_FN2=${SETDIR}/data/raw_data/caudate_conservation_ldsc/caudate_conservati
 CTS_EUR_FN2=${SETDIR}/data/raw_data/caudate_conservation_ldsc/caudate_conservation_phyloP_EUR_hg38_celltypes.ldcts; > $CTS_EUR_FN2
 for BED in ${DATADIR}/peak/*.narrowPeak.gz ${MUSDIR}/*ToHomo_sapiens.HALPER.narrowPeak.gz ${MACDIR}/*ToHomo_sapiens.HALPER.narrowPeak.gz ${MUSDIR2}/*Mus_musculusToHomo_sapiens.HALPER.narrowPeak.gz; do
 NAME=$(basename $BED | sed 's/.narrowPeak.gz//g')
-if [[ ! -f "${ANNOTDIR2}/${NAME}.AFR.1.l2.ldscore.gz" ]]; then
+if [[ ! -f "${ANNOTDIR2}/${NAME}.AFR.1.l2.M" ]]; then
 echo "Annotations for ${NAME} not found."
 sbatch --mem 2G -p pfen1 --job-name=${NAME}.AFR ${GWASDIR}/scripts/annotate_bed_LDSC_1000G_hg19_hg38.sh \
 -i ${BED} -n ${NAME} -g hg38 -p AFR -o $ANNOTDIR2 -w ${BWFILE}
 fi
-if [[ ! -f "${ANNOTDIR2}/${NAME}.EUR.1.l2.ldscore.gz" ]]; then 
+if [[ ! -f "${ANNOTDIR2}/${NAME}.EUR.1.l2.M" ]]; then 
 echo "Annotations for ${NAME} not found."
 sbatch --mem 2G -p pfen1 --job-name=${NAME}.EUR ${GWASDIR}/scripts/annotate_bed_LDSC_1000G_hg19_hg38.sh \
 -i ${BED} -n ${NAME} -g hg38 -p EUR -o $ANNOTDIR2 -w ${BWFILE}
@@ -158,12 +164,12 @@ echo -e "${NAME}\t${ANNOTDIR2}/${NAME}.EUR.,${ANNOTDIR2}/${BGNAME}.EUR." >> $CTS
 done
 
 ## for background phyloP annotations
-if [[ ! -f "${ANNOTDIR2}/${BGNAME}.AFR.1.l2.ldscore.gz" ]]; then 
-sbatch --mem 24G -p pfen_bigmem --job-name=${BGNAME}.AFR ${GWASDIR}/scripts/annotate_bed_LDSC_1000G_hg19_hg38.sh \
+if [[ ! -f "${ANNOTDIR2}/${BGNAME}.AFR.1.l2.M" ]]; then 
+sbatch --mem 24G -p pfen1 --job-name=${BGNAME}.AFR ${GWASDIR}/scripts/annotate_bed_LDSC_1000G_hg19_hg38.sh \
 -i ${BGFILE} -w ${BWFILE} -n ${BGNAME} -g hg38 -p AFR -o $ANNOTDIR2
 fi
-if [[ ! -f "${ANNOTDIR2}/${BGNAME}.AFR.1.l2.ldscore.gz" ]]; then 
-sbatch --mem 24G -p pfen_bigmem --job-name=${BGNAME}.EUR ${GWASDIR}/scripts/annotate_bed_LDSC_1000G_hg19_hg38.sh \
+if [[ ! -f "${ANNOTDIR2}/${BGNAME}.AFR.1.l2.M" ]]; then 
+sbatch --mem 24G -p pfen1 --job-name=${BGNAME}.EUR ${GWASDIR}/scripts/annotate_bed_LDSC_1000G_hg19_hg38.sh \
 -i ${BGFILE} -w ${BWFILE} -n ${BGNAME} -g hg38 -p EUR -o $ANNOTDIR2
 fi
 

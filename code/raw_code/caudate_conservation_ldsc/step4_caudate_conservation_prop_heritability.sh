@@ -5,10 +5,10 @@
 #SBATCH --job-name=est_herit
 #SBATCH --ntasks-per-node=1
 #SBATCH --cpus-per-task=1
-#SBATCH --mem=23G
+#SBATCH --mem=15G
 #SBATCH --error=logs/estim_heritability_%A_%a.txt
 #SBATCH --output=logs/estim_heritability_%A_%a.txt
-#SBATCH --array=50-71%10
+#SBATCH --array=1-71%40
 
 log2results() {
 	awk -F '\t' '/Total Observed scale h2*/{flag=1;next}/Lambda GC/{flag=0}flag' ${OUT}.log | \

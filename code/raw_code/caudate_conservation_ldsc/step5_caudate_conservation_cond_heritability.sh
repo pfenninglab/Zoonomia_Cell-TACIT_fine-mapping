@@ -1,13 +1,13 @@
 #!/bin/bash
 #SBATCH -n 1
-#SBATCH --partition=interactive
-##SBATCH --time=0-8:00:00
+#SBATCH --partition=pfen_bigmem
+#SBATCH --time=0-8:00:00
 #SBATCH --job-name=cond_herit
 #SBATCH --ntasks-per-node=1
 #SBATCH --cpus-per-task=1
-#SBATCH --mem=23G
-#SBATCH --error=logs/conditiona_heritability_%A_%a.txt
-#SBATCH --output=logs/conditiona_heritability_%A_%a.txt
+#SBATCH --mem=10G
+#SBATCH --error=logs/cond_heritability_%A_%a.txt
+#SBATCH --output=logs/cond_heritability_%A_%a.txt
 #SBATCH --array=1-71%10
 
 log2results() {
@@ -68,7 +68,7 @@ OUT=${OUTDIR}/caudate_conservation_binary.${LAB}.${GWAS_Label}.${POP}
 
 ## gather the foreground cell types for conditional cell type enrichments
 CELLTYPES=""
-for CELL in $CELLS; do CELLTYPES=${CELLTYPES},$(awk -v VAR="${LAB}.${CELL}" '{if($1 == VAR) print $2}' $TMP_CTS | cut -d ',' -f1 ) ; done
+for CELL in $CELLS; do CELLTYPES=${CELLTYPES},$(awk -v VAR="${LAB}.${CELL}" '{if(match($1, VAR)) print $2}' $TMP_CTS | cut -d ',' -f1 ) ; done
 CELLTYPES=$(echo $CELLTYPES | sed 's/^,//g')
 
 ## perform the conditional cell type specific enrichments
@@ -76,7 +76,7 @@ if [[ ! -f "${OUT}.results.gz" ]]; then # --print-snps ${SNPLIST}
 ldsc.py --h2 $GWAS --print-coefficients \
 --w-ld-chr ${GWASDIR}/1000G_ALL_Phase3_hg38_files/weights/1000G.${POP}.weights.hm3_noMHC. \
 --ref-ld-chr ${CELLTYPES},${BGPEAKS},${GWASDIR}/1000G_ALL_Phase3_hg38_files/baselineLD_v2.2/baselineLD_v2.2.${POP}. \
---out ${OUT} 
+--out ${OUT}
 log2results
 fi
 done

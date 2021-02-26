@@ -1,18 +1,19 @@
 #!/bin/bash
 #SBATCH -n 1
-#SBATCH --partition=gpu
-##SBATCH --time=0-12
-#SBATCH --job-name=cnn_folds
+#SBATCH --partition=pfen3
+#SBATCH --job-name=vBoth
 #SBATCH --gres=gpu:1
-#SBATCH --mem=32G
+#SBATCH --mem=63G
 #SBATCH --array=1-40%4
-#SBATCH --error=logs/cnn_ocp_nonEnhBiasAway10x_%A_%a.txt
-#SBATCH --output=logs/cnn_ocp_nonEnhBiasAway10x_%A_%a.txt
+#SBATCH --error=logs/cnn_ocp_c_nonEnhBiasAway10x_%A_%a.txt
+#SBATCH --output=logs/cnn_ocp_c_nonEnhBiasAway10x_%A_%a.txt
 
 SETDIR=/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate
 CODEDIR=${SETDIR}/code/raw_code/cnn_enhancer_ortholog
 DATADIR=${SETDIR}/data/raw_data/cnn_enhancer_ortholog
 cd $CODEDIR; source activate tf2
+
+NEGSET=nonEnhBiasAway10x
 
 #############################################
 # get the cell type to be used for training #
@@ -20,18 +21,18 @@ CELLS=( NULL MSN_D1 MSN_D2 MSN_SN INT_Pvalb Astro Microglia Oligo OPC )
 (( FOLD = ($SLURM_ARRAY_TASK_ID -1) % 5 + 1))
 (( CELL_IND = ($SLURM_ARRAY_TASK_ID -1) / 5 + 1))
 CELLTYPE=${CELLS[$CELL_IND]}
-PREFIX=${CELLTYPE}_fold${FOLD}_hgRmMm_nonEnhBiasAway10x
+PREFIX=${CELLTYPE}_fold${FOLD}_hgRmMm_${NEGSET}
 
 #####################################################################
 ### merge positive training and validation set from each genome #####
-TRAINPOSFILE=$DATADIR/fasta/${PREFIX}_nonEnhBiasAway10x_trainPos.fa
+TRAINPOSFILE=$DATADIR/fasta/${PREFIX}_${NEGSET}_trainPos.fa
 # if [[ ! -f  $TRAINPOSFILE ]]; then
 cat $DATADIR/fasta/hg38_${CELLTYPE}_fold${FOLD}_train_positive.fa \
 	$DATADIR/fasta/mm10_${CELLTYPE}_fold${FOLD}_train_positive.fa \
 	$DATADIR/fasta/rheMac10_${CELLTYPE}_fold${FOLD}_train_positive.fa > $TRAINPOSFILE
 # fi
 
-VALIDPOSFILE=$DATADIR/fasta/${PREFIX}_nonEnhBiasAway10x_validPos.fa
+VALIDPOSFILE=$DATADIR/fasta/${PREFIX}_${NEGSET}_validPos.fa
 # if [[ ! -f  $VALIDPOSFILE ]]; then
 cat $DATADIR/fasta/hg38_${CELLTYPE}_fold${FOLD}_valid_positive.fa \
 	$DATADIR/fasta/mm10_${CELLTYPE}_fold${FOLD}_valid_positive.fa \
@@ -41,24 +42,24 @@ cat $DATADIR/fasta/hg38_${CELLTYPE}_fold${FOLD}_valid_positive.fa \
 
 #####################################################################
 ### merge negative training and validation set from each genome #####
-TRAINNEGFILE=$DATADIR/fasta/${PREFIX}_nonEnhBiasAway10x_trainNeg.fa
+TRAINNEGFILE=$DATADIR/fasta/${PREFIX}_${NEGSET}_trainNeg.fa
 # if [[ ! -f  $TRAINNEGFILE ]]; then
 cat $DATADIR/fasta/hg38_${CELLTYPE}_fold${FOLD}_train_nonEnhNeg.fa \
 	$DATADIR/fasta/mm10_${CELLTYPE}_fold${FOLD}_train_nonEnhNeg.fa \
 	$DATADIR/fasta/rheMac10_${CELLTYPE}_fold${FOLD}_train_nonEnhNeg.fa \
-	$DATADIR/fasta/hg38_${CELLTYPE}_fold${FOLD}_train_nonEnhBiasAway10x.fa \
-	$DATADIR/fasta/mm10_${CELLTYPE}_fold${FOLD}_train_nonEnhBiasAway10x.fa \
-	$DATADIR/fasta/rheMac10_${CELLTYPE}_fold${FOLD}_train_nonEnhBiasAway10x.fa > $TRAINNEGFILE
+	$DATADIR/fasta/hg38_${CELLTYPE}_fold${FOLD}_train_biasAway10x.fa \
+	$DATADIR/fasta/mm10_${CELLTYPE}_fold${FOLD}_train_biasAway10x.fa \
+	$DATADIR/fasta/rheMac10_${CELLTYPE}_fold${FOLD}_train_biasAway10x.fa > $TRAINNEGFILE
 # fi
 
-VALIDNEGFILE=$DATADIR/fasta/${PREFIX}_nonEnhBiasAway10x_validNeg.fa
+VALIDNEGFILE=$DATADIR/fasta/${PREFIX}_${NEGSET}_validNeg.fa
 # if [[ ! -f  $VALIDNEGFILE ]]; then
 cat $DATADIR/fasta/hg38_${CELLTYPE}_fold${FOLD}_valid_nonEnhNeg.fa \
 	$DATADIR/fasta/mm10_${CELLTYPE}_fold${FOLD}_valid_nonEnhNeg.fa \
 	$DATADIR/fasta/rheMac10_${CELLTYPE}_fold${FOLD}_valid_nonEnhNeg.fa \
-	$DATADIR/fasta/hg38_${CELLTYPE}_fold${FOLD}_valid_nonEnhBiasAway10x.fa \
-	$DATADIR/fasta/mm10_${CELLTYPE}_fold${FOLD}_valid_nonEnhBiasAway10x.fa \
-	$DATADIR/fasta/rheMac10_${CELLTYPE}_fold${FOLD}_valid_nonEnhBiasAway10x.fa > $VALIDNEGFILE
+	$DATADIR/fasta/hg38_${CELLTYPE}_fold${FOLD}_valid_biasAway10x.fa \
+	$DATADIR/fasta/mm10_${CELLTYPE}_fold${FOLD}_valid_biasAway10x.fa \
+	$DATADIR/fasta/rheMac10_${CELLTYPE}_fold${FOLD}_valid_biasAway10x.fa > $VALIDNEGFILE
 # fi
 
 #### cyclical learning rate parameters

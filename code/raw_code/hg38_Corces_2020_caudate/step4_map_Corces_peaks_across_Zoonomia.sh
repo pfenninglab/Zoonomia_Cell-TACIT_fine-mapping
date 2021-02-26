@@ -33,7 +33,7 @@ if [[ $(echo $?) == '1' ]]; then
 # if gzipped file is corrupt
 echo "gzipped file is corrupt: $(basename $FILE)."
 rm $FILE
-elif [[ $NUMLIFT < 22 ]]; then 
+elif [[ $NUMLIFT < 23 ]]; then 
 echo "too few source chromosomes in $FILE."
 rm $FILE
 fi
@@ -49,7 +49,7 @@ done
 # recover any unmmapped Corces 2020 peaks
 SOURCE='Homo_sapiens'
 OUTDIR=${DATADIR}/haper_zoo
-for BEDFILE in ${DATADIR}/peak/Corces2020_caudate.MSN*.narrowPeak.gz; do
+for BEDFILE in ${DATADIR}/peak/Corces2020_caudate.*.narrowPeak.gz; do
 REMAINING=''
 NAME=$(basename $BEDFILE .narrowPeak.gz)
 TARGETS=$(awk -F'\t' 'FNR >1 {print $2}' ${ZOONOMIADIR}/tables/200_Mammals_Genome_Information.tsv | \
@@ -84,8 +84,4 @@ if [[ ! -f "$OUTFILE" ]]; then REMAINING+=",${TARGET}"; fi
 done
 REMAINING=$(echo $REMAINING | sed 's/^,//g') #strip leading comma
 sbatch --mem 12G -p pool3-bigmem -t 4-4 -w compute-1-35 ${CODEDIR}/../hal_scripts/halper_map_peak_orthologs.sh -s ${SOURCE} -t ${REMAINING} -o ${OUTDIR} -b ${BEDFILE}
-
-
-
-
 

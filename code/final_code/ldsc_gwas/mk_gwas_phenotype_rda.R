@@ -6,6 +6,7 @@ options(stringsAsFactors = F)
 options(repr.plot.width=11, repr.plot.height=8.5)
 suppressMessages(library(tidyverse))
 suppressMessages(library(data.table))
+library(ggrepel)
 library(RColorBrewer)
 library(rcartocolor)
 library(wesanderson)
@@ -26,11 +27,13 @@ pheno = file.path(PROJDIR,'gwas_list_sumstats.tsv') %>% read_tsv() %>%
          group = factor(group, unique(group)))
 group_col = cols_darjeeling[seq_along(levels(pheno$group))]
 names(group_col) = levels(pheno$group)
-pheno = pheno %>% mutate(group_col = group_col[group])
+pheno = pheno %>% mutate(group_col = group_col[group]) %>% filter(group != 'Immune')
 
+##########################################
 # read in the SNP heritability estimates 
 h2_fn = file.path(PROJDIR,'heritability') %>% 
-  list.files(path = ., pattern = 'log',full.names = T)
+  list.files(path = ., pattern = '.log',full.names = T) 
+h2_fn = h2_fn[!grepl( 'Correlation',h2_fn)]
 names(h2_fn) = ss(basename(h2_fn),'\\.')
 h2 = h2_fn %>% lapply(fread, skip = 'two-step', col.names ='log', nrows = 5, sep = '\n') %>% 
   bind_rows(.id = 'match') %>%
@@ -41,8 +44,12 @@ h2 = h2_fn %>% lapply(fread, skip = 'two-step', col.names ='log', nrows = 5, sep
   separate(Intercept, sep = ' ', into = c('Inter', 'Inter_se')) %>% 
   mutate_if(is.character, str_replace_all, pattern = "\\(", replacement = "") %>% 
   mutate_if(is.character, str_replace_all, pattern = "\\)", replacement = "") %>%
-  select(match:Inter_se) %>% mutate(across(!match, as.numeric)) %>% arrange(desc(h2))
+  select(match:Inter_se) %>% mutate(across(!match, as.numeric)) %>% 
+  arrange(desc(h2)) %>% mutate(
+    h2_Z = h2 / h2_se, h2_P = pnorm(-h2_Z), h2_logP = -log10(h2_P))
 
+
+#####################################################
 # read in how many SNPs used to estimate heritability 
 M = h2_fn %>% lapply(fread, skip = 'After merging with reference panel LD', 
                      col.names ='log', nrows = 1, sep = '\n') %>% 
@@ -52,13 +59,22 @@ M = h2_fn %>% lapply(fread, skip = 'After merging with reference panel LD',
   select(match,num_SNP) %>% mutate(across(!match, as.numeric)) %>%
   arrange(desc(num_SNP))
 
+
+##############################################
 # merge gwas phenotypes and SNP heritabilities
-pheno = left_join(h2, M, by = 'match') %>% left_join(pheno, ., by = 'match') %>%
-  filter(h2 > 0) %>%  mutate(h2_perSNP = h2 / num_SNP) %>% data.frame()
+pheno = left_join(h2, M, by = 'match') %>% left_join(pheno, ., by = 'match') %>%  
+  mutate(h2_perSNP = h2 / num_SNP) %>% filter(h2 > 0, h2 < 1) %>% 
+  mutate(signif_group = case_when(h2_Z > 15 ~ 'Larger_GWAS', TRUE ~ 'Smaller_GWAS'),
+         signif_group = factor(signif_group, c('Larger_GWAS', 'Smaller_GWAS')))
+
+pheno %>% arrange(desc(h2_Z)) %>% pull(trait)
+
+pheno = pheno %>% mutate_at(all_of(c('group','trait')),droplevels)
 
 # export gwas phenotypes w/ SNP heritabilites
-system(paste('mkdir -p',file.path(PROJDIR,'rdas')))
-save(pheno, group_col, file = file.path(PROJDIR,'rdas','gwas_list_sumstats.rda'))
+dir.create(file.path(PROJDIR,'rdas'))
+save(pheno, group_col, shape_signif, 
+     file = file.path(PROJDIR,'rdas','gwas_list_sumstats.rda'))
 system(paste('mkdir -p',file.path(PROJDIR,'tables')))
 write.table(pheno, file =file.path(PROJDIR,'tables','gwas_list_sumstats_with_h2.tsv'), 
             quote = F, row.names = F, sep = '\t')

@@ -198,13 +198,13 @@ summitCenter <- function(peaks, width = 501){
     ret = lapply(peaks, function(x) {
       ret = x
       start(ret) = start(x) + x$peak - (width - 1)/2
-      end(ret) = start(ret) + width -1
+      end(ret) = start(ret) + width - 1
       return(ret)
     })
     ret = GRangesList(ret)
   } else if(class(peaks) == "GRanges"){
     ret = peaks
-    start(ret) = start(peaks) + peaks$peak - ( width - 1)/2
+    start(peaks) + peaks$peak - ( width - 1)/2
     end(ret) = start(ret) + width -1
   } else{
     stop("Is inputs to peaks a GRanges or GRangesList?")

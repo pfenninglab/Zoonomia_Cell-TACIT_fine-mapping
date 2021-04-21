@@ -133,6 +133,9 @@ dmypy.json
 .pyre/
 
 logs/*
+*.bam
+*.arrow
+*.gz
 *.rda
 *.rds
 *.log

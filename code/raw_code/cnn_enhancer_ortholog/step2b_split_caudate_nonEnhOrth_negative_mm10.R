@@ -27,7 +27,7 @@ folds = list(fold1 = c('chr6', 'chr13', 'chr21'),
 
 genome = 'mm10'
 
-######################
+############################################
 # get the positives, and nonreproducible peaks
 load( file.path(PROJDIR, 'rdas', paste('caudate_positive_sequences', genome,'.rda', sep = '.')) )
 

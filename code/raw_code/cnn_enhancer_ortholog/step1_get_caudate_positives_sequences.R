@@ -76,7 +76,7 @@ save(human_peakList, human_enhList, file = save_fn )
 genome = 'mm10'
 mouse_peak_fn = file.path('../../../data/raw_data/',genome) %>%
   list.files(path = ., full.names = T, recursive = T, pattern = 'narrowPeak.gz')
-mouse_peak_fn = mouse_peak_fn[!grepl('HALPER.narrowPeak.gz', mouse_peak_fn)]
+mouse_peak_fn = mouse_peak_fn[!grepl('HALPER.narrowPeak.gz|peaks_nonreproducible', mouse_peak_fn)]
 # exclude BICCN_CP.MSN_D1 and BICCN_CP.MSN_D2 & halper peaks for now
 mouse_peak_fn = mouse_peak_fn[!grepl('BICCN_CP.MSN_D|BICCN_CP.INT|Consensus', 
                                      mouse_peak_fn)]
@@ -108,6 +108,7 @@ mouse_enhList_split = lapply(folds, function(fold){
 })
 
 # write the positives w/o splits
+split = names(mouse_enhList_split[[1]][[1]])
 pos_fasta_fn = file.path(PROJDIR, 'fasta', paste(genome, names(mouse_enhList), 'positive.fa', sep = '_'))
 posFasta = mapply(writeGRangesToFasta, gr = mouse_enhList, file = pos_fasta_fn, genome = genome)
 for(cell in names(mouse_enhList)){
@@ -163,6 +164,7 @@ rhesus_enhList_split = lapply(folds, function(fold){
 })
 
 # write the positives w/o splits
+split = names(rhesus_enhList_split[[1]][[1]])
 pos_fasta_fn = file.path(PROJDIR, 'fasta', paste(genome, names(rhesus_enhList), 'positive.fa', sep = '_'))
 posFasta = mapply(writeGRangesToFasta, gr = rhesus_enhList, file = pos_fasta_fn, genome = genome)
 for(cell in names(rhesus_enhList)){

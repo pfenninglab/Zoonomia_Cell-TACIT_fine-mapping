@@ -132,15 +132,11 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-data/
-*.arrow
-*.bam
-*.fastq
-*.snap
+logs/*
 *.rda
 *.rds
-logs/*
 *.log
 *.out.txt
+*.err.txt
 ArchRLogs*
 notebook*

@@ -120,11 +120,11 @@ def evaluate_sequences(model_name, x, y, ids, args):
     df = pd.DataFrame(vars(args), index=[0])
     tmp = predict_sequences2(model_name, x, y, ids)
     # compute prediction statistics 
-    accuracy = metrics.balanced_accuracy_score(tmp['y'], tmp['y_pred_class'])
-    f1_score = metrics.f1_score(tmp['y'], tmp['y_pred_class'], average = 'weighted')
-    fhalf_score = metrics.fbeta_score(tmp['y'], tmp['y_pred_class'], beta = 0.5, average = 'weighted')
-    roc_auc = metrics.roc_auc_score(tmp['y'], tmp['y_pred_score'])
-    precision, recall, thresholds = metrics.precision_recall_curve(tmp['y'], tmp['y_pred_score'])
+    accuracy = metrics.balanced_accuracy_score(tmp['y']==1, tmp['y_pred_class'])
+    f1_score = metrics.f1_score(tmp['y']==1, tmp['y_pred_class'], average = 'weighted')
+    fhalf_score = metrics.fbeta_score(tmp['y']==1, tmp['y_pred_class'], beta = 0.5, average = 'weighted')
+    roc_auc = metrics.roc_auc_score(tmp['y']==1, tmp['y_pred_score'])
+    precision, recall, thresholds = metrics.precision_recall_curve(tmp['y']==1, tmp['y_pred_score'])
     prc_auc = metrics.auc(recall, precision) # x, y
     print(f'Accuracy: {accuracy}. ')
     print(f'f1_score: {f1_score}.')
@@ -174,6 +174,7 @@ def plot_training_performance(args, hist, clr ):
     axs[1, 1].legend()
     fig.savefig(model_train_performance, bbox_inches='tight')
     return
+
 
 
 def main(args):
@@ -288,11 +289,11 @@ if __name__ == '__main__':
     #     '--valid_fasta_pos=/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/cnn_enhancer_ortholog/fasta/MSN_D1_validPos.fa', 
     #     '--valid_fasta_neg=/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/cnn_enhancer_ortholog/fasta/MSN_D1_validNeg.fa'])
 
-    # args = parser.parse_args(['--model_name=/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/cnn_enhancer_ortholog/models/MSN_D1_hgRmMm_enhVsNonEnhOrth/MSN_D1_hgRmMm_enhVsNonEnhOrth_OCP_NB1000_NE23_BR0.1_MR1.0_BM0.85_MM0.99_DO0.15.h5', 
-    # '--train_fasta_pos=/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/cnn_enhancer_ortholog/fasta/MSN_D1_trainPos.fa', 
-    # '--train_fasta_neg=/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/cnn_enhancer_ortholog/fasta/MSN_D1_trainNeg.fa', 
-    # '--valid_fasta_pos=/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/cnn_enhancer_ortholog/fasta/MSN_D1_validPos.fa', 
-    # '--valid_fasta_neg=/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/cnn_enhancer_ortholog/fasta/MSN_D1_validNeg.fa'])
+    # args = parser.parse_args(['--mode=evaluate', '--model_name=/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/cnn_enhancer_ortholog/models/MSN_SN_fold5_hgRmMm_nonEnhOrth/MSN_SN_fold5_hgRmMm_nonEnhOrth_OCP_NB1000_NE23_BR0.01_MR0.1_BM0.85_MM0.99_DO0.1.h5', 
+    # '--train_fasta_pos=/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/cnn_enhancer_ortholog/fasta/MSN_SN_fold5_hgRmMm_nonEnhOrth_nonEnhOrth_trainPos.fa', 
+    # '--train_fasta_neg=/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/cnn_enhancer_ortholog/fasta/MSN_SN_fold5_hgRmMm_nonEnhOrth_nonEnhOrth_trainNeg.fa', 
+    # '--valid_fasta_pos=/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/cnn_enhancer_ortholog/fasta/MSN_SN_fold5_hgRmMm_nonEnhOrth_nonEnhOrth_validPos.fa', 
+    # '--valid_fasta_neg=/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate/data/raw_data/cnn_enhancer_ortholog/fasta/MSN_SN_fold5_hgRmMm_nonEnhOrth_nonEnhOrth_validNeg.fa'])
 
     args = parser.parse_args()
     if args.model_name is None:

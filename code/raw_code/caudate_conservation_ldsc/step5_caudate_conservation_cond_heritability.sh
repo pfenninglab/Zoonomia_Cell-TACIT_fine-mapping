@@ -8,7 +8,7 @@
 #SBATCH --mem=10G
 #SBATCH --error=logs/cond_heritability_%A_%a.txt
 #SBATCH --output=logs/cond_heritability_%A_%a.txt
-#SBATCH --array=1-71%10
+#SBATCH --array=1-65%10
 
 log2results() {
 	awk -F '\t' '/Total Observed scale h2*/{flag=1;next}/Lambda GC/{flag=0}flag' ${OUT}.log | \
@@ -41,8 +41,8 @@ SETDIR=/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cro
 GWASDIR=${SETDIR}/data/tidy_data/ldsc_gwas; SNPLIST=${GWASDIR}/listHM3.noMHC.txt
 CODEDIR=${SETDIR}/code/raw_code/caudate_conservation_ldsc; DATADIR=${SETDIR}/data/raw_data/caudate_conservation_ldsc
 OUTDIR=${DATADIR}/conditional_herit
-cd $CODEDIR
-source activate ldsc; mkdir -p $OUTDIR
+cd $CODEDIR; mkdir -p $OUTDIR
+source ~/.bashrc; conda activate ldsc
 
 ## get the GWAS and reference population
 GWAS=$(awk -F '\t' -v IND=${SLURM_ARRAY_TASK_ID} 'NR==(IND + 1) {print $1}' ${GWASDIR}/gwas_list_sumstats.tsv)
@@ -55,7 +55,7 @@ GWAS_Label=$(awk -F '\t' -v IND=${SLURM_ARRAY_TASK_ID} 'NR==(IND+ 1) {print $3}'
 CTS_FN1=${DATADIR}/caudate_conservation_binary_${POP}_hg38_celltypes.ldcts
 TMP_CTS=$( mktemp ${DATADIR}/caudate_conservation_binary_${POP}_hg38_celltypes.XXXXXX )
 cat $CTS_FN1 | sed '/^BICCN_CP.MSN_D/d' | sed '/^BICCN_CP.INT/d' | sed '/Consensus/d' | \
-	sed '/^200m/d' | sed 's/^BICCN_CP/Mouse_caudate_mappedToHg38/g;s/^Pfenning_Cpu/Mouse_caudate_mappedToHg38/g' |
+	sed '/^200m/d;/PhastCons/d;/phyloP/d' | sed 's/^BICCN_CP/Mouse_caudate_mappedToHg38/g;s/^Pfenning_Cpu/Mouse_caudate_mappedToHg38/g' |
 	sed 's/^Stauffer_caudate/Rhesus_caudate_mappedToHg38/g;s/^Corces2020_caudate/Human_caudate/g' > $TMP_CTS
 TYPES=$( cut -f1 $TMP_CTS | cut -d '.' -f1 | sort | uniq )
 CELLS=$( cut -f1 $TMP_CTS | cut -d '.' -f2 | sort | uniq )

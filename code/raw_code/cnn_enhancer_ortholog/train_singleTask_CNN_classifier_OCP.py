@@ -120,6 +120,7 @@ def evaluate_sequences(model_name, x, y, ids, args):
     df = pd.DataFrame(vars(args), index=[0])
     tmp = predict_sequences2(model_name, x, y, ids)
     # compute prediction statistics 
+    tn, fp, fn, tp = metrics.confusion_matrix(tmp['y']==1, tmp['y_pred_class']).ravel()
     accuracy = metrics.balanced_accuracy_score(tmp['y']==1, tmp['y_pred_class'])
     f1_score = metrics.f1_score(tmp['y']==1, tmp['y_pred_class'], average = 'weighted')
     fhalf_score = metrics.fbeta_score(tmp['y']==1, tmp['y_pred_class'], beta = 0.5, average = 'weighted')
@@ -132,8 +133,14 @@ def evaluate_sequences(model_name, x, y, ids, args):
     print(f'prc_auc: {prc_auc}.')
     # add this row to dataframe
     df = pd.concat([df.reset_index(drop=True),
-        pd.DataFrame({'model': model_name, 'accuracy': accuracy, 'auROC': roc_auc, 'auPRC': prc_auc,
-            'f1_score': f1_score, 'fhalf_score': fhalf_score}, index=[0])], axis = 1)    
+        pd.DataFrame({'model': model_name, 
+            'tn' : tn, 'fp' : fp, 
+            'fn': fn, 'tp' : tp,
+            'accuracy': accuracy, 
+            'auROC': roc_auc, 
+            'auPRC': prc_auc,
+            'f1_score': f1_score, 
+            'fhalf_score': fhalf_score}, index=[0])], axis = 1)    
     return df
 
 

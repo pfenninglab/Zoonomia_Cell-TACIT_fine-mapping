@@ -1,10 +1,10 @@
 #!/bin/bash
 #SBATCH -n 1
-#SBATCH --partition=pfen3
+#SBATCH --partition=pfen3,gpu
 #SBATCH --job-name=vBiasAway
 #SBATCH --gres=gpu:1
 #SBATCH --mem=63G
-#SBATCH --array=26-40%2
+#SBATCH --array=1-40
 #SBATCH --error=logs/cnn_ocp_b_biasAway10x_%A_%a.txt
 #SBATCH --output=logs/cnn_ocp_b_biasAway10x_%A_%a.txt
 

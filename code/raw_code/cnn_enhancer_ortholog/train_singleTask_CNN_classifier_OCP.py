@@ -217,28 +217,34 @@ def main(args):
         if not os.path.exists(args.model_name):
             print('No model found with specified training parameters. Please train model first.')
             return
+        model_test_performance = f'{args.out_dir}/predictions/{args.prefix}/{label}.{args.predict_out}.performance.feather'
+        print(f'Model performance to be written to {model_test_performance}')
+        if os.path.exists(model_test_performance) and not args.force:
+            print(f'The performance file exists w/o permission to overwrite. Use --force to overwrite.')
+            return
         (x_valid, y_valid, ids_valid) = encode_sequence(args.valid_fasta_pos, args.valid_fasta_neg, size = args.seq_length, shuffleOff = True)
         df = evaluate_sequences(args.model_name, x_valid, y_valid, ids_valid, args)
-        model_test_performance = f'{args.out_dir}/predictions/{args.prefix}/{label}.{args.predict_out}.performance.feather'
         # save model performances to feather object
         if not os.path.exists(f'{args.out_dir}/predictions/{args.prefix}'):
             os.makedirs(f'{args.out_dir}/predictions/{args.prefix}')
         df.to_feather(model_test_performance)
-        print(f'Model performance written to {model_test_performance}')
         #
     elif args.mode == 'predict':
         print('In prediction mode.')
         if not os.path.exists(args.model_name):
             print('No model found with specified training parameters. Please train model first.')
             return
+        model_predictions = f'{args.out_dir}/predictions/{args.prefix}/{label}.{args.predict_out}.predictions.txt'
+        print(f'Prediction to be written to {model_predictions}')
+        if os.path.exists(model_predictions) and not args.force:
+            print(f'The prediction file exists w/o permission to overwrite. Use --force to overwrite.')
+            return
         (x, ids) = encode_sequence3(args.predict_fasta, size = args.seq_length)
         df = predict_sequences(args.model_name, x, ids)
-        model_predictions = f'{args.out_dir}/predictions/{args.prefix}/{label}.{args.predict_out}.predictions.txt'
         # save model performances to feather object
         if not os.path.exists(f'{args.out_dir}/predictions/{args.prefix}'):
             os.makedirs(f'{args.out_dir}/predictions/{args.prefix}') 
         df.to_csv(model_predictions, sep = '\t')
-        print(f'Prediction written to {model_predictions}')
     return
 
 

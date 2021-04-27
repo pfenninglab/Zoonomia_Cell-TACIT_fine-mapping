@@ -88,7 +88,6 @@ def encode_sequence2(fasta_file, label_file, size, shuffleOff = True):
     return x, y, ids
 
 
-sed -i 's/.fasta\'/\'fasta\'/g' *.R
 def encode_sequence3(fasta_file, size, shuffleOff = True):
     ## read in the fasta ID, and fasta sequences
     ## ids used to combine rev complements of same DNA sequences

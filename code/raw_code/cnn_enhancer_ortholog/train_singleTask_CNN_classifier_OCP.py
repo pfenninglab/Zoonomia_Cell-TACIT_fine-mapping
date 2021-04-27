@@ -219,7 +219,7 @@ def main(args):
             return
         (x_valid, y_valid, ids_valid) = encode_sequence(args.valid_fasta_pos, args.valid_fasta_neg, size = args.seq_length, shuffleOff = True)
         df = evaluate_sequences(args.model_name, x_valid, y_valid, ids_valid, args)
-        model_test_performance = f'{args.out_dir}/predictions/{args.prefix}/{label}.performance.feather'
+        model_test_performance = f'{args.out_dir}/predictions/{args.prefix}/{label}.{args.predict_out}.performance.feather'
         # save model performances to feather object
         if not os.path.exists(f'{args.out_dir}/predictions/{args.prefix}'):
             os.makedirs(f'{args.out_dir}/predictions/{args.prefix}')
@@ -233,11 +233,11 @@ def main(args):
             return
         (x, ids) = encode_sequence3(args.predict_fasta, size = args.seq_length)
         df = predict_sequences(args.model_name, x, ids)
-        model_predictions = f'{args.out_dir}/predictions/{args.prefix}/{label}.predictions.txt'
+        model_predictions = f'{args.out_dir}/predictions/{args.prefix}/{label}.{args.predict_out}.predictions.txt'
         # save model performances to feather object
         if not os.path.exists(f'{args.out_dir}/predictions/{args.prefix}'):
             os.makedirs(f'{args.out_dir}/predictions/{args.prefix}') 
-        np.savetxt(model_predictions, df, axis = 1)
+        df.to_csv(model_predictions, sep = '\t')
         print(f'Prediction written to {model_predictions}')
     return
 
@@ -250,6 +250,7 @@ if __name__ == '__main__':
     #
     parser.add_argument("--prefix", type=str, help="prefix of model.")
     parser.add_argument("--model_name", type=str, help="complete model name")
+    parser.add_argument("--predict_out", type=str, help="prediction file prefix model name", required=False)
     parser.add_argument("--predict_fasta", type=str, help="fasta sequence file for predictions.")
     parser.add_argument("--train_fasta_pos", type=str, help="training fasta sequence file of positives.")
     parser.add_argument("--train_fasta_neg", type=str, help="training fasta sequence file of negatives.")

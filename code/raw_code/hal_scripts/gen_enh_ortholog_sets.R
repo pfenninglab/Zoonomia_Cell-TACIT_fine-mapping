@@ -188,7 +188,11 @@ writeGRangesToFasta <- function(gr, genome, file){
     paste(genome,seq_len(sum(is.na(names(seq)))), sep = '_')
   
   ## write to fasta file
-  writeXStringSet(seq,file=file)
+  if(grepl('.gz$', file)){
+    writeXStringSet(seq,file=file, compress= TRUE)
+  }else {
+    writeXStringSet(seq,file=file)
+  }
   return(seq)
 }
 

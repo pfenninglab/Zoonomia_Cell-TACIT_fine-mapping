@@ -219,7 +219,7 @@ summitCenter <- function(peaks, width = 501){
 }
 
 convertHalChrName <- function(gr, species = 'Macaca_mulatta', chrOut = 'GenBank',
-                              data.dir = '../../../data/tidy_data/Zoonomia_data/'){
+                              data.dir = here::here('data/tidy_data/Zoonomia_data/')){
   #### gather the zoonomia list of species ####
   zoo_fn = file.path(data.dir,'rdas','200_Mammals_Genome_Information.rds')
   if(!file.exists(zoo_fn)){

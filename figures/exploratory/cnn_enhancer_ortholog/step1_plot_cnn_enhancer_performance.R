@@ -49,7 +49,8 @@ ggplot(data = df_long, aes(x = group, y = value)) +
   theme(legend.position = "bottom", legend.text=element_text(size=10),
         legend.title=element_text(size=10),
         legend.key.height=unit(.5,"line"), 
-        legend.key.width=unit(.5,"line")) 
+        legend.key.width=unit(.5,"line"), 
+        ) 
 dev.off()
 
 

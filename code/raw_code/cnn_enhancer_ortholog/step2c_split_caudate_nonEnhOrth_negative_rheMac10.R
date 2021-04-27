@@ -52,7 +52,7 @@ rhesus_pos_list = mapply(function(gr1, gr2){
 }, gr1 = rhesus_pos_list, gr2 = nonRepPeak_list)
 
 ############################################
-### get the mouse mapped to human peaks ####
+### get the mouse mapped to monkey peaks ####
 mouse_hal2rm8_fn =file.path('../../../data/raw_data/','mm10') %>%
   list.files(path = ., full.names = T, recursive = T, 
              pattern = 'ToMacaca_mulatta.HALPER.narrowPeak.gz')
@@ -79,7 +79,7 @@ lengths(mouse_nonEnhList) / lengths(mouse_hal2rm10_peakList)
 
 
 #############################################
-### get the monkey mapped to human peaks ####
+### get the human mapped to monkey peaks ####
 human_hal2rm8_fn =file.path('../../../data/raw_data/','hg38') %>%
   list.files(path = ., full.names = T, recursive = T, 
              pattern = 'ToMacaca_mulatta.HALPER.narrowPeak.gz')

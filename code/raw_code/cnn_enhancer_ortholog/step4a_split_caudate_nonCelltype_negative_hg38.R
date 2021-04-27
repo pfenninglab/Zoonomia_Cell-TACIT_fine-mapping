@@ -78,11 +78,11 @@ negativeSplit_list = lapply(folds, function(fold) {
 #############################################################
 # export postive sequences to summit-centered 501bp.fasta file
 split = names(negativeSplit_list[[1]][[1]])
-system(paste('mkdir -p',  file.path(PROJDIR, .fasta')))
+system(paste('mkdir -p',  file.path(PROJDIR, 'fasta')))
 for(cell in names(negativeSet)){
   for(fold in names(folds)){
     # write the negatives
-    neg.fasta_fn = file.path(PROJDIR, .fasta', 
+    neg.fasta_fn = file.path(PROJDIR, 'fasta', 
                              paste(genome, cell, fold, split, 'nonCelltypeNeg.fa.gz', sep = '_'))
     negFasta = mapply(writeGRangesToFasta, gr = negativeSplit_list[[fold]][[cell]],  
                       file = neg.fasta_fn, genome = genome)

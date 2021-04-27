@@ -1,7 +1,6 @@
 # to be run in the root github directory
 LABEL='cnn_enhancer_ortholog'
-setwd('code/raw_code/cnn_enhancer_ortholog')
-PROJDIR=file.path('../../../data/raw_data/',LABEL)
+DATADIR=file.path('data/raw_data/',LABEL)
 
 ### set up libraries and functions ####
 ss <- function(x, pattern, slot = 1, ...) { 
@@ -10,12 +9,10 @@ options(stringsAsFactors = F)
 options(repr.plot.width=11, repr.plot.height=8.5)
 suppressMessages(library(rtracklayer))
 library(tidyverse)
-source('../hal_scripts/narrowPeakFunctions.R')
-source('../hal_scripts/gen_enh_ortholog_sets.R')
+library(here)
 
-## parameters for annotation and filtering
-fromTSS = c(-20000,20000)
-include = c('Distal.Intergenic','Intron')
+source(here('code/raw_code/hal_scripts/narrowPeakFunctions.R'))
+source(here('code/raw_code/hal_scripts/gen_enh_ortholog_sets.R'))
 
 ## chromosomal splits
 testSet = c('chr1','chr2')
@@ -24,159 +21,178 @@ folds = list(fold1 = c('chr6', 'chr13', 'chr21'),
              fold3 = c('chr11','chr17', 'chrX'),
              fold4 = c('chr9', 'chr12'),
              fold5 = c('chr8', 'chr10'))
+split = c('test', 'valid')
 
-
-############################
-### get the human peaks ####
+###########################################
+# load in the human positive peak files
 genome = 'hg38'
-human_peak_fn = file.path('../../../data/raw_data/',genome,'Corces_2020', 'peak') %>%
-  list.files(path = ., full.names = T, pattern = 'narrowPeak.gz')
-human_peak_fn = human_peak_fn[ss(basename(human_peak_fn), '\\.') == 'Corces2020_caudate']
-names(human_peak_fn) = basename(human_peak_fn) %>% ss('\\.', 2)
-human_peak_fn = human_peak_fn[! names(human_peak_fn) %in% c('Consensus')]
-human_peakList= lapply(human_peak_fn, rtracklayer::import) %>% GRangesList()
+load(here(DATADIR, 'rdas', paste('caudate_positive_sequences', 'hg38','.rda', sep = '.')))
 
-# annotate peaks, filter out exons, promoters
-human_peakList = annotatePeaks(human_peakList, fromTSS = fromTSS, genome = genome)
-human_enhList = filterPeaks(human_peakList, include = include)
-human_enhList = mapply(transferColumn, toPeaks = human_enhList, colOut = 'col',
-                       fromPeaks = human_enhList) %>% GRangesList()
-lengths(human_enhList) / lengths(human_peakList) 
+### get the mouse mapped to human peaks ####
+mouse_hal2hg38_fn =here('data/raw_data/','mm10') %>%
+  list.files(path = ., full.names = T, recursive = T, 
+             pattern = 'ToHomo_sapiens.HALPER.narrowPeak.gz')
+mouse_hal2hg38_fn = mouse_hal2hg38_fn[ss(basename(mouse_hal2hg38_fn), '\\.') %in% 
+                                        c('BICCN_CP', 'Pfenning_Cpu')]
+# exclude BICCN_CP.MSN_D1 and BICCN_CP.MSN_D2 & halper peaks for now
+mouse_hal2hg38_fn = mouse_hal2hg38_fn[!grepl('BICCN_CP.MSN_D|BICCN_CP.INT', mouse_hal2hg38_fn)]
+names(mouse_hal2hg38_fn) = basename(mouse_hal2hg38_fn) %>% ss('\\.', 2)
+mouse_hal2hg38_fn = mouse_hal2hg38_fn[names(human_peakList)]
+mouse_hal2hg38_peakList = lapply(mouse_hal2hg38_fn, rtracklayer::import) %>% GRangesList()
 
-# summit-center and 
-human_enhList = summitCenter(human_enhList, width = 501)
-human_enhList_split = lapply(folds, function(fold){
-  ret = lapply(human_enhList, splitPeakSet, testSet = testSet, validSet = fold, useCol = 'col')
+### get the monkey mapped to human peaks ####
+rhesus_hal2hg38_fn =here('data/raw_data/','rheMac10') %>%
+  list.files(path = ., full.names = T, recursive = T, 
+             pattern = 'ToHomo_sapiens.HALPER.narrowPeak.gz')
+names(rhesus_hal2hg38_fn) = basename(rhesus_hal2hg38_fn) %>% ss('\\.', 2)
+rhesus_hal2hg38_fn = rhesus_hal2hg38_fn[names(human_peakList)]
+rhesus_hal2hg38_peakList = lapply(rhesus_hal2hg38_fn, rtracklayer::import) %>% GRangesList()
+
+### find human peaks not overlapping mouse/monkey peaks ####
+humanOnly_enhList = mapply(function(keep, excl1, excl2){
+  excl_gr = c(excl1, excl2)
+  oo = findOverlaps(query = keep, subject = excl_gr)
+  keepIdx = which(!seq_along(keep) %in% queryHits(oo))
+  return(keep[keepIdx])
+}, keep = human_enhList, excl1 = mouse_hal2hg38_peakList, excl2 = rhesus_hal2hg38_peakList) %>%
+  GRangesList()
+
+humanOnly_enhList_split = lapply(folds, function(fold){
+  ret = lapply(humanOnly_enhList, splitPeakSet, testSet = testSet, validSet = fold, useCol = 'col')
   return(ret)
 })
 
 # export postive sequences to summit-centered 501bp.fasta file
-split = names(human_enhList_split[[1]][[1]])
 system(paste('mkdir -p',  file.path(PROJDIR, 'fasta')))
-# write the positives w/o splits
-pos.fasta_fn = file.path(PROJDIR, 'fasta', paste(genome, names(human_enhList), 'positive.fa.gz', sep = '_'))
-posFasta = mapply(writeGRangesToFasta, gr = human_enhList, file = pos.fasta_fn, genome = genome)
 for(cell in names(human_enhList)){
   for(fold in names(folds)){
     # write the positives
     pos.fasta_fn = file.path(PROJDIR, 'fasta', 
-                             paste(genome, cell, fold, split, 'positive.fa.gz', sep = '_'))
-    posFasta = mapply(writeGRangesToFasta, gr = human_enhList_split[[fold]][[cell]],  
-                      file = pos.fasta_fn, genome = genome)
-}}
-
-system(paste('mkdir -p',  file.path(PROJDIR, 'rdas')))
-save_fn = file.path(PROJDIR, 'rdas', paste('caudate_positive_sequences', genome,'.rda', sep = '.'))
-save(human_peakList, human_enhList, file = save_fn )
-
-
-
-############################
-### get the mouse peaks ####
-genome = 'mm10'
-mouse_peak_fn = file.path('../../../data/raw_data/',genome) %>%
-  list.files(path = ., full.names = T, recursive = T, pattern = 'narrowPeak.gz')
-mouse_peak_fn = mouse_peak_fn[!grepl('HALPER.narrowPeak.gz|peaks_nonreproducible', mouse_peak_fn)]
-# exclude BICCN_CP.MSN_D1 and BICCN_CP.MSN_D2 & halper peaks for now
-mouse_peak_fn = mouse_peak_fn[!grepl('BICCN_CP.MSN_D|BICCN_CP.INT|Consensus', 
-                                     mouse_peak_fn)]
-mouse_peak_fn = mouse_peak_fn[ss(basename(mouse_peak_fn), '\\.') %in% 
-                                c('BICCN_CP', 'Pfenning_Cpu')]
-names(mouse_peak_fn) = basename(mouse_peak_fn) %>% ss('\\.', 2)
-mouse_peak_fn = mouse_peak_fn[order(names(mouse_peak_fn))]
-mouse_peakList= lapply(mouse_peak_fn, rtracklayer::import) %>% GRangesList()
-mouse_peakList[c('INT_Pvalb','MSN_D1','MSN_D2')] = 
-  lapply(mouse_peakList[c('INT_Pvalb','MSN_D1','MSN_D2')], function(gr){
-    gr$name = paste0(seqnames(gr), ':',start(gr),'-',end(gr),':',gr$peak)
-    return(gr)
-  }) %>% GRangesList() 
-
-# annotate peaks, filter out exons, promoters
-mouse_peakList = annotatePeaks(mouse_peakList, fromTSS = fromTSS, genome = genome)
-mouse_enhList = filterPeaks(mouse_peakList, include = include)
-lengths(mouse_enhList) / lengths(mouse_peakList)
-
-### get the rough chromosome numbers for each peak
-chainFile =file.path("/home/bnphan/resources/liftOver_chainz", paste0(genome,'ToHg38.over.chain'))
-mouse_enhList = mapply(getLiftedChr, p = mouse_enhList, chainFile = chainFile) %>% GRangesList()
-
-# summit-center  
-mouse_enhList = summitCenter(mouse_enhList, width = 501)
-mouse_enhList_split = lapply(folds, function(fold){
-  ret = lapply(mouse_enhList, splitPeakSet, testSet = testSet, validSet = fold, useCol = 'col')
-  return(ret)
-})
-
-# write the positives w/o splits
-split = names(mouse_enhList_split[[1]][[1]])
-pos.fasta_fn = file.path(PROJDIR, 'fasta', paste(genome, names(mouse_enhList), 'positive.fa.gz', sep = '_'))
-posFasta = mapply(writeGRangesToFasta, gr = mouse_enhList, file = pos.fasta_fn, genome = genome)
-for(cell in names(mouse_enhList)){
-for(fold in names(folds)){
-  pos.fasta_fn = file.path(PROJDIR, 'fasta', paste(genome, cell, fold, split, 'positive.fa.gz', sep = '_'))
-  posFasta = mapply(writeGRangesToFasta, gr = mouse_enhList_split[[fold]][[cell]],  
-                    file = pos.fasta_fn, genome = genome)
-}}
-
-system(paste('mkdir -p',  file.path(PROJDIR, 'rdas')))
-save_fn = file.path(PROJDIR, 'rdas', paste('caudate_positive_sequences', genome,'.rda', sep = '.'))
-save(mouse_peakList, mouse_enhList, file = save_fn )
-
-
-
-
-
-#######################################################################
-### get the macaque peaks, note narrowPeaks in rheMac8 coordinates ####
-genome = 'rheMac10'
-rhesus_fn =file.path('../../../data/raw_data/',genome) %>%
-  list.files(path = ., full.names = T, recursive = T, pattern = 'narrowPeak.gz')
-rhesus_fn = rhesus_fn[!grepl('HALPER.narrowPeak.gz', rhesus_fn)]
-names(rhesus_fn) = basename(rhesus_fn) %>% ss('\\.', 2)
-rhesus_fn = rhesus_fn[!grepl('Consensus', rhesus_fn)]
-rhesus_fn = rhesus_fn[order(names(rhesus_fn))]
-rhesus_peakList = lapply(rhesus_fn, rtracklayer::import) %>% GRangesList()
-rhesus_peakList = lapply(rhesus_peakList, convertHalChrName, chrOut = 'UCSC', 
-                         species = 'Macaca_mulatta') %>% GRangesList()
-
-## lift rheMac8 coordinates to rheMac10
-chainFile1 =file.path("/home/bnphan/resources/liftOver_chainz", paste0('rheMac8ToRheMac10.over.chain'))
-rhesus_peakList = lapply(rhesus_peakList, liftOver_narrowPeak, chainFile = chainFile1) %>% GRangesList()
-
-# annotate peaks, filter out exons, promoters
-# need to convert genBank chr names to UCSC chr names
-rhesus_peakList = annotatePeaks(rhesus_peakList, fromTSS = fromTSS, genome = genome)
-rhesus_enhList = filterPeaks(rhesus_peakList, include = include)
-lengths(rhesus_enhList) / lengths(rhesus_peakList)
-
-## read in rhesus peaks mapped to hg38 to get chr for split
-chainFile =file.path("/home/bnphan/resources/liftOver_chainz", paste0(genome,'ToHg38.over.chain'))
-rhesus_enhList = mapply(getLiftedChr, p = rhesus_enhList, chainFile = chainFile) %>% GRangesList()
-
-# summit-center  
-rhesus_enhList = summitCenter(rhesus_enhList, width = 501)
-library(BSgenome.Mmulatta.UCSC.rheMac10)
-seqinfo(rhesus_enhList) = seqinfo(BSgenome.Mmulatta.UCSC.rheMac10)
-rhesus_enhList = lapply(rhesus_enhList, trim) %>% GRangesList()
-rhesus_enhList_split = lapply(folds, function(fold){
-  ret = lapply(rhesus_enhList, splitPeakSet, testSet = testSet, validSet = fold, useCol = 'col')
-  return(ret)
-})
-
-# write the positives w/o splits
-split = names(rhesus_enhList_split[[1]][[1]])
-pos.fasta_fn = file.path(PROJDIR, 'fasta', paste(genome, names(rhesus_enhList), 'positive.fa.gz', sep = '_'))
-posFasta = mapply(writeGRangesToFasta, gr = rhesus_enhList, file = pos.fasta_fn, genome = genome)
-for(cell in names(rhesus_enhList)){
-  for(fold in names(folds)){
-    pos.fasta_fn = file.path(PROJDIR, 'fasta', paste(genome, cell, fold, split, 'positive.fa.gz', sep = '_'))
-    posFasta = mapply(writeGRangesToFasta, gr = rhesus_enhList_split[[fold]][[cell]],  
+                             paste(paste0(genome, 'Only'), cell, fold, split, 'positive.fa.gz', sep = '_'))
+    posFasta = mapply(writeGRangesToFasta, gr = humanOnly_enhList_split[[fold]][[cell]][split],  
                       file = pos.fasta_fn, genome = genome)
   }}
 
-system(paste('mkdir -p',  file.path(PROJDIR, 'rdas')))
-save_fn = file.path(PROJDIR, 'rdas', paste('caudate_positive_sequences', genome,'.rda', sep = '.'))
-save(rhesus_peakList, rhesus_enhList, file = save_fn )
+save_fn = file.path(PROJDIR, 'rdas', paste('caudate_positive_sequences', paste0(genome, 'Only'),'rda', sep = '.'))
+save(humanOnly_enhList, file = save_fn )
+
+
+###########################################
+# load in the mouse positive peak files
+genome = 'mm10'
+load(here(DATADIR, 'rdas', paste('caudate_positive_sequences', 'mm10','.rda', sep = '.')))
+
+### get the human mapped to mouse peaks ####
+human_hal2mm10_fn =file.path('data/raw_data/','hg38') %>%
+  list.files(path = ., full.names = T, recursive = T, 
+             pattern = 'ToMus_musculus.HALPER.narrowPeak.gz')
+names(human_hal2mm10_fn) = basename(human_hal2mm10_fn) %>% ss('\\.', 2)
+human_hal2mm10_fn = human_hal2mm10_fn[names(mouse_peakList)]
+human_hal2mm10_peakList = lapply(human_hal2mm10_fn, rtracklayer::import) %>% GRangesList()
+
+### get the monkey mapped to mouse peaks ####
+rhesus_hal2mm10_fn =file.path('data/raw_data/','rheMac10') %>%
+  list.files(path = ., full.names = T, recursive = T, 
+             pattern = 'ToMus_musculus.HALPER.narrowPeak.gz')
+names(rhesus_hal2mm10_fn) = basename(rhesus_hal2mm10_fn) %>% ss('\\.', 2)
+rhesus_hal2mm10_fn = rhesus_hal2mm10_fn[names(mouse_peakList)]
+rhesus_hal2mm10_peakList = lapply(rhesus_hal2mm10_fn, rtracklayer::import) %>% GRangesList()
+
+### find mouse peaks not overlapping human/monkey peaks ####
+mouseOnly_enhList = mapply(function(keep, excl1, excl2){
+  excl_gr = c(excl1, excl2)
+  oo = findOverlaps(query = keep, subject = excl_gr)
+  keepIdx = which(!seq_along(keep) %in% queryHits(oo))
+  return(keep[keepIdx])
+}, keep = mouse_enhList, excl1 = human_hal2mm10_peakList, excl2 = rhesus_hal2mm10_peakList) %>%
+  GRangesList()
+
+mouseOnly_enhList_split = lapply(folds, function(fold){
+  ret = lapply(mouseOnly_enhList, splitPeakSet, testSet = testSet, validSet = fold, useCol = 'col')
+  return(ret)
+})
+
+# export postive sequences to summit-centered 501bp.fasta file
+for(cell in names(mouseOnly_enhList)){
+  for(fold in names(folds)){
+    # write the positives
+    pos.fasta_fn = file.path(PROJDIR, 'fasta', 
+                             paste(paste0(genome, 'Only'), cell, fold, split, 'positive.fa.gz', sep = '_'))
+    posFasta = mapply(writeGRangesToFasta, gr = mouseOnly_enhList_split[[fold]][[cell]][split],  
+                      file = pos.fasta_fn, genome = genome)
+  }}
+
+save_fn = file.path(PROJDIR, 'rdas', paste('caudate_positive_sequences', paste0(genome, 'Only'),'rda', sep = '.'))
+save(mouseOnly_enhList, file = save_fn )
+
+
+
+
+
+
+
+###########################################
+# load in the monkey positive peak files
+genome = 'rheMac10'
+chainFile1 =file.path("/home/bnphan/resources/liftOver_chainz", 
+                      paste0('rheMac8ToRheMac10.over.chain'))
+
+load(here(DATADIR, 'rdas', paste('caudate_positive_sequences', 'rheMac10','.rda', sep = '.')))
+
+### get the mouse mapped to monkey peaks ####
+mouse_hal2rm8_fn =file.path('data/raw_data/','mm10') %>%
+  list.files(path = ., full.names = T, recursive = T, 
+             pattern = 'ToMacaca_mulatta.HALPER.narrowPeak.gz')
+mouse_hal2rm8_fn = mouse_hal2rm8_fn[ss(basename(mouse_hal2rm8_fn), '\\.') %in% 
+                                      c('BICCN_CP', 'Pfenning_Cpu')]
+mouse_hal2rm8_fn = mouse_hal2rm8_fn[!grepl('BICCN_CP.MSN_D|BICCN_CP.INT', mouse_hal2rm8_fn)]
+names(mouse_hal2rm8_fn) = basename(mouse_hal2rm8_fn) %>% ss('\\.', 2)
+mouse_hal2rm8_fn = mouse_hal2rm8_fn[names(rhesus_enhList)]
+mouse_hal2rm8_peakList = lapply(mouse_hal2rm8_fn, rtracklayer::import) %>% GRangesList()
+mouse_hal2rm8_peakList = lapply(mouse_hal2rm8_peakList, convertHalChrName, 
+                                chrOut = 'UCSC', species = 'Macaca_mulatta') %>% GRangesList()
+mouse_hal2rm10_peakList = lapply(mouse_hal2rm8_peakList, liftOver_narrowPeak, 
+                                 chainFile = chainFile1) %>% GRangesList()
+
+
+### get the human mapped to monkey peaks ####
+human_hal2rm8_fn =file.path('data/raw_data/','hg38') %>%
+  list.files(path = ., full.names = T, recursive = T, 
+             pattern = 'ToMacaca_mulatta.HALPER.narrowPeak.gz')
+names(human_hal2rm8_fn) = basename(human_hal2rm8_fn) %>% ss('\\.', 2)
+human_hal2rm8_fn = human_hal2rm8_fn[names(rhesus_enhList)]
+human_hal2rm8_peakList = lapply(human_hal2rm8_fn, rtracklayer::import) %>% 
+  lapply(convertHalChrName, chrOut = 'UCSC', species = 'Macaca_mulatta') %>% GRangesList()
+human_hal2rm10_peakList = lapply(human_hal2rm8_peakList, liftOver_narrowPeak, 
+                                 chainFile = chainFile1) %>% GRangesList()
+
+
+### find monkey peaks not overlapping human/mouse peaks ####
+rhesusOnly_enhList = mapply(function(keep, excl1, excl2){
+  excl_gr = c(excl1, excl2)
+  oo = findOverlaps(query = keep, subject = excl_gr)
+  keepIdx = which(!seq_along(keep) %in% queryHits(oo))
+  return(keep[keepIdx])
+}, keep = rhesus_enhList, excl1 = human_hal2rm10_peakList, excl2 = mouse_hal2rm10_peakList) %>%
+  GRangesList()
+
+rhesusOnly_enhList_split = lapply(folds, function(fold){
+  ret = lapply(rhesusOnly_enhList, splitPeakSet, testSet = testSet, validSet = fold, useCol = 'col')
+  return(ret)
+})
+
+# export postive sequences to summit-centered 501bp.fasta file
+for(cell in names(rhesusOnly_enhList)){
+  for(fold in names(folds)){
+    # write the positives
+    pos.fasta_fn = file.path(PROJDIR, 'fasta', 
+                             paste(paste0(genome, 'Only'), cell, fold, split, 'positive.fa.gz', sep = '_'))
+    posFasta = mapply(writeGRangesToFasta, gr = rhesusOnly_enhList_split[[fold]][[cell]][split],  
+                      file = pos.fasta_fn, genome = genome)
+  }}
+
+save_fn = file.path(PROJDIR, 'rdas', paste('caudate_positive_sequences', paste0(genome, 'Only'),'rda', sep = '.'))
+save(rhesusOnly_enhList, file = save_fn )
 
 
 

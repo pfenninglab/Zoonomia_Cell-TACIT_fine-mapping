@@ -25,34 +25,34 @@ PREFIX=${CELLTYPE}_fold${FOLD}_hgRmMm_${NEGSET}
 
 #####################################################################
 ### merge positive training and validation set from each genome #####
-TRAINPOSFILE=$DATADIR/fasta/${PREFIX}_${NEGSET}_trainPos.fa
+TRAINPOSFILE=$DATADIR/fasta/${PREFIX}_${NEGSET}_trainPos.fa.gz
 if [[ ! -f  $TRAINPOSFILE ]]; then
-cat $DATADIR/fasta/hg38_${CELLTYPE}_fold${FOLD}_train_positive.fa \
-	$DATADIR/fasta/mm10_${CELLTYPE}_fold${FOLD}_train_positive.fa \
-	$DATADIR/fasta/rheMac10_${CELLTYPE}_fold${FOLD}_train_positive.fa > $TRAINPOSFILE
+cat $DATADIR/fasta/hg38_${CELLTYPE}_fold${FOLD}_train_positive.fa.gz \
+	$DATADIR/fasta/mm10_${CELLTYPE}_fold${FOLD}_train_positive.fa.gz \
+	$DATADIR/fasta/rheMac10_${CELLTYPE}_fold${FOLD}_train_positive.fa.gz > $TRAINPOSFILE
 fi
 
-VALIDPOSFILE=$DATADIR/fasta/${PREFIX}_${NEGSET}_validPos.fa
+VALIDPOSFILE=$DATADIR/fasta/${PREFIX}_${NEGSET}_validPos.fa.gz
 # if [[ ! -f  $VALIDPOSFILE ]]; then
-cat $DATADIR/fasta/hg38_${CELLTYPE}_fold${FOLD}_valid_positive.fa \
-	$DATADIR/fasta/mm10_${CELLTYPE}_fold${FOLD}_valid_positive.fa \
-	$DATADIR/fasta/rheMac10_${CELLTYPE}_fold${FOLD}_valid_positive.fa > $VALIDPOSFILE
+cat $DATADIR/fasta/hg38_${CELLTYPE}_fold${FOLD}_valid_positive.fa.gz \
+	$DATADIR/fasta/mm10_${CELLTYPE}_fold${FOLD}_valid_positive.fa.gz \
+	$DATADIR/fasta/rheMac10_${CELLTYPE}_fold${FOLD}_valid_positive.fa.gz > $VALIDPOSFILE
 # fi
 
 #####################################################################
 ### merge negative training and validation set from each genome #####
-TRAINNEGFILE=$DATADIR/fasta/${PREFIX}_${NEGSET}_trainNeg.fa
+TRAINNEGFILE=$DATADIR/fasta/${PREFIX}_${NEGSET}_trainNeg.fa.gz
 # if [[ ! -f  $TRAINNEGFILE ]]; then
-cat $DATADIR/fasta/hg38_${CELLTYPE}_fold${FOLD}_train_biasAway10x.fa \
-	$DATADIR/fasta/mm10_${CELLTYPE}_fold${FOLD}_train_biasAway10x.fa \
-	$DATADIR/fasta/rheMac10_${CELLTYPE}_fold${FOLD}_train_biasAway10x.fa > $TRAINNEGFILE
+cat $DATADIR/fasta/hg38_${CELLTYPE}_fold${FOLD}_train_biasAway10x.fa.gz \
+	$DATADIR/fasta/mm10_${CELLTYPE}_fold${FOLD}_train_biasAway10x.fa.gz \
+	$DATADIR/fasta/rheMac10_${CELLTYPE}_fold${FOLD}_train_biasAway10x.fa.gz > $TRAINNEGFILE
 # fi
 
-VALIDNEGFILE=$DATADIR/fasta/${PREFIX}_${NEGSET}_validNeg.fa
+VALIDNEGFILE=$DATADIR/fasta/${PREFIX}_${NEGSET}_validNeg.fa.gz
 # if [[ ! -f  $VALIDNEGFILE ]]; then
-cat $DATADIR/fasta/hg38_${CELLTYPE}_fold${FOLD}_valid_biasAway10x.fa \
-	$DATADIR/fasta/mm10_${CELLTYPE}_fold${FOLD}_valid_biasAway10x.fa \
-	$DATADIR/fasta/rheMac10_${CELLTYPE}_fold${FOLD}_valid_biasAway10x.fa > $VALIDNEGFILE
+cat $DATADIR/fasta/hg38_${CELLTYPE}_fold${FOLD}_valid_biasAway10x.fa.gz \
+	$DATADIR/fasta/mm10_${CELLTYPE}_fold${FOLD}_valid_biasAway10x.fa.gz \
+	$DATADIR/fasta/rheMac10_${CELLTYPE}_fold${FOLD}_valid_biasAway10x.fa.gz > $VALIDNEGFILE
 # fi
 
 #### cyclical learning rate parameters

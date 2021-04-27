@@ -101,7 +101,7 @@ lengths(human_enhList) / lengths(nonEnh_peakList)
 #    Astro INT_Pvalb Microglia    MSN_D1    MSN_D2    MSN_SN     Oligo       OPC 
 # 2.082943  1.834379  1.730197  1.142003  1.101141  2.409444  2.441096  2.594530 
 
-# export postive sequences to summit-centered 501bp fasta file
+# export postive sequences to summit-centered 501bp.fasta file
 negativeSet = summitCenter(nonEnh_peakList, width = 501)
 negativeSplit_list = lapply(folds, function(fold) {
   ret = lapply(negativeSet, splitPeakSet, testSet = testSet, validSet = fold)
@@ -109,16 +109,16 @@ negativeSplit_list = lapply(folds, function(fold) {
 })
 
 #############################################################
-# export postive sequences to summit-centered 501bp fasta file
+# export postive sequences to summit-centered 501bp.fasta file
 split = names(negativeSplit_list[[1]][[1]])
 system(paste('mkdir -p',  file.path(PROJDIR, 'fasta')))
 for(cell in names(negativeSet)){
   for(fold in names(folds)){
     # write the negatives
-    neg_fasta_fn = file.path(PROJDIR, 'fasta', 
-                             paste(genome, cell, fold, split, 'nonEnhNeg.fa', sep = '_'))
+    neg.fasta_fn = file.path(PROJDIR, 'fasta', 
+                             paste(genome, cell, fold, split, 'nonEnhNeg.fa.gz', sep = '_'))
     negFasta = mapply(writeGRangesToFasta, gr = negativeSplit_list[[fold]][[cell]],  
-                      file = neg_fasta_fn, genome = genome)
+                      file = neg.fasta_fn, genome = genome)
   }}
 
 system(paste('mkdir -p',  file.path(PROJDIR, 'rdas')))

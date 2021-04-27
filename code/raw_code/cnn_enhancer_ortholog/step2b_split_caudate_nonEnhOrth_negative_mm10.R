@@ -109,7 +109,7 @@ lengths(mouse_enhList) / lengths(nonEnh_peakList)
 chainFile =file.path("/home/bnphan/resources/liftOver_chainz", paste0(genome,'ToHg38.over.chain'))
 nonEnh_peakList = mapply(getLiftedChr, p = nonEnh_peakList, chainFile = chainFile) %>% GRangesList()
 
-# export postive sequences to summit-centered 501bp fasta file
+# export postive sequences to summit-centered 501bp.fasta file
 negativeSet = summitCenter(nonEnh_peakList, width = 501)
 negativeSplit_list = lapply(folds, function(fold){
   lapply(negativeSet, splitPeakSet, testSet = testSet, validSet = fold, useCol = 'col')
@@ -117,16 +117,16 @@ negativeSplit_list = lapply(folds, function(fold){
 
 
 #############################################################
-# export postive sequences to summit-centered 501bp fasta file
+# export postive sequences to summit-centered 501bp.fasta file
 split = names(negativeSplit_list[[1]][[1]])
 system(paste('mkdir -p',  file.path(PROJDIR, 'fasta')))
 for(cell in names(negativeSet)){
   for(fold in names(folds)){
     # write the negatives
-    neg_fasta_fn = file.path(PROJDIR, 'fasta', 
-                             paste(genome, cell, fold, split, 'nonEnhNeg.fa', sep = '_'))
+    neg.fasta_fn = file.path(PROJDIR, 'fasta', 
+                             paste(genome, cell, fold, split, 'nonEnhNeg.fa.gz', sep = '_'))
     negFasta = mapply(writeGRangesToFasta, gr = negativeSplit_list[[fold]][[cell]],  
-                      file = neg_fasta_fn, genome = genome)
+                      file = neg.fasta_fn, genome = genome)
   }}
 
 system(paste('mkdir -p',  file.path(PROJDIR, 'rdas')))

@@ -1,6 +1,7 @@
 #!/bin/bash
 #SBATCH -n 1
 #SBATCH --partition=gpu,pfen3
+#SBATCH --gres=gpu:1
 #SBATCH --job-name=evalCell
 #SBATCH --time 12:00:00
 #SBATCH --job-name=scoreMappable
@@ -9,7 +10,7 @@
 #SBATCH --mem=60G
 #SBATCH --error=logs/score_mappable_peaks_%A_%a.txt
 #SBATCH --output=logs/score_mappable_peaks_%A_%a.txt
-#SBATCH --array=1-240
+#SBATCH --array=1-240%10
 
 ### Set up the directories
 SETDIR=/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate
@@ -29,7 +30,7 @@ SPECIES=$(awk -F'\t' -v IND=${SLURM_ARRAY_TASK_ID} 'NR==(IND + 1) {print $2}' ${
 FASTA_FN=$(awk -F'\t' -v IND=${SLURM_ARRAY_TASK_ID} 'NR==(IND + 1) {print $23}' ${ZOONOMIADIR}/tables/200_Mammals_Genome_Information.tsv | sed $'s/[^[:print:]\t]//g')
 if [[ ! -f $FASTA_FN ]]; then exit 1; fi  # one genome doesn't have fasta
 IS_CHR_SAME=$(awk -F'\t' -v IND=${SLURM_ARRAY_TASK_ID} 'NR==(IND + 1) {print $20 == $21 }' ${ZOONOMIADIR}/tables/200_Mammals_Genome_Information.tsv)
-DICT=${FASTADIR}/$(awk -F'\t' -v IND=${SLURM_ARRAY_TASK_ID} 'NR==(IND + 1) {print $20 "NameTo" $21 "Name_" $2 ".txt"}' ${ZOONOMIADIR}/tables/200_Mammals_Genome_Information.tsv | sed $'s/[^[:print:]\t]//g')
+DICT=$(ls ${FASTADIR}/*${SPECIES}.txt | head -1)
 
 ##############################################
 # Predict SPECIES ortholog CELLTYPE activity
@@ -54,11 +55,11 @@ bedtools getfasta -nameOnly -fi $FASTA_FN -bed $TMPBED | gzip > $TMPFASTA
 conda activate tf2
 for FOLD in {1..5}; do
 PREFIX=${CELL}_fold${FOLD}_hgRmMm_nonCelltypeNonEnhBiasAway10x
-MODEL=$(ls ${SETDIR}/data/raw_data/cnn_enhancer_ortholog/models/${PREFIX}/*.h5)
+for MODEL in $(ls ${SETDIR}/data/raw_data/cnn_enhancer_ortholog/models/${PREFIX}/*.h5); do
 python ${SETDIR}/code/raw_code/cnn_enhancer_ortholog/train_singleTask_CNN_classifier_OCP.py \
 --mode 'predict' --out_dir $DATADIR --predict_fasta $TMPFASTA \
 --model_name $MODEL --predict_out ${SPECIES}.${CELL} --verbose 2
-done
+done; done
 conda deactivate
 
 # 4) average score across 5 folds, column 3 is prediction score

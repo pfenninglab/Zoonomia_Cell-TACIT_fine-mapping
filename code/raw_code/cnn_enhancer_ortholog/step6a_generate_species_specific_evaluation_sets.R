@@ -63,17 +63,17 @@ humanOnly_enhList_split = lapply(folds, function(fold){
 })
 
 # export postive sequences to summit-centered 501bp.fasta file
-system(paste('mkdir -p',  file.path(PROJDIR, 'fasta')))
+system(paste('mkdir -p',  file.path(DATADIR, 'fasta')))
 for(cell in names(human_enhList)){
   for(fold in names(folds)){
     # write the positives
-    pos.fasta_fn = file.path(PROJDIR, 'fasta', 
+    pos.fasta_fn = file.path(DATADIR, 'fasta', 
                              paste(paste0(genome, 'Only'), cell, fold, split, 'positive.fa.gz', sep = '_'))
     posFasta = mapply(writeGRangesToFasta, gr = humanOnly_enhList_split[[fold]][[cell]][split],  
                       file = pos.fasta_fn, genome = genome)
   }}
 
-save_fn = file.path(PROJDIR, 'rdas', paste('caudate_positive_sequences', paste0(genome, 'Only'),'rda', sep = '.'))
+save_fn = file.path(DATADIR, 'rdas', paste('caudate_positive_sequences', paste0(genome, 'Only'),'rda', sep = '.'))
 save(humanOnly_enhList, file = save_fn )
 
 
@@ -116,13 +116,13 @@ mouseOnly_enhList_split = lapply(folds, function(fold){
 for(cell in names(mouseOnly_enhList)){
   for(fold in names(folds)){
     # write the positives
-    pos.fasta_fn = file.path(PROJDIR, 'fasta', 
+    pos.fasta_fn = file.path(DATADIR, 'fasta', 
                              paste(paste0(genome, 'Only'), cell, fold, split, 'positive.fa.gz', sep = '_'))
     posFasta = mapply(writeGRangesToFasta, gr = mouseOnly_enhList_split[[fold]][[cell]][split],  
                       file = pos.fasta_fn, genome = genome)
   }}
 
-save_fn = file.path(PROJDIR, 'rdas', paste('caudate_positive_sequences', paste0(genome, 'Only'),'rda', sep = '.'))
+save_fn = file.path(DATADIR, 'rdas', paste('caudate_positive_sequences', paste0(genome, 'Only'),'rda', sep = '.'))
 save(mouseOnly_enhList, file = save_fn )
 
 
@@ -185,13 +185,13 @@ rhesusOnly_enhList_split = lapply(folds, function(fold){
 for(cell in names(rhesusOnly_enhList)){
   for(fold in names(folds)){
     # write the positives
-    pos.fasta_fn = file.path(PROJDIR, 'fasta', 
+    pos.fasta_fn = file.path(DATADIR, 'fasta', 
                              paste(paste0(genome, 'Only'), cell, fold, split, 'positive.fa.gz', sep = '_'))
     posFasta = mapply(writeGRangesToFasta, gr = rhesusOnly_enhList_split[[fold]][[cell]][split],  
                       file = pos.fasta_fn, genome = genome)
   }}
 
-save_fn = file.path(PROJDIR, 'rdas', paste('caudate_positive_sequences', paste0(genome, 'Only'),'rda', sep = '.'))
+save_fn = file.path(DATADIR, 'rdas', paste('caudate_positive_sequences', paste0(genome, 'Only'),'rda', sep = '.'))
 save(rhesusOnly_enhList, file = save_fn )
 
 

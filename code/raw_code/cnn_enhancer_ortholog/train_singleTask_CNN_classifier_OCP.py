@@ -234,13 +234,16 @@ def main(args):
         if not os.path.exists(args.model_name):
             print('No model found with specified training parameters. Please train model first.')
             return
-        model_predictions = f'{args.out_dir}/predictions/{args.prefix}/{label}.{args.predict_out}.predictions.txt'
+        model_predictions = f'{args.out_dir}/predictions/{args.prefix}/{label}.{args.predict_out}.predictions.txt.gz'
         print(f'Prediction to be written to {model_predictions}')
         if os.path.exists(model_predictions) and not args.force:
             print(f'The prediction file exists w/o permission to overwrite. Use --force to overwrite.')
             return
         (x, ids) = encode_sequence3(args.predict_fasta, size = args.seq_length)
         df = predict_sequences(args.model_name, x, ids)
+        df.reset_index(inplace=True)
+        df = df.rename(columns = {'index':'name'})
+        df['name'] = df['name'].to_series().str.split('_').str[1]
         # save model performances to feather object
         if not os.path.exists(f'{args.out_dir}/predictions/{args.prefix}'):
             os.makedirs(f'{args.out_dir}/predictions/{args.prefix}') 

@@ -241,13 +241,13 @@ def main(args):
             return
         (x, ids) = encode_sequence3(args.predict_fasta, size = args.seq_length)
         df = predict_sequences(args.model_name, x, ids)
-        df.reset_index(inplace=True)
-        df = df.rename(columns = {'index':'name'})
-        df['name'] = df['name'].to_series().str.split('_').str[1]
+        df['name'] = df.index.str.split(pat = '_').str[1]
+        first_column = df.pop('name')
+        df.insert(0, 'Name', first_column)
         # save model performances to feather object
         if not os.path.exists(f'{args.out_dir}/predictions/{args.prefix}'):
             os.makedirs(f'{args.out_dir}/predictions/{args.prefix}') 
-        df.to_csv(model_predictions, sep = '\t')
+        df.reset_index(drop=True).to_csv(model_predictions, sep = '\t', index = False)
     return
 
 

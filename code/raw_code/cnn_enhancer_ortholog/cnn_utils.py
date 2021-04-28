@@ -33,7 +33,7 @@ def onehot_seq(seq, size = 501):
     to_return = np.zeros((size,4), dtype='uint8')
     # cap length with size
     for idx,letter in enumerate(seq):
-        if letter not in ['N','n'] and idx < size:
+        if letter in ['A','a', 'C','c', 'G','g', 'T','t'] and idx < size:
             to_return[idx,letter_to_index[letter]] = 1
     return to_return
 

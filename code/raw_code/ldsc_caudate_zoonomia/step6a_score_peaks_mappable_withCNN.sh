@@ -10,7 +10,7 @@
 #SBATCH --mem=60G
 #SBATCH --error=logs/score_mappable_peaks_%A_%a.txt
 #SBATCH --output=logs/score_mappable_peaks_%A_%a.txt
-#SBATCH --array=1-240%10
+#SBATCH --array=100-240%10
 
 ### Set up the directories
 SETDIR=/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate

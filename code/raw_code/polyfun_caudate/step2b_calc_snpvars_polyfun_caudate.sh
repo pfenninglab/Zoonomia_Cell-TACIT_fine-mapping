@@ -2,10 +2,11 @@
 #SBATCH --partition=pfen_bigmem,pool3-bigmem,pfen3,pfen1,pool1
 #SBATCH --time 24:00:00
 #SBATCH --job-name=Bsnpvars
+#SBATCH --dependency=afterok:1482067
 #SBATCH --mem=45G
 #SBATCH --error=logs/calc_snpvars_%A_%a.txt
 #SBATCH --output=logs/calc_snpvars_%A_%a.txt
-#SBATCH --array=36-43
+#SBATCH --array=1-43%4
 
 SETWD='/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate'
 CACHEDIR=/projects/pfenninggroup/machineLearningForComputationalBiology/gwasEnrichments/polyfun/LD_cache

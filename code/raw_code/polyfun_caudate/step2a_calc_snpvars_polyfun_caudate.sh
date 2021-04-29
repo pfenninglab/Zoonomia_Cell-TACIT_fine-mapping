@@ -1,11 +1,11 @@
 #!/bin/bash
-#SBATCH --partition=pfen3,pfen_bigmem,pool3-bigmem,
+#SBATCH --partition=pfen3,pfen_bigmem,pool3-bigmem
 #SBATCH --time 24:00:00
 #SBATCH --job-name=Asnpvars
 #SBATCH --mem=120G
 #SBATCH --error=logs/calc_snpvars_%A_%a.txt
 #SBATCH --output=logs/calc_snpvars_%A_%a.txt
-#SBATCH --array=1-43
+#SBATCH --array=1-43%3
 
 SETWD=/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate
 CACHEDIR=/projects/pfenninggroup/machineLearningForComputationalBiology/gwasEnrichments/polyfun/LD_cache
@@ -32,7 +32,7 @@ mkdir -p $OUTDIR $DATADIR $CACHEDIR
 # 2. Run PolyFun with L2-regularized S-LDSC, using LF2.2.UKB
 if [ ! -f ${OUTDIR}/${PREFIX}.22.bins.parquet ]; then
 python ${POLYFUNDIR}/polyfun.py --compute-h2-L2 --allow-missing \
---ref-ld-chr ${ZOONOMIADIR}/caudate_zoonomia_baseline. \
+--ref-ld-chr ${ZOONOMIADIR}/Caudate_Zoonomia_annot_baselineLF. \
 --w-ld-chr ${ANNOTDIR}/weights.UKB. \
 --output-prefix ${OUTDIR}/$PREFIX --sumstats $SUMSTATS
 fi

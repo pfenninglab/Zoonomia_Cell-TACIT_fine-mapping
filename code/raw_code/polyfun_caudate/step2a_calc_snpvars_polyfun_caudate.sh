@@ -36,4 +36,3 @@ python ${POLYFUNDIR}/polyfun.py --compute-h2-L2 --allow-missing \
 --w-ld-chr ${ANNOTDIR}/weights.UKB. \
 --output-prefix ${OUTDIR}/$PREFIX --sumstats $SUMSTATS
 fi
-

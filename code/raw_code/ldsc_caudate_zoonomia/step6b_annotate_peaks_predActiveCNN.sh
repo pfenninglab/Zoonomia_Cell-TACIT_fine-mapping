@@ -3,13 +3,12 @@
 #SBATCH --partition=pfen1
 #SBATCH --job-name=annotScored
 #SBATCH --time 12:00:00
-#SBATCH --job-name=scoreMappable
 #SBATCH --ntasks-per-node=1
 #SBATCH --cpus-per-task=1
 #SBATCH --mem=1G
 #SBATCH --error=logs/score_mappable_peaks_%A_%a.txt
 #SBATCH --output=logs/score_mappable_peaks_%A_%a.txt
-#SBATCH --array=1-240%1
+#SBATCH --array=1-240
 
 checkFile(){
 HASFILE=TRUE
@@ -40,7 +39,7 @@ ANNOTDIR=$DATADIR/annotations
 cd $CODEDIR; mkdir -p $ANNOTDIR
 source ~/.bashrc
 
-# for SLURM_ARRAY_TASK_ID in {1..240}; do
+for SLURM_ARRAY_TASK_ID in {1..240}; do
 
 #################################################################
 # get the species and cell types that need to be scored by CNNs
@@ -59,28 +58,28 @@ for CELL in $CELLS; do
 		## for AFR annotations
 		FILE=${ANNOTDIR}/${NAME}.AFR.#.l2.M; checkFile
 		if [[ $HASFILE == "FALSE" ]]; then 
-		sbatch --mem 4G -p pool1,short1,interactive,pfen1 --array=1-22 \
+		sbatch --mem 4G -p short1,interactive,pool1,pool3-bigmem,pfen1 --array=1-22 \
 		--time 2:00:00 --output=/dev/null --error=/dev/null --job-name=AFR.${NAME} \
 		${GWASDIR}/scripts/annotate_bed_LDSC_1000G_hg19_hg38.sh \
 		-i ${BED} -n ${NAME} -g hg38 -p AFR -o $ANNOTDIR
-		sleep 1m
+		# sleep 1m
 		else echo "Annotations exist for ${NAME} in AFR populations."
 		fi
 
 		# for EUR annotations
 		FILE=${ANNOTDIR}/${NAME}.EUR.#.l2.M; checkFile
 		if [[ $HASFILE == "FALSE" ]]; then 
-		sbatch --mem 4G -p pool1,short1,interactive,pfen1 --array=1-22 \
-		--time 2:00:00 --output=/dev/null --error=/dev/null --job-name=AFR.${NAME} \
+		sbatch --mem 4G -p short1,interactive,pool1,pool3-bigmem,pfen1 --array=1-22 \
+		--time 2:00:00 --output=/dev/null --error=/dev/null --job-name=EUR.${NAME} \
 		${GWASDIR}/scripts/annotate_bed_LDSC_1000G_hg19_hg38.sh \
 		-i ${BED} -n ${NAME} -g hg38 -p EUR -o $ANNOTDIR
-		sleep 1m
+		# sleep 1m
 		else echo "Annotations exist for ${NAME} in EUR populations."; 
 		fi
 	else echo "The file ${BED} does not exist."; 
 	fi
 done
 
-# done
+done
 
 

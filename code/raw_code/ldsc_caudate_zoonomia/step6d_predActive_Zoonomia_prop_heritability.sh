@@ -1,9 +1,9 @@
 #!/bin/bash
 #SBATCH -n 1
-#SBATCH --partition=pool1
-#SBATCH --time=24:00:00
+#SBATCH --partition=pool1,interactive
+#SBATCH --time=8:00:00
 #SBATCH --job-name=predActive
-#SBATCH --dependency=afterany:1572131
+#SBATCH --dependency=afterany:1606169
 #SBATCH --ntasks-per-node=1
 #SBATCH --cpus-per-task=1
 #SBATCH --mem=10G
@@ -49,7 +49,7 @@ source activate ldsc
 GWAS=$(awk -F '\t' -v IND=${SLURM_ARRAY_TASK_ID} 'NR==(IND + 1) {print $1}' ${GWASDIR}/gwas_list_sumstats.tsv)
 POP=$(awk -F '\t' -v IND=${SLURM_ARRAY_TASK_ID} 'NR==(IND + 1) {print $2}' ${GWASDIR}/gwas_list_sumstats.tsv)
 GWAS_Label=$(awk -F '\t' -v IND=${SLURM_ARRAY_TASK_ID} 'NR==(IND+ 1) {print $3}' ${GWASDIR}/gwas_list_sumstats.tsv)
-OUTDIR=${DATADIR}/prop_herit_phyloP; mkdir -p $OUTDIR
+OUTDIR=${DATADIR}/prop_herit_predActive; mkdir -p $OUTDIR
 
 ###################################################################
 # get the cell types that are signif in caudate for this gwas
@@ -78,7 +78,8 @@ fi
 done
 
 ## extract only the top cell type enrichment
-if [[ ! -f ${OUTDIR}/caudate_zoonomia_mapped_predActive.${GWAS_Label}.${POP}.${CELL}.agg.gz ]]; then
+OUTFILE=${OUTDIR}/caudate_zoonomia_mapped_predActive.${GWAS_Label}.${POP}.${CELL}.agg.gz
+if [[ ! -f $OUTFILE || "$OUTFILE" -ot ${CELL2}.1.l2.M ]]; then
 gunzip ${OUTDIR}/caudate_zoonomia_mapped_predActive.${GWAS_Label}.${POP}.${CELL}*.results.gz
 awk ' FNR == 2 || NR==1 {print}' \
 	${OUTDIR}/caudate_zoonomia_mapped_predActive.${GWAS_Label}.${POP}.${CELL}*.results |
@@ -86,3 +87,6 @@ awk ' FNR == 2 || NR==1 {print}' \
 gzip ${OUTDIR}/caudate_zoonomia_mapped_predActive.${GWAS_Label}.${POP}.${CELL}*.results
 fi
 done
+
+
+

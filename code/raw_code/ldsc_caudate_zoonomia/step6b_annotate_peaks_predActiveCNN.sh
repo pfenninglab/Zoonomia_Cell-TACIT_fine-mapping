@@ -39,7 +39,7 @@ ANNOTDIR=$DATADIR/annotations
 cd $CODEDIR; mkdir -p $ANNOTDIR
 source ~/.bashrc
 
-for SLURM_ARRAY_TASK_ID in {1..240}; do
+# for SLURM_ARRAY_TASK_ID in {1..240}; do
 
 #################################################################
 # get the species and cell types that need to be scored by CNNs
@@ -80,6 +80,6 @@ for CELL in $CELLS; do
 	fi
 done
 
-done
+# done
 
 

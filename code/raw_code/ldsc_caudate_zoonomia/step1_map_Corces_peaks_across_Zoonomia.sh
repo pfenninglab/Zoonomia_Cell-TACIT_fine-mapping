@@ -75,15 +75,12 @@ echo "Removing $(basename $FILE .HALPER.narrowPeak.gz) files."
 rm $FILE $(echo $FILE | sed 's/.HALPER.narrowPeak.gz/.halLiftover.sFile.bed.gz/g') $(echo $FILE | sed 's/.HALPER.narrowPeak.gz/.halLiftover.tFile.bed.gz/g')
 fi; fi; done
 
-
 ######
 # TOLOOK=$(ls -r ${OUTDIR}/*.HALPER.narrowPeak.gz | sed '/Consensus/d;/All/d')
 # for FILE in $TOLOOK; do
 # echo $(basename $FILE)
 # checkFile
 # done
-
-
 
 ##########################################
 # 3) recover any unmmapped Corces 2020 peaks
@@ -105,7 +102,7 @@ fi
 done
 if [[ $REMAINING != '' ]]; then
 REMAINING=$(echo $REMAINING | sed 's/^,//g') #strip leading comma
-sbatch --mem 10G -p pfen1 -w compute-1-39 ${CODEDIR}/../hal_scripts/halper_map_peak_orthologs.sh \
+sbatch --mem 10G -p pfen1 -w compute-1-39,compute-1-40 ${CODEDIR}/../hal_scripts/halper_map_peak_orthologs.sh \
 	-s ${SOURCE} -t ${REMAINING} -o ${OUTDIR} -b ${BEDFILE}
 fi
 done

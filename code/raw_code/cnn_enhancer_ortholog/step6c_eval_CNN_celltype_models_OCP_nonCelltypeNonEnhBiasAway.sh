@@ -27,20 +27,20 @@ PREFIX=${CELLTYPE}_fold${FOLD}_hgRmMm_${NEGSET}
 #############################################
 ## score species specific evaluation metrics 
 for GENOME in 'hg38' 'mm10' 'rheMac10'; do
-for MODEL in $(ls $DATADIR/models/${CELLTYPE}_fold${FOLD}_hgRmMm*/*.h5); do
-# # evaluate species specificity
-# VALIDPOSFILE=$DATADIR/fasta/${GENOME}Only_${CELLTYPE}_fold${FOLD}_valid_positive.fa.gz
-# VALIDNEGFILE=$DATADIR/fasta/${GENOME}_${CELLTYPE}_fold${FOLD}_valid_nonEnhNeg.fa.gz
-# python train_singleTask_CNN_classifier_OCP.py --mode 'evaluate' --out_dir $DATADIR \
-# 	--model_name $MODEL --prefix $PREFIX --predict_out ${GENOME}Only_nonEnh_valid \
-# 	--valid_fasta_pos $VALIDPOSFILE --valid_fasta_neg $VALIDNEGFILE
+for MODEL in $(ls $DATADIR/models/${CELLTYPE}_fold${FOLD}_hg*/*.h5); do
+# evaluate species specificity
+VALIDPOSFILE=$DATADIR/fasta/${GENOME}Only_${CELLTYPE}_fold${FOLD}_valid_positive.fa.gz
+VALIDNEGFILE=$DATADIR/fasta/${GENOME}_${CELLTYPE}_fold${FOLD}_valid_nonEnhNeg.fa.gz
+python train_singleTask_CNN_classifier_OCP.py --mode 'evaluate' --out_dir $DATADIR \
+	--model_name $MODEL --prefix $PREFIX --predict_out ${GENOME}Only_nonEnh_valid \
+	--valid_fasta_pos $VALIDPOSFILE --valid_fasta_neg $VALIDNEGFILE
 
-# # evaluate celltype specificity
-# VALIDPOSFILE=/home/bnphan/projects/snATAC_cross_species_caudate/data/raw_data/cnn_enhancer_ortholog/fasta/${GENOME}CelltypeOnly_${CELLTYPE}_fold${FOLD}_valid_positive.fa.gz
-# VALIDNEGFILE=/home/bnphan/projects/snATAC_cross_species_caudate/data/raw_data/cnn_enhancer_ortholog/fasta/${GENOME}NonCelltype_${CELLTYPE}_fold${FOLD}_valid_negative.fa.gz
-# python train_singleTask_CNN_classifier_OCP.py --mode 'evaluate' --out_dir $DATADIR \
-# 	--model_name $MODEL --prefix $PREFIX --predict_out ${GENOME}CelltypeOnly_NonCelltype_valid \
-# 	--valid_fasta_pos $VALIDPOSFILE --valid_fasta_neg $VALIDNEGFILE
+# evaluate celltype specificity
+VALIDPOSFILE=/home/bnphan/projects/snATAC_cross_species_caudate/data/raw_data/cnn_enhancer_ortholog/fasta/${GENOME}CelltypeOnly_${CELLTYPE}_fold${FOLD}_valid_positive.fa.gz
+VALIDNEGFILE=/home/bnphan/projects/snATAC_cross_species_caudate/data/raw_data/cnn_enhancer_ortholog/fasta/${GENOME}NonCelltype_${CELLTYPE}_fold${FOLD}_valid_negative.fa.gz
+python train_singleTask_CNN_classifier_OCP.py --mode 'evaluate' --out_dir $DATADIR \
+	--model_name $MODEL --prefix $PREFIX --predict_out ${GENOME}CelltypeOnly_NonCelltype_valid \
+	--valid_fasta_pos $VALIDPOSFILE --valid_fasta_neg $VALIDNEGFILE
 
 # evaluate celltype specificity
 VALIDPOSFILE=$DATADIR/fasta/${PREFIX}_${NEGSET}_validPos.fa.gz

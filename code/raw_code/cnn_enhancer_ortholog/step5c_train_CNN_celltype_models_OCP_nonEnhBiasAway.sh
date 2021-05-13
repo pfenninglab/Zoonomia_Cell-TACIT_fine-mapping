@@ -71,17 +71,51 @@ MAX_LR=1e-1
 BASE_M=.85
 MAX_M=.99
 L2_REG=1e-10
-DROPOUT=.2
+DROPOUT=.25
 
-#############################################
-## train CNN models with default parameters
-for DROPOUT in .25; do
+# #############################################
+# ## train CNN models with default parameters
+# for DROPOUT in .25; do
+# python train_singleTask_CNN_classifier_OCP.py --mode 'train' --out_dir $DATADIR \
+# 	--conv_width 11 --l2_reg $L2_REG --dropout $DROPOUT --batch_size $BATCH_SIZE \
+# 	--epochs $EPOCHS --numCycles $NUM_CYCLES --base_lr $BASE_LR --max_lr $MAX_LR \
+# 	--base_m $BASE_M --max_m $MAX_M --verbose 2 --cyclical_momentum \
+# 	--train_fasta_pos $TRAINPOSFILE --train_fasta_neg $TRAINNEGFILE \
+# 	--valid_fasta_pos $VALIDPOSFILE --valid_fasta_neg $VALIDNEGFILE \
+# 	--prefix $PREFIX
+
+# ## score validation sequences with default CNN models with default parameters
+# python train_singleTask_CNN_classifier_OCP.py --mode 'evaluate' --out_dir $DATADIR \
+# 	--conv_width 11 --l2_reg $L2_REG --dropout $DROPOUT --batch_size $BATCH_SIZE \
+# 	--epochs $EPOCHS --numCycles $NUM_CYCLES --base_lr $BASE_LR --max_lr $MAX_LR \
+# 	--base_m $BASE_M --max_m $MAX_M --verbose 2 --cyclical_momentum \
+# 	--train_fasta_pos $TRAINPOSFILE --train_fasta_neg $TRAINNEGFILE \
+# 	--valid_fasta_pos $VALIDPOSFILE --valid_fasta_neg $VALIDNEGFILE \
+# 	--prefix $PREFIX
+# done
+
+##########################################################
+## train CNN models with default parameters in humans only
+PREFIX=${CELLTYPE}_fold${FOLD}_hg_${NEGSET}
+TRAINNEGFILE=$DATADIR/fasta/${PREFIX}_${NEGSET}_trainNeg.fa.gz
+if [[ ! -f  $TRAINNEGFILE ]]; then
+cat $DATADIR/fasta/hg38_${CELLTYPE}_fold${FOLD}_train_nonEnhNeg.fa.gz \
+	$DATADIR/fasta/hg38_${CELLTYPE}_fold${FOLD}_train_biasAway10x.fa.gz > $TRAINNEGFILE
+fi
+
+VALIDNEGFILE=$DATADIR/fasta/${PREFIX}_${NEGSET}_validNeg.fa.gz
+if [[ ! -f  $VALIDNEGFILE ]]; then
+cat $DATADIR/fasta/hg38_${CELLTYPE}_fold${FOLD}_valid_nonEnhNeg.fa.gz \
+	$DATADIR/fasta/hg38_${CELLTYPE}_fold${FOLD}_valid_biasAway10x.fa.gz > $VALIDNEGFILE
+fi
+
 python train_singleTask_CNN_classifier_OCP.py --mode 'train' --out_dir $DATADIR \
 	--conv_width 11 --l2_reg $L2_REG --dropout $DROPOUT --batch_size $BATCH_SIZE \
 	--epochs $EPOCHS --numCycles $NUM_CYCLES --base_lr $BASE_LR --max_lr $MAX_LR \
 	--base_m $BASE_M --max_m $MAX_M --verbose 2 --cyclical_momentum \
-	--train_fasta_pos $TRAINPOSFILE --train_fasta_neg $TRAINNEGFILE \
-	--valid_fasta_pos $VALIDPOSFILE --valid_fasta_neg $VALIDNEGFILE \
+	--train_fasta_pos $DATADIR/fasta/hg38_${CELLTYPE}_fold${FOLD}_train_positive.fa.gz \
+	--valid_fasta_pos $DATADIR/fasta/hg38_${CELLTYPE}_fold${FOLD}_valid_positive.fa.gz \
+	--train_fasta_neg $TRAINNEGFILE --valid_fasta_neg $VALIDNEGFILE \
 	--prefix $PREFIX
 
 ## score validation sequences with default CNN models with default parameters
@@ -89,9 +123,8 @@ python train_singleTask_CNN_classifier_OCP.py --mode 'evaluate' --out_dir $DATAD
 	--conv_width 11 --l2_reg $L2_REG --dropout $DROPOUT --batch_size $BATCH_SIZE \
 	--epochs $EPOCHS --numCycles $NUM_CYCLES --base_lr $BASE_LR --max_lr $MAX_LR \
 	--base_m $BASE_M --max_m $MAX_M --verbose 2 --cyclical_momentum \
-	--train_fasta_pos $TRAINPOSFILE --train_fasta_neg $TRAINNEGFILE \
-	--valid_fasta_pos $VALIDPOSFILE --valid_fasta_neg $VALIDNEGFILE \
+	--train_fasta_pos $DATADIR/fasta/hg38_${CELLTYPE}_fold${FOLD}_train_positive.fa.gz \
+	--valid_fasta_pos $DATADIR/fasta/hg38_${CELLTYPE}_fold${FOLD}_valid_positive.fa.gz \
+	--train_fasta_neg $TRAINNEGFILE --valid_fasta_neg $VALIDNEGFILE \
 	--prefix $PREFIX
-done
-
 

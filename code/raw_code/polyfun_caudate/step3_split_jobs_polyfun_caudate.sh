@@ -3,10 +3,10 @@
 #SBATCH --time 2:00:00
 #SBATCH --job-name=split_jobs
 #SBATCH --mem=10G
-#SBATCH --dependency=afterok:1363930
+#SBATCH --dependency=afterok:1607294
 #SBATCH --error=logs/split_jobs_%A_%a.txt
 #SBATCH --output=logs/split_jobs_%A_%a.txt
-#SBATCH --array=1-43
+#SBATCH --array=34-43
 
 SETWD='/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate'
 CACHEDIR=/projects/pfenninggroup/machineLearningForComputationalBiology/gwasEnrichments/polyfun/LD_cache

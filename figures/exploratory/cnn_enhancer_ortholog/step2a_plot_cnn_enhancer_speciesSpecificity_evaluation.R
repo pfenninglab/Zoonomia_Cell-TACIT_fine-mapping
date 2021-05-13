@@ -23,6 +23,7 @@ pred = input %>% mutate(
                     grepl('biasAway10x', prefix) ~ 'largeGC',
                     grepl('nonEnh', prefix) ~ 'nonEnhNeg') %>% factor(model_types), 
   genome = basename(file) %>% ss('\\.', 7) %>% ss('Only', 1),
+  trainingSet = case_when(grepl('hgRmMm_',file) ~ 'HgRmMm', TRUE ~ 'HgOnly'),
   fold = ss(prefix, '_fold', 2) %>% ss('_',1), 
   celltype = ss(prefix, '_fold', 1) %>% factor(cells), 
   tpr = tp /(tp + fn), fpr = fp /(fp + tn), tnr = tn /(tn + fp),
@@ -33,6 +34,7 @@ pred = input %>% mutate(
 
 table(pred$celltype, pred$model_type)
 table(pred$celltype, pred$genome)
+table(pred$celltype, pred$genome, pred$trainingSet)
 
 ###################################
 ### plot validation performance ###
@@ -40,21 +42,31 @@ library(rcartocolor)
 height_ppt = 5; width_ppt = 8;
 height_fig = 1.75; width_fig = 4.75; font_fig = 7
 
-pdf('plots/cross_species_specific_performance_20210427.pdf', 
+pdf('plots/cross_species_specific_performance_20210510.pdf', 
     width = width_ppt, height = height_ppt)
-ggplot(data = pred, aes(x = eval_acc, y = value)) + 
+ggplot(data = pred %>% filter(trainingSet == 'HgOnly'), aes(x = eval_acc, y = value)) + 
   geom_boxplot(aes(fill = model_type)) + 
-  # geom_jitter(width = .25, pch = 21, aes(fill = model_type)) + 
   scale_fill_carto_d(name = "Cell type:", palette = "Vivid") +
   facet_grid(genome~celltype, scales = 'free',space = 'free_x') + 
   theme_bw(base_size = 11) + ylim(c(0, 1)) + 
-  xlab('Species Specific Performance') + ylab('Accuracy') + 
+  ggtitle('HgOnly Species Specific Validation Performance') + 
+  xlab('') + ylab('Accuracy') + 
   guides(fill = guide_legend( nrow = 1)) + 
   theme(legend.position = "bottom", legend.text=element_text(size=10),
-        legend.title=element_text(size=10),
-        legend.key.height=unit(.5,"line"), 
-        legend.key.width=unit(.5,"line"), 
-        ) 
+        legend.title=element_text(size=10), legend.key.height=unit(.5,"line"), 
+        legend.key.width=unit(.5,"line"), legend.margin=margin(-15, 0, 0, 0))
+
+ggplot(data = pred %>% filter(trainingSet == 'HgRmMm'), aes(x = eval_acc, y = value)) + 
+  geom_boxplot(aes(fill = model_type)) + 
+  scale_fill_carto_d(name = "Cell type:", palette = "Vivid") +
+  facet_grid(genome~celltype, scales = 'free',space = 'free_x') + 
+  theme_bw(base_size = 11) + ylim(c(0, 1)) + 
+  ggtitle('HgRmMm Species Specific Validation Performance') + 
+  xlab('') + ylab('Accuracy') + 
+  guides(fill = guide_legend( nrow = 1)) + 
+  theme(legend.position = "bottom", legend.text=element_text(size=10),
+        legend.title=element_text(size=10), legend.key.height=unit(.5,"line"), 
+        legend.key.width=unit(.5,"line"), legend.margin=margin(-15, 0, 0, 0))
 dev.off()
 
 

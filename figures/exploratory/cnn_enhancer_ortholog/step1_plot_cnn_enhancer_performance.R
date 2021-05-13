@@ -13,9 +13,11 @@ PROJDIR='cnn_enhancer_ortholog'
 cells = c('MSN_D1', 'MSN_D2', "MSN_SN", 'INT_Pvalb',  'Astro', 'Microglia', 'OPC', 'Oligo')
 groups = c('nonEnhNeg','largeGC','nonEnhLargeGC','nonCellEnhLargeGC')
 pred_fn = list.files(path = here('data/raw_data',PROJDIR,'predictions'), 
-                     pattern = '.feather', full.names = T, recursive = T)
-input = pred_fn %>% lapply(read_feather) %>% rbindlist()
+                     pattern = '.feather', full.names = T, recursive = T) %>%
+  grep(pattern = 'DO0.25.performance|DO0.25.None.performance', value = TRUE)
+input = pred_fn %>% lapply(read_feather) %>% rbindlist(fill=TRUE)
 pred = input %>% mutate(
+  trainingSet = case_when(grepl('hg_', model)~ 'HgOnly',  TRUE ~ 'HgRmMm'),
   group = case_when(grepl('nonCelltypeNonEnhBiasAway10x', prefix) ~ 'nonCellEnhLargeGC',
                     grepl('nonEnhBiasAway10x', prefix) ~ 'nonEnhLargeGC',
                     grepl('biasAway10x', prefix) ~ 'largeGC',
@@ -37,20 +39,35 @@ height_fig = 1.75; width_fig = 4.75; font_fig = 7
 df_long = pred %>% pivot_longer(cols = c('auROC','auPRC.adj','f1_score','fpr','tpr'), 
                               values_to ='value',  names_to = 'variable')
 
-pdf('plots/cross_species_validation_performance_20210422.pdf', 
+pdf('plots/cross_species_validation_performance_20210510.pdf', 
     width = width_ppt, height = height_ppt)
-ggplot(data = df_long, aes(x = group, y = value)) + 
+ggplot(data = df_long %>% filter(trainingSet == 'HgOnly'), aes(x = group, y = value)) + 
   geom_boxplot(aes(fill = group)) + 
   geom_jitter(width = .25, pch = 21, aes(fill = group)) + 
   scale_fill_carto_d(name = "Cell type:", palette = "Safe") +
   facet_grid(variable~celltype, scales = 'free',space = 'free_x') + 
   theme_bw(base_size = 11) +
+  ggtitle('HgOnly Validation Performance') + 
   guides(fill = guide_legend( nrow = 1)) + 
   theme(legend.position = "bottom", legend.text=element_text(size=10),
-        legend.title=element_text(size=10),
-        legend.key.height=unit(.5,"line"), 
-        legend.key.width=unit(.5,"line"), 
-        ) 
+        legend.title=element_text(size=10), legend.key.height=unit(.5,"line"), 
+        legend.key.width=unit(.5,"line"),  axis.title.x=element_blank(),
+        axis.text.x=element_blank(), axis.ticks.x=element_blank(),
+        legend.margin=margin(-10, 0, 0, 0)) 
+
+ggplot(data = df_long %>% filter(trainingSet == 'HgRmMm'), aes(x = group, y = value)) + 
+  geom_boxplot(aes(fill = group)) + 
+  geom_jitter(width = .25, pch = 21, aes(fill = group)) + 
+  scale_fill_carto_d(name = "Cell type:", palette = "Safe") +
+  facet_grid(variable~celltype, scales = 'free',space = 'free_x') + 
+  theme_bw(base_size = 11) +
+  ggtitle('HgRmMm Validation Performance') + 
+  guides(fill = guide_legend( nrow = 1)) + 
+  theme(legend.position = "bottom", legend.text=element_text(size=10),
+        legend.title=element_text(size=10), legend.key.height=unit(.5,"line"), 
+        legend.key.width=unit(.5,"line"),  axis.title.x=element_blank(),
+        axis.text.x=element_blank(), axis.ticks.x=element_blank(),
+        legend.margin=margin(-10, 0, 0, 0))
 dev.off()
 
 

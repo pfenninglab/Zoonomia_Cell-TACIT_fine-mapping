@@ -61,7 +61,7 @@ rda_fn = here('data/tidy_data/Zoonomia_data',
                    'rdas','200_Mammals_Genome_Information.rda')
 load(file = rda_fn)
 col_clade = df %>% select(Clade, col_clade)%>% filter(!duplicated(Clade)) %>% deframe()
-col_order = df %>% select(Order, col_order) %>% filter(!duplicated(Order)) %>% deframe()
+col_meta = df %>% select(Order, col_meta) %>% filter(!duplicated(Order)) %>% deframe()
 
 ######################################################
 # read in the LDSC partitioned heritability estimation
@@ -169,7 +169,7 @@ for(lab in plot_traits){
     geom_errorbar(aes(ymin = Enrichment_min, ymax = Enrichment_max),
                   width = 0.1, position=position_dodge(width=2)) + 
     geom_jitter(aes(fill = Order), pch = 21, position=position_dodge(width=2)) +
-    scale_fill_manual(values = col_order) + 
+    scale_fill_manual(values = col_meta) + 
     geom_label_repel(aes(label = label, fill = Order), alpha = .7,direction ='both',
                      size = 3, show.legend = F,na.rm = T, 
                      nudge_y = 1.2 * mean(tmp$Enrichment_max),
@@ -195,7 +195,7 @@ for(lab in plot_traits){
     geom_errorbar(aes(ymin = Proportion_of_h2g_min, ymax = Proportion_of_h2g_max),
                   width = 0.1, position=position_dodge(width=2)) + 
     geom_jitter(aes(fill = Order), pch = 21, position=position_dodge(width=2)) +
-    scale_fill_manual(values = col_order) + 
+    scale_fill_manual(values = col_meta) + 
     geom_label_repel(aes(label = label, fill = Order), alpha = .7, direction ='both',
                      size = 3, show.legend = F,na.rm = T, 
                      nudge_y = 1.2 * mean(tmp$Proportion_of_h2g_max),

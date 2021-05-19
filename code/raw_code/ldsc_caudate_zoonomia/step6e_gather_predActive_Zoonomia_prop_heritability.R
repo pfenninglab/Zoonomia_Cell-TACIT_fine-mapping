@@ -79,6 +79,7 @@ for( cell in celltypes){
 ######################################################
 # calibrate the model scores to %validation positives
 MODEL_TYPE = 'hgRmMm_nonCelltypeNonEnhBiasAway10x'
+DATADIR=here('data/raw_data/cnn_enhancer_ortholog')
 calib_out_fn = here(DATADIR,paste('rdas/Caudate',MODEL_TYPE,'pos_calibration_ecdf.rds', sep = '_'))
 model_calibration = readRDS(file = calib_out_fn)
 

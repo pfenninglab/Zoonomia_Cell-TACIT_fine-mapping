@@ -1,12 +1,12 @@
 #!/bin/bash
-#SBATCH --partition=pool1,pfen1,pfen_bigmem
+#SBATCH --partition=pool1,pool3-bigmem,pfen1,pfen_bigmem,pfen3
 #SBATCH --time 24:00:00
 #SBATCH --job-name=Bsnpvars
-#SBATCH --dependency=afterok:1606344
+##SBATCH --dependency=afterok:1606344
 #SBATCH --mem=45G
 #SBATCH --error=logs/calc_snpvars_%A_%a.txt
 #SBATCH --output=logs/calc_snpvars_%A_%a.txt
-#SBATCH --array=34-43
+#SBATCH --array=1-43
 
 SETWD='/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate'
 CACHEDIR=/projects/pfenninggroup/machineLearningForComputationalBiology/gwasEnrichments/polyfun/LD_cache

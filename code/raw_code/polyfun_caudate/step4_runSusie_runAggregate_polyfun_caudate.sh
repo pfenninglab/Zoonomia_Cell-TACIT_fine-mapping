@@ -1,4 +1,3 @@
-
 SETWD='/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate'
 CACHEDIR=/projects/pfenninggroup/machineLearningForComputationalBiology/gwasEnrichments/polyfun/LD_cache
 ANNOTDIR=/projects/pfenninggroup/machineLearningForComputationalBiology/gwasEnrichments/polyfun/baselineLF2.2.UKB
@@ -16,9 +15,9 @@ N=$(awk -F'\t' -v IND=${ID} 'FNR == IND + 1 {print $10}' ${SETWD}/data/tidy_data
 CUTOFF=$(awk -F'\t' -v IND=${ID} 'FNR == IND + 1 {print $11}' ${SETWD}/data/tidy_data/ldsc_gwas/gwas_list_sumstats_polyfun.tsv); 
 OUTDIR=${DATADIR}/${PREFIX}/susie 
 # 23G good for blocks w/ < 15k SNPs, 47G good for blocks <30k snps
-if [[ ! -f ${DATADIR}/${PREFIX}/${PREFIX}.caudate_conservation.aggregate.txt.gz && -f ${OUTDIR}/polyfun_all_jobs_22.txt ]]; then
+if [[ ! -f ${DATADIR}/${PREFIX}/${PREFIX}.caudate_conservation.aggregate.txt.gz ]]; then # && -f ${OUTDIR}/polyfun_all_jobs_22.txt 
 echo "Submitting job for ${PREFIX} GWAS."
-sbatch -p pool1,interactive,pool3-bigmem,gpu,pfen1,pfen_bigmem --mem 23G --time 8:00:00 --array 1-22 --export=JobsFileName="${OUTDIR}/polyfun_all_jobs_@.txt" ${CODEDIR}/slurm_finemap_byLine.sh
+sbatch -p pool1,interactive,pool3-bigmem,gpu,pfen1,pfen_bigmem --dependency=afterok:1671505 --mem 23G --time 8:00:00 --array 1-22 --export=JobsFileName="${OUTDIR}/polyfun_all_jobs_@.txt" ${CODEDIR}/slurm_finemap_byLine.sh
 fi; done
 
 
@@ -46,7 +45,7 @@ PREFIX=$(awk -F'\t' -v IND=${ID} 'FNR == IND + 1 {print $3}' ${SETWD}/data/tidy_
 N=$(awk -F'\t' -v IND=${ID} 'FNR == IND + 1 {print $10}' ${SETWD}/data/tidy_data/ldsc_gwas/gwas_list_sumstats_polyfun.tsv)
 CUTOFF=$(awk -F'\t' -v IND=${ID} 'FNR == IND + 1 {print $11}' ${SETWD}/data/tidy_data/ldsc_gwas/gwas_list_sumstats_polyfun.tsv); 
 SUMSTATS=$DATADIR/munged/${PREFIX}.parquet; OUTDIR=${DATADIR}/${PREFIX}/susie
-if [[ ! -f ${DATADIR}/${PREFIX}/${PREFIX}.caudate_conservation.causal_set.txt.gz && -f ${OUTDIR}/polyfun_all_jobs_22.txt ]]; then
+if [[ ! -f ${DATADIR}/${PREFIX}/${PREFIX}.caudate_conservation.top_annot.txt.gz && -f ${OUTDIR}/polyfun_all_jobs_22.txt ]]; then
 echo "Aggregating results from ${PREFIX} GWAS with P < ${CUTOFF} cutoff for loci."
 sbatch --export=OUTDIR=${OUTDIR},PREFIX=${PREFIX}.caudate_conservation,SUMSTATS=${SUMSTATS},CUTOFF=${CUTOFF} \
 --partition pfen3,pfen1 --time 3:00:00 --mem 30G ${CODEDIR}/slurm_polyfun_aggregate.sh

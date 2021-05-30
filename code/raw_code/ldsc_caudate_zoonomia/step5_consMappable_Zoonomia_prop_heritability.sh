@@ -53,10 +53,9 @@ OUTDIR=${DATADIR}/prop_herit_phyloP; mkdir -p $OUTDIR
 
 ###################################################################
 # get the cell types that are signif in caudate for this gwas
-CELLS="MSN_D1 MSN_D2 MSN_SN INT_Pvalb Astro Oligo OPC Microglia"
 CELLS=$(awk -v LOOK=${GWAS_Label} '$1 ~ LOOK {print $2; exit}' ${SETDIR}/data/raw_data/caudate_conservation_ldsc/rdas/caudate_celltype_gwas_enriched.tsv | \
 sed 's/"//g;s/\r//g' | awk '{$1=$1;print}' | tr ',' ' ')
-
+CELLS="MSN_D1 MSN_D2 MSN_SN INT_Pvalb Astro Oligo OPC Microglia"
 echo "This GWAS is enriched in ${CELLS}."
 
 ###################################################################
@@ -66,6 +65,8 @@ CTS_FN=${SETDIR}/data/tidy_data/Zoonomia_data/caudate_zoonomia_mapped_phyloP.${C
 for IND in $(wc -l $CTS_FN | cut -d ' ' -f1 | xargs seq ); do
 ## use DHS/roadmap/cCRE/Corces2020 merged peaks as bg instead of All
 LAB=$(awk -v IND=$IND 'FNR == IND {print $1}' $CTS_FN)
+SPECIES=$(echo $LAB | cut -d '.' -f 4)
+if [[ $SPECIES == 'Homo_sapiens' || $SPECIES == 'Macaca_mulatta' || $SPECIES == 'Mus_musculus' || $SPECIES == 'Rousettus_aegyptiacus' ]]; then
 CELLTYPES=$(awk -v IND=$IND 'FNR == IND {print $2}' $CTS_FN)
 CELL2=$(echo $CELLTYPES | cut -d ',' -f1)
 OUT=${OUTDIR}/caudate_zoonomia_mapped_phyloP.${GWAS_Label}.${POP}.${CELL}.${LAB}
@@ -74,6 +75,7 @@ ldsc.py --h2 $GWAS --w-ld-chr ${GWASDIR}/1000G_ALL_Phase3_hg38_files/weights/100
 --ref-ld-chr ${CELLTYPES},${GWASDIR}/1000G_ALL_Phase3_hg38_files/baselineLD_v2.2/baselineLD_v2.2.${POP}. \
 --print-coefficients --out ${OUT} 
 log2results; rm ${OUT}.log
+fi
 fi
 done
 

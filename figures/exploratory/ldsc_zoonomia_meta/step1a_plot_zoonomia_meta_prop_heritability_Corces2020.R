@@ -18,7 +18,7 @@ library(here)
 #########################################
 # to be run in the root github directory
 LABEL='ldsc_zoonomia_meta'
-PLOTDIR=here('figures/exploratory/', LABEL)
+PLOTDIR=here('figures/exploratory/', 'ldsc_zoonomia_meta')
 DATADIR=here('data/raw_data/',LABEL)
 
 ##########################

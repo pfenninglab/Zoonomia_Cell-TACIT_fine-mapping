@@ -78,6 +78,8 @@ input %>% data.frame() %>% head()
 ## format groupings and calculate conditional cell type enrichment p-value
 enrichments = input %>% 
   mutate(
+    sourceSpecies = case_when(grepl('BICCN_mouse_CATlas',Categories) ~ 'mouse_CATlas',
+                              TRUE ~ 'human_SNARE-seq_v1'),
     peaktype = case_when(grepl('mappable',Categories) ~ 'mappable', TRUE ~ 'predActive'),
     group_meta = Categories %>% ss('enhPeaks.',2) %>% 
       gsub(pattern = '\\.mappable|\\.predActive', replacement = ''),
@@ -89,8 +91,9 @@ enrichments = input %>%
   inner_join(x = df_meta, by = 'group_meta') %>%
   group_by(file) %>% type_convert()
 
-enrichments$celltype %>% table()
-enrichments$group_meta %>% table()
+enrichments %>% pull(sourceSpecies) %>% table()
+enrichments %>% pull(celltype) %>% table()
+enrichments %>% pull(group_meta) %>% table()
 
 enrichments = enrichments %>% mutate(
   ## Truncate heritability predictions to be nonnative
@@ -144,15 +147,16 @@ plot_traits = sort(unique(enrichments$trait))
 
 ###############
 #### make plots
+for(species in c('human_SNARE-seq_v1', 'mouse_CATlas')){
 for(cell in unique(enrichments$celltype)){
-  plot_fn = here(PLOTDIR,'plots',paste('zoonomia_interneurons', 
+  plot_fn = here(PLOTDIR,'plots',paste('zoonomia_interneurons', species,
                                        cell, 'prop_herit_enrichments.ppt.pdf', sep = '_'))
   pdf(width = width_ppt, height = height_ppt, file = plot_fn, onefile = T)
   for(lab in plot_traits){
     ## subset data to cell type and GWAS
-    tmp = enrichments %>% filter(celltype %in% cell, trait %in% lab)
+    tmp = enrichments %>% filter(sourceSpecies %in% species, celltype %in% cell, trait %in% lab)
     if(nrow(tmp) > 0){
-      ## the SNP enrichments ##
+      ## the SNP enrichments
       pp1 = ggplot(data = tmp, aes(x = Time.Since.Split.from.Human.TimeTree.median, y = Enrichment)) +
         # add phyloP enrichments lines
         geom_hline(aes(yintercept = mean(tmp$phyloPcon.Enr), 
@@ -176,7 +180,7 @@ for(cell in unique(enrichments$celltype)){
         theme(legend.position = "bottom", legend.text=element_text(size=font_fig),
               legend.title=element_text(size=font_fig), legend.key.height=unit(.5,"line"))
       
-      ## the proportion of SNP heritability ##
+      ## the proportion of SNP heritability
       pp2 = ggplot(data = tmp, aes(x = Time.Since.Split.from.Human.TimeTree.median, 
                                    y = Proportion_of_h2g)) +
         # add phyloP enrichments lines
@@ -201,9 +205,9 @@ for(cell in unique(enrichments$celltype)){
         theme(legend.position = "bottom", legend.text=element_text(size=font_fig),
               legend.title=element_text(size=font_fig), legend.key.height=unit(.5,"line"))
       
-      ## Plot the proportion of SNP heritability ##
-      plot_fn1 = here(PLOTDIR,'plots', 'prop_herit_NeuronSubtype',
-                      paste('zoonomia_interneurons',lab, cell, 'prop_herit_enrichments.ppt.pdf', sep = '_'))
+      ## Plot the proportion of SNP heritability
+      plot_fn1 = here(PLOTDIR,'plots', 'prop_herit_NeuronSubtype', 
+                      paste('zoonomia_interneurons',species,lab, cell, 'prop_herit_enrichments.ppt.pdf', sep = '.'))
       pdf(width = width_ppt, height = height_ppt, file = plot_fn1, onefile = F)
       pp = ggarrange(pp1, pp2, nrow = 1, common.legend = TRUE, 
                      align = 'h', legend="bottom")
@@ -213,6 +217,6 @@ for(cell in unique(enrichments$celltype)){
     }}
   dev.off()
 }
-
+}
 
 

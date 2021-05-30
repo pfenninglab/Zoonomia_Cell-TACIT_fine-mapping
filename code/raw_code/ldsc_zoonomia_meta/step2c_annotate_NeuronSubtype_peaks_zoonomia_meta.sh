@@ -57,7 +57,7 @@ if [[ $HASFILE == "FALSE" ]]; then
 	-i ${BGFILE} -n ${BGNAME} -g hg38 -p EUR -o $ANNOTDIR
 fi
 
-CELLTYPES="VIP"
+CELLTYPES="PV SST VIP"
 
 ############################################
 ## annotate cell types mapped across species
@@ -71,23 +71,23 @@ echo "Annotating $NAME"
 
 ## for AFR annotations
 FILE=${ANNOTDIR}/${NAME}.AFR.@.l2.M; checkFile
-# if [[ $HASFILE == "FALSE" ]]; then #--output=/dev/null --error=/dev/null 
-# sbatch --mem 10G -p short1,interactive,pool1,pool3-bigmem,gpu,pfen1 --array=1-22 \
-# --time 2:00:00 --output=/dev/null --error=/dev/null --job-name=AFR.${NAME} \
-# ${GWASDIR}/scripts/annotate_bed_LDSC_1000G_hg19_hg38.sh \
-# -i ${BED} -n ${NAME} -g hg38 -p AFR -o $ANNOTDIR
+if [[ $HASFILE == "FALSE" ]]; then #--output=/dev/null --error=/dev/null 
+sbatch --mem 10G -p short1,interactive,pool1,pool3-bigmem,gpu,pfen1 --array=1-22 \
+--time 2:00:00 --output=/dev/null --error=/dev/null --job-name=AFR.${NAME} \
+${GWASDIR}/scripts/annotate_bed_LDSC_1000G_hg19_hg38.sh \
+-i ${BED} -n ${NAME} -g hg38 -p AFR -o $ANNOTDIR
 # sleep 1m
-# fi
+fi
 
 # for EUR annotations
 FILE=${ANNOTDIR}/${NAME}.EUR.@.l2.M; checkFile
-# if [[ $HASFILE == "FALSE" ]]; then # 
-# sbatch --mem 10G -p short1,interactive,pool1,pool3-bigmem,gpu,pfen1 --array=1-22 \
-# --time 2:00:00 --output=/dev/null --error=/dev/null --job-name=EUR.${NAME} \
-# ${GWASDIR}/scripts/annotate_bed_LDSC_1000G_hg19_hg38.sh \
-# -i ${BED} -n ${NAME} -g hg38 -p EUR -o $ANNOTDIR
+if [[ $HASFILE == "FALSE" ]]; then # 
+sbatch --mem 10G -p short1,interactive,pool1,pool3-bigmem,gpu,pfen1 --array=1-22 \
+--time 2:00:00 --output=/dev/null --error=/dev/null --job-name=EUR.${NAME} \
+${GWASDIR}/scripts/annotate_bed_LDSC_1000G_hg19_hg38.sh \
+-i ${BED} -n ${NAME} -g hg38 -p EUR -o $ANNOTDIR
 # sleep 1m
-# fi
+fi
 
 echo -e "${NAME}\t${ANNOTDIR}/${NAME}.AFR.,${ANNOTDIR}/${BGNAME}.AFR." >> $CTS_AFR_FN
 echo -e "${NAME}\t${ANNOTDIR}/${NAME}.EUR.,${ANNOTDIR}/${BGNAME}.EUR." >> $CTS_EUR_FN

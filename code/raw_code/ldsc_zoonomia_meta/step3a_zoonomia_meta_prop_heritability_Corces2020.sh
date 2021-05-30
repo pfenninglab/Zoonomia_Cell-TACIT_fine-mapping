@@ -1,9 +1,9 @@
 #!/bin/bash
 #SBATCH -n 1
-#SBATCH --partition=pool1,pool3-bigmem,pfen1,pfen_bigmem
+#SBATCH --partition=pfen1,pool1
 #SBATCH --time=1-0:00:00
 #SBATCH --job-name=predActive
-#SBATCH --dependency=afterany:1669254
+#SBATCH --dependency=afterany:1690917
 #SBATCH --ntasks-per-node=1
 #SBATCH --cpus-per-task=1
 #SBATCH --mem=10G
@@ -53,9 +53,10 @@ OUTDIR=${DATADIR}/prop_herit_Corces2020; mkdir -p $OUTDIR
 
 ###################################################################
 # get the cell types that are signif in caudate for this gwas
-CELLS="MSN_D1 MSN_D2 MSN_SN INT_Pvalb Astro Oligo OPC Microglia"
 CELLS=$(awk -v LOOK=${GWAS_Label} '$1 ~ LOOK {print $2; exit}' ${SETDIR}/data/raw_data/caudate_conservation_ldsc/rdas/caudate_celltype_gwas_enriched.tsv | \
 sed 's/"//g;s/\r//g' | awk '{$1=$1;print}' | tr ',' ' ')
+CELLS="MSN_D1 MSN_D2 MSN_SN INT_Pvalb Astro Oligo OPC Microglia"
+# CELLS="MSN_D1 MSN_D2 INT_Pvalb Oligo Microglia"
 
 echo "This GWAS is enriched in ${CELLS}."
 
@@ -75,17 +76,18 @@ ldsc.py --h2 $GWAS --w-ld-chr ${GWASDIR}/1000G_ALL_Phase3_hg38_files/weights/100
 --ref-ld-chr ${CELLTYPES},${GWASDIR}/1000G_ALL_Phase3_hg38_files/baselineLD_v2.2/baselineLD_v2.2.${POP}. \
 --print-coefficients --out ${OUT} 
 log2results; rm ${OUT}.log
+if [[ $(zcat ${OUT}.results.gz) == '' ]]; then rm ${OUT}.results.gz; fi
 fi; fi; done
 
 ## extract only the top cell type enrichment
 OUTFILE=${OUTDIR}/zoonomia_meta.Corces2020.${GWAS_Label}.${POP}.${CELL}.agg.gz
-if [[ ! -f $OUTFILE || "$OUTFILE" -ot ${CELL2}.1.l2.M ]]; then
+# if [[ ! -f $OUTFILE || "$OUTFILE" -ot ${CELL2}.1.l2.M ]]; then
 gunzip ${OUTDIR}/zoonomia_meta.Corces2020.${GWAS_Label}.${POP}.${CELL}*.results.gz
 awk ' FNR == 2 || NR==1 {print}' \
 	${OUTDIR}/zoonomia_meta.Corces2020.${GWAS_Label}.${POP}.${CELL}*.results |
 	gzip > ${OUTFILE}
 gzip ${OUTDIR}/zoonomia_meta.Corces2020.${GWAS_Label}.${POP}.${CELL}*.results
-fi
+# fi
 done
 
 

@@ -115,6 +115,54 @@ if(FALSE){
 }
 
 
+##############################################################################
+# 3a) read in the mouse cortical interneuron cell types w/ prediction matrics of allPeaks
+celltypes = c('PV', 'SST', "VIP")
+PREDDIR2='/projects/pfenninggroup/mouseCxStr/NeuronSubtypeATAC/Zoonomia_CNN/predictions/'
+HALDIR='/projects/pfenninggroup/mouseCxStr/NeuronSubtypeATAC/Zoonomia_CNN'
+cell = 'VIP'; type = 'enhPeaks'
+
+if(TRUE){
+  for (cell in celltypes){
+    for (type in c('enhPeaks')){
+      print(paste('Getting',type,'for:', cell))
+      ## read in the peak x species mtx -> peak x group long
+      pred_fn = here(PREDDIR2,paste0('human', cell,'peaks_AvgActivityPredictions_boreoeutheria.txt'))
+
+      df_allMeta = fread(pred_fn) %>% 
+        rename('V1' = 'name') %>%
+        pivot_longer(cols = !name, names_to = 'Species', values_to = 'score') %>%
+        filter(grepl('hg38', name)) %>% 
+        mutate(name = gsub('hg38_','hg38.', name)) %>%
+        right_join(df %>% select(c(Species, group_meta)), by = 'Species') %>% 
+        filter(!is.na(score)) %>% group_by(group_meta, name) %>%
+        summarise(score = mean(score, na.rm = T)) %>%
+        ungroup()
+      
+      ## get the peaks mappable to any of the groups & make bed file
+      print(paste('Extracting mappable and predActive',type,'for:', cell))
+      gr_mappable = df_allMeta %>%
+        mutate(group_meta = droplevels(group_meta)) %>%
+        mutate(seqnames = name %>% ss('\\.', 2), 
+               start = name %>% ss('\\.', 3), end = name %>% ss('\\.', 4)) %>%
+        filter(!grepl('-', seqnames)) %>% 
+        data.frame() %>% split(.$group_meta) %>% 
+        lapply(GRanges)
+      out_mappable_fn =  here(DATADIR, 'peaks', paste('BICCN_human_M1_SNAREseq_v1',cell,type, names(gr_mappable), 
+                                                      'mappable.bed.gz', sep = '.'))
+      tmp = map2(.x = gr_mappable, .y = out_mappable_fn, ~export(.x, .y))
+      
+      ## get the peaks pred active on average across group and make bed file
+      gr_predActive = gr_mappable %>% lapply(function(gr) gr[ gr$score > 0.5])
+      lengths(gr_predActive)/ lengths(gr_mappable) * 100
+      out_predActive_fn = here(DATADIR, 'peaks', paste('BICCN_human_M1_SNAREseq_v1',cell,type, names(gr_predActive), 
+                                                       'predActive.bed.gz', sep = '.'))
+      tmp = map2(.x = gr_predActive, .y = out_predActive_fn, ~export(.x, .y))
+    }
+  }
+}
+
+
 #########################################
 # 4) read in the bulk M1 and liver peaks
 celltypes = c('M1ctx', "Liver")

@@ -3,13 +3,13 @@
 #SBATCH --partition=interactive,gpu
 #SBATCH --time=8:00:00
 #SBATCH --job-name=zooM1Liver
-#SBATCH --dependency=afterany:1671283
-##SBATCH --ntasks-per-node=1
-##SBATCH --cpus-per-task=1
+#SBATCH --dependency=afterok:1690518
+#SBATCH --ntasks-per-node=1
+#SBATCH --cpus-per-task=1
 #SBATCH --mem=10G
 #SBATCH --error=logs/est_herit_predActive_M1ctx_liver_%A_%a.txt
 #SBATCH --output=logs/est_herit_predActive_M1ctx_liver_%A_%a.txt
-#SBATCH --array=33-64%10
+#SBATCH --array=1-64%10
 
 log2results() {
 awk -F '\t' '/Total Observed scale h2*/{flag=1;next}/Lambda GC/{flag=0}flag' ${OUT}.log | \
@@ -47,7 +47,6 @@ cd $CODEDIR;
 
 source ~/.bashrc; conda activate ldsc 
 
-for SLURM_ARRAY_TASK_ID in {33..64}; do
 # get the GWAS and reference population
 GWAS=$(awk -F '\t' -v IND=${SLURM_ARRAY_TASK_ID} 'NR==(IND + 1) {print $1}' ${GWASDIR}/gwas_list_sumstats.tsv)
 POP=$(awk -F '\t' -v IND=${SLURM_ARRAY_TASK_ID} 'NR==(IND + 1) {print $2}' ${GWASDIR}/gwas_list_sumstats.tsv)
@@ -69,22 +68,21 @@ if [[ ! -f "${OUT}.results.gz" || "${OUT}.results.gz" -ot ${CELL2}.1.l2.M ]]; th
 ldsc.py --h2 $GWAS --w-ld-chr ${GWASDIR}/1000G_ALL_Phase3_hg38_files/weights/1000G.${POP}.weights.hm3_noMHC. \
 --ref-ld-chr ${CELLTYPES},${GWASDIR}/1000G_ALL_Phase3_hg38_files/baselineLD_v2.2/baselineLD_v2.2.${POP}. \
 --print-coefficients --out ${OUT} 
-log2results; rm ${OUT}.log
+log2results; # rm ${OUT}.log
+if [[ $(zcat ${OUT}.results.gz) == '' ]]; then rm ${OUT}.results.gz; fi
 fi
 done
 
 ## extract only the top cell type enrichment
 OUTFILE=${OUTDIR}/zoonomia_meta.M1ctx_liver.${GWAS_Label}.${POP}.${CELL}.agg.gz
-if [[ ! -f $OUTFILE || "$OUTFILE" -ot ${CELL2}.1.l2.M ]]; then
+# if [[ ! -f $OUTFILE || "$OUTFILE" -ot ${CELL2}.1.l2.M ]]; then
 echo "Aggregating for ${CELL}."
 gunzip ${OUTDIR}/zoonomia_meta.M1ctx_liver.${GWAS_Label}.${POP}.${CELL}*.results.gz
 awk ' FNR == 2 || NR==1 {print}' \
 	${OUTDIR}/zoonomia_meta.M1ctx_liver.${GWAS_Label}.${POP}.${CELL}*.results |
 	gzip >  ${OUTFILE}
 gzip ${OUTDIR}/zoonomia_meta.M1ctx_liver.${GWAS_Label}.${POP}.${CELL}*.results
-fi
-done
-
+# fi
 done
 
 

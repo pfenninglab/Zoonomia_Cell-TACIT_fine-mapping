@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH -n 1
-#SBATCH --partition=pool3-bigmem,pfen1,pfen_bigmem,pfen3
-#SBATCH --time=4-4:00:00
+#SBATCH --partition=pool1,pfen1
+#SBATCH --time=1-0:00:00
 #SBATCH --job-name=zooNeurSub
 ##SBATCH --ntasks-per-node=1
 ##SBATCH --cpus-per-task=1
@@ -68,16 +68,17 @@ ldsc.py --h2 $GWAS --w-ld-chr ${GWASDIR}/1000G_ALL_Phase3_hg38_files/weights/100
 --ref-ld-chr ${CELLTYPES},${GWASDIR}/1000G_ALL_Phase3_hg38_files/baselineLD_v2.2/baselineLD_v2.2.${POP}. \
 --print-coefficients --out ${OUT} 
 log2results; rm ${OUT}.log
+if [[ $(zcat ${OUT}.results.gz) == '' ]]; then rm ${OUT}.results.gz; fi
 fi
 done
 
 ## extract only the top cell type enrichment
 OUTFILE=${OUTDIR}/zoonomia_meta.NeuronSubtype.${GWAS_Label}.${POP}.${CELL}.agg.gz
-if [[ ! -f $OUTFILE || "$OUTFILE" -ot ${CELL2}.1.l2.M ]]; then
+# if [[ ! -f $OUTFILE || "$OUTFILE" -ot ${CELL2}.1.l2.M ]]; then
 gunzip ${OUTDIR}/zoonomia_meta.NeuronSubtype.${GWAS_Label}.${POP}.${CELL}*.results.gz
 awk ' FNR == 2 || NR==1 {print}' \
 	${OUTDIR}/zoonomia_meta.NeuronSubtype.${GWAS_Label}.${POP}.${CELL}*.results |
 	gzip >  ${OUTFILE}
 gzip ${OUTDIR}/zoonomia_meta.NeuronSubtype.${GWAS_Label}.${POP}.${CELL}*.results
-fi
+# fi
 done

@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH -n 1
-#SBATCH --partition=pool1,pool3-bigmem,pfen1,pfen_bigmem
+#SBATCH --partition=pool1,pfen1
 #SBATCH --time=24:00:00
 #SBATCH --job-name=est_herit
 #SBATCH --ntasks-per-node=1
@@ -56,7 +56,7 @@ for IND in $(wc -l $CTS_FN1 | cut -d ' ' -f1 | xargs seq ); do
 LAB=$(awk -v IND=$IND 'FNR == IND {print $1}' $CTS_FN1)
 CELLTYPES=$(awk -v IND=$IND 'FNR == IND {print $2}' $CTS_FN1)
 OUT=${DATADIR}/prop_herit/caudate_conservation_binary.${LAB}.${GWAS_Label}.${POP}
-if [[ ! -f "${OUT}.results.gz" ]]; then # --print-snps ${SNPLIST} 
+if [[ ! -f "${OUT}.results.gz" || $(zcat "${OUT}.results.gz") == "" ]]; then # --print-snps ${SNPLIST} 
 ldsc.py --h2 $GWAS --print-coefficients \
 --w-ld-chr ${GWASDIR}/1000G_ALL_Phase3_hg38_files/weights/1000G.${POP}.weights.hm3_noMHC. \
 --ref-ld-chr ${CELLTYPES},${GWASDIR}/1000G_ALL_Phase3_hg38_files/baselineLD_v2.2/baselineLD_v2.2.${POP}. \

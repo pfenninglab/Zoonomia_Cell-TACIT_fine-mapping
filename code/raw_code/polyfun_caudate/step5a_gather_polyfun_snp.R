@@ -23,7 +23,8 @@ load(here('data/tidy_data/ldsc_gwas','rdas','gwas_list_sumstats.rda'))
 pheno = pheno %>% select( -file) %>% 
   mutate(label = ss(as.character(trait), '_')) %>% 
   inner_join(fread(here('data/tidy_data/ldsc_gwas','gwas_list_sumstats_polyfun.tsv')) %>% select(match),
-             by = 'match')
+             by = 'match') %>%
+  relocate(label, .before = trait)
 
 ###############################
 # read in annotated PIP SNPs ##
@@ -34,12 +35,22 @@ names(annot_fn) = basename(annot_fn)
 input = annot_fn %>% lapply(fread) %>% rbindlist(idcol = 'file', fill = TRUE) %>%
   as_tibble() 
 
+annot_fn2 = here(DATADIR, pheno$match) %>%
+  lapply(list.files, pattern = '.causal_set.txt.gz', full.names = T) %>%
+  unlist()
+names(annot_fn2) = basename(annot_fn2)
+input2 = annot_fn2 %>% lapply(fread) %>% rbindlist(idcol = 'file', fill = TRUE) %>%
+  as_tibble() 
+
 snps_df = input %>% 
-  select(c(file:A2, contains('Caud'), contains('Zoonomia'), contains('Zoonomia'),
-           contains("ENCODE3"), contains('synonymous'))) %>%
   mutate(match = file %>% basename() %>% ss('\\.', 1),
          value = paste(match, SNP, A1, A2, sep = ':')) %>%
-  left_join(pheno, by = 'match') %>% select(-file)
+  select(-file) %>% left_join(input2) %>% 
+  left_join(pheno, by = 'match') %>% select(-file) %>%
+  relocate(c(match, label), .before = everything()) %>%
+  relocate(Caud.Astro:base, .after = everything()) %>%
+  relocate(contains('ENCODE3'), .after = contains('Zoonomia')) %>%
+  relocate(PIP, .after = P)
 
 ########################################
 # liftOver hg19 SNP positions to hg38 ##
@@ -56,7 +67,9 @@ snpRanges_hg38 = snpRanges_hg19 %>% rtracklayer::liftOver(chain = chain) %>%
 snps_df = snps_df %>% left_join(snpRanges_hg38, by = 'value') %>%
   rename('start' = 'POS_hg38', 'BP' = 'POS_hg19') %>% 
   filter( seqnames %>% as.character() %>% ss('chr', 2) == CHR) %>% 
-  relocate(POS_hg38, .after = 'CHR') %>% select(-c(seqnames, value))
+  relocate(POS_hg38, .after = 'CHR') %>% select(-c(seqnames, value)) %>%
+  mutate(name = paste0(label,':',SNP,':chr',CHR,':',POS_hg38,':',A1,':',A2)) %>% 
+  relocate(name, .before = CHR) 
 
 ########################################################################
 ## annotate finemapped SNPs w/ phyloP, primate PhastCons, HARS, CHARs ##
@@ -78,11 +91,6 @@ names(top_phastCons_cols) = top_phastCons_lvls
 ENCODE3_cCRE_lvls = c('PLS', 'pELS', 'dELS', 'Other')
 ENCODE3_cCRE_cols = c(brewer.pal(3,'Dark2'),'#bdbdbd')
 names(ENCODE3_cCRE_cols) = ENCODE3_cCRE_lvls
-
-# colors for 2 HAR and CHAR annotations
-HAR_lvls = c('HAR1500bp', 'CHAR1500bp', 'Other')
-HAR_cols = c(brewer.pal(3,'Accent'))
-names(HAR_cols) = HAR_lvls
 
 snps_df = snps_df %>% mutate(
   # Group 241mammals phyloP
@@ -112,7 +120,8 @@ snps_df = snps_df %>% mutate(
     ENCODE3.pELS == 1 ~ 'pELS',
     ENCODE3.PLS == 1 ~ 'PLS',
     TRUE ~ 'Other'), 
-  cCRE_group = factor(cCRE_group, ENCODE3_cCRE_lvls))
+  cCRE_group = factor(cCRE_group, ENCODE3_cCRE_lvls)) %>%
+  relocate(top_phyloP:cCRE_group, .after = signif_group)
 
 ####################################
 ## save table of fine-mapped SNPs ##
@@ -136,7 +145,7 @@ seqEffect <- xscat(getSeq(genome,paste0('chr',snps_df$CHR),snps_df$POS_hg19-offs
                    snps_df$A1,
                    getSeq(genome,paste0('chr',snps_df$CHR),snps_df$POS_hg19+1,snps_df$POS_hg19+offset),
                    sep='')
-names(seqEffect) = with(snps_df, paste(SNP, A1, A2, 'Effect', sep = ':'))
+names(seqEffect) = paste(snps_df$name, 'Effect',sep = ':')
 effect_fasta = here('data/raw_data/polyfun_caudate/fasta', 
                     paste0('polyfun_caudate_finemapped_snps_',peakLength,'_effect.fasta'))
 writeXStringSet(seqEffect, effect_fasta, format = 'fasta',width = peakLength)
@@ -147,13 +156,11 @@ seqNonEffect <- xscat(getSeq(genome,paste0('chr',snps_df$CHR),snps_df$POS_hg19-o
                       snps_df$A2,
                       getSeq(genome,paste0('chr',snps_df$CHR),snps_df$POS_hg19+1,snps_df$POS_hg19+offset),
                       sep='')
-names(seqNonEffect) = with(snps_df, paste(SNP, A1, A2, 'NonEffect', sep = ':'))
+names(seqNonEffect) = paste(snps_df$name, 'NonEffect',sep = ':')
 
 nonEff_fasta = here('data/raw_data/polyfun_caudate/fasta', 
                     paste0('polyfun_caudate_finemapped_snps_',peakLength,'_nonEffect.fasta'))
 writeXStringSet(seqNonEffect, nonEff_fasta, format = 'fasta',width = peakLength)
-
-
 
 #########################################################
 ## find the finemapped SNPs overlapping CHARs and HARs ##
@@ -197,11 +204,12 @@ overLapsHAR = overLapsHARexact %>%
   relocate(c(CHAR, HAR, match:reference), .after = A2) %>%
   mutate_if(is.character,replace_na,'')
 
-overLapsHAR %>% as.data.frame() %>% select(c(CHR, POS_hg38, SNP, CHAR, HAR))
+overLapsHAR %>% as.data.frame() %>% select(c(name, CHR, POS_hg38, SNP, CHAR, HAR)) %>%
+  distinct(name, CHAR, HAR)
 
 #########################################################
 ## output the HAR/CHAR overlapped SNPs
 dir.create(here('data/raw_data/polyfun_caudate/tables'), showWarnings = F)
 har_tsv = here('data/raw_data/polyfun_caudate/tables',
-               'polyfun_caudate_finemapped_snps_overlap_HAR_CHAR_20210518.tsv')
+               'polyfun_caudate_finemapped_snps_overlap_HAR_CHAR_20210520.tsv')
 write_tsv(overLapsHAR, file = har_tsv)

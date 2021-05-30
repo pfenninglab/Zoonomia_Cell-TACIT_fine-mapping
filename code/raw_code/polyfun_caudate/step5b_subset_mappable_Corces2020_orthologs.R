@@ -15,15 +15,20 @@ library(rtracklayer)
 CODEDIR='code/raw_code/polyfun_caudate'
 DATADIR='data/raw_data/polyfun_caudate'
 PLOTDIR='figures/exploratory/polyfun_caudate'
-i_am(file.path(CODEDIR, 'step5b_subset_mappable_Corces2020_orthologs.R'))
+source(here('code/raw_code/hal_scripts/gen_enh_ortholog_sets.R'))
 
+i_am(file.path(CODEDIR, 'step5b_subset_mappable_Corces2020_orthologs.R'))
 
 ####################################
 ## 1) read in table of fine-mapped SNPs ##
 dir.create(here('data/raw_data/polyfun_caudate/rdas'), showWarnings = F)
 poly_fn = here('data/raw_data/polyfun_caudate/rdas',
                'polyfun_caudate_finemapped_snps_20210518.rds')
-snps_df = readRDS(file = poly_fn)
+snps_df = readRDS(file = poly_fn) %>%
+  # remove SNPs in coding regions
+  filter_at(vars(contains('Coding_UCSC_')), all_vars(. == 0)) %>% 
+  relocate(c(trait,match), .before = everything())
+
 snps_gr = snps_df %>% mutate(CHR = paste0('chr',CHR),
                              name = paste(CHR,POS_hg38, sep = ':'),
                              value = paste(CHR,POS_hg38, A1, A2, sep = ':')) %>%
@@ -61,31 +66,34 @@ for( cell in celltypes){
 
     oo = findOverlaps(query = snps_gr, subject = peaks_gr)
 
-    
     ## get distance between peak start and SNP
     tmp_gr = snps_gr[unique(queryHits(oo))]
     oo2 = findOverlaps(query = tmp_gr, subject = peaks_gr)
     tmp_df = snps_df[unique(queryHits(oo)),] %>% 
       mutate(celltype = cell, 
-             offset = POS_hg38 - start(peaks_gr)[subjectHits(oo2)])
+             offset = POS_hg38 - start(peaks_gr)[subjectHits(oo2)], 
+             peakNames = df_peaks$name[subjectHits(oo2)]) %>% 
+      relocate(c(celltype, peakNames), .after = SNP)
     snpInPeaks_df = tmp_df %>% bind_rows(snpInPeaks_df)
     
     # write out the predictions over all mapped peaks
-    if(any(!file.exists(c(outCalib_tsv, outCalib_rds)))){
+    # if(any(!file.exists(c(outCalib_tsv, outCalib_rds)))){
     write_tsv(df_peaks[unique(subjectHits(oo)),], file = outCalib_tsv)
     saveRDS(df_peaks[unique(subjectHits(oo)),], outCalib_rds)
-    }
+    # }
 }
 
 allPeaksSNPs_fn = here('data/raw_data/polyfun_caudate/rdas',
                        'polyfun_caudate_finemapped_snpsInAllPeaks_20210518.rds')
-# if(!file.exists(allPeaksSNPs_fn)){
-snpInPeaks_df = snpInPeaks_df %>% filter(!is.na(celltype))
+allPeaksSNPs_tsv = here('data/raw_data/polyfun_caudate/tables',
+                       'polyfun_caudate_finemapped_snpsInAllPeaks_20210518.tsv')
+if(!all(file.exists(c(allPeaksSNPs_fn, allPeaksSNPs_tsv)))){
 snpInPeaks_df %>% count(celltype)
+write_tsv(snpInPeaks_df, file = allPeaksSNPs_tsv)
 saveRDS(snpInPeaks_df, file = allPeaksSNPs_fn)
-# } else {
-  snpInPeaks_df = allPeaksSNPs_fn %>% readRDS()
-# }
+} else {
+snpInPeaks_df = allPeaksSNPs_fn %>% readRDS()
+}
 
 
 #########################
@@ -104,7 +112,7 @@ seqEffectList = snpInPeaks_df %>% mutate(celltype = factor(celltype, celltypes))
   lapply(function(x){
     tmp = with(x, xscat(getSeq(genome,paste0('chr',CHR),POS_hg19-offset,POS_hg19-1),
                 A1, getSeq(genome,paste0('chr',CHR),POS_hg19+1,POS_hg19-offset+ peakLength-1),sep=''))
-    names(tmp) = with(x, paste(SNP, A1, A2, 'Effect', sep = ':'))
+    names(tmp) = with(x, paste(name, 'Effect', sep = ':'))
     return(tmp)
   })
 
@@ -121,7 +129,7 @@ seqNonEffList = snpInPeaks_df %>% mutate(celltype = factor(celltype, celltypes))
     tmp = with(x, xscat(getSeq(genome,paste0('chr',CHR),POS_hg19-offset,POS_hg19-1),
                         A2, 
                         getSeq(genome,paste0('chr',CHR),POS_hg19+1,POS_hg19-offset+ peakLength-1),sep=''))
-    names(tmp) = with(x, paste(SNP, A1, A2, 'NonEffect', sep = ':'))
+    names(tmp) = with(x, paste(name, 'NonEffect', sep = ':'))
     return(tmp)
   })
 nonEff_fasta = here('data/raw_data/polyfun_caudate/fasta', 

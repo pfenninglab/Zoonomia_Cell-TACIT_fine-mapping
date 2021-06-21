@@ -58,10 +58,11 @@ hgEnrich = readRDS(file = phyloP_fn) %>% filter(model_species =='hg38') %>%
     phyloPcon.Prop     = Proportion_of_h2g[ind2],
     phyloPcon.Prop_min = Proportion_of_h2g_min[ind2],
     phyloPcon.Prop_max = Proportion_of_h2g_max[ind2]) %>% 
-  ungroup() %>% select(-(file:model_species)) %>%
+  filter(peaktype %in% c('PhyloP.cons', 'PhyloP.accl')) %>%
+  ungroup() %>% select(-(file:model_species)) %>% 
   select(-(Observed_scale_h2_min:ind2))
 
-hgEnrich$celltype %>% table()
+hgEnrich$peaktype %>% table()
 hgEnrich$trait %>% droplevels() %>% table()
 
 
@@ -86,6 +87,7 @@ enrichments = input %>%
   # GWAS  signif in humans
   inner_join(x = hgEnrich %>% select(-celltype), by = c('match')) %>%
   # zoonomia group_meta data
+  distinct(peaktype, celltype, group_meta, match, .keep_all = TRUE) %>%
   inner_join(x = df_meta, by = 'group_meta') %>%
   group_by(file) %>% type_convert()
 
@@ -136,6 +138,8 @@ dir.create(here(PLOTDIR,'rdas'), showWarnings = F)
 save_fn = here(PLOTDIR,'rdas','zoonomia_meta_prop_heritability_M1ctx_liver.rds')
 saveRDS(enrichments, file = save_fn)
 
+save_excel = here(PLOTDIR,'tables','zoonomia_meta_prop_heritability_M1ctx_liver.xlsx')
+enrichments %>% writexl::write_xlsx(save_excel)
 
 #################################
 ## make plots for presentation ##

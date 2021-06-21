@@ -11,7 +11,6 @@ library(rcartocolor)
 library(ggrepel)
 library(ggforce)
 library(ggpubr)
-library(ggpattern)
 library(ggsci)
 library(here)
 library(ggh4x)
@@ -75,7 +74,7 @@ enrichments_mapPhylop = here('figures/exploratory/ldsc_caudate_zoonomia',
          celltype2 = 'PhyloP')
 # enrichments_mapPhylop %>% count(celltype, celltype2)
 
-## CellTACIT-ML
+## CellTACIT-ML, Caudate snATAC-seq cell types
 keepGroupMeta = c('Human' = 'Primates#0', 'OW Monkey, 20MY' = 'Primates#19.8', 
                   'NW Monkey, 29MY' = 'Primates#28.81', 'Primates, 74MY' = 'Primates#74.1', 
                   'Rodentia, 89MY' = 'Rodentia#89', 'Chiroptera, 94MY' ='Chiroptera#94')
@@ -90,21 +89,30 @@ enrichments_meta = here('figures/exploratory/', 'ldsc_zoonomia_meta',
 # enrichments_meta %>% count(celltype, celltype2)
 
 
+## CellTACIT-ML, bulk M1 and liver ATAC-seq
+enrichments_meta_M1ctxLiver = here('figures/exploratory/', 'ldsc_zoonomia_meta',
+                        'rdas','zoonomia_meta_prop_heritability_M1ctx_liver.rds') %>%
+  readRDS() %>% mutate(datatype = 'CellTACIT-ML') %>%
+  filter(trait %in% keepTraits, group_meta %in% keepGroupMeta) %>%
+  mutate(celltype2 = ifelse(peaktype != 'predActive', 'Mappable', as.character(celltype)),
+         peaktype = keepGroupMeta2[as.character(group_meta)])
+# enrichments_meta_M1ctxLiver %>% count(celltype2, celltype, peaktype)
+
 ################################################
 ## 2) Combine dataframes and reset x labels
 peaktype2 = c(keepPeakTypesPhyloP2, keepPeakTypes2, keepSpecies2, keepGroupMeta2) %>% unique()
 datatype2 = c('PhyloP', 'ATAC-seq', 'Mappable to', 'CellTACIT-ML')
-celltypes2 =  c('Mappable', 'PhyloP', celltypes)
+celltypes2 =  c('Mappable', 'PhyloP', celltypes, 'M1ctx', 'Liver')
 enrichments = list(enrichments_phyloP, enrichments_orthologs,  enrichments_mappable, 
-                   enrichments_mapPhylop, enrichments_meta) %>% 
+                   enrichments_mapPhylop, enrichments_meta, enrichments_meta_M1ctxLiver) %>% 
   rbindlist(fill=TRUE) %>% 
   mutate(peaktype = factor(peaktype, peaktype2),
          datatype = factor(datatype, datatype2), 
          celltype2 = factor(celltype2, celltypes2),
          label = trait %>% as.character() %>% ss('_'))
 
-cell_cols =c(carto_pal(9, "Safe"), 'black')
-names(cell_cols) = c(celltypes,'PhyloP', 'Mappable')
+cell_cols =c(carto_pal(8, "Safe"), 'darkgray', 'black','darkseagreen','darkslategray')
+names(cell_cols) = c(celltypes,'PhyloP', 'Mappable', 'M1ctx', 'Liver')
 enrichments %>% count(datatype, peaktype)
 enrichments %>% count(datatype, celltype2)
 
@@ -123,10 +131,10 @@ dir.create(here(PLOTDIR,'plots','prop_herit_bar_plots_grids'), showWarnings = F,
 plotTrait='DrinksPerWeek_E'; cell = 'MSN_D1'
 
 ## plot grid selection of traits and cell types
-plotTraits = c('AD_E', 'BrainVol_E', 'Gettingup_E', 'Schizophrenia_E', 
+plotTraits = c('TotCholesterol_E', 'AD_E', 'BrainVol_E', 'Schizophrenia_E', 
                'SmokInitiation_E')
-plotCells = c('PhyloP', 'MSN_D1','MSN_D2','INT_Pvalb','Astro','Oligo','Microglia')
-tmp = enrichments %>% filter(trait %in% plotTraits, datatype == 'CellTACIT-ML') %>%
+plotCells = c('PhyloP', 'MSN_D1','MSN_D2','MSN_SN','Oligo','Microglia','Liver')
+tmp = enrichments %>% filter(trait %in% plotTraits, datatype %in% c('CellTACIT-ML','PhyloP')) %>%
   filter(celltype %in% plotCells) %>%
   mutate(trait = factor(trait, plotTraits), celltype = factor(celltype, plotCells),
          label = trait %>% as.character() %>% ss('_')) %>%
@@ -157,6 +165,12 @@ pp1 = ggplot(data = tmp, aes(y = Enrichment, x = peaktype, fill = celltype2,
         strip.text.y = element_text(face = 'bold'))
 print(pp1)
 dev.off()
+
+plot_fn2 = here(PLOTDIR,'plots','Corces2020_caudate.CellTACIT-ML.ppt2.pdf')
+pdf(width = 6, height = 4, file = plot_fn2, onefile = T)
+print(pp1)
+dev.off()
+
 
 
 ## plot the traits

@@ -32,8 +32,8 @@ annotatePeaks <- function(peaks, genome = 'hg38', fromTSS = c(-5000,5000)){
     })
     ret = GRangesList(ret)
   } else if(class(peaks) == "GRanges"){
-    ret <- as.GRanges(annotatePeak(peaks, tssRegion= fromTSS),
-                             TxDb=txdb, annoDb=annodb)
+    ret <- as.GRanges(annotatePeak(peaks, tssRegion= fromTSS,
+                             TxDb=txdb, annoDb=annodb))
     ret$annot = make.names(ss(ret$annotation,' \\('))
   } else{
       stop("Is inputs to peaks a GRanges or GRangesList?")

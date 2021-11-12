@@ -85,7 +85,7 @@ model_calibration = readRDS(file = calib_out_fn)
 
 cell = 'MSN_D1'
 for( cell in celltypes){
-  outEnh_rds = here(PROJDIR,'rdas',paste0('Corces2020.',cell, '.enhPeaks.avgCNN.predictions.rds'))
+  outEnh_rds = here(PROJDIR,'rdas',paste0('Corces2020.',cell, '.allPeaks.avgCNN.predictions.rds'))
   outCalib_tsv = here(PROJDIR,'tables',paste0('Corces2020.',cell, '.calibPeaks.avgCNN.predictions.txt.gz'))
   outCalib_rds = here(PROJDIR,'rdas',paste0('Corces2020.',cell, '.calibPeaks.avgCNN.predictions.rds'))
   # if(any(!file.exists(c(outCalib_tsv, outCalib_rds)))){
@@ -98,8 +98,4 @@ for( cell in celltypes){
     saveRDS(df, outCalib_rds)
   # }
   }
-
-
-
-
 

@@ -15,14 +15,29 @@ library(rtracklayer)
 CODEDIR='code/raw_code/polyfun_caudate'
 DATADIR='data/raw_data/polyfun_caudate'
 PLOTDIR='figures/exploratory/polyfun_caudate'
-i_am(file.path(CODEDIR, 'step5b_subset_mappable_Corces2020_orthologs.R'))
 
 ####################################
 ## 1) read in table of fine-mapped SNPs ##
 dir.create(here('data/raw_data/polyfun_caudate/rdas'), showWarnings = F)
 poly_fn = here('data/raw_data/polyfun_caudate/rdas',
                'polyfun_caudate_finemapped_snps_20210518.rds')
-snps_df = readRDS(file = poly_fn)
+snps_df = readRDS(file = poly_fn) %>%
+  mutate(SNP = paste(CHR,POS_hg38,SNP,A1,A2, sep = ':'))
+
+
+nrow(snps_df) # 98468
+snps_df %>% filter(PIP > 0.1) %>% tally() #7423
+snps_df %>% filter(PIP > 0.5) %>% tally() #1796
+snps_df %>% filter(PIP > 0.95) %>% tally() #748
+
+snps_df %>% group_by(SNP) %>% mutate(tmp = n()) %>% filter(tmp > 1) %>%
+  ungroup() %>% filter(!duplicated(SNP)) %>% nrow() # 9744
+
+snps_df %>% group_by(SNP) %>%  mutate(tmp = n()) %>% ungroup() %>% 
+  filter(!duplicated(SNP)) %>% pull(tmp) %>% summary()
+
+
+
 
 #################################
 ## make plots for presentation ##
@@ -76,3 +91,16 @@ for (cutoff in c(.95, .9, .5, .25, .10)){
   dev.off()
 }
 
+
+
+#######################################
+## plot numFine-mapped SNPs by power ##
+snps_df2 = snps_df %>% filter(PIP >= .1) %>%
+  group_by(trait, h2, h2_Z, group) %>%
+  summarize(numSNP = n())
+
+lm(numSNP ~ h2 +h2_Z  , data = snps_df2) %>% summary()
+snps_df2 %>% group_by(group) %>% summarize(mean(numSNP))
+
+
+  

@@ -42,7 +42,7 @@ set.seed(1234)
 # add iterative LSI
 proj <- addIterativeLSI( 
   ArchRProj = proj, useMatrix = "TileMatrix", 
-  name = "IterativeLSI",
+  name = "IterativeLSI100",
   LSIMethod = 2, #"tf-logidf","log(tf-idf)", "logtf-logidf"
   iterations = 4, # increase this if noticing subtle batch effects
   scaleTo = 3000,
@@ -50,26 +50,26 @@ proj <- addIterativeLSI(
   clusterParams = list( # See Seurat::FindClusters
     resolution = .2, # lower this if noticing subtle batch effects
     sampleCells = 10000,  n.start = 10), 
-  varFeatures = 150000, # also can reduce this if noticing subtle batch effects
+  varFeatures = 100000, # also can reduce this if noticing subtle batch effects
   dimsToUse = 1:30, force = TRUE)
 proj = saveArchRProject(ArchRProj = proj)
 
 # add harmony batch correction #
-proj <- addHarmony( ArchRProj = proj, reducedDims = "IterativeLSI",
-                    name = "HarmonyI150", groupBy = "Sample",force = TRUE)
+proj <- addHarmony( ArchRProj = proj, reducedDims = "IterativeLSI100",
+                    name = "HarmonyI100", groupBy = "Sample",force = TRUE)
 
 # add imputation
-proj <- addImputeWeights(proj, reducedDims = "HarmonyI150")
+proj <- addImputeWeights(proj, reducedDims = "HarmonyI100")
 
 
 # add umap
-proj <- addUMAP( ArchRProj = proj, reducedDims = "HarmonyI150", 
-                 name = "UMAP", nNeighbors = 30, minDist = 0.5, 
+proj <- addUMAP( ArchRProj = proj, reducedDims = "HarmonyI100", 
+                 name = "UMAP100", nNeighbors = 30, minDist = 0.5, 
                  metric = "cosine", force = TRUE)
 
 # add clusters
-proj <- addClusters(input = proj, reducedDims = "HarmonyI150", 
-                    method = "Seurat", name = "ClustersI150", 
+proj <- addClusters(input = proj, reducedDims = "HarmonyI100", 
+                    method = "Seurat", name = "ClustersI100", 
                     resolution = .5, force = TRUE)
 proj = saveArchRProject(ArchRProj = proj)
 

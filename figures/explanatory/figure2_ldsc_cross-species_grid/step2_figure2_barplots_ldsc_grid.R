@@ -39,86 +39,31 @@ enrichments_orthologs = here('figures/exploratory/ldsc_conservation','rdas',
          celltype = droplevels(celltype), celltype2 = celltype)
 # enrichments_orthologs %>% count(celltype, celltype2)
 
-## phylop only
+## 
 keepPeakTypesPhyloP =  c('PhyloP.accl' = 'PhyloP.accl', 'PhyloP.cons' = 'PhyloP.cons')
 keepPeakTypesPhyloP2 = names(keepPeakTypesPhyloP); names(keepPeakTypesPhyloP2) = keepPeakTypesPhyloP
 celltypes = enrichments_orthologs %>% pull(celltype) %>% levels()
-enrichments_phyloP = here('figures/exploratory/ldsc_conservation','rdas',
-                             'caudate_conservation_prop_herit_hg_rm_mm.rds') %>%
-  readRDS() %>% mutate(datatype = 'PhyloP') %>%
-  filter(trait %in% keepTraits, peaktype %in%keepPeakTypesPhyloP) %>%
-  mutate(peaktype = keepPeakTypesPhyloP2[as.character(peaktype)],
-         celltype = 'PhyloP', celltype2 = 'PhyloP')
-# enrichments_phyloP %>% count(celltype, celltype2)
-
-## mappable to species
-keepSpecies = c('Macaque' = 'Macaca_mulatta',
-                'Mouse' = 'Mus_musculus',
-                'Fruit bat' = 'Rousettus_aegyptiacus')
-keepSpecies2 = names(keepSpecies)
-names(keepSpecies2) = keepSpecies
-enrichments_mappable = here('figures/exploratory/ldsc_caudate_zoonomia',
-               'rdas','caudate_conservation_prop_herit_Zoonomia.rds') %>%
-  readRDS() %>% mutate(datatype = 'Mappable to') %>%
-  filter(trait %in% keepTraits, Species %in% keepSpecies) %>%
-  mutate(peaktype = keepSpecies2[as.character(Species)],
-         celltype2 = 'Mappable')
-# enrichments_mappable %>% count(celltype, celltype2)
-
-## mappable and overlaps + phyloP
-enrichments_mapPhylop = here('figures/exploratory/ldsc_caudate_zoonomia',
-                             'rdas','caudate_conservation_prop_herit_phyloP_Zoonomia.rds') %>%
-  readRDS() %>% mutate(datatype = 'Mappable to') %>%
-  filter(trait %in% keepTraits, Species %in% keepSpecies) %>%
-  mutate(peaktype = keepSpecies2[as.character(Species)],
-         celltype2 = 'PhyloP')
-# enrichments_mapPhylop %>% count(celltype, celltype2)
-
-## CellTACIT-ML, Caudate snATAC-seq cell types
-keepGroupMeta = c('Human' = 'Primates#0', 'OW Monkey, 20MY' = 'Primates#19.8', 
-                  'NW Monkey, 29MY' = 'Primates#28.81', 'Primates, 74MY' = 'Primates#74.1', 
-                  'Rodentia, 89MY' = 'Rodentia#89', 'Chiroptera, 94MY' ='Chiroptera#94')
-keepGroupMeta2 = names(keepGroupMeta)
-names(keepGroupMeta2) = keepGroupMeta
-enrichments_meta = here('figures/exploratory/', 'ldsc_zoonomia_meta',
-                        'rdas','zoonomia_meta_prop_heritability_Corces2020.rds') %>%
-  readRDS() %>% mutate(datatype = 'CellTACIT-ML') %>%
-  filter(trait %in% keepTraits, group_meta %in% keepGroupMeta) %>%
-  mutate(celltype2 = ifelse(peaktype != 'predActive', 'Mappable', as.character(celltype)),
-         peaktype = keepGroupMeta2[as.character(group_meta)])
-# enrichments_meta %>% count(celltype, celltype2)
-
-
-## CellTACIT-ML, bulk M1 and liver ATAC-seq
-enrichments_meta_M1ctxLiver = here('figures/exploratory/', 'ldsc_zoonomia_meta',
-                        'rdas','zoonomia_meta_prop_heritability_M1ctx_liver.rds') %>%
-  readRDS() %>% mutate(datatype = 'CellTACIT-ML') %>%
-  filter(trait %in% keepTraits, group_meta %in% keepGroupMeta) %>%
-  mutate(celltype2 = ifelse(peaktype != 'predActive', 'Mappable', as.character(celltype)),
-         peaktype = keepGroupMeta2[as.character(group_meta)])
-# enrichments_meta_M1ctxLiver %>% count(celltype2, celltype, peaktype)
-
-################################################
-## 2) Combine dataframes and reset x labels
-peaktype2 = c(keepPeakTypesPhyloP2, keepPeakTypes2, keepSpecies2, keepGroupMeta2) %>% unique()
-datatype2 = c('PhyloP', 'ATAC-seq', 'Mappable to', 'CellTACIT-ML')
-celltypes2 =  c('Mappable', 'PhyloP', celltypes, 'M1ctx', 'Liver')
-enrichments = list(enrichments_phyloP, enrichments_orthologs,  enrichments_mappable, 
-                   enrichments_mapPhylop, enrichments_meta, enrichments_meta_M1ctxLiver) %>% 
-  rbindlist(fill=TRUE) %>% 
-  mutate(peaktype = factor(peaktype, peaktype2),
-         datatype = factor(datatype, datatype2), 
-         celltype2 = factor(celltype2, celltypes2),
-         label = trait %>% as.character() %>% ss('_'))
 
 cell_cols =c(carto_pal(8, "Safe"), 'darkgray', 'black','darkseagreen','darkslategray')
 names(cell_cols) = c(celltypes,'PhyloP', 'Mappable', 'M1ctx', 'Liver')
-enrichments %>% count(datatype, peaktype)
-enrichments %>% count(datatype, celltype2)
 
-dir.create(here(PLOTDIR,'rdas'), showWarnings = F)
 save_fn = here(PLOTDIR,'rdas','figure2_heritability_enrichments_Corces2020_phyloP_CellTACIT-ML.rds')
-saveRDS(enrichments, file = save_fn)
+enrichments = readRDS(save_fn)
+
+## export heritability enrichments to table
+table_fn = here(PLOTDIR,'tables','Table_S4_heritability_enrichments_Corces2020_phyloP_CellTACIT-ML.xlsx')
+enrichments2 = enrichments %>% 
+  relocate(c(datatype,  celltype, celltype2, peaktype, model_species, group_meta), .after = label) %>%
+  relocate(c(Padj, logPadj, p.signif), .after = group_meta) %>%
+  relocate(c(starts_with('Coefficient')), .after = group_meta) %>%
+  relocate(c(starts_with('Enrichment')), .after = group_meta) %>%
+  dplyr::select(-c(group:signif_group, file,annot_group, tmpcol, Categories,
+                   Zoonomia.Index:col_meta, ends_with(c('.y','.x')),
+                   Observed_scale_h2_z:numSpecies)) %>%
+  arrange(datatype,  celltype, celltype2, peaktype, group_meta) %>%
+  split(., .$label)
+
+enrichments2 %>% writexl::write_xlsx(table_fn)
 
 
 ################################################
@@ -167,9 +112,24 @@ print(pp1)
 dev.off()
 
 plot_fn2 = here(PLOTDIR,'plots','Corces2020_caudate.CellTACIT-ML.ppt2.pdf')
-pdf(width = 6, height = 4, file = plot_fn2, onefile = T)
+pdf(width = 7, height = 4, file = plot_fn2, onefile = T)
 print(pp1)
 dev.off()
+
+enrichments %>% filter(trait %in% c('AD_E', 'Schizophrenia_E', 'SmokInitiation_E')) %>%
+  filter(datatype == 'PhyloP', peaktype == 'PhyloP.cons') %>%
+  group_by(trait, celltype, peaktype) %>%
+  summarise(maxEnrich = max(Enrichment), 
+            minFDR = min(Padj))
+
+enrichments %>% filter(trait %in% c('AD_E', 'Schizophrenia_E', 'SmokInitiation_E')) %>%
+  filter(celltype %in% c('Microglia','MSN_D1', 'MSN_D2')) %>%
+  filter(datatype == 'CellTACIT-ML') %>%
+  group_by(trait, celltype, celltype2) %>%
+  summarise(minEnrich = min(Enrichment), 
+            maxEnrich = max(Enrichment), 
+            minFDR = min(Padj), 
+            maxFDR = max(Padj))
 
 
 

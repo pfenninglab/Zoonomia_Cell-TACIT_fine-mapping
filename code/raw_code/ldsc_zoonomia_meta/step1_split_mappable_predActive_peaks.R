@@ -10,9 +10,11 @@ suppressMessages(library(here))
 suppressMessages(library(GenomicRanges))
 suppressMessages(library(rtracklayer))
 
+## hi this is BaDoi
 DATADIR = here('data/raw_data/ldsc_zoonomia_meta'); 
 dir.create(DATADIR,showWarnings = F); dir.create(here(DATADIR, 'peaks'),showWarnings = F)
 PREDDIR=here('data/raw_data/ldsc_caudate_zoonomia/rdas')
+PROJDIR=here('data/raw_data/ldsc_caudate_zoonomia')
 
 ##############################################
 # 1) read in the Zoonomia tree and species list
@@ -24,7 +26,8 @@ col_meta = df_meta %>% select(col_meta)%>% filter(!duplicated(col_meta)) %>% def
 #####################################################################
 # 2) read in the caudate cell types w/ prediction matrics of allPeaks
 celltypes = c('MSN_D1', 'MSN_D2', "MSN_SN", 'INT_Pvalb', 'Astro', 'Microglia', 'OPC', 'Oligo')
-if(FALSE)
+
+cell = 'MSN_D1'
 for (cell in celltypes){
   print(paste('Working on:', cell))
   for (type in c('allPeaks', 'enhPeaks')){
@@ -52,7 +55,6 @@ for (cell in celltypes){
     out_mappable_fn =  here(DATADIR, 'peaks', paste('Corces2020',cell,type, names(gr_mappable), 
                                                     'mappable.bed.gz', sep = '.'))
     tmp = map2(.x = gr_mappable, .y = out_mappable_fn, ~export(.x, .y))
- 
     
     ## get the peaks pred active on average across group and make bed file
     out_predActive_fn = here(DATADIR, 'peaks', paste('Corces2020',cell,type, names(gr_predActive), 
@@ -61,6 +63,58 @@ for (cell in celltypes){
     tmp = map2(.x = gr_predActive, .y = out_predActive_fn, ~export(.x, .y))
     }
 }
+
+
+
+########################################################################
+# CellTACIT score: mcompute calibrated CNN score then compute cross-species 
+MODEL_TYPE = 'hgRmMm_nonCelltypeNonEnhBiasAway10x'
+DATADIR=here('data/raw_data/cnn_enhancer_ortholog')
+calib_out_fn = here(DATADIR,paste('rdas/Caudate',MODEL_TYPE,'pos_calibration_ecdf.rds', sep = '_'))
+model_calibration = readRDS(file = calib_out_fn)
+
+cell = 'MSN_D1'
+for( cell in celltypes){
+  outCellTACIT_rds = here(PROJDIR,'rdas',paste0('Corces2020.',cell, '.CellTACIT.mean.rds'))
+  outCellTACIT_bed = here(PROJDIR,'CellTACIT',paste0('Corces2020.',cell, '.CellTACIT.mean.bed.gz'))
+  if(file.exists(outCellTACIT_bed)){
+ 
+  ## read in the peak x species mtx -> peak x group long
+  fn = here(PREDDIR,paste('Corces2020',cell, 'allPeaks.avgCNN.predictions.rds', sep = '.'))
+  df_allMeta = readRDS(fn) %>% 
+    filter(grepl('hg38', name)) %>% 
+    # for peaks w/ predicted open, get the calibrated positive score
+    mutate_if(is.numeric, ~ model_calibration[[cell]](.)) %>% 
+    pivot_longer(cols = !name, names_to = 'Species', values_to = 'score') %>%
+    right_join(df %>% select(c(Species, group_meta)), by = 'Species') %>% 
+    group_by(group_meta, name) %>% summarise(score = mean(score, na.rm = T)) %>%
+    mutate(score = ifelse(is.na(score),0, score)) %>% 
+    ungroup()
+
+  df_allMeta2 = df_allMeta %>%
+    mutate(MYA = group_meta %>% as.character() %>% ss('#', 2), 
+           MYA = as.numeric(MYA) + 1) %>%
+    group_by(name) %>%
+    ## weighted geometric mean, MYA weighted by mean clade-wise enhancer activity score
+    # summarise(num = sum( score * log(MYA), na.rm = T), 
+    #           den = sum( score, na.rm = T ), 
+    #           score = exp(num / den)) %>%
+    # dplyr::select(-c(num, den)) %>%
+    ## weighted ari
+    summarise(score = sum(score * MYA) / n()) %>%
+    mutate( score = ifelse(is.na(score), 1, score))
+  
+  gr_allMeta2 = df_allMeta2 %>%
+    mutate(seqnames = ss(name, ":", 2), 
+           start = ss(name, ":", 3) %>% ss('-', 1), 
+           end = ss(name, ":", 3) %>% ss('-', 2)) %>%
+    column_to_rownames(var ='name') %>% GRanges()
+  
+  gr_allMeta2 %>% saveRDS(outCellTACIT_rds)
+  export(gr_allMeta2, outCellTACIT_bed)
+}
+}
+
 
 ##############################################################################
 # 3) read in the mouse cortical interneuron cell types w/ prediction matrics of allPeaks

@@ -24,11 +24,18 @@ pred = input %>% mutate(
                     grepl('nonEnh', prefix) ~ 'nonEnhNeg') %>% factor(groups), 
   fold = ss(prefix, '_fold', 2) %>% ss('_',1), 
   celltype = ss(prefix, '_fold', 1) %>% factor(cells), 
+  Pos_to_Neg_ratio = (tp + fn) / (tn + fp),
+  NPos = tp + fn, NNeg = tn + fp,
   tpr = tp /(tp + fn), fpr = fp /(fp + tn), tnr = tn /(tn + fp),
-  auPRC.adj = auPRC - (tp + fn) / (tn + fp)) %>%
+  npv = tn / (tn + fn),
+  auPRC.adj = auPRC - min(NPos/(NPos + NNeg),NNeg/(NPos + NNeg))) %>%
   filter(!is.na(celltype)) %>% select(-predict_fasta)
 
 table(pred$celltype, pred$group)
+
+df_long = pred %>% pivot_longer(cols = c('auROC','auPRC.adj','f1_score','fpr','tpr'), 
+                              values_to ='value',  names_to = 'variable')
+
 
 ###################################
 ### plot validation performance ###
@@ -36,15 +43,12 @@ library(rcartocolor)
 height_ppt = 5; width_ppt = 8;
 height_fig = 1.75; width_fig = 4.75; font_fig = 7
 
-df_long = pred %>% pivot_longer(cols = c('auROC','auPRC.adj','f1_score','fpr','tpr'), 
-                              values_to ='value',  names_to = 'variable')
-
 pdf('plots/cross_species_validation_performance_20210510.pdf', 
     width = width_ppt, height = height_ppt)
 ggplot(data = df_long %>% filter(trainingSet == 'HgOnly'), aes(x = group, y = value)) + 
   geom_boxplot(aes(fill = group)) + 
   geom_jitter(width = .25, pch = 21, aes(fill = group)) + 
-  scale_fill_carto_d(name = "Cell type:", palette = "Safe") +
+  scale_fill_carto_d(name = "Cell type:", palette = "Vivid") +
   facet_grid(variable~celltype, scales = 'free',space = 'free_x') + 
   theme_bw(base_size = 11) +
   ggtitle('HgOnly Validation Performance') + 
@@ -58,7 +62,7 @@ ggplot(data = df_long %>% filter(trainingSet == 'HgOnly'), aes(x = group, y = va
 ggplot(data = df_long %>% filter(trainingSet == 'HgRmMm'), aes(x = group, y = value)) + 
   geom_boxplot(aes(fill = group)) + 
   geom_jitter(width = .25, pch = 21, aes(fill = group)) + 
-  scale_fill_carto_d(name = "Cell type:", palette = "Safe") +
+  scale_fill_carto_d(name = "Cell type:", palette = "Vivid") +
   facet_grid(variable~celltype, scales = 'free',space = 'free_x') + 
   theme_bw(base_size = 11) +
   ggtitle('HgRmMm Validation Performance') + 

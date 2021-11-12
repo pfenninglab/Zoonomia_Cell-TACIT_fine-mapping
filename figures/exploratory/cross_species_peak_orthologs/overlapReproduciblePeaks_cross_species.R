@@ -1,6 +1,8 @@
 # to be run in the root github directory
-setwd('figures/exploratory/cross_species_peak_orthologs')
-PROJDIR=file.path('../../../data/raw_data/cross_species_peak_orthologs')
+library(here)
+library(rcartocolor)
+PROJDIR='figures/exploratory/cross_species_peak_orthologs'
+DATADIR='data/raw_data/cross_species_peak_orthologs'
 
 #######################################
 ### set up libraries and functions ####
@@ -9,11 +11,11 @@ ss <- function(x, pattern, slot = 1, ...) {
 options(stringsAsFactors = F, repr.plot.width=11, repr.plot.height=8.5)
 suppressMessages(library(rtracklayer)); suppressMessages(library(ArchR))
 
-source('../../../code/raw_code/hal_scripts/narrowPeakFunctions.R')
+source('code/raw_code/hal_scripts/narrowPeakFunctions.R')
 
 #################################################################
 ### collect human peak files that mapped to mouse and macaque ###
-ortholog_fn = list.files(file.path(PROJDIR, 'peaks'), full.names = T,
+ortholog_fn = list.files(here(DATADIR, 'peaks'), full.names = T,
                          pattern = '_orthologPeakList.rds')
 names(ortholog_fn) = ss(basename(ortholog_fn), '_orthologPeakList',1)
 orthologPeakList = lapply(ortholog_fn, readRDS)
@@ -94,7 +96,7 @@ for(i in seq_along(m_list)) {
           )
 }
 
-upset_fn = file.path('plots', 'cross_species_orthologUpset_allCells.pdf')
+upset_fn = here(PROJDIR,'plots', 'cross_species_orthologUpset_allCells.pdf')
 pdf(upset_fn, height = 11, width = 4)
 draw(ht_list, gap = unit(.7, "cm"))
 dev.off()
@@ -121,7 +123,7 @@ for(i in grep('MSN',names(m_list))) {
     )
 }
 
-upsetMSN_fn = file.path('plots', 'cross_species_orthologUpset_MSN.pdf')
+upsetMSN_fn = here(PROJDIR,'plots', 'cross_species_orthologUpset_MSN.pdf')
 pdf(upsetMSN_fn, height = 3, width = 8)
 draw(ht_list2, gap = unit(1, "cm"))
 dev.off()

@@ -1,6 +1,6 @@
 # to be run in the root github directory
 LABEL='cnn_enhancer_ortholog'
-DATADIR2=file.path('/home/bnphan/projects/snATAC_cross_species_caudate/data/raw_data/',LABEL)
+DATADIR=file.path('/home/bnphan/projects/snATAC_cross_species_caudate/data/raw_data/',LABEL)
 DATADIR=file.path('data/raw_data/',LABEL)
 
 ### set up libraries and functions ####
@@ -61,15 +61,15 @@ humanNonCelltype_enhList_split = lapply(folds, function(fold){
 })
 
 # export postive sequences to summit-centered 501bp.fasta file
-system(paste('mkdir -p',  file.path(DATADIR2, 'fasta')))
+system(paste('mkdir -p',  file.path(DATADIR, 'fasta')))
 for(cell in names(human_enhList)){
   for(fold in names(folds)){
     # write the positives
-    pos.fasta_fn = file.path(DATADIR2, 'fasta', 
+    pos.fasta_fn = file.path(DATADIR, 'fasta', 
                              paste(paste0(genome, 'CelltypeOnly'), cell, fold, split, 'positive.fa.gz', sep = '_'))
     posFasta = mapply(writeGRangesToFasta, gr = humanCelltypeOnly_enhList_split[[fold]][[cell]][split],  
                       file = pos.fasta_fn, genome = genome)
-    neg.fasta_fn = file.path(DATADIR2, 'fasta', 
+    neg.fasta_fn = file.path(DATADIR, 'fasta', 
                              paste(paste0(genome, 'NonCelltype'), cell, fold, split, 'negative.fa.gz', sep = '_'))
     negFasta = mapply(writeGRangesToFasta, gr = humanNonCelltype_enhList_split[[fold]][[cell]][split],  
                       file = neg.fasta_fn, genome = genome)
@@ -116,15 +116,15 @@ mouseNonCelltype_enhList_split = lapply(folds, function(fold){
 })
 
 # export postive sequences to summit-centered 501bp.fasta file
-system(paste('mkdir -p',  file.path(DATADIR2, 'fasta')))
+system(paste('mkdir -p',  file.path(DATADIR, 'fasta')))
 for(cell in names(mouse_enhList)){
   for(fold in names(folds)){
     # write the positives
-    pos.fasta_fn = file.path(DATADIR2, 'fasta', 
+    pos.fasta_fn = file.path(DATADIR, 'fasta', 
                              paste(paste0(genome, 'CelltypeOnly'), cell, fold, split, 'positive.fa.gz', sep = '_'))
     posFasta = mapply(writeGRangesToFasta, gr = mouseCelltypeOnly_enhList_split[[fold]][[cell]][split],  
                       file = pos.fasta_fn, genome = genome)
-    neg.fasta_fn = file.path(DATADIR2, 'fasta', 
+    neg.fasta_fn = file.path(DATADIR, 'fasta', 
                              paste(paste0(genome, 'NonCelltype'), cell, fold, split, 'negative.fa.gz', sep = '_'))
     negFasta = mapply(writeGRangesToFasta, gr = mouseNonCelltype_enhList_split[[fold]][[cell]][split],  
                       file = neg.fasta_fn, genome = genome)
@@ -175,15 +175,15 @@ rhesusNonCelltype_enhList_split = lapply(folds, function(fold){
 })
 
 # export postive sequences to summit-centered 501bp.fasta file
-system(paste('mkdir -p',  file.path(DATADIR2, 'fasta')))
+system(paste('mkdir -p',  file.path(DATADIR, 'fasta')))
 for(cell in names(rhesus_enhList)){
   for(fold in names(folds)){
     # write the positives
-    pos.fasta_fn = file.path(DATADIR2, 'fasta', 
+    pos.fasta_fn = file.path(DATADIR, 'fasta', 
                              paste(paste0(genome, 'CelltypeOnly'), cell, fold, split, 'positive.fa.gz', sep = '_'))
     posFasta = mapply(writeGRangesToFasta, gr = rhesusCelltypeOnly_enhList_split[[fold]][[cell]][split],  
                       file = pos.fasta_fn, genome = genome)
-    neg.fasta_fn = file.path(DATADIR2, 'fasta', 
+    neg.fasta_fn = file.path(DATADIR, 'fasta', 
                              paste(paste0(genome, 'NonCelltype'), cell, fold, split, 'negative.fa.gz', sep = '_'))
     negFasta = mapply(writeGRangesToFasta, gr = rhesusNonCelltype_enhList_split[[fold]][[cell]][split],  
                       file = neg.fasta_fn, genome = genome)

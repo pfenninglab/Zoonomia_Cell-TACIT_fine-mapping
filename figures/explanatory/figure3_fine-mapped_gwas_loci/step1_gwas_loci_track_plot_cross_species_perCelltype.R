@@ -48,26 +48,30 @@ gwas_group_legend = list(labels = names(group_col)[1:6], col = 'gray80', fill = 
 group_col2 = group_col[1:6]
 
 ## read in CellTACIT scores
-fn2 = list.files(path = 'figures/explanatory/figure3_fine-mapped_gwas_loci/CellTACIT', full.names = T) %>%
-  grep(pattern = 'mean', value = TRUE)
-names(fn2) = ss(basename(fn2), '\\.', 2)
-CellTACIT_track = fn2 %>% sapply(function(ll){
-  tr = importScore(ll,ll, format="BED")
-  annot_df <- annotatePeak(tr$dat, TxDb=TxDb.Hsapiens.UCSC.hg38.knownGene, 
-                           annoDb='org.Hs.eg.db') %>% 
-    as.GRanges() %>% as.data.frame(row.names = seq(length(.))) %>%
-    mutate(annotation = ss(annotation, ' ')) %>%
-    mutate(peakNames = paste0('hg38:', seqnames,':', start, '-', end, ':250')) %>%
-    dplyr::select(peakNames, annotation, SYMBOL, distanceToTSS)
-  idx = which(annot_df$annotation %in% c('Distal', 'Intron', 'Promoter' ))
-  tr$dat = tr$dat[idx];  tr$dat2 = tr$dat2[idx]
-  tr$dat2$score = .1; strand(tr$dat2) <- "-"
-  setTrackStyleParam(tr, "color", c(col_celltypes[ss(basename(ll), '\\.', 2)], "black"))
-  return(tr) })
-CellTACIT_track = CellTACIT_track[rev(names(col_celltypes))]
 save_track_fn= here('figures/explanatory/figure3_fine-mapped_gwas_loci/rdas',
-                   paste0('fig3_trackViewer.CellTACIT_track.rds'))
-saveRDS(CellTACIT_track, file = save_track_fn)
+                    paste0('fig3_trackViewer.CellTACIT_track.rds'))
+if(file.exists(save_track_fn)){
+  CellTACIT_track = readRDS(save_track_fn)
+} else{
+  fn2 = list.files(path = 'figures/explanatory/figure3_fine-mapped_gwas_loci/CellTACIT', full.names = T) %>%
+    grep(pattern = 'mean', value = TRUE)
+  names(fn2) = ss(basename(fn2), '\\.', 2)
+  CellTACIT_track = fn2 %>% sapply(function(ll){
+    tr = importScore(ll,ll, format="BED")
+    annot_df <- annotatePeak(tr$dat, TxDb=TxDb.Hsapiens.UCSC.hg38.knownGene, 
+                             annoDb='org.Hs.eg.db') %>% 
+      as.GRanges() %>% as.data.frame(row.names = seq(length(.))) %>%
+      mutate(annotation = ss(annotation, ' ')) %>%
+      mutate(peakNames = paste0('hg38:', seqnames,':', start, '-', end, ':250')) %>%
+      dplyr::select(peakNames, annotation, SYMBOL, distanceToTSS)
+    idx = which(annot_df$annotation %in% c('Distal', 'Intron', 'Promoter' ))
+    tr$dat = tr$dat[idx];  tr$dat2 = tr$dat2[idx]
+    tr$dat2$score = .1; strand(tr$dat2) <- "-"
+    setTrackStyleParam(tr, "color", c(col_celltypes[ss(basename(ll), '\\.', 2)], "black"))
+    return(tr) })
+  CellTACIT_track = CellTACIT_track[rev(names(col_celltypes))]
+  saveRDS(CellTACIT_track, file = save_track_fn)
+}
 
 ## read in Genetic Map
 genetic_map = 'data/tidy_data/DECODE/genetic.map.final.sexavg.gor.gz'
@@ -76,7 +80,7 @@ genetic_map_gr = fread(genetic_map) %>% dplyr::select(-cM) %>%
 genetic_map_track = new("track", dat=genetic_map_gr, type="data", format = 'bedGraph')
 
 ## plot for each cell type
-celltype = 'MSN_D1'
+celltype = 'MSN_D2'
 
 for (celltype in names(col_celltypes)){
 ### annotate SNPs w/ CellTACIT scores meta peaks

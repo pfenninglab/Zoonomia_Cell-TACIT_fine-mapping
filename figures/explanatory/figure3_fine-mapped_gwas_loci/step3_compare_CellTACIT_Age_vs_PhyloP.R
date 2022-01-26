@@ -83,13 +83,13 @@ finemap_df2 = lapply(names(consFDR_peakList), function(celltype){
   
   ## add the ,max phyloP enhancer fraction conserved
   ooCons = findOverlaps(subject = tmp_gr, query = consFDR_peakList[[celltype]])
-  scores = split(consFDR_peaks$score[queryHits(ooCons)], subjectHits(ooCons))
+  scores = split(consFDR_peakList[[celltype]]$score[queryHits(ooCons)], subjectHits(ooCons))
   tmp_df$consFrac = 0
   tmp_df$consFrac[as.numeric(names(scores))] = sapply(scores, max)
   
   ## add the max CellTACIT scores
   ooCellTACIT = findOverlaps(subject = tmp_gr, query = CellTACIT_peakList[[celltype]])
-  scores2 = split(CellTACIT_peaks$score[queryHits(ooCellTACIT)], subjectHits(ooCellTACIT))
+  scores2 = split(CellTACIT_peakList[[celltype]]$score[queryHits(ooCellTACIT)], subjectHits(ooCellTACIT))
   tmp_df$CellTACIT_Age = 0
   tmp_df$CellTACIT_Age[as.numeric(names(scores2))] = sapply(scores2, max)
   
@@ -97,6 +97,8 @@ finemap_df2 = lapply(names(consFDR_peakList), function(celltype){
 }) %>% rbindlist()
 
 finemap_df2$celltype = factor(finemap_df2$celltype, names(CellTACIT_peakList))
+finemap_df2 %>% filter(celltype == 'MSN_D2', SNP == 'rs7933981') %>% pull(CellTACIT_Age)
+
 
 # #################################
 ## output fine-mapped SNPs to table
@@ -105,12 +107,16 @@ table_fn = here(PLOTDIR,'tables',
                 'Data_S5_polyfun_caudate_finemapped_snps_20210518.xlsx')
 finemap_df %>% dplyr::select(-c(population:end)) %>%
   split(., .$label) %>% writexl::write_xlsx(path = table_fn)
+finemap_df %>% saveRDS(here(PLOTDIR,'rdas',
+                            'Data_S5_polyfun_caudate_finemapped_snps_20210518.rds'))
 
 table2_fn = here(PLOTDIR,'tables',
-                'Data_S6_CellTACIT_Age_caudate_finemapped_snps_20211103.xlsx')
+                'Data_S6_CellTACIT_Age_caudate_finemapped_snps_20220119.xlsx')
 finemap_df2 %>% dplyr::select(-c(population:end)) %>%
   filter(CellTACIT_Age > 0) %>%
   split(., .$celltype) %>% writexl::write_xlsx(path = table2_fn)
+finemap_df2 %>% saveRDS(here(PLOTDIR,'rdas',
+                            'Data_S6_CellTACIT_Age_caudate_finemapped_snps_20220119.rds'))
 
 
 # #################################
@@ -167,9 +173,10 @@ anova(lme1, lme2) # effect of Cell TACIT Age
 # lme1: PIP ~ CellTACIT_Age + phyloPcons + (1 | group) + (1 | trait)
 # npar    AIC    BIC  logLik deviance  Chisq Df Pr(>Chisq)  
 # lme2    5 542.81 570.41 -266.41   532.81                       
-# lme1    6 538.88 572.00 -263.44   526.88 5.9329  1    0.01486 *
-#   ---
+# lme1    6 541.97 575.09 -264.99   529.97 2.8433  1    0.09175 .
+# ---
 #   Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
 
 
 anova(lme1, lme3) # effect of in PhyloPcons bas
@@ -179,12 +186,11 @@ anova(lme1, lme3) # effect of in PhyloPcons bas
 #   lme3: PIP ~ CellTACIT_Age + (1 | group) + (1 | trait)
 # lme1: PIP ~ CellTACIT_Age + phyloPcons + (1 | group) + (1 | trait)
 # npar    AIC    BIC  logLik deviance  Chisq Df Pr(>Chisq)    
-# lme3    5 569.43 597.02 -279.71   559.43                         
-# lme1    6 538.88 572.00 -263.44   526.88 32.546  1  1.164e-08 ***
+# lme3    5 571.09 598.69 -280.55   561.09                         
+# lme1    6 541.97 575.09 -264.99   529.97 31.125  1   2.42e-08 ***
 #   ---
 #   Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-#   
-  
+
 
 # #################################
 ## make some plots
@@ -207,7 +213,7 @@ ggplot(finemap_df2 %>% filter(consFrac > 0 & CellTACIT_Age >0, PIP > .1, phyloP 
 
 dev.off()
 
-plot_fn1= here(PLOTDIR, 'plots/sfig_CellTACIT_vs_consFrac_score.pdf')
+plot_fn1= here(PLOTDIR, 'plots/sfig_CellTACIT_vs_consFrac_score_20220119.pdf')
 pdf(plot_fn1,width = 2.25*4,  height = 1.5*4)
 ggplot(finemap_df3 %>% filter(consFrac > 0 & CellTACIT_Age >0, PIP > .1), 
        aes(x = consFrac, y = CellTACIT_Age)) + 
@@ -219,7 +225,7 @@ ggplot(finemap_df3 %>% filter(consFrac > 0 & CellTACIT_Age >0, PIP > .1),
   xlim(c(0,1)) + theme_bw() + scale_x_continuous(labels=scaleFUN)
 dev.off()
 
-plot_fn2= here(PLOTDIR, 'plots/sfig_CellTACIT_vs_phyloP_score.pdf')
+plot_fn2= here(PLOTDIR, 'plots/sfig_CellTACIT_vs_phyloP_score_20220119.pdf')
 pdf(plot_fn2,width = 2.25*4,  height = 1.5*4)
 ggplot(finemap_df3 %>% filter(phyloP > 0 & CellTACIT_Age >0, PIP > .1), 
        aes(x = phyloP, y = CellTACIT_Age)) + 

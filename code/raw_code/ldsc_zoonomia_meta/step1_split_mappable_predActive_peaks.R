@@ -116,6 +116,47 @@ for( cell in celltypes){
 }
 
 
+
+#########################################################
+# Mappable age: Weighted average MYA mappable from human
+cell = 'MSN_D1'
+for( cell in celltypes){
+  out_mappableAge_rds = here(PROJDIR,'rdas',paste0('Corces2020.',cell, '.mappableAge.mean.rds'))
+  out_mappableAge_bed = here(PROJDIR,'CellTACIT',paste0('Corces2020.',cell, '.mappableAge.mean.bed.gz'))
+  if(file.exists(outCellTACIT_bed)){
+    
+    ## read in the peak x species mtx -> peak x group long
+    fn = here(PREDDIR,paste('Corces2020',cell, 'allPeaks.avgCNN.predictions.rds', sep = '.'))
+    df_allMeta = readRDS(fn) %>% 
+      filter(grepl('hg38', name)) %>% 
+      # find all peaks mappable, have non-NA pred score
+      mutate_if(is.numeric, ~ !is.na(.)) %>% 
+      pivot_longer(cols = !name, names_to = 'Species', values_to = 'score') %>%
+      right_join(df %>% select(c(Species, group_meta)), by = 'Species') %>% 
+      # average by # species mappable
+      group_by(group_meta, name) %>% summarise(score = mean(score, na.rm = T)) %>%
+      mutate(score = ifelse(is.na(score),0, score)) %>% 
+      ungroup()
+    
+    ## calculate mappable age
+    df_allMeta2 = df_allMeta %>%
+      mutate(MYA = group_meta %>% as.character() %>% ss('#', 2), 
+             MYA = as.numeric(MYA) + 1) %>%
+      group_by(name) %>% summarise(score = sum(score * MYA) / n()) %>%
+      mutate( score = ifelse(is.na(score), 1, score))
+    
+    gr_allMeta2 = df_allMeta2 %>%
+      mutate(seqnames = ss(name, ":", 2), 
+             start = ss(name, ":", 3) %>% ss('-', 1), 
+             end = ss(name, ":", 3) %>% ss('-', 2)) %>%
+      column_to_rownames(var ='name') %>% GRanges()
+    
+    gr_allMeta2 %>% saveRDS(out_mappableAge_rds)
+    export(gr_allMeta2, out_mappableAge_bed)
+  }
+}
+
+
 ##############################################################################
 # 3) read in the mouse cortical interneuron cell types w/ prediction matrics of allPeaks
 celltypes = c('PV', 'SST', "VIP")

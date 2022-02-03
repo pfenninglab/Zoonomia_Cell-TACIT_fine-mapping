@@ -35,7 +35,7 @@ PREFIX=${CELL}_fold${FOLD}_hgRmMm_nonCelltypeNonEnhBiasAway10x
 for MODEL in $(ls ${SETDIR}/data/raw_data/cnn_enhancer_ortholog/models/${PREFIX}/*.h5); do
 python ${SETDIR}/code/raw_code/cnn_enhancer_ortholog/train_singleTask_CNN_classifier_OCP.py \
 --mode 'predict' --out_dir $DATADIR --predict_fasta $FASTA \
---model_name $MODEL --predict_out ${OUT_PREF}.${CELL} --verbose 2 
+--model_name $MODEL --predict_out ${OUT_PREF}.${CELL} --verbose 2 --force
 done; done
 ## average score across 5 folds, column 3 is prediction score
 echo "Averaging predictions across folds."

@@ -123,7 +123,7 @@ cell = 'MSN_D1'
 for( cell in celltypes){
   out_mappableAge_rds = here(PROJDIR,'rdas',paste0('Corces2020.',cell, '.mappableAge.mean.rds'))
   out_mappableAge_bed = here(PROJDIR,'CellTACIT',paste0('Corces2020.',cell, '.mappableAge.mean.bed.gz'))
-  if(file.exists(outCellTACIT_bed)){
+  # if(file.exists(outCellTACIT_bed)){
     
     ## read in the peak x species mtx -> peak x group long
     fn = here(PREDDIR,paste('Corces2020',cell, 'allPeaks.avgCNN.predictions.rds', sep = '.'))
@@ -134,7 +134,7 @@ for( cell in celltypes){
       pivot_longer(cols = !name, names_to = 'Species', values_to = 'score') %>%
       right_join(df %>% select(c(Species, group_meta)), by = 'Species') %>% 
       # average by # species mappable
-      group_by(group_meta, name) %>% summarise(score = mean(score, na.rm = T)) %>%
+      group_by(group_meta, name) %>% summarise(score = max(score, na.rm = T)) %>%
       mutate(score = ifelse(is.na(score),0, score)) %>% 
       ungroup()
     
@@ -153,7 +153,7 @@ for( cell in celltypes){
     
     gr_allMeta2 %>% saveRDS(out_mappableAge_rds)
     export(gr_allMeta2, out_mappableAge_bed)
-  }
+  # }
 }
 
 

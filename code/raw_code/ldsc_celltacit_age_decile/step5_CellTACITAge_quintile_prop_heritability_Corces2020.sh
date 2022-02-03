@@ -1,15 +1,14 @@
 #!/bin/bash
 #SBATCH -n 1
-#SBATCH --partition=pfen1,pool1
+#SBATCH --partition=pool1
 #SBATCH --time=3-0:00:00
 #SBATCH --job-name=quint
-#SBATCH --dependency=afterany:1690917
 #SBATCH --ntasks-per-node=1
 #SBATCH --cpus-per-task=1
 #SBATCH --mem=10G
 #SBATCH --error=logs/est_herit_quint_%A_%a.txt
 #SBATCH --output=logs/est_herit_quint_%A_%a.txt
-#SBATCH --array=1-64%20
+#SBATCH --array=1-64
 
 log2results() {
 awk -F '\t' '/Total Observed scale h2*/{flag=1;next}/Lambda GC/{flag=0}flag' ${OUT}.log | \

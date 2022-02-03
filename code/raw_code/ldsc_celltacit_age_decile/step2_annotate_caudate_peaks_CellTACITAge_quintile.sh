@@ -50,7 +50,7 @@ sbatch --mem 4G -p short1,interactive,pool1,pool3-bigmem,pfen1 --array=1-22 \
 --time 2:00:00 --output=/dev/null --error=/dev/null --job-name=AFR.${NAME} \
 ${GWASDIR}/scripts/annotate_bed_LDSC_1000G_hg19_hg38.sh \
 -i ${BED} -n ${NAME} -g hg38 -p AFR -o $ANNOTDIR
-sleep 1m
+# sleep 1m
 fi
 
 # for EUR annotations
@@ -60,7 +60,7 @@ sbatch --mem 4G -p short1,interactive,pool1,pool3-bigmem,pfen1 --array=1-22 \
 --time 2:00:00 --output=/dev/null --error=/dev/null --job-name=EUR.${NAME} \
 ${GWASDIR}/scripts/annotate_bed_LDSC_1000G_hg19_hg38.sh \
 -i ${BED} -n ${NAME} -g hg38 -p EUR -o $ANNOTDIR
-sleep 1m
+# sleep 1m
 fi
 
 echo -e "${NAME}\t${ANNOTDIR}/${NAME}.AFR.,${BGANNOTDIR}/${BGNAME}.AFR." >> $CTS_AFR_FN

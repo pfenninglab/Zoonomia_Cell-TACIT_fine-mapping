@@ -32,8 +32,8 @@ pheno = pheno %>% select( -file) %>%
 rda_fn = here('data/tidy_data/Zoonomia_data', 
               'rdas','200_Mammals_Genome_Information.rda')
 load(file = rda_fn)
-df_meta = df_meta %>% mutate(quantile = ifelse(quantile <=94, as.character(Order), as.character(Clade)))
-col_meta = df_meta %>% mutate(value = quantile, name = col_meta) %>% 
+df_meta = df_meta %>% mutate(Order2 = ifelse(Time.Since.Split.from.Human.TimeTree.median <=94, as.character(Order), as.character(Clade)))
+col_meta = df_meta %>% mutate(value = Order2, name = col_meta) %>% 
   filter(!duplicated(value)) %>% dplyr::select(value,name) %>% deframe()
 
 ####################################################
@@ -79,7 +79,7 @@ input %>% data.frame() %>% head()
 enrichments = input %>% 
   mutate(
     peaktype = case_when(grepl('decile',Categories) ~ 'decile', 
-                         grepl('quartile',Categories) ~  'quartile'),
+                         grepl('quintile',Categories) ~  'quintile'),
     quantile = Categories %>% ss('CellTACIT.',2),
     match = ss(file, '\\.', 3), 
     celltype = ss(file, '\\.', 5) %>% 
@@ -114,7 +114,7 @@ enrichments = enrichments %>% mutate(
 )
 
 ## normalize the coefficients by per SNP heritability
-# compute Padj w/ bonferroni family mutliple hypothesis correction
+# compute Padj w/ FDR hypothesis correction
 alpha = 0.05;
 enrichments = enrichments %>% group_by(match, celltype, peaktype) %>% 
   mutate(
@@ -130,7 +130,6 @@ enrichments = enrichments %>% group_by(match, celltype, peaktype) %>%
     p.signif = factor(p.signif, levels = c('NS', paste('FDR <',alpha)))
   ) %>% ungroup() %>% filter(complete.cases(Coefficient_P_value))
 
-to_label = c('Primates#0', 'Primates#28.81', 'Rodentia#89')
 
 #################################
 ## save enrichments table to RDS

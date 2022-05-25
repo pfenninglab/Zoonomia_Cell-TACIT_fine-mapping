@@ -50,13 +50,13 @@ for (cell in names(cell_tacit_peaks)){
   ## export files to bed
   mapply(export, tmpList, fn)
   
-  ## get the randomized deciles
-  tmpList2 = split(cell_tacit_peaks[[cell]],
-                  cell_tacit_peaks[[cell]]$decile_rand)
-  fn2 = here(DATADIR, 'peaks', 
-            paste0('Corces2020.',cell,'.decile_rand',names(tmpList2),'.bed.gz'))
-  ## export files to bed
-  mapply(export, tmpList2, fn2)
+  # ## get the randomized deciles
+  # tmpList2 = split(cell_tacit_peaks[[cell]],
+  #                 cell_tacit_peaks[[cell]]$decile_rand)
+  # fn2 = here(DATADIR, 'peaks', 
+  #           paste0('Corces2020.',cell,'.decile_rand',names(tmpList2),'.bed.gz'))
+  # ## export files to bed
+  # mapply(export, tmpList2, fn2)
 }
 
 

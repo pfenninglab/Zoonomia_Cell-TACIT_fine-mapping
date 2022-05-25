@@ -1,11 +1,11 @@
 #!/bin/bash
 #SBATCH -n 1
-##SBATCH --partition=short1,pool1,interactive
-#SBATCH --partition=pfen3
+#SBATCH --partition=short1,pool1,interactive
+##SBATCH --partition=pfen3
 ##SBATCH --time 0-02:00:00
 #SBATCH --job-name=(-_-)
 #SBATCH --mem=20G
-#SBATCH --array=1-30%5
+#SBATCH --array=1-30
 #SBATCH --error=logs/perm_p_%A_%a.txt
 #SBATCH --output=logs/perm_p_%A_%a.txt
 

@@ -79,7 +79,8 @@ input %>% data.frame() %>% head()
 enrichments = input %>% 
   mutate(
     peaktype = case_when(grepl('decile',Categories) ~ 'decile', 
-                         grepl('quintile',Categories) ~  'quintile'),
+                         grepl('quintile',Categories) ~  'quintile', 
+                         grepl('quartile',Categories) ~  'quartile'),
     quantile = Categories %>% ss('CellTACIT.',2),
     match = ss(file, '\\.', 3), 
     celltype = ss(file, '\\.', 5) %>% 
@@ -89,6 +90,7 @@ enrichments = input %>%
       grepl('MSN|INT', celltype) ~ 'Neuron', 
       TRUE ~ 'Glia'
     )) %>% 
+  filter(peaktype == 'quartile') %>%
   # GWAS  signif in humans
   inner_join(x = hgEnrich, by = c('match', 'celltype')) %>%
   group_by(file) %>% type_convert()
@@ -143,6 +145,7 @@ dir.create(here(PLOTDIR,'plots','prop_herit_Corces2020'), recursive = T, showWar
 height_ppt = 4; width_ppt = 8;
 height_fig = 1.75; width_fig = 2.25; font_fig = 7
 plot_traits = sort(unique(enrichments$trait))
+
 
 ###############
 #### make plots

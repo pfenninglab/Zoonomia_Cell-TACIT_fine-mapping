@@ -27,9 +27,9 @@ SIZE=501; CUTOFF=0.5; source ~/.bashrc
 
 #################################################################
 # get the species and cell types that need to be scored by CNNs
-CELLS="MSN_D1 MSN_D2 MSN_SN INT_Pvalb Astro Oligo OPC Microglia"
+CELLS="MSN_D1 MSN_D2 MSN_SN INT_Pvalb Astro Oligo OPC Microglia Consensus"
 SPECIES=$(awk -F'\t' -v IND=${SLURM_ARRAY_TASK_ID} 'NR==(IND + 1) {print $2}' ${ZOONOMIADIR}/tables/200_Mammals_Genome_Information.tsv )
-FASTA_FN=/projects/pfenninggroup/machineLearningForComputationalBiology/halLiftover_chains/data/raw_data/2bit/fasta/${SPECIES}.fa
+FASTA_FN=/projects/pfenninggroup/machineLearningForComputationalBiology/halLiftover_chains/data/raw_data/fasta/${SPECIES}.fa
 if [[ ! -f $FASTA_FN ]]; then  echo "No genome fasta found. Quiting";exit 1; fi  # one genome doesn't have fasta
 # IS_CHR_SAME=$(awk -F'\t' -v IND=${SLURM_ARRAY_TASK_ID} 'NR==(IND + 1) {print $20 == $21 }' ${ZOONOMIADIR}/tables/200_Mammals_Genome_Information.tsv)
 # DICT=$(ls ${FASTADIR}/*${SPECIES}.txt | head -1)

@@ -7,9 +7,10 @@
 #SBATCH --job-name=scoreMappable
 #SBATCH --ntasks-per-node=1
 #SBATCH --cpus-per-task=1
-#SBATCH --mem=60G
+#SBATCH --mem=45G
 #SBATCH --error=logs/score_ppra_sequences_%A_%a.txt
 #SBATCH --output=logs/score_ppra_sequences_%A_%a.txt
+#SBATCH --array=1-8%4
 
 ### Set up the directories
 SETDIR=/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate
@@ -17,16 +18,17 @@ CODEDIR=${SETDIR}/code/raw_code/select_mpra_candidates;
 DATADIR=${SETDIR}/data/raw_data/select_mpra_candidates
 cd $CODEDIR; mkdir -p $DATADIR/peaks $DATADIR/fasta
 SIZE=501; CUTOFF=0.5; source ~/.bashrc
-conda activate tf2
+source activate tf2
 
 CELLS="MSN_D1 MSN_D2 MSN_SN INT_Pvalb Astro Oligo OPC Microglia"
+CELL=$(echo $CELLS| tr ' ' '\n'|head -$SLURM_ARRAY_TASK_ID|tail -1)
 
 ##############################################
 # Predict SPECIES ortholog CELLTYPE activity
-for FASTA in $(ls $DATADIR/fasta/*.fa | sed '/MPRAii_/d'); do
+for FASTA in $(ls $DATADIR/fasta/*.fa* | sed '/MPRAii_/d'| sed '/Library/d'); do
 OUT_PREF=$(basename $FASTA .fa)
 ## for every cell type, score
-for CELL in $CELLS; do
+# for CELL in $CELLS; do
 AVG_PREDICTIONS=$DATADIR/predictions/${OUT_PREF}.${CELL}.predictions.txt.gz
 if [[ ! -f $AVG_PREDICTIONS ]]; then
 ## for every fold, score
@@ -46,6 +48,8 @@ paste <(zcat $DATADIR/predictions/${CELL}_fold1_hgRmMm_nonCelltypeNonEnhBiasAway
 <(zcat $DATADIR/predictions/${CELL}_fold5_hgRmMm_nonCelltypeNonEnhBiasAway10x/*${OUT_PREF}.${CELL}* | cut -f3|sed '1d' ) | \
 awk -v OFS='\t' '{sum = 0; for (i = 2; i <= NF; i++) sum += $i; sum /= (NF - 1); print $1, sum}' | \
 gzip > $AVG_PREDICTIONS
-else echo "Found $(basename $AVG_PREDICTIONS). Moving on."; fi
-done; done
+else echo "Found $(basename $AVG_PREDICTIONS). Moving on."; 
+fi
+# done; 
+done
 

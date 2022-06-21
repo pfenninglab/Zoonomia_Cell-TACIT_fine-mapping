@@ -18,7 +18,8 @@ model_calibration = readRDS(file = calib_out_fn)
 celltypes = names(model_calibration)
 
 pred_files_prefix = c('BNP_PPRA_enhancers_20220126', 
-                      'IMK_PPRA_SequencesAll', 'MEW_VL_PPRA2Sequences')
+                      'IMK_PPRA_SequencesAll', 'MEW_VL_PPRA2Sequences', 
+                      'Zoonomia_MSN_low_throughput_reporter_enhancers.fasta')
 
 cell = 'MSN_D1'
 for(pref in pred_files_prefix){

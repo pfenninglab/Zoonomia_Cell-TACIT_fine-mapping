@@ -14,6 +14,10 @@ library(rtracklayer)
 library(GenomicRanges)
 library(ChIPseeker)
 library(GenomicFeatures)
+library(ChIPseeker)
+
+suppressMessages(library(BSgenome.Hsapiens.UCSC.hg38))
+suppressMessages(library(TxDb.Hsapiens.UCSC.hg38.knownGene))
 
 #################################
 # 1) import the Cell Tacit tracks
@@ -26,6 +30,14 @@ names(bed_fn) = basename(bed_fn) %>% ss('Corces2020.|.mean.bed.gz', 2)
 ## 2) break up peaks into deciles
 cell_tacit_peaks = lapply(bed_fn, import) %>%
   lapply(function(gr){
+    ## annotate peaks
+    annot_df <- annotatePeak(gr, TxDb=TxDb.Hsapiens.UCSC.hg38.knownGene, 
+                             annoDb='org.Hs.eg.db') %>% 
+      as.GRanges() %>% as.data.frame(row.names = seq(length(.))) %>%
+      mutate(annotation = ss(annotation, ' '))
+    # keep only non-coding distal/intronic peaks
+    gr = gr[annot_df$annotation %in% c('Distal', 'Intron')]
+    
     # break up Ages into deciles per cell type
     gr$decile = ntile(gr$score, 10)
     gr$decile_rand = ntile(sample(gr$score), 10)
@@ -65,6 +77,14 @@ for (cell in names(cell_tacit_peaks)){
 ## 3) break up peaks into quintile
 cell_tacit_peaks = lapply(bed_fn, import) %>%
   lapply(function(gr){
+    ## annotate peaks
+    annot_df <- annotatePeak(gr, TxDb=TxDb.Hsapiens.UCSC.hg38.knownGene, 
+                             annoDb='org.Hs.eg.db') %>% 
+      as.GRanges() %>% as.data.frame(row.names = seq(length(.))) %>%
+      mutate(annotation = ss(annotation, ' '))
+    # keep only non-coding distal/intronic peaks
+    gr = gr[annot_df$annotation %in% c('Distal', 'Intron')]
+    
   # break up Ages into quintile per cell type
   gr$quintile = ntile(gr$score, 5)
   gr$decile_rand = ntile(sample(gr$score), 5)
@@ -100,6 +120,56 @@ for (cell in names(cell_tacit_peaks)){
   ## export files to bed
   mapply(export, tmpList2, fn2)
 }
+
+
+###################################
+## 3) break up peaks into quartile
+cell_tacit_peaks = lapply(bed_fn, import) %>%
+  lapply(function(gr){
+    ## annotate peaks
+    annot_df <- annotatePeak(gr, TxDb=TxDb.Hsapiens.UCSC.hg38.knownGene, 
+                             annoDb='org.Hs.eg.db') %>% 
+      as.GRanges() %>% as.data.frame(row.names = seq(length(.))) %>%
+      mutate(annotation = ss(annotation, ' '))
+    # keep only non-coding distal/intronic peaks
+    gr = gr[annot_df$annotation %in% c('Distal', 'Intron')]
+    
+    # break up Ages into quartile per cell type
+    gr$quartile = ntile(gr$score, 4)
+    gr$decile_rand = ntile(sample(gr$score), 4)
+    return(gr)
+  })
+
+table_fn = here(DATADIR, 'tables', 'cell_tacit_quartile_breaks.xlsx')
+cell_tacit_peaks %>% lapply(as.data.frame) %>%
+  rbindlist(idcol = 'celltype') %>% 
+  group_by(celltype, quartile) %>% 
+  summarise(age_min = min(score) %>% signif(digits = 3),
+            age_max = max(score) %>% signif(digits = 3)) %>% 
+  data.frame() %>% writexl::write_xlsx(table_fn)
+
+
+DATADIR='data/raw_data/ldsc_celltacit_age_decile'
+dir.create('data/raw_data/ldsc_celltacit_age_decile/peaks', showWarnings = F)
+for (cell in names(cell_tacit_peaks)){
+  ## grab the granges of each cell type, split by quartile
+  tmpList = split(cell_tacit_peaks[[cell]],
+                  cell_tacit_peaks[[cell]]$quartile)
+  fn = here(DATADIR, 'peaks', 
+            paste0('Corces2020.',cell,'.quartile',names(tmpList),'.bed.gz'))
+  ## export files to bed
+  mapply(export, tmpList, fn)
+  
+  
+  ## get the randomized quartiles
+  tmpList2 = split(cell_tacit_peaks[[cell]],
+                   cell_tacit_peaks[[cell]]$decile_rand)
+  fn2 = here(DATADIR, 'peaks', 
+             paste0('Corces2020.',cell,'.quartile_rand',names(tmpList2),'.bed.gz'))
+  ## export files to bed
+  mapply(export, tmpList2, fn2)
+}
+
 
 
 

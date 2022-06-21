@@ -1,9 +1,8 @@
 #!/bin/bash
 #SBATCH -n 1
-#SBATCH --partition=pool1
+#SBATCH --partition=pool1,pfen1
 #SBATCH --time=3-0:00:00
 #SBATCH --job-name=quint
-#SBATCH --ntasks-per-node=1
 #SBATCH --cpus-per-task=1
 #SBATCH --mem=10G
 #SBATCH --error=logs/est_herit_quint_%A_%a.txt
@@ -83,8 +82,8 @@ OUTFILE=${OUTDIR}/CellTACITage_quintile.Corces2020.${GWAS_Label}.${POP}.${CELL}.
 # if [[ ! -f $OUTFILE || "$OUTFILE" -ot ${CELL2}.1.l2.M ]]; then
 gunzip ${OUTDIR}/CellTACITage_quintile.Corces2020.${GWAS_Label}.${POP}.${CELL}*.results.gz
 awk ' FNR == 2 || NR==1 {print}' \
-	${OUTDIR}/CellTACITage_quintile.Corces2020.${GWAS_Label}.${POP}.${CELL}*.results |
-	gzip > ${OUTFILE}
+${OUTDIR}/CellTACITage_quintile.Corces2020.${GWAS_Label}.${POP}.${CELL}*.results |
+gzip > ${OUTFILE}
 gzip ${OUTDIR}/CellTACITage_quintile.Corces2020.${GWAS_Label}.${POP}.${CELL}*.results
 # fi
 done

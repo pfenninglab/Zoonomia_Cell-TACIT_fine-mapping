@@ -43,7 +43,7 @@ celltypes = enrichments_orthologs %>% pull(celltype) %>% levels()
 cell_cols =c(carto_pal(8, "Safe"), 'darkgray', 'black')
 names(cell_cols) = c(celltypes,'PhyloP', 'Mappable')
 
-save_fn = here(PLOTDIR,'rdas','figure2b_heritability_enrichments_Corces2020_phyloP_CellTACITAge_Quintile.rds')
+save_fn = here(PLOTDIR,'rdas','figure2b_heritability_enrichments_Corces2020_phyloP_CellTACITAge_Quartile.rds')
 enrichments = readRDS(save_fn)
 
 ## export heritability enrichments to table
@@ -83,7 +83,7 @@ tmp = enrichments %>% filter(trait %in% plotTraits, datatype %in% c('CellTACIT A
          peaktype =peaktype  %>% as.character() %>% ss(','), 
          peaktype = factor(peaktype, unique(peaktype)))
 
-plot_fn = here(PLOTDIR,'plots','Corces2020_caudate.CellTACIT-AgeQuintile.fig.pdf')
+plot_fn = here(PLOTDIR,'plots','Corces2020_caudate.CellTACIT-AgeQuartile.fig.pdf')
 pdf(width = 4.75, height = 4, file = plot_fn, onefile = T)
 pp1 = ggplot(data = tmp, aes(y = Enrichment, x = peaktype, fill = celltype2,
                              color = celltype, ymin=Enrichment_min, ymax=Enrichment_max)) +
@@ -93,7 +93,7 @@ pp1 = ggplot(data = tmp, aes(y = Enrichment, x = peaktype, fill = celltype2,
   scale_fill_manual(values = cell_cols, guide = 'none') +
   scale_color_manual(values = cell_cols, guide = 'none') +
   facet_grid( label ~ celltype , scales = 'free',space = 'free_x') +
-  xlab('CellTACIT Age Quintile') +  ylab('Heritability Enrichment') +
+  xlab('CellTACIT Age Quartile') +  ylab('Heritability Enrichment') +
   theme_bw(base_size = 7) +
   # guides(fill = guide_legend(nrow = 2, title.position = 'left'),
   #        colour = guide_legend(override.aes = list(fill = 'white'))) +
@@ -106,7 +106,7 @@ pp1 = ggplot(data = tmp, aes(y = Enrichment, x = peaktype, fill = celltype2,
 print(pp1)
 dev.off()
 
-plot_fn2 = here(PLOTDIR,'plots','Corces2020_caudate.CellTACIT-AgeQuintile.ppt.pdf')
+plot_fn2 = here(PLOTDIR,'plots','Corces2020_caudate.CellTACIT-AgeQuartile.ppt.pdf')
 pdf(width = 7, height = 4, file = plot_fn2, onefile = T)
 print(pp1)
 dev.off()

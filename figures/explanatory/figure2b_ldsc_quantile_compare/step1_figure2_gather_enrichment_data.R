@@ -92,9 +92,8 @@ enrichments_meta_M1ctxLiver = here('figures/exploratory/', 'ldsc_zoonomia_meta',
 
 
 ## Cell TACIT ages, plot only the top and bottom 20% of Cell TACIT ages
-keepPeakTypesQuantile = c('Bot_20%' = 'quintile1',  '20-40%' = 'quintile2',  
-                          '40-60%' = 'quintile3', '60-80%' = 'quintile4',  
-                          'Top_20%' = 'quintile5')
+keepPeakTypesQuantile = c('0_25%' = 'quartile1',  '25-50%' = 'quartile2',  
+                          '50-75%' = 'quartile3', '75-100%' = 'quartile4')
 keepPeakTypesQuantile2 = setNames(names(keepPeakTypesQuantile), keepPeakTypesQuantile)
 
 enrichments_quantile = here('figures/exploratory/', 'ldsc_celltacit_age_decile',
@@ -127,6 +126,6 @@ enrichments %>% count(datatype, peaktype)
 enrichments %>% count(datatype, celltype2)
 
 dir.create(here(PLOTDIR,'rdas'), showWarnings = F)
-save_fn = here(PLOTDIR,'rdas','figure2b_heritability_enrichments_Corces2020_phyloP_CellTACITAge_Quintile.rds')
+save_fn = here(PLOTDIR,'rdas','figure2b_heritability_enrichments_Corces2020_phyloP_CellTACITAge_Quartile.rds')
 saveRDS(enrichments, file = save_fn)
 

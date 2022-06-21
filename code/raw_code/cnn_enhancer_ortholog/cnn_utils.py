@@ -47,10 +47,10 @@ def encode_sequence(fasta_pos, fasta_neg, size, shuffleOff = True):
     x_neg = np.array([onehot_seq(seq, size) for seq in SeqIO.parse(_open_neg(fasta_neg), "fasta") ] +
     [onehot_seq(seq.reverse_complement()) for seq in SeqIO.parse(_open_neg(fasta_neg), "fasta") ], dtype="uint8")
     # concatenate positives and negatives, make sure names are unique
-    ids = np.array( [str(idx) + '_' + seq.id for idx, seq in enumerate(SeqIO.parse(_open_pos(fasta_pos), "fasta")) ] +
-            [str(idx) + '_' + seq.id for idx, seq in enumerate(SeqIO.parse(_open_pos(fasta_pos), "fasta")) ] +
-            [str(idx) + '_' + seq.id for idx, seq in enumerate(SeqIO.parse(_open_neg(fasta_neg), "fasta")) ] +
-            [str(idx) + '_' + seq.id for idx, seq in enumerate(SeqIO.parse(_open_neg(fasta_neg), "fasta")) ], dtype="object")
+    ids = np.array( [str(idx) + '#' + seq.id for idx, seq in enumerate(SeqIO.parse(_open_pos(fasta_pos), "fasta")) ] +
+            [str(idx) + '#' + seq.id for idx, seq in enumerate(SeqIO.parse(_open_pos(fasta_pos), "fasta")) ] +
+            [str(idx) + '#' + seq.id for idx, seq in enumerate(SeqIO.parse(_open_neg(fasta_neg), "fasta")) ] +
+            [str(idx) + '#' + seq.id for idx, seq in enumerate(SeqIO.parse(_open_neg(fasta_neg), "fasta")) ], dtype="object")
     print(f'There {x_pos.shape[0]} positives and {x_neg.shape[0]} negatives.')
     x = np.concatenate((x_pos, x_neg))
     y = np.concatenate((np.ones(len(x_pos)),np.zeros(len(x_neg)))).astype('uint8')
@@ -72,8 +72,8 @@ def encode_sequence2(fasta_file, label_file, size, shuffleOff = True):
     print(f'There {sum(np.sum(y, axis = 1) > 0)} positives and {sum(np.sum(y, axis = 1) == 0)} negatives.')
     # guess filetype
     _open = partial(gzip.open, mode='rt') if guess_type(fasta_file)[1]  == 'gzip' else open
-    ids = np.array([str(idx) + '_' + seq.id for idx, seq in enumerate(SeqIO.parse(_open(fasta_file), "fasta")) ] +
-            [str(idx) + '_' + seq.id for idx, seq in enumerate(SeqIO.parse(_open(fasta_file), "fasta")) ], dtype="object")
+    ids = np.array([str(idx) + '#' + seq.id for idx, seq in enumerate(SeqIO.parse(_open(fasta_file), "fasta")) ] +
+            [str(idx) + '#' + seq.id for idx, seq in enumerate(SeqIO.parse(_open(fasta_file), "fasta")) ], dtype="object")
     x = np.array([onehot_seq(seq, size) for seq in SeqIO.parse(_open(fasta_file), "fasta") ] +
     [onehot_seq(seq.reverse_complement(), size) for seq in SeqIO.parse(_open(fasta_file), "fasta") ])
     # x = np.expand_dims(x, axis=3)
@@ -92,8 +92,8 @@ def encode_sequence3(fasta_file, size, shuffleOff = True):
     ## read in the fasta ID, and fasta sequences
     ## ids used to combine rev complements of same DNA sequences
     _open = partial(gzip.open, mode='rt') if guess_type(fasta_file)[1]  == 'gzip' else open
-    ids = np.array( [str(idx) + '_' + seq.id for idx, seq in enumerate(SeqIO.parse(_open(fasta_file), "fasta")) ] +
-            [str(idx) + '_' + seq.id for idx, seq in enumerate(SeqIO.parse(_open(fasta_file), "fasta")) ], dtype="object")
+    ids = np.array( [str(idx) + '#' + seq.id for idx, seq in enumerate(SeqIO.parse(_open(fasta_file), "fasta")) ] +
+            [str(idx) + '#' + seq.id for idx, seq in enumerate(SeqIO.parse(_open(fasta_file), "fasta")) ], dtype="object")
     print(f'There {len(ids)} sequences.')
     x = np.array([onehot_seq(seq, size) for seq in SeqIO.parse(_open(fasta_file), "fasta") ] +
     [onehot_seq(seq.reverse_complement(), size) for seq in SeqIO.parse(_open(fasta_file), "fasta") ])

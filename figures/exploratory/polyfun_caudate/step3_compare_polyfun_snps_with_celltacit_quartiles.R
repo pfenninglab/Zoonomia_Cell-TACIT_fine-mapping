@@ -92,8 +92,8 @@ snps_summary_df = snps_annotated_df %>%
          quantile = factor(quantile), quantile = relevel(quantile, ref = 'non-overlap'))
 
 
-################################
-## 4) plot the log odds ratio
+#############################################
+## 3) test the enrichment of fine-mapped SNPs
 quartiles = c('0-25%', '25-50%', '50-75%', '75-100%')
 names(quartiles) = paste0('quartile', 1:4); 
 groups = names(group_col)[1:6]; names(groups) = names(group_col)[1:6]
@@ -224,7 +224,7 @@ ggplot(snp_enrichment_df %>% filter(celltype %in% celltypes[c(4,5,7,8)], !is.inf
         axis.text.x = element_text(angle = 30, vjust = 1, hjust=1))+ 
   theme(legend.margin=margin(1,1,2,1),
         legend.box.margin=margin(-5,-5,-7,-5), 
-        legend.key.size = unit(0.25, "cm"))
+        legend.key.size = unit(0.2, "cm"))
 dev.off()
 
 

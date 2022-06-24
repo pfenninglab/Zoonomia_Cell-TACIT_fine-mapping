@@ -2,9 +2,10 @@
 __pycache__/
 *.py[cod]
 *$py.class
-/data/
-/trait_pgls/
-/geno_pheno/
+data/
+trait_pgls/
+geno_pheno/
+
 # C extensions
 *.so
 

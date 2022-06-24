@@ -26,7 +26,8 @@ snp_df %>% saveRDS(here(DATADIR, 'rdas', 'snRNA_brain_eqtl.df.rds'))
 ## 2) read cell type eQTLs for the subset of cell types matching CellTACIT models
 celltypes = c('Astrocytes' = 'Astro', 'Microglia' = 'Microglia', 'OPCs' = 'OPC',
               'Inhibitory' = 'INT_Pvalb', 'Oligodendrocytes' = 'Oligo', 
-              'Excitatory' = 'EXC_Neur')
+              'Excitatory' = 'EXC_Neur', 'Pericytes' = 'Pericyte', 
+              'Endothelial' = 'Endo')
 
 cols = c('Gene_id', 'rsID', 'distToTSS', 'p.value', 'beta')
 

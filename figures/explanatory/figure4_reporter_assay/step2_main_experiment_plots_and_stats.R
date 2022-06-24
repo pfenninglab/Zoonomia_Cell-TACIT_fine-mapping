@@ -6,6 +6,7 @@ library(here)
 library(lme4)
 library(lmerTest)
 library(broom.mixed)
+library(RColorBrewer)
 
 ss <- function(x, pattern, slot = 1, ...) { 
   sapply(strsplit(x = x, split = pattern, ...), '[', slot) }
@@ -19,8 +20,11 @@ save_fn1 = here(PLOTDIR, 'rdas', 'reporter_assay_segmented_nuclei_per_nuclei.rds
 seg_filtered_df = readRDS(save_fn1)
 
 save_fn = here(PLOTDIR, 'rdas', 'reporter_assay_segmented_nuclei_per_image.rds')
-seg_per_img_df2 = readRDS(save_fn)
+seg_per_img_df2 = readRDS(save_fn) %>%
+  mutate(Condition = factor(Condition, c('HSA',  'HSB','MMA', 'MMB')))
 
+cols = setNames(RColorBrewer::brewer.pal(4, 'Paired'),
+                c('HSA', 'MMA', 'HSB', 'MMB'))
 
 ###########################################
 ### make the main plots for the figures ###
@@ -44,9 +48,10 @@ ggplot(seg_summary_df,   aes(x=Condition, y=mCherry_mean, fill=Condition)) +
   geom_bar(stat="identity", color="black") +
   geom_errorbar(aes(ymin=mCherry_mean-mCherry_sem, 
                     ymax=mCherry_mean+mCherry_sem), width=.6) + 
-  facet_grid(~isNeuronal)+ ylim(c(0, 68)) +
+  facet_grid(~isNeuronal)+ 
+  # ylim(c(0, 68)) +
   ylab(bquote('mCherry+ nuclei per'~mm^2)) + xlab('') +
-  scale_fill_brewer(palette="Paired") + theme_bw(base_size = 5) + 
+  scale_fill_manual(values = cols) + theme_bw(base_size = 5) + 
   theme(legend.position = 'none',
         plot.margin = margin(2, 2, -4, 1))
 dev.off()

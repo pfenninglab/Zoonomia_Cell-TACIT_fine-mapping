@@ -13,6 +13,10 @@ PLOTDIR='figures/explanatory/figure4_reporter_assay'
 DATADIR='data/raw_data/reporter_assay'
 DATADIR2='data/raw_data/select_mpra_candidates'
 
+cols = setNames(RColorBrewer::brewer.pal(4, 'Paired'),
+                c('HSA', 'MMA', 'HSB', 'MMB'))
+
+
 ##################################################################
 celltypes = c('MSN_D1', 'MSN_D2', "MSN_SN", 'INT_Pvalb','Astro', 'Microglia', 'OPC', 'Oligo') 
 ## pre-calculate the proportion of each cell type
@@ -31,7 +35,6 @@ proportion_df = getCellColData(proj) %>% as_tibble() %>%
 save_fn2 = here(PLOTDIR, 'rdas', 'reporter_assay_summary_nuclei.rds')
 seg_summary_df = readRDS(save_fn2)
 
-
 #################################
 ### get the prediction values ###
 prediction_fn = here(DATADIR2, 'predictions') %>% 
@@ -39,10 +42,10 @@ prediction_fn = here(DATADIR2, 'predictions') %>%
   str_subset('reporter_enhancers')
 names(prediction_fn) = basename(prediction_fn) %>% ss('\\.', 3)
 
-pred_df = prediction_fn %>% lapply(fread, col.names = c('sequence', 'pred')) %>% 
+pred_df = prediction_fn %>% lapply(fread, col.names = c('sequence', 'pred')) %>%
   rbindlist(idcol = 'Celltype') %>% 
   mutate(Condition = ss(sequence, '_', 1), 
-         Condition = factor(Condition, c('HSA', 'MMA', 'HSB', 'MMB')),
+         Condition = factor(Condition, c('HSA',  'HSB','MMA', 'MMB')),
          isNeuronal = case_when(grepl('MSN|INT', Celltype) ~ 'NeuN+', 
                                 TRUE ~ 'NeuN-'), 
          isNeuronal = factor(isNeuronal, c('NeuN+', 'NeuN-'))) %>% 
@@ -62,7 +65,7 @@ ggplot(pred_df2,   aes(x=Condition, y=pred_mean, fill=Condition)) +
                     ymax=pred_mean+pred_sem), width=.6) + 
   facet_grid(~isNeuronal)+
   ylab('Cell-TACIT Calibrated Probability Score') + xlab('') +
-  scale_fill_brewer(palette="Paired") + theme_bw(base_size = 5) + 
+  scale_fill_manual(values = cols) + theme_bw(base_size = 5) + 
   theme(legend.position = 'none',
         plot.margin = margin(2, 2, -4, 1))
 dev.off()

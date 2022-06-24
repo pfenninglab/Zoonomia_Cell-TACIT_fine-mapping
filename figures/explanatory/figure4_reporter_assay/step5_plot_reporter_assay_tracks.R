@@ -24,7 +24,7 @@ features = GRanges("chr11", IRanges(c(113567061, 113577668), width=c(501, 501),
                                     fill = c('#a6cee3', "#b2df8a"), 
                                     height = c(.1, .1), score = c(1, 1)))
 
-## region around the peaks to plot
+## region around the peaks to plot, chr11:113562061-113587061
 locus = GRanges("chr11", IRanges(c(113562061), width=c(25000)))
 
 ##############################################

@@ -5,7 +5,7 @@ __pycache__/
 data/
 trait_pgls/
 geno_pheno/
-
+figure4_trait_pgls_loci/
 # C extensions
 *.so
 

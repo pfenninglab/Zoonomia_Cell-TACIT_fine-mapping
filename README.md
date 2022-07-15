@@ -1,4 +1,4 @@
-# Zoonomia Cell-TACIT GWAS fine-mapping project
+# Fine-mapping candidate neuropsychiatric regulatory variants using cell type-aware comparative genomics
 
 ## Source reference: 
 **Fine-mapping candidate neurological disorder-associated regulatory variants using cell type-aware comparative genomics**, _BaDoi N. Phan, Alyssa J. Lawler, Jing He, Ashley R. Brown, Irene M. Kaplow, Amanda Kowalczyk, Chaitanya Srinivasan, Grant A. Fox, Ziheng Chen, Zoonomia Consortium‡, William R. Stauffer, Andreas R. Pfenning\*_, in prep

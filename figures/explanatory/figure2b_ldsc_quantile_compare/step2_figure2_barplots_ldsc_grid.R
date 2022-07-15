@@ -83,7 +83,7 @@ tmp = enrichments %>% filter(trait %in% plotTraits, datatype %in% c('CellTACIT A
          peaktype =peaktype  %>% as.character() %>% ss(','), 
          peaktype = factor(peaktype, unique(peaktype)))
 
-plot_fn = here(PLOTDIR,'plots','Corces2020_caudate.CellTACIT-AgeQuartile.fig.pdf')
+plot_fn = here(PLOTDIR,'plots','CellTACIT_Age.CellTACIT-AgeQuartile.fig.pdf')
 pdf(width = 4.75, height = 4, file = plot_fn, onefile = T)
 pp1 = ggplot(data = tmp, aes(y = Enrichment, x = peaktype, fill = celltype2,
                              color = celltype, ymin=Enrichment_min, ymax=Enrichment_max)) +
@@ -106,7 +106,7 @@ pp1 = ggplot(data = tmp, aes(y = Enrichment, x = peaktype, fill = celltype2,
 print(pp1)
 dev.off()
 
-plot_fn2 = here(PLOTDIR,'plots','Corces2020_caudate.CellTACIT-AgeQuartile.ppt.pdf')
+plot_fn2 = here(PLOTDIR,'plots','CellTACIT_Age.CellTACIT-AgeQuartile.ppt.pdf')
 pdf(width = 7, height = 4, file = plot_fn2, onefile = T)
 print(pp1)
 dev.off()
@@ -115,7 +115,7 @@ dev.off()
 
 ## plot the traits and cell types comparing CellTACIT vs. other things
 for (cell in celltypes){
-  plot_fn1 = here(PLOTDIR,'plots', paste('Corces2020_caudate.allTraits',cell,'compare_CellTACITAge.fig.pdf', sep = '.'))
+  plot_fn1 = here(PLOTDIR,'plots', paste('CellTACIT_Age.allTraits',cell,'compare_CellTACITAge.fig.pdf', sep = '.'))
   pdf(width = width_fig, height = height_fig, file = plot_fn1, onefile = T)
   for (plotTrait in keepTraits) {
     tmp = enrichments %>% filter(trait %in% plotTrait, celltype %in% c(cell,'PhyloP'))
@@ -143,7 +143,7 @@ for (cell in celltypes){
 
       ## make plots
       plot_fn2 = here(PLOTDIR,'plots','prop_herit_bar_plots',
-                      paste('Corces2020_caudate',plotTrait,cell,'compare_CellTACITAge.fig.pdf', sep = '.'))
+                      paste('CellTACIT_Age',plotTrait,cell,'compare_CellTACITAge.fig.pdf', sep = '.'))
       pdf(width = width_fig, height = height_fig, file = plot_fn2, onefile = F)
       print(pp1); dev.off() # plot to the individual files
       print(pp1); # plot to the main file
@@ -151,4 +151,78 @@ for (cell in celltypes){
   }
   dev.off()
 }
+
+
+
+
+################################################
+## 4) make multi-page cell type and trait enrichment plots
+height_ppt = 4; width_ppt = 8;
+height_fig = 1.25; width_fig = 1.75; font_fig = 4
+
+## plot the traits
+plot_fn = here(PLOTDIR,'plots', paste('CellTACIT_Age.sfig_neuronal_cell_types.pdf', sep = '.'))
+pdf(width = 4.75, height = 6, file = plot_fn, onefile = T)
+table(enrichments$datatype)
+
+## plot the traits
+for (plotTrait in split(keepTraits, rep(1:8, each = 8))) {
+  tmp = enrichments %>% filter(trait %in% plotTrait) %>% 
+    filter(celltype %in% c('PhyloP', 'MSN_D1','MSN_D2','MSN_SN','INT_Pvalb','M1ctx')) %>% 
+    mutate(datatype = recode(datatype, 'ATAC-seq' = 'ATAC', 'CellTACIT Score' = 'Cell-TACIT Score',
+                             'CellTACIT Age' = 'C-T Age', 'Mappable to' = 'Mapped'))
+  if(nrow(tmp) > 0){
+    pp1 = ggplot(data = tmp, aes(y = Enrichment, x = peaktype, fill = celltype2,
+                                 color = celltype, ymin=Enrichment_min, ymax=Enrichment_max)) +
+      geom_bar(stat = 'identity', position = position_dodge2(), size = .2) +
+      geom_errorbar(position = position_dodge2(width = 0.5, padding = 0.25), 
+                    size = .25, color = 'black') +
+      scale_fill_manual(values = cell_cols, guide = 'none') +
+      scale_color_manual(values = cell_cols, guide = 'none') +
+      facet_nested( label ~ celltype + datatype , scales = 'free',space = 'free_x') +
+      xlab('Species/Order') +  ylab('Heritability Enrichment') +
+      theme_bw(base_size = font_fig) +
+      theme(legend.position = "bottom", panel.spacing=unit(0,"lines"),
+            legend.text=element_text(size=font_fig), legend.title=element_text(size=font_fig+1),
+            axis.text.x = element_text(angle = 40, hjust = 1, face = 'bold'),
+            axis.title.x = element_blank(),
+            strip.text.x = element_text(face = 'bold'),
+            strip.text.y = element_text(face = 'bold'))
+    print(pp1)
+  }
+}
+dev.off()
+
+
+## plot the glia and liver
+plot_fn = here(PLOTDIR,'plots', paste('CellTACIT_Age.sfig_nonneuronal_cell_types.pdf', sep = '.'))
+pdf(width = 4.75, height = 6, file = plot_fn, onefile = T)
+
+## plot the traits
+for (plotTrait in split(keepTraits, rep(1:8, each = 8))) {
+  tmp = enrichments %>% filter(trait %in% plotTrait) %>% 
+    filter(celltype %in% c('PhyloP', 'Astro','Microglia','OPC','Oligo','Liver')) %>% 
+    mutate(datatype = recode(datatype, 'ATAC-seq' = 'ATAC', 'CellTACIT Score' = 'Cell-TACIT Score',
+                             'CellTACIT Age' = 'C-T Age', 'Mappable to' = 'Mapped'))
+  if(nrow(tmp) > 0){
+    pp1 = ggplot(data = tmp, aes(y = Enrichment, x = peaktype, fill = celltype2,
+                                 color = celltype, ymin=Enrichment_min, ymax=Enrichment_max)) +
+      geom_bar(stat = 'identity', position = position_dodge2(), size = .2) +
+      geom_errorbar(position = position_dodge2(width = 0.5, padding = 0.25), 
+                    size = .25, color = 'black') +
+      scale_fill_manual(values = cell_cols, guide = 'none') +
+      scale_color_manual(values = cell_cols, guide = 'none') +
+      facet_nested( label ~ celltype + datatype , scales = 'free',space = 'free_x') +
+      xlab('Species/Order') +  ylab('Heritability Enrichment') +
+      theme_bw(base_size = font_fig) +
+      theme(legend.position = "bottom", panel.spacing=unit(0,"lines"),
+            legend.text=element_text(size=font_fig), legend.title=element_text(size=font_fig+1),
+            axis.text.x = element_text(angle = 40, hjust = 1, face = 'bold'),
+            axis.title.x = element_blank(),
+            strip.text.x = element_text(face = 'bold'),
+            strip.text.y = element_text(face = 'bold'))
+    print(pp1)
+  }
+}
+dev.off()
 

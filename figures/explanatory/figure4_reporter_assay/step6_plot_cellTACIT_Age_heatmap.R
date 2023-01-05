@@ -136,6 +136,8 @@ pred_df2 = pred_df %>%
   dplyr::select(-c(Celltype)) %>% 
   distinct(Enhancer, isNeuronal, .keep_all = T)
 
+pred_df2 %>% writexl::write_xlsx(here(PLOTDIR, 'tables', 
+                                      'table_Sx_reporter_assay_CellTACIT-Age_pred_mouse_human.xlsx') )
 
 ###################################
 ## read in the per clade OCR peaks
@@ -156,6 +158,9 @@ zooMeta_df =  lapply(fn, readRDS) %>%
   inner_join(df_meta %>% dplyr::select(group_meta, plotGroup, label)) %>% 
   filter(!grepl('Pholidota', as.character(group_meta)))
 zooMeta_gr = zooMeta_df %>% pull(name)%>% GRanges()
+
+zooMeta_df %>% writexl::write_xlsx(here(PLOTDIR, 'tables', 
+                                      'table_Sx_reporter_assay_CellTACIT-score_zoometa.xlsx') )
 
 ################################
 ## Zoonomia constraint tracks ##

@@ -58,6 +58,10 @@ pred_df2 = pred_df %>%
          pred_sem = sqrt(wtd.var(pred, prop*n()))/sqrt(n())) %>%
   distinct(Condition, isNeuronal, .keep_all = T)
 
+pred_df2 %>% writexl::write_xlsx(here(PLOTDIR, 'tables', 
+                                        'table_Sx_reporter_assay_CellTACIT-score_hs_mm.xlsx') )
+
+
 pdf(here(PLOTDIR, 'plots', 'reporter_assay_CellTACITpred_barplot.pdf'), height = 1.5, width = 1.4)
 ggplot(pred_df2,   aes(x=Condition, y=pred_mean, fill=Condition)) + 
   geom_bar(stat="identity", color="black") +

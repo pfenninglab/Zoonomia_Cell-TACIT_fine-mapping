@@ -35,7 +35,7 @@ snp_enrichment_df = lapply(enrichment_fn, readRDS) %>% rbindlist(idcol = 'brainQ
          quantile = factor(quantile, quartiles)) %>% 
   arrange(desc(estimate * -log10(p.value)))
 
-
+snp_enrichment_df %>% writexl::write_xlsx(here(PLOTDIR, 'tables', 'table_SXX_GTExQTL_celltype_SNP_enrichmentByGroup_quartiles_main.xlsx'))
 
 
 ################################

@@ -1,4 +1,4 @@
-# directories 
+# directories
 SETDIR=/projects/pfenninggroup/machineLearningForComputationalBiology/snATAC_cross_species_caudate
 CODEDIR=${SETDIR}/code/raw_code/ldsc_caudate_zoonomia
 DATADIR=${SETDIR}/data/raw_data/hg38/Corces_2020
@@ -13,16 +13,16 @@ TARGETS=$(awk -F'\t' 'FNR >1 {print $2}' ${ZOONOMIADIR}/tables/200_Mammals_Genom
 sed '/Homo_sapiens/d' | sed '/Carlito_syrichta/d' | sed '/Manis_tricuspis/d'| paste -s -d ',')
 
 
-# ############################
-# # initial halLiftover call
-# for BEDFILE in ${DATADIR}/peak/Corces2020_caudate.*.narrowPeak.gz ${DATADIR}/peak/Corces2020_caudate.All_Roadmap_DHS_cCREs_BICCN_Stauffer.BG.bed.gz; do
-# 	NAME=$(basename $BEDFILE .narrowPeak.gz)
-# 	OUTFILE=${OUTDIR}/${NAME}.${SOURCE}To${TARGET}.HALPER.narrowPeak.gz
-# 	if [[ ! -f "$OUTFILE" ]]; then 
-# 		# sbatch --mem 5G -p pfen1 -w compute-1-40 ${CODEDIR}/../hal_scripts/halper_map_peak_orthologs.sh \
-# 		# -s ${SOURCE} -t ${TARGETS} -o ${OUTDIR} -b ${BEDFILE}
-# 	fi
-# done
+############################
+# initial halLiftover call
+for BEDFILE in ${DATADIR}/peak/Corces2020_caudate.*.narrowPeak.gz ${DATADIR}/peak/Corces2020_caudate.All_Roadmap_DHS_cCREs_BICCN_Stauffer.BG.bed.gz; do
+	NAME=$(basename $BEDFILE .narrowPeak.gz)
+	OUTFILE=${OUTDIR}/${NAME}.${SOURCE}To${TARGET}.HALPER.narrowPeak.gz
+	if [[ ! -f "$OUTFILE" ]]; then 
+		sbatch --mem 5G -p pfen1 -w compute-1-40 ${CODEDIR}/../hal_scripts/halper_map_peak_orthologs.sh \
+		-s ${SOURCE} -t ${TARGETS} -o ${OUTDIR} -b ${BEDFILE}
+	fi
+done
 
 
 ###############################################
@@ -62,18 +62,20 @@ for FILE in $TOLOOK; do
 NAME=$(basename $FILE | sed 's/.HALPER.narrowPeak.gz//g' |sed 's/Homo_sapiensTo/mappableTo./g')
 # check if mapping is right
 checkFile
+checkFile2
 if [[ $HASFILE == "FALSE" ]]; then
 echo "Removing $(basename $FILE .HALPER.narrowPeak.gz) files."
 rm $(echo $FILE | sed 's/.HALPER.narrowPeak.gz/.halLiftover.sFile.bed.gz/g') $(echo $FILE | sed 's/.HALPER.narrowPeak.gz/.halLiftover.tFile.bed.gz/g')
 fi
-# check if annotations are right
-if [[ $HASFILE == "TRUE" ]]; then
-FILE2=${ANNOTDIR}/${NAME}.AFR.#.l2.M; checkFile2
-echo "Checking on $(basename $FILE .HALPER.narrowPeak.gz) annotations."
-if [[ $HASFILE == "FALSE" ]]; then
-echo "Removing $(basename $FILE .HALPER.narrowPeak.gz) files."
-rm $FILE $(echo $FILE | sed 's/.HALPER.narrowPeak.gz/.halLiftover.sFile.bed.gz/g') $(echo $FILE | sed 's/.HALPER.narrowPeak.gz/.halLiftover.tFile.bed.gz/g')
-fi; fi; done
+
+# # check if annotations are right
+# if [[ $HASFILE == "TRUE" ]]; then
+# FILE2=${ANNOTDIR}/${NAME}.AFR.#.l2.M; checkFile2
+# echo "Checking on $(basename $FILE .HALPER.narrowPeak.gz) annotations."
+# if [[ $HASFILE == "FALSE" ]]; then
+# echo "Removing $(basename $FILE .HALPER.narrowPeak.gz) files."
+# rm $FILE $(echo $FILE | sed 's/.HALPER.narrowPeak.gz/.halLiftover.sFile.bed.gz/g') $(echo $FILE | sed 's/.HALPER.narrowPeak.gz/.halLiftover.tFile.bed.gz/g')
+# fi; fi; done
 
 ######
 # TOLOOK=$(ls -r ${OUTDIR}/*.HALPER.narrowPeak.gz | sed '/Consensus/d;/All/d')

@@ -17,6 +17,10 @@ library(precrec)
 library(lmerTest)
 library(lme4)
 
+library(ChIPseeker)
+suppressMessages(library(BSgenome.Hsapiens.UCSC.hg38))
+suppressMessages(library(TxDb.Hsapiens.UCSC.hg38.knownGene))
+
 # transformation function for axis sig figs
 scaleFUN <- function(x) sprintf("%.1f", x)
 
@@ -34,6 +38,15 @@ CellTACIT_peakList = lapply(CellTACIT_track, function(x) x@dat)
 CellTACIT_peakList = CellTACIT_peakList[rev(names(CellTACIT_peakList))]
 CellTACIT_peakList = mapply(function(gr, lab) {
   gr$celltype = lab
+  
+  ## annotate peaks
+  annot_df <- annotatePeak(gr, TxDb=TxDb.Hsapiens.UCSC.hg38.knownGene, 
+                           annoDb='org.Hs.eg.db') %>% 
+    as.GRanges() %>% as.data.frame(row.names = seq(length(.))) %>%
+    mutate(annotation = ss(annotation, ' '))
+  # keep only non-coding distal/intronic peaks
+  gr = gr[annot_df$annotation %in% c('Distal', 'Intron')]
+  
   return(gr)
   }, CellTACIT_peakList, names(CellTACIT_peakList)) %>% GRangesList()
 CellTACIT_peaks = unlist(CellTACIT_peakList)
@@ -59,11 +72,20 @@ consFDR_peaks = unlist(consFDR_peakList)
 
 #################################
 ## read in the saved polyfun SNPs
-finemap_df = here(DATADIR, 'polyfun_caudate/rdas/polyfun_caudate_finemapped_snps_20210518.rds') %>%
+finemap_df = here(DATADIR, 'polyfun_caudate/rdas/polyfun_caudate_finemapped_snps_20220718.rds') %>%
   readRDS() %>% mutate(start = POS_hg38, end = POS_hg38) %>%
   dplyr::select(-c(POS_hg19,POS_hg38, SNPVAR:P, BETA_MEAN:MAF, index:runPolyfun, h2:base))
 finemap_gr = finemap_df %>% GRanges()
 seqlevelsStyle(finemap_gr) = 'UCSC'
+
+## annotate fine-mapped SNPs in distal and intronic regions
+annot_df2 <- annotatePeak(finemap_gr, TxDb=TxDb.Hsapiens.UCSC.hg38.knownGene, 
+                         annoDb='org.Hs.eg.db') %>% 
+  as.GRanges() %>% as.data.frame(row.names = seq(length(.))) %>%
+  mutate(annotation = ss(annotation, ' '))
+# keep only non-coding distal/intronic SNPs
+finemap_gr = finemap_gr[annot_df2$annotation %in% c('Distal', 'Intron')]
+finemap_df = finemap_df[annot_df2$annotation %in% c('Distal', 'Intron'),]
 
 ## add the single base phyloP to the SNPs
 bws = list.files('/projects/pfenninggroup/machineLearningForComputationalBiology/gwasEnrichments/phyloP/human-centered-200m-Feb2021', pattern = '.bigWig', full.names = T)
@@ -103,20 +125,20 @@ finemap_df2 %>% filter(celltype == 'MSN_D2', SNP == 'rs7933981') %>% pull(CellTA
 # #################################
 ## output fine-mapped SNPs to table
 dir.create(here(PLOTDIR,'tables'), showWarnings = F)
-table_fn = here(PLOTDIR,'tables',
-                'Data_S5_polyfun_caudate_finemapped_snps_20210518.xlsx')
-finemap_df %>% dplyr::select(-c(population:end)) %>%
-  split(., .$label) %>% writexl::write_xlsx(path = table_fn)
-finemap_df %>% saveRDS(here(PLOTDIR,'rdas',
-                            'Data_S5_polyfun_caudate_finemapped_snps_20210518.rds'))
+# table_fn = here(PLOTDIR,'tables',
+#                 'Data_S9_polyfun_caudate_finemapped_snps_20220718.xlsx')
+# finemap_df %>% dplyr::select(-c(population:end)) %>%
+#   split(., .$label) %>% writexl::write_xlsx(path = table_fn)
+# finemap_df %>% saveRDS(here(PLOTDIR,'rdas',
+#                             'Data_S9_polyfun_caudate_finemapped_snps_20220718.rds'))
 
 table2_fn = here(PLOTDIR,'tables',
-                'Data_S6_CellTACIT_Age_caudate_finemapped_snps_20220119.xlsx')
+                'Data_S10_CellTACIT_Age_caudate_finemapped_snps_20220718.xlsx')
 finemap_df2 %>% dplyr::select(-c(population:end)) %>%
   filter(CellTACIT_Age > 0) %>%
   split(., .$celltype) %>% writexl::write_xlsx(path = table2_fn)
 finemap_df2 %>% saveRDS(here(PLOTDIR,'rdas',
-                            'Data_S6_CellTACIT_Age_caudate_finemapped_snps_20220119.rds'))
+                            'Data_S10_CellTACIT_Age_caudate_finemapped_snps_20220718.rds'))
 
 
 # #################################
@@ -129,7 +151,11 @@ finemap_df3 = finemap_df2 %>%
   distinct(match, name, CellTACIT_Age, consFrac, celltype, .keep_all = T)
 
 finemap_df3 %>% filter(CellTACIT_Age > 0, PIP > .1) %>%
-  filter(!duplicated(name)) %>% nrow() # 1844 PIP>.1, 13415 PIP> 0
+  filter(!duplicated(name)) %>% nrow() # 946 PIP>.1
+
+finemap_df3 %>% filter(phyloPcons, PIP > .1) %>%
+  filter(!duplicated(name)) %>% nrow() # 693 PIP>.1
+
 with(finemap_df3, table(CellTACIT_Age > 10, PIP > .1)) 
 with(finemap_df3, table(phyloPcons, PIP > .1)) 
 
@@ -166,31 +192,26 @@ lme3 =  finemap_df3 %>% filter(PIP > 0.1, CellTACIT_Age >0) %>%
   lme4::lmer(PIP ~  CellTACIT_Age + (1|group) + (1|trait) , data = .)
 
 anova(lme1, lme2) # effect of Cell TACIT Age
-# refitting model(s) with ML (instead of REML)
-# Data: .
 # Models:
 #   lme2: PIP ~ phyloPcons + (1 | group) + (1 | trait)
 # lme1: PIP ~ CellTACIT_Age + phyloPcons + (1 | group) + (1 | trait)
 # npar    AIC    BIC  logLik deviance  Chisq Df Pr(>Chisq)  
-# lme2    5 542.81 570.41 -266.41   532.81                       
-# lme1    6 541.97 575.09 -264.99   529.97 2.8433  1    0.09175 .
-# ---
+# lme2    5 293.24 317.50 -141.62   283.24                       
+# lme1    6 289.50 318.61 -138.75   277.50 5.7415  1    0.01657 *
+#   ---
 #   Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 
 
 anova(lme1, lme3) # effect of in PhyloPcons bas
-# refitting model(s) with ML (instead of REML)
-# Data: .
 # Models:
 #   lme3: PIP ~ CellTACIT_Age + (1 | group) + (1 | trait)
 # lme1: PIP ~ CellTACIT_Age + phyloPcons + (1 | group) + (1 | trait)
 # npar    AIC    BIC  logLik deviance  Chisq Df Pr(>Chisq)    
-# lme3    5 571.09 598.69 -280.55   561.09                         
-# lme1    6 541.97 575.09 -264.99   529.97 31.125  1   2.42e-08 ***
+# lme3    5 307.01 331.27 -148.50   297.01                         
+# lme1    6 289.50 318.61 -138.75   277.50 19.514  1  9.986e-06 ***
 #   ---
 #   Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
 
 # #################################
 ## make some plots
@@ -213,7 +234,7 @@ ggplot(finemap_df2 %>% filter(consFrac > 0 & CellTACIT_Age >0, PIP > .1, phyloP 
 
 dev.off()
 
-plot_fn1= here(PLOTDIR, 'plots/sfig_CellTACIT_vs_consFrac_score_20220119.pdf')
+plot_fn1= here(PLOTDIR, 'plots/sfig_CellTACIT_vs_consFrac_score_20220718.pdf')
 pdf(plot_fn1,width = 2.25*4,  height = 1.5*4)
 ggplot(finemap_df3 %>% filter(consFrac > 0 & CellTACIT_Age >0, PIP > .1), 
        aes(x = consFrac, y = CellTACIT_Age)) + 
@@ -225,7 +246,7 @@ ggplot(finemap_df3 %>% filter(consFrac > 0 & CellTACIT_Age >0, PIP > .1),
   xlim(c(0,1)) + theme_bw() + scale_x_continuous(labels=scaleFUN)
 dev.off()
 
-plot_fn2= here(PLOTDIR, 'plots/sfig_CellTACIT_vs_phyloP_score_20220119.pdf')
+plot_fn2= here(PLOTDIR, 'plots/sfig_CellTACIT_vs_phyloP_score_20220718.pdf')
 pdf(plot_fn2,width = 2.25*4,  height = 1.5*4)
 ggplot(finemap_df3 %>% filter(phyloP > 0 & CellTACIT_Age >0, PIP > .1), 
        aes(x = phyloP, y = CellTACIT_Age)) + 

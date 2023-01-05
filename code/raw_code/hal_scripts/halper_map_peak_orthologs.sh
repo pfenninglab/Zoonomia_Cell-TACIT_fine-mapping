@@ -186,8 +186,9 @@ function get_cactus()
 {
     ########################################################################
     # copy over cactus file to speed up the IO during hal-liftover, need > 1Tb
-    TMPDIR=/scratch/$USER/halLiftover; mkdir -p ${OUTDIR} ${TMPDIR}
-    rsync -Paq $CACTUSFILE $TMPDIR
+    TMPDIR=/scratch/$USER/halLiftover; 
+    mkdir -p ${OUTDIR} ${TMPDIR}
+    if [[ ! -f /scratch/cactus/$(basename $CACTUSFILE) ]]; then rsync -Paq $CACTUSFILE /scratch/cactus; fi
 }
 
 function lift_summits()
@@ -197,7 +198,7 @@ function lift_summits()
     HALLIFTEDSFILE=${NAME}.${SOURCE}To${TARGET}.halLiftover.sFile.bed
     if [[ ! -f ${OUTDIR}/${HALLIFTEDSFILE}.gz || $OVERWRITE == 'TRUE' ]]
         # hal-liftover the summits de novo
-        then halLiftover $TMPDIR/$(basename $CACTUSFILE) $SOURCE $SUMMITFILE $TARGET ${TMPDIR}/$HALLIFTEDSFILE
+        then halLiftover /scratch/cactus/$(basename $CACTUSFILE) $SOURCE $SUMMITFILE $TARGET ${TMPDIR}/$HALLIFTEDSFILE
     else
         # using previously hal-liftover summits
         echo "The file ${HALLIFTEDSFILE}.gz exist without permission to overwrite."
@@ -213,7 +214,7 @@ function lift_peaks()
     HALLIFTEDTFILE=${NAME}.${SOURCE}To${TARGET}.halLiftover.tFile.bed
     if [[ ! -f ${OUTDIR}/${HALLIFTEDTFILE}.gz || $OVERWRITE == 'TRUE' ]]
         # hal-liftover the peaks de novo
-        then halLiftover $TMPDIR/$(basename $CACTUSFILE) $SOURCE $SIMPLEBED $TARGET ${TMPDIR}/$HALLIFTEDTFILE
+        then halLiftover /scratch/cactus/$(basename $CACTUSFILE) $SOURCE $SIMPLEBED $TARGET ${TMPDIR}/$HALLIFTEDTFILE
     else
         # using previously hal-liftover peaks
         echo "The file ${HALLIFTEDTFILE}.gz exists without permission to overwrite."
@@ -252,7 +253,7 @@ function map_snps()
     OUTFILE=${TMPDIR}/${NAME}.${SOURCE}To${TARGET}.snp.bed
     if [[ ! -f ${OUTDIR}/${HALLIFTEDTFILE}.gz || $OVERWRITE == 'TRUE' ]]
         # hal-liftover the peaks de novo
-        then halLiftover $TMPDIR/$(basename $CACTUSFILE) $SOURCE $SIMPLEBED $TARGET $OUTFILE
+        then halLiftover /scratch/cactus/$(basename $CACTUSFILE) $SOURCE $SIMPLEBED $TARGET $OUTFILE
         sort -k 1,1 -k2,2n $OUTFILE | uniq -u > ${TMPDIR}/$HALLIFTEDTFILE
         rm $OUTFILE
     else
